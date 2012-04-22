@@ -1,9 +1,7 @@
 package de.stner.cv
 
-import java.net.URL
 
-
-class CV {
+object CV {
 
   val name = "Christian Kästner"
   val title = "Dr.-Ing."
@@ -32,6 +30,10 @@ class CV {
     Course("Software Product Lines: Concepts and Implementation",
       new URL("http://www.uni-marburg.de/fb12/ps/teaching/ss11/spl"),
       German, SummerTerm(2011)
+    ),
+    Course("Software Engineering",
+      new URL("http://www.uni-marburg.de/fb12/ps/teaching/ws10/eise"),
+      German, WinterTerm(2010)
     )
   )
 
@@ -43,8 +45,8 @@ class CV {
 
   val committees = Seq[Committee]()
 
-  val awards=Seq[String]()
-  val projects=Seq[String]()
+  val awards = Seq[String]()
+  val projects = Seq[String]()
 
   val publications = Seq[Publication]()
   val supervised = Seq[Thesis]()

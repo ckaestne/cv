@@ -1,7 +1,5 @@
 package de.stner.cv
 
-import java.net.URL
-
 
 case class Person(
                    firstname: String,
@@ -48,22 +46,53 @@ case class TechnicalReport() extends PublicationKind
 case class Topic(name: String) extends PublicationKind
 
 
-
 sealed abstract class Language
 
 object English extends Language
+
 object German extends Language
 
-sealed abstract class Term(year:Int)
-case class SummerTerm(year: Int) extends Term(year)
-case class WinterTerm(year: Int) extends Term(year)
+sealed abstract class Term(year: Int) extends Comparable[Term]
+
+case class SummerTerm(year: Int) extends Term(year) {
+  def compareTo(that: Term) = that match {
+    case SummerTerm(thatYear) => year.compareTo(thatYear)
+    case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
+  }
+  override def toString = "Summer Term "+year
+}
+
+case class WinterTerm(year: Int) extends Term(year) {
+  def compareTo(that: Term) = that match {
+    case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
+    case WinterTerm(thatYear) => year.compareTo(thatYear)
+  }
+  override def toString = "Winter Term "+year+"/"+(year+1-2000)
+}
 
 
-case class Course(title: String, url:URL, language: Language = English, term:Term)
+case class Course(title: String, url: URL, language: Language = English, term: Term)
 
-case class Committee(venue:Venue, role:CommitteeRole)
+case class Committee(venue: Venue, role: CommitteeRole)
 
-abstract class CommitteeRole(title:String, abbreviation:String)
+abstract class CommitteeRole(title: String, abbreviation: String)
+
 object PC extends CommitteeRole("Program-Committee Member", "PC")
+
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
+
 object TC extends CommitteeRole("Tool-Demonstration-Committee Member", "TC")
+
+
+case class URL(link: String) {
+  override def toString() = {
+    //check that link is valid when printing it
+    try {
+      val connection = new java.net.URL(link).openConnection()
+      connection.connect()
+    } catch {
+      case e => System.err.println("Cannot resolve URL " + link + " (" + e + ")")
+    }
+    link
+  }
+}
