@@ -12,12 +12,25 @@ case class Person(
 }
 
 case class Publication(
-                          kind: PublicationKind,
-                          authors: List[Person],
+                          authors: Seq[Person],
                           title: String,
                           venue: Venue,
                           pages: Range,
-                          topics: Seq[Topic])
+                          links: Map[LinkKind, URL],
+                          abstr: String = "",
+                          topics: Seq[Topic] = Seq()) {
+    def selected() = this
+
+    def note(s: String) = this
+
+    def crosscite(s: String) = this
+}
+
+trait LinkKind
+
+object PDF extends LinkKind
+
+object HTTP extends LinkKind
 
 case class Thesis(
                      author: Person,
@@ -26,39 +39,55 @@ case class Thesis(
                      school: String,
                      comments: String)
 
-trait Venue {
-    def year: Int
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Int] = None, number: Option[String] = None, volume: Option[String] = None) {
+    def location(loc: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, Some(loc), month, number, volume)
 
-    def short: String
+    def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume)
 
-    def name: String
+    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(m), number, volume)
 
-    def kind: PublicationKind
+    def url(u: URL): Venue = Venue(short, year, name, kind, Some(u), publisher, acceptanceRate, location, month, number, volume)
 
-    def publisher: String = ""
+    def number(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u), volume)
 
-    def acceptanceRate: Option[(Int, Int)] = None
+    def number(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u.toString), volume)
 
-    def url: URL
+    def volume(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u))
+
+    def volume(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u.toString))
 }
 
-case class Conference(short: String, year: Int, name: String, url: URL) extends Venue {
-    def kind = KInProceedings
+case class Publisher(name: String, address: String)
+
+object Conference {
+    def apply(short: String, year: Int, name: String, url: URL = null) =
+        Venue(short, year, name, KInConferenceProceedings, if (url == null) None else Some(url))
 }
 
-case class Workshop(short: String, year: Int, name: String, url: URL) extends Venue {
-    def kind = KInProceedings
+object Workshop {
+    def apply(short: String, year: Int, name: String, url: URL = null) =
+        Venue(short, year, name, KInWorkshopProceedings, if (url == null) None else Some(url))
 }
 
-case class Journal(short: String, year: Int, name: String, url: URL = null) extends Venue {
-    def kind = KJournal
+object Journal {
+    def apply(short: String, year: Int, name: String, url: URL = null) =
+        Venue(short, year, name, KJournal, if (url == null) None else Some(url))
+}
+
+object TechReport {
+
+    def apply(year: Int, publisher: Publisher, number: String) =
+        Venue("", year, "", KTechnicalReport, None).publisher(publisher).number(number)
+
 }
 
 sealed abstract class PublicationKind
 
 object KJournal extends PublicationKind
 
-object KInProceedings extends PublicationKind
+object KInConferenceProceedings extends PublicationKind
+
+object KInWorkshopProceedings extends PublicationKind
 
 object KTechnicalReport extends PublicationKind
 

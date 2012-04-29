@@ -153,8 +153,7 @@ object CV {
         Committee(Workshop("NFPinDSML", 2012,
             "4th  Workshop on Non-functional System Properties and Domain Specific Modeling Languages",
             URL("https://nfpindsml.semtech.athabascau.ca/", true)), PC),
-        Committee(Workshop("RAM-SE", 2012,
-            "9th Workshop on Reflection, AOP and Meta-Data for Software Evolution",
+        Committee(RAMSE(2012).url(
             URL("http://www-users.cs.york.ac.uk/~manuel/Events/RAM-SE12/RAM-SE12/Description.html")), PC),
         Committee(Workshop("ESCOT", 2012,
             "3rd International Workshop on Empirical Evaluation of Software Composition Techniques",
