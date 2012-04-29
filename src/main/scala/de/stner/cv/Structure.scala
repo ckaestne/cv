@@ -1,5 +1,7 @@
 package de.stner.cv
 
+import javax.net.ssl.SSLHandshakeException
+
 
 case class Person(
                      firstname: String,
@@ -29,22 +31,38 @@ case class Thesis(
 trait Venue {
     def year: Int
 
+    def short: String
+
     def name: String
 
     def kind: PublicationKind
 
-    def publisher: String
+    def publisher: String = ""
 
     def acceptanceRate: Option[(Int, Int)] = None
+
+    def url: URL
+}
+
+case class Conference(short: String, year: Int, name: String, url: URL) extends Venue {
+    def kind = KInProceedings
+}
+
+case class Workshop(short: String, year: Int, name: String, url: URL) extends Venue {
+    def kind = KInProceedings
+}
+
+case class Journal(short: String, year: Int, name: String, url: URL = null) extends Venue {
+    def kind = KJournal
 }
 
 sealed abstract class PublicationKind
 
-case class Journal() extends PublicationKind
+object KJournal extends PublicationKind
 
-case class InProceedings() extends PublicationKind
+object KInProceedings extends PublicationKind
 
-case class TechnicalReport() extends PublicationKind
+object KTechnicalReport extends PublicationKind
 
 
 case class Topic(name: String) extends PublicationKind
@@ -60,10 +78,10 @@ object German extends Language {
     override def toString = "German"
 }
 
-sealed abstract class Term(val year: Int) extends Comparable[Term]
+sealed abstract class Term(val year: Int) extends Ordered[Term]
 
 case class SummerTerm(ayear: Int) extends Term(ayear) {
-    def compareTo(that: Term) = that match {
+    def compare(that: Term) = that match {
         case SummerTerm(thatYear) => year.compareTo(thatYear)
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
     }
@@ -72,7 +90,7 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
 }
 
 case class WinterTerm(ayear: Int) extends Term(ayear) {
-    def compareTo(that: Term) = that match {
+    def compare(that: Term) = that match {
         case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
     }
@@ -122,13 +140,13 @@ object Seminar extends CourseKind {
 }
 
 object Tutorium extends CourseKind {
-    override def isSeminar = true
+    override def isTutorium = true
 }
 
 
 case class Committee(venue: Venue, role: CommitteeRole)
 
-abstract class CommitteeRole(title: String, abbreviation: String)
+abstract class CommitteeRole(val title: String, val abbreviation: String)
 
 object PC extends CommitteeRole("Program-Committee Member", "PC")
 
@@ -136,6 +154,12 @@ object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
 object TC extends CommitteeRole("Tool-Demonstration-Committee Member", "TC")
 
+case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
+
+case class Review(
+                     venue: Venue,
+                     invitedBy: String = ""
+                     )
 
 case class URL(link: String) {
     override def toString() = {
@@ -144,6 +168,7 @@ case class URL(link: String) {
             val connection = new java.net.URL(link).openConnection()
             connection.connect()
         } catch {
+            case e: SSLHandshakeException =>
             case e => System.err.println("Cannot resolve URL " + link + " (" + e + ")")
         }
         link
@@ -184,6 +209,26 @@ object StructureTheses {
         }
 
         def shortText(inQuotes: String => String): String
+
+        def year = when._2
+
+        def month = when._1
+
+        def monthStr: String = month match {
+            case 1 => "January"
+            case 2 => "February"
+            case 3 => "March"
+            case 4 => "April"
+            case 5 => "May"
+            case 6 => "June"
+            case 7 => "July"
+            case 8 => "August"
+            case 9 => "September"
+            case 10 => "October"
+            case 11 => "November"
+            case 12 => "December"
+            case e => throw new RuntimeException("Invalid month " + e + " in " + this)
+        }
     }
 
     case class Thesis(

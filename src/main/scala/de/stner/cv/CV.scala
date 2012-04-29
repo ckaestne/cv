@@ -3,12 +3,14 @@ package de.stner.cv
 
 object CV {
 
+    import Venues._
+
     val name = "Christian Kästner"
     val title = "Dr.-Ing."
     val imgURL = "http://www.informatik.uni-marburg.de/~kaestner/me3.jpg"
     val description = "I am a post-doctoral researcher at the Philipps University Marburg interested in controlling the complexity caused by variability in software systems. I develop mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, and to improve program comprehension in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the Linux kernel in the TypeChef project.\n" +
-      "\n" +
-      "I received my Master's in 2007 and my PhD in 2010 from the University of Magdeburg. For my work on virtual separation of concerns, I received the prestigious GI-Dissertation Award for the best computer-science dissertation 2010 in Germany/Austria/Switzerland. I am a member of the IFIP 2.11 working group on program generation."
+        "\n" +
+        "I received my Master's in 2007 and my PhD in 2010 from the University of Magdeburg. For my work on virtual separation of concerns, I received the prestigious GI-Dissertation Award for the best computer-science dissertation 2010 in Germany/Austria/Switzerland. I am a member of the IFIP 2.11 working group on program generation."
 
     val address = """
    Philipps Universität Marburg (Link)
@@ -117,22 +119,20 @@ object CV {
     )
 
     val teachingProjects = Seq(
-        TeachingProject("Patientenbefragung",SummerTerm(2011),"Fortgeschrittenenpraktikum"),
-        TeachingProject("Demoproduktlinie Computerspiel",WinterTerm(2010),"Fortgeschrittenenpraktikum"),
-        TeachingProject("Demoproduktlinie Tetris",WinterTerm(2010),"Fortgeschrittenenpraktikum"),
-        TeachingProject("Webuni",SummerTerm(2009),"IT-Projekt"),
-        TeachingProject("FOP-Demo Application (Tank Game)",SummerTerm(2009),"Laborpraktikum"),
-        TeachingProject("Bibliographieverwaltung",WinterTerm(2008),"Softwarepraktikum"),
-        TeachingProject("Stundenplanprogramm fuer Univis",WinterTerm(2008),"Laborpraktikum",new URL("http://www.uni-magdeburg.de/mytt/")),
-        TeachingProject("Entwicklung einer IDE fuer Software-Produktlinien",WinterTerm(2008),"Laborpraktikum",new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/laborws0708/")),
-        TeachingProject("Verknuepfung zwischen VR und semantischen Informationen",SummerTerm(2008),"IT-Projekt"),
-        TeachingProject("Stundenplanprogramm fuer Univis",WinterTerm(2007),"IT-Projekt",new URL("http://www.uni-magdeburg.de/mytt/"))
+        TeachingProject("Patientenbefragung", SummerTerm(2011), "Fortgeschrittenenpraktikum"),
+        TeachingProject("Demoproduktlinie Computerspiel", WinterTerm(2010), "Fortgeschrittenenpraktikum"),
+        TeachingProject("Demoproduktlinie Tetris", WinterTerm(2010), "Fortgeschrittenenpraktikum"),
+        TeachingProject("Webuni", SummerTerm(2009), "IT-Projekt"),
+        TeachingProject("FOP-Demo Application (Tank Game)", SummerTerm(2009), "Laborpraktikum"),
+        TeachingProject("Bibliographieverwaltung", WinterTerm(2008), "Softwarepraktikum"),
+        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2008), "Laborpraktikum", new URL("http://www.uni-magdeburg.de/mytt/")),
+        TeachingProject("Entwicklung einer IDE fuer Software-Produktlinien", WinterTerm(2008), "Laborpraktikum", new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/laborws0708/")),
+        TeachingProject("Verknuepfung zwischen VR und semantischen Informationen", SummerTerm(2008), "IT-Projekt"),
+        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2007), "IT-Projekt", new URL("http://www.uni-magdeburg.de/mytt/"))
     )
 
 
     val advisedTheses = CVTheses.advisedTheses
-
-
 
 
     val researchInterests = Seq(
@@ -141,7 +141,74 @@ object CV {
         "Software product lines, program synthesis, feature interactions, feature location, empirical analyses"
     )
 
-    val committees = Seq[Committee]()
+    val committees = Seq[Committee](
+        Committee(Conference("SE", 2013,
+            "SE 13 -- GI Konferenz Software Engineering",
+            URL("http://www.se2013.rwth-aachen.de/")), PC),
+        Committee(GPCE(2012), PC),
+        Committee(FOSD(2012), OC),
+        Committee(Conference("SPLC", 2012,
+            "16th International Software Product Line Conference",
+            URL("http://www.splc2012.net")), OtherCommittee("Tools and Demonstrations Track", "TC")),
+        Committee(Workshop("NFPinDSML", 2012,
+            "4th  Workshop on Non-functional System Properties and Domain Specific Modeling Languages",
+            URL("https://nfpindsml.semtech.athabascau.ca/")), PC),
+        Committee(Workshop("RAM-SE", 2012,
+            "9th Workshop on Reflection, AOP and Meta-Data for Software Evolution",
+            URL("http://www-users.cs.york.ac.uk/~manuel/Events/RAM-SE12/RAM-SE12/Description.html")), PC),
+        Committee(Workshop("ESCOT", 2012,
+            "3rd International Workshop on Empirical Evaluation of Software Composition Techniques",
+            URL("http://dawis2.icb.uni-due.de/events/escot2012/")), OC),
+        Committee(Workshop("MISS", 2012,
+            "2nd Workshop on Modularity in Systems Software",
+            URL("http://www.aosd.net/workshops/miss/")), PC),
+        Committee(Conference("PEPM", 2012,
+            "21st ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation",
+            URL("http://www.program-transformation.org/PEPM12")), PC),
+        Committee(Workshop("VaMoS", 2012,
+            "6th Int'l Workshop on Variability Modelling of Software-Intensive Systems",
+            URL("http://uni-leipzig.de/~vamos2012/")), PC),
+        Committee(Conference("SC", 2011,
+            "10th International Conference on Software Composition",
+            URL("http://www.infosun.fim.uni-passau.de/spl/SC2011/")), PC),
+        Committee(GPCE(2011), PC),
+        Committee(FOSD(2011), OC),
+        Committee(Workshop("FREECO", 2011,
+            "ECOOP Workshop on Free Composition",
+            URL("http://trese.ewi.utwente.nl/workshops/FREECO/FREECO11/home.html")), PC),
+        Committee(FOSD(2010), OC),
+        Committee(Conference("ASE", 2010,
+            "25th International Conference on Automated Software Engineering -- Tool Demonstration Committee",
+            URL("http://soft.vub.ac.be/ase2010/")), TC),
+        Committee(Workshop("PLEERPS", 2010,
+            "Workshop on Product-Line Engineering for Enterprise Resource Planning Systems",
+            URL("http://www.esi.es/workshop/pleerps2010/")), PC),
+        Committee(FOSD(2009), OC)
+    )
+    val reviews: Seq[Review] = Seq(
+        Review(AI(2012)), //Acta Informatica
+        Review(SPE(2012)), //Software: Practice and Experience
+        Review(SCP(2012)), //Science of Computer Programming
+        Review(TOSEM(2011)), //ACM Transactions on Software Engineering and Methodology
+        Review(JSS(2012)), //Journal of Systems and Software
+        Review(IST(2011)), //Information and Software Technology
+        Review(STTT(2011)), //Software Tools for Technology Transfer
+        Review(SCP(2011)), //Science of Computer Programming
+        Review(ECOOP(2011), "Sven Apel"), //European Conference on Object-Oriented Programming  (invited by Sven Apel)
+        Review(AOSD(2011), "Sven Apel"), //International Conference on Aspect-Oriented Software Development \\(invited by Sven Apel)
+        Review(IST(2010)), //Information and Software Technology
+        Review(TSE(2010)), //IEEE Transactions on Software Engineering
+        Review(SLE(2010), "Gabriele Taentzer"), //International Conference on Software Language Engineering \\(invited by Gabriele Taentzer)
+        Review(SCP(2010)), //Science of Computer Programming
+        Review(ASE(2010), "Sven Apel"), //International Conference on Automated Software Engineering \\(invited by Sven Apel)
+        Review(IS(2009)), //IEEE Software
+        Review(GPCE(2009), "Sven Apel"), //International Conference on Generative Programming and Component Engineering  (invited by Sven Apel)
+        Review(ASE(2009), "Sven Apel"), //International Conference on Automated Software Engineering \\ (invited by Sven Apel)
+        Review(DKE(2008), "Gunter Saake"), //Data \& Knowledge Engineering (Elsevier Journal; invited by Gunter Saake)
+        Review(TII(2008), "Gunter Saake"), //IEEE Transactions on Industrial Informatics (invited by Gunter Saake)
+        Review(GPCE(2008), "Christian Lengauer")
+    )
+
 
     val awards = Seq[String]()
     val projects = Seq[String]()

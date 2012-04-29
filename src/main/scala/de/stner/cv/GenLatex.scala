@@ -4,9 +4,16 @@ import java.io.FileWriter
 
 
 class StringTexHelper(str: String) {
-    def toTex = str
+    def toTex = str.
+        replace("&", "\\&").
+        replace("%", "\\%").
+        replace("#", "\\#").
+        replace("ü", "{\\\"u}").
+        replace("ä", "{\\\"a}").
+        replace("ö", "{\\\"o}").
+        replace("ß", "{\\ss}")
 
-    def toAscii = str
+    def toAscii = str.replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("ß", "ss")
 
     def markdownToTex = str
 }
@@ -50,7 +57,7 @@ object GenLatex extends App {
     def theses(): String = {
         val r = advisedTheses.reverse.map(
             thesis => "\\item[%s, %d] %s.%s\n".format(
-                thesis.author.abbrvname,
+                thesis.author.abbrvname.toTex,
                 thesis.when._2,
                 thesis.shortText(x => "``" + x + "''"),
                 if (thesis.note.isEmpty) "" else " \\emph{-- " + thesis.note.markdownToTex + "}"
@@ -58,6 +65,28 @@ object GenLatex extends App {
         )
         subsection("Advising", inCV(r.mkString))
     }
+
+    //    def printCommittee()
+
+    def printCommittee(c: Committee) =
+        "\\item[%s %d] %s".format(c.venue.short.toTex, c.venue.year, c.venue.name.toTex) +
+            (if (c.role != OC && c.role != PC) " -- " + c.role.title else "") + "\n"
+
+    def organizationCommittees(): String = subsection("Organization Committees", inCV(
+        committees.filter(_.role == OC).map(printCommittee).mkString +
+            "\\item[FOSD-Tr.\\ 2009-12] Annual German Student Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Dagstuhl)\n"
+    ))
+
+    def programCommittees(): String = subsection("Program Committees", inCV(
+        committees.filter(_.role != OC).map(printCommittee).mkString
+    ))
+
+    def printReview(r: Review) =
+        "\\item[%s %d] %s".format(r.venue.short.toTex, r.venue.year, r.venue.name.toTex) +
+            (if (!r.invitedBy.isEmpty) " (invited by " + r.invitedBy + ")" else "") + "\n"
+
+    def reviewing(): String = subsection("Reviewing", inCV(reviews.map(printReview).mkString))
+
 
     val header = """
             \\documentclass[a4paper,10pt]{letter}
@@ -94,6 +123,8 @@ object GenLatex extends App {
 
 
     output += section("Teaching and Advising", courses() + seminars() + theses())
+
+    output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
 
 
 
