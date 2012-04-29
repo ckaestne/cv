@@ -5,15 +5,15 @@ import java.io.FileWriter
 
 object GenHtml extends App {
 
-  import CV._
+    import CV._
 
 
-  def printCourse(course: Course) = <a href={course.url.toString()}>{course.title}</a>
+    def printCourse(course: Course) = <a href={course.url.toString()}>{course.title}</a>
 
-  def printTeaching(teaching: Seq[Course]) = {
+    def printTeaching(teaching: Seq[Course]) = {
     <div><h2>Teaching</h2>{
     val byTerm = teaching.groupBy(_.term)
-    for (val term <- byTerm.keys.toSeq.sorted.reverse)
+    for (term <- byTerm.keys.toSeq.sorted.reverse)
     yield <p>{term}
       <ul>{
            for (course <- byTerm(term))
@@ -24,20 +24,20 @@ object GenHtml extends App {
   }
 
 
-  val output =
+    val output =
     <div>
         <h1>{name}</h1>
         {printTeaching(teaching)}
     </div>
 
 
-  println(output)
-  val fw = new FileWriter("out.html")
-  fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
-  fw.write(
-    <html>
+    println(output)
+    val fw = new FileWriter("out.html")
+    fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
+    fw.write(
+        <html>
       {output}
-      </html>.toString)
-  fw.close()
+      </html>.toString())
+    fw.close()
 
 }
