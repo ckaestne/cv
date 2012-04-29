@@ -69,12 +69,22 @@ object GenHtml extends App {
         </div>
 
 
+    def printPrivate() = {
+        <h2>Private Interests</h2>
+        <p><a href={URL("http://www.flickr.com/photos/p0nk/sets/72157627689187184/").toString}>Juggling</a>,
+        <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
+        <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
+        Concerts (<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/concerts.xhtml").toString}>past</a>
+        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p>
+    }
+
     val output =
     <div>
         <h1>{name}</h1>
         {printTeaching(teaching.filter(_.term >= WinterTerm(2010)))}
         {printSupervisedTheses(advisedTheses)}
         {printCommittees(committees)}
+        {printPrivate()}
     </div>
 
 

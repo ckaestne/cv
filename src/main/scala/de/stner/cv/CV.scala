@@ -152,7 +152,7 @@ object CV {
             URL("http://www.splc2012.net")), OtherCommittee("Tools and Demonstrations Track", "TC")),
         Committee(Workshop("NFPinDSML", 2012,
             "4th  Workshop on Non-functional System Properties and Domain Specific Modeling Languages",
-            URL("https://nfpindsml.semtech.athabascau.ca/")), PC),
+            URL("https://nfpindsml.semtech.athabascau.ca/", true)), PC),
         Committee(Workshop("RAM-SE", 2012,
             "9th Workshop on Reflection, AOP and Meta-Data for Software Evolution",
             URL("http://www-users.cs.york.ac.uk/~manuel/Events/RAM-SE12/RAM-SE12/Description.html")), PC),

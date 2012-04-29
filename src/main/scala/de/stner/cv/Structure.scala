@@ -1,7 +1,5 @@
 package de.stner.cv
 
-import javax.net.ssl.SSLHandshakeException
-
 
 case class Person(
                      firstname: String,
@@ -161,17 +159,28 @@ case class Review(
                      invitedBy: String = ""
                      )
 
-case class URL(link: String) {
-    override def toString() = {
+class URLException(link: String, e: Exception) extends Exception {
+    override def toString = "Cannot resolve URL " + link + " (" + e + ")"
+}
+
+case class URL(link: String, ignoreError: Boolean = false) {
+
+    override def toString = {
+        if (!check())
+            System.err.println("Cannot resolve link " + link)
+        link
+    }
+
+    def check(): Boolean = if (ignoreError) true
+    else {
         //check that link is valid when printing it
         try {
             val connection = new java.net.URL(link).openConnection()
             connection.connect()
+            true
         } catch {
-            case e: SSLHandshakeException =>
-            case e => System.err.println("Cannot resolve URL " + link + " (" + e + ")")
+            case e => false
         }
-        link
     }
 }
 
