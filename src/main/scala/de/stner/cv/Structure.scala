@@ -24,13 +24,67 @@ case class Publication(
     def note(s: String) = this
 
     def crosscite(s: String) = this
+
+    def genKey = authors.map(_.lastname.take(1)).mkString + ":" + venue.short + (venue.year.toString.takeRight(2))
+
+    def renderAuthors(renderOne: Person => String): String = {
+        assert(!authors.isEmpty, "no authors for " + this)
+        if (authors.size == 1) renderOne(authors.head)
+        else authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(authors.last)
+    }
+
+    val note: Option[String] = None
+
+    /**
+     * renders bibtex entry as line with markdown ** and *
+     */
+    def render(style: BibStyle) =
+        renderAuthors(style.renderAuthor) + ". [!]" +
+            "**" + title + "**. [!]" +
+            renderRest(style) +
+            (note.map("[!] " + _ + ".").getOrElse(""))
+
+    def renderProceedings(style: BibStyle) =
+        "In *Proceedings of the %s (%s)*, ".format(venue.name, venue.short) +
+            venue.renderVolSeries + renderPages + venue.renderPublisher + venue.renderDate + "."
+
+    private def renderRest(style: BibStyle) = venue.kind match {
+        case KInConferenceProceedings => renderProceedings(style)
+        case KInWorkshopProceedings => renderProceedings(style)
+        case _ => "rendering of " + genKey + " not yet implemented"
+    }
+
+    def renderPages =
+        if (pages != null && pages.start == pages.end) "page " + pages.head + ", "
+        else if (pages != null) "pages %d--%d, ".format(pages.head, pages.last)
+        else ""
+
+
 }
 
-trait LinkKind
+trait BibStyle {
+    def renderAuthor(p: Person): String
+}
 
-object PDF extends LinkKind
+object DefaultBibStyle extends BibStyle {
+    def renderAuthor(p: Person) = p.fullname
+}
 
-object HTTP extends LinkKind
+trait LinkKind {
+    def print: String
+}
+
+object PDF extends LinkKind {
+    def print = ".pdf"
+}
+
+object HTTP extends LinkKind {
+    def print = "http"
+}
+
+object BIB extends LinkKind {
+    def print = "bib"
+}
 
 case class Thesis(
                      author: Person,
@@ -39,25 +93,43 @@ case class Thesis(
                      school: String,
                      comments: String)
 
-case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Int] = None, number: Option[String] = None, volume: Option[String] = None) {
-    def location(loc: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, Some(loc), month, number, volume)
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Int] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
 
-    def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume)
+    def location(loc: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, Some(loc), month, number, volume, series)
 
-    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(m), number, volume)
+    def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume, series)
 
-    def url(u: URL): Venue = Venue(short, year, name, kind, Some(u), publisher, acceptanceRate, location, month, number, volume)
+    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(m), number, volume, series)
 
-    def number(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u), volume)
+    def url(u: URL): Venue = Venue(short, year, name, kind, Some(u), publisher, acceptanceRate, location, month, number, volume, series)
 
-    def number(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u.toString), volume)
+    def number(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u), volume, series)
 
-    def volume(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u))
+    def number(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u.toString), volume, series)
 
-    def volume(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u.toString))
+    def volume(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u), series)
+
+    def volume(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u.toString), series)
+
+    def series(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, Some(u))
+
+
+    def renderDate: String =
+        month.map(TextHelper.renderMonth).map(_ + " ").getOrElse("") + year
+
+    def renderPublisher: String = publisher.map(_.render + ", ").getOrElse("")
+
+    def renderVolSeries =
+        if (volume.isDefined && series.isDefined)
+            "volume %d of *%s*, ".format(volume.get, series.get)
+        else if (volume.isDefined && !series.isDefined)
+            "volume %d, ".format(volume.get)
+        else ""
 }
 
-case class Publisher(name: String, address: String)
+case class Publisher(name: String, address: String) {
+    def render: String = (if (address.isEmpty) "" else address + ": ") + name
+}
 
 object Conference {
     def apply(short: String, year: Int, name: String, url: URL = null) =
@@ -252,21 +324,7 @@ object StructureTheses {
 
         def month = when._1
 
-        def monthStr: String = month match {
-            case 1 => "January"
-            case 2 => "February"
-            case 3 => "March"
-            case 4 => "April"
-            case 5 => "May"
-            case 6 => "June"
-            case 7 => "July"
-            case 8 => "August"
-            case 9 => "September"
-            case 10 => "October"
-            case 11 => "November"
-            case 12 => "December"
-            case e => throw new RuntimeException("Invalid month " + e + " in " + this)
-        }
+        def monthStr: String = TextHelper.renderMonth(month)
     }
 
     case class Thesis(

@@ -212,6 +212,5 @@ object CV {
     val awards = Seq[String]()
     val projects = Seq[String]()
 
-    val publications = Seq[Publication]()
-    val supervised = Seq[Thesis]()
+    val publications = CVPublications.publications
 }

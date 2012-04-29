@@ -9,6 +9,8 @@ object GenHtml extends App {
 
     import CV._
 
+    implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
+
 
     def printCourse(course: Course, withKind: Boolean = false): Elem = <span>
         {if (course.url != null)
@@ -42,6 +44,7 @@ object GenHtml extends App {
             {thesis.author.fullname}.
           <strong>{thesis.title}</strong>.
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
+            {if (!thesis.note.isEmpty) <br/> :+ <em>{thesis.note.markdownToHtml}</em> }
         [ <a href={"./thesis_bib.html#" + thesis.genKey}>bib</a>
             {if (thesis.pdf != null)
             <span>| <a href={thesis.pdf.toString()}>.pdf</a></span>
@@ -55,6 +58,26 @@ object GenHtml extends App {
               {for (thesis <- theses) yield printThesis(thesis) }
               </dl></div></div>
     }
+
+    def printPublication(p: Publication) = {
+        val links = p.links + (BIB -> URL("./thesis_bib.html#" + p.genKey))
+               <dd>
+                   <a name={p.genKey} />
+                   {p.render(DefaultBibStyle).markdownToHtml}
+               [ {
+                   for ((key, url) <- links.dropRight(1))
+                   yield <a href={url.toString}>{key.print}</a> :+ ", "
+               } <a href={links.last._2.toString}>{links.last._1.print}</a> ]
+                   <blockquote>{p.abstr.markdownToHtml}</blockquote>
+               </dd>
+    }
+
+    def printPublications(pubs: Seq[Publication]) =
+    <div>
+        <h2>Publications <span class="small">(<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>)</span></h2>
+        Key publications highlighted in yellow.
+        {for (p <- pubs) yield printPublication(p)}
+    </div>
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
@@ -84,6 +107,7 @@ object GenHtml extends App {
         {printTeaching(teaching.filter(_.term >= WinterTerm(2010)))}
         {printSupervisedTheses(advisedTheses)}
         {printCommittees(committees)}
+        {printPublications(publications)}
         {printPrivate()}
     </div>
 
