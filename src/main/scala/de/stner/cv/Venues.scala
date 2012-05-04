@@ -1,5 +1,7 @@
 package de.stner.cv
 
+import de.stner.cv.CVPublications._
+
 
 object Venues {
 
@@ -58,7 +60,7 @@ object Venues {
         "International Conference on Aspect-Oriented Software Development")
     val ASE = ConferenceFactory("ASE", 2002,
         "International Conference on Automated Software Engineering")
-    val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference (SPLC)")
+    val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference")
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")

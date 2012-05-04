@@ -4,6 +4,7 @@ package de.stner.cv
 object CV {
 
     import Venues._
+    import CVPublications._
 
     val name = "Christian Kästner"
     val title = "Dr.-Ing."

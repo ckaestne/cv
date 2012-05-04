@@ -1,5 +1,8 @@
 package de.stner.cv
 
+import scala.None
+import de.stner.cv.CVPublications._
+
 
 case class Person(
                      firstname: String,
@@ -18,22 +21,33 @@ case class Publication(
                           pages: Range,
                           links: Map[LinkKind, URL],
                           abstr: String = "",
-                          topics: Seq[Topic] = Seq()) {
-    def selected() = this
+                          topics: Seq[Topic] = Seq(),
+                          isSelected: Boolean = false,
+                          note: Option[String] = None,
+                          acceptanceRate: Option[(Int, Int)] = None) {
 
-    def note(s: String) = this
+
+    def selected() = Publication(authors, title, venue, pages, links, abstr, topics, true, note, acceptanceRate)
+
+    def topic(newTopics: Topic*) = Publication(authors, title, venue, pages, links, abstr, newTopics, isSelected, note, acceptanceRate)
+
+    def note(s: String) = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, Some(s), acceptanceRate)
 
     def crosscite(s: String) = this
 
+    def acceptanceRate(accepted: Int, submitted: Int): Publication = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, note, Some((accepted, submitted)))
+
+
+    //*gen
     def genKey = authors.map(_.lastname.take(1)).mkString + ":" + venue.short + (venue.year.toString.takeRight(2))
+
+    def genId = genKey.replaceAll("\\W", "")
 
     def renderAuthors(renderOne: Person => String): String = {
         assert(!authors.isEmpty, "no authors for " + this)
         if (authors.size == 1) renderOne(authors.head)
         else authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(authors.last)
     }
-
-    val note: Option[String] = None
 
     /**
      * renders bibtex entry as line with markdown ** and *
@@ -50,7 +64,7 @@ case class Publication(
 
     private def renderRest(style: BibStyle) = venue.kind match {
         case KInConferenceProceedings => renderProceedings(style)
-        case KInWorkshopProceedings => renderProceedings(style)
+        case KWorkshopDemoTool => renderProceedings(style)
         case _ => "rendering of " + genKey + " not yet implemented"
     }
 
@@ -58,9 +72,8 @@ case class Publication(
         if (pages != null && pages.start == pages.end) "page " + pages.head + ", "
         else if (pages != null) "pages %d--%d, ".format(pages.head, pages.last)
         else ""
-
-
 }
+
 
 trait BibStyle {
     def renderAuthor(p: Person): String
@@ -131,40 +144,17 @@ case class Publisher(name: String, address: String) {
     def render: String = (if (address.isEmpty) "" else address + ": ") + name
 }
 
-object Conference {
-    def apply(short: String, year: Int, name: String, url: URL = null) =
-        Venue(short, year, name, KInConferenceProceedings, if (url == null) None else Some(url))
+
+abstract class PublicationKind(val name: String, val order: Int) extends Ordered[PublicationKind] {
+    def key = this.getClass.getSimpleName.replace("$", "")
+
+    def compare(that: PublicationKind) = order compare that.order
 }
 
-object Workshop {
-    def apply(short: String, year: Int, name: String, url: URL = null) =
-        Venue(short, year, name, KInWorkshopProceedings, if (url == null) None else Some(url))
+
+case class Topic(name: String) {
+    def key = name.replaceAll("\\W", "")
 }
-
-object Journal {
-    def apply(short: String, year: Int, name: String, url: URL = null) =
-        Venue(short, year, name, KJournal, if (url == null) None else Some(url))
-}
-
-object TechReport {
-
-    def apply(year: Int, publisher: Publisher, number: String) =
-        Venue("", year, "", KTechnicalReport, None).publisher(publisher).number(number)
-
-}
-
-sealed abstract class PublicationKind
-
-object KJournal extends PublicationKind
-
-object KInConferenceProceedings extends PublicationKind
-
-object KInWorkshopProceedings extends PublicationKind
-
-object KTechnicalReport extends PublicationKind
-
-
-case class Topic(name: String) extends PublicationKind
 
 
 sealed abstract class Language

@@ -59,9 +59,18 @@ object GenHtml extends App {
               </dl></div></div>
     }
 
+    def getPublicationClassTags(p: Publication): String = {
+        var tags = Seq("pub")
+        tags = (if (p.isSelected) "selected" else "regular") +: tags
+        tags = p.topics.map(_.key) ++ tags
+        tags = p.venue.kind.key +: tags
+        tags.mkString(" ")
+    }
+
+
     def printPublication(p: Publication) = {
         val links = p.links + (BIB -> URL("./thesis_bib.html#" + p.genKey))
-               <dd>
+               <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
                    {p.render(DefaultBibStyle).markdownToHtml}
                [ {
@@ -69,14 +78,75 @@ object GenHtml extends App {
                    yield <a href={url.toString}>{key.print}</a> :+ ", "
                } <a href={links.last._2.toString}>{links.last._1.print}</a> ]
                    <blockquote>{p.abstr.markdownToHtml}</blockquote>
-               </dd>
+               </div></dd>
+    }
+
+    private def sep =  <strong class="sep">|</strong>
+
+    //get all topics, sorted by number of publications
+    def getTopics(pubs: Seq[Publication]): Seq[Topic] =
+        pubs.flatMap(p => p.topics.map((_, p))).groupBy(_._1).toSeq.sortBy(_._2.size).map(_._1).reverse
+
+    def printFilterHeader(p: Seq[Publication]) = <div id="pubfilter" style="display:none">
+        <script type="text/javascript"><!--
+
+        --></script>
+        <form action="javascript:updatepub()" method="post" >
+           <ul>
+              <li >
+        	     <strong>Filter:</strong>
+        		 <span style="clear:left;"><input type="radio" id="filter_allpub" value="All publications" name="filter_selected" checked="1" /><label for="filter_allpub">All publications</label></span>
+        		 <span style="clear:left;"><input type="radio" id="filter_keypub" value="Key publications" name="filter_selected"             /><label for="filter_keypub">Key publications</label></span>
+                 {sep}
+                 <label for="filter_topic">By topic: </label>
+                 <select style="width:150px" id="filter_topic">
+                    <option value="all"  selected="1">All</option>
+                    {for (t <- getTopics(p)) yield <option value={t.key}>{t.name}</option> }
+                 </select>
+                 {sep}
+                 <label for="filter_kind">By publication</label>
+                 <select style="width:150px" id="filter_kind">
+                    <option value="all" selected="1">All</option>
+                    {for (t <- p.map(_.venue.kind).distinct.sorted) yield <option value={t.key}>{t.name}</option> }
+                  </select>
+              </li>
+
+
+              <li class="form-line" id="id_6">
+                  <strong>Group by</strong>
+
+                  <span><input type="radio" id="nogroup"   name="q6_groupBy" value="None (chronologically)" checked="1" /><label for="nogroup"  >None (chronologically)</label></span>
+                  <span><input type="radio" id="groupKind" name="q6_groupBy" value="Publication kind" />                  <label for="groupKind">Publication kind</label></span>
+                  <span><input type="radio" id="groupYear" name="q6_groupBy" value="Year" />                              <label for="groupYear">Year</label></span>
+                  <span><input type="radio" id="groupTop"  name="q6_groupBy" value="Topic" />                             <label for="groupTop" >Topic</label></span>
+              </li>
+
+              <li class="form-line" id="id_3">
+                <span style="clear:left;"><input type="checkbox" id="showabstracts" checked="1" /><label for="showabstracts">Show abstracts</label></span>
+              </li>
+            </ul>
+        </form>
+    </div>
+
+    def printGroupingHeader(title: String, pubs: Seq[Publication]) =
+        "{title:\"%s\",pubs:[%s]}".format(title, pubs.map("\"" + _.genId + "\"").mkString(","))
+
+    // <div><h3>{title}</h3>{ pubs.map(_.genId).mkString(",")}</div>
+    def printGroupingHeaders(pubs: Seq[Publication]) = {
+        "function pubheaderByYear() { return [%s]; }".format((for (g <- pubs.groupBy(_.venue.year).toSeq.sortBy(_._1).reverse) yield printGroupingHeader(g._1.toString, g._2)).mkString(",")) +
+            "function pubheaderByKind() { return [%s]; }".format((for (g <- pubs.groupBy(_.venue.kind).toSeq.sortBy(_._1)) yield printGroupingHeader(g._1.name, g._2)).mkString(",")) +
+            "function pubheaderByTopic() { return [%s]; }".format((for (g <- pubs.flatMap(p => p.topics.map(t => (t, p))).groupBy(_._1).toSeq.sortBy(_._2.size).reverse) yield printGroupingHeader(g._1.name, g._2.map(_._2))).mkString(","))
     }
 
     def printPublications(pubs: Seq[Publication]) =
     <div>
         <h2>Publications <span class="small">(<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>)</span></h2>
         Key publications highlighted in yellow.
+        {printFilterHeader(pubs)}
+        <div id="pubmain">
         {for (p <- pubs) yield printPublication(p)}
+        </div>
+        <div id="pubgen"></div>
     </div>
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
@@ -115,6 +185,10 @@ object GenHtml extends App {
     println(output)
     val fw = new FileWriter("out.html")
     fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
+    fw.write("<script type=\"text/javascript\" src=\"src/site/jquery-1.7.2.min.js\"></script>")
+    fw.write("<script type=\"text/javascript\" src=\"src/site/pubfilter.js\"></script>")
+    fw.write("<script type=\"text/javascript\">" + printGroupingHeaders(publications) + "</script>")
+
     fw.write(
         <html>
       {output}

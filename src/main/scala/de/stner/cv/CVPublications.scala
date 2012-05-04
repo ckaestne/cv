@@ -5,6 +5,43 @@ object CVPublications {
 
     import Venues._
 
+
+    object KJournal extends PublicationKind("Refereed Journal Articles", 1)
+
+    object KInConferenceProceedings extends PublicationKind("Refereed Conference Papers", 2)
+
+    object KInvited extends PublicationKind("Invited Papers", 3)
+
+    object KWorkshopDemoTool extends PublicationKind("Refereed Workshop Papers, Posters, and Tool Demos", 4)
+
+    object KTechnicalReport extends PublicationKind("Technical Report", 5)
+
+    object KMisc extends PublicationKind("Miscellaneous", 6)
+
+
+    object Conference {
+        def apply(short: String, year: Int, name: String, url: URL = null) =
+            Venue(short, year, name, KInConferenceProceedings, if (url == null) None else Some(url))
+    }
+
+    object Workshop {
+        def apply(short: String, year: Int, name: String, url: URL = null) =
+            Venue(short, year, name, KWorkshopDemoTool, if (url == null) None else Some(url))
+    }
+
+    object Journal {
+        def apply(short: String, year: Int, name: String, url: URL = null) =
+            Venue(short, year, name, KJournal, if (url == null) None else Some(url))
+    }
+
+    object TechReport {
+
+        def apply(year: Int, publisher: Publisher, number: String) =
+            Venue("", year, "", KTechnicalReport, None).publisher(publisher).number(number)
+
+    }
+
+
     val Kaestner = Person("Christian", "Kästner", URL("http://www.uni-marburg.de/fb12/ps/team/kaestner"), "Philipps University Marburg")
     val Apel = Person("Sven", "Apel")
     val Saake = Person("Gunter", "Saake")
@@ -14,11 +51,14 @@ object CVPublications {
     val Trujillo = Person("Salvador", "Trujillo")
     val Batory = Person("Don", "Batory")
 
+    val fop = Topic("Feature-oriented programming")
+    val aop = Topic("Aspect-oriented programming")
+    val spl = Topic("Software product lines")
 
     val publications = Seq(
         Publication(
             Seq(Kaestner, Apel, Saake),
-            "Implementing Bounded Aspect Quantification in {AspectJ}",
+            "Implementing Bounded Aspect Quantification in AspectJ",
             RAMSE(2006).month(7).location("Nantes, France").publisher(MDTR),
             Range(111, 122),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/RAM-SE2006.pdf")),
@@ -33,7 +73,7 @@ object CVPublications {
             approach that relies on meta-data and pointcut restructuring
             in order to control the quantification of aspects. Finally, we discuss
             open issues and further work."""
-        )
+        ).topic(fop, aop)
         ,
 
 
@@ -55,7 +95,7 @@ object CVPublications {
        a formal syntax and semantics specification as well as a fully functional
        compiler on top of AspectJ. We apply our approach to a non-trivial case
        study and derive several programming guidelines."""
-        ).crosscite("superseded by \\cite{AKLS:TOOLS07}}"),
+        ).crosscite("superseded by \\cite{AKLS:TOOLS07}}").topic(fop, aop),
 
         Publication(
             Seq(Apel, Kaestner, Kuhlemann, Leich),
@@ -63,7 +103,8 @@ object CVPublications {
             Journal("iX", 2006, "iX Magazin f{\"u}r Professionelle Informationstechnik").number("10").month(10),
             Range(116, 122),
             Map(HTTP -> URL("http://www.heise.de/kiosk/archiv/ix/06/10/116_Objektorientierte_Grenzen")),
-            """Schon seit einigen Jahren macht die aspektorientierte Programmierung von sich reden. Daneben zieht in j{\"u}ngster Zeit die merkmalsorientierte Programmierung die Aufmerksamkeit auf sich. Beide verfolgen mit der Verbesserung der Modularit{\"a}t von Softwarebausteinen {\"a}hnliche Ziele, realisieren dies aber auf unterschiedliche Art und Weise - jeweils mit Vor- und Nachteilen.}"""),
+            """Schon seit einigen Jahren macht die aspektorientierte Programmierung von sich reden. Daneben zieht in j{\"u}ngster Zeit die merkmalsorientierte Programmierung die Aufmerksamkeit auf sich. Beide verfolgen mit der Verbesserung der Modularit{\"a}t von Softwarebausteinen {\"a}hnliche Ziele, realisieren dies aber auf unterschiedliche Art und Weise - jeweils mit Vor- und Nachteilen.}""").
+            topic(fop, aop),
 
 
 
@@ -96,7 +137,7 @@ object CVPublications {
         on program comprehension, we propose to conduct a series
         of experiments. We present ideas on how to arrange such
         experiments that should serve as a starting point and foster
-        a discussion with other researchers."""),
+        a discussion with other researchers.""").topic(fop, aop),
 
 
         Publication(
@@ -116,7 +157,8 @@ object CVPublications {
        mechanisms for refining all kinds of structural elements of aspects in a uniform way
        (methods, pointcuts, advice). To underpin our proposal, we contribute a fully functional
        compiler on top of AspectJ, present a non-trivial, medium-sized case study, and
-       derive a set of programming guidelines.""").note("Special Issue: TOOLS EUROPE 2007"),
+       derive a set of programming guidelines.""").note("Special Issue: TOOLS EUROPE 2007").
+            topic(fop, aop),
         //	nocomment={Acceptance rate: 31\,\% (24/78)},
 
         Publication(
@@ -139,7 +181,7 @@ object CVPublications {
            Most of the unique and powerful features of AspectJ were
            not needed. We document where AspectJ is unsuitable for
            implementing features of refactored legacy applications and
-           explain why.""").selected().note("Acceptance rate: 35 % (28/80)")
+           explain why.""").selected().note("Acceptance rate: 35 % (28/80)").topic(fop, aop, spl)
         /*
     Publication(
        Seq(Kaestner),
