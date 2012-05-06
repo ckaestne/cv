@@ -8,9 +8,10 @@ object Venues {
 
     case class ConferenceFactory(short: String, initYear: Int, longPattern: String, urlFactory: URLFactory = NoURLFactory, isWorkshop: Boolean = false, publisher: Publisher = null) {
         def apply(year: Int) = {
+            def uf = if (urlFactory == null) NoURLFactory else urlFactory
             val r = if (isWorkshop)
-                Workshop(short, year, longName(year), urlFactory(year))
-            else Conference(short, year, longName(year), urlFactory(year))
+                Workshop(short, year, longName(year), uf(year))
+            else Conference(short, year, longName(year), uf(year))
             if (publisher != null) r.publisher(publisher) else r
         }
 
@@ -58,7 +59,7 @@ object Venues {
 
     val GPCE = ConferenceFactory("GPCE", 2002,
         "%num% ACM International Conference on Generative Programming and Component Engineering",
-        URLPattern("http://program-transformation.org/GPCE%yy%"))
+        URLPattern("http://program-transformation.org/GPCE%yy%"), false, ACM)
     val FOSD = ConferenceFactory("FOSD", 2009,
         "%num% Int'l Workshop on Feature-Oriented Software Development",
         URLPattern("http://fosd.net/%yyyy%"), true)
@@ -70,7 +71,7 @@ object Venues {
     val AOSD = ConferenceFactory("AOSD", 2002,
         "International Conference on Aspect-Oriented Software Development")
     val ASE = ConferenceFactory("ASE", 2002,
-        "International Conference on Automated Software Engineering")
+        "International Conference on Automated Software Engineering", null, false, IEEE)
     val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference")
     val SPLCDemo = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference, second volume (Demonstration)")
     val ICSE = ConferenceFactory("ICSE", 1979,

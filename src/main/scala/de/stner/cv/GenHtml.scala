@@ -84,8 +84,11 @@ object GenHtml extends App {
     private def sep =  <strong class="sep">|</strong>
 
     //get all topics, sorted by number of publications
-    def getTopics(pubs: Seq[Publication]): Seq[Topic] =
-        pubs.flatMap(p => p.topics.map((_, p))).groupBy(_._1).toSeq.sortBy(_._2.size).map(_._1).reverse
+    def getTopics(pubs: Seq[Publication]): Seq[(Topic, Int)] =
+        pubs.flatMap(p => p.topics.map((_, p))).groupBy(_._1).mapValues(_.size).toSeq.sortBy(_._2).reverse
+
+    def getKinds(pubs: Seq[Publication]): Seq[(PublicationKind, Int)] =
+        pubs.groupBy(_.venue.kind).mapValues(_.size).toSeq.sortBy(_._1)
 
     def printFilterHeader(p: Seq[Publication]) = <div id="pubfilter" style="display:none">
         <script type="text/javascript"><!--
@@ -101,13 +104,13 @@ object GenHtml extends App {
                  <label for="filter_topic">By topic: </label>
                  <select style="width:150px" id="filter_topic">
                     <option value="all"  selected="1">All</option>
-                    {for (t <- getTopics(p)) yield <option value={t.key}>{t.name}</option> }
+                    {for (t <- getTopics(p)) yield <option value={t._1.key}>{t._1.name} ({t._2})</option> }
                  </select>
                  {sep}
                  <label for="filter_kind">By publication</label>
                  <select style="width:150px" id="filter_kind">
                     <option value="all" selected="1">All</option>
-                    {for (t <- p.map(_.venue.kind).distinct.sorted) yield <option value={t.key}>{t.name}</option> }
+                    {for (t <- getKinds(p)) yield <option value={t._1.key}>{t._1.name} ({t._2})</option> }
                   </select>
               </li>
 

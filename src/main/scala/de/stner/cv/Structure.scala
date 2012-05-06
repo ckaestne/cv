@@ -23,19 +23,19 @@ case class Publication(
                           abstr: String = "",
                           topics: Seq[Topic] = Seq(),
                           isSelected: Boolean = false,
-                          note: Option[String] = None,
-                          acceptanceRate: Option[(Int, Int)] = None) {
+                          note: Option[String] = None) {
+    def hideabstract() = this
 
 
-    def selected() = Publication(authors, title, venue, pages, links, abstr, topics, true, note, acceptanceRate)
+    def selected() = Publication(authors, title, venue, pages, links, abstr, topics, true, note)
 
-    def topic(newTopics: Topic*) = Publication(authors, title, venue, pages, links, abstr, newTopics, isSelected, note, acceptanceRate)
+    def topic(newTopics: Topic*) = Publication(authors, title, venue, pages, links, abstr, newTopics, isSelected, note)
 
-    def note(s: String) = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, Some(s), acceptanceRate)
+    def note(s: String) = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, Some(s))
 
     def crosscite(s: String) = this
 
-    def acceptanceRate(accepted: Int, submitted: Int): Publication = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, note, Some((accepted, submitted)))
+    def acceptanceRate(accepted: Int, submitted: Int): Publication = Publication(authors, title, venue.acceptanceRate(accepted, submitted), pages, links, abstr, topics, isSelected, note)
 
 
     //*gen
@@ -142,6 +142,8 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def series(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, Some(u))
 
+    def acceptanceRate(accepted: Int, submitted: Int): Venue = Venue(short, year, name, kind, url, publisher, Some((accepted, submitted)), location, month, number, volume, series)
+
 
     def renderDate: String =
         month.map(TextHelper.renderMonth).map(_ + " ").getOrElse("") + year
@@ -150,9 +152,9 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def renderVolSeries =
         if (volume.isDefined && series.isDefined)
-            "volume %d of *%s*, ".format(volume.get, series.get)
+            "volume %s of *%s*, ".format(volume.get, series.get)
         else if (volume.isDefined && !series.isDefined)
-            "volume %d, ".format(volume.get)
+            "volume %s, ".format(volume.get)
         else ""
 }
 
