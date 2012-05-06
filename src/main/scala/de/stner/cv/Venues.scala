@@ -55,7 +55,7 @@ object Venues {
     val SEI = Publisher("SEI", "Pittsburgh, PA")
     val ACM = Publisher("ACM Press", "New York, NY")
     val Springer = Publisher("Springer-Verlag", "Berlin/Heidelberg")
-
+    val GI = Publisher("Gesellschaft für Informatik (GI)", "Bonn, Germany")
 
     val GPCE = ConferenceFactory("GPCE", 2002,
         "%num% ACM International Conference on Generative Programming and Component Engineering",

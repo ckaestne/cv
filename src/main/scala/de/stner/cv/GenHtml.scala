@@ -147,7 +147,7 @@ object GenHtml extends App {
         Key publications highlighted in yellow.
         {printFilterHeader(pubs)}
         <div id="pubmain">
-        {for (p <- pubs) yield printPublication(p)}
+        {for (p <- pubs.reverse) yield printPublication(p)}
         </div>
         <div id="pubgen"></div>
     </div>

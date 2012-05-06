@@ -18,7 +18,7 @@ case class Publication(
                           authors: Seq[Person],
                           title: String,
                           venue: Venue,
-                          pages: Range,
+                          pages: PPages,
                           links: Map[LinkKind, URL],
                           abstr: String = "",
                           topics: Seq[Topic] = Seq(),
@@ -69,9 +69,12 @@ case class Publication(
     }
 
     def renderPages =
-        if (pages != null && pages.start == pages.end) "page " + pages.head + ", "
-        else if (pages != null && !pages.isEmpty) "pages %d--%d, ".format(pages.head, pages.last)
-        else ""
+        if (pages == null) ""
+        else pages match {
+            case Pages(a, b) if (a == b) => "page " + a
+            case Pages(a, b) => "pages %d--%d, ".format(a, b)
+            case PagesStr(s) => s
+        }
 }
 
 
@@ -118,7 +121,20 @@ case class Thesis(
                      school: String,
                      comments: String)
 
-case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Int] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
+sealed abstract class PPages
+
+case class Pages(from: Int, to: Int) extends PPages
+
+case class PagesStr(str: String) extends PPages
+
+sealed abstract class Month
+
+case class MonthNr(nr: Int) extends Month
+
+case class MonthStr(str: String) extends Month
+
+
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
     def issn(s: String) = this
 
     def isbn(s: String): Venue = this
@@ -128,7 +144,9 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume, series)
 
-    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(m), number, volume, series)
+    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(MonthNr(m)), number, volume, series)
+
+    def month(m: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(MonthStr(m)), number, volume, series)
 
     def url(u: URL): Venue = Venue(short, year, name, kind, Some(u), publisher, acceptanceRate, location, month, number, volume, series)
 
@@ -146,7 +164,10 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
 
     def renderDate: String =
-        month.map(TextHelper.renderMonth).map(_ + " ").getOrElse("") + year
+        month.map({
+            case MonthNr(i) => TextHelper.renderMonth(i)
+            case MonthStr(s) => s
+        }).map(_ + " ").getOrElse("") + year
 
     def renderPublisher: String = publisher.map(_.render + ", ").getOrElse("")
 
@@ -285,6 +306,7 @@ case class URL(link: String, ignoreError: Boolean = false) {
         //check that link is valid when printing it
         try {
             val connection = new java.net.URL(link).openConnection()
+            connection.setConnectTimeout(1000)
             connection.connect()
             true
         } catch {

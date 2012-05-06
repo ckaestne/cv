@@ -58,6 +58,8 @@ object CVPublications {
     val Rahman = Person("Syed Saif", "ur Rahman")
     val Thuem = Person("Thomas", "Thüm")
     val Groesslinger = Person("Armin", "Größlinger")
+    val Heidenreich = Person("Florian", "Heidenreich")
+    val Sunkle = Person("Sagar", "Sunkle")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
@@ -69,6 +71,10 @@ object CVPublications {
     val fmanalysis = Topic("Feature-model analysis")
     val dsu = Topic("Dynamic software updates")
     val multiple = Topic("Multi Product Lines")
+    val tmdb = Topic("Tailor-made data management")
+    val interactions = Topic("Feature interactions")
+    val adoption = Topic("Product-line adoption (mining, refactoring, ...)")
+    val overview = Topic("Overview papers")
 
 
     val GPCE08 = GPCE(2008).month(8).location("Nashville, TN, USA").isbn("978-1-60558-267-2").acceptanceRate(16, 55)
@@ -76,6 +82,8 @@ object CVPublications {
     val MCGPLE08 = Workshop("McGPLE", 2008, "GPCE Workshop on Modularization, Composition and Generative Techniques for Product Line Engineering").month(10).location("Nashville, TN, USA").publisher(PATR)
     //    .number("MIP - 0802"),
     val ICSE09 = ICSE(2009).month(5).location("Vancouver, Canada").publisher(IEEE).isbn("978-1-4244-3452-7").issn("0270-5257").acceptanceRate(50, 405)
+    val BTW09 = Conference("BTW", 2009, "13. GI-Fachtagung Datenbanksysteme für Business, Technologie und Web").month(3).series("Lecture Notes in Informatics").volume("P-144").isbn("978-3-88579-238-3").issn("1617-5468").publisher(GI).location("Münster, Germany")
+    val SC09 = Conference("SC", 2009, "8th International Conference on Software Composition (SC)").series("Lecture Notes in Computer Science").volume(5634).publisher(Springer).location("Zurich, Switzerland").issn("0302-9743").isbn("978-3-642-02654-6").acceptanceRate(10, 30).month(7)
 
 
     val publications = Seq(
@@ -83,7 +91,7 @@ object CVPublications {
             Seq(Kaestner, Apel, Saake),
             "Implementing Bounded Aspect Quantification in AspectJ",
             RAMSE(2006).month(7).location("Nantes, France").publisher(MDTR),
-            Range(111, 122),
+            Pages(111, 122),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/RAM-SE2006.pdf")),
             """The integration of aspects into the methodology of stepwise software
             development and evolution is still an open issue. This paper
@@ -124,7 +132,7 @@ object CVPublications {
             Seq(Apel, Kaestner, Kuhlemann, Leich),
             "Modularität von Softwarebausteinen: Aspekte versus Merkmale",
             Journal("iX", 2006, "iX Magazin f{\"u}r Professionelle Informationstechnik").number("10").month(10),
-            Range(116, 122),
+            Pages(116, 122),
             Map(HTTP -> URL("http://www.heise.de/kiosk/archiv/ix/06/10/116_Objektorientierte_Grenzen")),
             """Schon seit einigen Jahren macht die aspektorientierte Programmierung von sich reden. Daneben zieht in j{\"u}ngster Zeit die merkmalsorientierte Programmierung die Aufmerksamkeit auf sich. Beide verfolgen mit der Verbesserung der Modularit{\"a}t von Softwarebausteinen {\"a}hnliche Ziele, realisieren dies aber auf unterschiedliche Art und Weise - jeweils mit Vor- und Nachteilen.}""").
             topic(fop, aop),
@@ -167,7 +175,7 @@ object CVPublications {
             Seq(Apel, Kaestner, Leich, Saake),
             "Aspect Refinement - Unifying {AOP} and Stepwise Refinement",
             JOT(2007).volume(6).number(9).month(10),
-            Range(13, 33),
+            Pages(13, 33),
 
             Map(PDF -> URL("http://www.jot.fm/issues/issue_2007_10/paper1.pdf"),
                 HTTP -> URL("http://www.jot.fm/issues/issue_2007_10/paper1/index.html")),
@@ -189,7 +197,7 @@ object CVPublications {
             "A Case Study Implementing Features Using {AspectJ}",
             SPLC(2007).month(9).publisher(IEEE).location("Kyoto, Japan"),
             //	.isbn("0-7695-2888-0"),
-            Range(223, 232),
+            Pages(223, 232),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc07.pdf")),
 
             """Software product lines aim to create highly configurable
@@ -211,7 +219,7 @@ object CVPublications {
             Seq(Kaestner),
             "{CIDE}: Decomposing Legacy Applications into Features",
             SPLCDemo(2007).location("Kyoto, Japan").isbn("978-4-7649-0342-5"),
-            Range(149, 150),
+            Pages(149, 150),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc07demo.pdf")),
             """Taking an extractive approach to decompose a legacy application
     into features is difficult and laborious with current
@@ -224,7 +232,7 @@ object CVPublications {
             Seq(Kaestner, Kuhlemann, Batory),
             "Automating Feature-Oriented Refactoring of Legacy Applications",
             Workshop("WRT", 2007, "ECOOP Workshop on Refactoring Tools").location("Berlin, Germany").month(7).publisher(TUBerlin).issn("1436-9915"),
-            Range(62, 63),
+            Pages(62, 63),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ecooprefactoring.pdf")),
             """Creating a software product line from a legacy application
          is a difficult task. We propose a tool that helps automating
@@ -257,7 +265,7 @@ object CVPublications {
             Seq(Trujillo, Kaestner, Apel),
             "Product Lines that supply other Product Lines: A Service-Oriented Approach",
             Workshop("SOAPL", 2007, "SPLC Workshop on  Service-Oriented Architectures and Product Lines").month(9).location("Kyoto, Japan").publisher(SEI),
-            Range(69, 76),
+            Pages(69, 76),
             Map(),
             """Software product line is a paradigm to develop a family
       of software products with the goal of reuse. In this paper, we
@@ -277,7 +285,7 @@ object CVPublications {
             Seq(Apel, Kaestner, Kuhlemann, Leich),
             "Pointcuts, Advice, Refinements, and Collaborations: Similarities, Differences, and Synergies",
             ISSE(2007).month(12).volume(3).number("3-4").issn("1614-5046").publisher(Springer).month(12),
-            Range(281, 289),
+            Pages(281, 289),
             Map(HTTP -> URL("http://www.springerlink.com/content/08m600873g3044t4/"),
                 PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/ISSE2007.pdf")),
             """Aspect-oriented programming (AOP) is a novel programming paradigm
@@ -296,7 +304,7 @@ object CVPublications {
             Seq(Kuhlemann, Kaestner),
             "Reducing the Complexity of {AspectJ} Mechanisms for Recurring Extensions",
             Workshop("AOPLE", 2007, "GPCE Workshop on Aspect-Oriented Product Line Engineering").location("Salzburg, Austria"),
-            Range(14, 19),
+            Pages(14, 19),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/aople07.pdf")),
             """Aspect-Oriented Programming (AOP) aims at modularizing crosscutting
     concerns. AspectJ is a popular AOP language extension for
@@ -318,7 +326,7 @@ object CVPublications {
             Seq(Siegmund, Kuhlemann, Rosenmueller, Kaestner, Saake),
             "Integrated Product Line Model for Semi-Automated Product Derivation Using Non-Functional Properties",
             VAMOS(2008).month(1).location("Essen, Germany").issn("1860-2770").publisher(TREssen),
-            Range(25, 23),
+            Pages(25, 23),
             Map(PDF -> URL("http://www.icb.uni-due.de/fileadmin/ICB/research/research_reports/icb_report_22.pdf")),
             """Software product lines (SPL) allow to generate tailormade
        software by manually configuring reusable core assets.
@@ -336,7 +344,7 @@ object CVPublications {
             Seq(Kaestner, Apel, Kuhlemann),
             "Granularity in Software Product Lines",
             ICSE(2008).month(5).location("Leipzig, Germany").isbn("978-1-60558-079-1").publisher(ACM),
-            Range(311, 320),
+            Pages(311, 320),
             Map(DOI -> URL("http://doi.acm.org/10.1145/1368088.1368131"),
                 ACMLink -> URL("http://dl.acm.org/authorize?063977"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2008.pdf"),
@@ -365,7 +373,7 @@ object CVPublications {
             Workshop("SDSOA", 2008, "ICSE Workshop on Systems Development in SOA Environments").month(5).
                 location("Leipzig, Germany").
                 isbn("978-1-60558-029-6").publisher(ACM),
-            Range(53, 58),
+            Pages(53, 58),
             Map(DOI -> URL("http://doi.acm.org/10.1145/1370916.1370930"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/sdsoa2008.pdf")),
             """We present a feature-based approach, known from software
@@ -431,7 +439,7 @@ object CVPublications {
             Conference("AMAST", 2008, "12th International Conference on Algebraic Methodology and Software Technology").
                 series("Lecture Notes in Computer Science").volume(5140).
                 publisher(Springer).month(7),
-            Range(36, 50),
+            Pages(36, 50),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/AMAST08.pdf"),
                 DOI -> URL("http://dx.doi.org/10.1007/978-3-540-79980-1_4")),
             """Feature-Oriented Software Development (FOSD) provides a multitude
@@ -451,7 +459,7 @@ object CVPublications {
             Seq(Kaestner, Apel),
             "Type-checking Software Product Lines - A Formal Approach",
             ASE(2008).month(9).location("L'Aquila, Italy").issn("1527-1366").isbn("978-1-4244-2187-9"),
-            Range(258, 267),
+            Pages(258, 267),
             Map(DOI -> URL("http://dx.doi.org/10.1109/ASE.2008.36"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ASE08.pdf")),
             """
@@ -478,7 +486,7 @@ object CVPublications {
             Seq(Person("Chang Hwan Peter", "Kim"), Kaestner, Batory),
             "On the Modularity of Feature Interactions",
             GPCE08,
-            Range(23, 34),
+            Pages(23, 34),
             Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449919"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036803"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/GPCE08-Kim.pdf")),
@@ -508,7 +516,7 @@ object CVPublications {
             Seq(Apel, Kaestner, Batory),
             "Program Refactoring using Functional Aspects",
             GPCE08,
-            Range(161, 170),
+            Pages(161, 170),
             Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449938"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/GPCE08-FA.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036826")),
@@ -527,7 +535,7 @@ object CVPublications {
             Seq(Apel, Kaestner, Lengauer),
             "{Feature Featherweight Java}: A Calculus for Feature-Oriented Programming and Stepwise Refinement",
             GPCE08,
-            Range(101, 112),
+            Pages(101, 112),
             Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449931"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036811"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/GPCE08-FFJ.pdf")),
@@ -541,7 +549,7 @@ object CVPublications {
             "Visualizing Software Product Line Variabilities in Source Code",
             Workshop("ViSPLE", 2008, "2nd International SPLC Workshop on Visualisation in Software Product Line Engineering").
                 month(9).location("Limerick, Ireland").isbn("978-1-905952-06-9"),
-            Range(303, 313),
+            Pages(303, 313),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ViSPLE08.pdf")),
             """ Implementing software product lines is a challenging task.Depending on the implementation technique the code that realizes a feature is often scattered across multiple code units.This way it becomes difficult to trace features in source code which hinders maintenance and evolution.While previous effort on visualization technologies in software product lines has focused mainly on the feature model, we suggest tool support for feature traceability in the code base.With our tool CIDE, we propose an approach based on filters and views on source code in order to visualize and trace features in source code.""").
             topic(vsoc),
@@ -551,7 +559,7 @@ object CVPublications {
             Seq(Pukall, Kaestner, Saake),
             "Towards Unanticipated Runtime Adaptation of {Java} Applications",
             APSEC08,
-            Range(85, 92),
+            Pages(85, 92),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/APSEC08-runtime.pdf")),
             """ Modifying an application usually means to stop the application,
         apply the changes, and start the application
@@ -578,7 +586,7 @@ object CVPublications {
             Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Saake),
             "Measuring Non-functional Properties in Software Product Lines for Product Derivation",
             APSEC08,
-            Range(187, 194),
+            Pages(187, 194),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/APSEC08-nfp.pdf")),
             """Software product lines (SPLs) enable stakeholders to derive
             different software products for a domain while providing
@@ -603,7 +611,7 @@ object CVPublications {
             Seq(Rosenmueller, Siegmund, Rahman, Kaestner),
             "Modeling Dependent Software Product Lines",
             MCGPLE08,
-            Range(13, 18),
+            Pages(13, 18),
             Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/McGPLE2008/papers/McGPLE2008Proceedings.pdf")),
             """ Software product line development is a mature technique to implement
         similar programs tailored to serve the needs of multiple
@@ -627,11 +635,11 @@ object CVPublications {
             Seq(Kaestner, Apel),
             "Integrating Compositional and Annotative Approaches for Product Line Engineering",
             MCGPLE08,
-            Range(35, 40),
+            Pages(35, 40),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/McGPLE08.pdf")),
 
             """Software product lines can be implemented with many different approaches. However, there are common underlying mechanisms which allow a classification into compositional and annotative approaches. While research focuses mainly on composition approaches like aspect- or feature-oriented programming because those support feature traceability and modularity, in practice annotative approaches like preprocessors are common as they are easier to adopt. In this paper, we compare both groups of approaches and find complementary strengths. We propose an integration of compositional and annotative approaches to combine advantages, increase flexibility for the developer, and ease adoption.""").
-            topic(fop, vsoc, spl),
+            topic(fop, vsoc, spl, adoption),
 
 
         Publication(
@@ -639,7 +647,7 @@ object CVPublications {
             "{FeatureHouse}: Language-Independent, Automated Software Composition",
             ICSE09,
 
-            Range(221, 231),
+            Pages(221, 231),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2009_fh.pdf")),
             """
       Superimposition is a composition technique that has
@@ -666,7 +674,7 @@ object CVPublications {
             Seq(Thuem, Batory, Kaestner),
             "Reasoning about Edits to Feature Models",
             ICSE09,
-            Range(254, 264),
+            Pages(254, 264),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2009_fm.pdf")),
             """
          Features express the variabilities and commonalities
@@ -705,370 +713,302 @@ object CVPublications {
         block structure.We explore the problem of crosscutting concerns in functional
         programming and propose two solutions based on feature orientation.Two case
         studies support our claims. """).
-            hideabstract().crosscite("superseded by \\cite{AKGL:SC09}")
-
-        /*
-        Publication (
-        "{Vergleich und Integration von Komposition und Annotation zur Implementierung von Produktlinien}",
-        Seq (Apel, Kaestner, Lengauer),
-        booktitle = {
-        Software Engineering 2009 -- Fachtagung des GI - Fachbereichs Softwaretechnik
-        },
-        .year (2009) month = mar,
-        """Es gibt eine Vielzahl sehr unterschiedlicher Techniken, Sprachen und Werkzeuge
-        zur Entwicklung von Softwareproduktlinien. Trotzdem liegen gemeinsame Mechanismen
-        zu Grunde, die eine Klassifikation in Kompositions- und Annotationsansatz
-        erlauben. W{\"a}hrend der Kompositionsansatz in der Forschung groï¿½e Beachtung findet,
-        kommt im industriellen Umfeld haupts{\"a}chlich der Annotationsansatz zur Anwendung.
-        Wir analysieren und vergleichen beide Ans{\"a}tze anhand von drei repr{\"a}sentativen Vertretern
-        und identifizieren anhand von sechs Kriterien individuelle St{\"a}rken und Schw{\"a}chen.
-        Wir stellen fest, dass die jeweiligen St{\"a}rken und Schw{\"a}chen komplement{\"a}r sind. Aus
-        diesem Grund schlagen wir die Integration des Kompositions- und Annotationsansatzes
-        vor, um so die Vorteile beider zu vereinen, dem Entwickler eine breiteres Spektrum
-        an Implementierungsmechanismen zu Verf{\"u}gung zu stellen und die Einf{\"u}hrung von
-        Produktlinientechnologie in bestehende Softwareprojekte zu erleichtern.},
-        .series("Lecture Notes in Informatics"),
-        .publisher("Gesellschaft f{\"u}r Informatik (GI)},address={Bonn, Germany},volume={P-143"),
-        .location("Kaiserslautern, Germany},pages={101--112"),
-        Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/SE2009.pdf")),
-        Map(HTTP->URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-143.html"))
-        }
-
-        Publication(
-         "Bridging the Gap between Variability in Client Application and Database Schema",
-           Seq(Siegmund, Kaestner, Rosenmueller, Florian Heidenreich, Apel, Saake),
-           booktitle={Proceedings 13. GI-Fachtagung Datenbanksysteme f{\"u}r Business, Technologie und Web (BTW)},
-        .year(2009)month=mar,pages={297--306},
-        .series("Lecture Notes in Informatics},volume={P-144"),
-           .isbn("978-3-88579-238-3"),
-           .issn("1617-5468"),
-        .publisher("Gesellschaft f{\"u}r Informatik (GI)},address={Bonn, Germany"),
-        .location("M{\"u}nster, Germany"),
-        Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/publications/SKRH08dbschema.pdf")),
-        """
-        Database schemas are used to describe the logical design of a database.
-        Diverse groups of users have different perspectives on the schema which leads to
-        different local schemas.Research has focused on view integration to generate a global,
-        consistent schema out of different local schemas or views.However, this approach
-        seems to be too constrained when the generated global view should be variable and
-        only a certain subset is needed.Variable schemas are needed in software product lines
-        in which products are tailored to the needs of stakeholders.We claim that traditional
-        modeling techniques are not sufficient for expressing a variable database schema.We
-        show that software product line methodologies, when applied to the database schemas,
-        overcome existing limitations and allow the generation of tailor - made database schemas.
-        },
-        Map (HTTP -> URL ("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html") )
-        }
-
-        Publication (
-        "SQL \`{a} la Carte -- Toward Tailor-made Data Management",
-        Seq (Marko Rosenm {
-        \ "u}ller, Kaestner, Siegmund, Sagar Sunkle, Apel, Leich, Saake),
-        booktitle = {
-        Proceedings 13.GI - Fachtagung Datenbanksysteme f {
-        \ "u}r Business, Technologie und Web (BTW)},
-        .year (2009) month = mar,
-        .series ("Lecture Notes in Informatics},volume={P-144"),
-        .isbn ("978-3-88579-238-3"),
-        .issn ("1617-5468},pages={117--136"),
-        .publisher ("Gesellschaft f{\"u}r Informatik (GI)},address={Bonn, Germany"),
-        .location ("M{\"u}nster, Germany"),
-        """
-        The size of the structured query language (SQL) continuously increases.
-        Extensions of SQL for special domains like stream processing or sensor networks come
-        with own extensions, more or less unrelated to the standard. In general, underlying
-        DBMS support only a subset of SQL plus vendor specific extensions. In this paper,
-        we analyze application domains where special SQL dialects are needed or are already
-        in use. We show how SQL can be decomposed to create an extensible family of SQL
-        dialects. Concrete dialects, e.g., a dialect for web databases, can be generated from
-        such a family by choosing SQL features  \`{a} la carte. A family of SQL dialects simplifies
-        analysis of the standard when deriving a concrete dialect, makes it easy to understand
-        parts of the standard, and eases extension for new application domains. It is also the
-        starting point for developing tailor-made data management solutions that support only
-        a subset of SQL. We outline how such customizable DBMS can be developed and what
-        benefits, e.g., improved maintainability and performance, we can expect from this.},
-        Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/publications/RKSS08sql.pdf")),
-        Map(HTTP->URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html"))
-        }
-
-        Publication(
-         "{FeatureIDE}: Tool Framework for Feature-Oriented Software Development",
-               Seq(Kaestner, Thuem, Saake, Feigenspan, Leich, Fabian Wielgorz, Apel),
-               booktitle={Proceedings of the 31th International Conference on Software Engineering (ICSE)},
-        .note("Formal Demonstration paper, Acceptance rate: 33\,\% (24/72)"),
-        .year(2009)month=may,location={Vancouver, Canada},
-               publisher = IEEE,address=IEEEAddr,
-               .isbn("978-1-4244-3452-7"),.issn("0270-5257"),
-        Range(611,614),
-        """
-        Tools support is crucial for the acceptance of a new programming
-        language.However, providing such tool support
-        is a huge investment that can usually not be provided
-        for a research language.With FeatureIDE, we have built
-        an IDE for AHEAD that integrates all phases of featureoriented
-        software development.To reuse this investment for
-        other tools and languages, we refactored FeatureIDE into
-        an open source framework that encapsulates the common
-        ideas of feature - oriented software development and that can
-        be reused and extended beyond AHEAD.Among others, we
-        implemented extensions for FeatureC ++ and FeatureHouse,
-        but in general, FeatureIDE is open for everybody to showcase
-        new research results and make them usable to a wide
-        audience of students, researchers, and practitioners.
-        },
-        Map (PDF -> URL ("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2009_featureide_demo.pdf") )
-        }
-
-        Publication (
-        "Guaranteeing Syntactic Correctness for all Product Line Variants: A Language-Independent Approach",
-        Seq (Kaestner, Apel, Trujillo, Kuhlemann, Batory),
-        booktitle = {
-        Proceedings of the 47 th International Conference Objects, Models, Components, Patterns (TOOLS EUROPE)
-        },
-        .year (2009)
-        .issn ("1865-1348},isbn={978-3-642-02570-9"),
-        .series ("Lecture Notes in Business Information Processing"), volume = 33,
-        month = jun,
-        .selected (),
-        .location ("Zurich, Switzerland"),
-        """A software product line (SPL) is a family of related program variants in
-        a well-defined domain, generated from a set of features. A fundamental difference
-        from classical application development is that engineers develop not a single
-        program but a whole family with hundreds to millions of variants. This makes
-        it infeasible to separately check every distinct variant for errors. Still engineers
-        want guarantees on the entire SPL. A further challenge is that an SPL may contain
-        artifacts in different languages (code, documentation, models, etc.) that should be
-        checked. In this paper, we present CIDE, an SPL development tool that guarantees
-        syntactic correctness for all variants of an SPL. We show how CIDE's underlying
-        mechanism abstracts from textual representation and we generalize it to arbitrary
-        languages. Furthermore, we automate the generation of safe plug-ins for additional
-        languages from annotated grammars. To demonstrate the language-independent
-        capabilities, we applied CIDE to a series of case studies with artifacts written in
-        Java, C++, C, Haskell, ANTLR, HTML, and XML.},
-        Map(DOI->URL("10.1007/978-3-642-02571-6")),
-           publisher=Springer,address=SpringerAddr,
-        Range(175,194),
-        .note("Acceptance rate: 28\,\% (19 / 67)"),
-        Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/tools09.pdf")),
-        Map(HTTP->URL("http://www.springerlink.com/content/t8752407443k83j2"))
-        }
+            hideabstract().crosscite("superseded by \\cite{AKGL:SC09}").topic(fop),
 
 
         Publication(
-           Seq(Stefan Boxleitner, Apel, Kaestner) ,
-         "Language-Independent Quantification and Weaving for Feature Composition",
-                 booktitle={Proceedings of the 8th International Conference on Software Composition (SC)},
-        .series("Lecture Notes in Computer Science"),volume=5634,
-        Range(45,54),
-                 publisher=Springer,address=SpringerAddr,
-        .location("Zurich, Switzerland},.issn("0302-9743},isbn={978-3-642-02654-6"),doi={10.1007/978-3-642-02655-3_5"),
-        Map(HTTP->URL("http://www.springerlink.com/content/p2p728q15r347576/")),
-           month=jul,
-        .year(2009)
-        """
-        Based on a general model of feature composition, we present a composition
-        language that enables programmers by means of quantification and weaving
-        to formulate extensions to programs written in different languages.We explore
-        the design space of composition languages that rely on quantification and weaving
-        and discuss our choices.We outline a tool that extends an existing infrastructure
-        for feature composition and discuss results of three initial case studies.
-        },
-        Map (PDF -> URL ("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/sc09_mod.pdf") ),
-        note = {
-        Short Paper;
-        Acceptance rate: 33 \, \% (10 / 30)
-        }
-        }
-
-        Publication (
-        Seq (Apel, Kaestner, Armin Gr {
-        \ "o}{\ss}linger, Lengauer) ,
-        "Feature (De)composition in Functional Programming",
-        booktitle = {
-        Proceedings of the 8 th International Conference on Software Composition (SC)
-        },
-        .series ("Lecture Notes in Computer Science"), volume = 5634,
-        Range (9, 26),
-        publisher = Springer, address = SpringerAddr,
-        .location ("Zurich, Switzerland},.issn(" 0302 - 9743
-        }, isbn = {
-        978 - 3 - 642 - 02654 - 6 "),doi={10.1007/978-3-642-02655-3_3"),
-        Map (HTTP -> URL ("http://www.springerlink.com/content/m0q4530571t18042/") ),
-        month = jul,
-        .year (2009)
-        """
-        The separation of concerns is a fundamental principle in software engineering.
-        Crosscutting concerns are concerns that do not align with hierarchical
-        and block decomposition supported by mainstream programming languages. In
-        the past, crosscutting concerns have been studied mainly in the context of object
-        orientation. Feature orientation is a novel programming paradigm that supports
-        the (de)composition of crosscutting concerns in a system with a hierarchical
-        block structure. By means of two case studies we explore the problem of crosscutting
-        concerns in functional programming and propose two solutions based on
-        feature orientation.
-               },
-        Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/sc09_fc.pdf")),
-                 note={Acceptance rate: 33\,\% (10 / 30)}
-        }
+            Seq(Apel, Kaestner, Lengauer),
+            "{Vergleich und Integration von Komposition und Annotation zur Implementierung von Produktlinien}",
+            Conference("SE", 2009, "Software Engineering 2009 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(3).
+                series("Lecture Notes in Informatics").
+                publisher(GI).
+                volume("P-143").
+                location("Kaiserslautern, Germany"),
+            Pages(101, 112),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/SE2009.pdf"),
+                HTTP -> URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-143.html")),
+            """Es gibt eine Vielzahl sehr unterschiedlicher Techniken, Sprachen und Werkzeuge
+       zur Entwicklung von Softwareproduktlinien. Trotzdem liegen gemeinsame Mechanismen
+       zu Grunde, die eine Klassifikation in Kompositions- und Annotationsansatz
+       erlauben. W{\"a}hrend der Kompositionsansatz in der Forschung groï¿½e Beachtung findet,
+       kommt im industriellen Umfeld haupts{\"a}chlich der Annotationsansatz zur Anwendung.
+       Wir analysieren und vergleichen beide Ans{\"a}tze anhand von drei repr{\"a}sentativen Vertretern
+       und identifizieren anhand von sechs Kriterien individuelle St{\"a}rken und Schw{\"a}chen.
+       Wir stellen fest, dass die jeweiligen St{\"a}rken und Schw{\"a}chen komplement{\"a}r sind. Aus
+       diesem Grund schlagen wir die Integration des Kompositions- und Annotationsansatzes
+       vor, um so die Vorteile beider zu vereinen, dem Entwickler eine breiteres Spektrum
+       an Implementierungsmechanismen zu Verf{\"u}gung zu stellen und die Einf{\"u}hrung von
+       Produktlinientechnologie in bestehende Softwareprojekte zu erleichtern.""").
+            topic(fop, vsoc),
 
         Publication(
-           Seq(Apel, Florian Janda, Trujillo, Kaestner),
-         "Model Superimposition in Software Product Lines",
-                 booktitle={Proceedings of the Second International Conference on Model Transformation (ICMT)},
-        .series("Lecture Notes in Computer Science"),volume=5563,
-        Range(4,19),
-                 publisher=Springer,address=SpringerAddr,
-        .location("Zurich, Switzerland},.issn("0302-9743},isbn={978-3-642-02407-8"),doi={10.1007/978-3-642-02408-5_2"),
-        Map(HTTP->URL("http://www.springerlink.com/content/2k512285p2lv6j04/")),
-           month=jun,
-        .year(2009)
-        """
-        In software product line engineering, feature composition generates
-        software tailored to specific requirements from a common set of artifacts.Superimposition
-        is a popular technique to merge code pieces belonging to different
-        features.The advent of model - driven development raises the question of how to
-        support the variability of software product lines in modeling techniques.We propose
-        to use superimposition as a model composition technique in order to support
-        variability.We analyze the feasibility of superimposition as a model composition
-        technique, offer a corresponding tool for model composition, and discuss our experiences
-        with three case studies (including one industrial study) using this tool.
-        },
-        Map (PDF -> URL ("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icmt09.pdf") ),
-        note = {
-        Acceptance rate: 21 \, \% (14 / 67)
-        }
-        }
+            Seq(Siegmund, Kaestner, Rosenmueller, Heidenreich, Apel, Saake),
+            "Bridging the Gap between Variability in Client Application and Database Schema",
+            BTW09,
+            Pages(297, 306),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/publications/SKRH08dbschema.pdf"),
+                HTTP -> URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html")),
+            """
+Database schemas are used to describe the logical design of a database.
+Diverse groups of users have different perspectives on the schema which leads to
+different local schemas.Research has focused on view integration to generate a global,
+consistent schema out of different local schemas or views.However, this approach
+seems to be too constrained when the generated global view should be variable and
+only a certain subset is needed.Variable schemas are needed in software product lines
+in which products are tailored to the needs of stakeholders.We claim that traditional
+modeling techniques are not sufficient for expressing a variable database schema.We
+show that software product line methodologies, when applied to the database schemas,
+overcome existing limitations and allow the generation of tailor - made database schemas.""").
+            topic(fop, vsoc, tmdb, spl),
 
-
-        Publication (
-        Seq (Friedrich Steimann, Thomas Pawlitzki, Apel, Kaestner),
-        "Types and Modularity for Implicit Invocation with Implicit Announcement",
-        journal = {
-        ACM Transactions on Software Engineering and Methodology (TOSEM)
-        },
-        Map (ACM -> URL ("http://dl.acm.org/authorize?387243") ),
-        Map (PDF -> URL ("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/TOSEM2009.pdf") ),
-        """Through implicit invocation, procedures are called without explicitly referencing them. Implicit announcement
-        adds to this implicitness by not only keeping implicit which procedures are called, but also where or when --
-        under implicit invocation with implicit announcement, the call site contains no signs of that, or what it calls.
-        Recently, aspect-oriented programming has popularized implicit invocation with implicit announcement as a
-        possibility to separate concerns that lead to interwoven code if conventional programming techniques are used.
-        However, as has been noted elsewhere, as currently implemented it establishes strong implicit dependencies
-        between components, hampering independent software development and evolution. To address this problem, we
-        present a type-based modularization of implicit invocation with implicit announcement that is inspired by how
-        interfaces and exceptions are realized in JAVA. By extending an existing compiler and by rewriting several
-        programs to make use of our proposed language constructs, we found that the imposed declaration clutter tends
-        to be moderate; in particular, we found that for general applications of implicit invocation with implicit announcement,
-        fears that programs utilizing our form of modularization become unreasonably verbose are unjustified.},
-        .year(2010)
-        .number(1)volume=20,
-           pages={Article 1; 43 pages},
-        Map(DOI->URL("http://doi.acm.org/10.1145/1767751.1767752"))
-        }
 
         Publication(
-           Seq(Kaestner, Apel, Saake),
-         "{Sichere Produktlinien: Herausforderungen f{\"u}r Syntax- und Typ-Pr{\"u}fungen}",
-           booktitle={Proceedings des 26. Workshop der GI-Fachgruppe Programmiersprachen und Rechenkonzepte},
-           editor={Bernd Brassel and Michael Hanus},
-        Range(37,38),
-        .location("Bad Honnef"),
-        .year(2009)month=may,
-        .publisher("University of Kiel},address={Kiel, Germany"),
-        .number({0915})
-        Map(HTTP->URL("http://www.informatik.uni-kiel.de/ifi/forschung/technische-berichte/bericht/?tx_publication_pi1%5Bsingle%5D=162")),
-        }
+            Seq(Rosenmueller, Kaestner, Siegmund, Sunkle, Apel, Leich, Saake),
+            "SQL \\`{a} la Carte -- Toward Tailor-made Data Management",
+            BTW09,
+            Pages(117, 136),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/publications/RKSS08sql.pdf"),
+                HTTP -> URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html")),
+            """
+  The size of the structured query language (SQL) continuously increases.
+  Extensions of SQL for special domains like stream processing or sensor networks come
+  with own extensions, more or less unrelated to the standard. In general, underlying
+  DBMS support only a subset of SQL plus vendor specific extensions. In this paper,
+  we analyze application domains where special SQL dialects are needed or are already
+  in use. We show how SQL can be decomposed to create an extensible family of SQL
+  dialects. Concrete dialects, e.g., a dialect for web databases, can be generated from
+  such a family by choosing SQL features  \`{a} la carte. A family of SQL dialects simplifies
+  analysis of the standard when deriving a concrete dialect, makes it easy to understand
+  parts of the standard, and eases extension for new application domains. It is also the
+  starting point for developing tailor-made data management solutions that support only
+  a subset of SQL. We outline how such customizable DBMS can be developed and what
+  benefits, e.g., improved maintainability and performance, we can expect from this.""").
+            topic(tmdb, spl),
+
 
         Publication(
-           Seq(Kaestner, Apel, Syed Saif ur Rahman, Rosenmueller, Batory, Saake),
-         "On the Impact of the Optional Feature Problem: Analysis and Case Studies",
-           booktitle={Proceedings of the 13th International Software Product Line Conference (SPLC)},
-        .year(2009)month=aug,
-        .publisher("SEI},  ADDRESS = {Pittsburgh, PA, USA"),
-           .isbn("978-0-9786956-2-0"),
-        Range(181,190),
-        .location("San Francisco, CA, USA"),
-        .selected(),
-        """ A software product - line is a family of related programs that are distinguished in terms of features.A feature implements a stakeholders ' requirement.Different program variants specified by distinct feature selections are produced from a common code base.The optional feature problem describes a common mismatch between variability intended in the domain and dependencies in the implementation.When this occurs, some variants that are valid in the domain cannot be produced due to implementation issues.There are many different solutions to the optional feature problem, but they all suffer from drawbacks such as reduced variability, increased development effort, reduced efficiency, or reduced source code quality.In this paper, we examine the impact of the optional feature problem in two case studies in the domain of embedded database systems, and we survey different state - of - the - art solutions and their trade - offs.Our intension is to raise awareness of the problem, to guide developers in selecting an appropriate solution for their product - line project, and to identify opportunities for future research.""",
-            .note("Acceptance rate: 36\,\% (30 / 83)"),
-            Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc09.pdf"))
-            }
+            Seq(Kaestner, Thuem, Saake, Feigenspan, Leich, Person("Fabian", "Wielgorz"), Apel),
+            "{FeatureIDE}: Tool Framework for Feature-Oriented Software Development",
+            ICSE09.acceptanceRate(24, 72),
+            Pages(611, 614),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2009_featureide_demo.pdf")),
+            """
+       Tools support is crucial for the acceptance of a new programming
+       language. However, providing such tool support
+       is a huge investment that can usually not be provided
+       for a research language. With FeatureIDE, we have built
+       an IDE for AHEAD that integrates all phases of featureoriented
+       software development. To reuse this investment for
+       other tools and languages, we refactored FeatureIDE into
+       an open source framework that encapsulates the common
+       ideas of feature-oriented software development and that can
+       be reused and extended beyond AHEAD. Among others, we
+       implemented extensions for FeatureC++ and FeatureHouse,
+       but in general, FeatureIDE is open for everybody to showcase
+       new research results and make them usable to a wide
+       audience of students, researchers, and practitioners."""
+        ).note("Formal Demonstration paper").topic(fop, spl),
 
-            Publication(
-               Seq(Kaestner, Apel, Kuhlemann),
-             "{LJ}$^{AR}$: A Model of Refactoring Physically and Virtually Separated Features",
-            .year(2009)
-            .number({08})
-            .institution("School of Computer Science, University of Magdeburg")
-            .addess("Germany"),
-               month=may,
-            Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/cide/LJARTech/ljartech.pdf")),
-               hideabstract={
-            Physical separation with class refinements and method refinements ï¿½ la AHEAD
-            and virtual separation using annotations ï¿½ la \#ifdef or CIDE are two competing
-            groups of implementation approaches for software product lines with complementary
-            advantages. Although both groups have been mainly discussed in isolation,
-            we strive for an integration to leverage the respective advantages. In this paper, we
-            provide the basis for such an integration by providing a model that supports both,
-            physical and virtual separation, and by describing refactorings in both directions.
-            We prove the refactorings complete, such that every virtually separated product
-            line can be automatically transformed into a physically separated one (replacing
-            annotations by refinements) and vice versa. To demonstrate the feasibility of our
-            approach, we have implemented the refactorings in our tool CIDE and conducted
-            four case studies.},
-               .crosscite("extended material for \cite{KAK:GPCE09}")
-            }
 
-            Publication(
-               Seq(Apel, Kaestner, Armin Gr{\"o}{\ss}linger, Lengauer),
-             "Type-Safe Feature-Oriented Product Lines",
-            .number({MIP-0909})
-            .institution("Department of Informatics and Mathematics, University of Passau")
-               month=jun,year=2009,
-            .addess("Germany"),
-            Map(PDF->URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/MIP-0909.pdf")),
-               hideabstract={
-            A feature-oriented product line is a family of programs that share a
-            common set of features. A feature implements a stakeholder's requirement, represents
-            a design decision and configuration option and, when added to a program,
-            involves the introduction of new structures, such as classes and methods, and the
-            refinement of existing ones, such as extending methods. With feature-oriented
-            decomposition, programs can be generated, solely on the basis of a user's selection
-            of features, by the composition of the corresponding feature code. A key
-            challenge of feature-oriented product line engineering is how to guarantee the
-            correctness of an entire feature-oriented product line, i.e., of all of the member
-            programs generated from different combinations of features. As the number of
-            valid feature combinations grows progressively with the number of features, it
-            is not feasible to check all individual programs. The only feasible approach is
-            to have a type system check the entire code base of the feature-oriented product
-            line. We have developed such a type system on the basis of a formal model of a
-            feature-oriented Java-like language. We demonstrate that the type system ensures
-            that every valid program of a feature-oriented product line is well-typed and that
-            the type system is complete.
-            },
-               .crosscite("superseded by \cite{AKGL:JASE10}")
-            }
+        Publication(
+            Seq(Kaestner, Apel, Trujillo, Kuhlemann, Batory),
+            "Guaranteeing Syntactic Correctness for all Product Line Variants: A Language-Independent Approach",
+            Conference("TOOLS EUROPE", 2009, "47th International Conference Objects, Models, Components, Patterns").
+                issn("1865-1348},isbn={978-3-642-02570-9").
+                series("Lecture Notes in Business Information Processing").volume(33).
+                month(6).publisher(Springer).
+                location("Zurich, Switzerland").
+                acceptanceRate(19, 67),
+            Pages(175, 194),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/tools09.pdf"),
+                HTTP -> URL("http://www.springerlink.com/content/t8752407443k83j2"),
+                DOI -> URL("10.1007/978-3-642-02571-6")),
+            """A software product line (SPL) is a family of related program variants in
+     a well-defined domain, generated from a set of features. A fundamental difference
+     from classical application development is that engineers develop not a single
+     program but a whole family with hundreds to millions of variants. This makes
+     it infeasible to separately check every distinct variant for errors. Still engineers
+     want guarantees on the entire SPL. A further challenge is that an SPL may contain
+     artifacts in different languages (code, documentation, models, etc.) that should be
+     checked. In this paper, we present CIDE, an SPL development tool that guarantees
+     syntactic correctness for all variants of an SPL. We show how CIDE's underlying
+     mechanism abstracts from textual representation and we generalize it to arbitrary
+     languages. Furthermore, we automate the generation of safe plug-ins for additional
+     languages from annotated grammars. To demonstrate the language-independent
+     capabilities, we applied CIDE to a series of case studies with artifacts written in
+     Java, C++, C, Haskell, ANTLR, HTML, and XML.""").
+            selected().topic(vsoc, vaanalysis, spl),
 
-            Publication(
-               Seq(Apel, Kaestner),
-             "An Overview of Feature-Oriented Software Development",
-               journal={Journal of Object Technology (JOT)},
-            .volume(8)number=5,
-            Range(49,84),
-            .month(July/August}),year=2009,
-            .note("Refereed Column"),
-            .selected(),
+
+        Publication(
+            Seq(Person("Stefan", "Boxleitner"), Apel, Kaestner),
+            "Language-Independent Quantification and Weaving for Feature Composition",
+            SC09,
+            Pages(45, 54),
+            Map(HTTP -> URL("http://www.springerlink.com/content/p2p728q15r347576/"),
+                DOI -> URL("10.1007/978-3-642-02655-3_5"),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/sc09_mod.pdf")),
+            """
+  Based on a general model of feature composition, we present a composition
+  language that enables programmers by means of quantification and weaving
+  to formulate extensions to programs written in different languages.We explore
+  the design space of composition languages that rely on quantification and weaving
+  and discuss our choices.We outline a tool that extends an existing infrastructure
+  for feature composition and discuss results of three initial case studies.""").
+            note("Short Paper").topic(aop, fop),
+
+
+        Publication(
+            Seq(Apel, Kaestner, Groesslinger, Lengauer),
+            "Feature (De)composition in Functional Programming",
+            SC09,
+            Pages(9, 26),
+            Map(HTTP -> URL("http://www.springerlink.com/content/m0q4530571t18042/"),
+                DOI -> URL("10.1007/978-3-642-02655-3_3"),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/sc09_fc.pdf")),
+            """
+           The separation of concerns is a fundamental principle in software engineering.
+           Crosscutting concerns are concerns that do not align with hierarchical
+           and block decomposition supported by mainstream programming languages. In
+           the past, crosscutting concerns have been studied mainly in the context of object
+           orientation. Feature orientation is a novel programming paradigm that supports
+           the (de)composition of crosscutting concerns in a system with a hierarchical
+           block structure. By means of two case studies we explore the problem of crosscutting
+           concerns in functional programming and propose two solutions based on
+           feature orientation.""").
+            topic(fop),
+
+
+        Publication(
+            Seq(Apel, Person("Florian", "Janda"), Trujillo, Kaestner),
+            "Model Superimposition in Software Product Lines",
+            Conference("ICMT", 2009, "2nd International Conference on Model Transformation").
+                series("Lecture Notes in Computer Science").volume(5563).publisher(Springer).
+                location("Zurich, Switzerland").issn("0302-9743").isbn("978-3-642-02407-8").month(6).
+                acceptanceRate(14, 67),
+            Pages(4, 19),
+
+            Map(HTTP -> URL("http://www.springerlink.com/content/2k512285p2lv6j04/"),
+                DOI -> URL("10.1007/978-3-642-02408-5_2"),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icmt09.pdf")),
+            """
+  In software product line engineering, feature composition generates
+  software tailored to specific requirements from a common set of artifacts.Superimposition
+  is a popular technique to merge code pieces belonging to different
+  features.The advent of model - driven development raises the question of how to
+  support the variability of software product lines in modeling techniques.We propose
+  to use superimposition as a model composition technique in order to support
+  variability.We analyze the feasibility of superimposition as a model composition
+  technique, offer a corresponding tool for model composition, and discuss our experiences
+  with three case studies (including one industrial study) using this tool.""").
+            topic(fop),
+
+
+        Publication(
+            Seq(Person("Friedrich", "Steimann"), Person("Thomas", "Pawlitzki"), Apel, Kaestner),
+            "Types and Modularity for Implicit Invocation with Implicit Announcement",
+            TOSEM(2010).number(1).volume(20),
+            PagesStr("Article 1; 43 pages"),
+            Map(ACMLink -> URL("http://dl.acm.org/authorize?387243"),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/TOSEM2009.pdf"),
+                DOI -> URL("http://doi.acm.org/10.1145/1767751.1767752")),
+            """Through implicit invocation, procedures are called without explicitly referencing them. Implicit announcement
+adds to this implicitness by not only keeping implicit which procedures are called, but also where or when --
+under implicit invocation with implicit announcement, the call site contains no signs of that, or what it calls.
+Recently, aspect-oriented programming has popularized implicit invocation with implicit announcement as a
+possibility to separate concerns that lead to interwoven code if conventional programming techniques are used.
+However, as has been noted elsewhere, as currently implemented it establishes strong implicit dependencies
+between components, hampering independent software development and evolution. To address this problem, we
+present a type-based modularization of implicit invocation with implicit announcement that is inspired by how
+interfaces and exceptions are realized in JAVA. By extending an existing compiler and by rewriting several
+programs to make use of our proposed language constructs, we found that the imposed declaration clutter tends
+to be moderate; in particular, we found that for general applications of implicit invocation with implicit announcement,
+fears that programs utilizing our form of modularization become unreasonably verbose are unjustified.""").
+            topic(aop),
+
+        Publication(
+            Seq(Kaestner, Apel, Saake),
+            "{Sichere Produktlinien: Herausforderungen f{\"u}r Syntax- und Typ-Pr{\"u}fungen}",
+            Workshop("", 2009, "26. Workshop der GI-Fachgruppe Programmiersprachen und Rechenkonzepte").location("Bad Honnef").month(5).publisher(Publisher("University of Kiel", "Kiel, Germany")).number("0915"), //           editor={Bernd Brassel and Michael Hanus},
+            Pages(37, 38),
+            Map(HTTP -> URL("http://www.informatik.uni-kiel.de/ifi/forschung/technische-berichte/bericht/?tx_publication_pi1%5Bsingle%5D=162")),
+            "").topic(vaanalysis, spl),
+
+        Publication(
+            Seq(Kaestner, Apel, Rahman, Rosenmueller, Batory, Saake),
+            "On the Impact of the Optional Feature Problem: Analysis and Case Studies",
+            SPLC(2009).month(8).publisher(SEI).isbn("978-0-9786956-2-0").location("San Francisco, CA, USA").
+                acceptanceRate(30, 83),
+            Pages(181, 190),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc09.pdf")),
+            """ A software product - line is a family of related programs that are distinguished in terms of features.A feature implements a stakeholders ' requirement.Different program variants specified by distinct feature selections are produced from a common code base.The optional feature problem describes a common mismatch between variability intended in the domain and dependencies in the implementation.When this occurs, some variants that are valid in the domain cannot be produced due to implementation issues.There are many different solutions to the optional feature problem, but they all suffer from drawbacks such as reduced variability, increased development effort, reduced efficiency, or reduced source code quality.In this paper, we examine the impact of the optional feature problem in two case studies in the domain of embedded database systems, and we survey different state - of - the - art solutions and their trade - offs.Our intension is to raise awareness of the problem, to guide developers in selecting an appropriate solution for their product - line project, and to identify opportunities for future research.""").
+            selected().topic(spl, interactions),
+
+        Publication(
+            Seq(Kaestner, Apel, Kuhlemann),
+            "{LJ}$^{AR}$: A Model of Refactoring Physically and Virtually Separated Features",
+            TechReport(2009, MDTR, "08").month(5),
+            null,
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/cide/LJARTech/ljartech.pdf")),
+            """
+          Physical separation with class refinements and method refinements ï¿½ la AHEAD
+          and virtual separation using annotations ï¿½ la \#ifdef or CIDE are two competing
+          groups of implementation approaches for software product lines with complementary
+          advantages. Although both groups have been mainly discussed in isolation,
+          we strive for an integration to leverage the respective advantages. In this paper, we
+          provide the basis for such an integration by providing a model that supports both,
+          physical and virtual separation, and by describing refactorings in both directions.
+          We prove the refactorings complete, such that every virtually separated product
+          line can be automatically transformed into a physically separated one (replacing
+          annotations by refinements) and vice versa. To demonstrate the feasibility of our
+          approach, we have implemented the refactorings in our tool CIDE and conducted
+          four case studies.""").hideabstract().crosscite("extended material for \\cite{KAK:GPCE09}").
+            topic(fop, vsoc, adoption),
+
+
+        Publication(
+            Seq(Apel, Kaestner, Groesslinger, Lengauer),
+            "Type-Safe Feature-Oriented Product Lines",
+            TechReport(2009, PATR, "MIP-0909").month(6),
+            null,
+            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/MIP-0909.pdf")),
+            """
+        A feature-oriented product line is a family of programs that share a
+        common set of features. A feature implements a stakeholder's requirement, represents
+        a design decision and configuration option and, when added to a program,
+        involves the introduction of new structures, such as classes and methods, and the
+        refinement of existing ones, such as extending methods. With feature-oriented
+        decomposition, programs can be generated, solely on the basis of a user's selection
+        of features, by the composition of the corresponding feature code. A key
+        challenge of feature-oriented product line engineering is how to guarantee the
+        correctness of an entire feature-oriented product line, i.e., of all of the member
+        programs generated from different combinations of features. As the number of
+        valid feature combinations grows progressively with the number of features, it
+        is not feasible to check all individual programs. The only feasible approach is
+        to have a type system check the entire code base of the feature-oriented product
+        line. We have developed such a type system on the basis of a formal model of a
+        feature-oriented Java-like language. We demonstrate that the type system ensures
+        that every valid program of a feature-oriented product line is well-typed and that
+        the type system is complete.""").hideabstract.
+            crosscite("superseded by \\cite{AKGL:JASE10}").
+            topic(vaanalysis, fop),
+
+
+        Publication(
+            Seq(Apel, Kaestner),
+            "An Overview of Feature-Oriented Software Development",
+            JOT(2009).volume(8).number(5).month("July/August"),
+            Pages(49, 84),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/JOT09_OverviewFOSD.pdf"),
+                HTTP -> URL("http://www.jot.fm/issues/issue_2009_07/column5/index.html")),
             """ Feature - oriented software development (FOSD) is a paradigm for the construction,
         customization, and synthesis of large - scale software systems.In this survey, we give
         an overview and a personal perspective on the roots of FOSD, connections to other
         software development paradigms, and recent developments in this field.Our aim is to
-        point to connections between different lines of research and to identify open issues.
-        },
-        Map (PDF -> URL ("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/JOT09_OverviewFOSD.pdf") ),
-        Map (HTTP -> URL ("http://www.jot.fm/issues/issue_2009_07/column5/index.html") )
-        }
-
-
+        point to connections between different lines of research and to identify open issues.""").
+            note("Refereed Column").
+            selected().topic(fop, vsoc, overview)
+        /*
         Publication (
         Seq (Kuhlemann, Batory, Kaestner),
         "Safe Composition of Non-Monotonic Features",
@@ -1109,7 +1049,7 @@ object CVPublications {
         .selected(),
         .note("Acceptance rate: 31\,\% (19/62)"),
            .isbn("978-1-60558-828-5"),
-        Range(157,166),
+        Pages(157,166),
         Map(DOI->URL("http://doi.acm.org/10.1145/1621607.1621632")),
         Map(ACM->URL("http://dl.acm.org/authorize?131381")),
         """
@@ -1221,7 +1161,7 @@ object CVPublications {
         on comparing CPP with CIDE.
            },
         Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/FOSD09_emp.pdf")),
-        Range(55,62)
+        Pages(55,62)
         }
 
         Publication(
@@ -1253,7 +1193,7 @@ object CVPublications {
            booktitle = {Java Software and Embedded Systems},
            .isbn("978-1-60741-661-6"),
         .year(2010)
-        Range(171,183),
+        Pages(171,183),
         .publisher("Nova Science Publishers, Inc."),
         .addess("Hauppauge, NY"),
            editor = {Mattis Hayes and Isaiah Johansen},
@@ -1485,7 +1425,7 @@ object CVPublications {
         Map(ACM->URL("http://dl.acm.org/authorize?379692")),
         .location("Eindhoven, The Netherlands"),
            publisher=ACM,address=ACMAddr,
-        Range(103,112),
+        Pages(103,112),
         .note("Acceptance rate: 31\,\% (18/59)"),
         """
         Some limitations of
@@ -1547,7 +1487,7 @@ object CVPublications {
         .publisher("Elsevier"),
         .year(2012)month=mar,
         .volume(77)number=3,
-        Range(174,187),
+        Pages(174,187),
         Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/SCP_FOSD2010.pdf")),
         """
         In feature - oriented programming (FOP) a programmer decomposes a program in
@@ -1592,7 +1532,7 @@ object CVPublications {
         product lines written in Java and C are encouraging and
         give us confidence that this approach is promising.
            },
-        Range(64,71),
+        Pages(64,71),
         Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/FOSD10-ftweezer.pdf")),
         }
 
@@ -1703,7 +1643,7 @@ object CVPublications {
          "Analyzing the Discipline of Preprocessor Annotations in 30 Million Lines of {C} Code",
            booktitle={Proceedings of the 10th ACM International Conference on Aspect-Oriented Software Development (AOSD)},
         .publisher("ACM Press"),
-        Range(191,202),
+        Pages(191,202),
            month=mar,year=2011,
         .note("Acceptance rate: 23\,\% (21/92)"),
         .selected(),
@@ -1777,7 +1717,7 @@ object CVPublications {
         Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/icse2011_demo_ja.pdf")),
         Map(ACM->URL("http://dl.acm.org/authorize?414157")),
         .location("Waikiki, Honolulu, HI"),
-        Range(989,991),
+        Pages(989,991),
            publisher = ACM,address=ACMAddr,
         Map(DOI->URL("http://doi.acm.org/10.1145/1985793.1985970")),
            .isbn("978-1-4503-0445-0"),
@@ -1797,7 +1737,7 @@ object CVPublications {
         Map(ACM->URL("http://dl.acm.org/authorize?414168")),
         .isbn("978-1-4503-0445-0"),
         .location("Waikiki, Honolulu, HI"),
-        Range(1031,1033),
+        Pages(1031,1033),
         Map(DOI->URL("http://doi.acm.org/10.1145/1985793.1985987")),
         publisher = ACM,address=ACMAddr,
         }
@@ -1807,7 +1747,7 @@ object CVPublications {
          "Using Background Colors to Support Program Comprehension in Software Product Lines",
            booktitle={Proceedings of the 15th International Conference on Evaluation and Assessment in Software Engineering (EASE)},
         .year(2011)
-        Range(66,75),
+        Pages(66,75),
         .publisher("Institution of Engineering and Technology"),
         .note("Acceptance rate: 39\,\% (20/51)"),
            .crosscite("superseeded by \cite{FSPKDKFS:IET12} and \cite{FKALSDPLS:ESE12}"),
@@ -1870,10 +1810,10 @@ object CVPublications {
 
 
         Publication(
-           Seq(Apel, Florian Heidenreich, Kaestner, Rosenmueller),
+           Seq(Apel, Heidenreich, Kaestner, Rosenmueller),
          "Third International Workshop on Feature-Oriented Software Development {(FOSD 2011)}",
            booktitle={Proceedings of the 15th International Software Product Line Conference (SPLC)},
-        Range(337,338),
+        Pages(337,338),
            publisher=IEEE,address=IEEEAddr,
         .location("Munich"),
            month=aug,year=2011,
@@ -1924,7 +1864,7 @@ object CVPublications {
         We raise awareness of the problem of abstract features for different kinds of analyses on feature models. We argue that, in order to reason about program variants, abstract features should be made explicit in feature models. We present a technique based on propositional formulas to reason about program variants. In practice, our technique can save effort that is caused by considering the same program variant multiple times, for example, in product-line testing.
            },
         Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_af.pdf")),
-        Range(191,200),
+        Pages(191,200),
            note={Acceptance rate 29\,\% (20/69)}
         }
 
@@ -1978,7 +1918,7 @@ object CVPublications {
                   Seq(Ateeq Khan, Kaestner, Veit K\"oppen, Saake),
            booktitle={Proceedings of the ER Workshop on Software Variability Management (Variability@ER)},
            series=LNCS,volume=6999,
-        Range(130,140),
+        Pages(130,140),
         .year(2011)
            publisher=Springer,address=SpringerAddr,
            http={http://www.springerlink.com/content/g22235r0561200m3/}
@@ -2072,7 +2012,7 @@ object CVPublications {
         .note("Acceptance rate: 37\,\% (61/166); \textbf{Distinguished Paper Award}"),
            .isbn("978-1-4503-0940-0"),
         .location("Portland, OR"),
-        Range(391,406),
+        Pages(391,406),
            publisher=ACM,address=ACMAddr,
            month=oct,year=2011,
         """
@@ -2196,7 +2136,7 @@ object CVPublications {
         .year(2011)month=sep,
         Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_demo.pdf")),
         Map(DOI->URL("http://doi.acm.org/10.1145/2019136.2019192")),
-        Range(48:1,48:2),
+        Pages(48:1,48:2),
            .isbn("978-1-4503-0789-5"),
         }
 
@@ -2209,7 +2149,7 @@ object CVPublications {
         .year(2011)month=sep,
         .location("Munich"),
            publisher=ACM,address=ACMAddr,
-        Range(5:1,5:8),
+        Pages(5:1,5:8),
            .isbn("978-1-4503-0789-5"),
         Map(DOI->URL("http://doi.acm.org/10.1145/2019136.2019142")),
         .selected(),
@@ -2412,7 +2352,7 @@ object CVPublications {
         Map(DOI->URL("http://www.oldenbourg-link.com/doi/abs/10.1524/itit.2012.0662")),
         Map(HTTP->URL("http://it-information-technology.de/")),
         Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/itit12.pdf")),
-        Range(42,46),
+        Pages(42,46),
            .crosscite("invited summary of \cite{kaestnerDiss}")
         }
 
