@@ -50,10 +50,16 @@ object CVPublications {
     val Kuhlemann = Person("Martin", "Kuhlemann")
     val Trujillo = Person("Salvador", "Trujillo")
     val Batory = Person("Don", "Batory")
+    val Lengauer = Person("Christian", "Lengauer")
+    val Moeller = Person("Bernhard", "Möller")
+    val Siegmund = Person("Norbert", "Siegmund")
+    val Rosenmueller = Person("Marko", "Rosenmüller")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
     val spl = Topic("Software product lines")
+    val vsoc = Topic("Virtual separation of concerns")
+    val nfp = Topic("Nonfunctional properties")
 
     val publications = Seq(
         Publication(
@@ -181,116 +187,101 @@ object CVPublications {
            Most of the unique and powerful features of AspectJ were
            not needed. We document where AspectJ is unsuitable for
            implementing features of refactored legacy applications and
-           explain why.""").selected().note("Acceptance rate: 35 % (28/80)").topic(fop, aop, spl)
-        /*
-    Publication(
-       Seq(Kaestner),
-     "{CIDE}: Decomposing Legacy Applications into Features",
-       booktitle={Proceedings of the 11th International Software Product Line Conference (SPLC), second volume (Demonstration)},
-    .location("Kyoto, Japan"),
-    .year(2007)pages={149--150},
-       isbn={978-4-7649-0342-5},
-    Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc07demo.pdf")),
-    """Taking an extractive approach to decompose a legacy application
+           explain why.""").selected().note("Acceptance rate: 35 % (28/80)").topic(fop, aop, spl),
+
+
+        Publication(
+            Seq(Kaestner),
+            "{CIDE}: Decomposing Legacy Applications into Features",
+            SPLCDemo(2007).location("Kyoto, Japan").isbn("978-4-7649-0342-5"),
+            Range(149, 150),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/splc07demo.pdf")),
+            """Taking an extractive approach to decompose a legacy application
     into features is difficult and laborious with current
     approaches and tools. We present a prototype of a tooldriven
-    approach that largely hides the complexity of the task.}
-    }
+    approach that largely hides the complexity of the task."""
+        ).topic(vsoc),
 
 
-
-    Publication(
-       Seq(Kaestner, Kuhlemann, Batory),
-     "Automating Feature-Oriented Refactoring of Legacy Applications",
-     booktitle={Proceedings of the ECOOP Workshop on Refactoring Tools (WRT)},
-    .location("Berlin, Germany"),
-         month=jul,
-    .year(2007)
-    Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ecooprefactoring.pdf")),
-    """Creating a software product line from a legacy application
-    is a difficult task. We propose a tool that helps automating
-    tedious tasks of refactoring legacy applications
-    into features and frees the developer from the burden of
-    performing laborious routine implementations.},
-    Range(62,63},publisher={TU Berlin},address={Berlin},issn={1436-9915)
-    }
+        Publication(
+            Seq(Kaestner, Kuhlemann, Batory),
+            "Automating Feature-Oriented Refactoring of Legacy Applications",
+            Workshop("WRT", 2007, "ECOOP Workshop on Refactoring Tools").location("Berlin, Germany").month(7).publisher(TUBerlin).issn("1436-9915"),
+            Range(62, 63),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ecooprefactoring.pdf")),
+            """Creating a software product line from a legacy application
+         is a difficult task. We propose a tool that helps automating
+         tedious tasks of refactoring legacy applications
+         into features and frees the developer from the burden of
+         performing laborious routine implementations."""
+        ).topic(vsoc, aop, fop),
 
 
-    Publication(
-       author 	= 	{Apel and Christian Lengauer and Batory and
-    Bernhard M{\"o}ller and Kaestner},
-     "An Algebra for Feature-Oriented Software Development",
-       institution 	= 	{Department of Informatics and Mathematics, University
-    of Passau},
-    .number({MIP-0706})
-    .year(2007)
-    Map(PDF->URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/mip-0706.pdf")),
-       hideabstract={Feature-Oriented Software Development (FOSD) provides a
-    multitude of formalisms, methods, languages, and tools for building variable,
-    customizable, and extensible software. Along different lines of research
-    different ideas of what a feature is have been developed. Although
-    the existing approaches have similar goals, their representations and formalizations
-    have not been integrated so far into a common framework.
-    We present a feature algebra as a foundation of FOSD. The algebra captures
-    the key ideas and provides a common ground for current and future
-    research in this field, in which also alternative options can be explored.},
-       crosscite={superseded by \cite{ALMK:AMAST08} and \cite{ALMK:SCP10}}
+        Publication(
+            Seq(Apel, Lengauer, Batory, Moeller, Kaestner),
+            "An Algebra for Feature-Oriented Software Development",
+            TechReport(2007, PATR, "MIP-0706"),
+            null,
+            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/mip-0706.pdf")),
+            """Feature-Oriented Software Development (FOSD) provides a
+ multitude of formalisms, methods, languages, and tools for building variable,
+ customizable, and extensible software. Along different lines of research
+ different ideas of what a feature is have been developed. Although
+ the existing approaches have similar goals, their representations and formalizations
+ have not been integrated so far into a common framework.
+ We present a feature algebra as a foundation of FOSD. The algebra captures
+ the key ideas and provides a common ground for current and future
+ research in this field, in which also alternative options can be explored.""").
+            crosscite("superseded by \\cite{ALMK:AMAST08} and \\cite{ALMK:SCP10}").
+            topic(fop),
 
-    }
 
-    Publication(
-       Seq(Trujillo, Kaestner, Apel),
-     "Product Lines that supply other Product Lines: A Service-Oriented Approach",
-       booktitle={Proceedings of the SPLC Workshop on  Service-Oriented Architectures and Product Lines (SOAPL)},
-    .location("Kyoto, Japan"), month=sep, year=2007,
-    .addess("Pittsburgh, PA, USA"),
-    .publisher("SEI},pages={69-76"),
-    """Software product line is a paradigm to develop a family
-    of software products with the goal of reuse. In this paper, we
-    focus on a scenario in which different products from different
-    product lines are combined together in a third product
-    line to yield more elaborate products, i.e., a product line
-    consumes products from third product line suppliers. The
-    issue is not how different products can be produced separately,
-    but how they can be combined together. We propose
-    a service-oriented architecture where product lines are regarded
-    as services, yielding a service-oriented product line.
-    This paper illustrates the approach with an example for a
-    service-oriented architecture of a web portal product line
-    supplied by portlet product lines.
-    }
-    }
+        Publication(
+            Seq(Trujillo, Kaestner, Apel),
+            "Product Lines that supply other Product Lines: A Service-Oriented Approach",
+            Workshop("SOAPL", 2007, "SPLC Workshop on  Service-Oriented Architectures and Product Lines").month(9).location("Kyoto, Japan").publisher(SEI),
+            Range(69, 76),
+            Map(),
+            """Software product line is a paradigm to develop a family
+      of software products with the goal of reuse. In this paper, we
+      focus on a scenario in which different products from different
+      product lines are combined together in a third product
+      line to yield more elaborate products, i.e., a product line
+      consumes products from third product line suppliers. The
+      issue is not how different products can be produced separately,
+      but how they can be combined together. We propose
+      a service-oriented architecture where product lines are regarded
+      as services, yielding a service-oriented product line.
+      This paper illustrates the approach with an example for a
+      service-oriented architecture of a web portal product line
+      supplied by portlet product lines.  """).topic(spl),
 
-    Publication(
-       Seq(Apel, Kaestner, Kuhlemann, Leich),
-     "Pointcuts, Advice, Refinements, and Collaborations: Similarities, Differences, and Synergies",
-       journal={Innovations in Systems and Software Engineering (ISSE) -- A NASA Journal},
-    .volume(3)
-    .number({3-4})
-    Range(281,289),
-       issn={1614-5046},
-    .publisher("Springer"), year=2007, month=dec,
-    """Aspect-oriented programming (AOP) is a novel programming paradigm
-    that aims at modularizing complex software. It embraces
-    several mechanisms including (1) pointcuts and advice as well as
-    (2) refinements and collaborations. Though all these mechanisms
-    deal with crosscutting concerns, i.e., a special class of design and
-    implementation problems that challenge traditional programming
-    paradigms, they do so in different ways. In this article we explore
-    their relationship and their impact on software modularity. This
-    helps researchers and practitioners to understand their differences
-    and guides to use the right mechanism for the right problem.},
-    Map(HTTP->URL("http://www.springerlink.com/content/08m600873g3044t4/")),
-    Map(PDF->URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/ISSE2007.pdf"))
-    }
+        Publication(
+            Seq(Apel, Kaestner, Kuhlemann, Leich),
+            "Pointcuts, Advice, Refinements, and Collaborations: Similarities, Differences, and Synergies",
+            ISSE(2007).month(12).volume(3).number("3-4").issn("1614-5046").publisher(Springer).month(12),
+            Range(281, 289),
+            Map(HTTP -> URL("http://www.springerlink.com/content/08m600873g3044t4/"),
+                PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/ISSE2007.pdf")),
+            """Aspect-oriented programming (AOP) is a novel programming paradigm
+  that aims at modularizing complex software. It embraces
+  several mechanisms including (1) pointcuts and advice as well as
+  (2) refinements and collaborations. Though all these mechanisms
+  deal with crosscutting concerns, i.e., a special class of design and
+  implementation problems that challenge traditional programming
+  paradigms, they do so in different ways. In this article we explore
+  their relationship and their impact on software modularity. This
+  helps researchers and practitioners to understand their differences
+  and guides to use the right mechanism for the right problem."""
+        ).topic(aop, fop),
 
-    Publication(
-       Seq(Kuhlemann, Kaestner),
-     "Reducing the Complexity of {AspectJ} Mechanisms for Recurring Extensions",
-              booktitle={Proc.\ GPCE Workshop on Aspect-Oriented Product Line Engineering (AOPLE)},
-    .year(2007)pages={14--19},
-    .location("Salzburg, Austria"),
-    """Aspect-Oriented Programming (AOP) aims at modularizing crosscutting
+        Publication(
+            Seq(Kuhlemann, Kaestner),
+            "Reducing the Complexity of {AspectJ} Mechanisms for Recurring Extensions",
+            Workshop("AOPLE", 2007, "GPCE Workshop on Aspect-Oriented Product Line Engineering").location("Salzburg, Austria"),
+            Range(14, 19),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/aople07.pdf")),
+            """Aspect-Oriented Programming (AOP) aims at modularizing crosscutting
     concerns. AspectJ is a popular AOP language extension for
     Java that includes numerous sophisticated mechanisms for implementing
     crosscutting concerns modularly in one aspect. The language
@@ -303,68 +294,55 @@ object CVPublications {
     evolvability and modularity in AspectJ programs by avoiding those
     mechanisms that may harm evolution and modularity if misused.
     We show that the syntax is applicable for up to 74\% of all pointcut
-    and advice mechanisms by analysing three AspectJ case studies.},
-    Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/aople07.pdf"))
-    }
+    and advice mechanisms by analysing three AspectJ case studies.""").topic(aop, fop),
 
 
-    Publication(
-     "Integrated Product Line Model for Semi-Automated Product Derivation Using Non-Functional Properties",
-           Seq(Norbert Siegmund, Kuhlemann, Marko Rosenm{\"u}ller, Kaestner, Saake),
-           booktitle={Proceedings of the Second International Workshop on Variability Modelling of Software-intensive Systems (VaMoS)},
-    .year(2008)month=jan,location={Essen, Germany},
-    Range(25,23),
-           issn={1860-2770},
-    .publisher("University of Duisburg-Essen},address={Essen, Germany"),
-    Map(PDF->URL("http://www.icb.uni-due.de/fileadmin/ICB/research/research_reports/icb_report_22.pdf")),
-    """Software product lines (SPL) allow to generate tailormade
-    software by manually configuring reusable core assets.
-    However, SPLs with hundreds of features and millions
-    of possible products require an appropriate support
-    for semi-automated product derivation. This derivation has
-    to be based on non-functional properties that are related to
-    core assets and domain features. Both elements are part
-    of different models connected via complex mappings. We
-    propose a model that integrates features and core assets in
-    order to allow semi-automated product derivation.
-    }
-    }
+        Publication(
+            Seq(Siegmund, Kuhlemann, Rosenmueller, Kaestner, Saake),
+            "Integrated Product Line Model for Semi-Automated Product Derivation Using Non-Functional Properties",
+            VAMOS(2008).month(1).location("Essen, Germany").issn("1860-2770").publisher(TREssen),
+            Range(25, 23),
+            Map(PDF -> URL("http://www.icb.uni-due.de/fileadmin/ICB/research/research_reports/icb_report_22.pdf")),
+            """Software product lines (SPL) allow to generate tailormade
+       software by manually configuring reusable core assets.
+       However, SPLs with hundreds of features and millions
+       of possible products require an appropriate support
+       for semi-automated product derivation. This derivation has
+       to be based on non-functional properties that are related to
+       core assets and domain features. Both elements are part
+       of different models connected via complex mappings. We
+       propose a model that integrates features and core assets in
+       order to allow semi-automated product derivation.""").topic(nfp, spl),
 
 
-    Publication(
-     "Granularity in Software Product Lines",
-           Seq(Christian K\"{a}stner, Apel, Kuhlemann),
-           booktitle={Proceedings of the 30th International Conference on Software Engineering (ICSE)},
-    .year(2008)month=may,location={Leipzig, Germany},
-           isbn = {978-1-60558-079-1},
-           publisher = ACM,
-           address = ACMAddr,
-    Range(311,320),
-    Map(DOI->URL("http://doi.acm.org/10.1145/1368088.1368131")),
-    Map(ACM->URL("http://dl.acm.org/authorize?063977")),
-    Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2008.pdf")),
-           ereader={http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2008_ereader.pdf},
-    .selected(),
-    """
-    Building software product lines (SPLs) with features is a challenging
-    task. Many SPL implementations support features with coarse
-    granularity - e.g., the ability to add and wrap entire methods. However,
-    fine-grained extensions, like adding a statement in the middle
-    of a method, either require intricate workarounds or obfuscate the
-    base code with annotations. Though many SPLs can and have been
-    implemented with the coarse granularity of existing approaches,
-    fine-grained extensions are essential when extracting features from
-    legacy applications. Furthermore, also some existing SPLs could
-    benefit from fine-grained extensions to reduce code replication or
-    improve readability. In this paper, we analyze the effects of feature
-    granularity in SPLs and present a tool, called Colored IDE (CIDE),
-    that allows features to implement coarse-grained and fine-grained
-    extensions in a concise way. In two case studies, we show how CIDE
-    simplifies SPL development compared to traditional approaches.
-    }	,
-       note={Acceptance rate: 15\,\% (56/371)}
-    }
+        Publication(
+            Seq(Kaestner, Apel, Kuhlemann),
+            "Granularity in Software Product Lines",
+            ICSE(2008).month(5).location("Leipzig, Germany").isbn("978-1-60558-079-1").publisher(ACM),
+            Range(311, 320),
+            Map(DOI -> URL("http://doi.acm.org/10.1145/1368088.1368131"),
+                ACMLink -> URL("http://dl.acm.org/authorize?063977"),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2008.pdf"),
+                EPUB -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/icse2008_ereader.pdf")),
 
+            """
+      Building software product lines (SPLs) with features is a challenging
+      task. Many SPL implementations support features with coarse
+      granularity - e.g., the ability to add and wrap entire methods. However,
+      fine-grained extensions, like adding a statement in the middle
+      of a method, either require intricate workarounds or obfuscate the
+      base code with annotations. Though many SPLs can and have been
+      implemented with the coarse granularity of existing approaches,
+      fine-grained extensions are essential when extracting features from
+      legacy applications. Furthermore, also some existing SPLs could
+      benefit from fine-grained extensions to reduce code replication or
+      improve readability. In this paper, we analyze the effects of feature
+      granularity in SPLs and present a tool, called Colored IDE (CIDE),
+      that allows features to implement coarse-grained and fine-grained
+      extensions in a concise way. In two case studies, we show how CIDE
+      simplifies SPL development compared to traditional approaches.""").
+            selected().acceptanceRate(56, 371)
+        /*
     Publication(
      "Research Challenges in the Tension Between Features and Services",
        Seq(Apel, Kaestner, Christian Lengauer),

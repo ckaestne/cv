@@ -36,13 +36,24 @@ object Venues {
         def apply(year: Int): URL = URL(p.replace("%yy%", year.toString.takeRight(2)).replace("%yyyy%", year.toString))
     }
 
+    case class URLMap(map: Map[Int, URL]) extends URLFactory {
+        def apply(year: Int): URL = map.getOrElse(year, null)
+    }
+
     object NoURLFactory extends URLFactory {
         def apply(year: Int): URL = null
     }
 
 
     val MDTR = Publisher("University of Magdeburg", "Magdeburg, Germany")
+    val PATR = Publisher("Department of Informatics and Mathematics, University of Passau", "Passau, Germany")
+    val MRTR = Publisher("Philipps University Marburg", "Marburg, Germany")
     val IEEE = Publisher("IEEE Computer Society", "Los Alamitos, CA")
+    val TUBerlin = Publisher("TU Berlin", "Berlin, Germany")
+    val TREssen = Publisher("University of Duisburg-Essen", "Essen, Germany")
+    val SEI = Publisher("SEI", "Pittsburgh, PA")
+    val ACM = Publisher("ACM Press", "New York, NY")
+    val Springer = Publisher("Springer-Verlag", "Berlin/Heidelberg")
 
 
     val GPCE = ConferenceFactory("GPCE", 2002,
@@ -61,6 +72,10 @@ object Venues {
     val ASE = ConferenceFactory("ASE", 2002,
         "International Conference on Automated Software Engineering")
     val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference")
+    val SPLCDemo = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference, second volume (Demonstration)")
+    val ICSE = ConferenceFactory("ICSE", 1979,
+        "%num% International Conference on Software Engineering")
+
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
@@ -74,12 +89,17 @@ object Venues {
     val DKE = JournalFactory("DKE", "Data & Knowledge Engineering")
     val TII = JournalFactory("TII", "IEEE Transactions on Industrial Informatics")
     val JOT = JournalFactory("JOT", "Journal of Object Technology (JOT)")
+    val ISSE = JournalFactory("ISSE", "Innovations in Systems and Software Engineering (ISSE) -- A NASA Journal")
 
     val ACoM = ConferenceFactory("ACoM", 0,
         "ICSE Workshop on Assessment of Contemporary Modularization Techniques (ACoM)", NoURLFactory, true, IEEE)
 
     val RAMSE = ConferenceFactory("RAM-SE", 2003,
         "%num% Workshop on Reflection, AOP and Meta-Data for Software Evolution", NoURLFactory, true)
+
+
+    val VAMOS = ConferenceFactory("VaMoS", 2007, "%num% Int'l Workshop on Variability Modelling of Software-Intensive Systems",
+        URLMap(Map(2012 -> URL("http://uni-leipzig.de/~vamos2012/"))), true)
 
 
 }

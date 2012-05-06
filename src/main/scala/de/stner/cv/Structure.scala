@@ -70,7 +70,7 @@ case class Publication(
 
     def renderPages =
         if (pages != null && pages.start == pages.end) "page " + pages.head + ", "
-        else if (pages != null) "pages %d--%d, ".format(pages.head, pages.last)
+        else if (pages != null && !pages.isEmpty) "pages %d--%d, ".format(pages.head, pages.last)
         else ""
 }
 
@@ -99,6 +99,18 @@ object BIB extends LinkKind {
     def print = "bib"
 }
 
+object DOI extends LinkKind {
+    def print = "doi"
+}
+
+object EPUB extends LinkKind {
+    def print = "epub"
+}
+
+object ACMLink extends LinkKind {
+    def print = "acm"
+}
+
 case class Thesis(
                      author: Person,
                      kind: Publication,
@@ -107,6 +119,10 @@ case class Thesis(
                      comments: String)
 
 case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Int] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
+    def issn(s: String) = this
+
+    def isbn(s: String): Venue = this
+
 
     def location(loc: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, Some(loc), month, number, volume, series)
 
