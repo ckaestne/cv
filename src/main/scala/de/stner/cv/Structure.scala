@@ -135,12 +135,20 @@ case class MonthStr(str: String) extends Month
 
 
 case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
+
+    def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series) =
+        Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series)
+
     def issn(s: String) = this
 
     def isbn(s: String): Venue = this
 
 
-    def location(loc: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, Some(loc), month, number, volume, series)
+    def name(n: String): Venue = copy(name = n)
+
+    def subtitle(n: String): Venue = copy(name = this.name + " (" + n + ")")
+
+    def location(loc: String): Venue = copy(location = Some(loc))
 
     def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume, series)
 
@@ -280,7 +288,9 @@ object PC extends CommitteeRole("Program-Committee Member", "PC")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
-object TC extends CommitteeRole("Tool-Demonstration-Committee Member", "TC")
+object TC extends CommitteeRole("Tool-Demonstration Committee Member", "TC")
+
+object DS extends CommitteeRole("Doctorial-Symposium Committee Member", "TC")
 
 case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
 

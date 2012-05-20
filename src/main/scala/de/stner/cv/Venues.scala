@@ -25,8 +25,8 @@ object Venues {
         })
     }
 
-    case class JournalFactory(short: String, name: String) {
-        def apply(year: Int) = Journal(short, year, name, null)
+    case class JournalFactory(short: String, name: String, publisher: Publisher = null) {
+        def apply(year: Int) = Journal(short, year, name, null).publisher(publisher)
     }
 
     trait URLFactory {
@@ -55,14 +55,18 @@ object Venues {
     val SEI = Publisher("SEI", "Pittsburgh, PA")
     val ACM = Publisher("ACM Press", "New York, NY")
     val Springer = Publisher("Springer-Verlag", "Berlin/Heidelberg")
+    val Elsevier = Publisher("Elsevier", "")
     val GI = Publisher("Gesellschaft für Informatik (GI)", "Bonn, Germany")
 
     val GPCE = ConferenceFactory("GPCE", 2002,
         "%num% ACM International Conference on Generative Programming and Component Engineering",
         URLPattern("http://program-transformation.org/GPCE%yy%"), false, ACM)
     val FOSD = ConferenceFactory("FOSD", 2009,
-        "%num% Int'l Workshop on Feature-Oriented Software Development",
-        URLPattern("http://fosd.net/%yyyy%"), true)
+        "%num% International Workshop on Feature-Oriented Software Development",
+        URLPattern("http://fosd.net/%yyyy%"), true, ACM)
+    val ICPC = ConferenceFactory("FOSD", 1993,
+        "%num% International Conference on Program Comprehension",
+        NoURLFactory, true, IEEE)
 
     val ECOOP = ConferenceFactory("ECOOP", 2002,
         "European Conference on Object-Oriented Programming")
@@ -80,7 +84,7 @@ object Venues {
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
-    val SCP = JournalFactory("SCP", "Science of Computer Programming")
+    val SCP = JournalFactory("SCP", "Science of Computer Programming", Elsevier)
     val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology")
     val JSS = JournalFactory("JSS", "Journal of Systems and Software")
     val STTT = JournalFactory("STTT", "Software Tools for Technology Transfer")
@@ -91,6 +95,8 @@ object Venues {
     val TII = JournalFactory("TII", "IEEE Transactions on Industrial Informatics")
     val JOT = JournalFactory("JOT", "Journal of Object Technology (JOT)")
     val ISSE = JournalFactory("ISSE", "Innovations in Systems and Software Engineering (ISSE) -- A NASA Journal")
+    val ESE = JournalFactory("ESE", "Empirical Software Engineering", Springer)
+    val JASE = JournalFactory("ASE", "Automated Software Engineering -- An International Journal", Springer)
 
     val ACoM = ConferenceFactory("ACoM", 0,
         "ICSE Workshop on Assessment of Contemporary Modularization Techniques (ACoM)", NoURLFactory, true, IEEE)
