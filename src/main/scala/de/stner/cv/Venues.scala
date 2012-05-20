@@ -58,6 +58,8 @@ object Venues {
     val Elsevier = Publisher("Elsevier", "")
     val GI = Publisher("Gesellschaft für Informatik (GI)", "Bonn, Germany")
 
+    val LNCS = "LNCS"
+
     val GPCE = ConferenceFactory("GPCE", 2002,
         "%num% ACM International Conference on Generative Programming and Component Engineering",
         URLPattern("http://program-transformation.org/GPCE%yy%"), false, ACM)
@@ -68,24 +70,28 @@ object Venues {
         "%num% International Conference on Program Comprehension",
         NoURLFactory, true, IEEE)
 
-    val ECOOP = ConferenceFactory("ECOOP", 2002,
-        "European Conference on Object-Oriented Programming")
+    val ECOOP = ConferenceFactory("ECOOP", 1987,
+        "%num% European Conference on Object-Oriented Programming", publisher = Springer)
     val SLE = ConferenceFactory("SLE", 2002,
         "International Conference on Software Language Engineering")
     val AOSD = ConferenceFactory("AOSD", 2002,
         "International Conference on Aspect-Oriented Software Development")
     val ASE = ConferenceFactory("ASE", 2002,
-        "International Conference on Automated Software Engineering", null, false, IEEE)
+        "International Conference on Automated Software Engineering", publisher = IEEE)
     val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference")
-    val SPLCDemo = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference, second volume (Demonstration)")
+    val SPLCDemo = ConferenceFactory("SPLC", 1997,
+        "%num% International Software Product Line Conference, second volume (Demonstration)")
     val ICSE = ConferenceFactory("ICSE", 1979,
         "%num% International Conference on Software Engineering")
-
+    val EASE = ConferenceFactory("EASE", 1997,
+        "%num% International Conference on Evaluation and Assessment in Software Engineering")
+    val ESEM = ConferenceFactory("ESEM", 2007,
+        "%num% International Symposium on Empirical Software Engineering and Measurement", publisher = IEEE)
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
     val SCP = JournalFactory("SCP", "Science of Computer Programming", Elsevier)
-    val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology")
+    val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology", ACM)
     val JSS = JournalFactory("JSS", "Journal of Systems and Software")
     val STTT = JournalFactory("STTT", "Software Tools for Technology Transfer")
     val IST = JournalFactory("IST", "Information and Software Technology")

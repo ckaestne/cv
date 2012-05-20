@@ -71,6 +71,17 @@ object CVPublications {
     val SSchulze = Person("Sandro", "Schulze")
     val Scholz = Person("Wolfgang", "Scholz")
     val Kolesnikov = Person("Sergiy", "Kolesnikov")
+    val Kenner = Person("Andy", "Kenner")
+    val Haase = Person("Steffen", "Haase")
+    val Giarrusso = Person("Paolo G.", "Giarrusso")
+    val Ostermann = Person("Klaus", "Ostermann")
+    val Grebhahn = Person("Alexander", "Grebhahn")
+    val Schroeter = Person("Reimar", "Schröter")
+    val Stengel = Person("Michael", "Stengel")
+    val Koeppen = Person("Veit", "Köppen")
+    val Rendel = Person("Tillmann", "Rendel")
+    val Erdweg = Person("Sebastian", "Erdweg")
+    val Khan = Person("Ateeq", "Khan")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
@@ -88,8 +99,13 @@ object CVPublications {
     val overview = Topic("Overview papers")
     val experiment = Topic("Controlled experiment")
     val merge = Topic("Software merging")
+    val typechef = Topic("TypeChef")
+    val modularity = Topic("Modularity")
+    val empirical = Topic("Empirical evaluation")
+    val programcomprehension = Topic("Program comprehension")
 
 
+    //shorthands because they are reused
     val GPCE08 = GPCE(2008).month(8).location("Nashville, TN, USA").isbn("978-1-60558-267-2").acceptanceRate(16, 55)
     val GPCE09 = GPCE(2009).month(10).location("Denver, CO, USA").isbn("978-1-60558-828-5").acceptanceRate(19, 62)
 
@@ -100,6 +116,9 @@ object CVPublications {
     val BTW09 = Conference("BTW", 2009, "13. GI-Fachtagung Datenbanksysteme für Business, Technologie und Web").month(3).series("Lecture Notes in Informatics").volume("P-144").isbn("978-3-88579-238-3").issn("1617-5468").publisher(GI).location("Münster, Germany")
     val SC09 = Conference("SC", 2009, "8th International Conference on Software Composition (SC)").series("Lecture Notes in Computer Science").volume(5634).publisher(Springer).location("Zurich, Switzerland").issn("0302-9743").isbn("978-3-642-02654-6").acceptanceRate(10, 30).month(7)
     val FOSD09 = FOSD(2009).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10)
+    val FOSD10 = FOSD(2010).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").acceptanceRate(11, 20).month(10)
+    val ICSE11Demo = ICSE(2011).subtitle("Demonstration Track").acceptanceRate(22, 60).location("Waikiki, Honolulu, HI").publisher(ACM).isbn("978-1-4503-0445-0")
+    val SPLC11 = SPLC(2011).publisher(IEEE).location("Munich").month(8)
 
     val publications = Seq(
         Publication(
@@ -183,7 +202,7 @@ object CVPublications {
         on program comprehension, we propose to conduct a series
         of experiments. We present ideas on how to arrange such
         experiments that should serve as a starting point and foster
-        a discussion with other researchers.""").topic(fop, aop),
+        a discussion with other researchers.""").topic(fop, aop, experiment),
 
 
         Publication(
@@ -1241,8 +1260,7 @@ complexity, granularity, and type of extensions.Based on
 the data obtained, we suggest alternative implementation
 techniques.The data we have collected can influence other
 research areas, such as language design and tool support.""").
-            selected().topic(vsoc), //cpp,empirical
-
+            selected().topic(vsoc, empirical),
 
 
         Publication(
@@ -1270,7 +1288,7 @@ guaranties type safety for feature-oriented product lines. That is, it ensures t
 program of a well-typed product line is well-typed. Our formal model including type system
 is sound and complete.  """).
             selected().
-            crosscite("extended version of \cite{AKL:GPCE08}").
+            crosscite("extended version of \\cite{AKL:GPCE08}").
             topic(vaanalysis, fop),
 
         Publication(
@@ -1289,7 +1307,7 @@ provides a common ground for current and future research in this field, in which
 options can be explored. Furthermore, our algebraic framework is meant to serve as a
 basis for the upcoming development paradigms automatic feature-based program synthesis
 and architectural metaprogramming.""").
-            crosscite("extended version of \cite{ALMK:AMAST08}").
+            crosscite("extended version of \\cite{ALMK:AMAST08}").
             selected().
             topic(fop), //foundation
 
@@ -1358,7 +1376,7 @@ that a large fraction of these clones is FOP-specific (i.e., caused by
 limitations of feature-oriented mechanisms). Based on our results,
 we initiate a discussion on the reasons for FOP-specific clones and
 on how to cope with them. We exemplary show how such clones
-can be removed by the application of refactoring.""").topic(fop), //code clones
+can be removed by the application of refactoring.""").topic(fop, empirical), //code clones
 
         Publication(
             Seq(Apel, Scholz, Lengauer, Kaestner),
@@ -1384,11 +1402,11 @@ interactions between features.  """).topic(vaanalysis, fop, interactions),
 
         Publication(
             Seq(Apel, Kolesnikov, Liebig, Kaestner, Kuhlemann, Leich),
-            Map(DOI -> URL("http://dx.doi.org/10.1016/j.scico.2010.07.005")),
             "Access Control in Feature-Oriented Programming",
             SCP(2012).subtitle("Special Issue on Feature-Oriented Software Development").month(3).volume(77).number(3),
             Pages(174, 187),
-            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/SCP_FOSD2010.pdf")),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/SCP_FOSD2010.pdf"),
+                DOI -> URL("http://dx.doi.org/10.1016/j.scico.2010.07.005")),
             """In feature-oriented programming (FOP) a programmer decomposes a program in
 terms of features. Ideally, features are implemented modularly so that they can be
 developed in isolation. Access control is an important ingredient to attain feature
@@ -1402,20 +1420,16 @@ access modifier model. We offer an implementation of the model on the basis of
 a fully-fledged feature-oriented compiler. Finally, by analyzing ten feature-oriented
 programs, we explore the potential of feature-oriented modifiers in FOP.""").
             topic(fop, vaanalysis),
-        /*
-Publication (
-Seq (Apel, Wolfgang Scholz, Lengauer, Kaestner),
-"Language-Independent Reference Checking in Software Product Lines",
-Map (ACMLink -> URL ("http://dl.acm.org/authorize?315789") ),
-booktitle = {
-Proceedings of the Second Workshop on Feature - Oriented Software Development (FOSD)
-},
-publisher = ACM, address = ACMAddr,
-.location ("Eindhoven, The Netherlands"),
-.isbn ("978-1-4503-0208-1"),
-.note ("Acceptance rate: 55\,\% (11/20)"),
-month = oct, year = 2010,
-"""
+
+
+        Publication(
+            Seq(Apel, Scholz, Lengauer, Kaestner),
+            "Language-Independent Reference Checking in Software Product Lines",
+            FOSD10,
+            Pages(64, 71),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/FOSD10-ftweezer.pdf"),
+                ACMLink -> URL("http://dl.acm.org/authorize?315789")),
+            """
 \emph{Feature-Oriented Software Development} (FOSD) is a paradigm
 for the development of software product lines. A challenge
 in FOSD is to guarantee that all software systems of
@@ -1428,93 +1442,61 @@ present a reference-checking algorithm that performs key
 tasks of product-line type checking independently of the target
 programming language. Experiments with two sample
 product lines written in Java and C are encouraging and
-give us confidence that this approach is promising. """)
-},
-Pages(64,71),
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/FOSD10-ftweezer.pdf")),
-}
+give us confidence that this approach is promising. """).
+            topic(vaanalysis, fop),
 
-Publication(
-Seq(Andy Kenner, Kaestner, Steffen Haase, Leich),
-"{TypeChef}: Toward Type Checking \#ifdef Variability in {C}",
-booktitle={Proceedings of the Second Workshop on Feature-Oriented Software Development (FOSD)},
-publisher=ACM,address=ACMAddr,
-.location("Eindhoven, The Netherlands"),
-.note("Acceptance rate: 55\,\% (11/20)"),
-.crosscite("extended by \cite{KGREOB:OOPSLA11}"),
-.isbn("978-1-4503-0208-1"),
-month=oct,year=2010,
-"""
-Software product lines have gained momentum as an approach to
+        Publication(
+            Seq(Kenner, Kaestner, Haase, Leich),
+            "TypeChef: Toward Type Checking #ifdef Variability in C",
+            FOSD10,
+            Pages(25, 32),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/FOSD10-typechef.pdf"),
+                ACMLink -> URL("http://dl.acm.org/authorize?315774")),
+            """Software product lines have gained momentum as an approach to
 generate many variants of a program, each tailored to a specific
-use case, from a common code base.However, the implementation
+use case, from a common code base. However, the implementation
 of product lines raises new challenges, as potentially millions of
-program variants are developed in parallel.In prior work, we and
-others have developed product - line -- aware type systems to detect
-type errors in a product line, without generating all variants.With
-\ emph {
-TypeChef
-}, we build a similar type checker for product lines written
-in C that implements variability with \ emph {
-\# ifdef
-} directives of the
-C preprocessor.However, a product - line -- aware type system for C
+program variants are developed in parallel. In prior work, we and
+others have developed product-line--aware type systems to detect
+type errors in a product line, without generating all variants. With
+\emph{TypeChef}, we build a similar type checker for product lines written
+in C that implements variability with \emph{\#ifdef} directives of the
+C preprocessor. However, a product-line--aware type system for C
 is more difficult than expected due to several peculiarities of the
-preprocessor, including lexical macros and unrestricted use of \ emph {
-\# ifdef
-}
-directives.In this paper, we describe the problems faced and our
-progress to solve them with \ emph {
-TypeChef
-}.Although \ emph {
-TypeChef
-} is still
+preprocessor, including lexical macros and unrestricted use of \emph{\#ifdef}
+directives. In this paper, we describe the problems faced and our
+progress to solve them with \emph{TypeChef}. Although \emph{TypeChef} is still
 under development and cannot yet process arbitrary C code, we
 demonstrate its capabilities so far with a case study: By type checking
-the open - source web server \ emph {
-Boa
-} with potentially $2 ^ {
-110
-} $ variants,
-we found type errors in several variants. """)
-},
-Pages(25, 32),
-Map (HTTP -> URL ("http://www.informatik.uni-marburg.de/~kaestner/FOSD10-typechef.pdf") ),
-Map (ACMLink -> URL ("http://dl.acm.org/authorize?315774") ),
-}
-
-Publication (
-editor = {
-Apel and Batory and Krzysztof Czarnecki and Florian Heidenreich and Kaestner and Oscar Nierstrasz
-},
-"Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
-publisher = ACM, address = ACMAddr,
-.location ("Eindhoven, The Netherlands"),
-.isbn ("978-1-4503-0208-1"),
-month = oct, year = 2010,
-Map (PDF -> URL ("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf") ),
-http = {
-http :// portal.acm.org / citation.cfm ? id = 1868688
-}
-}
+the open-source web server \emph{Boa} with potentially $2^{110}$ variants,
+we found type errors in several variants.""").
+            topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
-Publication (
-"Partial Preprocessing {C} Code for Variability Analysis",
-Seq (Kaestner, Paolo G.Giarrusso, Klaus Ostermann),
-booktitle = {
-Proceedings of the Fifth International Workshop on Variability Modelling of Software - intensive Systems (VaMoS)
-},
-.year (2011) month = jan, location = {
-Namur, Belgium
-},
-Pages(137, 140
-}, isbn = {
-978 - 1 - 4503 - 0570 - 9),
-.note ("Acceptance rate: 55\,\% (21/38)"),
-publisher = ACM, address = ACMAddr,
-Map (ACMLink -> URL ("http://dl.acm.org/authorize?468359") ),
-"""
+        //TODO Publication (
+        //editor = {
+        //Apel and Batory and Krzysztof Czarnecki and Florian Heidenreich and Kaestner and Oscar Nierstrasz
+        //},
+        //"Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
+        //publisher = ACM, address = ACMAddr,
+        //.location ("Eindhoven, The Netherlands"),
+        //.isbn ("978-1-4503-0208-1"),
+        //month = oct, year = 2010,
+        //Map (PDF -> URL ("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf") ),
+        //http = {
+        //http :// portal.acm.org / citation.cfm ? id = 1868688
+        //}
+        //}
+
+
+        Publication(
+            Seq(Kaestner, Giarrusso, Ostermann),
+            "Partial Preprocessing C Code for Variability Analysis",
+            VAMOS(2011).month(1).location("Namur, Belgium").isbn("978-1-4503-0570-9").publisher(ACM).acceptanceRate(21, 38),
+            Pages(137, 140),
+            Map(ACMLink -> URL("http://dl.acm.org/authorize?468359"),
+                HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/vamos11.pdf")),
+            """
 The C preprocessor is commonly used to implement
 variability. Given a feature selection, code fragments
 can be excluded from compilation with \#ifdef and similar
@@ -1531,62 +1513,54 @@ implementation, and present some initial experimental results.
 The partial preprocessor is part of a larger endeavor in
 the TypeChef project to check variability implementations
 (syntactic correctness, type correctness) in C projects such as
-the Linux kernel.   """)
-}		,
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/vamos11.pdf")),
-}
+the Linux kernel.   """).topic(vaanalysis, vsoc, typechef),
 
-Publication(
-Seq(J{\"o}rg Liebig, Kaestner, Apel),
-"Analyzing the Discipline of Preprocessor Annotations in 30 Million Lines of {C} Code",
-booktitle={Proceedings of the 10th ACM International Conference on Aspect-Oriented Software Development (AOSD)},
-.publisher("ACM Press"),
-Pages(191,202),
-month=mar,year=2011,
-.note("Acceptance rate: 23\,\% (21/92)"),
-.selected(),
-"""
-The C preprocessor cpp is a widely used tool for implementing
-variable software.It enables programmers to express
+
+        Publication(
+            Seq(Liebig, Kaestner, Apel),
+            "Analyzing the Discipline of Preprocessor Annotations in 30 Million Lines of C Code",
+            Conference("AOSD", 2011, "10th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
+                month(3).acceptanceRate(21, 92),
+            Pages(191, 202),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/AOSD11.pdf"),
+                ACMLink -> URL("http://dl.acm.org/authorize?473237")),
+            """The C preprocessor cpp is a widely used tool for implementing
+variable software. It enables programmers to express
 variable code of features that may crosscut the entire implementation
-with conditional compilation.The C preprocessor
+with conditional compilation. The C preprocessor
 relies on simple text processing and is independent of the host
-language (C, C ++, Java, and so on).Language independent
-text processing is powerful and expressive | programmers can
-make all kinds of annotations in the form of \# ifdefs but
+language (C, C++, Java, and so on). Language independent
+text processing is powerful and expressive|programmers can
+make all kinds of annotations in the form of \#ifdefs but
 can render unpreprocessed code difficult to process automatically
 by tools, such as code aspect refactoring, concern
-management, and also static analysis and variability - aware
-type checking.We distinguish between disciplined annotations,
-which align with the underlying source - code structure,
+management, and also static analysis and variability-aware
+type checking. We distinguish between disciplined annotations,
+which align with the underlying source-code structure,
 and undisciplined annotations, which do not align with the
-structure and hence complicate tool development.This distinction
+structure and hence complicate tool development. This distinction
 raises the question of how frequently programmers
 use undisciplined annotations and whether it is feasible to
 change them to disciplined annotations to simplify tool development
 and to enable programmers to use a wide variety of
-tools in the first place.By means of an analysis of 40 mediumsized
-to large - sized C programs, we show empirically that
-programmers use cpp mostly in a disciplined way: about 85 \, \%
-of all annotations respect the underlying source - code structure.
+tools in the first place. By means of an analysis of 40 mediumsized
+to large-sized C programs, we show empirically that
+programmers use cpp mostly in a disciplined way: about 85\,\%
+of all annotations respect the underlying source-code structure.
 Furthermore, we analyze the remaining undisciplined
 annotations, identify patterns, and discuss how to transform
-them into a disciplined form.  """)
-},
-Map (HTTP -> URL ("http://www.informatik.uni-marburg.de/~kaestner/AOSD11.pdf") ),
-Map (ACMLink -> URL ("http://dl.acm.org/authorize?473237") ),
-}
+them into a disciplined form.""").
+            topic(vsoc, empirical, adoption).selected(),
 
 
-
-Publication (
-Seq (Kaestner, Apel, Thomas Th {
-\ "u}m, Saake),
-"Type Checking Annotation-Based Product Lines",
-journal = {
-ACM Transactions on Software Engineering and Methodology (TOSEM)
-},
-"""
+        Publication(
+            Seq(Kaestner, Apel, Thuem, Saake),
+            "Type Checking Annotation-Based Product Lines",
+            TOSEM(2012).volume(21).number(3),
+            ToAppear(),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/tosem11.pdf"),
+                EPUB -> URL("http://www.informatik.uni-marburg.de/~kaestner/tosem11_ereader.pdf")),
+            """
 Software-product-line engineering is an efficient means to generate a family of program variants for a domain
 from a single code base. However, because of the potentially high number of possible program variants, it is
 difficult to test them all and ensure properties like type safety for the entire product line. We present a
@@ -1595,61 +1569,39 @@ isolation. Specifically, we extend the Featherweight Java calculus with feature 
 and prove formally that all program variants generated from a well-typed product line are well-typed.
 Furthermore, we present a solution to the problem of typing mutually exclusive features. We discuss how results
 from our formalization helped implementing our own product-line tool CIDE for full Java and report of
-experience with detecting type errors in four existing software-product-line implementations.},
-.year(2012)
-publisher=ACM,
-.selected(),
-.volume(21) number=3,
-.note("to appear; submitted 8 Jun 2010, accepted 4 Jan 2011"),
-.crosscite("extended version of \cite{KA:ASE08}"),
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/tosem11.pdf")),
-ereader={http://www.informatik.uni-marburg.de/~kaestner/tosem11_ereader.pdf},
-}
+experience with detecting type errors in four existing software-product-line implementations.""").
+            topic(vaanalysis, vsoc).selected().
+            note("to appear; submitted 8 Jun 2010, accepted 4 Jan 2011").
+            crosscite("extended version of \\cite{KA:ASE08}"),
 
-Publication(
-Seq(Pukall, Alexander Grebhahn, Schr\"{o}ter, Reimar, Kaestner, Cazzola, Goetz),
-"{JavaAdaptor}: Unrestricted Dynamic Software Updates for {Java}",
-booktitle = {Proceedings of the 33rd International Conference on Software Engineering (ICSE)},
-.note("Demonstration Track, Acceptance rate: 37\,\% (22/60)"),
-.year(2011)
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/icse2011_demo_ja.pdf")),
-Map(ACMLink->URL("http://dl.acm.org/authorize?414157")),
-.location("Waikiki, Honolulu, HI"),
-Pages(989,991),
-publisher = ACM,address=ACMAddr,
-Map(DOI->URL("http://doi.acm.org/10.1145/1985793.1985970")),
-.isbn("978-1-4503-0445-0"),
-}
+        Publication(
+            Seq(Pukall, Grebhahn, Schroeter, Kaestner, Cazzola, Goetz),
+            "{JavaAdaptor}: Unrestricted Dynamic Software Updates for {Java}",
+            ICSE11Demo,
+            Pages(989, 991),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/icse2011_demo_ja.pdf"),
+                ACMLink -> URL("http://dl.acm.org/authorize?414157"),
+                DOI -> URL("http://doi.acm.org/10.1145/1985793.1985970")),
+            "").hideabstract().topic(dsu),
 
 
+        Publication(
+            Seq(Stengel, Feigenspan, Frisch, Kaestner, Apel, Dachselt),
+            "{View Infinity}: A Zoomable Interface for Feature-Oriented Software Development",
+            ICSE11Demo,
+            Pages(1031, 1033),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/icse2011_demo_vi.pdf"),
+                ACMLink -> URL("http://dl.acm.org/authorize?414168"),
+                DOI -> URL("http://doi.acm.org/10.1145/1985793.1985987")),
+            "").hideabstract().topic(vsoc),
 
-
-
-Publication(
-Seq(Michael Stengel, Feigenspan, Mathias Frisch, Kaestner, Apel, Raimund Dachselt),
-"{View Infinity}: A Zoomable Interface for Feature-Oriented Software Development",
-booktitle = {Proceedings of the 33rd International Conference on Software Engineering  (ICSE)},
-.year(2011)
-.note("Demonstration Track, Acceptance rate: 37\,\% (22/60)"),
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/icse2011_demo_vi.pdf")),
-Map(ACMLink->URL("http://dl.acm.org/authorize?414168")),
-.isbn("978-1-4503-0445-0"),
-.location("Waikiki, Honolulu, HI"),
-Pages(1031,1033),
-Map(DOI->URL("http://doi.acm.org/10.1145/1985793.1985987")),
-publisher = ACM,address=ACMAddr,
-}
-
-Publication(
-Seq(Feigenspan, Michael Schulze, Maria Papendieck, Kaestner, Raimund Dachselt, Veit K{\"o}ppen, Mathias Frisch),
-"Using Background Colors to Support Program Comprehension in Software Product Lines",
-booktitle={Proceedings of the 15th International Conference on Evaluation and Assessment in Software Engineering (EASE)},
-.year(2011)
-Pages(66,75),
-.publisher("Institution of Engineering and Technology"),
-.note("Acceptance rate: 39\,\% (20/51)"),
-.crosscite("superseeded by \cite{FSPKDKFS:IET12} and \cite{FKALSDPLS:ESE12}"),
-"""
+        Publication(
+            Seq(Feigenspan, MSchulze, Papendieck, Kaestner, Dachselt, Koeppen, Frisch),
+            "Using Background Colors to Support Program Comprehension in Software Product Lines",
+            EASE(2011).publisher(Publisher("Institution of Engineering and Technology", "")).acceptanceRate(20, 50),
+            Pages(66, 75),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/ease2011.pdf")),
+            """
 Background: Software product line engineering provides
 an effective mechanism to implement variable software.
 However, the usage of preprocessors, which is typical in industry,
@@ -1669,26 +1621,18 @@ colors improve program comprehension.Furthermore, subjects
 generally favor background colors.Conclusion: We show that
 background colors can improve program comprehension in large
 SPLs.Based on these encouraging results, we will continue our
-work improving program comprehension in large SPLs.
-},
-Map (HTTP -> URL ("http://www.informatik.uni-marburg.de/~kaestner/ease2011.pdf") ),
-}
+work improving program comprehension in large SPLs. """).
+            topic(experiment, vsoc).crosscite("superseeded by \\cite{FSPKDKFS:IET12} and \\cite{FKALSDPLS:ESE12}"),
 
-Publication (
-"Revisiting Information Hiding: Reflections on Classical and Nonclassical Modularity",
-Seq (Klaus Ostermann, Paolo G.Giarrusso, Kaestner, Tillmann Rendel),
-booktitle = {
-Proceedings of the 25 th European Conference on Object - Oriented Programming (ECOOP)
-},
-.note ("Acceptance rate: 26\,\% (26/100)"),
-.year (2011)
-.selected (),
-Pages(155, 178),
-Map (DOI -> URL ("http://dx.doi.org/10.1007/978-3-642-22655-7_8") ),
-series = LNCS,
-.volume (6813)
-publisher = Springer, address = SpringerAddr,
-"""
+        Publication(
+            Seq(Ostermann, Giarrusso, Kaestner, Rendel),
+            "Revisiting Information Hiding: Reflections on Classical and Nonclassical Modularity",
+            ECOOP(2011).acceptanceRate(26, 100).series(LNCS).volume(6813),
+            Pages(155, 178),
+            Map(DOI -> URL("http://dx.doi.org/10.1007/978-3-642-22655-7_8"),
+                HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/ecoop11.pdf"),
+                DOI -> URL("http://www.informatik.uni-marburg.de/~kaestner/ecoop11_ereader.pdf")),
+            """
 What is modularity? Which kind of modularity should developers strive for?
 Despite decades of research on modularity, these basic questions have
 no definite answer. We submit that the common understanding of
@@ -1699,169 +1643,119 @@ address the needs of developers of large software systems, and
 encourage researchers to explore alternative visions of
 modularity, based on nonclassical logics, and henceforth called
 nonclassical
-modularity.
-},
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/ecoop11.pdf")),
-ereader={http://www.informatik.uni-marburg.de/~kaestner/ecoop11_ereader.pdf},
-}
+modularity.""").
+            selected().topic(modularity),
 
 
-
-Publication(
-Seq(Apel, Heidenreich, Kaestner, Rosenmueller),
-"Third International Workshop on Feature-Oriented Software Development {(FOSD 2011)}",
-booktitle={Proceedings of the 15th International Software Product Line Conference (SPLC)},
-Pages(337,338),
-publisher=IEEE,address=IEEEAddr,
-.location("Munich"),
-month=aug,year=2011,
-Map(PDF->URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/SPLC2011fosd.pdf")),
-http={http://fosd.net/2011}
-}
+        Publication(
+            Seq(Apel, Heidenreich, Kaestner, Rosenmueller),
+            "Third International Workshop on Feature-Oriented Software Development {(FOSD 2011)}",
+            SPLC11,
+            Pages(337, 338),
+            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/SPLC2011fosd.pdf"),
+                HTTP -> URL("http://fosd.net/2011")),
+            ""
+        ),
 
 
-Publication(
-Seq(Siegmund, Rosenmueller, Kaestner, Paolo G. Giarrusso, Apel, Sergiy Kolesnikov),
-"Scalable Prediction of Non-functional Properties in Software Product Lines",
-booktitle={Proceedings of the 15th International Software Product Line Conference (SPLC)},
-.year(2011)month=aug,
-publisher=IEEE,  ADDRESS = IEEEAddr,
-.location("Munich"),
-"""
-A software product line (SPL) is a family of related software products, from which users can derive a product that fulfills their needs.
-Often, users expect a product to have specific non - functional properties, for example, to not exceed a footprint limit or to respond in a given time frame.Unfortunately, it is usually not feasible to generate and measure non - functional properties for each possible product of an SPL in isolation, because an SPL can contain millions of products.Hence, we propose an approach to \ emph {
-estimate
-} each product 's non - functional properties in advance, based on the product 's configuration.To this end, we approximate non - functional properties \ emph {
-per features
-} and per feature interaction.We generate and measure a small set of products and approximated non - functional properties by comparing the measurements.Our approach is implementation independent and language independent.We present three different approaches with different trade - offs regarding accuracy and required number of measurements.With nine case studies, we demonstrate that our approach can predict non - functional properties with an accuracy of 2 \%.
-},
-Map (HTTP -> URL ("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_nfp.pdf") ),
-Pages(160, 169),
-note = {
-Acceptance rate 29 \, \% (20 / 69);
-\ textbf {
-Best Paper Award
-}
-}
-}
+        Publication(
+            Seq(Siegmund, Rosenmueller, Kaestner, Giarrusso, Apel, Kolesnikov),
+            "Scalable Prediction of Non-functional Properties in Software Product Lines",
+            SPLC11.acceptanceRate(20, 69),
+            Pages(160, 169),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_nfp.pdf")),
+            """A software product line (SPL) is a family of related software products, from which users can derive a product that fulfills their needs.
+Often, users expect a product to have specific non-functional properties, for example, to not exceed a footprint limit or to respond in a given time frame. Unfortunately, it is usually not feasible to generate and measure non-functional properties for each possible product of an SPL in isolation, because an SPL can contain millions of products. Hence, we propose an approach to \emph{estimate} each product's non-functional properties in advance, based on the product's configuration. To this end, we approximate non-functional properties \emph{per features} and per feature interaction. We generate and measure a small set of products and approximated non-functional properties by comparing the measurements. Our approach is implementation independent and language independent. We present three different approaches with different trade-offs regarding accuracy and required number of measurements. With nine case studies, we demonstrate that our approach can predict non-functional properties with an accuracy of 2\%.""").
+            note("\\textbf{Best Paper Award}").topic(nfp, spl, empirical),
 
 
-Publication (
-Seq (Thomas Th {
-\ "u}m, Kaestner, Sebastian Erdweg, Siegmund),
-"Abstract Features in Feature Modeling",
-booktitle = {
-Proceedings of the 15 th International Software Product Line Conference (SPLC)
-},
-.year (2011) month = aug,
-publisher = IEEE, ADDRESS = IEEEAddr,
-.location ("Munich"),
-"""
+        Publication(
+            Seq(Thuem, Kaestner, Erdweg, Siegmund),
+            "Abstract Features in Feature Modeling",
+            SPLC11.acceptanceRate(20, 69),
+            Pages(191, 200),
+            Map(HTTP -> URL("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_af.pdf")),
+            """
 A software product line is a set of program variants, typically generated from a common code base. Feature models describe variability in product lines by documenting features and their valid combinations. In product-line engineering, we need to reason about variability and program variants for many different tasks. For example, given a feature model, we might want to determine the number of all valid feature combinations or detect specific feature combinations for testing.
 However, we found that contemporary reasoning approaches can only reason about feature combinations, not about program variants, because they do not take abstract features into account. Abstract features are features used to structure a feature model that, however, do not have any impact at implementation level. Using existing feature-model reasoning mechanisms for product variants leads to incorrect results.
-We raise awareness of the problem of abstract features for different kinds of analyses on feature models. We argue that, in order to reason about program variants, abstract features should be made explicit in feature models. We present a technique based on propositional formulas to reason about program variants. In practice, our technique can save effort that is caused by considering the same program variant multiple times, for example, in product-line testing.
-},
-Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/SPLC11_af.pdf")),
-Pages(191,200),
-note={Acceptance rate 29\,\% (20/69)}
-}
+We raise awareness of the problem of abstract features for different kinds of analyses on feature models. We argue that, in order to reason about program variants, abstract features should be made explicit in feature models. We present a technique based on propositional formulas to reason about program variants. In practice, our technique can save effort that is caused by considering the same program variant multiple times, for example, in product-line testing.""").
+            topic(spl, fmanalysis),
 
-Publication(
-Seq(Feigenspan, Apel, J{\"o}rg Liebig, Kaestner),
-"Exploring Software Measures to Assess Program Comprehension",
-booktitle={Proceedings of the 5th International Symposium on Empirical Software Engineering and Measurement (ESEM)},
-.year(2011)
-.location("Banff"),
-publisher=IEEE,address=IEEEAddr,
-month=sep,
-"""
-Software measures are often used to assess program comprehension, although their applicability is discussed controversially.Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension.Our goal is to evaluate whether and how software measures and program comprehension correlate.To this end, we carefully designed an experiment.We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations.We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures.We did not observe a difference in program comprehension of our subjects as the software measures suggested it.To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures.This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension.Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.
-},
-Pages(1, 10, paper 3),
-note = {
-Acceptance rate: 31 \, \% (33 / 105)
-}
-}
+        Publication(
+            Seq(Feigenspan, Apel, Liebig, Kaestner),
+            "Exploring Software Measures to Assess Program Comprehension",
+            ESEM(2011).location("Banff").month(9).acceptanceRate(33, 105),
+            Pages(1, 10, "paper 3"),
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/auto/FALK11.pdf")),
+            """Software measures are often used to assess program comprehension, although their applicability is discussed controversially. Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension. Our goal is to evaluate whether and how software measures and program comprehension correlate. To this end, we carefully designed an experiment. We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations. We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures. We did not observe a difference in program comprehension of our subjects as the software measures suggested it. To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures. This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension. Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.""").
+            topic(experiment, empirical, programcomprehension),
 
-Publication (
-Seq (Kaestner),
-"{Virtuelle Trennung von Belangen}",
-publisher = GI, series = LNI, volume = {
-D - 11
-},
-Pages(121, 130),
-booktitle = {
-Ausgezeichnete Informatikdissertationen 2010
-},
-.year (2011)
-"""
-Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
-Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
-negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
-zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
-Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
-Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
-klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
-in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
-entsprechender Werkzeugunterst\"uzung.
-}		,
-.note("invited paper"),
-.isbn("9783885794158"),
-.crosscite("(German summary of \cite{kaestnerDiss})"),
-Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf"))
-}
+        //TODO Publication (
+        //Seq (Kaestner),
+        //"Virtuelle Trennung von Belangen",
+        //Book("Ausgezeichnete Informatikdissertationen 2010",2011,GI).series(LNI).volume("D-11").isbn("9783885794158"),
+        //Pages(121, 130),
+        //    Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf")),
+        //"""
+        //Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
+        //Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
+        //negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
+        //zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
+        //Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
+        //Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
+        //klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
+        //in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
+        //entsprechender Werkzeugunterst\"uzung. """).
+        //note("invited paper").
+        //crosscite("(German summary of \\cite{kaestnerDiss})"),
 
-Publication(
-"Service Variability Patterns",
-   Seq(Ateeq Khan, Kaestner, Veit K\"oppen, Saake),
-booktitle={Proceedings of the ER Workshop on Software Variability Management (Variability@ER)},
-series=LNCS,volume=6999,
-Pages(130,140),
-.year(2011)
-publisher=Springer,address=SpringerAddr,
-http={http://www.springerlink.com/content/g22235r0561200m3/}
-}
 
-Publication(
-Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Apel, Saake),
-"{SPL Conqueror}: Toward Optimization of Non-functional Properties in Software Product Lines",
-journal={Software Quality Journal - Special issue on Quality Engineering for Software Product Lines},
-.year(2011)
-.note("online first"),
-"""
-A software product line (SPL) is a family of related programs of a domain.
-The programs of an SPL are distinguished in terms of features, which are end - uservisible
-characteristics of programs.Based on a selection of features, stakeholders can
-derive tailor - made programs that satisfy functional requirements.Besides functional requirements,
-different application scenarios raise the need for optimizing non - functional
-properties of a variant.The diversity of application scenarios leads to heterogeneous
-optimization goals with respect to non - functional properties (e.g., performance vs.
-footprint vs.energy optimized variants).Hence, an SPL has to satisfy different and
-sometimes contradicting requirements regarding non - functional properties.Usually, the
-actually required non - functional properties are not known before product derivation
-and can vary for each application scenario and customer.Allowing stakeholders to derive
-optimized variants requires to measure non - functional properties after the SPL is
-developed.Unfortunately, the high variability provided by SPLs complicates measurement
-and optimization of non - functional properties due to a large variant space.
-With SPL Conqueror, we provide a holistic approach to optimize non - functional
-properties in SPL engineering.We show how non - functional properties can be qualitatively
-specified and quantitatively measured in the context of SPLs.Furthermore, we
-discuss the variant - derivation process in SPL Conqueror that reduces the effort of computing
-an optimal variant.We demonstrate the applicability of our approach by means
+        Publication(
+            Seq(Khan, Kaestner, Koeppen, Saake),
+            "Service Variability Patterns",
+            Workshop("Variability@ER", 2011, "ER Workshop on Software Variability Management").publisher(Springer).
+                series(LNCS).volume(6999),
+            Pages(130, 140),
+            Map(HTTP -> URL("http://www.springerlink.com/content/g22235r0561200m3/")),
+            "").hideabstract(),
+
+        Publication(
+            Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Apel, Saake),
+            "SPL Conqueror: Toward Optimization of Non-functional Properties in Software Product Lines",
+            Journal("SQJ", 2011, "Software Quality Journal").
+                subtitle("Special issue on Quality Engineering for Software Product Lines"),
+            ToAppear(),
+            Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/jsoftwarequality11.pdf"),
+                HTTP -> URL("http://www.springerlink.com/content/ax788q46h1702j34/"),
+                DOI -> URL("10.1007/s11219-011-9152-9")),
+            """A software product line (SPL) is a family of related programs of a domain.
+The programs of an SPL are distinguished in terms of features, which are end-uservisible
+characteristics of programs. Based on a selection of features, stakeholders can
+derive tailor-made programs that satisfy functional requirements. Besides functional requirements,
+different application scenarios raise the need for optimizing non-functional
+properties of a variant. The diversity of application scenarios leads to heterogeneous
+optimization goals with respect to non-functional properties (e.g., performance vs.
+footprint vs. energy optimized variants). Hence, an SPL has to satisfy different and
+sometimes contradicting requirements regarding non-functional properties. Usually, the
+actually required non-functional properties are not known before product derivation
+and can vary for each application scenario and customer. Allowing stakeholders to derive
+optimized variants requires to measure non-functional properties after the SPL is
+developed. Unfortunately, the high variability provided by SPLs complicates measurement
+and optimization of non-functional properties due to a large variant space.
+With SPL Conqueror, we provide a holistic approach to optimize non-functional
+properties in SPL engineering. We show how non-functional properties can be qualitatively
+specified and quantitatively measured in the context of SPLs. Furthermore, we
+discuss the variant-derivation process in SPL Conqueror that reduces the effort of computing
+an optimal variant. We demonstrate the applicability of our approach by means
 of nine case studies of a broad range of application domains (e.g., database management
-and operating systems).Moreover, we show that SPL Conqueror is implementation and
+and operating systems). Moreover, we show that SPL Conqueror is implementation and
 language independent by using SPLs that are implemented with different mechanisms,
-such as conditional compilation and feature - oriented programming.
-},
-Map (PDF -> URL ("http://www.informatik.uni-marburg.de/~kaestner/jsoftwarequality11.pdf") ),
-http = {
-http :// www.springerlink.com / content / ax788q46h1702j34 /
-},
-Map (DOI -> URL ("10.1007/s11219-011-9152-9") ),
-}
+such as conditional compilation and feature-oriented programming.""").
+            topic(nfp, spl).note("online first"),
 
 
 
+        /*
 Publication (
 Seq (Apel, J {
 \ "o}rg Liebig, Benjamin Brandl, Lengauer, Kaestner),
@@ -1895,7 +1789,7 @@ supports semistructured merge and conducted an empirical study on
 the number of conflicts in 60\,\% of the sample merge scenarios by,
 on average, 34\,\%. Our study reveals that renaming is challenging
 in that it can significantly increase the number of conflicts during
-semistructured merge, which we discuss.
+semistructured merge, which we discuss.     """)
 }	,
 .note("Acceptance rate: 17\,\% (34/203)"),
 Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/esec11.pdf")),
@@ -1904,7 +1798,7 @@ Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/esec11.pdf")),
 
 
 Publication(
-Seq(Sebastian Erdweg, Tillmann Rendel, Kaestner, Klaus Ostermann),
+Seq(Erdweg, Rendel, Kaestner, Ostermann),
 "SugarJ: Library-based Syntactic Language Extensibility",
 booktitle={Proceedings of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)},
 .note("Acceptance rate: 37\,\% (61/166); \textbf{Distinguished Paper Award}"),
@@ -1938,7 +1832,7 @@ demonstrate SugarJ by five language extensions, including
 embeddings of XML and closures in Java, all available as
 sugar libraries.We illustrate the utility of self - applicability
 by embedding XML Schema, a metalanguage to define
-XML languages.
+XML languages.                                """)
 },
 Map (PDF -> URL ("http://www.informatik.uni-marburg.de/~seba/publications/sugarj.pdf") ),
 Map (DOI -> URL ("http://doi.acm.org/10.1145/2048066.2048099") ),
@@ -1987,7 +1881,7 @@ publisher = ACM, address = ACMAddr,
 
 
 Publication (
-Seq (Kaestner, Paolo G.Giarrusso, Tillmann Rendel, Sebastian Erdweg, Klaus Ostermann, Thorsten Berger),
+Seq (Kaestner, Giarrusso, Rendel, Erdweg, Ostermann, Thorsten Berger),
 "Variability-Aware Parsing in the Presence of Lexical Macros and Conditional Compilation",
 booktitle = {
 Proceedings of the 26 th Annual ACM SIGPLAN Conference on Object - Oriented Programming, Systems, Languages, and Applications (OOPSLA)
@@ -2020,14 +1914,14 @@ variability-aware type checking. We implement variabilityaware
 parsers for Java and GNU C and demonstrate practicability
 by parsing the product line MobileMedia and the
 entire X86 architecture of the Linux kernel with 6065 variable
-features.
+features.                          """)
 },
 Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/oopsla11_typechef.pdf"))
 }
 
 Publication(
 "{FeatureCommander}: Colorful \#ifdef World",
-Seq(Feigenspan, Maria Papendieck, Kaestner, Mathias Frisch, Raimund Dachselt),
+Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
 booktitle={Proceedings of the 15th International Software Product Line Conference (SPLC), second volume (Demonstration)},
 publisher=ACM,address=ACMAddr,
 .location("Munich"),
@@ -2042,7 +1936,7 @@ Pages(48:1,48:2),
 
 Publication(
 "The Road to Feature Modularity?",
-Seq(Kaestner, Apel, Klaus Ostermann),
+Seq(Kaestner, Apel, Ostermann),
 booktitle={Proceedings of the Third Workshop on Feature-Oriented Software Development (FOSD)},
 .year(2011)month=sep,
 .location("Munich"),
@@ -2051,39 +1945,34 @@ Pages(5:1,5:8),
 .isbn("978-1-4503-0789-5"),
 Map(DOI->URL("http://doi.acm.org/10.1145/2019136.2019142")),
 .selected(),
-"""
-Modularity of feature representations has been a long standing
-goal of feature - oriented software development.While
+"""Modularity of feature representations has been a long standing
+goal of feature-oriented software development. While
 some researchers regard feature modules and corresponding
 composition mechanisms as a modular solution, other researchers
 have challenged the notion of feature modularity
-and pointed out that most feature - oriented implementation
+and pointed out that most feature-oriented implementation
 mechanisms lack proper interfaces and support neither modular
-type checking nor separate compilation.We step back
-and reflect on the feature - modularity discussion.We distinguish
-two notions of modularity, \ emph {
-cohesion
-} without interfaces
-and \ emph {
-information hiding
-} with interfaces, and point out the
+type checking nor separate compilation. We step back
+and reflect on the feature-modularity discussion. We distinguish
+two notions of modularity, \emph{cohesion} without interfaces
+and \emph{information hiding} with interfaces, and point out the
 different expectations that, we believe, are the root of many
-heated discussions.We discuss whether feature interfaces
+heated discussions. We discuss whether feature interfaces
 should be desired and weigh their potential benefits and
 costs, specifically regarding crosscutting, granularity, feature
-interactions, and the distinction between closed - world and
-open - world reasoning.Because existing evidence for and
+interactions, and the distinction between closed-world and
+open-world reasoning. Because existing evidence for and
 against feature modularity and feature interfaces is shaky
 and inconclusive, more research is needed, for which we
-outline possible directions.
+outline possible directions.  """)
 },
 Map (PDF -> URL ("http://www.informatik.uni-marburg.de/~kaestner/FOSD11-modularity.pdf") ),
 }
 
 Publication (
 author = {
-Sebastian Erdweg and Lennart C.L.Kats and Tillmann Rendel and
-Kaestner and Klaus Ostermann and Eelco Visser
+Erdweg and Lennart C.L.Kats and Rendel and
+Kaestner and Ostermann and Eelco Visser
 },
 "Growing a Language Environment with Editor Libraries",
 booktitle = {
@@ -2115,7 +2004,7 @@ file-by-file basis.  We have implemented an IDE for editor libraries on top of
 SugarJ and the Eclipse-based Spoofax language workbench.  We have validated
 editor libraries by evolving this IDE into a fully-fledged and schema-aware XML
 editor as well as an extensible Latex editor, which we used for writing this
-paper.
+paper.                """)
 }
 }
 
@@ -2132,7 +2021,7 @@ Map(HTTP->URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/tech
 
 
 Publication(
-Seq(Kaestner, Alexander Dreiling, Klaus Ostermann),
+Seq(Kaestner, Alexander Dreiling, Ostermann),
 "Variability Mining with {LEADT}",
 .year(2011)
 institution = MRTech,
@@ -2140,16 +2029,7 @@ month=Sep,
 .number({01/2011})
 """
 Software product line engineering is an efficient means to generate a set of tailored software products from a common implementation.
-However, adopting a product - line approach poses a major challenge and significant risks, since typically legacy code must be migrated toward a product line.Our aim is to lower the adoption barrier by providing semiautomatic tool support --- called \ emph {
-variability mining
-} --- to support developers in locating, documenting, and extracting implementations of product - line features from legacy code.Variability mining combines prior work on concern location, reverse engineering, and variability - aware type systems, but is tailored specifically for the use in product lines.Our work extends prior work in three important aspects: (1) we provide a \ emph {
-consistency indicator
-} based on a variability - aware type system, (2) we mine features at a \ emph {
-fine level of granularity
-}, and (3) we exploit \ emph {
-domain knowledge
-} about the relationship between features when available.With a quantitative study, we demonstrate that variability mining can efficiently support developers in locating features.
-},
+However, adopting a product-line approach poses a major challenge and significant risks, since typically legacy code must be migrated toward a product line. Our aim is to lower the adoption barrier by providing semiautomatic tool support---called \emph{variability mining}---to support developers in locating, documenting, and extracting implementations of product-line features from legacy code. Variability mining combines prior work on concern location, reverse engineering, and variability-aware type systems, but is tailored specifically for the use in product lines. Our work extends prior work in three important aspects: (1) we provide a \emph{consistency indicator} based on a variability-aware type system, (2) we mine features at a \emph{fine level of granularity}, and (3) we exploit \emph{domain knowledge} about the relationship between features when available. With a quantitative study, we demonstrate that variability mining can efficiently support developers in locating features.""")
 Map (PDF -> URL ("http://www.informatik.uni-marburg.de/~kaestner/tr_leadt2011.pdf") ),
 http = {
 http :// www.uni - marburg.de / fb12 / forschung / berichte / berichteinformtk
@@ -2179,7 +2059,7 @@ flexible dynamic software updates, (b) is platform independent, (c) introduces o
 overhead, and (d) does not dictate the program architecture. JavAdaptor combines schema changing class
 replacements by class renaming and caller updates with Java HotSwap using containers and proxies. It runs
 on top of all major standard Java virtual machines.We evaluate our approach’s applicability and performance
-in non-trivial case studies and compare it to existing dynamic software update approaches.
+in non-trivial case studies and compare it to existing dynamic software update approaches.      """)
 },
 Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/SPE12_JavAdaptor.pdf")),
 http={http://onlinelibrary.wiley.com/doi/10.1002/spe.2107/abstract},
@@ -2195,11 +2075,7 @@ Seq(Apel, Kaestner, Lengauer),
 journal={IEEE Transactions on Software Engineering (TSE)},
 .year(2012)
 .note("to appear; submitted 21 Oct 2010, accepted 29 Nov 2011"),
-"""
-Superimposition is a composition technique that has been applied successfully in many areas of software development.Although superimposition is a general - purpose concept, it has been (re) invented and implemented individually for various kinds of software artifacts.We unify languages and tools that rely on superimposition by using the language - independent model of \ emph {
-feature structure trees
-} (FSTs).On the basis of the FST model, we propose a general approach to the composition of software artifacts written in different languages.Furthermore, we offer a supporting framework and tool chain, called \ fh.We use attribute grammars to automate the integration of additional languages.In particular, we have integrated Java, C \#, C, Haskell, Alloy, and JavaCC.A substantial number of case studies demonstrate the practicality and scalability of our approach and reveal insights into the properties that a language must have in order to be ready for superimposition.We discuss perspectives of our approach and demonstrate how we extended \ fh with support for XML languages (in particular, XHTML, XMI / UML, and Ant) and alternative composition approaches (in particular, aspect weaving).Rounding off our previous work, we provide here a holistic view of the \ fh approach based on rich experience with numerous languages and case studies and reflections on several years of research.
-},
+"""Superimposition is a composition technique that has been applied successfully in many areas of software development. Although superimposition is a general-purpose concept, it has been (re)invented and implemented individually for various kinds of software artifacts. We unify languages and tools that rely on superimposition by using the language-independent model of \emph{feature structure trees} (FSTs). On the basis of the FST model, we propose a general approach to the composition of software artifacts written in different languages. Furthermore, we offer a supporting framework and tool chain, called FeatureHouse. We use attribute grammars to automate the integration of additional languages. In particular, we have integrated Java, C\#, C, Haskell, Alloy, and JavaCC. A substantial number of case studies demonstrate the practicality and scalability of our approach and reveal insights into the properties that a language must have in order to be ready for superimposition. We discuss perspectives of our approach and demonstrate how we extended FeatureHouse with support for XML languages (in particular, XHTML, XMI/UML, and Ant) and alternative composition approaches (in particular, aspect weaving). Rounding off our previous work, we provide here a holistic view of the FeatureHouse approach based on rich experience with numerous languages and case studies and reflections on several years of research.""")
 Map (PDF -> URL ("http://www.informatik.uni-marburg.de/~kaestner/tse_fh.pdf") ),
 http = {
 http :// doi.ieeecomputersociety.org / 10.1109 / TSE .2011 .120
@@ -2234,7 +2110,7 @@ evaluation consists of six real-world case studies from varying
 domains (e.g. databases, compression libraries, and web server)
 using different configuration techniques (e.g., configuration files
 and preprocessor flags). Results show, on average, a prediction
-accuracy of 95\,\%.
+accuracy of 95\,\%. """)
 },
 Map(HTTP->URL("http://www.informatik.uni-marburg.de/~kaestner/icse12.pdf")),
 .selected()
@@ -2278,7 +2154,7 @@ to measure programming experience.Furthermore, we applied
 exploratory factor analysis to extract a model of programming
 experience.With our analysis, we initiate a path toward measuring
 programming experience with a valid and reliable tool,
-so that we can control its influence on program comprehension.
+so that we can control its influence on program comprehension.  """)
 }
 }
 
@@ -2287,7 +2163,7 @@ so that we can control its influence on program comprehension.
 
 
 Publication (
-Seq (Feigenspan, Michael Schulze, Maria Papendieck, Kaestner, Raimund Dachselt, Veit K \ "oppen, Mathias Frisch, Saake),
+Seq (Feigenspan, MSchulze, Papendieck, Kaestner, Dachselt, Veit K \ "oppen, Frisch, Saake),
 "Supporting Program Comprehension in Large Preprocessor-Based Software Product Lines",
 journal = {
 IET Software
@@ -2307,7 +2183,7 @@ tasks for both treatments. Results: For certain kinds of tasks, background colou
 Furthermore, subjects generally favour background colours compared to no background colours. Additionally, subjects
 who worked with background colours had to use the search functions less frequently. Conclusion: We show that
 background colours can improve program comprehension in large SPLs. Based on these encouraging results, we will
-continue our work on improving program comprehension in large SPLs.
+continue our work on improving program comprehension in large SPLs.""")
 },
 .crosscite("extended version of \cite{FSPKDKF:EASE11}, see also \cite{FKALSDPLS:ESE12}")
 }
@@ -2316,7 +2192,7 @@ continue our work on improving program comprehension in large SPLs.
 
 
         Publication(
-            Seq(Feigenspan, Kaestner, Apel, Liebig, Schulze, Dachselt, Papendieck, Leich, Saake),
+            Seq(Feigenspan, Kaestner, Apel, Liebig, MSchulze, Dachselt, Papendieck, Leich, Saake),
             "Do Background Colors Improve Program Comprehension in the #ifdef Hell?",
             ESE(2012),
             null,

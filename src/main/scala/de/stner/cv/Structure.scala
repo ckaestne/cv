@@ -68,13 +68,17 @@ case class Publication(
         case _ => "rendering of " + genKey + " not yet implemented"
     }
 
-    def renderPages =
+
+    def renderPages = {
+        def extr(e: String): String = if (e == null) "" else ", " + e
         if (pages == null) ""
         else pages match {
-            case Pages(a, b) if (a == b) => "page " + a
-            case Pages(a, b) => "pages %d--%d, ".format(a, b)
+            case Pages(a, b, e) if (a == b) => "page " + a + extr(e) + ", "
+            case Pages(a, b, e) => "pages %d--%d%s, ".format(a, b, extr(e))
             case PagesStr(s) => s
+            case ToAppear() => ""
         }
+    }
 }
 
 
@@ -123,9 +127,11 @@ case class Thesis(
 
 sealed abstract class PPages
 
-case class Pages(from: Int, to: Int) extends PPages
+case class Pages(from: Int, to: Int, extras: String = null) extends PPages
 
 case class PagesStr(str: String) extends PPages
+
+case class ToAppear() extends PPages
 
 sealed abstract class Month
 
