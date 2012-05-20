@@ -146,6 +146,7 @@ object CV {
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",
             URL("http://www.se2013.rwth-aachen.de/")), PC),
+        Committee(SLE(2012), DS),
         Committee(GPCE(2012), PC),
         Committee(FOSD(2012), OC),
         Committee(Conference("SPLC", 2012,
