@@ -127,7 +127,16 @@ case class Thesis(
 
 sealed abstract class PPages
 
-case class Pages(from: Int, to: Int, extras: String = null) extends PPages
+case class Pages(from: String, to: String, extras: String = null) extends PPages
+
+object Pages {
+    def apply(f: Int, t: Int): Pages = Pages(f.toString, t.toString, null)
+
+    def apply(f: String, t: String): Pages = Pages(f.toString, t.toString, null)
+
+    def apply(f: Int, t: Int, e: String): Pages = Pages(f.toString, t.toString, e)
+}
+
 
 case class PagesStr(str: String) extends PPages
 
@@ -140,7 +149,7 @@ case class MonthNr(nr: Int) extends Month
 case class MonthStr(str: String) extends Month
 
 
-case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL], publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
 
     def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series) =
         Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series)
