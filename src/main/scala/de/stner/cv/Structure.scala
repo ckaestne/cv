@@ -14,28 +14,131 @@ case class Person(
     def abbrvname = firstname.charAt(0) + ". " + lastname
 }
 
-case class Publication(
-                          authors: Seq[Person],
-                          title: String,
-                          venue: Venue,
-                          pages: PPages,
-                          links: Map[LinkKind, URL],
-                          abstr: String = "",
-                          topics: Seq[Topic] = Seq(),
-                          isSelected: Boolean = false,
-                          note: Option[String] = None) {
+object InProceedings {
+    def apply(authors: Seq[Person],
+              title: String,
+              venue_ : Venue,
+              pages: PPages,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderInProceedingsRest, authors, title, venue_, pages, links, abstr)
+
+    protected def renderInProceedingsRest(pub: Publication, style: BibStyle): String = {
+        assert(pub.venue.kind == KInConferenceProceedings || pub.venue.kind == KWorkshopDemoTool, "InProceedings with venue.kind=" + pub.venue.kind + " not supported")
+        "In *Proceedings of the %s (%s)*, ".format(pub.venue.name, pub.venue.short) +
+            pub.venue.renderVolSeries + pub.renderPages() + pub.venue.renderPublisher + pub.venue.renderDate + "."
+    }
+}
+
+object Article {
+    def apply(authors: Seq[Person],
+              title: String,
+              venue_ : Venue,
+              pages: PPages,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderArticleRest, authors, title, venue_, pages, links, abstr)
+
+    private def renderVolNumber(venue: Venue): String = (venue.volume, venue.number) match {
+        case (v, Some(n)) => "%s(%s):".format(v.getOrElse(""), n)
+        case (Some(v), None) => v + ":"
+        case _ => ""
+    }
+
+
+    protected def renderArticleRest(pub: Publication, style: BibStyle): String = {
+        assert(pub.venue.kind == KJournal || pub.venue.kind == KInvited, "Article with venue.kind=" + pub.venue.kind + " not supported " + pub.title)
+        "*" + pub.venue.name + (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "") + "*, " +
+            renderVolNumber(pub.venue) + pub.renderPages(true) + pub.venue.renderDate + "."
+    }
+}
+
+object Thesis {
+    def apply(authors: Seq[Person],
+              title: String,
+              year: Int, month: Int,
+              typ: String,
+              school: Publisher,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderThesis, authors, title, Venue(null, year, typ, KMisc, null).month(month).publisher(school), null, links, abstr)
+
+    protected def renderThesis(pub: Publication, style: BibStyle): String = {
+        pub.venue.name + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
+    }
+}
+
+object TechReport {
+    def apply(authors: Seq[Person],
+              title: String,
+              year: Int, month: Int,
+              school: Publisher,
+              number: String,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderTechReportRest, authors, title, Venue("", year, "", KTechnicalReport, None).month(month).publisher(school).number(number), null, links, abstr)
+
+    def renderTechReportRest(pub: Publication, style: BibStyle): String = {
+        assert(pub.venue.kind == KTechnicalReport, "TechReport with venue.kind=" + pub.venue.kind + " not supported")
+        "Technical Report " + pub.venue.number.get + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
+    }
+}
+
+
+object Book {
+    def apply(editors: Seq[Person],
+              title: String,
+              venue_ : Venue /*title and short are not used!)*/ ,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderNone, editors, title, venue_, null, links, abstr)
+
+    protected def renderNone(pub: Publication, style: BibStyle): String = ""
+
+    def render(pub: Publication, style: BibStyle): String =
+        pub.renderAuthors(style.renderAuthor) + ", editor" + (if (pub.authors.size > 1) "s" else "") + ". [!]" +
+            "*" + pub.title + "*. [!]" +
+            pub.venue.renderPublisher + pub.venue.renderDate + "." +
+            (pub.note.map("[!] " + _ + ".").getOrElse(""))
+}
+
+class Publication(
+                     renderRest: (Publication, BibStyle) => String,
+                     val authors: Seq[Person],
+                     _title: String,
+                     val venue: Venue,
+                     val pages: PPages,
+                     val links: Map[LinkKind, URL],
+                     val abstr: String = "",
+                     val topics: Seq[Topic] = Seq(),
+                     val isSelected: Boolean = false,
+                     val note: Option[String] = None
+                     ) {
     def hideabstract() = this
 
+    protected def copy(authors: Seq[Person] = this.authors,
+                       title: String = this.title,
+                       venue: Venue = this.venue,
+                       pages: PPages = this.pages,
+                       links: Map[LinkKind, URL] = this.links,
+                       abstr: String = this.abstr,
+                       topics: Seq[Topic] = this.topics,
+                       isSelected: Boolean = this.isSelected,
+                       note: Option[String] = this.note): Publication =
+        new Publication(renderRest, authors, title, venue, pages, links, abstr, topics, isSelected, note)
 
-    def selected() = Publication(authors, title, venue, pages, links, abstr, topics, true, note)
 
-    def topic(newTopics: Topic*) = Publication(authors, title, venue, pages, links, abstr, newTopics, isSelected, note)
+    def title = this._title.replace("{", "").replace("}", "")
 
-    def note(s: String) = Publication(authors, title, venue, pages, links, abstr, topics, isSelected, Some(s))
+    def selected() = copy(isSelected = true)
+
+    def topic(newTopics: Topic*) = copy(topics = newTopics)
+
+    def note(s: String) = copy(note = Some(s))
 
     def crosscite(s: String) = this
 
-    def acceptanceRate(accepted: Int, submitted: Int): Publication = Publication(authors, title, venue.acceptanceRate(accepted, submitted), pages, links, abstr, topics, isSelected, note)
+    def acceptanceRate(accepted: Int, submitted: Int): Publication = copy(venue = venue.acceptanceRate(accepted, submitted))
 
 
     //*gen
@@ -49,33 +152,25 @@ case class Publication(
         else authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(authors.last)
     }
 
+    def endDot(s: String) = if (Set('.', '!', '?') contains s.last) "" else "."
+
     /**
      * renders bibtex entry as line with markdown ** and *
      */
-    def render(style: BibStyle) =
+    def render(style: BibStyle): String =
         renderAuthors(style.renderAuthor) + ". [!]" +
-            "**" + title + "**. [!]" +
-            renderRest(style) +
+            "**" + title + "**" + endDot(title) + " [!]" +
+            renderRest(this, style) +
             (note.map("[!] " + _ + ".").getOrElse(""))
 
-    def renderProceedings(style: BibStyle) =
-        "In *Proceedings of the %s (%s)*, ".format(venue.name, venue.short) +
-            venue.renderVolSeries + renderPages + venue.renderPublisher + venue.renderDate + "."
 
-    private def renderRest(style: BibStyle) = venue.kind match {
-        case KInConferenceProceedings => renderProceedings(style)
-        case KWorkshopDemoTool => renderProceedings(style)
-        case _ => "rendering of " + genKey + " not yet implemented"
-    }
-
-
-    def renderPages = {
+    def renderPages(short: Boolean = false) = {
         def extr(e: String): String = if (e == null) "" else ", " + e
         if (pages == null) ""
         else pages match {
-            case Pages(a, b, e) if (a == b) => "page " + a + extr(e) + ", "
-            case Pages(a, b, e) => "pages %d--%d%s, ".format(a, b, extr(e))
-            case PagesStr(s) => s
+            case Pages(a, b, e) if (a == b) => (if (short) "" else "page ") + a + extr(e) + ", "
+            case Pages(a, b, e) => (if (short) "" else "pages ") + "%s--%s%s, ".format(a, b, extr(e))
+            case PagesStr(s) => s + ", "
             case ToAppear() => ""
         }
     }
@@ -166,6 +261,8 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
     def subtitle(n: String): Venue = copy(name = this.name + " (" + n + ")")
 
     def location(loc: String): Venue = copy(location = Some(loc))
+
+    def kind(k: PublicationKind): Venue = copy(kind = k)
 
     def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume, series)
 
@@ -323,8 +420,8 @@ class URLException(link: String, e: Exception) extends Exception {
 case class URL(link: String, ignoreError: Boolean = false) {
 
     override def toString = {
-        if (!check())
-            System.err.println("Cannot resolve link " + link)
+        //        if (!check())
+        //            System.err.println("Cannot resolve link " + link)
         link
     }
 

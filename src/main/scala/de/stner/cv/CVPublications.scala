@@ -16,13 +16,7 @@ object CVPublications {
 
     object KTechnicalReport extends PublicationKind("Technical Report", 5)
 
-    abstract class KMisc extends PublicationKind("Miscellaneous", 6)
-
-    object KThesis extends KMisc
-
-    object KProceedings extends KMisc
-
-    object KInBook extends KMisc
+    object KMisc extends PublicationKind("Miscellaneous", 6)
 
 
     object Conference {
@@ -38,26 +32,6 @@ object CVPublications {
     object Journal {
         def apply(short: String, year: Int, name: String, url: URL = null) =
             Venue(short, year, name, KJournal, if (url == null) None else Some(url))
-    }
-
-    object Thesis {
-        def apply(typ: String, year: Int, month: Int, publisher: Publisher) =
-            Venue(null, year, typ, KThesis, null).month(month).publisher(publisher)
-    }
-
-    object TechReport {
-        def apply(year: Int, publisher: Publisher, number: String) =
-            Venue("", year, "", KTechnicalReport, None).publisher(publisher).number(number)
-    }
-
-    object Book {
-        def apply(year: Int, kind: PublicationKind = KProceedings, publisher: Publisher) =
-            Venue("", year, "", kind, None).publisher(publisher)
-    }
-
-    object InBook {
-        def apply(year: Int, booktitle: String, publisher: Publisher) =
-            Venue("", year, booktitle, KInBook, None).publisher(publisher)
     }
 
 
@@ -151,7 +125,7 @@ object CVPublications {
 
 
     val publications = Seq(
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Saake),
             "Implementing Bounded Aspect Quantification in AspectJ",
             RAMSE(2006).month(7).location("Nantes, France").publisher(MDTR),
@@ -172,11 +146,10 @@ object CVPublications {
         ,
 
 
-        Publication(
+        TechReport(
             Seq(Apel, Kaestner, Leich, Saake),
             "Aspect Refinement",
-            TechReport(2006, MDTR, "10").month(8),
-            null,
+            2006, 8, MDTR, "FIN-2006-10",
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/TechReport_10_2006.pdf")),
             """Stepwise refinement (SWR) is fundamental to software engineering.
        As aspect-oriented programming (AOP) gains momentum in
@@ -192,26 +165,25 @@ object CVPublications {
        study and derive several programming guidelines."""
         ).crosscite("superseded by \\cite{AKLS:TOOLS07}}").topic(fop, aop),
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner, Kuhlemann, Leich),
             "Modularität von Softwarebausteinen: Aspekte versus Merkmale",
-            Journal("iX", 2006, "iX Magazin f{\"u}r Professionelle Informationstechnik").number("10").month(10),
+            Journal("iX", 2006, "iX Magazin für Professionelle Informationstechnik").number("10").month(10),
             Pages(116, 122),
             Map(HTTP -> URL("http://www.heise.de/kiosk/archiv/ix/06/10/116_Objektorientierte_Grenzen")),
-            """Schon seit einigen Jahren macht die aspektorientierte Programmierung von sich reden. Daneben zieht in j{\"u}ngster Zeit die merkmalsorientierte Programmierung die Aufmerksamkeit auf sich. Beide verfolgen mit der Verbesserung der Modularit{\"a}t von Softwarebausteinen {\"a}hnliche Ziele, realisieren dies aber auf unterschiedliche Art und Weise - jeweils mit Vor- und Nachteilen.}""").
+            """Schon seit einigen Jahren macht die aspektorientierte Programmierung von sich reden. Daneben zieht in jüngster Zeit die merkmalsorientierte Programmierung die Aufmerksamkeit auf sich. Beide verfolgen mit der Verbesserung der Modularit{\"a}t von Softwarebausteinen {\"a}hnliche Ziele, realisieren dies aber auf unterschiedliche Art und Weise - jeweils mit Vor- und Nachteilen.}""").
             topic(fop, aop),
 
 
-        Publication(
+        Thesis(
             Seq(Kaestner),
             "Aspect-Oriented Refactoring of {Berkeley DB}",
-            Thesis("Diplomarbeit", 2007, 3, MDTR),
-            null,
+            2007, 3, "Diplomarbeit", MDTR,
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/thesis_final.pdf")),
             ""),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Trujillo),
             "On the Necessity of Empirical Studies in the Assessment of Modularization Mechanisms for Crosscutting Concerns",
             ACoM(2007).location("Minneapolis, MN, USA").month(5),
@@ -232,7 +204,7 @@ object CVPublications {
         a discussion with other researchers.""").topic(fop, aop, experiment),
 
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner, Leich, Saake),
             "Aspect Refinement - Unifying {AOP} and Stepwise Refinement",
             JOT(2007).volume(6).number(9).month(10),
@@ -253,7 +225,7 @@ object CVPublications {
             topic(fop, aop),
         //	nocomment={Acceptance rate: 31\,\% (24/78)},
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Batory),
             "A Case Study Implementing Features Using {AspectJ}",
             SPLC(2007).month(9).publisher(IEEE).location("Kyoto, Japan"),
@@ -276,7 +248,7 @@ object CVPublications {
            explain why.""").selected().note("Acceptance rate: 35 % (28/80)").topic(fop, aop, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner),
             "{CIDE}: Decomposing Legacy Applications into Features",
             SPLCDemo(2007).location("Kyoto, Japan").isbn("978-4-7649-0342-5"),
@@ -289,7 +261,7 @@ object CVPublications {
         ).topic(vsoc),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Kuhlemann, Batory),
             "Automating Feature-Oriented Refactoring of Legacy Applications",
             Workshop("WRT", 2007, "ECOOP Workshop on Refactoring Tools").location("Berlin, Germany").month(7).publisher(TUBerlin).issn("1436-9915"),
@@ -303,11 +275,10 @@ object CVPublications {
         ).topic(vsoc, aop, fop),
 
 
-        Publication(
+        TechReport(
             Seq(Apel, Lengauer, Batory, Moeller, Kaestner),
             "An Algebra for Feature-Oriented Software Development",
-            TechReport(2007, PATR, "MIP-0706"),
-            null,
+            2007, 7, PATR, "MIP-0706",
             Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/mip-0706.pdf")),
             """Feature-Oriented Software Development (FOSD) provides a
  multitude of formalisms, methods, languages, and tools for building variable,
@@ -322,7 +293,7 @@ object CVPublications {
             topic(fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Trujillo, Kaestner, Apel),
             "Product Lines that supply other Product Lines: A Service-Oriented Approach",
             Workshop("SOAPL", 2007, "SPLC Workshop on  Service-Oriented Architectures and Product Lines").month(9).location("Kyoto, Japan").publisher(SEI),
@@ -342,7 +313,7 @@ object CVPublications {
       service-oriented architecture of a web portal product line
       supplied by portlet product lines.  """).topic(spl),
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner, Kuhlemann, Leich),
             "Pointcuts, Advice, Refinements, and Collaborations: Similarities, Differences, and Synergies",
             ISSE(2007).month(12).volume(3).number("3-4").issn("1614-5046").publisher(Springer).month(12),
@@ -361,7 +332,7 @@ object CVPublications {
   and guides to use the right mechanism for the right problem."""
         ).topic(aop, fop),
 
-        Publication(
+        InProceedings(
             Seq(Kuhlemann, Kaestner),
             "Reducing the Complexity of {AspectJ} Mechanisms for Recurring Extensions",
             Workshop("AOPLE", 2007, "GPCE Workshop on Aspect-Oriented Product Line Engineering").location("Salzburg, Austria"),
@@ -383,7 +354,7 @@ object CVPublications {
     and advice mechanisms by analysing three AspectJ case studies.""").topic(aop, fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Siegmund, Kuhlemann, Rosenmueller, Kaestner, Saake),
             "Integrated Product Line Model for Semi-Automated Product Derivation Using Non-Functional Properties",
             VAMOS(2008).month(1).location("Essen, Germany").issn("1860-2770").publisher(TREssen),
@@ -401,7 +372,7 @@ object CVPublications {
        order to allow semi-automated product derivation.""").topic(nfp, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Kuhlemann),
             "Granularity in Software Product Lines",
             ICSE(2008).month(5).location("Leipzig, Germany").isbn("978-1-60558-079-1").publisher(ACM),
@@ -428,7 +399,7 @@ object CVPublications {
       simplifies SPL development compared to traditional approaches.""").
             selected().acceptanceRate(56, 371).topic(vsoc, fop, aop),
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Lengauer),
             "Research Challenges in the Tension Between Features and Services",
             Workshop("SDSOA", 2008, "ICSE Workshop on Systems Development in SOA Environments").month(5).
@@ -446,11 +417,10 @@ object CVPublications {
          research in this direction.""").topic(fop, soa),
 
 
-        Publication(
+        TechReport(
             Seq(Kaestner, Apel, Trujillo, Kuhlemann, Batory),
             "Language-Independent Safe Decomposition of Legacy~Applications into Features",
-            TechReport(2008, MDTR, "2").month(3),
-            null,
+            2008, 3, MDTR, "FIN-2008-02",
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/gcidetech.pdf")),
             """
            Software product lines (SPL) usually consist of code and
@@ -477,11 +447,10 @@ object CVPublications {
             topic(vsoc),
 
 
-        Publication(
+        TechReport(
             Seq(Apel, Kaestner, Lengauer),
             "An Overview of Feature Featherweight Java",
-            TechReport(2008, PATR, "MIP-0802").month(4),
-            null,
+            2008, 4, PATR, "MIP-0802",
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/ffjtech.pdf")),
             """Feature-oriented programming (FOP) is a paradigm that incorporates
       programming language technology, program generation techniques,
@@ -494,7 +463,7 @@ object CVPublications {
             .hideabstract().crosscite("extended material for \\cite{AKL:GPCE08}").
             topic(fop, vaanalysis),
 
-        Publication(
+        InProceedings(
             Seq(Apel, Lengauer, Moeller, Kaestner),
             "An Algebra for Features and Feature Composition",
             Conference("AMAST", 2008, "12th International Conference on Algebraic Methodology and Software Technology").
@@ -516,7 +485,7 @@ object CVPublications {
             topic(fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel),
             "Type-checking Software Product Lines - A Formal Approach",
             ASE(2008).month(9).location("L'Aquila, Italy").issn("1527-1366").isbn("978-1-4244-2187-9"),
@@ -543,7 +512,7 @@ object CVPublications {
             topic(vaanalysis, vsoc),
 
 
-        Publication(
+        InProceedings(
             Seq(Person("Chang Hwan Peter", "Kim"), Kaestner, Batory),
             "On the Modularity of Feature Interactions",
             GPCE08,
@@ -573,7 +542,7 @@ object CVPublications {
             topic(vsoc, vaanalysis),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Batory),
             "Program Refactoring using Functional Aspects",
             GPCE08,
@@ -592,7 +561,7 @@ object CVPublications {
                   We analyze several aspect-oriented programs of different sizes to
                   support our claims.""").topic(fop, aop),
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Lengauer),
             "{Feature Featherweight Java}: A Calculus for Feature-Oriented Programming and Stepwise Refinement",
             GPCE08,
@@ -605,7 +574,7 @@ object CVPublications {
             topic(fop, vaanalysis),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Trujillo, Apel),
             "Visualizing Software Product Line Variabilities in Source Code",
             Workshop("ViSPLE", 2008, "2nd International SPLC Workshop on Visualisation in Software Product Line Engineering").
@@ -616,7 +585,7 @@ object CVPublications {
             topic(vsoc),
 
 
-        Publication(
+        InProceedings(
             Seq(Pukall, Kaestner, Saake),
             "Towards Unanticipated Runtime Adaptation of {Java} Applications",
             APSEC08,
@@ -643,7 +612,7 @@ object CVPublications {
         ,
 
 
-        Publication(
+        InProceedings(
             Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Saake),
             "Measuring Non-functional Properties in Software Product Lines for Product Derivation",
             APSEC08,
@@ -668,7 +637,7 @@ object CVPublications {
                     needs.""").topic(spl, nfp),
 
 
-        Publication(
+        InProceedings(
             Seq(Rosenmueller, Siegmund, Rahman, Kaestner),
             "Modeling Dependent Software Product Lines",
             MCGPLE08,
@@ -692,7 +661,7 @@ object CVPublications {
                 configuration of complete SPL compositions.""").topic(multiple, spl)
         ,
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel),
             "Integrating Compositional and Annotative Approaches for Product Line Engineering",
             MCGPLE08,
@@ -703,7 +672,7 @@ object CVPublications {
             topic(fop, vsoc, spl, adoption),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Lengauer),
             "{FeatureHouse}: Language-Independent, Automated Software Composition",
             ICSE09,
@@ -731,7 +700,7 @@ object CVPublications {
             topic(fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Thuem, Batory, Kaestner),
             "Reasoning about Edits to Feature Models",
             ICSE09,
@@ -758,11 +727,10 @@ object CVPublications {
             topic(spl, fmanalysis),
 
 
-        Publication(
+        TechReport(
             Seq(Apel, Kaestner, Groesslinger, Lengauer),
             "On Feature Orientation and Functional Programming",
-            TechReport(2008, PATR, "MIP-0806").month(11),
-            null,
+            2008, 11, PATR, "MIP-0806",
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/mip-0806.pdf")),
             """
                 The separation of concerns is a fundamental principle in software engineering.
@@ -777,9 +745,9 @@ object CVPublications {
             hideabstract().crosscite("superseded by \\cite{AKGL:SC09}").topic(fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Lengauer),
-            "{Vergleich und Integration von Komposition und Annotation zur Implementierung von Produktlinien}",
+            "Vergleich und Integration von Komposition und Annotation zur Implementierung von Produktlinien",
             Conference("SE", 2009, "Software Engineering 2009 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(3).
                 series("Lecture Notes in Informatics").
                 publisher(GI).
@@ -798,11 +766,11 @@ object CVPublications {
                Wir stellen fest, dass die jeweiligen St{\"a}rken und Schw{\"a}chen komplement{\"a}r sind. Aus
                diesem Grund schlagen wir die Integration des Kompositions- und Annotationsansatzes
                vor, um so die Vorteile beider zu vereinen, dem Entwickler eine breiteres Spektrum
-               an Implementierungsmechanismen zu Verf{\"u}gung zu stellen und die Einf{\"u}hrung von
+               an Implementierungsmechanismen zu Verfügung zu stellen und die Einführung von
                Produktlinientechnologie in bestehende Softwareprojekte zu erleichtern.""").
             topic(fop, vsoc),
 
-        Publication(
+        InProceedings(
             Seq(Siegmund, Kaestner, Rosenmueller, Heidenreich, Apel, Saake),
             "Bridging the Gap between Variability in Client Application and Database Schema",
             BTW09,
@@ -823,7 +791,7 @@ object CVPublications {
             topic(fop, vsoc, tmdb, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Rosenmueller, Kaestner, Siegmund, Sunkle, Apel, Leich, Saake),
             "SQL \\`{a} la Carte -- Toward Tailor-made Data Management",
             BTW09,
@@ -847,7 +815,7 @@ object CVPublications {
             topic(tmdb, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Thuem, Saake, Feigenspan, Leich, Person("Fabian", "Wielgorz"), Apel),
             "{FeatureIDE}: Tool Framework for Feature-Oriented Software Development",
             ICSE09.acceptanceRate(24, 72),
@@ -871,7 +839,7 @@ object CVPublications {
         ).note("Formal Demonstration paper").topic(fop, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Trujillo, Kuhlemann, Batory),
             "Guaranteeing Syntactic Correctness for all Product Line Variants: A Language-Independent Approach",
             Conference("TOOLS EUROPE", 2009, "47th International Conference Objects, Models, Components, Patterns").
@@ -901,7 +869,7 @@ object CVPublications {
             selected().topic(vsoc, vaanalysis, spl),
 
 
-        Publication(
+        InProceedings(
             Seq(Person("Stefan", "Boxleitner"), Apel, Kaestner),
             "Language-Independent Quantification and Weaving for Feature Composition",
             SC09,
@@ -919,7 +887,7 @@ object CVPublications {
             note("Short Paper").topic(aop, fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Kaestner, Groesslinger, Lengauer),
             "Feature (De)composition in Functional Programming",
             SC09,
@@ -940,7 +908,7 @@ object CVPublications {
             topic(fop),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Person("Florian", "Janda"), Trujillo, Kaestner),
             "Model Superimposition in Software Product Lines",
             Conference("ICMT", 2009, "2nd International Conference on Model Transformation").
@@ -965,10 +933,10 @@ object CVPublications {
             topic(fop),
 
 
-        Publication(
+        Article(
             Seq(Person("Friedrich", "Steimann"), Person("Thomas", "Pawlitzki"), Apel, Kaestner),
             "Types and Modularity for Implicit Invocation with Implicit Announcement",
-            TOSEM(2010).number(1).volume(20),
+            TOSEM(2010).number(1).volume(20).month(6),
             PagesStr("Article 1; 43 pages"),
             Map(ACMLink -> URL("http://dl.acm.org/authorize?387243"),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/TOSEM2009.pdf"),
@@ -987,15 +955,15 @@ object CVPublications {
         fears that programs utilizing our form of modularization become unreasonably verbose are unjustified.""").
             topic(aop),
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Saake),
-            "{Sichere Produktlinien: Herausforderungen f{\"u}r Syntax- und Typ-Pr{\"u}fungen}",
+            "{Sichere Produktlinien: Herausforderungen für Syntax- und Typ-Prüfungen}",
             Workshop("", 2009, "26. Workshop der GI-Fachgruppe Programmiersprachen und Rechenkonzepte").location("Bad Honnef").month(5).publisher(Publisher("University of Kiel", "Kiel, Germany")).number("0915"), //           editor={Bernd Brassel and Michael Hanus},
             Pages(37, 38),
             Map(HTTP -> URL("http://www.informatik.uni-kiel.de/ifi/forschung/technische-berichte/bericht/?tx_publication_pi1%5Bsingle%5D=162")),
             "").topic(vaanalysis, spl),
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Rahman, Rosenmueller, Batory, Saake),
             "On the Impact of the Optional Feature Problem: Analysis and Case Studies",
             SPLC(2009).month(8).publisher(SEI).isbn("978-0-9786956-2-0").location("San Francisco, CA, USA").
@@ -1005,11 +973,10 @@ object CVPublications {
             """ A software product - line is a family of related programs that are distinguished in terms of features.A feature implements a stakeholders ' requirement.Different program variants specified by distinct feature selections are produced from a common code base.The optional feature problem describes a common mismatch between variability intended in the domain and dependencies in the implementation.When this occurs, some variants that are valid in the domain cannot be produced due to implementation issues.There are many different solutions to the optional feature problem, but they all suffer from drawbacks such as reduced variability, increased development effort, reduced efficiency, or reduced source code quality.In this paper, we examine the impact of the optional feature problem in two case studies in the domain of embedded database systems, and we survey different state - of - the - art solutions and their trade - offs.Our intension is to raise awareness of the problem, to guide developers in selecting an appropriate solution for their product - line project, and to identify opportunities for future research.""").
             selected().topic(spl, interactions),
 
-        Publication(
+        TechReport(
             Seq(Kaestner, Apel, Kuhlemann),
             "{LJ}$^{AR}$: A Model of Refactoring Physically and Virtually Separated Features",
-            TechReport(2009, MDTR, "08").month(5),
-            null,
+            2009, 5, MDTR, "FIN-2009-08",
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/cide/LJARTech/ljartech.pdf")),
             """
                   Physical separation with class refinements and method refinements ï¿½ la AHEAD
@@ -1027,11 +994,10 @@ object CVPublications {
             topic(fop, vsoc, adoption),
 
 
-        Publication(
+        TechReport(
             Seq(Apel, Kaestner, Groesslinger, Lengauer),
             "Type-Safe Feature-Oriented Product Lines",
-            TechReport(2009, PATR, "MIP-0909").month(6),
-            null,
+            2009, 6, PATR, "MIP-0909",
             Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/MIP-0909.pdf")),
             """
                 A feature-oriented product line is a family of programs that share a
@@ -1055,22 +1021,22 @@ object CVPublications {
             topic(vaanalysis, fop),
 
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner),
             "An Overview of Feature-Oriented Software Development",
-            JOT(2009).volume(8).number(5).month("July/August"),
+            JOT(2009).volume(8).number(5).month("July/August").kind(KInvited),
             Pages(49, 84),
             Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/JOT09_OverviewFOSD.pdf"),
                 HTTP -> URL("http://www.jot.fm/issues/issue_2009_07/column5/index.html")),
-            """ Feature - oriented software development (FOSD) is a paradigm for the construction,
-                customization, and synthesis of large - scale software systems.In this survey, we give
+            """ Feature-oriented software development (FOSD) is a paradigm for the construction,
+                customization, and synthesis of large-scale software systems. In this survey, we give
                 an overview and a personal perspective on the roots of FOSD, connections to other
-                software development paradigms, and recent developments in this field.Our aim is to
+                software development paradigms, and recent developments in this field. Our aim is to
                 point to connections between different lines of research and to identify open issues.""").
             note("Refereed Column").
             selected().topic(fop, vsoc, overview),
 
-        Publication(
+        InProceedings(
             Seq(Kuhlemann, Batory, Kaestner),
             "Safe Composition of Non-Monotonic Features",
             GPCE09,
@@ -1091,7 +1057,7 @@ object CVPublications {
         ).topic(fop, vaanalysis),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Kuhlemann),
             "A Model of Refactoring Physically and Virtually Separated Features",
             GPCE09,
@@ -1103,10 +1069,10 @@ object CVPublications {
             topic(vsoc, fop, adoption).selected(),
 
 
-        Publication(
+        Article(
             Seq(Kaestner, Apel),
             "Virtual Separation of Concerns -- A Second Chance for Preprocessors",
-            JOT(2009).volume(8).number(6).month(9),
+            JOT(2009).volume(8).number(6).month(9).kind(KInvited),
             Pages(59, 78),
             Map(PDF -> URL("http://www.jot.fm/issues/issue_2009_09/column5.pdf"),
                 HTTP -> URL("http://www.jot.fm/issues/issue_2009_09/column5/")),
@@ -1127,7 +1093,7 @@ object CVPublications {
                 encourage research toward novel preprocessor-based approaches."""
         ).note("Refereed Column").selected().topic(vsoc, overview),
 
-        Publication(
+        InProceedings(
             Seq(Apel, Liebig, Kaestner, Kuhlemann, Leich),
             "An Orthogonal Access Modifier Model for Feature-Oriented Programming",
             FOSD09,
@@ -1153,7 +1119,7 @@ object CVPublications {
                 feature-oriented modifiers for access control, and present an
                 orthogonal access modifier model. """).topic(fop),
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, Kaestner, Apel, Leich),
             "How to Compare Program Comprehension in FOSD Empirically -- An Experience Report",
             FOSD09,
@@ -1174,37 +1140,35 @@ object CVPublications {
                 Finally, we present some early results of our first experiment
                 on comparing CPP with CIDE.    """).topic(vsoc, experiment),
 
-        Publication(
+        Book(
             Seq(Apel, Cook, Czarnecki, Kaestner, Person("Neil", "Loughran"), Person("Oscar", "Nierstrasz")),
             "Proceedings of the First International Workshop on Feature-Oriented Software Development {(FOSD)}, October 6, 2009, Denver, Colorado, USA",
-            Book(2009, KProceedings, ACM).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10),
-            null,
+            Venue("", 2009, "", KMisc).publisher(ACM).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10),
             Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/FOSD2009/FOSD2009_Printed_Proceedings.pdf"),
                 HTTP -> URL("http://portal.acm.org/citation.cfm?id=1629716")),
             ""),
 
-        Publication(
+        TechReport(
             Seq(Pukall, Kaestner, Goetz, Cazzola, Saake),
             "Flexible Runtime Program Adaptations in {Java} - A Comparison",
-            TechReport(2009, MDTR, "14").month(11),
-            null,
+            2009, 11, MDTR, "FIN-2009-14",
             Map(PDF -> URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/preprints/2009/TechReport14-p-1591.pdf")),
             "").hideabstract().
             topic(dsu),
 
 
-        Publication(
-            Seq(Kuhlemann, Kaestner, Apel),
-            "Reducing Code Replication in Delegation-Based {Java} Programs",
-            InBook(2010, "Java Software and Embedded Systems", Publisher("Nova Science Publishers, Inc.", "Hauppauge, NY")).
-                isbn("978-1-60741-661-6").
-                editor("Mattis Hayes and Isaiah Johansen"),
-            Pages(171, 183),
-            Map(HTTP -> URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
-            , ""),
+        //TODO        InBook(
+        //            Seq(Kuhlemann, Kaestner, Apel),
+        //            "Reducing Code Replication in Delegation-Based {Java} Programs",
+        //            InBook(2010, "Java Software and Embedded Systems", Publisher("Nova Science Publishers, Inc.", "Hauppauge, NY")).
+        //                isbn("978-1-60741-661-6").
+        //                editor("Mattis Hayes and Isaiah Johansen"),
+        //            Pages(171, 183),
+        //            Map(HTTP -> URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
+        //            , ""),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Saake),
             "Virtuelle Trennung von Belangen (Präprozessor 2.0)",
             Conference("SE", 2010, "Software Engineering 2010 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(2).
@@ -1222,7 +1186,7 @@ object CVPublications {
                   Wir zeigen, wie einfache Werkzeugunterstützung diese Probleme adressieren und zum Teil beheben bzw. die Vorteile einer modularen Implementierung emulieren kann. Gleichzeitig zeigen wir Vorteile von Präprozessoren wie Einfachheit und Sprachunabhängigkeit auf.""").
             topic(vsoc, overview),
 
-        Publication(
+        InProceedings(
             Seq(Apel, Liebig, Lengauer, Kaestner, Cook),
             "Semistructured Merge in Revision Control Systems",
             VAMOS(2010).month(1).publisher(TREssen),
@@ -1250,7 +1214,7 @@ object CVPublications {
             topic(merge),
 
 
-        Publication(
+        InProceedings(
             Seq(Liebig, Apel, Lengauer, Kaestner, MSchulze),
             "An Analysis of the Variability in Forty Preprocessor-Based Software Product Lines",
             ICSE(2010).month(5).location("Cape Town, South Africa").acceptanceRate(52, 380).publisher(ACM),
@@ -1283,7 +1247,7 @@ object CVPublications {
             selected().topic(vsoc, empirical),
 
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner, Groesslinger, Lengauer),
             "Type Safety for Feature-Oriented Product Lines",
             JASE(2010).issn("0928-8910").volume(17).number(3),
@@ -1311,7 +1275,7 @@ object CVPublications {
             crosscite("extended version of \\cite{AKL:GPCE08}").
             topic(vaanalysis, fop),
 
-        Publication(
+        Article(
             Seq(Apel, Lengauer, Moeller, Kaestner),
             "An Algebraic Foundation for Automatic Feature-Based Program Synthesis",
             SCP(2010).volume(75).number(11).month(11).issn("0167-6423"),
@@ -1332,7 +1296,7 @@ object CVPublications {
             topic(fop), //foundation
 
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, Kaestner, Frisch, Dachselt, Apel),
             "Visual Support for Understanding Product Lines",
             ICPC(2010).issn("1063-6897").isbn("978-1-4244-7604-6"),
@@ -1350,11 +1314,10 @@ object CVPublications {
             note("Demonstration paper").topic(vsoc),
 
 
-        Publication(
+        Thesis(
             Seq(Kaestner),
             "Virtual Separation of Concerns: Toward Preprocessors 2.0",
-            Thesis("PhD thesis", 2010, 5, MRTR),
-            null,
+            2010, 5, "PhD thesis", MRTR,
             Map(DOI -> URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044"),
                 HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
                 PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/10/diss_kaestner.pdf")),
@@ -1370,7 +1333,7 @@ object CVPublications {
             selected().note("Logos Verlag Berlin, isbn 978-3-8325-2527-9"),
 
 
-        Publication(
+        InProceedings(
             Seq(SSchulze, Apel, Kaestner),
             "Code Clones in Feature-Oriented Software Product Lines",
             GPCE(2010).month(10).acceptanceRate(18, 59).location("Eindhoven, The Netherlands"),
@@ -1392,7 +1355,7 @@ object CVPublications {
         on how to cope with them. We exemplary show how such clones
         can be removed by the application of refactoring.""").topic(fop, empirical), //code clones
 
-        Publication(
+        InProceedings(
             Seq(Apel, Scholz, Lengauer, Kaestner),
             "Dependences and Interactions in Feature-Oriented Design",
             Conference("ISSRE", 2010, "21st IEEE International Symposium on Software Reliability Engineering").month(10).
@@ -1414,7 +1377,7 @@ object CVPublications {
         and helps in defining and detecting semantic dependences and
         interactions between features.  """).topic(vaanalysis, fop, interactions),
 
-        Publication(
+        Article(
             Seq(Apel, Kolesnikov, Liebig, Kaestner, Kuhlemann, Leich),
             "Access Control in Feature-Oriented Programming",
             SCP(2012).subtitle("Special Issue on Feature-Oriented Software Development").month(3).volume(77).number(3),
@@ -1436,7 +1399,7 @@ object CVPublications {
             topic(fop, vaanalysis),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Scholz, Lengauer, Kaestner),
             "Language-Independent Reference Checking in Software Product Lines",
             FOSD10,
@@ -1459,7 +1422,7 @@ object CVPublications {
         give us confidence that this approach is promising. """).
             topic(vaanalysis, fop),
 
-        Publication(
+        InProceedings(
             Seq(Kenner, Kaestner, Haase, Leich),
             "TypeChef: Toward Type Checking #ifdef Variability in C",
             FOSD10,
@@ -1487,17 +1450,16 @@ object CVPublications {
             topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
-        Publication(
+        Book(
             Seq(Apel, Batory, Czarnecki, Heidenreich, Kaestner, Person("Oscar", "Nierstrasz")),
             "Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
-            Book(2010, KProceedings, ACM).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").month(10),
-            null,
+            Venue("", 2010, "", KMisc).publisher(ACM).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").month(10),
             Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf"),
                 HTTP -> URL("http://portal.acm.org/citation.cfm?id=1868688")),
             ""),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Giarrusso, Ostermann),
             "Partial Preprocessing C Code for Variability Analysis",
             VAMOS(2011).month(1).location("Namur, Belgium").isbn("978-1-4503-0570-9").publisher(ACM).acceptanceRate(21, 38),
@@ -1524,7 +1486,7 @@ object CVPublications {
         the Linux kernel.   """).topic(vaanalysis, vsoc, typechef),
 
 
-        Publication(
+        InProceedings(
             Seq(Liebig, Kaestner, Apel),
             "Analyzing the Discipline of Preprocessor Annotations in 30 Million Lines of C Code",
             Conference("AOSD", 2011, "10th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
@@ -1561,7 +1523,7 @@ object CVPublications {
             topic(vsoc, empirical, adoption).selected(),
 
 
-        Publication(
+        Article(
             Seq(Kaestner, Apel, Thuem, Saake),
             "Type Checking Annotation-Based Product Lines",
             TOSEM(2012).volume(21).number(3),
@@ -1582,7 +1544,7 @@ object CVPublications {
             note("to appear; submitted 8 Jun 2010, accepted 4 Jan 2011").
             crosscite("extended version of \\cite{KA:ASE08}"),
 
-        Publication(
+        InProceedings(
             Seq(Pukall, Grebhahn, Schroeter, Kaestner, Cazzola, Goetz),
             "{JavaAdaptor}: Unrestricted Dynamic Software Updates for {Java}",
             ICSE11Demo,
@@ -1593,7 +1555,7 @@ object CVPublications {
             "").hideabstract().topic(dsu),
 
 
-        Publication(
+        InProceedings(
             Seq(Stengel, Feigenspan, Frisch, Kaestner, Apel, Dachselt),
             "{View Infinity}: A Zoomable Interface for Feature-Oriented Software Development",
             ICSE11Demo,
@@ -1603,7 +1565,7 @@ object CVPublications {
                 DOI -> URL("http://doi.acm.org/10.1145/1985793.1985987")),
             "").hideabstract().topic(vsoc),
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, MSchulze, Papendieck, Kaestner, Dachselt, Koeppen, Frisch),
             "Using Background Colors to Support Program Comprehension in Software Product Lines",
             EASE(2011).publisher(Publisher("Institution of Engineering and Technology", "")).acceptanceRate(20, 50),
@@ -1632,7 +1594,7 @@ object CVPublications {
         work improving program comprehension in large SPLs. """).
             topic(experiment, vsoc).crosscite("superseeded by \\cite{FSPKDKFS:IET12} and \\cite{FKALSDPLS:ESE12}"),
 
-        Publication(
+        InProceedings(
             Seq(Ostermann, Giarrusso, Kaestner, Rendel),
             "Revisiting Information Hiding: Reflections on Classical and Nonclassical Modularity",
             ECOOP(2011).acceptanceRate(26, 100).series(LNCS).volume(6813),
@@ -1655,7 +1617,7 @@ object CVPublications {
             selected().topic(modularity),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Heidenreich, Kaestner, Rosenmueller),
             "Third International Workshop on Feature-Oriented Software Development {(FOSD 2011)}",
             SPLC11,
@@ -1666,7 +1628,7 @@ object CVPublications {
         ),
 
 
-        Publication(
+        InProceedings(
             Seq(Siegmund, Rosenmueller, Kaestner, Giarrusso, Apel, Kolesnikov),
             "Scalable Prediction of Non-functional Properties in Software Product Lines",
             SPLC11.acceptanceRate(20, 69),
@@ -1677,7 +1639,7 @@ object CVPublications {
             note("\\textbf{Best Paper Award}").topic(nfp, spl, empirical),
 
 
-        Publication(
+        InProceedings(
             Seq(Thuem, Kaestner, Erdweg, Siegmund),
             "Abstract Features in Feature Modeling",
             SPLC11.acceptanceRate(20, 69),
@@ -1689,7 +1651,7 @@ object CVPublications {
         We raise awareness of the problem of abstract features for different kinds of analyses on feature models. We argue that, in order to reason about program variants, abstract features should be made explicit in feature models. We present a technique based on propositional formulas to reason about program variants. In practice, our technique can save effort that is caused by considering the same program variant multiple times, for example, in product-line testing.""").
             topic(spl, fmanalysis),
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, Apel, Liebig, Kaestner),
             "Exploring Software Measures to Assess Program Comprehension",
             ESEM(2011).location("Banff").month(9).acceptanceRate(33, 105),
@@ -1698,27 +1660,27 @@ object CVPublications {
             """Software measures are often used to assess program comprehension, although their applicability is discussed controversially. Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension. Our goal is to evaluate whether and how software measures and program comprehension correlate. To this end, we carefully designed an experiment. We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations. We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures. We did not observe a difference in program comprehension of our subjects as the software measures suggested it. To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures. This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension. Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.""").
             topic(experiment, empirical, programcomprehension),
 
-        Publication(
-            Seq(Kaestner),
-            "Virtuelle Trennung von Belangen",
-            InBook(2011, "Ausgezeichnete Informatikdissertationen 2010", GI).series(LNI).volume("D-11").isbn("9783885794158"),
-            Pages(121, 130),
-            Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf")),
-            """
-        Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
-        Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
-        negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
-        zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
-        Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
-        Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
-        klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
-        in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
-        entsprechender Werkzeugunterst\"uzung. """).
-            note("invited paper").
-            crosscite("(German summary of \\cite{kaestnerDiss})"),
+        //     TODO   InProceedings(
+        //            Seq(Kaestner),
+        //            "Virtuelle Trennung von Belangen",
+        //            InBook(2011, "Ausgezeichnete Informatikdissertationen 2010", GI).series(LNI).volume("D-11").isbn("9783885794158"),
+        //            Pages(121, 130),
+        //            Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf")),
+        //            """
+        //        Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
+        //        Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
+        //        negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
+        //        zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
+        //        Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
+        //        Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
+        //        klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
+        //        in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
+        //        entsprechender Werkzeugunterst\"uzung. """).
+        //            note("invited paper").
+        //            crosscite("(German summary of \\cite{kaestnerDiss})"),
 
 
-        Publication(
+        InProceedings(
             Seq(Khan, Kaestner, Koeppen, Saake),
             "Service Variability Patterns",
             Workshop("Variability@ER", 2011, "ER Workshop on Software Variability Management").publisher(Springer).
@@ -1727,7 +1689,7 @@ object CVPublications {
             Map(HTTP -> URL("http://www.springerlink.com/content/g22235r0561200m3/")),
             "").hideabstract(),
 
-        Publication(
+        Article(
             Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Apel, Saake),
             "SPL Conqueror: Toward Optimization of Non-functional Properties in Software Product Lines",
             Journal("SQJ", 2011, "Software Quality Journal").
@@ -1762,7 +1724,7 @@ object CVPublications {
             topic(nfp, spl).note("online first"),
 
 
-        Publication(
+        InProceedings(
             Seq(Apel, Liebig, Person("Benjamin", "Brandl"), Lengauer, Kaestner),
             "Semistructured Merge: Rethinking Merge in Revision Control Systems",
             ESECFSE(2011).month(9).location("Szeged, Hungary").acceptanceRate(23, 203),
@@ -1794,7 +1756,7 @@ object CVPublications {
             topic(merge, empirical),
 
 
-        Publication(
+        InProceedings(
             Seq(Erdweg, Rendel, Kaestner, Ostermann),
             "SugarJ: Library-based Syntactic Language Extensibility",
             OOPSLA11,
@@ -1830,7 +1792,7 @@ object CVPublications {
             note("\\textbf{Distinguished Paper Award}").topic(dsl),
 
 
-        Publication(
+        InProceedings(
             Seq(Erdweg, Kats, Rendel, Kaestner, Ostermann, Kats, Visser),
             "Library-Based Model-Driven Software Development with {SugarJ}",
             OOPSLAComp11,
@@ -1841,7 +1803,7 @@ object CVPublications {
             crosscite("demonstration accompying \\cite{ERKO:OOPSLA11} and \\cite{ELRLPV:GPCE11}").
             topic(dsl),
 
-        Publication(
+        InProceedings(
             Seq(Erdweg, Kats, Rendel, Kaestner, Ostermann, Visser),
             "{SugarJ}: Library-Based Language Extensibility",
             OOPSLAComp11,
@@ -1852,7 +1814,7 @@ object CVPublications {
             crosscite("poster accompying \\cite{ERKO:OOPSLA11} and \\cite{ELRLPV:GPCE11}").
             topic(dsl),
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Giarrusso, Rendel, Erdweg, Ostermann, Berger),
             "Variability-Aware Parsing in the Presence of Lexical Macros and Conditional Compilation",
             OOPSLA11,
@@ -1882,7 +1844,7 @@ object CVPublications {
                 features.                          """).selected().
             topic(vsoc, vaanalysis),
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
             "{FeatureCommander}: Colorful #ifdef World",
             Venue("SPLC", 2011,
@@ -1895,7 +1857,7 @@ object CVPublications {
         ).hideabstract().topic(vsoc),
 
 
-        Publication(
+        InProceedings(
             Seq(Kaestner, Apel, Ostermann),
             "The Road to Feature Modularity?",
             FOSD(2011).month(9).location("Munich").isbn("978-1-4503-0789-5"),
@@ -1923,7 +1885,7 @@ object CVPublications {
                 and inconclusive, more research is needed, for which we
                 outline possible directions.  """).selected().topic(modularity, fop, vsoc),
 
-        Publication(
+        InProceedings(
             Seq(Erdweg, Kats, Rendel, Kaestner, Ostermann, Visser),
             "Growing a Language Environment with Editor Libraries",
             GPCE(2011).location("Portland, OR").acceptanceRate(18, 58).isbn("978-1-4503-0689-8").month(10),
@@ -1950,20 +1912,18 @@ object CVPublications {
         editor as well as an extensible Latex editor, which we used for writing this
         paper.                """).topic(dsl),
 
-        Publication(
+        TechReport(
             Seq(Kuhlemann, Kaestner, Apel, Saake),
             "An Algebra for Refactoring and Feature-Oriented Programming",
-            TechReport(2011, MDTR, "06"),
-            null,
+            2011, 9, MDTR, "FIN-2011-06",
             Map(HTTP -> URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/technical_reports_und_preprints/2011/TechReport06-p-2138.pdf")),
             "").topic(fop),
 
 
-        Publication(
+        TechReport(
             Seq(Kaestner, Dreiling, Ostermann),
             "Variability Mining with {LEADT}",
-            TechReport(2011, MRTR, "01").month(9),
-            null,
+            2011, 9, MRTR, "01/2011",
             Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/tr_leadt2011.pdf"),
                 HTTP -> URL("http://www.uni-marburg.de/fb12/forschung/berichte/berichteinformtk")),
             """
@@ -1972,7 +1932,7 @@ object CVPublications {
             topic(adoption, spl),
 
 
-        Publication(
+        Article(
             Seq(Pukall, Kaestner, Cazzola, Goetz, Grebhahn, Schroeter, Saake),
             "{JavAdaptor}: Flexible Runtime Updates of {Java} Applications",
             Journal("SPE", 2012, "Software: Practice and Experience"),
@@ -1997,7 +1957,7 @@ object CVPublications {
             topic(dsu).note("online first"),
 
 
-        Publication(
+        Article(
             Seq(Apel, Kaestner, Lengauer),
             "Language-Independent and Automated Software Composition: The {FeatureHouse} Experience",
             TSE(2012),
@@ -2007,7 +1967,7 @@ object CVPublications {
             """Superimposition is a composition technique that has been applied successfully in many areas of software development. Although superimposition is a general-purpose concept, it has been (re)invented and implemented individually for various kinds of software artifacts. We unify languages and tools that rely on superimposition by using the language-independent model of \emph{feature structure trees} (FSTs). On the basis of the FST model, we propose a general approach to the composition of software artifacts written in different languages. Furthermore, we offer a supporting framework and tool chain, called FeatureHouse. We use attribute grammars to automate the integration of additional languages. In particular, we have integrated Java, C\#, C, Haskell, Alloy, and JavaCC. A substantial number of case studies demonstrate the practicality and scalability of our approach and reveal insights into the properties that a language must have in order to be ready for superimposition. We discuss perspectives of our approach and demonstrate how we extended FeatureHouse with support for XML languages (in particular, XHTML, XMI/UML, and Ant) and alternative composition approaches (in particular, aspect weaving). Rounding off our previous work, we provide here a holistic view of the FeatureHouse approach based on rich experience with numerous languages and case studies and reflections on several years of research.""").
             selected().note("to appear; submitted 21 Oct 2010, accepted 29 Nov 2011"),
 
-        Publication(
+        InProceedings(
             Seq(Siegmund, Kolesnikov, Kaestner, Apel, Batory, Rosenmueller, Saake),
             "Predicting Performance via Automated Feature-Interaction Detection",
             ICSE(2012).acceptanceRate(87, 408),
@@ -2035,7 +1995,7 @@ object CVPublications {
             topic(nfp, spl, empirical).selected(),
 
 
-        Publication(
+        Article(
             Seq(Kaestner),
             "Virtual Separation of Concerns: Toward Preprocessors 2.0",
             Journal("it", 2012, "Information Technology").volume(54).number(1),
@@ -2047,7 +2007,7 @@ object CVPublications {
             crosscite("invited summary of \\cite{kaestnerDiss}"),
 
 
-        Publication(
+        InProceedings(
             Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
             "Measuring Programming Experience",
             ICPC(2012).acceptanceRate(21, 51),
@@ -2073,7 +2033,7 @@ object CVPublications {
             note("accepted for publication").topic(experiment, programcomprehension),
 
 
-        Publication(
+        Article(
             Seq(Feigenspan, MSchulze, Papendieck, Kaestner, Dachselt, Koeppen, Frisch, Saake),
             "Supporting Program Comprehension in Large Preprocessor-Based Software Product Lines",
             Journal("", 2012, "IET Software"),
@@ -2098,7 +2058,7 @@ object CVPublications {
             topic(vsoc, experiment),
 
 
-        Publication(
+        Article(
             Seq(Feigenspan, Kaestner, Apel, Liebig, MSchulze, Dachselt, Papendieck, Leich, Saake),
             "Do Background Colors Improve Program Comprehension in the #ifdef Hell?",
             ESE(2012),
@@ -2129,11 +2089,10 @@ as a basis for further research.""").
             note("online first").selected().topic(experiment, vsoc),
 
 
-        Publication(
+        TechReport(
             Seq(Thuem, Apel, Kaestner, Kuhlemann, Schaefer, Saake),
             "Analysis Strategies for Software Product Lines",
-            TechReport(2012, MDTR, "04").month(4),
-            null,
+            2012, 4, MDTR, "FIN-2012-04",
             Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/tr_analysis12.pdf")),
             """Software-product-line engineering has gained considerable momentum in recent years, both in
 industry and in academia. A software product line is a set of software products that share a
@@ -2153,11 +2112,10 @@ analysis and, to this end, make it more systematic and efficient. A long-term go
 developers to choose the right analysis technique for their needs out of a pool of techniques with
 different strengths and weaknesses.""").topic(vaanalysis, overview),
 
-        Publication(
+        TechReport(
             Seq(Kaestner, Ostermann, Erdweg),
             "A Variability-Aware Module System",
-            TechReport(2012, MRTR, "01").month(4),
-            null,
+            2012, 4, MRTR, "01/2012",
             Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/tr_modulesys12.pdf")),
             """Module systems enable a divide and conquer strategy to software development.
 To implement compile-time variability in software product lines, modules

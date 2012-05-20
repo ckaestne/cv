@@ -48,7 +48,7 @@ object Venues {
 
     val MDTR = Publisher("University of Magdeburg", "Magdeburg, Germany")
     val PATR = Publisher("Department of Informatics and Mathematics, University of Passau", "Passau, Germany")
-    val MRTR = Publisher("Philipps University Marburg", "Marburg, Germany")
+    val MRTR = Publisher("Department of Mathematics and Computer Science, Philipps University Marburg", "Marburg, Germany")
     val IEEE = Publisher("IEEE Computer Society", "Los Alamitos, CA")
     val TUBerlin = Publisher("TU Berlin", "Berlin, Germany")
     val TREssen = Publisher("University of Duisburg-Essen", "Essen, Germany")
@@ -68,7 +68,7 @@ object Venues {
     val FOSD = ConferenceFactory("FOSD", 2009,
         "%num% International Workshop on Feature-Oriented Software Development",
         URLPattern("http://fosd.net/%yyyy%"), true, ACM)
-    val ICPC = ConferenceFactory("FOSD", 1993,
+    val ICPC = ConferenceFactory("ICPC", 1993,
         "%num% International Conference on Program Comprehension",
         NoURLFactory, true, IEEE)
 
