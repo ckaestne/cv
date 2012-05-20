@@ -58,7 +58,9 @@ object Venues {
     val Elsevier = Publisher("Elsevier", "")
     val GI = Publisher("Gesellschaft für Informatik (GI)", "Bonn, Germany")
 
-    val LNCS = "LNCS"
+    val LNCS = "Lecture Notes in Computer Science"
+    val LNI = "Lecture Notes in Informatics"
+    val LNBIP = "Lecture Notes in Business Information Processing"
 
     val GPCE = ConferenceFactory("GPCE", 2002,
         "%num% ACM International Conference on Generative Programming and Component Engineering",

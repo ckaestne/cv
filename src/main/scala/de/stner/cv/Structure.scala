@@ -158,6 +158,8 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def isbn(s: String): Venue = this
 
+    def editor(s: String): Venue = this
+
 
     def name(n: String): Venue = copy(name = n)
 

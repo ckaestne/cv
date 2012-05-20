@@ -16,7 +16,13 @@ object CVPublications {
 
     object KTechnicalReport extends PublicationKind("Technical Report", 5)
 
-    object KMisc extends PublicationKind("Miscellaneous", 6)
+    abstract class KMisc extends PublicationKind("Miscellaneous", 6)
+
+    object KThesis extends KMisc
+
+    object KProceedings extends KMisc
+
+    object KInBook extends KMisc
 
 
     object Conference {
@@ -34,11 +40,24 @@ object CVPublications {
             Venue(short, year, name, KJournal, if (url == null) None else Some(url))
     }
 
-    object TechReport {
+    object Thesis {
+        def apply(typ: String, year: Int, month: Int, publisher: Publisher) =
+            Venue(null, year, typ, KThesis, null).month(month).publisher(publisher)
+    }
 
+    object TechReport {
         def apply(year: Int, publisher: Publisher, number: String) =
             Venue("", year, "", KTechnicalReport, None).publisher(publisher).number(number)
+    }
 
+    object Book {
+        def apply(year: Int, kind: PublicationKind = KProceedings, publisher: Publisher) =
+            Venue("", year, "", kind, None).publisher(publisher)
+    }
+
+    object InBook {
+        def apply(year: Int, booktitle: String, publisher: Publisher) =
+            Venue("", year, booktitle, KInBook, None).publisher(publisher)
     }
 
 
@@ -88,6 +107,7 @@ object CVPublications {
     val Dreiling = Person("Alexander", "Dreiling")
     val Hanenberg = Person("Stefan", "Hanenberg")
     val Schaefer = Person("Ina", "Schaefer")
+    val Czarnecki = Person("Krzysztof", "Czarnecki")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
@@ -182,17 +202,14 @@ object CVPublications {
             topic(fop, aop),
 
 
+        Publication(
+            Seq(Kaestner),
+            "Aspect-Oriented Refactoring of {Berkeley DB}",
+            Thesis("Diplomarbeit", 2007, 3, MDTR),
+            null,
+            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/thesis_final.pdf")),
+            ""),
 
-        //TODO Publication(
-        //  Seq(Kaestner),
-        //  "Aspect-Oriented Refactoring of {Berkeley DB}",
-        //  school =	 "University of Magdeburg",
-        //  address =	 "Germany",
-        //  month =	 mar,
-        //.year(2007)
-        //  type={Diplomarbeit},
-        //Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/~ckaestne/thesis_final.pdf"))
-        //}
 
         Publication(
             Seq(Apel, Kaestner, Trujillo),
@@ -1157,16 +1174,14 @@ object CVPublications {
                 Finally, we present some early results of our first experiment
                 on comparing CPP with CIDE.    """).topic(vsoc, experiment),
 
-        //       TODO Publication(
-        //           editor={Apel and William Cook and Krzysztof Czarnecki and Kaestner and Neil Loughran and Oscar Nierstrasz},
-        //         "Proceedings of the First International Workshop on Feature-Oriented Software Development {(FOSD)}, October 6, 2009, Denver, Colorado, USA",
-        //           publisher=ACM,address=ACMAddr,
-        //        .location("Denver, CO, USA"),
-        //           .isbn("978-1-60558-567-3"),
-        //           month=oct,year=2009,
-        //        Map(PDF->URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/FOSD2009/FOSD2009_Printed_Proceedings.pdf")),
-        //           http={http://portal.acm.org/citation.cfm?id=1629716}
-        //        }
+        Publication(
+            Seq(Apel, Cook, Czarnecki, Kaestner, Person("Neil", "Loughran"), Person("Oscar", "Nierstrasz")),
+            "Proceedings of the First International Workshop on Feature-Oriented Software Development {(FOSD)}, October 6, 2009, Denver, Colorado, USA",
+            Book(2009, KProceedings, ACM).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10),
+            null,
+            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/FOSD2009/FOSD2009_Printed_Proceedings.pdf"),
+                HTTP -> URL("http://portal.acm.org/citation.cfm?id=1629716")),
+            ""),
 
         Publication(
             Seq(Pukall, Kaestner, Goetz, Cazzola, Saake),
@@ -1178,20 +1193,15 @@ object CVPublications {
             topic(dsu),
 
 
-        //        TODO Publication(
-        //           Seq(Kuhlemann, Kaestner, Apel),
-        //         "Reducing Code Replication in Delegation-Based {Java} Programs",
-        //           booktitle = {Java Software and Embedded Systems},
-        //           .isbn("978-1-60741-661-6"),
-        //        .year(2010)
-        //        Pages(171,183),
-        //        .publisher("Nova Science Publishers, Inc."),
-        //        .addess("Hauppauge, NY"),
-        //           editor = {Mattis Hayes and Isaiah Johansen},
-        //        Map(HTTP->URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
-        //        }
-        //        }
-
+        Publication(
+            Seq(Kuhlemann, Kaestner, Apel),
+            "Reducing Code Replication in Delegation-Based {Java} Programs",
+            InBook(2010, "Java Software and Embedded Systems", Publisher("Nova Science Publishers, Inc.", "Hauppauge, NY")).
+                isbn("978-1-60741-661-6").
+                editor("Mattis Hayes and Isaiah Johansen"),
+            Pages(171, 183),
+            Map(HTTP -> URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
+            , ""),
 
 
         Publication(
@@ -1340,30 +1350,24 @@ object CVPublications {
             note("Demonstration paper").topic(vsoc),
 
 
-        //TODO Publication(
-        //Seq(Kaestner),
-        //"Virtual Separation of Concerns: Toward Preprocessors 2.0",
-        //school={University of Magdeburg},
-        //.selected(),
-        //month=May,
-        //.publisher("Logos Verlag"),
-        //publisheraddress={Berlin},
-        //.isbn("978-3-8325-2527-9"),
-        //.note("Logos Verlag Berlin, isbn 978-3-8325-2527-9"),
-        //Map(DOI->URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044")),
-        //Map(HTTP->URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id=")),
-        //Map(PDF->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/10/diss_kaestner.pdf")),
-        //.year(2010)
-        //"""
-        //Conditional compilation with preprocessors such as \emph{cpp} is a simple but effective means to implement variability.
-        //By annotating code fragments with \emph{\#ifdef} and \emph{\#endif} directives, different program variants with or without these annotated fragments can be created, which can be used (among others) to implement software product lines. Although, such annotation-based approaches are frequently used in practice, researchers often criticize them for their negative effect on code quality and maintainability. In contrast to modularized implementations such as components or aspects, annotation-based implementations typically neglect separation of concerns, can entirely obfuscate the source code, and are prone to introduce subtle errors.
-        //
-        //Our goal is to rehabilitate annotation-based approaches by showing how tool support can address these problems. With views, we emulate modularity; with a visual representation of annotations, we reduce source code obfuscation and increase program comprehension; and with disciplined annotations and a product-line--aware type system, we prevent or detect syntax and type errors in the entire software product line. At the same time we emphasize unique benefits of annotations, including  simplicity, expressiveness, and being language independent.  All in all, we provide tool-based separation of concerns without necessarily dividing source code into physically separated modules; we name this approach \emph{virtual separation of concerns}.
-        //
-        //We argue that with these improvements over contemporary preprocessors, virtual separation of concerns can compete with modularized implementation mechanisms.
-        //Despite our focus on annotation-based approaches, we do intend not give a definite answer on how to implement software product lines. Modular implementations and annotation-based implementations both have their advantages; we even present an integration and migration path between them.
-        //Our goal is to rehabilitate preprocessors and show that they are not a lost cause as many researchers think. On the contrary, we argue that -- with the presented improvements -- annotation-based approaches are a serious alternative for product-line implementation.""")
-        //}}
+        Publication(
+            Seq(Kaestner),
+            "Virtual Separation of Concerns: Toward Preprocessors 2.0",
+            Thesis("PhD thesis", 2010, 5, MRTR),
+            null,
+            Map(DOI -> URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044"),
+                HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
+                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/10/diss_kaestner.pdf")),
+            """
+        Conditional compilation with preprocessors such as \emph{cpp} is a simple but effective means to implement variability.
+        By annotating code fragments with \emph{\#ifdef} and \emph{\#endif} directives, different program variants with or without these annotated fragments can be created, which can be used (among others) to implement software product lines. Although, such annotation-based approaches are frequently used in practice, researchers often criticize them for their negative effect on code quality and maintainability. In contrast to modularized implementations such as components or aspects, annotation-based implementations typically neglect separation of concerns, can entirely obfuscate the source code, and are prone to introduce subtle errors.
+
+        Our goal is to rehabilitate annotation-based approaches by showing how tool support can address these problems. With views, we emulate modularity; with a visual representation of annotations, we reduce source code obfuscation and increase program comprehension; and with disciplined annotations and a product-line--aware type system, we prevent or detect syntax and type errors in the entire software product line. At the same time we emphasize unique benefits of annotations, including  simplicity, expressiveness, and being language independent.  All in all, we provide tool-based separation of concerns without necessarily dividing source code into physically separated modules; we name this approach \emph{virtual separation of concerns}.
+
+        We argue that with these improvements over contemporary preprocessors, virtual separation of concerns can compete with modularized implementation mechanisms.
+        Despite our focus on annotation-based approaches, we do intend not give a definite answer on how to implement software product lines. Modular implementations and annotation-based implementations both have their advantages; we even present an integration and migration path between them.
+        Our goal is to rehabilitate preprocessors and show that they are not a lost cause as many researchers think. On the contrary, we argue that -- with the presented improvements -- annotation-based approaches are a serious alternative for product-line implementation.""").
+            selected().note("Logos Verlag Berlin, isbn 978-3-8325-2527-9"),
 
 
         Publication(
@@ -1483,20 +1487,14 @@ object CVPublications {
             topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
-        //TODO Publication (
-        //editor = {
-        //Apel and Batory and Krzysztof Czarnecki and Florian Heidenreich and Kaestner and Oscar Nierstrasz
-        //},
-        //"Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
-        //publisher = ACM, address = ACMAddr,
-        //.location ("Eindhoven, The Netherlands"),
-        //.isbn ("978-1-4503-0208-1"),
-        //month = oct, year = 2010,
-        //Map (PDF -> URL ("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf") ),
-        //http = {
-        //http :// portal.acm.org / citation.cfm ? id = 1868688
-        //}
-        //}
+        Publication(
+            Seq(Apel, Batory, Czarnecki, Heidenreich, Kaestner, Person("Oscar", "Nierstrasz")),
+            "Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
+            Book(2010, KProceedings, ACM).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").month(10),
+            null,
+            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf"),
+                HTTP -> URL("http://portal.acm.org/citation.cfm?id=1868688")),
+            ""),
 
 
         Publication(
@@ -1700,24 +1698,24 @@ object CVPublications {
             """Software measures are often used to assess program comprehension, although their applicability is discussed controversially. Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension. Our goal is to evaluate whether and how software measures and program comprehension correlate. To this end, we carefully designed an experiment. We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations. We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures. We did not observe a difference in program comprehension of our subjects as the software measures suggested it. To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures. This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension. Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.""").
             topic(experiment, empirical, programcomprehension),
 
-        //TODO Publication (
-        //Seq (Kaestner),
-        //"Virtuelle Trennung von Belangen",
-        //Book("Ausgezeichnete Informatikdissertationen 2010",2011,GI).series(LNI).volume("D-11").isbn("9783885794158"),
-        //Pages(121, 130),
-        //    Map(PDF->URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf")),
-        //"""
-        //Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
-        //Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
-        //negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
-        //zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
-        //Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
-        //Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
-        //klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
-        //in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
-        //entsprechender Werkzeugunterst\"uzung. """).
-        //note("invited paper").
-        //crosscite("(German summary of \\cite{kaestnerDiss})"),
+        Publication(
+            Seq(Kaestner),
+            "Virtuelle Trennung von Belangen",
+            InBook(2011, "Ausgezeichnete Informatikdissertationen 2010", GI).series(LNI).volume("D-11").isbn("9783885794158"),
+            Pages(121, 130),
+            Map(PDF -> URL("http://www.informatik.uni-marburg.de/~kaestner/gi11_kurz.pdf")),
+            """
+        Bedingte Kompilierung ist ein einfaches und h\"aufig benutztes Mittel zur
+        Implementierung von Variabilit\"at in Softwareproduktlinien, welches aber aufgrund
+        negativer Auswirkungen auf Codequalit\"at und Wartbarkeit stark kritisiert wird. Wir
+        zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
+        Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
+        Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
+        klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
+        in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
+        entsprechender Werkzeugunterst\"uzung. """).
+            note("invited paper").
+            crosscite("(German summary of \\cite{kaestnerDiss})"),
 
 
         Publication(
