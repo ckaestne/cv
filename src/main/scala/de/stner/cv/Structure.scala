@@ -5,6 +5,8 @@ import de.stner.cv.CVPublications._
 import java.io.File
 
 object Config {
+    val pdfWebPath = "pdf/"
+
     val pdfPath = new File("src/main/pdf/")
 }
 
@@ -499,6 +501,8 @@ private[cv] case class HTTPLink(link: String, ignoreError: Boolean = false) exte
 
 private[cv] case class PDFLink(filename: String) extends URL {
     def check(): Boolean = new File(Config.pdfPath, filename).exists()
+
+    override def toString = Config.pdfWebPath + filename
 }
 
 object URL {
