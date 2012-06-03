@@ -1998,8 +1998,8 @@ object CVPublications {
         InProceedings(
             Seq(Siegmund, Kolesnikov, Kaestner, Apel, Batory, Rosenmueller, Saake),
             "Predicting Performance via Automated Feature-Interaction Detection",
-            ICSE(2012).acceptanceRate(87, 408),
-            ToAppear(),
+            ICSE(2012).location("Zurich").acceptanceRate(87, 408).isbn("978-1-4673-1067-3").publisher(IEEE),
+            Pages(167, 177),
             Map(HTTP -> PDFFile("icse12.pdf")),
             """
         Customizable programs and program families
