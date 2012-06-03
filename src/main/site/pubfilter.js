@@ -49,9 +49,15 @@ function genPublist(data){
 
 }
 
+function toggleSpelling(){
+   $("#spellingbox").toggle("slow")
+    }
+
 
 $(document).ready(function(){
     $("#pubfilter").show()
     $("#pubfilter input").change(updatepub)
     $("#pubfilter select").change(updatepub)
+
+    $("#spellinglink").attr("href", "javascript:toggleSpelling()")
 });

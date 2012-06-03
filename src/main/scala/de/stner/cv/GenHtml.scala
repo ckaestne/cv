@@ -133,9 +133,9 @@ object GenHtml extends App {
 
     // <div><h3>{title}</h3>{ pubs.map(_.genId).mkString(",")}</div>
     def printGroupingHeaders(pubs: Seq[Publication]) = {
-        "function pubheaderByYear() { return [%s]; }".format((for (g <- pubs.groupBy(_.venue.year).toSeq.sortBy(_._1).reverse) yield printGroupingHeader(g._1.toString, g._2)).mkString(",")) +
-            "function pubheaderByKind() { return [%s]; }".format((for (g <- pubs.groupBy(_.venue.kind).toSeq.sortBy(_._1)) yield printGroupingHeader(g._1.name, g._2)).mkString(",")) +
-            "function pubheaderByTopic() { return [%s]; }".format((for (g <- pubs.flatMap(p => p.topics.map(t => (t, p))).groupBy(_._1).toSeq.sortBy(_._2.size).reverse) yield printGroupingHeader(g._1.name, g._2.map(_._2))).mkString(","))
+        "function pubheaderByYear() { return [%s]; }".format((for (g <- pubs.reverse.groupBy(_.venue.year).toSeq.sortBy(_._1).reverse) yield printGroupingHeader(g._1.toString, g._2)).mkString(",")) +
+            "function pubheaderByKind() { return [%s]; }".format((for (g <- pubs.reverse.groupBy(_.venue.kind).toSeq.sortBy(_._1)) yield printGroupingHeader(g._1.name, g._2)).mkString(",")) +
+            "function pubheaderByTopic() { return [%s]; }".format((for (g <- pubs.reverse.flatMap(p => p.topics.map(t => (t, p))).groupBy(_._1).toSeq.sortBy(_._2.size).reverse) yield printGroupingHeader(g._1.name, g._2.map(_._2))).mkString(","))
     }
 
     def printPublications(pubs: Seq[Publication]) =
@@ -177,35 +177,67 @@ object GenHtml extends App {
         &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p>
     }
 
+    def printSpelling() =
+        <p class="spelling">
+        My last name Kästner is pronounced <a href="http://en.wikipedia.org/wiki/Wikipedia:IPA_for_German">[ˈkɛstnɐ]</a>.
+        It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
+        The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronounciation.
+        The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
+        To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>.</p>
+
+    def printSpellingLink() = <span style="font-size:small"><a href="spelling.html" id="spellinglink">[pronounciation and spelling]</a></span>
+
+
+    def printResearchInterests(researchInterests: Seq[String]) =
+        <h2>Research Interests</h2> :+
+        <ul>
+            <li><strong>{researchInterests.head}</strong></li>
+            {for (r <- researchInterests.tail) yield <li>{r}</li>}
+        </ul>
+
+
+    def printAwards(awards: Seq[String]) =
+        <h2>Grants &amp; Awards</h2> :+
+              <ul>
+                  {for (r <- awards) yield <li>{printAward(r)}</li>}
+              </ul>
+
     val output =
     <div>
-        <h1>{name}</h1>
+        <img src={imgURL} alt={name} style="float:right" />
+        <div><h1 style="display: inline;">{name}</h1> {printSpellingLink}</div>
+        <div id="spellingbox" style="display:none">{printSpelling()}</div>
+        {printSummary()}
+        {printAddress()}
         {printTeaching(teaching.filter(_.term >= WinterTerm(2010)))}
-        {printSupervisedTheses(advisedTheses)}
+        {printResearchInterests(researchInterests)}
         {printCommittees(committees)}
+        {printAwards(awards)}
         {printPublications(publications)}
+        {printSupervisedTheses(advisedTheses)}
         {printPrivate()}
     </div>
 
+    def printDoc(body: Elem, title: String, filename: String, extraHeader: NodeSeq = null) = {
 
-    //    println(output)
-    //    val fw = new FileWriter("out.html")
-    //    fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
-    val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
+        val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
-    val doc =
+        val doc =
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <link rel="Stylesheet" type="text/css" href="src/main/site/cv.css" />
                 <script type="text/javascript" src="src/main/site/jquery-1.7.2.min.js"></script>
-                <script type="text/javascript" src="src/main/site/pubfilter.js"></script>
-                <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
-                <title>Christian Kästner</title>
+                {extraHeader}
+                <title>{CV.name}</title>
             </head>
-            <body>{output}</body>
+            <body>{body}</body>
         </html>
-    scala.xml.XML.save("out.html", doc, "UTF-8", doctype = doct)
-    //    fw.close()
+        scala.xml.XML.save(filename, doc, "UTF-8", doctype = doct)
+    }
+
+    printDoc(output, CV.name, "out.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
+
+    printDoc(printSpelling(), CV.name, "spelling.html")
 
 }
