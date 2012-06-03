@@ -2,7 +2,11 @@ package de.stner.cv
 
 import scala.None
 import de.stner.cv.CVPublications._
+import java.io.File
 
+object Config {
+    val pdfPath = new File("src/main/pdf/")
+}
 
 case class Person(
                      firstname: String,
@@ -100,6 +104,24 @@ object Book {
             "*" + pub.title + "*. [!]" +
             pub.venue.renderPublisher + pub.venue.renderDate + "." +
             (pub.note.map("[!] " + _ + ".").getOrElse(""))
+}
+
+object InBook {
+    //TODO fix rendering
+
+    def apply(authors: Seq[Person],
+              title: String,
+              venue_ : Venue,
+              pages: PPages,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(renderInProceedingsRest, authors, title, venue_, pages, links, abstr)
+
+    protected def renderInProceedingsRest(pub: Publication, style: BibStyle): String = {
+        assert(pub.venue.kind == KInConferenceProceedings || pub.venue.kind == KWorkshopDemoTool, "InProceedings with venue.kind=" + pub.venue.kind + " not supported")
+        "In *Proceedings of the %s (%s)*, ".format(pub.venue.name, pub.venue.short) +
+            pub.venue.renderVolSeries + pub.renderPages() + pub.venue.renderPublisher + pub.venue.renderDate + "."
+    }
 }
 
 class Publication(
@@ -427,13 +449,13 @@ class URLException(link: String, e: Exception) extends Exception {
     override def toString = "Cannot resolve URL " + link + " (" + e + ")"
 }
 
-case class URL(link: String, ignoreError: Boolean = false) {
+trait URL {
+    def check(): Boolean
+}
 
-    override def toString = {
-        //        if (!check())
-        //            System.err.println("Cannot resolve link " + link)
-        link
-    }
+private class HTTPLink(link: String, ignoreError: Boolean = false) extends URL {
+
+    override def toString = link
 
     def check(): Boolean = if (ignoreError) true
     else {
@@ -449,8 +471,16 @@ case class URL(link: String, ignoreError: Boolean = false) {
     }
 }
 
+private[cv] case class PDFLink(filename: String) extends URL {
+    def check(): Boolean = new File(Config.pdfPath, filename).exists()
+}
+
+object URL {
+    def apply(link: String, ignoreError: Boolean = false): URL = new HTTPLink(link, ignoreError)
+}
+
 object PDFFile {
-    def apply(filename: String) = URL(filename)
+    def apply(filename: String): URL = PDFLink(filename)
 }
 
 

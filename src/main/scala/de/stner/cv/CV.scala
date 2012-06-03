@@ -23,86 +23,86 @@ object CV {
    Phone: ++49 6421 28 25349
    Fax: ++49 6421 28 25419
    E-mail: christian.kaestner (at) uni-marburg.de
-"""
+                  """
 
     val teaching = Seq(
         Course("Empirical Methods for Computer Scientists",
             "Einführung in empirische Methoden für Informatiker",
-            new URL("http://www.uni-marburg.de/fb12/ps/teaching/ss12/em"),
+            URL("http://www.uni-marburg.de/fb12/ps/teaching/ss12/em"),
             German, SummerTerm(2012), new CourseKind with Lecture with Exercise
         ),
         Course("Software Product Lines: Concepts and Implementation",
             "Softwareproduktlinien: Konzepte und Implementierung",
-            new URL("http://www.uni-marburg.de/fb12/ps/teaching/ss11/spl"),
+            URL("http://www.uni-marburg.de/fb12/ps/teaching/ss11/spl"),
             German, SummerTerm(2011), new CourseKind with Lecture with Exercise
         ),
         Course("Software Engineering",
             "Einführung in die Softwaretechnik",
-            new URL("http://www.uni-marburg.de/fb12/ps/teaching/ws10/eise"),
+            URL("http://www.uni-marburg.de/fb12/ps/teaching/ws10/eise"),
             German, WinterTerm(2010), new CourseKind with Lecture,
             "shared with K. Ostermann"
         ),
         Course("Software Product Lines",
             "Software-Produktlinien",
-            new URL("http://www.uni-marburg.de/fb12/ps/teaching/ws10/splseminar"),
+            URL("http://www.uni-marburg.de/fb12/ps/teaching/ws10/splseminar"),
             German, WinterTerm(2010), Seminar
         ),
         Course("Concepts of Database Implementation",
             "Datenbankenimplementierungstechniken (DB2)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2010"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2010"),
             German, SummerTerm(2010), new CourseKind with Exercise
         ),
         Course("Student Conference on Software Engineering and Database Systems", "",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
             English, SummerTerm(2010), new CourseKind with Lecture
         ),
         Course("Product-Line Implementation for Tailor-Made Data Management",
             "Erweiterte Programmierkonzepte für maßgeschneiderte Datenhaltung (EPMD)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2009/"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2009/"),
             German, WinterTerm(2009), new CourseKind with Lecture with Exercise
         ),
         Course("Specification Technologies",
             "Spezifikationstechnik",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/spt/2009/"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/spt/2009/"),
             German, SummerTerm(2009), new CourseKind with Exercise
         ),
         Course("Concepts of Database Implementation",
             "Datenbankenimplementierungstechniken (DB2)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2009"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2009"),
             German, SummerTerm(2009), new CourseKind with Exercise
         ),
         Course("Student Conference on Software Engineering and Database Systems", "",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
             English, SummerTerm(2009), new CourseKind with Lecture
         ),
         Course("Product-Line Implementation for Tailor-Made Data Management",
             "Erweiterte Programmierkonzepte für maßgeschneiderte Datenhaltung (EPMD)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2008/"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2008/"),
             German, WinterTerm(2008), new CourseKind with Lecture with Exercise,
             "Shared with G. Saake"
         ),
         Course("Concepts of Database Implementation",
             "Datenbankenimplementierungstechniken (DB2)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2008"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2008"),
             German, SummerTerm(2008), new CourseKind with Exercise
         ),
         Course("Student Conference on Software Engineering and Database Systems", "",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/studconf"),
             English, SummerTerm(2008), new CourseKind with Lecture
         ),
         Course("Product-Line Implementation for Tailor-Made Data Management",
             "Erweiterte Programmierkonzepte für maßgeschneiderte Datenhaltung (EPMD)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2007/"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/epmd/2007/"),
             German, WinterTerm(2007), new CourseKind with Exercise
         ),
         Course("Concepts of Database Implementation",
             "Datenbankenimplementierungstechniken (DB2)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2007"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/db2/2007"),
             German, SummerTerm(2007), new CourseKind with Exercise
         ),
         Course("Advanced Database Models",
             "Advanced Database Models (ADBM)",
-            new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/adbm/"),
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/adbm/"),
             English, SummerTerm(2007), new CourseKind with Exercise
         ),
         Course("Cost Accounting",
@@ -126,10 +126,10 @@ object CV {
         TeachingProject("Webuni", SummerTerm(2009), "IT-Projekt"),
         TeachingProject("FOP-Demo Application (Tank Game)", SummerTerm(2009), "Laborpraktikum"),
         TeachingProject("Bibliographieverwaltung", WinterTerm(2008), "Softwarepraktikum"),
-        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2008), "Laborpraktikum", new URL("http://www.uni-magdeburg.de/mytt/")),
-        TeachingProject("Entwicklung einer IDE fuer Software-Produktlinien", WinterTerm(2008), "Laborpraktikum", new URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/laborws0708/")),
+        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2008), "Laborpraktikum", URL("http://www.uni-magdeburg.de/mytt/")),
+        TeachingProject("Entwicklung einer IDE fuer Software-Produktlinien", WinterTerm(2008), "Laborpraktikum", URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/lehre/laborws0708/")),
         TeachingProject("Verknuepfung zwischen VR und semantischen Informationen", SummerTerm(2008), "IT-Projekt"),
-        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2007), "IT-Projekt", new URL("http://www.uni-magdeburg.de/mytt/"))
+        TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2007), "IT-Projekt", URL("http://www.uni-magdeburg.de/mytt/"))
     )
 
 

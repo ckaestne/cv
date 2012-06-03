@@ -210,7 +210,7 @@ object CVPublications {
             JOT(2007).volume(6).number(9).month(10),
             Pages(13, 33),
 
-            Map(PDF -> URL("http://www.jot.fm/issues/issue_2007_10/paper1.pdf"),
+            Map(PDF -> PDFLink("TOOLS2007.pdf"),
                 HTTP -> URL("http://www.jot.fm/issues/issue_2007_10/paper1/index.html")),
             """Stepwise refinement (SWR) is fundamental to software engineering. As aspectoriented
        programming (AOP) is gaining momentum in software development, aspects
@@ -1185,15 +1185,15 @@ object CVPublications {
             topic(dsu),
 
 
-        //TODO        InBook(
-        //            Seq(Kuhlemann, Kaestner, Apel),
-        //            "Reducing Code Replication in Delegation-Based {Java} Programs",
-        //            InBook(2010, "Java Software and Embedded Systems", Publisher("Nova Science Publishers, Inc.", "Hauppauge, NY")).
-        //                isbn("978-1-60741-661-6").
-        //                editor("Mattis Hayes and Isaiah Johansen"),
-        //            Pages(171, 183),
-        //            Map(HTTP -> URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
-        //            , ""),
+        InBook(
+            Seq(Kuhlemann, Kaestner, Apel),
+            "Reducing Code Replication in Delegation-Based {Java} Programs",
+            Venue(null, 2010, "Java Software and Embedded Systems", KMisc).publisher(Publisher("Nova Science Publishers, Inc.", "Hauppauge, NY")).
+                isbn("978-1-60741-661-6").
+                editor("Mattis Hayes and Isaiah Johansen"),
+            Pages(171, 183),
+            Map(HTTP -> URL("https://www.novapublishers.com/catalog/product_info.php?products_id=10125"))
+            , ""),
 
 
         InProceedings(
@@ -1247,7 +1247,7 @@ object CVPublications {
             "An Analysis of the Variability in Forty Preprocessor-Based Software Product Lines",
             ICSE(2010).month(5).location("Cape Town, South Africa").acceptanceRate(52, 380).publisher(ACM),
             Pages(105, 114),
-            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/auto/LALKS:ICSE10.pdf"),
+            Map(PDF -> PDFLink("icse10.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?369011"),
                 DOI -> URL("http://doi.acm.org/10.1145/1806799.1806819")),
             """
@@ -1346,7 +1346,7 @@ object CVPublications {
             2010, 5, "PhD thesis", MRTR,
             Map(DOI -> URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044"),
                 HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
-                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/10/diss_kaestner.pdf")),
+                PDF -> PDFFile("diss_kaestner_virtual_separation_of_concerns.pdf")),
             """
         Conditional compilation with preprocessors such as *cpp* is a simple but effective means to implement variability.
         By annotating code fragments with *#ifdef* and *#endif* directives, different program variants with or without these annotated fragments can be created, which can be used (among others) to implement software product lines. Although, such annotation-based approaches are frequently used in practice, researchers often criticize them for their negative effect on code quality and maintainability. In contrast to modularized implementations such as components or aspects, annotation-based implementations typically neglect separation of concerns, can entirely obfuscate the source code, and are prone to introduce subtle errors.
@@ -1364,7 +1364,7 @@ object CVPublications {
             "Code Clones in Feature-Oriented Software Product Lines",
             GPCE(2010).month(10).acceptanceRate(18, 59).location("Eindhoven, The Netherlands"),
             Pages(103, 112),
-            Map(PDF -> PDFFile("GPCE10_clones.pdf"),
+            Map(PDF -> PDFFile("GPCE2010_clones.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?379692")),
             """Some limitations of object-oriented mechanisms are known to
         cause code clones (e.g., extension using inheritance). Novel programming
@@ -1387,7 +1387,7 @@ object CVPublications {
             Conference("ISSRE", 2010, "21st IEEE International Symposium on Software Reliability Engineering").month(10).
                 location("San Jose, CA").publisher(IEEE).acceptanceRate(40, 130),
             Pages(161, 170),
-            Map(PDF -> PDFFile("ISSRE10.pdf")),
+            Map(PDF -> PDFFile("ISSRE2010.pdf")),
             """Feature-oriented software development (FOSD) aims
         at the construction, customization, and synthesis of large-scale
         software systems. We propose a novel software design paradigm,
@@ -1688,24 +1688,24 @@ object CVPublications {
             """Software measures are often used to assess program comprehension, although their applicability is discussed controversially. Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension. Our goal is to evaluate whether and how software measures and program comprehension correlate. To this end, we carefully designed an experiment. We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations. We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures. We did not observe a difference in program comprehension of our subjects as the software measures suggested it. To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures. This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension. Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.""").
             topic(experiment, empirical, programcomprehension),
 
-        //     TODO   InProceedings(
-        //            Seq(Kaestner),
-        //            "Virtuelle Trennung von Belangen",
-        //            InBook(2011, "Ausgezeichnete Informatikdissertationen 2010", GI).series(LNI).volume("D-11").isbn("9783885794158"),
-        //            Pages(121, 130),
-        //            Map(PDF -> PDFFile("gi11_kurz.pdf")),
-        //            """
-        //        Bedingte Kompilierung ist ein einfaches und häufig benutztes Mittel zur
-        //        Implementierung von Variabilität in Softwareproduktlinien, welches aber aufgrund
-        //        negativer Auswirkungen auf Codequalität und Wartbarkeit stark kritisiert wird. Wir
-        //        zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
-        //        Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
-        //        Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
-        //        klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
-        //        in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
-        //        entsprechender Werkzeugunterst\"uzung. """).
-        //            note("invited paper").
-        //            crosscite("(German summary of \\cite{kaestnerDiss})"),
+        InBook(
+            Seq(Kaestner),
+            "Virtuelle Trennung von Belangen",
+            Venue(null, 2011, "Ausgezeichnete Informatikdissertationen 2010", KInvited).publisher(GI).series(LNI).volume("D-11").isbn("9783885794158"),
+            Pages(121, 130),
+            Map(PDF -> PDFFile("gi11_kurz.pdf")),
+            """
+                Bedingte Kompilierung ist ein einfaches und häufig benutztes Mittel zur
+                Implementierung von Variabilität in Softwareproduktlinien, welches aber aufgrund
+                negativer Auswirkungen auf Codequalität und Wartbarkeit stark kritisiert wird. Wir
+                zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
+                Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
+                Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
+                klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
+                in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
+                entsprechender Werkzeugunterst\"uzung. """).
+            note("invited paper").
+            crosscite("(German summary of \\cite{kaestnerDiss})"),
 
 
         InProceedings(
@@ -1789,7 +1789,7 @@ object CVPublications {
             "SugarJ: Library-based Syntactic Language Extensibility",
             OOPSLA11,
             Pages(391, 406),
-            Map(PDF -> URL("http://www.informatik.uni-marburg.de/~seba/publications/sugarj.pdf"),
+            Map(PDF -> PDFLink("oopsla_sugarj.pdf"),
                 DOI -> URL("http://doi.acm.org/10.1145/2048066.2048099")),
             """
         Existing approaches to extend a programming language with

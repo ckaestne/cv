@@ -11,7 +11,7 @@ object CVTheses {
             Person("Thomas", "Thüm"),
             "Reasoning about Feature Model Edits",
             MD, (6, 2008), Studienarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisthuem.pdf"),
+            PDFFile("thesisthuem.pdf"),
             "Results published as conference paper at the International Conference on Software Engineering (ICSE), 2009."
         ),
 
@@ -33,14 +33,14 @@ object CVTheses {
             Person("Janet", "Feigenspan"),
             "Requirements and design for a language-independent IDE framework to support feature-oriented programming",
             MD, (2, 2009), Studienarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisfeigenspan.pdf")
+            PDFFile("thesisfeigenspan.pdf")
         ),
 
         Thesis(
             Person("Stefan", "Kegel"),
             "Streamed verification of a data stream management benchmark",
             MD, (4, 2009), Studienarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesiskegel.pdf")
+            PDFFile("thesiskegel.pdf")
         ),
 
         GermanThesis(
@@ -48,7 +48,7 @@ object CVTheses {
             "Evaluation feature-basierter service-orientierter Architekturen am Beispiel eines Domotic-Szenarios",
             "Feature-Based Service-Orientented Architectures for Domotic Scenarios",
             MD, (6, 2009), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisleminh.pdf")
+            PDFFile("thesisleminh.pdf")
         ),
 
         GermanThesis(
@@ -56,13 +56,13 @@ object CVTheses {
             "Alternative Features in Colored Featherweight Java",
             "Alternative Features in Colored Featherweight Java",
             PA, (7, 2009), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisrosenthal.pdf")
+            PDFFile("thesisrosenthal.pdf")
         ),
         Thesis(
             Person("Janet", "Feigenspan"),
             "Empirical Comparison of FOSD Approaches Regarding Program Comprehension -- A Feasibility Study",
             MD, (8, 2009), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisfeigenspan_diplom.pdf"),
+            PDFFile("thesisfeigenspan_diplom.pdf"),
             "**Best-thesis award by Metop Research Center and Research Award by IHK Magdeburg.** The results were published as part of a journal paper in Empirical Software Engineering, 2012."
         ),
 
@@ -78,14 +78,14 @@ object CVTheses {
             "Systematische Analyse von Feature-Interaktionen in Softwareproduktlinien",
             "Analysis of Feature Interactions in Software Product Lines",
             MD, (11, 2009), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisschulze.pdf")
+            PDFFile("thesisschulze.pdf")
         ),
 
         Thesis(
             Person("Thomas", "Thüm"),
             "A Machine-Checked Proof for a Product-Line-Aware Type System",
             MD, (1, 2010), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisthuem.pdf"),
+            PDFFile("thesisthuem.pdf"),
             "**Best-thesis award of the Denert Foundation for Software Engineering.** Results published as part of a journal paper in ACM Transactions on Software Engineering and Methodology (TOSEM), 2011"
         ),
         GermanThesis(
@@ -93,14 +93,14 @@ object CVTheses {
             "Entwicklung eines nativen Compilers für Feature-orientierte Programmierung",
             "Development of a Native Feature-Oriented Compiler",
             MD, (6, 2010), MastersThesis,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisbecker.pdf")
+            PDFFile("thesisbecker.pdf")
         ),
         GermanThesis(
             Person("Alexander", "Dreiling"),
             "Feature Mining: Semiautomatische Transition von (Alt-)Systemen zu Software-Produktlinien",
             "Feature Mining: Semiautomatic Transition from Legacy Systems to Software Product Lines",
             MD, (7, 2010), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesisdreiling.pdf"),
+            PDFFile("thesisdreiling.pdf"),
             "A journal paper about the results is currently under review"
         ),
         GermanThesis(
@@ -108,7 +108,7 @@ object CVTheses {
             "Statische Referenzanalyse in C-Präprozessor-konfigurierten Anwendungen",
             "Static Reference Analysis of Implementations with C-Preprocessor Variability",
             MD, (8, 2010), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesiskenner.pdf"),
+            PDFFile("thesiskenner.pdf"),
             "Results published as a workshop paper at FOSD 2010"
         ),
         GermanThesis(
@@ -126,7 +126,7 @@ object CVTheses {
             Person("Steffen", "Haase"),
             "A Program Slicing Approach to Feature Identification in Legacy C Code",
             MD, (2, 2012), Diplomarbeit,
-            URL("http://www.informatik.uni-marburg.de/~kaestner/thesishaase.pdf")
+            PDFFile("thesishaase.pdf")
         ),
 
         GermanThesis(
