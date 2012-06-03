@@ -77,7 +77,7 @@ object GenHtml extends App {
                    for ((key, url) <- links.dropRight(1))
                    yield <a href={url.toString}>{key.print}</a> :+ ", "
                } <a href={links.last._2.toString}>{links.last._1.print}</a> ]
-                   <blockquote>{p.abstr.markdownToHtml}</blockquote>
+                   {if (!p.isHideAbstract && p.abstr != "")   <blockquote>{p.abstr.markdownToHtml}</blockquote> }
                </div></dd>
     }
 

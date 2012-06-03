@@ -63,7 +63,7 @@ object CVPublications {
     val Frisch = Person("Mathias", "Frisch")
     val SSchulze = Person("Sandro", "Schulze")
     val Scholz = Person("Wolfgang", "Scholz")
-    val Kolesnikov = Person("Sergiy", "Kolesnikov")
+    val Kolesnikov = Person("Sergiy S.", "Kolesnikov")
     val Kenner = Person("Andy", "Kenner")
     val Haase = Person("Steffen", "Haase")
     val Giarrusso = Person("Paolo G.", "Giarrusso")
@@ -163,7 +163,7 @@ object CVPublications {
        a formal syntax and semantics specification as well as a fully functional
        compiler on top of AspectJ. We apply our approach to a non-trivial case
        study and derive several programming guidelines."""
-        ).crosscite("superseded by \\cite{AKLS:TOOLS07}}").topic(fop, aop),
+        ).crosscite("superseded by \\cite{AKLS:TOOLS07}}").topic(fop, aop).hideabstract(),
 
         Article(
             Seq(Apel, Kaestner, Kuhlemann, Leich),
@@ -290,7 +290,7 @@ object CVPublications {
  the key ideas and provides a common ground for current and future
  research in this field, in which also alternative options can be explored.""").
             crosscite("superseded by \\cite{ALMK:AMAST08} and \\cite{ALMK:SCP10}").
-            topic(fop),
+            topic(fop).hideabstract(),
 
 
         InProceedings(
@@ -609,18 +609,18 @@ object CVPublications {
             Map(PDF -> PDFFile("APSEC08-runtime.pdf")),
             """ Modifying an application usually means to stop the application,
                 apply the changes, and start the application
-                again.That means, the application is not available for at
-                least a short time period.This is not acceptable for highly
-                available applications.One reasonable approach which
+                again. That means, the application is not available for at
+                least a short time period. This is not acceptable for highly
+                available applications. One reasonable approach which
                 faces the problem of unavailability is to change highly
-                available applications at runtime.To allow extensive runtime
+                available applications at runtime. To allow extensive runtime
                 adaptation the application must be enabled for unanticipated
                 changes even of already executed program parts.
                 This is due to the fact that it is not predictable what changes
-                become necessary and when they have to be applied.Since
+                become necessary and when they have to be applied. Since
                 Java is commonly used for developing highly available applications,
                 we discuss its shortcomings and opportunities
-                regarding unanticipated runtime adaptation.We present
+                regarding unanticipated runtime adaptation. We present
                 an approach based on Java HotSwap and object wrapping
                 which overcomes the identified shortcomings and evaluate
                 it in a case study.""").
@@ -724,18 +724,18 @@ object CVPublications {
             Map(PDF -> PDFFile("icse2009_fm.pdf")),
             """
                  Features express the variabilities and commonalities
-                 among programs in a software product line (SPL).A feature
+                 among programs in a software product line (SPL). A feature
                  model defines the valid combinations of features, where each
-                 combination corresponds to a program in an SPL.SPLs
-                 and their feature models evolve over time.We classify the
+                 combination corresponds to a program in an SPL. SPLs
+                 and their feature models evolve over time. We classify the
                  evolution of a feature model via modifications as refactorings,
-                 specializations, generalizations, or arbitrary edits.We
+                 specializations, generalizations, or arbitrary edits. We
                  present an algorithm to reason about feature model edits
                  to help designers determine how the program membership
-                 of an SPL has changed.Our algorithm takes two feature
+                 of an SPL has changed. Our algorithm takes two feature
                  models as input (before and after edit versions), where the
                  set of features in both models are not necessarily the same,
-                 and it automatically computes the change classification.Our
+                 and it automatically computes the change classification. Our
                  algorithm is able to give examples of added or deleted products
                  and efficiently classifies edits to even large models that
                  have thousands of features.""").
@@ -751,12 +751,12 @@ object CVPublications {
             """
                 The separation of concerns is a fundamental principle in software engineering.
                 Crosscutting concerns are concerns that do not align with hierarchical
-                and block decomposition supported by mainstream programming languages.In
+                and block decomposition supported by mainstream programming languages. In
                 the past, crosscutting concerns have been studied mainly in the context of object orientation.
                 Feature orientation is a novel programming paradigm that supports
                 the implementation of crosscutting concerns in a system with a hierarchical
-                block structure.We explore the problem of crosscutting concerns in functional
-                programming and propose two solutions based on feature orientation.Two case
+                block structure. We explore the problem of crosscutting concerns in functional
+                programming and propose two solutions based on feature orientation. Two case
                 studies support our claims. """).
             hideabstract().crosscite("superseded by \\cite{AKGL:SC09}").topic(fop),
 
@@ -896,9 +896,9 @@ object CVPublications {
             """
           Based on a general model of feature composition, we present a composition
           language that enables programmers by means of quantification and weaving
-          to formulate extensions to programs written in different languages.We explore
+          to formulate extensions to programs written in different languages. We explore
           the design space of composition languages that rely on quantification and weaving
-          and discuss our choices.We outline a tool that extends an existing infrastructure
+          and discuss our choices. We outline a tool that extends an existing infrastructure
           for feature composition and discuss results of three initial case studies.""").
             note("Short Paper").topic(aop, fop),
 
@@ -1094,7 +1094,19 @@ object CVPublications {
             Map(DOI -> DOI("10.1145/1621607.1621632"),
                 ACMLink -> URL("http://dl.acm.org/authorize?131381"),
                 PDF -> PDFFile("GPCE09-LJAR.pdf")),
-            """Physical separation with class refinements and method refinements à la AHEAD and virtual separation using annotations à la *#ifdef* or CIDE are two competing groups of implementation approaches for software product lines with complementary advantages.Although both groups have been mainly discussed in isolation, we strive for an integration to leverage the respective advantages.In this paper, we provide the basis for such an integration by providing a model that supports both, physical and virtual separation, and by describing refactorings in both directions.We prove the refactorings complete, such that every virtually separated product line can be automatically transformed into a physically separated one (replacing annotations by refinements) and vice versa.To demonstrate the feasibility of our approach, we have implemented the refactorings in our tool CIDE and conducted four case studies.""").
+            """Physical separation with class refinements and method refinements
+              à la AHEAD and virtual separation using annotations à la *#ifdef*
+              or CIDE are two competing groups of implementation approaches for
+              software product lines with complementary advantages. Although both
+              groups have been mainly discussed in isolation, we strive for an
+              integration to leverage the respective advantages. In this paper,
+              we provide the basis for such an integration by providing a model
+              that supports both, physical and virtual separation, and by describing
+              refactorings in both directions. We prove the refactorings complete,
+              such that every virtually separated product line can be automatically
+              transformed into a physically separated one (replacing annotations by refinements)
+              and vice versa. To demonstrate the feasibility of our approach, we have
+              implemented the refactorings in our tool CIDE and conducted four case studies.""").
             topic(vsoc, fop, adoption).selected(),
 
 
@@ -1505,7 +1517,7 @@ object CVPublications {
         To determine whether a code fragment is compiled, the entire
         file must be preprocessed. We present a partial preprocessor
         that preprocesses file inclusion and macro expansion, but
-        retains variability information for further analysis.We describe
+        retains variability information for further analysis. We describe
         the mechanisms of the partial preprocessor, provide a full
         implementation, and present some initial experimental results.
         The partial preprocessor is part of a larger endeavor in
@@ -1700,12 +1712,12 @@ object CVPublications {
                 Bedingte Kompilierung ist ein einfaches und häufig benutztes Mittel zur
                 Implementierung von Variabilität in Softwareproduktlinien, welches aber aufgrund
                 negativer Auswirkungen auf Codequalität und Wartbarkeit stark kritisiert wird. Wir
-                zeigen wie Werkzeugunterst\"utzung -- Sichten, Visualisierung, kontrollierte Annotationen,
+                zeigen wie Werkzeugunterstützung -- Sichten, Visualisierung, kontrollierte Annotationen,
                 Produktlinien-Typsystem -- die wesentlichen Probleme beheben kann und viele
                 Vorteile einer modularen Entwicklung emuliert. Wir bieten damit eine Alternative zur
                 klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
                 in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
-                entsprechender Werkzeugunterst\"uzung. """).
+                entsprechender Werkzeugunterstüzung. """).
             note("invited paper").
             crosscite("(German summary of \\cite{kaestnerDiss})"),
 
@@ -1757,7 +1769,7 @@ object CVPublications {
         InProceedings(
             Seq(Apel, Liebig, Person("Benjamin", "Brandl"), Lengauer, Kaestner),
             "Semistructured Merge: Rethinking Merge in Revision Control Systems",
-            ESECFSE(2011).month(9).location("Szeged, Hungary").acceptanceRate(23, 203),
+            ESECFSE(2011).month(9).location("Szeged, Hungary").acceptanceRate(34, 203),
             Pages(190, 200),
             Map(HTTP -> PDFFile("esec11.pdf")),
             """
@@ -1878,7 +1890,7 @@ object CVPublications {
             Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
             "{FeatureCommander}: Colorful #ifdef World",
             Venue("SPLC", 2011,
-                "Proceedings of the 15th International Software Product Line Conference (SPLC), second volume (Demonstration)",
+                "15th International Software Product Line Conference (SPLC), second volume (Demonstration)",
                 KWorkshopDemoTool).publisher(ACM).location("Munich").month(9).isbn("978-1-4503-0789-5"),
             Pages("48:1", "48:2"),
             Map(HTTP -> PDFFile("SPLC11_demo.pdf"),
@@ -1947,7 +1959,7 @@ object CVPublications {
             "An Algebra for Refactoring and Feature-Oriented Programming",
             2011, 9, MDTR, "FIN-2011-06",
             Map(HTTP -> URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/technical_reports_und_preprints/2011/TechReport06-p-2138.pdf")),
-            "").topic(fop),
+            "").topic(fop).hideabstract(),
 
 
         TechReport(
@@ -1982,7 +1994,7 @@ object CVPublications {
         flexible dynamic software updates, (b) is platform independent, (c) introduces only minimal performance
         overhead, and (d) does not dictate the program architecture. JavAdaptor combines schema changing class
         replacements by class renaming and caller updates with Java HotSwap using containers and proxies. It runs
-        on top of all major standard Java virtual machines.We evaluate our approach’s applicability and performance
+        on top of all major standard Java virtual machines. We evaluate our approach’s applicability and performance
         in non-trivial case studies and compare it to existing dynamic software update approaches.      """).
             topic(dsu).note("online first"),
 
