@@ -196,11 +196,26 @@ object GenHtml extends App {
         </ul>
 
 
-    def printAwards(awards: Seq[String]) =
+    def printAward(award: Award) =
+        <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+ {
+            if (!award.extraLinks.isEmpty)
+                <span> ({
+                    for (ex <- award.extraLinks.dropRight(1))
+                    yield <span><a href={award.extraLinks.head._1.toString}>{award.extraLinks.head._2}</a>, </span>
+                    }{<span><a href={award.extraLinks.last._1.toString}>{award.extraLinks.last._2}</a></span>})</span>
+        }
+
+    def printAwards(awards: Seq[Award]) =
         <h2>Grants &amp; Awards</h2> :+
               <ul>
                   {for (r <- awards) yield <li>{printAward(r)}</li>}
               </ul>
+
+    def printProjects(pr: Seq[(URL, String, Option[String])]) =
+        <h2>Software / Projects</h2> :+
+          <ul>
+              {for (p <- pr) yield <li><a href={p._1.toString}>{p._2}</a>{if (p._3.isDefined) " (" + p._3.get + ")"}</li>}
+          </ul>
 
     val output =
     <div>
@@ -213,8 +228,10 @@ object GenHtml extends App {
         {printResearchInterests(researchInterests)}
         {printCommittees(committees)}
         {printAwards(awards)}
+        {printProjects(projects)}
         {printPublications(publications)}
         {printSupervisedTheses(advisedTheses)}
+        {printCoolWall()}
         {printPrivate()}
     </div>
 

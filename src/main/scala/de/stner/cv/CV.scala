@@ -18,15 +18,17 @@ object CV {
 
     def printAddress() =
         <h2>Address</h2> :+
-        <p>Philipps Universit&auml;t Marburg (<a href="http://www.uni-marburg.de/">Link</a>)<br />
-        Department of Computer Science and Mathematics (<a title="Mathematik und Informatik" class="internal-link" href="http://www.uni-marburg.de/fb12">Link</a>)<br />
-        Hans-Meerwein Str., 35032 Marburg, Germany<br />
-        <br />
-        Office: 05-D06<br />
-        <br />
-        Phone: ++49 6421 28 25349<br />
-        Fax: ++49 6421 28 25419<br />
-        E-mail: christian.kaestner (at) uni-marburg.de</p>
+        <div>
+            <div>Philipps Universit&auml;t Marburg (<a href="http://www.uni-marburg.de/">Link</a>)</div>
+            <div>Department of Computer Science and Mathematics (<a title="Mathematik und Informatik" class="internal-link" href="http://www.uni-marburg.de/fb12">Link</a>)</div>
+            <div>Hans-Meerwein Str., 35032 Marburg, Germany</div>
+            <div>&nbsp;</div>
+            <div>Office: 05-D06</div>
+            <div>&nbsp;</div>
+            <div>Phone: ++49 6421 28 25349</div>
+            <div>Fax: ++49 6421 28 25419</div>
+            <div>E-mail: christian.kaestner (at) uni-marburg.de</div>
+        </div>
 
     val teaching = Seq(
         Course("Empirical Methods for Computer Scientists",
@@ -212,8 +214,61 @@ object CV {
     )
 
 
-    val awards = Seq[String]()
-    val projects = Seq[String]()
+    val awards: Seq[Award] = Seq(
+        Award(
+            "**GI-Dissertationspreis:** Best Disseration Award of the German Computer Science Association, 2010",
+            URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
+            List(
+                (URL("http://www.gi.de/no_cache/aktuelles/meldungsdetails/meldung/beste-informatikdissertation-im-deutschsprachigen-raum-gi-dissertationspreis-fr-christian-kstner-387.html"), "Annoucement"),
+                (URL("http://www.flickr.com/photos/p0nk/6214434320/"), "Photo")
+            )
+        ),
+        Award(
+            "Distinguished-Paper Award at the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA) 2011",
+            URL("http://splashcon.org/2011/program/273"),
+            (URL("http://www.flickr.com/photos/p0nk/6317966864/in/photostream"), "Photo") :: Nil
+        ),
+        Award(
+            "Best-Research-Paper Award at the International Software Product Line Conference 2011",
+            URL("http://www.splc2011.net/program-1/best-paper-awards/index.html")
+        ),
+        Award(
+            "Best-Dissertation Award of the School of Computer Science, University of Magdeburg, 2010",
+            URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html")
+        ),
+        Award(
+            "Research Award of the School of Computer Science, University of Magdeburg for the Best Paper, 2009",
+            URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html")
+        ),
+        Award(
+            "Software Engineering Award of the Denert Foundation for the Best Master's Thesis, 2007",
+            URL("http://www.denert-stiftung.de/"),
+            (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil
+        ),
+        Award(
+            "Best-Graduate Award of the School of Computer Science, University of Magdeburg, 2007",
+            URL("http://www.cs.uni-magdeburg.de/Bester_Absolvent.html"),
+            (URL("http://www.flickr.com/photos/p0nk/6318413771/in/photostream"), "Photo") :: Nil
+        )
+    )
+    val projects: Seq[(URL, String, Option[String])] = Seq(
+        (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef: Variability-Aware Analysis and Parsing of C Code", None),
+        (URL("http://www.informatik.uni-marburg.de/~kaestner/leadt/"), "Feature Mining: Consistent Semi-Automatic Detection of Product-Line Features", None),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE: Feature-Oriented Analysis and Decomposition of Legacy Code", None),
+        (URL("http://www.sugarj.org/"), "SugarJ: Library-based Syntactic Language Extensibility", None),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE: Tool Support for Feature-Oriented Software Development", None),
+        (URL("http://www.infosun.fim.uni-passau.de/cl/apel/fh/"), "FeatureHouse: Language-Independent, Automatic Software Composition", None),
+        (URL("http://www.fame-dbms.org/"), "FAME-DBMS", Some("finished")),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ: Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished")),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
+    )
 
     val publications = CVPublications.publications
+
+    def printCoolWall() =
+        <h2>FOSD Cool Wall</h2> :+
+        <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
+        <img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" />
+
 }

@@ -643,3 +643,6 @@ object StructureTheses {
     }
 
 }
+
+/**award name supports markdown */
+case class Award(name: String, url: URL, extraLinks: List[(URL, String)] = Nil)

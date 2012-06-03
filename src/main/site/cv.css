@@ -9,7 +9,7 @@ dd { margin-bottom:1em!important; }
     margin: 0px 2px;
     padding: 0px 5px;
     background-color: #F8F8F8; border: 1px solid #EAEAEA;padding: 2px}
-h2 {margin-top: 2em;margin-bottom:1em}
+h2 {margin-top: 2em;}
 .selected {background-color:#ffffcc}
 .copyrightnotice { font-size:-1; font-style:italic}
 #spellinglink {
@@ -21,3 +21,4 @@ h2 {margin-top: 2em;margin-bottom:1em}
  padding:4px;margin:4px;
  border:1px solid #EAEAEA
  }
+ #coolwall{max-width:85%;}
