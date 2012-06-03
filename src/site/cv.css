@@ -1,0 +1,9 @@
+p {line-height:148%}
+div {line-height:148%}
+li { margin-bottom:1em!important; }
+dd { margin-bottom:1em!important; }
+.pub dd {margin-top:1em;padding:4px}
+.pub blockquote {margin-right:30%;font-style:italic; font-size:-1}
+h2 {margin-top: 2em;margin-bottom:1em}
+.selected {background-color:#ffffcc}
+.copyrightnotice { font-size:-1; font-style:italic}

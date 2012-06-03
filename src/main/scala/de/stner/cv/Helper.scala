@@ -43,6 +43,12 @@ class StringTexHelper(str: String) {
         var r: NodeSeq = Text(str.replace("[!]", ""))
         var oldR: NodeSeq = null
 
+        // `` '' =>
+        r = r.flatMap({
+            case t@Text(txt) =>
+                Text(txt.replace("``", "“").replace("''", "”").replace("---", "—").replace("--", "–"))
+            case x => x
+        })
         //** -> <strong>
         while (r != oldR) {
             oldR = r

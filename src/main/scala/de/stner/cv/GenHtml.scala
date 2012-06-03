@@ -44,7 +44,7 @@ object GenHtml extends App {
             {thesis.author.fullname}.
           <strong>{thesis.title}</strong>.
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
-            {if (!thesis.note.isEmpty) <br/> :+ <em>{thesis.note.markdownToHtml}</em> }
+            {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
         [ <a href={"./thesis_bib.html#" + thesis.genKey}>bib</a>
             {if (thesis.pdf != null)
             <span>| <a href={thesis.pdf.toString()}>.pdf</a></span>
@@ -55,7 +55,7 @@ object GenHtml extends App {
     def printSupervisedTheses(theses: Seq[AThesis]) = {
       <div><h2>Supervised Theses</h2>
           <div class="bib"><dl>
-              {for (thesis <- theses) yield printThesis(thesis) }
+              {for (thesis <- theses.reverse) yield printThesis(thesis) }
               </dl></div></div>
     }
 
@@ -91,9 +91,6 @@ object GenHtml extends App {
         pubs.groupBy(_.venue.kind).mapValues(_.size).toSeq.sortBy(_._1)
 
     def printFilterHeader(p: Seq[Publication]) = <div id="pubfilter" style="display:none">
-        <script type="text/javascript"><!--
-
-        --></script>
         <form action="javascript:updatepub()" method="post" >
            <ul>
               <li >
@@ -150,13 +147,19 @@ object GenHtml extends App {
         {for (p <- pubs.reverse) yield printPublication(p)}
         </div>
         <div id="pubgen"></div>
+        <p class="copyrightnotice">Copyright Notice: This material is presented to ensure timely
+        dissemination of scholarly and technical work. Copyright and all rights
+        therein are retained by authors or by other copyright holders. All
+        persons copying this information are expected to adhere to the terms
+        and constraints invoked by each author's copyright. In most cases,
+        these works may not be reposted without the explicit permission of the
+        copyright holder.</p>
     </div>
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
     def printCommittees(committees: Seq[Committee]) =
         <div>
-            <div class="image-right captioned"><a href="http://program-transformation.org/GPCE12"><img title="Generative Programming and Component Engineering 2012" src="http://program-transformation.org/pub/GPCE12/Banner/GPCE-2012-button.png" alt="GPCE2012" width="135" height="200" /></a></div>
             <h2>Committees</h2>
             {
                 for (c <- committees.dropRight(1))
@@ -188,6 +191,7 @@ object GenHtml extends App {
     println(output)
     val fw = new FileWriter("out.html")
     fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
+    fw.write("<link rel=\"Stylesheet\" type=\"text/css\" href=\"src/site/cv.css\" />")
     fw.write("<script type=\"text/javascript\" src=\"src/site/jquery-1.7.2.min.js\"></script>")
     fw.write("<script type=\"text/javascript\" src=\"src/site/pubfilter.js\"></script>")
     fw.write("<script type=\"text/javascript\">" + printGroupingHeaders(publications) + "</script>")

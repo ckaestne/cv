@@ -161,6 +161,7 @@ class Publication(
         renderAuthors(style.renderAuthor) + ". [!]" +
             "**" + title + "**" + endDot(title) + " [!]" +
             renderRest(this, style) +
+            (if (style.withAcceptanceRate) renderAcceptanceRate() else "") +
             (note.map("[!] " + _ + ".").getOrElse(""))
 
 
@@ -174,15 +175,24 @@ class Publication(
             case ToAppear() => ""
         }
     }
+
+    def renderAcceptanceRate() =
+        venue.acceptanceRate.map(
+            e => " Acceptance rate: %d %% (%d/%d).".format(scala.math.round(e._1.toDouble / e._2.toDouble * 100), e._1, e._2)
+        ).getOrElse("")
 }
 
 
 trait BibStyle {
     def renderAuthor(p: Person): String
+
+    def withAcceptanceRate: Boolean
 }
 
 object DefaultBibStyle extends BibStyle {
     def renderAuthor(p: Person) = p.fullname
+
+    def withAcceptanceRate: Boolean = true
 }
 
 trait LinkKind {
@@ -404,7 +414,7 @@ object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
 object TC extends CommitteeRole("Tool-Demonstration Committee Member", "TC")
 
-object DS extends CommitteeRole("Doctorial-Symposium Committee Member", "TC")
+object DS extends CommitteeRole("Doctorial-Symposium Committee Member", "DC")
 
 case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
 
@@ -437,6 +447,10 @@ case class URL(link: String, ignoreError: Boolean = false) {
             case e => false
         }
     }
+}
+
+object PDFFile {
+    def apply(filename: String) = URL(filename)
 }
 
 
