@@ -181,7 +181,7 @@ object CV {
             URL("http://soft.vub.ac.be/ase2010/")), TC),
         Committee(Workshop("PLEERPS", 2010,
             "Workshop on Product-Line Engineering for Enterprise Resource Planning Systems",
-            URL("http://www.esi.es/workshop/pleerps2010/")), PC),
+            URL("http://researchr.org/conference/pleerps-2010")), PC),
         Committee(FOSD(2009), OC)
     )
     val reviews: Seq[Review] = Seq(

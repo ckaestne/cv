@@ -235,6 +235,8 @@ object BIB extends LinkKind {
 
 object DOI extends LinkKind {
     def print = "doi"
+
+    def apply(doi:String)= HTTPLink("http://dx.doi.org/"+doi)
 }
 
 object EPUB extends LinkKind {

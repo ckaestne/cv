@@ -378,7 +378,7 @@ object CVPublications {
             "Granularity in Software Product Lines",
             ICSE(2008).month(5).location("Leipzig, Germany").isbn("978-1-60558-079-1").publisher(ACM),
             Pages(311, 320),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1368088.1368131"),
+            Map(DOI -> DOI("10.1145/1368088.1368131"),
                 ACMLink -> URL("http://dl.acm.org/authorize?063977"),
                 PDF -> PDFFile("icse2008.pdf"),
                 EPUB -> PDFFile("icse2008_ereader.pdf")),
@@ -407,7 +407,7 @@ object CVPublications {
                 location("Leipzig, Germany").
                 isbn("978-1-60558-029-6").publisher(ACM),
             Pages(53, 58),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1370916.1370930"),
+            Map(DOI -> DOI("10.1145/1370916.1370930"),
                 PDF -> PDFFile("sdsoa2008.pdf")),
             """We present a feature-based approach, known from software
          product lines, to the development of service-oriented architectures.
@@ -472,7 +472,7 @@ object CVPublications {
                 publisher(Springer).month(7),
             Pages(36, 50),
             Map(PDF -> PDFFile("AMAST08.pdf"),
-                DOI -> URL("http://dx.doi.org/10.1007/978-3-540-79980-1_4")),
+                DOI -> DOI("10.1007/978-3-540-79980-1_4")),
             """Feature-Oriented Software Development (FOSD) provides a multitude
         of formalisms, methods, languages, and tools for building variable, customizable,
         and extensible software. Along different lines of research, different notions of
@@ -491,7 +491,7 @@ object CVPublications {
             "Type-checking Software Product Lines -- A Formal Approach",
             ASE(2008).month(9).location("L'Aquila, Italy").issn("1527-1366").isbn("978-1-4244-2187-9"),
             Pages(258, 267),
-            Map(DOI -> URL("http://dx.doi.org/10.1109/ASE.2008.36"),
+            Map(DOI -> DOI("10.1109/ASE.2008.36"),
                 PDF -> PDFFile("ASE08.pdf")),
             """
                     A software product line (SPL) is an efficient means
@@ -518,7 +518,7 @@ object CVPublications {
             "On the Modularity of Feature Interactions",
             GPCE08,
             Pages(23, 34),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449919"),
+            Map(DOI -> DOI("10.1145/1449913.1449919"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036803"),
                 PDF -> PDFFile("GPCE08-Kim.pdf")),
             """
@@ -548,7 +548,7 @@ object CVPublications {
             "Program Refactoring using Functional Aspects",
             GPCE08,
             Pages(161, 170),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449938"),
+            Map(DOI -> DOI("10.1145/1449913.1449938"),
                 PDF -> PDFFile("GPCE08-FA.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036826")),
             """A functional aspect is an aspect that has the semantics of a transformation;
@@ -567,7 +567,7 @@ object CVPublications {
             "{Feature Featherweight Java}: A Calculus for Feature-Oriented Programming and Stepwise Refinement",
             GPCE08,
             Pages(101, 112),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1449913.1449931"),
+            Map(DOI -> DOI("10.1145/1449913.1449931"),
                 ACMLink -> URL("http://dl.acm.org/authorize?036811"),
                 PDF -> PDFFile("GPCE08-FFJ.pdf")),
             """ Feature-oriented programming (FOP) is a paradigm that incorporates programming
@@ -791,7 +791,7 @@ object CVPublications {
             "Bridging the Gap between Variability in Client Application and Database Schema",
             BTW09,
             Pages(297, 306),
-            Map(PDF -> PDFFile("SKRH08dbschema.pdf"),
+            Map(PDF -> PDFFile("btw09_gap.pdf"),
                 HTTP -> URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html")),
             """
         Database schemas are used to describe the logical design of a database.
@@ -812,7 +812,7 @@ object CVPublications {
             "SQL à la Carte -- Toward Tailor-made Data Management",
             BTW09,
             Pages(117, 136),
-            Map(PDF -> PDFFile("RKSS08sql.pdf"),
+            Map(PDF -> PDFFile("btw09_sql.pdf"),
                 HTTP -> URL("http://www.gi-ev.de/service/publikationen/lni/gi-edition-proceedings-2009/gi-edition-lecture-notes-in-informatics-lni-p-144.html")),
             """
           The size of the structured query language (SQL) continuously increases.
@@ -867,7 +867,7 @@ object CVPublications {
             Pages(175, 194),
             Map(PDF -> PDFFile("tools09.pdf"),
                 HTTP -> URL("http://www.springerlink.com/content/t8752407443k83j2"),
-                DOI -> URL("10.1007/978-3-642-02571-6")),
+                DOI -> DOI("10.1007/978-3-642-02571-6")),
             """A software product line (SPL) is a family of related program variants in
              a well-defined domain, generated from a set of features. A fundamental difference
              from classical application development is that engineers develop not a single
@@ -891,7 +891,7 @@ object CVPublications {
             SC09,
             Pages(45, 54),
             Map(HTTP -> URL("http://www.springerlink.com/content/p2p728q15r347576/"),
-                DOI -> URL("10.1007/978-3-642-02655-3_5"),
+                DOI -> DOI("10.1007/978-3-642-02655-3_5"),
                 PDF -> PDFFile("sc09_mod.pdf")),
             """
           Based on a general model of feature composition, we present a composition
@@ -909,7 +909,7 @@ object CVPublications {
             SC09,
             Pages(9, 26),
             Map(HTTP -> URL("http://www.springerlink.com/content/m0q4530571t18042/"),
-                DOI -> URL("10.1007/978-3-642-02655-3_3"),
+                DOI -> DOI("10.1007/978-3-642-02655-3_3"),
                 PDF -> PDFFile("sc09_fc.pdf")),
             """
                    The separation of concerns is a fundamental principle in software engineering.
@@ -934,7 +934,7 @@ object CVPublications {
             Pages(4, 19),
 
             Map(HTTP -> URL("http://www.springerlink.com/content/2k512285p2lv6j04/"),
-                DOI -> URL("10.1007/978-3-642-02408-5_2"),
+                DOI -> DOI("10.1007/978-3-642-02408-5_2"),
                 PDF -> PDFFile("icmt09.pdf")),
             """
           In software product line engineering, feature composition generates
@@ -956,7 +956,7 @@ object CVPublications {
             PagesStr("Article 1; 43 pages"),
             Map(ACMLink -> URL("http://dl.acm.org/authorize?387243"),
                 PDF -> PDFFile("TOSEM2009.pdf"),
-                DOI -> URL("http://doi.acm.org/10.1145/1767751.1767752")),
+                DOI -> DOI("10.1145/1767751.1767752")),
             """Through implicit invocation, procedures are called without explicitly referencing them. Implicit announcement
         adds to this implicitness by not only keeping implicit which procedures are called, but also where or when --
         under implicit invocation with implicit announcement, the call site contains no signs of that, or what it calls.
@@ -1072,8 +1072,7 @@ object CVPublications {
             GPCE09,
             Pages(177, 185),
             Map(ACMLink -> URL("http://dl.acm.org/authorize?131383"),
-                DOI -> URL("http://doi.acm.org/10.1145/1621607.1621634"),
-                PDF -> PDFFile("GPCE09_nmf.pdf")),
+                DOI -> DOI("10.1145/1621607.1621634")),
             """
                 Programs can be composed from features. We want to verify automatically
                 that all legal combinations of features can be composed
@@ -1092,7 +1091,7 @@ object CVPublications {
             "A Model of Refactoring Physically and Virtually Separated Features",
             GPCE09,
             Pages(157, 166),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/1621607.1621632"),
+            Map(DOI -> DOI("10.1145/1621607.1621632"),
                 ACMLink -> URL("http://dl.acm.org/authorize?131381"),
                 PDF -> PDFFile("GPCE09-LJAR.pdf")),
             """Physical separation with class refinements and method refinements à la AHEAD and virtual separation using annotations à la *#ifdef* or CIDE are two competing groups of implementation approaches for software product lines with complementary advantages.Although both groups have been mainly discussed in isolation, we strive for an integration to leverage the respective advantages.In this paper, we provide the basis for such an integration by providing a model that supports both, physical and virtual separation, and by describing refactorings in both directions.We prove the refactorings complete, such that every virtually separated product line can be automatically transformed into a physically separated one (replacing annotations by refinements) and vice versa.To demonstrate the feasibility of our approach, we have implemented the refactorings in our tool CIDE and conducted four case studies.""").
@@ -1129,7 +1128,7 @@ object CVPublications {
             FOSD09,
             Pages(27, 34),
             Map(PDF -> PDFFile("FOSD2009am.pdf"),
-                DOI -> URL("http://doi.acm.org/10.1145/1629716.1629723")),
+                DOI -> DOI("10.1145/1629716.1629723")),
             """In feature-oriented programming (FOP), a programmer decomposes
                 a program in terms of features. Ideally, features
                 are implemented modularly so that they can be developed in
@@ -1155,7 +1154,7 @@ object CVPublications {
             FOSD09,
             Pages(55, 62),
             Map(PDF -> PDFFile("FOSD09_emp.pdf"),
-                DOI -> URL("http://doi.acm.org/10.1145/1629716.1629728")),
+                DOI -> DOI("10.1145/1629716.1629728")),
             """
                 There are many different implementation approaches to realize the
                 vision of feature oriented software development, ranging from simple
@@ -1252,7 +1251,7 @@ object CVPublications {
             Pages(105, 114),
             Map(PDF -> PDFLink("icse10.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?369011"),
-                DOI -> URL("http://doi.acm.org/10.1145/1806799.1806819")),
+                DOI -> DOI("10.1145/1806799.1806819")),
             """
         Over 30 years ago, the preprocessor cpp was developed to
         extend the programming language C by lightweight metaprogramming
@@ -1283,7 +1282,7 @@ object CVPublications {
             Pages(251, 300),
             Map(HTTP -> URL("http://www.springerlink.com/content/fh1725331424x665/"),
                 PDF -> PDFFile("jase10.pdf"),
-                DOI -> URL("http://www.springerlink.com/openurl.asp?genre=article&id=doi:10.1007/s10515-010-0066-8")),
+                DOI -> DOI("10.1007/s10515-010-0066-8")),
             """
         A feature-oriented product line is a family of programs that share a common set
         of features. A feature implements a stakeholder's requirement and represents a design decision
@@ -1309,7 +1308,7 @@ object CVPublications {
             "An Algebraic Foundation for Automatic Feature-Based Program Synthesis",
             SCP(2010).volume(75).number(11).month(11).issn("0167-6423"),
             Pages(1022, 1047),
-            Map(DOI -> URL("http://dx.doi.org/10.1016/j.scico.2010.02.001"),
+            Map(DOI -> DOI("10.1016/j.scico.2010.02.001"),
                 PDF -> PDFFile("scp10.pdf")),
             """Feature-Oriented Software Development (FOSD) provides a multitude of formalisms, methods,
         languages, and tools for building variable, customizable, and extensible software. Along
@@ -1330,7 +1329,7 @@ object CVPublications {
             "Visual Support for Understanding Product Lines",
             ICPC(2010).issn("1063-6897").isbn("978-1-4244-7604-6"),
             Pages(34, 35),
-            Map(DOI -> URL("http://dx.doi.org/10.1109/ICPC.2010.15"),
+            Map(DOI -> DOI("10.1109/ICPC.2010.15"),
                 PDF -> PDFFile("icpc2010_demo.pdf")),
             """The C preprocessor is often used in practice to
         implement variability in software product lines. Using #ifdef
@@ -1412,7 +1411,7 @@ object CVPublications {
             SCP(2012).subtitle("Special Issue on Feature-Oriented Software Development").month(3).volume(77).number(3),
             Pages(174, 187),
             Map(HTTP -> PDFFile("SCP_FOSD2010.pdf"),
-                DOI -> URL("http://dx.doi.org/10.1016/j.scico.2010.07.005")),
+                DOI -> DOI("10.1016/j.scico.2010.07.005")),
             """In feature-oriented programming (FOP) a programmer decomposes a program in
         terms of features. Ideally, features are implemented modularly so that they can be
         developed in isolation. Access control is an important ingredient to attain feature
@@ -1580,7 +1579,7 @@ object CVPublications {
             Pages(989, 991),
             Map(HTTP -> PDFFile("icse2011_demo_ja.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?414157"),
-                DOI -> URL("http://doi.acm.org/10.1145/1985793.1985970")),
+                DOI -> DOI("10.1145/1985793.1985970")),
             "").hideabstract().topic(dsu),
 
 
@@ -1591,7 +1590,7 @@ object CVPublications {
             Pages(1031, 1033),
             Map(HTTP -> PDFFile("icse2011_demo_vi.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?414168"),
-                DOI -> URL("http://doi.acm.org/10.1145/1985793.1985987")),
+                DOI -> DOI("10.1145/1985793.1985987")),
             "").hideabstract().topic(vsoc),
 
         InProceedings(
@@ -1630,7 +1629,7 @@ object CVPublications {
             "Revisiting Information Hiding: Reflections on Classical and Nonclassical Modularity",
             ECOOP(2011).acceptanceRate(26, 100).series(LNCS).volume(6813),
             Pages(155, 178),
-            Map(DOI -> URL("http://dx.doi.org/10.1007/978-3-642-22655-7_8"),
+            Map(DOI -> DOI("10.1007/978-3-642-22655-7_8"),
                 HTTP -> PDFFile("ecoop11.pdf"),
                 DOI -> PDFFile("ecoop11_ereader.pdf")),
             """
@@ -1728,7 +1727,7 @@ object CVPublications {
             ToAppear(),
             Map(PDF -> PDFFile("jsoftwarequality11.pdf"),
                 HTTP -> URL("http://www.springerlink.com/content/ax788q46h1702j34/"),
-                DOI -> URL("10.1007/s11219-011-9152-9")),
+                DOI -> DOI("10.1007/s11219-011-9152-9")),
             """A software product line (SPL) is a family of related programs of a domain.
         The programs of an SPL are distinguished in terms of features, which are end-uservisible
         characteristics of programs. Based on a selection of features, stakeholders can
@@ -1793,7 +1792,7 @@ object CVPublications {
             OOPSLA11,
             Pages(391, 406),
             Map(PDF -> PDFLink("oopsla_sugarj.pdf"),
-                DOI -> URL("http://doi.acm.org/10.1145/2048066.2048099")),
+                DOI -> DOI("10.1145/2048066.2048099")),
             """
         Existing approaches to extend a programming language with
         syntactic sugar often leave a bitter taste, because they cannot
@@ -1828,7 +1827,7 @@ object CVPublications {
             "Library-Based Model-Driven Software Development with {SugarJ}",
             OOPSLAComp11,
             Pages(17, 18),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/2048147.2048156")),
+            Map(DOI -> DOI("10.1145/2048147.2048156")),
             "").
             note("Demonstration paper").
             crosscite("demonstration accompying \\cite{ERKO:OOPSLA11} and \\cite{ELRLPV:GPCE11}").
@@ -1839,7 +1838,7 @@ object CVPublications {
             "{SugarJ}: Library-Based Language Extensibility",
             OOPSLAComp11,
             Pages(187, 188),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/2048147.2048199")),
+            Map(DOI -> DOI("10.1145/2048147.2048199")),
             "").
             note("Poster").
             crosscite("poster accompying \\cite{ERKO:OOPSLA11} and \\cite{ELRLPV:GPCE11}").
@@ -1850,7 +1849,7 @@ object CVPublications {
             "Variability-Aware Parsing in the Presence of Lexical Macros and Conditional Compilation",
             OOPSLA11,
             Pages(805, 824),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/2048066.2048128"),
+            Map(DOI -> DOI("10.1145/2048066.2048128"),
                 PDF -> PDFFile("oopsla11_typechef.pdf")),
             """
                 In many projects, lexical preprocessors are used to manage
@@ -1883,7 +1882,7 @@ object CVPublications {
                 KWorkshopDemoTool).publisher(ACM).location("Munich").month(9).isbn("978-1-4503-0789-5"),
             Pages("48:1", "48:2"),
             Map(HTTP -> PDFFile("SPLC11_demo.pdf"),
-                DOI -> URL("http://doi.acm.org/10.1145/2019136.2019192")),
+                DOI -> DOI("10.1145/2019136.2019192")),
             ""
         ).hideabstract().topic(vsoc),
 
@@ -1893,7 +1892,7 @@ object CVPublications {
             "The Road to Feature Modularity?",
             FOSD(2011).month(9).location("Munich").isbn("978-1-4503-0789-5"),
             Pages("5:1", "5:8"),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/2019136.2019142"),
+            Map(DOI -> DOI("10.1145/2019136.2019142"),
                 PDF -> PDFFile("FOSD11-modularity.pdf")),
             """Modularity of feature representations has been a long standing
                 goal of feature-oriented software development. While
@@ -1921,7 +1920,7 @@ object CVPublications {
             "Growing a Language Environment with Editor Libraries",
             GPCE(2011).location("Portland, OR").acceptanceRate(18, 58).isbn("978-1-4503-0689-8").month(10),
             Pages(167, 176),
-            Map(DOI -> URL("http://doi.acm.org/10.1145/2047862.2047891"),
+            Map(DOI -> DOI("10.1145/2047862.2047891"),
                 PDF -> PDFFile("gpce11.pdf")),
             """
         Large software projects consist of code written in a multitude of different
@@ -1970,7 +1969,7 @@ object CVPublications {
             ToAppear(),
             Map(PDF -> PDFFile("SPE12_JavAdaptor.pdf"),
                 HTTP -> URL("http://onlinelibrary.wiley.com/doi/10.1002/spe.2107/abstract"),
-                DOI -> URL("10.1002/spe.2107")),
+                DOI -> DOI("10.1002/spe.2107")),
             """
         Software is changed frequently during its life cycle. New requirements come and bugs must be fixed.
         To update an application it usually must be stopped, patched, and restarted. This causes time periods of
@@ -2031,7 +2030,7 @@ object CVPublications {
             "Virtual Separation of Concerns: Toward Preprocessors 2.0",
             Journal("it", 2012, "Information Technology").volume(54).number(1),
             Pages(42, 46),
-            Map(DOI -> URL("http://www.oldenbourg-link.com/doi/abs/10.1524/itit.2012.0662"),
+            Map(DOI -> DOI("10.1524/itit.2012.0662"),
                 HTTP -> URL("http://it-information-technology.de/"),
                 PDF -> PDFFile("itit12.pdf")),
             "").
