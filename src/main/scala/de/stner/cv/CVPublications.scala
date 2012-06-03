@@ -279,7 +279,7 @@ object CVPublications {
             Seq(Apel, Lengauer, Batory, Moeller, Kaestner),
             "An Algebra for Feature-Oriented Software Development",
             2007, 7, PATR, "MIP-0706",
-            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/mip-0706.pdf")),
+            Map(PDF -> PDFFile("mip-0706.pdf")),
             """Feature-Oriented Software Development (FOSD) provides a
  multitude of formalisms, methods, languages, and tools for building variable,
  customizable, and extensible software. Along different lines of research
@@ -319,7 +319,7 @@ object CVPublications {
             ISSE(2007).month(12).volume(3).number("3-4").issn("1614-5046").publisher(Springer).month(12),
             Pages(281, 289),
             Map(HTTP -> URL("http://www.springerlink.com/content/08m600873g3044t4/"),
-                PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/publications/ISSE2007.pdf")),
+                PDF -> PDFFile("isse2007.pdf")),
             """Aspect-oriented programming (AOP) is a novel programming paradigm
   that aims at modularizing complex software. It embraces
   several mechanisms including (1) pointcuts and advice as well as
@@ -359,7 +359,8 @@ object CVPublications {
             "Integrated Product Line Model for Semi-Automated Product Derivation Using Non-Functional Properties",
             VAMOS(2008).month(1).location("Essen, Germany").issn("1860-2770").publisher(TREssen),
             Pages(25, 23),
-            Map(PDF -> URL("http://www.icb.uni-due.de/fileadmin/ICB/research/research_reports/icb_report_22.pdf")),
+            Map(HTTP -> URL("http://www.icb.uni-due.de/fileadmin/ICB/research/research_reports/icb_report_22.pdf"),
+                PDF -> PDFFile("vamos08.pdf")),
             """Software product lines (SPL) allow to generate tailormade
        software by manually configuring reusable core assets.
        However, SPLs with hundreds of features and millions
@@ -657,7 +658,7 @@ object CVPublications {
             "Modeling Dependent Software Product Lines",
             MCGPLE08,
             Pages(13, 18),
-            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/McGPLE2008/papers/McGPLE2008Proceedings.pdf")),
+            Map(PDF -> PDFFile("McGPLE08_dep.pdf")),
             """ Software product line development is a mature technique to implement
                 similar programs tailored to serve the needs of multiple
                 users while providing a high degree of reuse. This approach also
@@ -1005,9 +1006,9 @@ object CVPublications {
             Seq(Kaestner, Apel, Kuhlemann),
             "LJ^AR: A Model of Refactoring Physically and Virtually Separated Features",
             2009, 5, MDTR, "FIN-2009-08",
-            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/cide/LJARTech/ljartech.pdf")),
+            Map(PDF -> PDFFile("ljartech.pdf")),
             """
-                  Physical separation with class refinements and method refinements ï¿½ la AHEAD
+                  Physical separation with class refinements and method refinements à la AHEAD
                   and virtual separation using annotations à la #ifdef or CIDE are two competing
                   groups of implementation approaches for software product lines with complementary
                   advantages. Although both groups have been mainly discussed in isolation,
@@ -1026,7 +1027,8 @@ object CVPublications {
             Seq(Apel, Kaestner, Groesslinger, Lengauer),
             "Type-Safe Feature-Oriented Product Lines",
             2009, 6, PATR, "MIP-0909",
-            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/MIP-0909.pdf")),
+            Map(PDF -> PDFFile("mip-0909.pdf"),
+                HTTP -> URL("http://arxiv.org/abs/1001.3604")),
             """
                 A feature-oriented product line is a family of programs that share a
                 common set of features. A feature implements a stakeholder's requirement, represents
@@ -1102,7 +1104,7 @@ object CVPublications {
             "Virtual Separation of Concerns -- A Second Chance for Preprocessors",
             JOT(2009).volume(8).number(6).month(9).kind(KInvited),
             Pages(59, 78),
-            Map(PDF -> URL("http://www.jot.fm/issues/issue_2009_09/column5.pdf"),
+            Map(PDF -> PDFFile("jot09_vsoc.pdf"),
                 HTTP -> URL("http://www.jot.fm/issues/issue_2009_09/column5/")),
             """
                 Conditional compilation with preprocessors like cpp is a simple but effective means to
@@ -1126,7 +1128,7 @@ object CVPublications {
             "An Orthogonal Access Modifier Model for Feature-Oriented Programming",
             FOSD09,
             Pages(27, 34),
-            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/publications/docs/FOSD2009am.pdf"),
+            Map(PDF -> PDFFile("FOSD2009am.pdf"),
                 DOI -> URL("http://doi.acm.org/10.1145/1629716.1629723")),
             """In feature-oriented programming (FOP), a programmer decomposes
                 a program in terms of features. Ideally, features
@@ -1178,9 +1180,10 @@ object CVPublications {
 
         TechReport(
             Seq(Pukall, Kaestner, Goetz, Cazzola, Saake),
-            "Flexible Runtime Program Adaptations in {Java} -- A Comparison",
+            "Flexible Runtime Program Adaptations in Java -- A Comparison",
             2009, 11, MDTR, "FIN-2009-14",
-            Map(PDF -> URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/preprints/2009/TechReport14-p-1591.pdf")),
+            Map(PDF -> PDFFile("fin-0914.pdf"),
+                HTTP -> URL("http://www.cs.uni-magdeburg.de/Forschung/Technical+Reports/Technical+Reports+2009.html")),
             "").hideabstract().
             topic(dsu),
 
@@ -1219,7 +1222,7 @@ object CVPublications {
             "Semistructured Merge in Revision Control Systems",
             VAMOS(2010).month(1).publisher(TREssen),
             Pages(13, 20),
-            Map(PDF -> PDFFile("VaMoS2010.pdf")),
+            Map(PDF -> PDFFile("vamos10.pdf")),
             """
                 Revision control systems are a major means to
                 manage versions and variants of today's software systems. An
@@ -1279,7 +1282,7 @@ object CVPublications {
             JASE(2010).issn("0928-8910").volume(17).number(3),
             Pages(251, 300),
             Map(HTTP -> URL("http://www.springerlink.com/content/fh1725331424x665/"),
-                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/auto/AKGL:JASE10.pdf"),
+                PDF -> PDFFile("jase10.pdf"),
                 DOI -> URL("http://www.springerlink.com/openurl.asp?genre=article&id=doi:10.1007/s10515-010-0066-8")),
             """
         A feature-oriented product line is a family of programs that share a common set
@@ -1307,7 +1310,7 @@ object CVPublications {
             SCP(2010).volume(75).number(11).month(11).issn("0167-6423"),
             Pages(1022, 1047),
             Map(DOI -> URL("http://dx.doi.org/10.1016/j.scico.2010.02.001"),
-                PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/auto/ALMK:SCP10.pdf")),
+                PDF -> PDFFile("scp10.pdf")),
             """Feature-Oriented Software Development (FOSD) provides a multitude of formalisms, methods,
         languages, and tools for building variable, customizable, and extensible software. Along
         different lines of research, different notions of a feature have been developed. Although these
@@ -1480,7 +1483,7 @@ object CVPublications {
             Seq(Apel, Batory, Czarnecki, Heidenreich, Kaestner, Person("Oscar", "Nierstrasz")),
             "Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
             Venue("", 2010, "", KMisc).publisher(ACM).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").month(10),
-            Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/spl/apel/FOSD2010/FOSD2010proceedings.pdf"),
+            Map(PDF -> PDFFile("FOSD2010proceedings.pdf"),
                 HTTP -> URL("http://portal.acm.org/citation.cfm?id=1868688")),
             ""),
 
@@ -1684,7 +1687,7 @@ object CVPublications {
             "Exploring Software Measures to Assess Program Comprehension",
             ESEM(2011).location("Banff").month(9).acceptanceRate(33, 105),
             Pages(1, 10, "paper 3"),
-            Map(PDF -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/publikationen/ps/auto/FALK11.pdf")),
+            Map(PDF -> PDFFile("esem11.pdf")),
             """Software measures are often used to assess program comprehension, although their applicability is discussed controversially. Often, their application is based on plausibility arguments, which however is not sufficient to decide whether and how software measures are good predictors for program comprehension. Our goal is to evaluate whether and how software measures and program comprehension correlate. To this end, we carefully designed an experiment. We used four different measures that are often used to judge the quality of source code: complexity, lines of code, concern attributes, and concern operations. We measured how subjects understood two comparable software systems that differ in their implementation, such that one implementation promised considerable benefits in terms of better software measures. We did not observe a difference in program comprehension of our subjects as the software measures suggested it. To explore how software measures and program comprehension could correlate, we used several variants of computing the software measures. This brought them closer to our observed result, however, not as close as to confirm a relationship between software measures and program comprehension. Having failed to establish a relationship, we present our findings as an open issue to the community and initiate a discussion on the role of software measures as comprehensibility predictors.""").
             topic(experiment, empirical, programcomprehension),
 

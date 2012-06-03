@@ -453,7 +453,7 @@ trait URL {
     def check(): Boolean
 }
 
-private class HTTPLink(link: String, ignoreError: Boolean = false) extends URL {
+private[cv] case class HTTPLink(link: String, ignoreError: Boolean = false) extends URL {
 
     override def toString = link
 

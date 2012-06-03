@@ -37,7 +37,17 @@ class Validate extends FunSuite {
         advisedTheses.map(c => checkURL(c.pdf, c))
     }
 
-    test("available pdfs") {
+    test("all pdf links in publications should be local") {
+        for (p <- publications) {
+            p.links.get(PDF) map {
+                case PDFLink(_) => //great
+                case HTTPLink(url, _) =>
+                    System.err.println("Warning: publication %s has remote pdf link %s, consider a local one".format(p.genKey, url))
+            }
+        }
+    }
+
+    test("all publications should have pdfs (Warning level)") {
         for (p <- publications)
             if (!p.links.isEmpty && !p.links.contains(PDF))
                 System.err.println("Warning: publication %s does not have a pdf link".format(p.genKey))
