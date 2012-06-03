@@ -218,8 +218,10 @@ class Publication(
     def hideabstract() = copy(isHideAbstract = true)
 
 
+    implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
+
     //*gen
-    def genKey = authors.map(_.lastname.take(1)).mkString + ":" + venue.short + (venue.year.toString.takeRight(2))
+    def genKey = authors.map(_.lastname.take(1)).mkString + ":" + (venue.short.toId) + (venue.year.toString.takeRight(2))
 
     def genId = genKey.replaceAll("\\W", "")
 
@@ -526,7 +528,7 @@ object StructureTheses {
                                      val note: String
 
                                      ) {
-        def genKey = "thesis" + author.lastname.toAscii + kind.baMarker
+        def genKey = "thesis" + author.lastname.toId + kind.baMarker
 
         def toBibtex: String = {
             var r = """

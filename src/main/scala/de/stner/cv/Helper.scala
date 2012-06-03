@@ -13,7 +13,9 @@ class StringTexHelper(str: String) {
         replace("ö", "{\\\"o}").
         replace("ß", "{\\ss}")
 
-    def toAscii = str.replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("ß", "ss")
+    def toId = toAscii.replaceAll("\\W", "")
+
+    def toAscii = if (str == null) "" else str.replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("ß", "ss")
 
     def markdownToTex(mayBold: Boolean = true): String = {
         var r = toTex.replace("[!]", "\\newblock ")
