@@ -191,9 +191,9 @@ object GenHtml extends App {
     println(output)
     val fw = new FileWriter("out.html")
     fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
-    fw.write("<link rel=\"Stylesheet\" type=\"text/css\" href=\"src/site/cv.css\" />")
-    fw.write("<script type=\"text/javascript\" src=\"src/site/jquery-1.7.2.min.js\"></script>")
-    fw.write("<script type=\"text/javascript\" src=\"src/site/pubfilter.js\"></script>")
+    fw.write("<link rel=\"Stylesheet\" type=\"text/css\" href=\"src/main/site/cv.css\" />")
+    fw.write("<script type=\"text/javascript\" src=\"src/main/site/jquery-1.7.2.min.js\"></script>")
+    fw.write("<script type=\"text/javascript\" src=\"src/main/site/pubfilter.js\"></script>")
     fw.write("<script type=\"text/javascript\">" + printGroupingHeaders(publications) + "</script>")
 
     fw.write(
