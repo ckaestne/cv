@@ -1718,7 +1718,7 @@ object CVPublications {
                 klassischen Trennung von Belangen mittels Modulen. Statt Quelltext notwendigerweise
                 in Dateien zu separieren erzielen wir eine virtuelle Trennung von Belangen durch
                 entsprechender Werkzeugunterstüzung. """).
-            note("invited paper").
+            note("Invited paper").
             crosscite("(German summary of \\cite{kaestnerDiss})"),
 
 
@@ -2046,7 +2046,7 @@ object CVPublications {
                 HTTP -> URL("http://it-information-technology.de/"),
                 PDF -> PDFFile("itit12.pdf")),
             "").
-            crosscite("invited summary of \\cite{kaestnerDiss}"),
+            crosscite("Invited summary of \\cite{kaestnerDiss}"),
 
 
         InProceedings(

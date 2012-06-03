@@ -140,11 +140,12 @@ object InBook {
  * default renderer, subclass for specifics
  */
 abstract class PublicationRenderer {
+    implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
 
     def render(p: Publication, style: BibStyle): String =
         renderAuthors(p, style.renderAuthor) + ". [!]" +
-            "**" + p.title + "**" + endDot(p.title) + " [!]" +
+            "**" + p.title + "**" + p.title.endDot + " [!]" +
             renderRest(p, style) +
             (if (style.withAcceptanceRate) renderAcceptanceRate(p) else "") +
             (p.note.map("[!] " + _ + ".").getOrElse(""))
@@ -156,8 +157,6 @@ abstract class PublicationRenderer {
         if (p.authors.size == 1) renderOne(p.authors.head)
         else p.authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(p.authors.last)
     }
-
-    def endDot(s: String) = if (Set('.', '!', '?') contains s.last) "" else "."
 
 
     def renderPages(p: Publication, short: Boolean = false) = {

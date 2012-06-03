@@ -76,6 +76,9 @@ class StringTexHelper(str: String) {
         }
         r
     }
+
+    def endDot() = if (Set('.', '!', '?') contains str.last) "" else "."
+
 }
 
 object TextHelper {

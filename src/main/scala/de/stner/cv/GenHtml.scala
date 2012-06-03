@@ -1,8 +1,8 @@
 package de.stner.cv
 
-import java.io.FileWriter
 import de.stner.cv.StructureTheses.AThesis
 import xml._
+import dtd.{PublicID, DocType}
 
 
 object GenHtml extends App {
@@ -16,33 +16,33 @@ object GenHtml extends App {
         {if (course.url != null)
             <a href={course.url.toString()}>{course.title}</a>
         else course.title}
-        {if (course.kind.isSeminar) "-- Seminar"
+        {(if (course.kind.isSeminar) "-- Seminar"
         else if (withKind) {
             if (course.kind.isLecture && course.kind.isExercise) "-- Lecture + Exercise"
             else if (course.kind.isLecture) "-- Lecture"
             else if (course.kind.isExercise) "-- Exercise"
             else if (course.kind.isTutorium) "-- TA"
-        }}
+            else ""
+        } else "").markdownToHtml}
     </span>
 
     def printTeaching(teaching: Seq[Course]) = {
     <div><h2>Teaching</h2>{
     val byTerm = teaching.groupBy(_.term)
     for (term <- byTerm.keys.toSeq.sorted.reverse)
-    yield <p>{term}
+    yield <div><p>{term}</p>
       <ul>{
            for (course <- byTerm(term))
            yield <li>{printCourse(course)}</li>
-         }</ul></p>
-
+         }</ul>
+        </div>
       }</div>
     }
 
-    def printThesis(thesis: AThesis) = {
-        <a name={thesis.genKey} />
+    def printThesis(thesis: AThesis) =
         <dd>
-            {thesis.author.fullname}.
-          <strong>{thesis.title}</strong>.
+          <a name={thesis.genKey}>{thesis.author.fullname}</a>.
+          <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
         [ <a href={"./thesis_bib.html#" + thesis.genKey}>bib</a>
@@ -50,7 +50,7 @@ object GenHtml extends App {
             <span>| <a href={thesis.pdf.toString()}>.pdf</a></span>
             }]
         </dd>
-    }
+
 
     def printSupervisedTheses(theses: Seq[AThesis]) = {
       <div><h2>Supervised Theses</h2>
@@ -188,18 +188,24 @@ object GenHtml extends App {
     </div>
 
 
-    println(output)
-    val fw = new FileWriter("out.html")
-    fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
-    fw.write("<link rel=\"Stylesheet\" type=\"text/css\" href=\"src/main/site/cv.css\" />")
-    fw.write("<script type=\"text/javascript\" src=\"src/main/site/jquery-1.7.2.min.js\"></script>")
-    fw.write("<script type=\"text/javascript\" src=\"src/main/site/pubfilter.js\"></script>")
-    fw.write("<script type=\"text/javascript\">" + printGroupingHeaders(publications) + "</script>")
+    //    println(output)
+    //    val fw = new FileWriter("out.html")
+    //    fw.write("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">")
+    val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
-    fw.write(
-        <html>
-      {output}
-      </html>.toString())
-    fw.close()
+    val doc =
+        <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <link rel="Stylesheet" type="text/css" href="src/main/site/cv.css" />
+                <script type="text/javascript" src="src/main/site/jquery-1.7.2.min.js"></script>
+                <script type="text/javascript" src="src/main/site/pubfilter.js"></script>
+                <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
+                <title>Christian Kästner</title>
+            </head>
+            <body>{output}</body>
+        </html>
+    scala.xml.XML.save("out.html", doc, "UTF-8", doctype = doct)
+    //    fw.close()
 
 }
