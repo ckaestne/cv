@@ -278,24 +278,20 @@ object CV {
             (URL("http://www.flickr.com/photos/p0nk/6318413771/in/photostream"), "Photo") :: Nil
         )
     )
-    val projects: Seq[(URL, String, Option[String])] = Seq(
-        (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef: Variability-Aware Analysis and Parsing of C Code", None),
-        (URL("http://www.informatik.uni-marburg.de/~kaestner/leadt/"), "Feature Mining: Consistent Semi-Automatic Detection of Product-Line Features", None),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE: Feature-Oriented Analysis and Decomposition of Legacy Code", None),
-        (URL("http://www.sugarj.org/"), "SugarJ: Library-based Syntactic Language Extensibility", None),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE: Tool Support for Feature-Oriented Software Development", None),
-        (URL("http://www.infosun.fim.uni-passau.de/cl/apel/fh/"), "FeatureHouse: Language-Independent, Automatic Software Composition", None),
-        (URL("http://www.fame-dbms.org/"), "FAME-DBMS", Some("finished")),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ: Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished")),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
+    val projects: Seq[(URL, String, String, Option[String])] = Seq(
+        (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef", "Variability-Aware Analysis and Parsing of C Code", None),
+        (URL("http://www.informatik.uni-marburg.de/~kaestner/leadt/"), "Feature Mining", "Consistent Semi-Automatic Detection of Product-Line Features", None),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE", "Virtual Separation of Concerns", None),
+        (URL("http://www.sugarj.org/"), "SugarJ", "Library-based Syntactic Language Extensibility", None),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE", "Tool Support for Feature-Oriented Software Development", None),
+        (URL("http://www.infosun.fim.uni-passau.de/cl/apel/fh/"), "FeatureHouse", "Language-Independent, Automatic Software Composition", None),
+        (URL("http://www.fame-dbms.org/"), "FAME-DBMS", "Tailor-Made Data Management", Some("finished")),
+        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ", "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished"))
+        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
+        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
     )
 
     val publications = CVPublications.publications
 
-    def printCoolWall() =
-        <h2>FOSD Cool Wall</h2> :+
-        <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
-        <img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" />
 
 }

@@ -51,12 +51,12 @@ object GenHtml extends App {
         </dd>
 
 
-    def printSupervisedTheses(theses: Seq[AThesis]) = {
-      <div><h2>Supervised Theses</h2>
+    def printSupervisedTheses(theses: Seq[AThesis]) = rowH2(
+        "Supervised Theses",
           <div class="bib"><dl>
               {for (thesis <- theses.reverse) yield printThesis(thesis) }
-              </dl></div></div>
-    }
+              </dl></div> )
+
 
     def getPublicationClassTags(p: Publication): String = {
         var tags = Seq("pub")
@@ -112,7 +112,7 @@ object GenHtml extends App {
 
 
               <li class="form-line" id="id_6">
-                  <strong>Group by</strong>
+                  <strong>Group by:</strong>
 
                   <span><input type="radio" id="nogroup"   name="q6_groupBy" value="None (chronologically)" checked="checked" /><label for="nogroup"  >None (chronologically)</label></span>
                   <span><input type="radio" id="groupKind" name="q6_groupBy" value="Publication kind" />                        <label for="groupKind">Publication kind</label></span>
@@ -137,27 +137,42 @@ object GenHtml extends App {
             "function pubheaderByTopic() { return [%s]; }".format((for (g <- pubs.reverse.flatMap(p => p.topics.map(t => (t, p))).groupBy(_._1).toSeq.sortBy(_._2.size).reverse) yield printGroupingHeader(g._1.name, g._2.map(_._2))).mkString(","))
     }
 
+    def printCopyrightNotice() = <p class="copyrightnotice">Copyright Notice: This material is presented to ensure timely
+              dissemination of scholarly and technical work. Copyright and all rights
+              therein are retained by authors or by other copyright holders. All
+              persons copying this information are expected to adhere to the terms
+              and constraints invoked by each author's copyright. In most cases,
+              these works may not be reposted without the explicit permission of the
+              copyright holder.</p>
+
+    def printKeyPublications(pubs: Seq[Publication]) =
+        rowH2("Key Publications",
+      <div class="bib">
+          <p>For a complete list of publications, see the <a href="publications.html">publication page</a> or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
+          <dl id="pubmain" class="keypublist">
+          {for (p <- pubs.filter(_.isSelected).reverse) yield printPublication(p)}
+          </dl>
+          <p><a href="publications.html">more...</a></p>
+          {printCopyrightNotice()}
+
+      </div>)
+
     def printPublications(pubs: Seq[Publication]) =
-    <div>
-        <h2>Publications <span class="small">(<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>)</span></h2>
-        Key publications highlighted in yellow.
+        rowH2("Publications",
+    <div class="bib">
+        <p>Key publications highlighted in yellow.
+        A full publication list is available as <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
         {printFilterHeader(pubs)}
-        <dl id="pubmain">
+        <dl id="pubmain" class="fullpublist">
         {for (p <- pubs.reverse) yield printPublication(p)}
         </dl>
         <div id="pubgen"></div>
-        <p class="copyrightnotice">Copyright Notice: This material is presented to ensure timely
-        dissemination of scholarly and technical work. Copyright and all rights
-        therein are retained by authors or by other copyright holders. All
-        persons copying this information are expected to adhere to the terms
-        and constraints invoked by each author's copyright. In most cases,
-        these works may not be reposted without the explicit permission of the
-        copyright holder.</p>
-    </div>
+        {printCopyrightNotice()}
+    </div>)
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
-    def printCommitteePicture():NodeSeq = <a href="http://program-transformation.org/GPCE12">
+    def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE12">
     <img title="Generative Programming and Component Engineering 2012" src="ck_files/GPCE-201.png" alt="GPCE2012" width="135" height="200" />
     </a>
 
@@ -170,14 +185,13 @@ object GenHtml extends App {
     )
 
 
-    def printPrivate() = {
-        <h2>Private Interests</h2>
+    def printPrivate() = rowH2(
+        "Private Interests",
         <p><a href={URL("http://www.flickr.com/photos/p0nk/sets/72157627689187184/").toString}>Juggling</a>,
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
         <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
         Concerts (<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/concerts.xhtml").toString}>past</a>
-        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p>
-    }
+        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p>)
 
     def printSpelling() =
         <p class="spelling">
@@ -200,24 +214,27 @@ object GenHtml extends App {
 
 
     def printAward(award: Award) = row(<span class="date">{new SimpleDateFormat("MMM. yyyy") format award.date}</span>,
-        <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+
-            {if (!award.extraLinks.isEmpty)
+        <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+ {
+            if (!award.extraLinks.isEmpty)
                 <span> ({
                     for (ex <- award.extraLinks.dropRight(1))
                     yield <span><a href={award.extraLinks.head._1.toString}>{award.extraLinks.head._2}</a>, </span>
                     }{<span><a href={award.extraLinks.last._1.toString}>{award.extraLinks.last._2}</a></span>})</span>
-            else <span></span>}
+            else <span></span>
+        }
     )
 
-    def printAwards(awards: Seq[Award]) =  rowH2(        "Grants & Awards")++
-                  {for (r <- awards) yield printAward(r)}.flatten
+    def printAwards(awards: Seq[Award]) = rowH2("Grants & Awards") ++ {
+        for (r <- awards) yield printAward(r)
+    }.flatten
 
 
-    def printProjects(pr: Seq[(URL, String, Option[String])]): NodeSeq =
-        <h2>Software / Projects</h2> :+
-          <ul>
-              {for (p <- pr) yield <li><a href={p._1.toString}>{p._2}</a>{if (p._3.isDefined) " (" + p._3.get + ")"}</li>}
-          </ul>
+    def printProjects(pr: Seq[(URL, String, String, Option[String])]): NodeSeq =
+        rowH2("Research Projects & Software") ++ {
+            for (p <- pr) yield
+                row(<span class="toolname">{p._2}</span>,
+                  <div><a href={p._1.toString}>{p._3}</a>{if (p._4.isDefined) " (" + p._4.get + ")"}</div>, "tool")
+        }.flatten
 
     def printTitle(spellingHint: Boolean = false): NodeSeq =
         <div class="grid_3 ">&nbsp;</div> :+
@@ -239,7 +256,7 @@ object GenHtml extends App {
 
     def printPicture(): NodeSeq = <img src="src/main/site/me.jpg" alt="Christian Kästner" />
 
-    def rowH2(title: String,body:NodeSeq=Nil, leftExtra:NodeSeq=null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body )
+    def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
 
     def printNews(): NodeSeq = rowH2("News") ++ {
         for (newsItem <- News.news.take(3))
@@ -257,21 +274,27 @@ object GenHtml extends App {
                 <div>See also the full <a href="teaching.html">teaching history</a>.</div>
                 )
 
+    def printCoolWall() =
+        rowH2("FOSD Cool Wall",
+            <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
+        <img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" />)
+
+
     def mainPage: NodeSeq =
         printTitle(true) ++
             row(printPicture(), printSummary()) ++
             printNews() ++
             printTeachingSummary(teaching) ++
             printCommittees(committees) ++
-                printAwards(awards)
+            printAwards(awards) ++
+            printProjects(projects) ++
+            printKeyPublications(publications) ++
+            printCoolWall() ++
+            printPrivate()
+
 
     def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
 
-    //            printProjects(projects) :+
-    //            printPublications(publications) :+
-    //            printSupervisedTheses(advisedTheses) :+
-    //            printCoolWall() :+
-    //            printPrivate()
 
     def printDoc(body: NodeSeq, title: String, filename: String, extraHeader: NodeSeq = null) = {
 
@@ -293,9 +316,9 @@ object GenHtml extends App {
         scala.xml.XML.save(filename, doc, "UTF-8", doctype = doct)
     }
 
-    printDoc(mainPage, CV.name + " :: CMU", "out.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
-
+    printDoc(mainPage, CV.name + " :: CMU", "out.html")
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", "teaching.html")
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name, "spelling.html")
+    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", "publications.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
 
 }
