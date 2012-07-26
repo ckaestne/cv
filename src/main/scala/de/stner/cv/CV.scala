@@ -1,5 +1,8 @@
 package de.stner.cv
 
+import xml.NodeSeq
+import java.util.GregorianCalendar
+
 
 object CV {
 
@@ -10,25 +13,38 @@ object CV {
     val title = "Dr.-Ing."
     val imgURL = "http://www.informatik.uni-marburg.de/~kaestner/me3.jpg"
 
-    def printSummary() =
+    def printSummary(): NodeSeq =
         <p>I am a post-doctoral researcher at the Philipps University Marburg interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
-    languages, and tools to <strong>implement variability in a disciplined way</strong>, to <strong>detect errors</strong>, and to <strong>improve program comprehension</strong> in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the <strong>Linux kernel</strong> in the <strong>TypeChef</strong> project.</p> :+
-    <p>I received my Master's in 2007 and my PhD in 2010 from the University of Magdeburg. For my work on <strong>virtual separation of concerns</strong>, I received the prestigious <strong>GI-Dissertation Award</strong> for the best computer-science dissertation 2010 in Germany/Austria/Switzerland. I am a member of the <strong>IFIP 2.11</strong> working group on program generation.</p> :+
-    <p>Profiles: <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, <a class="external-link" href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, <a class="external-link" href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, <a class="external-link" href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a>.</p>
-
-    def printAddress() =
-        <h2>Address</h2> :+
-        <div>
-            <div>Philipps Universit&auml;t Marburg (<a href="http://www.uni-marburg.de/">Link</a>)</div>
+        languages, and tools to
+        <strong>implement variability in a disciplined way</strong>,
+        to <strong>detect errors</strong>, and
+        to <strong>improve program comprehension</strong> in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the <strong>Linux kernel</strong> in the <strong>TypeChef</strong> project.</p> :+
+    <p>My research in keywords:
+        variability and reuse;
+        software product lines;
+        multidimensional separation of concerns;
+        modularity, cohesion, information hiding and module systems;
+        program comprehension;
+        virtual separation of concerns;
+        feature-oriented software development;
+        parsers, type systems, and lightweight program analyses;
+        refactoring;
+        aspect-orientation;
+        program synthesis;
+        feature interactions;
+        feature location;
+        Linux;
+        and empirical methods.</p> :+
+        <p>Profiles: <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, <a class="external-link" href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, <a class="external-link" href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, <a class="external-link" href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a>.</p> :+
+        <p><div>Philipps Universität Marburg (<a href="http://www.uni-marburg.de/">Link</a>)</div>
             <div>Department of Computer Science and Mathematics (<a title="Mathematik und Informatik" class="internal-link" href="http://www.uni-marburg.de/fb12">Link</a>)</div>
-            <div>Hans-Meerwein Str., 35032 Marburg, Germany</div>
-            <div>&nbsp;</div>
-            <div>Office: 05-D06</div>
-            <div>&nbsp;</div>
-            <div>Phone: ++49 6421 28 25349</div>
-            <div>Fax: ++49 6421 28 25419</div>
-            <div>E-mail: christian.kaestner (at) uni-marburg.de</div>
-        </div>
+                <div>Hans-Meerwein Str., 35032 Marburg, Germany</div>
+                    <div>&nbsp;</div>
+                        <div>Office: 05-D0</div>
+                            <div>&nbsp;</div>
+                                <div>Phone: ++49 6421 28 25349</div>
+                                    <div>Fax: ++49 6421 28 25419</div>
+                                        <div>E-mail: christian.kaestner (at) uni-marburg.de</div></p>
 
     val teaching = Seq(
         Course("Empirical Methods for Computer Scientists",
@@ -215,9 +231,14 @@ object CV {
 
 
     val awards: Seq[Award] = Seq(
+        Award("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering. German Research Foundation. 250 000 EUR, October 2012 – October 2015.",
+            URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
+            new GregorianCalendar(2012, 6, 1).getTime
+        ),
         Award(
             "**GI-Dissertationspreis:** Best Disseration Award of the German Computer Science Association, 2010",
             URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
+            new GregorianCalendar(2011, 10, 1).getTime,
             List(
                 (URL("http://www.gi.de/no_cache/aktuelles/meldungsdetails/meldung/beste-informatikdissertation-im-deutschsprachigen-raum-gi-dissertationspreis-fr-christian-kstner-387.html"), "Annoucement"),
                 (URL("http://www.flickr.com/photos/p0nk/6214434320/"), "Photo")
@@ -226,28 +247,34 @@ object CV {
         Award(
             "Distinguished-Paper Award at the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA) 2011",
             URL("http://splashcon.org/2011/program/273"),
+            new GregorianCalendar(2011, 10, 1).getTime,
             (URL("http://www.flickr.com/photos/p0nk/6317966864/in/photostream"), "Photo") :: Nil
         ),
         Award(
             "Best-Research-Paper Award at the International Software Product Line Conference 2011",
-            URL("http://www.splc2011.net/program-1/best-paper-awards/index.html")
+            URL("http://www.splc2011.net/program-1/best-paper-awards/index.html"),
+            new GregorianCalendar(2011, 8, 1).getTime
         ),
         Award(
             "Best-Dissertation Award of the School of Computer Science, University of Magdeburg, 2010",
-            URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html")
+            URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html"),
+            new GregorianCalendar(2010, 11, 1).getTime
         ),
         Award(
             "Research Award of the School of Computer Science, University of Magdeburg for the Best Paper, 2009",
-            URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html")
+            URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html"),
+            new GregorianCalendar(2009, 12, 1).getTime
         ),
         Award(
             "Software Engineering Award of the Denert Foundation for the Best Master's Thesis, 2007",
             URL("http://www.denert-stiftung.de/"),
+            new GregorianCalendar(2007, 9, 1).getTime,
             (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil
         ),
         Award(
             "Best-Graduate Award of the School of Computer Science, University of Magdeburg, 2007",
             URL("http://www.cs.uni-magdeburg.de/Bester_Absolvent.html"),
+            new GregorianCalendar(2007, 10, 1).getTime,
             (URL("http://www.flickr.com/photos/p0nk/6318413771/in/photostream"), "Photo") :: Nil
         )
     )

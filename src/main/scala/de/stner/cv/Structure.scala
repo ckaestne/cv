@@ -3,6 +3,7 @@ package de.stner.cv
 import scala.None
 import de.stner.cv.CVPublications._
 import java.io.File
+import java.util.Date
 
 object Config {
     val pdfWebPath = "pdf/"
@@ -397,7 +398,7 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
     }
 
-    override def toString = "Summer Term " + year
+    override def toString = "Summer " + year
 }
 
 case class WinterTerm(ayear: Int) extends Term(ayear) {
@@ -406,7 +407,7 @@ case class WinterTerm(ayear: Int) extends Term(ayear) {
         case WinterTerm(thatYear) => year.compareTo(thatYear)
     }
 
-    override def toString = "Winter Term " + year + "/" + (year + 1 - 2000)
+    override def toString = "Winter " + year + "/" + (year + 1 - 2000)
 }
 
 
@@ -645,4 +646,4 @@ object StructureTheses {
 }
 
 /**award name supports markdown */
-case class Award(name: String, url: URL, extraLinks: List[(URL, String)] = Nil)
+case class Award(name: String, url: URL, date: Date, extraLinks: List[(URL, String)] = Nil)

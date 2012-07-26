@@ -3,6 +3,7 @@ package de.stner.cv
 import de.stner.cv.StructureTheses.AThesis
 import xml._
 import dtd.{PublicID, DocType}
+import java.text.SimpleDateFormat
 
 
 object GenHtml extends App {
@@ -12,7 +13,8 @@ object GenHtml extends App {
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
 
-    def printCourse(course: Course, withKind: Boolean = false): Elem = <span>
+    def printCourse(course: Course, withKind: Boolean = false): Elem =
+        <span>
         {if (course.url != null)
             <a href={course.url.toString()}>{course.title}</a>
         else course.title}
@@ -26,18 +28,15 @@ object GenHtml extends App {
         } else "").markdownToHtml}
     </span>
 
-    def printTeaching(teaching: Seq[Course]) = {
-    <div><h2>Teaching</h2>{
-    val byTerm = teaching.groupBy(_.term)
-    for (term <- byTerm.keys.toSeq.sorted.reverse)
-    yield <div><p>{term}</p>
+    def printTeaching(teaching: Seq[Course]): NodeSeq = {
+        val byTerm = teaching.groupBy(_.term)
+        for (term <- byTerm.keys.toSeq.sorted.reverse) yield row(<span>{term}</span>,
       <ul>{
            for (course <- byTerm(term))
            yield <li>{printCourse(course)}</li>
-         }</ul>
-        </div>
-      }</div>
-    }
+         }</ul>)
+    }.flatten
+
 
     def printThesis(thesis: AThesis) =
         <dd>
@@ -158,14 +157,17 @@ object GenHtml extends App {
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
-    def printCommittees(committees: Seq[Committee]) =
-        <div>
-            <h2>Committees</h2>
-            {
+    def printCommitteePicture():NodeSeq = <a href="http://program-transformation.org/GPCE12">
+    <img title="Generative Programming and Component Engineering 2012" src="ck_files/GPCE-201.png" alt="GPCE2012" width="135" height="200" />
+    </a>
+
+    def printCommittees(committees: Seq[Committee]) = rowH2("Committees",
+            <div>{
                 for (c <- committees.dropRight(1))
                 yield printCommittee(c, true)
-            }{printCommittee(committees.last, false)}
-        </div>
+            }{printCommittee(committees.last, false)}</div>,
+        printCommitteePicture()
+    )
 
 
     def printPrivate() = {
@@ -183,9 +185,10 @@ object GenHtml extends App {
         It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
         The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronounciation.
         The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
-        To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>.</p>
+        To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
+        </p>
 
-    def printSpellingLink() = <span style="font-size:small"><a href="spelling.html" id="spellinglink">[pronounciation and spelling]</a></span>
+    def printSpellingLink() = <span style="font-size:small;position:absolute;top:0"><a href="spelling.html" id="spellinglink">[pronounciation and spelling]</a></span>
 
 
     def printResearchInterests(researchInterests: Seq[String]) =
@@ -196,46 +199,81 @@ object GenHtml extends App {
         </ul>
 
 
-    def printAward(award: Award) =
-        <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+ {
-            if (!award.extraLinks.isEmpty)
+    def printAward(award: Award) = row(<span class="date">{new SimpleDateFormat("MMM. yyyy") format award.date}</span>,
+        <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+
+            {if (!award.extraLinks.isEmpty)
                 <span> ({
                     for (ex <- award.extraLinks.dropRight(1))
                     yield <span><a href={award.extraLinks.head._1.toString}>{award.extraLinks.head._2}</a>, </span>
                     }{<span><a href={award.extraLinks.last._1.toString}>{award.extraLinks.last._2}</a></span>})</span>
-        }
+            else <span></span>}
+    )
 
-    def printAwards(awards: Seq[Award]) =
-        <h2>Grants &amp; Awards</h2> :+
-              <ul>
-                  {for (r <- awards) yield <li>{printAward(r)}</li>}
-              </ul>
+    def printAwards(awards: Seq[Award]) =  rowH2(        "Grants & Awards")++
+                  {for (r <- awards) yield printAward(r)}.flatten
 
-    def printProjects(pr: Seq[(URL, String, Option[String])]) =
+
+    def printProjects(pr: Seq[(URL, String, Option[String])]): NodeSeq =
         <h2>Software / Projects</h2> :+
           <ul>
               {for (p <- pr) yield <li><a href={p._1.toString}>{p._2}</a>{if (p._3.isDefined) " (" + p._3.get + ")"}</li>}
           </ul>
 
-    val output =
-    <div>
-        <img src={imgURL} alt={name} style="float:right" />
-        <div><h1 style="display: inline;">{name}</h1> {printSpellingLink}</div>
-        <div id="spellingbox" style="display:none">{printSpelling()}</div>
-        {printSummary()}
-        {printAddress()}
-        {printTeaching(teaching.filter(_.term >= WinterTerm(2010)))}
-        {printResearchInterests(researchInterests)}
-        {printCommittees(committees)}
-        {printAwards(awards)}
-        {printProjects(projects)}
-        {printPublications(publications)}
-        {printSupervisedTheses(advisedTheses)}
-        {printCoolWall()}
-        {printPrivate()}
-    </div>
+    def printTitle(spellingHint: Boolean = false): NodeSeq =
+        <div class="grid_3 ">&nbsp;</div> :+
+        	<div class="grid_9 header headline">
+                {if (spellingHint)
+        <div><h1 style="display: inline;">Christian Kästner</h1> {printSpellingLink}</div>
+            else  <h1>Christian Kästner</h1>}
+                <div id="spellingbox" style="display:none">{printSpelling()}</div>
+        <p>Assistant Professor - Carnegie Mellon University</p>
+        	</div> :+
+        	<div class="clear margin_40">&nbsp;</div>
 
-    def printDoc(body: Elem, title: String, filename: String, extraHeader: NodeSeq = null) = {
+    val nbsp: Node = <span>&nbsp;</span>.child.head
+
+    def row(left: NodeSeq, right: NodeSeq, marginafter: String = "") =
+        <div class="grid_3 right">{if (left == null) nbsp else left}</div> :+
+        	<div class="grid_9">{if (right == null) nbsp else right}</div> :+
+        	<div class={if (marginafter.length > 0) "clear margin_" + marginafter else "clear"}>&nbsp;</div>
+
+    def printPicture(): NodeSeq = <img src="src/main/site/me.jpg" alt="Christian Kästner" />
+
+    def rowH2(title: String,body:NodeSeq=Nil, leftExtra:NodeSeq=null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body )
+
+    def printNews(): NodeSeq = rowH2("News") ++ {
+        for (newsItem <- News.news.take(3))
+        yield row(
+        {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
+            <div class="newsheadline">{newsItem.title}</div> :+
+            <div class="newsbody">{newsItem.body}</div>
+        }, "newsitem")
+    }.flatten
+
+    def printTeachingSummary(teaching: Seq[Course]) =
+        rowH2("Teaching") ++
+            printTeaching(teaching.filter(_.term >= WinterTerm(2010))) ++
+            row(null,
+                <div>See also the full <a href="teaching.html">teaching history</a>.</div>
+                )
+
+    def mainPage: NodeSeq =
+        printTitle(true) ++
+            row(printPicture(), printSummary()) ++
+            printNews() ++
+            printTeachingSummary(teaching) ++
+            printCommittees(committees) ++
+                printAwards(awards)
+
+    def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
+
+    //            printProjects(projects) :+
+    //            printPublications(publications) :+
+    //            printSupervisedTheses(advisedTheses) :+
+    //            printCoolWall() :+
+    //            printPrivate()
+
+    def printDoc(body: NodeSeq, title: String, filename: String, extraHeader: NodeSeq = null) = {
 
         val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
@@ -243,18 +281,21 @@ object GenHtml extends App {
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <link rel="Stylesheet" type="text/css" href="src/main/site/cv.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/reset.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/text.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/960.css" />
                 <script type="text/javascript" src="src/main/site/jquery-1.7.2.min.js"></script>
                 {extraHeader}
-                <title>{CV.name}</title>
+                <title>{title}</title>
             </head>
-            <body>{body}</body>
+            <body><div class="container_12">{body}</div></body>
         </html>
         scala.xml.XML.save(filename, doc, "UTF-8", doctype = doct)
     }
 
-    printDoc(output, CV.name, "out.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
+    printDoc(mainPage, CV.name + " :: CMU", "out.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
 
-    printDoc(printSpelling(), CV.name, "spelling.html")
+    printDoc(teachingPage, CV.name + " :: Teaching :: CMU", "teaching.html")
+    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, "spelling.html")
 
 }

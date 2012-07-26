@@ -3,7 +3,7 @@ package de.stner.cv
 import java.io.FileWriter
 
 
-object GenLatex extends App {
+object GenLatex extends Object {
 
     import CV._
 
