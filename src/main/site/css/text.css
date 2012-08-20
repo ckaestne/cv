@@ -38,7 +38,7 @@ a:hover
 }
 
 li { margin-bottom:1em; }
-.bib dd {margin-top:1em}
+.bib dd {margin-bottom:2em}
 .bib blockquote {margin-left:20px;margin-top:10px;font-style:italic;font-size:90%}
 .fullpublist .selected {background-color:#ffffcc}
 .copyrightnotice { font-size:60%; font-style:italic}
@@ -49,7 +49,8 @@ p {line-height:148%;margin-bottom:1em}
 div {line-height:148%}
 
 #pubfilter { margin:2em 0; padding: 8px; background-color: #f3f0e9}
-
+.sep { font-weight:bold; }
+#coolwall{width:720px}
 
 	ul li {
 		list-style-type: none;

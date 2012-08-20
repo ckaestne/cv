@@ -40,7 +40,7 @@ object GenHtml extends App {
 
     def printThesis(thesis: AThesis) =
         <dd>
-          <a name={thesis.genKey}>{thesis.author.fullname}</a>.
+          <a name={thesis.genKey} />{thesis.author.fullname}.
           <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
@@ -67,7 +67,7 @@ object GenHtml extends App {
     }
 
 
-    def printPublication(p: Publication) = {
+    def printPublication(p: Publication): NodeSeq = {
         val links = p.links + (BIB -> URL("./thesis_bib.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
@@ -80,7 +80,12 @@ object GenHtml extends App {
                </div></dd>
     }
 
-    private def sep =  <strong class="sep">|</strong>
+    def printPublicationRow(p: Publication): NodeSeq = row(
+    <span class="pubshort">{p.venue.short} {p.venue.year}</span>,
+    <div class="bib"><dl>{printPublication(p)}</dl></div>
+    )
+
+    private def sep =  <span class="sep">|</span>
 
     //get all topics, sorted by number of publications
     def getTopics(pubs: Seq[Publication]): Seq[(Topic, Int)] =
@@ -145,17 +150,14 @@ object GenHtml extends App {
               these works may not be reposted without the explicit permission of the
               copyright holder.</p>
 
-    def printKeyPublications(pubs: Seq[Publication]) =
+    def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
         rowH2("Key Publications",
-      <div class="bib">
-          <p>For a complete list of publications, see the <a href="publications.html">publication page</a> or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
-          <dl id="pubmain" class="keypublist">
-          {for (p <- pubs.filter(_.isSelected).reverse) yield printPublication(p)}
-          </dl>
-          <p><a href="publications.html">more...</a></p>
-          {printCopyrightNotice()}
-
-      </div>)
+        <p>For a complete list of publications, see the <a href="publications.html">publication page</a> or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>) ++ {
+            for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
+        }.flatten ++
+            row(null,
+                <p><a href="publications.html">more...</a></p> ++
+                    printCopyrightNotice())
 
     def printPublications(pubs: Seq[Publication]) =
         rowH2("Publications",
@@ -185,7 +187,7 @@ object GenHtml extends App {
     )
 
 
-    def printPrivate() = rowH2(
+    def printPrivate(): NodeSeq = rowH2(
         "Private Interests",
         <p><a href={URL("http://www.flickr.com/photos/p0nk/sets/72157627689187184/").toString}>Juggling</a>,
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
