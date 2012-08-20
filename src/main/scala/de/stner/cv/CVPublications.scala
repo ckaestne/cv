@@ -39,6 +39,7 @@ object CVPublications {
     val Apel = Person("Sven", "Apel")
     val Saake = Person("Gunter", "Saake")
     val Feigenspan = Person("Janet", "Feigenspan")
+    val JSiegmund = Person("Janet", "Siegmund")
     val Leich = Person("Thomas", "Leich")
     val Kuhlemann = Person("Martin", "Kuhlemann")
     val Trujillo = Person("Salvador", "Trujillo")
@@ -82,6 +83,12 @@ object CVPublications {
     val Hanenberg = Person("Stefan", "Hanenberg")
     val Schaefer = Person("Ina", "Schaefer")
     val Czarnecki = Person("Krzysztof", "Czarnecki")
+    val Benduhn = Person("Fabian", "Benduhn")
+    val Meinicke = Person("Jens", "Meinicke")
+    val Eichberg = Person("Michael", "Eichberg")
+    val vonRhein = Person("Alexander", "von Rhein")
+    val Pusch = Person("Jonas", "Pusch")
+    val Brechmann = Person("André", "Brechmann")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
@@ -118,6 +125,7 @@ object CVPublications {
     val SC09 = Conference("SC", 2009, "8th International Conference on Software Composition (SC)").series("Lecture Notes in Computer Science").volume(5634).publisher(Springer).location("Zurich, Switzerland").issn("0302-9743").isbn("978-3-642-02654-6").acceptanceRate(10, 30).month(7)
     val FOSD09 = FOSD(2009).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10)
     val FOSD10 = FOSD(2010).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").acceptanceRate(11, 20).month(10)
+    val FOSD12 = FOSD(2012).location("Dresden").isbn("978-1-4503-1309-4").acceptanceRate(8, 14).month(9)
     val ICSE11Demo = ICSE(2011).subtitle("Demonstration Track").acceptanceRate(22, 60).location("Waikiki, Honolulu, HI").publisher(ACM).isbn("978-1-4503-0445-0")
     val SPLC11 = SPLC(2011).publisher(IEEE).location("Munich").month(8)
     val OOPSLA11 = OOPSLA(2011).acceptanceRate(61, 166).month(10).isbn("978-1-4503-0940-0").location("Portland, OR")
@@ -2173,6 +2181,150 @@ We discuss the design and implementation of such a module system on a core
 calculus and provide an implementation for C, which we use to type check
 the open source product line Busybox with 811 compile-time options.""").
             topic(modularity, vaanalysis, typechef)
+
+
+        ,
+
+        InProceedings(
+            Seq(Kaestner, Ostermann, Erdweg),
+            "A Variability-Aware Module System",
+            OOPSLA(2012).acceptanceRate(57, 228).month(10).location("Tucson, AZ"),
+            ToAppear(),
+            Map(PDF -> PDFFile("oopsla12.pdf")),
+            """
+              |Module systems enable a divide and conquer strategy to software development.
+              |To implement compile-time variability in software product lines, modules
+              |can be composed in different combinations. However, this way variability
+              |dictates a dominant decomposition. Instead, we introduce a variability-aware
+              |module system that supports compile-time variability *inside* a module and its
+              |interface. This way, each module can be considered a product line that can
+              |be type checked in isolation. Variability can crosscut multiple modules. The
+              |module system breaks with the antimodular tradition of a global variability
+              |model in product-line development and provides a path toward software
+              |ecosystems and product lines of product lines developed in an open fashion.
+              |We discuss the design and implementation of such a module system on a core
+              |calculus and provide an implementation for C, which we use to type check
+              |the open source product line Busybox with 811 compile-time options.
+            """.stripMargin
+
+        ).selected().topic(modularity, vaanalysis, typechef).crosscite("superseeds \\cite{KOE:MR12}").
+            note("to appear"),
+
+        Article(
+            Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
+            "{FeatureIDE}: An Extensible Framework for Feature-Oriented Software Development",
+            SCP(2012),
+            ToAppear(),
+            Map(DOI -> DOI("10.1016/j.scico.2012.06.002")),
+            """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
+        ).note("to appear; accepted 7 Jun 2012"),
+
+        InProceedings(
+            Seq(Giarrusso, Ostermann, Eichberg, Rendel, Kaestner),
+            "Reifying and Optimizing Collection Queries for Modularity",
+            Venue("OOPSLA", 2012, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).location("Tucson, AZ").publisher(ACM),
+            ToAppear(),
+            Map(PDF -> PDFFile("oopsla12.pdf")),
+            ""
+        ).note("Poster; to appear; accepted 27 Jul 2012"),
+
+        Article(
+            Seq(Siegmund, Rosenmueller, Kaestner, Giarrusso, Apel, Kolesnikov),
+            "Scalable Prediction of Non-functional Properties in Software Product Lines: Footprint and Memory Consumption",
+            IST(2012),
+            ToAppear(),
+            Map(PDF -> PDFFile("IST12.pdf")),
+            """
+              |Context: A software product line is a family of related software products,
+              |typically created from a set of common assets. Users select features to derive
+              |a product that fulfills their needs. Users often expect a product to have
+              |specific non-functional properties, such as a small footprint or a bounded
+              |response time. Because a product line may have an exponential number of
+              |products with respect to its features, it is usually not feasible to generate
+              |and measure non-functional properties for each possible product.
+              |Objective: Our overall goal is to derive optimal products with respect to
+              |non-functional requirements by showing customers which features must be
+              |selected.
+              |Method: We propose an approach to predict a product’s non-functional
+              |properties based on the product’s feature selection. We aggregate the influence
+              |of each selected feature on a non-functional property to predict a
+              |product’s properties. We generate and measure a small set of products and,
+              |by comparing measurements, we approximate each feature’s influence on
+              |the non-functional property in question. As a research method, we conducted
+              |controlled experiments and evaluated prediction accuracy for the
+              |non-functional properties footprint and main-memory consumption. But,
+              |in principle, our approach is applicable for all quantifiable non-functional
+              |properties.
+              |Results: With nine software product lines, we demonstrate that our approach
+              |predicts the footprint with an average accuracy of 94\,\%, and an accuracy
+              |of over 99\,\% on average if feature interactions are known. In a further
+              |series of experiments, we predicted main memory consumption of six customizable
+              |programs and achieved an accuracy of 89\,\% on average.
+              |Conclusion: Our experiments suggest that, with only few measurements,
+              |it is possible to accurately predict non-functional properties of products of
+              |a product line. Furthermore, we show how already little domain knowledge
+              |can improve predictions and discuss trade-offs between accuracy and required
+              |number of measurements. With this technique, we provide a basis for many
+              |reasoning and product-derivation approaches.
+            """.stripMargin
+        ).note("to appear; accepted 30 Jul 2012"),
+
+        InProceedings(
+            Seq(Erdweg, Rendel, Kaestner, Ostermann),
+            "Layout-Sensitive Generalized Parsing",
+            SLE(2012).acceptanceRate(20, 62),
+            ToAppear(),
+            Map(PDF -> PDFFile("sle12.pdf")),
+            """
+              |The theory of context-free languages is well-understood and context-free parsers can be used as off-the-shelf tools in practice. In particular, to use a context-free parser framework, a user does not need to understand its internals but can specify a language declaratively as a grammar. However, many languages in practice are not context-free. One particularly important class of such languages is layout-sensitive languages, in which the structure of code depends on indentation and whitespace. For example, Python, Haskell, F\#, and Markdown use indentation instead of curly braces to determine the block structure of code. Their parsers (and lexers) are not declaratively specified but hand-tuned to account for layout-sensitivity.
+              |To support *declarative* specifications of layout-sensitive languages, we propose a parsing framework in which a user can annotate layout in a grammar as constraints on the relative positioning of tokens in the parsed subtrees. For example, a user can declare that a block consists of statements that all start on the same column. We have integrated layout constraints into SDF and implemented a layout-sensitive generalized parser as an extension of generalized LR parsing. We evaluate the correctness and performance of our parser by parsing 33290 open-source Haskell files. Layout-sensitive generalized parsing is easy to use, and its performance overhead compared to layout-insensitive parsing is small enough for most practical applications.
+            """.stripMargin
+        ).note("to appear"),
+
+        InProceedings(
+            Seq(JSiegmund, Kaestner, Liebig, Apel),
+            "Comparing Program Comprehension of Physically and Virtually Separated Concerns",
+            FOSD12,
+            ToAppear(),
+            Map(),
+            """
+              |It is common believe that separating source code along concerns
+              |or features improves program comprehension of source
+              |code. However, empirical evidence is mostly missing. In this
+              |paper, we design a controlled experiment to evaluate that
+              |believe for feature-oriented programming based on maintenance
+              |tasks with human participants. We validate our
+              |experiment with a pilot study, which already preliminarily
+              |confirms that students use different strategies to complete
+              |maintenance tasks.
+            """.stripMargin
+        ).note("to appear"),
+
+        InProceedings(
+            Seq(Kaestner, vonRhein, Erdweg, Pusch, Apel, Rendel, Ostermann),
+            "Toward Variability-Aware Testing",
+            FOSD12,
+            ToAppear(),
+            Map(),
+            """We investigate how to execute a unit test in all configurations of a product line without generating each product in isolation in a brute-force fashion. Learning from variability-aware analyses, we (a) design and implement a variability-aware interpreter and (b) reencode variability of the product line to simulate the test cases with a model checker. The interpreter internally reasons about variability, executing paths not affected by variability only once for the whole product line. The model checker achieves similar results by reusing powerful off-the-shelf analyses. We experimented with a prototype implementation for each strategy. We compare both strategies and discuss trade-offs and future directions."""
+        ).note("to appear"),
+
+
+        InProceedings(
+            Seq(JSiegmund, Brechmann, Apel, Kaestner, Liebig, Leich, Saake),
+            "Toward Measuring Program Comprehension with Functional Magnetic Resonance Imaging",
+            Conference("FSE-NIER", 2012, "20th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
+            ToAppear(),
+            Map(),
+            """
+              |Program comprehension is an often evaluated, internal cognitive process.
+              |In neuroscience, *functional magnetic resonance (fMRI)* imaging is used to
+              |visualize such internal cognitive processes. We propose an experimental design
+              |to measure program comprehension based on fMRI. In the long run, we hope to
+              |answer questions like *What distinguishes good programmers from bad programmers?*
+              |or *What makes a good programmer?*
+            """.stripMargin
+        ).note("to appear")
 
 
     )

@@ -11,6 +11,7 @@ class StringTexHelper(str: String) {
         replace("ü", "{\\\"u}").
         replace("ä", "{\\\"a}").
         replace("ö", "{\\\"o}").
+        replace("é", "{\\'e}").
         replace("ß", "{\\ss}")
 
     def toId = toAscii.replaceAll("\\W", "")
