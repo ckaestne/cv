@@ -44,7 +44,7 @@ object GenHtml extends App {
           <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
-        [ <a href={"./thesis_bib.html#" + thesis.genKey}>bib</a>
+        [ <a href={"./bibtex.html#" + thesis.genKey}>bib</a>
             {if (thesis.pdf != null)
             <span>| <a href={thesis.pdf.toString()}>.pdf</a></span>
             }]
@@ -68,7 +68,7 @@ object GenHtml extends App {
 
 
     def printPublication(p: Publication): NodeSeq = {
-        val links = p.links + (BIB -> URL("./thesis_bib.html#" + p.genKey))
+        val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
                    {p.render(DefaultBibStyle).markdownToHtml}
@@ -281,6 +281,9 @@ object GenHtml extends App {
             <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
         <img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" />)
 
+    def printFullBibtex(): NodeSeq =
+        for (p <- CV.publications)
+        yield <div><a name={p.genKey} /><pre>{p.toBibtex()}</pre></div>
 
     def mainPage: NodeSeq =
         printTitle(true) ++
@@ -322,5 +325,6 @@ object GenHtml extends App {
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", "teaching.html")
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name, "spelling.html")
     printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", "publications.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
+    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name, "bibtex.html")
 
 }

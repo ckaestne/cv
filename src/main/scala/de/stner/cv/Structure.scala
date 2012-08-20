@@ -36,6 +36,8 @@ object InProceedings {
             "In *Proceedings of the %s (%s)*, ".format(pub.venue.name, pub.venue.short) +
                 pub.venue.renderVolSeries + renderPages(pub) + pub.venue.renderPublisher + pub.venue.renderDate + "."
         }
+
+        override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("booktitle" -> "Proceedings of the %s (%s)".format(p.venue.name, p.venue.short))
     }
 
 }
@@ -61,6 +63,8 @@ object Article {
             "*" + pub.venue.name + (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "") + "*, " +
                 renderVolNumber(pub.venue) + renderPages(pub, true) + pub.venue.renderDate + "."
         }
+
+        override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("journal" -> p.venue.name)
     }
 }
 
@@ -72,11 +76,13 @@ object Thesis {
               school: Publisher,
               links: Map[LinkKind, URL],
               abstr: String) =
-        new Publication(renderer, authors, title, Venue(null, year, typ, KMisc, null).month(month).publisher(school), null, links, abstr)
+        new Publication(renderer, authors, title, Venue(null, year, typ, KMisc, None).month(month).publisher(school), null, links, abstr)
 
     val renderer = new PublicationRenderer {
         def renderRest(pub: Publication, style: BibStyle) =
             pub.venue.name + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
+
+        override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("institution" -> p.venue.publisher.map(_.name).getOrElse(""))
     }
 }
 
@@ -95,6 +101,8 @@ object TechReport {
             assert(pub.venue.kind == KTechnicalReport, "TechReport with venue.kind=" + pub.venue.kind + " not supported")
             "Technical Report " + pub.venue.number.get + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
         }
+
+        override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("institution" -> p.venue.publisher.map(_.name).getOrElse(""))
     }
 }
 
@@ -115,6 +123,9 @@ object Book {
                 "*" + pub.title + "*. [!]" +
                 pub.venue.renderPublisher + pub.venue.renderDate + "." +
                 (pub.note.map("[!] " + _ + ".").getOrElse(""))
+
+        override def getBibtexAuthorField(p: Publication): Map[String, String] =
+            Map("editor" -> p.authors.map(_.fullname.toTex).mkString(" and "))
     }
 }
 
@@ -134,6 +145,8 @@ object InBook {
             "In *%s*, ".format(pub.venue.name) +
                 pub.venue.renderVolSeries + renderPages(pub) + pub.venue.renderPublisher + pub.venue.renderDate + "."
         }
+
+        override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("booktitle" -> p.venue.name)
     }
 }
 
@@ -159,13 +172,13 @@ abstract class PublicationRenderer {
         else p.authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(p.authors.last)
     }
 
+    private def pextr(e: String): String = if (e == null) "" else ", " + e
 
     def renderPages(p: Publication, short: Boolean = false) = {
-        def extr(e: String): String = if (e == null) "" else ", " + e
         if (p.pages == null) ""
         else p.pages match {
-            case Pages(a, b, e) if (a == b) => (if (short) "" else "page ") + a + extr(e) + ", "
-            case Pages(a, b, e) => (if (short) "" else "pages ") + "%s--%s%s, ".format(a, b, extr(e))
+            case Pages(a, b, e) if (a == b) => (if (short) "" else "page ") + a + pextr(e) + ", "
+            case Pages(a, b, e) => (if (short) "" else "pages ") + "%s--%s%s, ".format(a, b, pextr(e))
             case PagesStr(s) => s + ", "
             case ToAppear() => ""
         }
@@ -175,6 +188,54 @@ abstract class PublicationRenderer {
         p.venue.acceptanceRate.map(
             e => " Acceptance rate: %d %% (%d/%d).".format(scala.math.round(e._1.toDouble / e._2.toDouble * 100), e._1, e._2)
         ).getOrElse("")
+
+    protected def getBibtexAuthorField(p: Publication): Map[String, String] =
+        Map("author" -> p.authors.map(_.fullname.toTex).mkString(" and "))
+
+    def getBibtexFields(p: Publication): Map[String, String] = {
+        var r = getBibtexAuthorField(p) ++ Map(
+            "title" -> p.title,
+            "year" -> p.venue.year.toString
+        )
+        if (p.pages != null) p.pages match {
+            case Pages(a, b, e) => r += ("pages" -> "%s--%s%s".format(a, b, pextr(e)))
+            case PagesStr(s) => r += ("pages" -> s)
+            case _ =>
+        }
+        if (p.note.isDefined)
+            r += ("note" -> p.note.get)
+        for ((lkind, url) <- p.links)
+            r += (lkind.bibtexKey -> url.toString)
+        if (p.venue.url.isDefined)
+            r += ("vurl" -> p.venue.url.get.toString)
+        if (p.venue.publisher.isDefined && p.venue.publisher.get != null)
+            r = r + ("pubisher" -> p.venue.publisher.get.name) + ("address" -> p.venue.publisher.get.address)
+        if (p.venue.location.isDefined)
+            r += ("location" -> p.venue.location.get)
+        if (p.venue.month.isDefined)
+            r += ("month" -> p.venue.month.get.toBibString)
+        if (p.venue.number.isDefined)
+            r += ("number" -> p.venue.number.get.toString)
+        if (p.venue.volume.isDefined)
+            r += ("volume" -> p.venue.volume.get.toString)
+        if (p.venue.series.isDefined)
+            r += ("series" -> p.venue.series.get.toString)
+
+        r
+    }
+
+    def toBibtex(p: Publication): String =
+        "@" + (p.venue.kind match {
+            case KInConferenceProceedings => "inproceedings"
+            case KWorkshopDemoTool => "inproceedings"
+            case KJournal => "article"
+            case KTechnicalReport => "techreport"
+            case KMisc => "misc"
+            case KInvited => "misc"
+        }) + "{" + p.genKey + ",\n" +
+            getBibtexFields(p).map(v => "\t" + v._1 + "={" + v._2 + "},").mkString("\n") +
+            "\n}"
+
 }
 
 class Publication(
@@ -230,6 +291,9 @@ class Publication(
      * renders bibtex entry as line with markdown ** and *
      */
     def render(style: BibStyle): String = renderer.render(this, style)
+
+    def toBibtex(): String = renderer.toBibtex(this)
+
 }
 
 
@@ -247,14 +311,20 @@ object DefaultBibStyle extends BibStyle {
 
 trait LinkKind {
     def print: String
+
+    def bibtexKey: String = print
 }
 
 object PDF extends LinkKind {
     def print = ".pdf"
+
+    override def bibtexKey = "pdf"
 }
 
 object HTTP extends LinkKind {
     def print = "http"
+
+    override def bibtexKey = "url"
 }
 
 object BIB extends LinkKind {
@@ -299,11 +369,17 @@ case class PagesStr(str: String) extends PPages
 
 case class ToAppear() extends PPages
 
-sealed abstract class Month
+sealed abstract class Month {
+    def toBibString: String
+}
 
-case class MonthNr(nr: Int) extends Month
+case class MonthNr(nr: Int) extends Month {
+    def toBibString: String = nr.toString
+}
 
-case class MonthStr(str: String) extends Month
+case class MonthStr(str: String) extends Month {
+    def toBibString: String = str
+}
 
 
 case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
