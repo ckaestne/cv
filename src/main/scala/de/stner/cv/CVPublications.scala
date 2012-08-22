@@ -1430,7 +1430,7 @@ object CVPublications {
             "Access Control in Feature-Oriented Programming",
             SCP(2012).subtitle("Special Issue on Feature-Oriented Software Development").month(3).volume(77).number(3),
             Pages(174, 187),
-            Map(HTTP -> PDFFile("SCP_FOSD2010.pdf"),
+            Map(PDF -> PDFFile("SCP_FOSD2010.pdf"),
                 DOI -> DOI("10.1016/j.scico.2010.07.005")),
             """In feature-oriented programming (FOP) a programmer decomposes a program in
         terms of features. Ideally, features are implemented modularly so that they can be
@@ -1452,7 +1452,7 @@ object CVPublications {
             "Language-Independent Reference Checking in Software Product Lines",
             FOSD10,
             Pages(64, 71),
-            Map(HTTP -> PDFFile("FOSD10-ftweezer.pdf"),
+            Map(PDF -> PDFFile("FOSD10-ftweezer.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?315789")),
             """
         *Feature-Oriented Software Development* (FOSD) is a paradigm
@@ -1475,7 +1475,7 @@ object CVPublications {
             "TypeChef: Toward Type Checking #ifdef Variability in C",
             FOSD10,
             Pages(25, 32),
-            Map(HTTP -> PDFFile("FOSD10-typechef.pdf"),
+            Map(PDF -> PDFFile("FOSD10-typechef.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?315774")),
             """Software product lines have gained momentum as an approach to
         generate many variants of a program, each tailored to a specific
@@ -1513,7 +1513,7 @@ object CVPublications {
             VAMOS(2011).month(1).location("Namur, Belgium").isbn("978-1-4503-0570-9").publisher(ACM).acceptanceRate(21, 38),
             Pages(137, 140),
             Map(ACMLink -> URL("http://dl.acm.org/authorize?468359"),
-                HTTP -> PDFFile("vamos11.pdf")),
+                PDF -> PDFFile("vamos11.pdf")),
             """
         The C preprocessor is commonly used to implement
         variability. Given a feature selection, code fragments
@@ -1540,7 +1540,7 @@ object CVPublications {
             Conference("AOSD", 2011, "10th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
                 month(3).acceptanceRate(21, 92),
             Pages(191, 202),
-            Map(HTTP -> PDFFile("AOSD11.pdf"),
+            Map(PDF -> PDFFile("AOSD11.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?473237")),
             """The C preprocessor cpp is a widely used tool for implementing
         variable software. It enables programmers to express
@@ -1576,7 +1576,7 @@ object CVPublications {
             "Type Checking Annotation-Based Product Lines",
             TOSEM(2012).volume(21).number(3),
             ToAppear(),
-            Map(HTTP -> PDFFile("tosem11.pdf"),
+            Map(PDF -> PDFFile("tosem11.pdf"),
                 EPUB -> PDFFile("tosem11_ereader.pdf")),
             """
         Software-product-line engineering is an efficient means to generate a family of program variants for a domain
@@ -1597,7 +1597,7 @@ object CVPublications {
             "{JavaAdaptor}: Unrestricted Dynamic Software Updates for {Java}",
             ICSE11Demo,
             Pages(989, 991),
-            Map(HTTP -> PDFFile("icse2011_demo_ja.pdf"),
+            Map(PDF -> PDFFile("icse2011_demo_ja.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?414157"),
                 DOI -> DOI("10.1145/1985793.1985970")),
             "").hideabstract().topic(dsu),
@@ -1608,7 +1608,7 @@ object CVPublications {
             "{View Infinity}: A Zoomable Interface for Feature-Oriented Software Development",
             ICSE11Demo,
             Pages(1031, 1033),
-            Map(HTTP -> PDFFile("icse2011_demo_vi.pdf"),
+            Map(PDF -> PDFFile("icse2011_demo_vi.pdf"),
                 ACMLink -> URL("http://dl.acm.org/authorize?414168"),
                 DOI -> DOI("10.1145/1985793.1985987")),
             "").hideabstract().topic(vsoc),
@@ -1618,7 +1618,7 @@ object CVPublications {
             "Using Background Colors to Support Program Comprehension in Software Product Lines",
             EASE(2011).publisher(Publisher("Institution of Engineering and Technology", "")).acceptanceRate(20, 50),
             Pages(66, 75),
-            Map(HTTP -> PDFFile("ease2011.pdf")),
+            Map(PDF -> PDFFile("ease2011.pdf")),
             """
         Background: Software product line engineering provides
         an effective mechanism to implement variable software.
@@ -1650,8 +1650,8 @@ object CVPublications {
             ECOOP(2011).acceptanceRate(26, 100).series(LNCS).volume(6813),
             Pages(155, 178),
             Map(DOI -> DOI("10.1007/978-3-642-22655-7_8"),
-                HTTP -> PDFFile("ecoop11.pdf"),
-                DOI -> PDFFile("ecoop11_ereader.pdf")),
+                PDF -> PDFFile("ecoop11.pdf"),
+                EPUB -> PDFFile("ecoop11_ereader.pdf")),
             """
         What is modularity? Which kind of modularity should developers strive for?
         Despite decades of research on modularity, these basic questions have
@@ -1683,7 +1683,7 @@ object CVPublications {
             "Scalable Prediction of Non-functional Properties in Software Product Lines",
             SPLC11.acceptanceRate(20, 69),
             Pages(160, 169),
-            Map(HTTP -> PDFFile("SPLC11_nfp.pdf")),
+            Map(PDF -> PDFFile("SPLC11_nfp.pdf")),
             """A software product line (SPL) is a family of related software products, from which users can derive a product that fulfills their needs.
         Often, users expect a product to have specific non-functional properties, for example, to not exceed a footprint limit or to respond in a given time frame. Unfortunately, it is usually not feasible to generate and measure non-functional properties for each possible product of an SPL in isolation, because an SPL can contain millions of products. Hence, we propose an approach to *estimate* each product's non-functional properties in advance, based on the product's configuration. To this end, we approximate non-functional properties *per features* and per feature interaction. We generate and measure a small set of products and approximated non-functional properties by comparing the measurements. Our approach is implementation independent and language independent. We present three different approaches with different trade-offs regarding accuracy and required number of measurements. With nine case studies, we demonstrate that our approach can predict non-functional properties with an accuracy of 2\%.""").
             note("**Best Paper Award**").topic(nfp, spl, empirical),
@@ -1694,7 +1694,7 @@ object CVPublications {
             "Abstract Features in Feature Modeling",
             SPLC11.acceptanceRate(20, 69),
             Pages(191, 200),
-            Map(HTTP -> PDFFile("SPLC11_af.pdf")),
+            Map(PDF -> PDFFile("SPLC11_af.pdf")),
             """
         A software product line is a set of program variants, typically generated from a common code base. Feature models describe variability in product lines by documenting features and their valid combinations. In product-line engineering, we need to reason about variability and program variants for many different tasks. For example, given a feature model, we might want to determine the number of all valid feature combinations or detect specific feature combinations for testing.
         However, we found that contemporary reasoning approaches can only reason about feature combinations, not about program variants, because they do not take abstract features into account. Abstract features are features used to structure a feature model that, however, do not have any impact at implementation level. Using existing feature-model reasoning mechanisms for product variants leads to incorrect results.
@@ -1779,7 +1779,7 @@ object CVPublications {
             "Semistructured Merge: Rethinking Merge in Revision Control Systems",
             ESECFSE(2011).month(9).location("Szeged, Hungary").acceptanceRate(34, 203),
             Pages(190, 200),
-            Map(HTTP -> PDFFile("esec11.pdf")),
+            Map(PDF -> PDFFile("esec11.pdf")),
             """
         An ongoing problem in revision control systems is how to resolve
         conflicts in a merge of independently developed revisions. Unstructured
@@ -1901,7 +1901,7 @@ object CVPublications {
                 "15th International Software Product Line Conference (SPLC), second volume (Demonstration)",
                 KWorkshopDemoTool).publisher(ACM).location("Munich").month(9).isbn("978-1-4503-0789-5"),
             Pages("48:1", "48:2"),
-            Map(HTTP -> PDFFile("SPLC11_demo.pdf"),
+            Map(PDF -> PDFFile("SPLC11_demo.pdf"),
                 DOI -> DOI("10.1145/2019136.2019192")),
             ""
         ).hideabstract().topic(vsoc),
@@ -2022,7 +2022,7 @@ object CVPublications {
             "Predicting Performance via Automated Feature-Interaction Detection",
             ICSE(2012).location("Zurich").acceptanceRate(87, 408).isbn("978-1-4673-1067-3").publisher(IEEE),
             Pages(167, 177),
-            Map(HTTP -> PDFFile("icse12.pdf")),
+            Map(PDF -> PDFFile("icse12.pdf")),
             """
         Customizable programs and program families
         provide user-selectable features to tailor a program to an
@@ -2274,7 +2274,7 @@ the open source product line Busybox with 811 compile-time options.""").
             "Layout-Sensitive Generalized Parsing",
             SLE(2012).acceptanceRate(20, 62),
             ToAppear(),
-            Map(PDF -> PDFFile("sle12.pdf")),
+            Map(/*PDF -> PDFFile("sle12.pdf")*/),
             """
               |The theory of context-free languages is well-understood and context-free parsers can be used as off-the-shelf tools in practice. In particular, to use a context-free parser framework, a user does not need to understand its internals but can specify a language declaratively as a grammar. However, many languages in practice are not context-free. One particularly important class of such languages is layout-sensitive languages, in which the structure of code depends on indentation and whitespace. For example, Python, Haskell, F\#, and Markdown use indentation instead of curly braces to determine the block structure of code. Their parsers (and lexers) are not declaratively specified but hand-tuned to account for layout-sensitivity.
               |To support *declarative* specifications of layout-sensitive languages, we propose a parsing framework in which a user can annotate layout in a grammar as constraints on the relative positioning of tokens in the parsed subtrees. For example, a user can declare that a block consists of statements that all start on the same column. We have integrated layout constraints into SDF and implemented a layout-sensitive generalized parser as an extension of generalized LR parsing. We evaluate the correctness and performance of our parser by parsing 33290 open-source Haskell files. Layout-sensitive generalized parsing is easy to use, and its performance overhead compared to layout-insensitive parsing is small enough for most practical applications.
