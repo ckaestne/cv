@@ -50,7 +50,10 @@ class Validate extends FunSuite {
     test("all publications should have pdfs (Warning level)") {
         for (p <- publications)
             if (!p.links.isEmpty && !p.links.contains(PDF))
-                System.err.println("Warning: publication %s does not have a pdf link".format(p.genKey))
+                if (p.pages == ToAppear())
+                    System.err.println("Info: publication %s still marked as `to appear'".format(p.genKey))
+                else
+                    System.err.println("Warning: publication %s does not have a pdf link".format(p.genKey))
     }
 
     test("unlinked pdfs") {

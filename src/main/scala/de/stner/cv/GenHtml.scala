@@ -282,7 +282,7 @@ object GenHtml extends App {
     def printCoolWall() =
         rowH2("FOSD Cool Wall",
             <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
-        <img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" />)
+        <a href="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png"><img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" /></a>)
 
     def printFullBibtex(): NodeSeq =
         for (p <- CV.publications)
@@ -328,18 +328,26 @@ object GenHtml extends App {
     def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
 
-    /** central build activities */
+    /**central build activities */
+    println("copying files.")
     val targetPath = new File("target/site")
     targetPath.mkdirs()
     FileUtils.cleanDirectory(targetPath)
 
-    var extraFilesPath =                    new File("src/main/site")
-    FileUtils.copyDirectory(extraFilesPath, targetPath)
+    FileUtils.copyDirectory(new File("src/main/site"), targetPath)
 
-    printDoc(mainPage, CV.name + " :: CMU",new File(targetPath,"index.html"))
-    printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath,"teaching.html"))
-    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, new File(targetPath,"spelling.html"))
-    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath,"publications.html"), getJSHeaderPublications())
-    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name,  new File(targetPath,"bibtex.html"))
+    val pdfDir = new File(targetPath, "pdf")
+    pdfDir.mkdir()
+    FileUtils.copyDirectory(new File("src/main/pdf"), pdfDir)
+
+
+
+    println("generating html.")
+    printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"))
+    printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
+    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, new File(targetPath, "spelling.html"))
+    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications())
+    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name, new File(targetPath, "bibtex.html"))
+    println("done.")
 
 }
