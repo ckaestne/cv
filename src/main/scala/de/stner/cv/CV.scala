@@ -14,7 +14,7 @@ object CV {
     val imgURL = "http://www.informatik.uni-marburg.de/~kaestner/me3.jpg"
 
     def printSummary(): NodeSeq =
-        <p>I am a post-doctoral researcher at the Philipps University Marburg interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
+        <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
         languages, and tools to
         <strong>implement variability in a disciplined way</strong>,
         to <strong>detect errors</strong>, and
@@ -36,15 +36,18 @@ object CV {
         Linux;
         and empirical methods.</p> :+
         <p>Profiles: <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, <a class="external-link" href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, <a class="external-link" href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, <a class="external-link" href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a>.</p> :+
-        <p><div>Philipps Universität Marburg (<a href="http://www.uni-marburg.de/">Link</a>)</div>
-            <div>Department of Computer Science and Mathematics (<a title="Mathematik und Informatik" class="internal-link" href="http://www.uni-marburg.de/fb12">Link</a>)</div>
-                <div>Hans-Meerwein Str., 35032 Marburg, Germany</div>
-                    <div>&nbsp;</div>
-                        <div>Office: 05-D0</div>
-                            <div>&nbsp;</div>
-                                <div>Phone: ++49 6421 28 25349</div>
-                                    <div>Fax: ++49 6421 28 25419</div>
-                                        <div>E-mail: christian.kaestner (at) uni-marburg.de</div></p>
+        <p> <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
+            <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
+            <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
+            <div>5000 Forbes Avenue, Pittsburgh, PA 15213, USA</div>
+            <div>&nbsp;</div>
+            <div>Office: Wean 5122</div>
+            <div>&nbsp;</div>
+            <div>E-mail: christian.kaestner (at) uni-marburg.de</div></p>
+
+    //    *                                <div>Phone: ++49 6421 28 25349</div>
+    //                                        <div>Fax: ++49 6421 28 25419</div>
+
 
     val teaching = Seq(
         Course("Empirical Methods for Computer Scientists",

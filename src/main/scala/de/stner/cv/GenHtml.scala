@@ -150,20 +150,21 @@ object GenHtml extends App {
               these works may not be reposted without the explicit permission of the
               copyright holder.</p>
 
+    // or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
         rowH2("Key Publications",
-        <p>For a complete list of publications, see the <a href="publications.html">publication page</a> or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>) ++ {
+        <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
             for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
         }.flatten ++
             row(null,
                 <p><a href="publications.html">more...</a></p> ++
                     printCopyrightNotice())
 
+    //        A full publication list is available as <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
     def printPublications(pubs: Seq[Publication]) =
         rowH2("Publications",
     <div class="bib">
-        <p>Key publications highlighted in yellow.
-        A full publication list is available as <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
+        <p>Key publications highlighted in yellow.</p>
         {printFilterHeader(pubs)}
         <dl id="pubmain" class="fullpublist">
         {for (p <- pubs.reverse) yield printPublication(p)}
@@ -245,7 +246,7 @@ object GenHtml extends App {
         <div><h1 style="display: inline;">Christian Kästner</h1> {printSpellingLink}</div>
             else  <h1>Christian Kästner</h1>}
                 <div id="spellingbox" style="display:none">{printSpelling()}</div>
-        <p>Assistant Professor - Carnegie Mellon University</p>
+        <p>Assistant Professor · Carnegie Mellon University · Institute of Software Research</p>
         	</div> :+
         	<div class="clear margin_40">&nbsp;</div>
 
@@ -313,6 +314,7 @@ object GenHtml extends App {
                 <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/text.css" />
                 <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/960.css" />
                 <script type="text/javascript" src="src/main/site/jquery-1.7.2.min.js"></script>
+                <script type="text/javascript" src="src/main/site/script.js"></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>

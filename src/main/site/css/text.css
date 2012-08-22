@@ -52,6 +52,16 @@ div {line-height:148%}
 .sep { font-weight:bold; }
 #coolwall{width:720px}
 
+#spellinglink {
+    font-size:50%
+}
+#spellingbox .spelling {
+ nowidth:90%;
+ background-color:#f3f0e9;
+ padding:4px;margin:4px;
+ border:1px solid #464646
+ }
+
 	ul li {
 		list-style-type: none;
 	}
