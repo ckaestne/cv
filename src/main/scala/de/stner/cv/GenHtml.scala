@@ -4,6 +4,8 @@ import de.stner.cv.StructureTheses.AThesis
 import xml._
 import dtd.{PublicID, DocType}
 import java.text.SimpleDateFormat
+import java.io.File
+import org.apache.commons.io.FileUtils
 
 
 object GenHtml extends App {
@@ -176,7 +178,7 @@ object GenHtml extends App {
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE12">
-    <img title="Generative Programming and Component Engineering 2012" src="ck_files/GPCE-201.png" alt="GPCE2012" width="135" height="200" />
+    <img title="Generative Programming and Component Engineering 2012" src="GPCE-201.png" alt="GPCE2012" width="135" height="200" />
     </a>
 
     def printCommittees(committees: Seq[Committee]) = rowH2("Committees",
@@ -257,7 +259,7 @@ object GenHtml extends App {
         	<div class="grid_9">{if (right == null) nbsp else right}</div> :+
         	<div class={if (marginafter.length > 0) "clear margin_" + marginafter else "clear"}>&nbsp;</div>
 
-    def printPicture(): NodeSeq = <img src="src/main/site/me.jpg" alt="Christian Kästner" />
+    def printPicture(): NodeSeq = <img src="me.jpg" alt="Christian Kästner" />
 
     def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
 
@@ -302,7 +304,7 @@ object GenHtml extends App {
     def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
 
 
-    def printDoc(body: NodeSeq, title: String, filename: String, extraHeader: NodeSeq = null) = {
+    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null) = {
 
         val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
@@ -310,23 +312,34 @@ object GenHtml extends App {
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/reset.css" />
-                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/text.css" />
-                <link rel="stylesheet" type="text/css" media="all" href="src/main/site/css/960.css" />
-                <script type="text/javascript" src="src/main/site/jquery-1.7.2.min.js"></script>
-                <script type="text/javascript" src="src/main/site/script.js"></script>
+                <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
+                <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+                <script type="text/javascript" src="js/script.js"></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>
             <body><div class="container_12">{body}</div></body>
         </html>
-        scala.xml.XML.save(filename, doc, "UTF-8", doctype = doct)
+        scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", doctype = doct)
     }
 
-    printDoc(mainPage, CV.name + " :: CMU", "out.html")
-    printDoc(teachingPage, CV.name + " :: Teaching :: CMU", "teaching.html")
-    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, "spelling.html")
-    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", "publications.html", <script type="text/javascript" src="src/main/site/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>)
-    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name, "bibtex.html")
+    def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
+
+
+    /** central build activities */
+    val targetPath = new File("target/site")
+    targetPath.mkdirs()
+    FileUtils.cleanDirectory(targetPath)
+
+    var extraFilesPath =                    new File("src/main/site")
+    FileUtils.copyDirectory(extraFilesPath, targetPath)
+
+    printDoc(mainPage, CV.name + " :: CMU",new File(targetPath,"index.html"))
+    printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath,"teaching.html"))
+    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, new File(targetPath,"spelling.html"))
+    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath,"publications.html"), getJSHeaderPublications())
+    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name,  new File(targetPath,"bibtex.html"))
 
 }

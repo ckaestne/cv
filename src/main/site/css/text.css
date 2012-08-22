@@ -1,107 +1,144 @@
-h1
-{
-	font-family: 'ATF Antique', Georgia, Times New Roman, sans-serif;
-	font-weight: normal;
-	font-size: 300%;
-	color: #464646;
-	vertical-align: text-bottom;
+h1 {
+font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-weight:normal;
+font-size:300%;
+color:#464646;
+vertical-align:text-bottom;
 }
 
-h2
-{
-	font-family: 'ATF Antique', Georgia, Times New Roman, sans-serif;
-	font-weight: bold;
-	font-size: 150%;
-	padding: 0;
-	margin-top: 0em;
-	margin-bottom:1em;
-	vertical-align: text-bottom;
-	color: #990000;
-}
-	.title { /* Page Title */
-		background: url(../images/diagonal.gif) repeat;
-		padding: 5px 10px;
-		margin: -5px -10px;
-		margin-top: 35px;
-		color:#990000;
-	}
-
-a
-{ 
-	color:#d17702;		
-	text-decoration: none;
-}
-a:hover
-{ 
-	color:#990000; 
-	text-decoration: underline;
+h2 {
+font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-weight:bold;
+font-size:150%;
+margin-top:0;
+margin-bottom:1em;
+vertical-align:text-bottom;
+color:#990000;
+padding:0;
 }
 
-li { margin-bottom:1em; }
-.bib dd {margin-bottom:2em}
-.bib blockquote {margin-left:20px;margin-top:10px;font-style:italic;font-size:90%}
-.fullpublist .selected {background-color:#ffffcc}
-.copyrightnotice { font-size:60%; font-style:italic}
+h3 {
+font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-weight:bold;
+font-size:130%;
+margin-top:0;
+margin-bottom:1em;
+vertical-align:text-bottom;
+color:#990000;
+padding:0;
+}
 
-body {font-family: Verdana, Arial, Helvetica, sans-serif;}
+.title {
+background:url(../images/diagonal.gif) repeat;
+color:#990000;
+margin:35px -10px -5px;
+padding:5px 10px;
+}
 
-p {line-height:148%;margin-bottom:1em}
-div {line-height:148%}
+a {
+color:#d17702;
+text-decoration:none;
+}
 
-#pubfilter { margin:2em 0; padding: 8px; background-color: #f3f0e9}
-.sep { font-weight:bold; }
-#coolwall{width:720px}
+a:hover {
+color:#990000;
+text-decoration:underline;
+}
+
+li {
+margin-bottom:1em;
+}
+
+.bib dd {
+margin-bottom:2em;
+}
+
+.bib blockquote {
+margin-left:20px;
+margin-top:10px;
+font-style:italic;
+font-size:90%;
+}
+
+.fullpublist .selected {
+background-color:#ffffcc;
+}
+
+.copyrightnotice {
+font-size:60%;
+font-style:italic;
+}
+
+body {
+font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+p {
+line-height:148%;
+margin-bottom:1em;
+}
+
+div {
+line-height:148%;
+}
+
+#pubfilter {
+background-color:#f3f0e9;
+margin:2em 0;
+padding:8px;
+}
+
+#coolwall {
+width:720px;
+}
 
 #spellinglink {
-    font-size:50%
+font-size:50%;
 }
+
 #spellingbox .spelling {
- nowidth:90%;
- background-color:#f3f0e9;
- padding:4px;margin:4px;
- border:1px solid #464646
- }
+nowidth:90%;
+background-color:#f3f0e9;
+border:1px solid #464646;
+margin:4px;
+padding:4px;
+}
 
-	ul li {
-		list-style-type: none;
-	}
+ul li {
+list-style-type:none;
+}
 
-.logo
-{
-	background: #990000;
-	height: 80px;
-	color: #990000;
-	margin-bottom: 10px;
+.logo {
+background:#990000;
+height:80px;
+color:#990000;
+margin-bottom:10px;
 }
 
 .headline h1 {
-		padding-top:8px;
-		font-size: 300%;
-		font-family: 'ATF Antique', Georgia, Times New Roman, sans-serif;
-		font-weight: bold;
-		line-height: 110%;
-	}
-
-
-
-
-.newsheadline{font-weight:bold}
-
-.toolname { font-weight:bold}
+padding-top:8px;
+font-size:300%;
+font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-weight:bold;
+line-height:110%;
+}
 
 .margin_newsitem {
-	margin-bottom: 20px;
+margin-bottom:20px;
 }
+
 .margin_tool {
-	margin-bottom: 5px;
-}
-.margin_h2 {
-	margin-bottom: 40px;
-}
-.margin_40 {
-	margin-bottom: 40px;
+margin-bottom:5px;
 }
 
 .right {
-		text-align: right;
+text-align:right;
+}
+
+.sep,.newsheadline,.toolname {
+font-weight:bold;
+}
+
+.margin_h2,.margin_40 {
+margin-bottom:40px;
 }
