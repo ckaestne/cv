@@ -1742,9 +1742,9 @@ object CVPublications {
         Article(
             Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Apel, Saake),
             "SPL Conqueror: Toward Optimization of Non-functional Properties in Software Product Lines",
-            Journal("SQJ", 2011, "Software Quality Journal").
+            Journal("SQJ", 2011, "Software Quality Journal").volume(20).number(3).
                 subtitle("Special issue on Quality Engineering for Software Product Lines"),
-            ToAppear(),
+            Pages(487, 517),
             Map(PDF -> PDFFile("jsoftwarequality11.pdf"),
                 HTTP -> URL("http://www.springerlink.com/content/ax788q46h1702j34/"),
                 DOI -> DOI("10.1007/s11219-011-9152-9")),
@@ -1771,7 +1771,7 @@ object CVPublications {
         and operating systems). Moreover, we show that SPL Conqueror is implementation and
         language independent by using SPLs that are implemented with different mechanisms,
         such as conditional compilation and feature-oriented programming.""").
-            topic(nfp, spl).note("online first"),
+            topic(nfp, spl),
 
 
         InProceedings(
