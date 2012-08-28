@@ -204,7 +204,8 @@ object GenHtml extends App {
         It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
         The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronounciation.
         The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
-        To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
+        To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>.
+        To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
         </p>
 
     def printSpellingLink() = <span style="font-size:small;position:absolute;top:0"><a href="spelling.html" id="spellinglink">[pronounciation and spelling]</a></span>
