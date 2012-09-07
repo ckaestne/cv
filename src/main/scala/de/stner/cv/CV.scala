@@ -43,10 +43,10 @@ object CV {
             <div>&nbsp;</div>
             <div>Office: Wean 5122</div>
             <div>&nbsp;</div>
-            <div>E-mail: christian.kaestner (at) uni-marburg.de</div></p>
+            <div>E-mail: kaestner (at) cs.cmu.edu</div>
+            <div>Phone: ++1 412 268 5254</div>
+	</p>
 
-    //    *                                <div>Phone: ++49 6421 28 25349</div>
-    //                                        <div>Fax: ++49 6421 28 25419</div>
 
 
     val teaching = Seq(
