@@ -2274,7 +2274,7 @@ the open source product line Busybox with 811 compile-time options.""").
             "Layout-Sensitive Generalized Parsing",
             SLE(2012).acceptanceRate(20, 62),
             ToAppear(),
-            Map(/*PDF -> PDFFile("sle12.pdf")*/),
+            Map(PDF -> PDFFile("sle12.pdf")),
             """
               |The theory of context-free languages is well-understood and context-free parsers can be used as off-the-shelf tools in practice. In particular, to use a context-free parser framework, a user does not need to understand its internals but can specify a language declaratively as a grammar. However, many languages in practice are not context-free. One particularly important class of such languages is layout-sensitive languages, in which the structure of code depends on indentation and whitespace. For example, Python, Haskell, F\#, and Markdown use indentation instead of curly braces to determine the block structure of code. Their parsers (and lexers) are not declaratively specified but hand-tuned to account for layout-sensitivity.
               |To support *declarative* specifications of layout-sensitive languages, we propose a parsing framework in which a user can annotate layout in a grammar as constraints on the relative positioning of tokens in the parsed subtrees. For example, a user can declare that a block consists of statements that all start on the same column. We have integrated layout constraints into SDF and implemented a layout-sensitive generalized parser as an extension of generalized LR parsing. We evaluate the correctness and performance of our parser by parsing 33290 open-source Haskell files. Layout-sensitive generalized parsing is easy to use, and its performance overhead compared to layout-insensitive parsing is small enough for most practical applications.
@@ -2286,7 +2286,7 @@ the open source product line Busybox with 811 compile-time options.""").
             "Comparing Program Comprehension of Physically and Virtually Separated Concerns",
             FOSD12,
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("FOSD12_pc.pdf")),
             """
               |It is common believe that separating source code along concerns
               |or features improves program comprehension of source
@@ -2305,7 +2305,7 @@ the open source product line Busybox with 811 compile-time options.""").
             "Toward Variability-Aware Testing",
             FOSD12,
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("FOSD12_testing.pdf")),
             """We investigate how to execute a unit test in all configurations of a product line without generating each product in isolation in a brute-force fashion. Learning from variability-aware analyses, we (a) design and implement a variability-aware interpreter and (b) reencode variability of the product line to simulate the test cases with a model checker. The interpreter internally reasons about variability, executing paths not affected by variability only once for the whole product line. The model checker achieves similar results by reusing powerful off-the-shelf analyses. We experimented with a prototype implementation for each strategy. We compare both strategies and discuss trade-offs and future directions."""
         ).note("to appear"),
 
@@ -2315,7 +2315,7 @@ the open source product line Busybox with 811 compile-time options.""").
             "Toward Measuring Program Comprehension with Functional Magnetic Resonance Imaging",
             Conference("FSE-NIER", 2012, "20th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("fsenier12.pdf")),
             """
               |Program comprehension is an often evaluated, internal cognitive process.
               |In neuroscience, *functional magnetic resonance (fMRI)* imaging is used to
