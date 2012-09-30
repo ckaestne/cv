@@ -537,6 +537,7 @@ case class Committee(venue: Venue, role: CommitteeRole)
 abstract class CommitteeRole(val title: String, val abbreviation: String)
 
 object PC extends CommitteeRole("Program-Committee Member", "PC")
+object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 

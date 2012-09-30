@@ -1,5 +1,5 @@
 package de.stner.cv
-
+ 
 import de.stner.cv.StructureTheses.AThesis
 import xml._
 import dtd.{PublicID, DocType}
@@ -196,7 +196,7 @@ object GenHtml extends App {
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
         <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
         Concerts (<a href={URL("http://www.informatik.uni-marburg.de/~kaestner/concerts.xhtml").toString}>past</a>
-        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p>)
+        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p> ++ printTwitterWidget())
 
     def printSpelling() =
         <p class="spelling">
@@ -285,6 +285,12 @@ object GenHtml extends App {
             <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. The listing is completely subjective, feel free to complain. ;)</p> :+
         <a href="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png"><img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" /></a>)
 
+
+    def printTwitterWidget(): NodeSeq = 
+     <p><div class="tweet"></div></p>
+
+
+      
     def printFullBibtex(): NodeSeq =
         for (p <- CV.publications)
         yield <div><a name={p.genKey} /><pre>{p.toBibtex()}</pre></div>
@@ -298,8 +304,8 @@ object GenHtml extends App {
             printAwards(awards) ++
             printProjects(projects) ++
             printKeyPublications(publications) ++
-            printCoolWall() ++
-            printPrivate()
+            printCoolWall() ++ 
+            printPrivate() 
 
 
     def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
@@ -316,8 +322,10 @@ object GenHtml extends App {
                 <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
                 <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
                 <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
+                <link rel="stylesheet" type="text/css" media="all" href="css/jquery.tweet.css" />
                 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
                 <script type="text/javascript" src="js/script.js"></script>
+                <script type="text/javascript" src="js/jquery.tweet.js"></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>
