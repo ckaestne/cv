@@ -175,7 +175,7 @@ object GenHtml extends App {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
+    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE12">
     <img title="Generative Programming and Component Engineering 2012" src="GPCE-201.png" alt="GPCE2012" width="135" height="200" />

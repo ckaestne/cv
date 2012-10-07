@@ -167,6 +167,7 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(OOPSLA(2013), PC),
         Committee(GPCE(2013), PCChair),
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",
