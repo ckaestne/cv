@@ -2219,6 +2219,23 @@ the open source product line Busybox with 811 compile-time options.""").
             """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
         ).note("to appear; accepted 7 Jun 2012"),
 
+      InBook(
+          Seq(Kaestner, Apel),
+          "Feature-Oriented Software Development: A Short Tutorial on Feature-Oriented Programming, Virtual Separation of Concerns, and Variability-Aware Analysis",
+          Venue("GTTSE", 2011, "GTTSE Summer School: Generative & Transformational Techniques in Software Engineering", KMisc).location("Braga").publisher(Springer),
+          ToAppear(),
+          Map(PDF -> PDFFile("gttse11.pdf"), HTTP -> URL("http://gttse.wikidot.com/2011:short-tutorials")),
+            """Feature-oriented software development is a paradigm for the
+            construction, customization, and synthesis of large-scale and variable
+            software systems, focusing on structure, reuse and variation. In this
+            tutorial, we provide a gentle introduction to software product lines, feature
+            oriented programming, virtual separation of concerns, and variability-
+            aware analysis. We provide an overview, show connections between the
+            different lines of research, and highlight possible future research directions."""
+        ),
+
+
+
         InProceedings(
             Seq(Giarrusso, Ostermann, Eichberg, Rendel, Kaestner),
             "Reifying and Optimizing Collection Queries for Modularity",
