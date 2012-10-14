@@ -249,7 +249,7 @@ object GenHtml extends App {
         <div><h1 style="display: inline;">Christian Kästner</h1> {printSpellingLink}</div>
             else  <h1>Christian Kästner</h1>}
                 <div id="spellingbox" style="display:none">{printSpelling()}</div>
-        <p>Assistant Professor · Carnegie Mellon University · Institute of Software Research</p>
+        <p>Assistant Professor · Carnegie Mellon University · Institute for Software Research</p>
         	</div> :+
         	<div class="clear margin_40">&nbsp;</div>
 
