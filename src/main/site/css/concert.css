@@ -1,0 +1,11 @@
+* { font-family:Verdana }
+.veranstaltung {  }
+.sws { color:#808080; }
+.datum {  }
+.festival { font-weight:bold; color:#000080; }
+.band { font-variant:small-caps; color:#800000; }
+li { margin-left:1.5cm; text-indent:-1.5cm;}
+.highlight { font-style:italic; }
+.missionstatement { margin-left:0.5cm; margin-right:0.5cm; background-color:#FFFFC0; }
+.tiny { font-size:x-small; }
+
