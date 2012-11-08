@@ -35,16 +35,21 @@ object CV {
         feature location;
         Linux;
         and empirical methods.</p> :+
-        <p>Profiles: <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, <a class="external-link" href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, <a class="external-link" href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, <a class="external-link" href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a>.</p> :+
-        <p> <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
+        <p>Profiles: 
+          <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, 
+          <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, 
+          <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, 
+          <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, 
+          <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a><span style="display:none">, <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a></span>.</p> :+
+        <p><div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
             <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
             <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
-            <div>5000 Forbes Avenue, Pittsburgh, PA 15213, USA</div>
+            <div itemprop="address" itemscope="" itemtype="http://data-vocabulary.org/Address"><span itemprop="street-address">5000 Forbes Avenue</span>, <span itemprop="locality">Pittsburgh</span>, <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>, <span itemprop="country">USA</span></div>
             <div>&nbsp;</div>
             <div>Office: Wean 5122</div>
             <div>&nbsp;</div>
             <div>E-mail: kaestner (at) cs.cmu.edu</div>
-            <div>Phone: ++1 412 268 5254</div>
+            <div>Phone: +1 412 268 5254</div>
 	</p>
 
 
@@ -167,7 +172,7 @@ object CV {
     )
 
     val committees = Seq[Committee](
-        Committee(OOPSLA(2013), PC),
+        Committee(OOPSLA(2013).url(URL("http://splashcon.org/2013")), PC),
         Committee(GPCE(2013), PCChair),
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",

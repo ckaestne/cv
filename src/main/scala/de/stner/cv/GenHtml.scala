@@ -175,7 +175,7 @@ object GenHtml extends App {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
+    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE12">
     <img title="Generative Programming and Component Engineering 2012" src="GPCE-201.png" alt="GPCE2012" width="135" height="200" />
@@ -246,10 +246,11 @@ object GenHtml extends App {
         <div class="grid_3 ">&nbsp;</div> :+
         	<div class="grid_9 header headline">
                 {if (spellingHint)
-        <div><h1 style="display: inline;">Christian Kästner</h1> {printSpellingLink}</div>
-            else  <h1>Christian Kästner</h1>}
+        <div><h1 style="display: inline;" itemprop="name">Christian Kästner</h1> {printSpellingLink}</div>
+            else  <h1 itemprop="name">Christian Kästner</h1>}
                 <div id="spellingbox" style="display:none">{printSpelling()}</div>
-        <p>Assistant Professor · Carnegie Mellon University · Institute for Software Research</p>
+                <p><span itemprop="role">Assistant Professor</span> · <span itemprop="affiliation">Carnegie Mellon University</span> · Institute for Software Research</p>
+                <meta itemprop="url" content="http://www.cs.cmu.edu/~ckaestne/" />
         	</div> :+
         	<div class="clear margin_40">&nbsp;</div>
 
@@ -296,8 +297,9 @@ object GenHtml extends App {
         yield <div><a name={p.genKey} /><pre>{p.toBibtex()}</pre></div>
 
     def mainPage: NodeSeq =
+        <div itemscope="" itemtype="http://data-vocabulary.org/Person">{
         printTitle(true) ++
-            row(printPicture(), printSummary()) ++
+        row(printPicture(), printSummary())}</div> ++
             printNews() ++
             printTeachingSummary(teaching) ++
             printCommittees(committees) ++
@@ -354,9 +356,9 @@ object GenHtml extends App {
     println("generating html.")
     printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"))
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
-    printDoc(printTitle() ++ row(null, printSpelling()), CV.name, new File(targetPath, "spelling.html"))
+    printDoc(printTitle() ++ row(null, printSpelling()), CV.name + " :: Spelling", new File(targetPath, "spelling.html"))
     printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications())
-    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name, new File(targetPath, "bibtex.html"))
+    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"))
     println("done.")
 
 }
