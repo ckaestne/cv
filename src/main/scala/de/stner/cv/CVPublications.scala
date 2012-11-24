@@ -1575,9 +1575,10 @@ object CVPublications {
             Seq(Kaestner, Apel, Thuem, Saake),
             "Type Checking Annotation-Based Product Lines",
             TOSEM(2012).volume(21).number(3),
-            ToAppear(),
+            PagesStr("Article 14"),
             Map(PDF -> PDFFile("tosem11.pdf"),
-                EPUB -> PDFFile("tosem11_ereader.pdf")),
+                EPUB -> PDFFile("tosem11_ereader.pdf"),
+                DOI-> DOI("10.1145/2211616.2211617")),
             """
         Software-product-line engineering is an efficient means to generate a family of program variants for a domain
         from a single code base. However, because of the potentially high number of possible program variants, it is
@@ -1589,7 +1590,6 @@ object CVPublications {
         from our formalization helped implementing our own product-line tool CIDE for full Java and report of
         experience with detecting type errors in four existing software-product-line implementations.""").
             topic(vaanalysis, vsoc).selected().
-            note("to appear; submitted 8 Jun 2010, accepted 4 Jan 2011").
             crosscite("extended version of \\cite{KA:ASE08}"),
 
         InProceedings(
@@ -2061,7 +2061,7 @@ object CVPublications {
             Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
             "Measuring Programming Experience",
             ICPC(2012).acceptanceRate(21, 51),
-            ToAppear(),
+            Pages(73,82),
             Map(PDF -> PDFFile("icpc12.pdf")),
             """
         Programming experience is an important confounding
@@ -2080,7 +2080,7 @@ object CVPublications {
         experience. With our analysis, we initiate a path toward measuring
         programming experience with a valid and reliable tool,
         so that we can control its influence on program comprehension.  """).
-            note("accepted for publication").topic(experiment, programcomprehension),
+            topic(experiment, programcomprehension),
 
 
         Article(
@@ -2189,7 +2189,7 @@ the open source product line Busybox with 811 compile-time options.""").
             Seq(Kaestner, Ostermann, Erdweg),
             "A Variability-Aware Module System",
             OOPSLA(2012).acceptanceRate(57, 228).month(10).location("Tucson, AZ"),
-            ToAppear(),
+            Pages(773,792),
             Map(PDF -> PDFFile("oopsla12.pdf")),
             """
               |Module systems enable a divide and conquer strategy to software development.
@@ -2207,8 +2207,8 @@ the open source product line Busybox with 811 compile-time options.""").
               |the open source product line Busybox with 811 compile-time options.
             """.stripMargin
 
-        ).selected().topic(modularity, vaanalysis, typechef).crosscite("superseeds \\cite{KOE:MR12}").
-            note("to appear"),
+        ).selected().topic(modularity, vaanalysis, typechef).crosscite("superseeds \\cite{KOE:MR12}")
+            ,
 
         Article(
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
@@ -2240,10 +2240,10 @@ the open source product line Busybox with 811 compile-time options.""").
             Seq(Giarrusso, Ostermann, Eichberg, Rendel, Kaestner),
             "Reifying and Optimizing Collection Queries for Modularity",
             Venue("OOPSLA", 2012, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).location("Tucson, AZ").publisher(ACM),
-            ToAppear(),
+            Pages(77,78),
             Map(PDF -> PDFFile("oopsla12.pdf")),
             ""
-        ).note("Poster; to appear; accepted 27 Jul 2012"),
+        ).note("Poster"),
 
         Article(
             Seq(Siegmund, Rosenmueller, Kaestner, Giarrusso, Apel, Kolesnikov),
@@ -2302,7 +2302,7 @@ the open source product line Busybox with 811 compile-time options.""").
             Seq(JSiegmund, Kaestner, Liebig, Apel),
             "Comparing Program Comprehension of Physically and Virtually Separated Concerns",
             FOSD12,
-            ToAppear(),
+            Pages(17,24),
             Map(PDF->PDFFile("FOSD12_pc.pdf")),
             """
               |It is common believe that separating source code along concerns
@@ -2315,23 +2315,23 @@ the open source product line Busybox with 811 compile-time options.""").
               |confirms that students use different strategies to complete
               |maintenance tasks.
             """.stripMargin
-        ).note("to appear"),
+          ),
 
         InProceedings(
             Seq(Kaestner, vonRhein, Erdweg, Pusch, Apel, Rendel, Ostermann),
             "Toward Variability-Aware Testing",
             FOSD12,
-            ToAppear(),
+            Pages(1,8),
             Map(PDF->PDFFile("FOSD12_testing.pdf")),
             """We investigate how to execute a unit test in all configurations of a product line without generating each product in isolation in a brute-force fashion. Learning from variability-aware analyses, we (a) design and implement a variability-aware interpreter and (b) reencode variability of the product line to simulate the test cases with a model checker. The interpreter internally reasons about variability, executing paths not affected by variability only once for the whole product line. The model checker achieves similar results by reusing powerful off-the-shelf analyses. We experimented with a prototype implementation for each strategy. We compare both strategies and discuss trade-offs and future directions."""
-        ).note("to appear"),
+        ),
 
 
         InProceedings(
             Seq(JSiegmund, Brechmann, Apel, Kaestner, Liebig, Leich, Saake),
             "Toward Measuring Program Comprehension with Functional Magnetic Resonance Imaging",
             Conference("FSE-NIER", 2012, "20th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
-            ToAppear(),
+            Pages("24:1","24:4"),
             Map(PDF -> PDFFile("fsenier12.pdf")),
             """
               |Program comprehension is an often evaluated, internal cognitive process.
@@ -2341,7 +2341,7 @@ the open source product line Busybox with 811 compile-time options.""").
               |answer questions like *What distinguishes good programmers from bad programmers?*
               |or *What makes a good programmer?*
             """.stripMargin
-        ).note("to appear")
+        )
 
 
     )
