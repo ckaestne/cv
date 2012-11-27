@@ -89,6 +89,7 @@ object CVPublications {
     val vonRhein = Person("Alexander", "von Rhein")
     val Pusch = Person("Jonas", "Pusch")
     val Brechmann = Person("André", "Brechmann")
+    val Doerre = Person("Jens", "Dörre")
 
     val fop = Topic("Feature-oriented programming")
     val aop = Topic("Aspect-oriented programming")
@@ -111,6 +112,7 @@ object CVPublications {
     val empirical = Topic("Empirical evaluation")
     val programcomprehension = Topic("Program comprehension")
     val dsl = Topic("Domain-specific languages")
+    val testing = Topic("Testing")
 
 
     //shorthands because they are reused
@@ -2315,7 +2317,7 @@ the open source product line Busybox with 811 compile-time options.""").
               |confirms that students use different strategies to complete
               |maintenance tasks.
             """.stripMargin
-          ),
+          ).topic(programcomprehension,empirical,vsoc,fop,experiment),
 
         InProceedings(
             Seq(Kaestner, vonRhein, Erdweg, Pusch, Apel, Rendel, Ostermann),
@@ -2324,7 +2326,7 @@ the open source product line Busybox with 811 compile-time options.""").
             Pages(1,8),
             Map(PDF->PDFFile("FOSD12_testing.pdf")),
             """We investigate how to execute a unit test in all configurations of a product line without generating each product in isolation in a brute-force fashion. Learning from variability-aware analyses, we (a) design and implement a variability-aware interpreter and (b) reencode variability of the product line to simulate the test cases with a model checker. The interpreter internally reasons about variability, executing paths not affected by variability only once for the whole product line. The model checker achieves similar results by reusing powerful off-the-shelf analyses. We experimented with a prototype implementation for each strategy. We compare both strategies and discuss trade-offs and future directions."""
-        ),
+        ).topic(vaanalysis,testing),
 
 
         InProceedings(
@@ -2341,7 +2343,28 @@ the open source product line Busybox with 811 compile-time options.""").
               |answer questions like *What distinguishes good programmers from bad programmers?*
               |or *What makes a good programmer?*
             """.stripMargin
-        )
+        ).topic(programcomprehension,experiment),
+
+
+      TechReport(
+            Seq(Liebig, vonRhein, Kaestner, Apel, Doerre, Lengauer),
+            "Large-Scale Variability-Aware Type Checking and Dataflow Analysis",
+            2012, 11, PATR, "MIP-1212",
+            Map(PDF -> PDFFile("mip-1212.pdf")),
+            """
+A software product line is a family of similar software products that share a common set of assets.
+The advent of proper variability management and generator technology enables end-users to derive individual products solely based on a selection of desired features.
+This gives rise to a huge configuration space of possible products.
+But the high degree of variability comes at a cost: classic analysis methods do not scale any more; there are simply too many potential products to analyze.
+Hence, researchers have begun to develop *variability-aware* analyses, which exploit the similarities of the products of a product line to reduce analysis effort.
+However, while being promising, variability-aware analyses have not been applied to real-world product lines so far.
+We close this gap by developing and applying two full-fledged analyses to two real-world, large-scale systems: the Busybox tool suite and the Linux kernel.
+We report on our experience with making variability-aware analysis ready for the real world, and with applying it to large-scale product lines.
+A key result is that variability-aware analysis can outperform even very limited sampling heuristics with respect to analysis time.            
+            """).
+            topic(vaanalysis, fop, spl, typechef)
+
+
 
 
     )
