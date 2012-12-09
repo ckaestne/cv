@@ -1,0 +1,128 @@
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{helvet}
+%\usepackage[default]{droidserif}
+\usepackage{tgschola}
+\usepackage{tgadventor}
+
+%\renewcommand\familydefault{\sfdefault}
+
+\usepackage{graphicx}
+\usepackage[pdfpagemode=none,bookmarks=false]{hyperref}
+
+\usepackage{color}
+
+\pagestyle{empty}
+%\sloppy
+
+
+\def\isomonth{\ifcase\month\or
+  01\or 02\or 03\or 04\or 05\or 06\or
+  07\or 08\or 09\or 10\or 11\or 12\fi}
+\def\isoday{\ifcase\day\or
+  01\or 02\or 03\or 04\or 05\or 06\or 07\or 08\or 09\or 10\or
+  11\or 12\or 13\or 14\or 15\or 16\or 17\or 18\or 19\or 20\or
+  21\or 22\or 23\or 24\or 25\or 26\or 27\or 28\or 29\or 30\or
+  31\fi}
+\def\isotoday{\number\year-\isomonth-\isoday}
+
+%% Deny widows and orphans.
+%% Widow - Hurenkind: Letzte Absatzzeile auf neuer Seite.
+%% Club - Schusterjunge/Waisenkind: Erste Absatzzeile auf alter Seite.
+% No orphans at top of page.
+\clubpenalty = 10000
+% No widows at bottom of page.
+\widowpenalty = 10000
+% No widows in math displays.
+\predisplaypenalty=10000
+\postdisplaypenalty=1549
+\displaywidowpenalty = 10000
+% Never break footnotes.
+\interfootnotelinepenalty = 10000
+%\raggedbottom
+
+
+%
+% New dimensions for paper
+%
+\headsep       = 0cm
+\headheight    = -5mm
+\addtolength{\voffset}{-12mm}
+\addtolength{\textheight}{42mm}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.25in}
+
+\parindent     = 0pt
+%\parskip       = 7mm
+%\renewcommand{\baselinestretch}{1.1}
+
+
+% Headings.
+\makeatletter
+% Chapters.
+\newcommand\CVindent{\hspace{110px}}
+\newcommand\chapter[1]{\@startsection
+  {section}{2}{110px}%                 name, level, indent
+  {0ex}%                beforeskip
+  {1\baselineskip}%                afterskip
+  {\bf\huge\sffamily}%                          style
+  {#1}}% heading
+% Sections with hrule.
+\newcommand\section[1]{\@startsection
+  {section}{2}{110px}%                 name, level, indent
+  {3ex plus 2ex minus 1ex}%                beforeskip
+  {0ex}%                afterskip
+  {\bf\Large\sffamily}%                          style
+  {%
+  	 #1}}% heading
+% Subsections.
+\newcommand\subsection[1]{\@startsection
+  {subsection}{2}{110px}%              name, level, indent
+  {0.5em plus 0.5ex minus 0.5ex}%                beforeskip
+  {0ex plus .3ex}%                afterskip
+  {\bf\sffamily}%              style
+  {#1}}%           
+% Subsubsections.
+\makeatother
+
+% Old stuff:
+% Sections with hrule.
+\newcommand{\sect}[1]{{{\medskip\bfseries #1 \phantom{p}} \hrule}}
+% Small Sections.
+\newcommand{\smallsec}[1]{\smallskip\noindent{\bfseries #1.}}
+\newcommand{\smallersec}[1]{\smallskip\noindent{\it #1.}}
+
+\newcommand{\mylist}{
+%  \setlength{\baselineskip}{12pt}
+%  \setlength{\itemsep}{-2pt}
+}
+
+
+
+% from CV.sty
+\newcommand{\entrylabel}[1]{\mbox{#1}\ }
+\newenvironment{CV}
+  {\begin{list}{}
+    {\renewcommand{\makelabel}{\hfill\entrylabel}
+%    \setlength{\labelwidth}{77pt}
+%    \setlength{\leftmargin}{84pt}
+    \setlength{\labelwidth}{103pt}
+    \setlength{\leftmargin}{110pt}
+    \setlength{\parsep}{1ex plus 0.3ex minus 0.5ex}
+%    \setlength{\labelwidth}{127pt}
+%    \setlength{\leftmargin}{132pt}
+  }}
+  {\end{list}
+}
+
+% The Bibliography.
+%\renewcommand{\bibitem}[1]{\item}
+\newcounter{bibcount}
+\newcommand{\newblock}{}
+\renewcommand{\bibitem}[1]{\addtocounter{bibcount}{1}\item[\arabic{bibcount}.]}
+\newenvironment{thebibliography}[1]
+  {\begin{CV}}
+  {\end{CV}}

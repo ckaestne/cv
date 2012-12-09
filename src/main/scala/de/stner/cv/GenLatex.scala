@@ -1,7 +1,8 @@
 package de.stner.cv
 
-import java.io.FileWriter
+import java.io._
 import java.text.{DecimalFormat, SimpleDateFormat}
+import org.apache.commons.io.FileUtils
 
 
 object GenLatex extends App {
@@ -12,7 +13,7 @@ object GenLatex extends App {
 
 
     object LatexFormater extends Formater[String] {
-        def title(t: String): String = "\\textbf{" + t + "}"
+        def title(t: String): String = "{\\bfseries " + t + "}"
 
         def journal(s: String): String = "\\emph{" + s + "}"
 
@@ -20,7 +21,7 @@ object GenLatex extends App {
 
         def concatL(c: Seq[String]): String = c.mkString
 
-        def newBlock: String = "\\newBlock "
+        def newBlock: String = "\\newblock "
 
         def text(s: String): String = s
 
@@ -56,10 +57,10 @@ object GenLatex extends App {
     def printGrants(): String = {
         val r = awards.map({
             case Grant(name, _, _, from, to, ag, budget) =>
-                "\\item[] %s\\\\%s. %s, %s -- %s".format(
+                "\\item[%s -- %s] %s\\\\%s. %s.".format(
+                    monthyear format from, monthyear format to,
                     name.markdownToTex(true),
-                    ag, formatBudget(budget),
-                    monthyear format from, monthyear format to)
+                    ag, formatBudget(budget))
             case _ => ""
         })
         inCV(r.mkString("\n"))
@@ -71,6 +72,20 @@ object GenLatex extends App {
                 monthyear format it.when,
                 it.title.markdownToTex(true),
                 it.where)
+        )
+        inCV(r.mkString("\n"))
+    }
+
+    def printSoftware(): String = {
+        val r = software.map(s =>
+            "\\item[{%s}] %s,\\\\\\url{%s}".format(s._1, s._2.markdownToTex(), s._3.toString)
+        )
+        inCV(r.mkString("\n"))
+    }
+
+    def printReferences(): String = {
+        val r = references.map(s =>
+            "\\item %s, %s,\\\\\\url{%s}".format(s._1, s._2, s._3.toString)
         )
         inCV(r.mkString("\n"))
     }
@@ -112,15 +127,15 @@ object GenLatex extends App {
 
     def printCommittee(c: Committee) =
         "\\item[%s %d] %s".format(c.venue.short.toTex, c.venue.year, c.venue.name.toTex) +
-            (if (c.role != OC && c.role != PC) " -- " + c.role.title else "") + "\n"
+            (if (c.role != PC) " -- " + c.role.title else "") + "\n"
 
     def organizationCommittees(): String = subsection("Organization Committees", inCV(
-        committees.filter(_.role == OC).map(printCommittee).mkString +
+        committees.filter(Set(OC, PCChair) contains _.role).map(printCommittee).mkString +
             "\\item[FOSD-Tr.\\ 2009-12] Annual German Student Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Dagstuhl)\n"
     ))
 
     def programCommittees(): String = subsection("Program Committees", inCV(
-        committees.filter(_.role != OC).map(printCommittee).mkString
+        committees.filterNot(Set(OC, PCChair) contains _.role).map(printCommittee).mkString
     ))
 
     def printReview(r: Review) =
@@ -133,10 +148,10 @@ object GenLatex extends App {
         "\\bibitem{%s} %s\n\n".format(p.genKey, p.render(DefaultBibStyle, LatexFormater).markdownToTex(false))
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont  h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{20} ~~ g-index: 35}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.uni-marburg.de/fb12/ps/team/kaestner}.\n    \\end{CV}\n    \\begin{thebibliography}{10}" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{23}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\begin{thebibliography}{10}" +
             (for (p <- CV.publications) yield printPublication(p)).mkString + "\\end{thebibliography}{10}"
 
-    val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{../papers/cv/mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
+    val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
     val footer = "\\end{document}"
 
     var output = ""
@@ -153,13 +168,19 @@ object GenLatex extends App {
     output += section("Teaching and Advising", courses() + seminars() + theses())
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
+    output += section("Software", printSoftware())
+    output += section("References", printReferences())
 
     output += publications()
 
     output += "\\end{document}"
 
-    println(output)
-    val fw = new FileWriter("out.tex")
+    val targetPath = new File("target/pdf")
+    targetPath.mkdirs()
+    FileUtils.cleanDirectory(targetPath)
+    FileUtils.copyDirectory(new File("src/main/latex"), targetPath)
+
+    val fw = new FileWriter("target/pdf/cv.tex")
     fw.write(header)
     fw.write(output)
     fw.close()

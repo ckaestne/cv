@@ -8,6 +8,7 @@ class StringTexHelper(str: String) {
         replace("&", "\\&").
         replace("%", "\\%").
         replace("#", "\\#").
+        replace("^", "\\textasciicircum{}").
         replace("ü", "{\\\"u}").
         replace("ä", "{\\\"a}").
         replace("ö", "{\\\"o}").

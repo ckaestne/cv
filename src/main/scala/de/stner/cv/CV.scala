@@ -101,7 +101,7 @@ object CV {
           |    Student Research Assistent,\\
           |    Host: Prof.\ Gunter Saake,\\
           |		University of Magdeburg, Germany
-          |\end{CV
+          |\end{CV}
           | """.stripMargin
 
 
@@ -228,6 +228,9 @@ object CV {
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",
             URL("http://www.se2013.rwth-aachen.de/")), PC),
+        Committee(VAMOS(2013), PC),
+        Committee(Workshop("REVE",2013,"1st Workshop on Reverse Variability Engineering",
+            URL("http://www.sea.jku.at/reve2013/")), PC),
         Committee(SLE(2012), DS),
         Committee(GPCE(2012), PC),
         Committee(FOSD(2012), OC),
@@ -267,6 +270,10 @@ object CV {
         Committee(FOSD(2009), OC)
     )
     val reviews: Seq[Review] = Seq(
+        Review(TOPLAS(2012)),
+        Review(ESE(2012)),
+        Review(JSEP(2012)), //Journal of Software: Evolution and Process
+        Review(HOSC(2012)), //Higher-Order and Symbolic Computation
         Review(AI(2012)), //Acta Informatica
         Review(SPE(2012)), //Software: Practice and Experience
         Review(SCP(2012)), //Science of Computer Programming
@@ -364,6 +371,37 @@ object CV {
         (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ", "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished"))
         //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
         //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
+    )
+
+    //name, title, url
+    val software: Seq[(String, String, URL)] = Seq(
+        ("TypeChef",
+            "Parsing and Analyzing #ifdef Variability in C Code",
+            URL("https://github.com/ckaestne/TypeChef")),
+        ("CIDE",
+            "Feature-Oriented Analysis and Decomposition of Legacy Code",
+            URL("http://fosd.net/cide/")),
+        ("FeatureIDE",
+            "A Tool Framework for Feature-Oriented Software Development",
+            URL("http://fosd.net/featureide/")),
+        ("LEADT",
+            "Consistent Semi-Automatic Detection of Product-Line Features",
+            URL("http://fosd.net/leadt/")),
+        ("FeatureHouse",
+            "Language-Independent, Automated Software Composition",
+            URL("http://fosd.net/fh/")),
+        ("ARJ",
+            "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance",
+            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
+    )
+
+    //title+name,where,url
+    val references: Seq[(String, String, URL)] = Seq(
+        ("Prof. Don Batory, Ph.D.", "University of Texas at Austin", URL("http://www.cs.utexas.edu/~dsb/")),
+        ("Prof. Krzysztof Czarnecki, Ph.D.", "University of Waterloo", URL("http://gsd.uwaterloo.ca/kczarnec")),
+        ("Prof. Christian Lengauer, Ph.D.", "University of Passau", URL("http://www.infosun.fim.uni-passau.de/cl/staff/lengauer/")),
+        ("Prof. Dr. Klaus Ostermann", "Philipps University Marburg", URL("http://www.mathematik.uni-marburg.de/~kos/")),
+        ("Prof. Dr. Gunter Saake", "University of Magdeburg", URL("http://wwwiti.cs.uni-magdeburg.de/~saake/"))
     )
 
     val publications = CVPublications.publications

@@ -98,6 +98,7 @@ object Venues {
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
     val SCP = JournalFactory("SCP", "Science of Computer Programming", Elsevier)
     val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology", ACM)
+    val TOPLAS = JournalFactory("TOPLAS", "ACM Transactions on Programming Languages and Systems", ACM)
     val JSS = JournalFactory("JSS", "Journal of Systems and Software")
     val STTT = JournalFactory("STTT", "Software Tools for Technology Transfer")
     val IST = JournalFactory("IST", "Information and Software Technology")
@@ -109,6 +110,9 @@ object Venues {
     val ISSE = JournalFactory("ISSE", "Innovations in Systems and Software Engineering (ISSE) -- A NASA Journal")
     val ESE = JournalFactory("ESE", "Empirical Software Engineering", Springer)
     val JASE = JournalFactory("ASE", "Automated Software Engineering -- An International Journal", Springer)
+    val JSEP = JournalFactory("JSEP", "Journal of Software: Evolution and Process")
+    val HOSC = JournalFactory("HOSC", "Higher-Order and Symbolic Computation")
+
 
     val ACoM = ConferenceFactory("ACoM", 0,
         "ICSE Workshop on Assessment of Contemporary Modularization Techniques (ACoM)", NoURLFactory, true, IEEE)
