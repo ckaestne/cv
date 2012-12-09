@@ -13,7 +13,7 @@ object GenLatex extends App {
 
 
     object LatexFormater extends Formater[String] {
-        def title(t: String): String = "{\\bfseries " + t + "}"
+        def title(t: String): String = t
 
         def journal(s: String): String = "\\emph{" + s + "}"
 
@@ -73,6 +73,12 @@ object GenLatex extends App {
                 it.title.markdownToTex(true),
                 it.where)
         )
+        inCV(r.mkString("\n"))
+    }
+
+    def printMemberships(): String =
+    {
+        val r = memberships.map(m => "\\item %s".format(m.markdownToTex(true)))
         inCV(r.mkString("\n"))
     }
 
@@ -145,11 +151,21 @@ object GenLatex extends App {
     def reviewing(): String = subsection("Reviewing", inCV(reviews.map(printReview).mkString))
 
     def printPublication(p: Publication) =
-        "\\bibitem{%s} %s\n\n".format(p.genKey, p.render(DefaultBibStyle, LatexFormater).markdownToTex(false))
+        "\\bibitem{%s}%s %s\n\n".format(
+            p.genKey,
+            if (p.isSelected) "\\selected " else "",
+            p.render(DefaultBibStyle, LatexFormater).markdownToTex(false))
+
+    def printPublicationType(kind:PublicationKind) =
+        "\\subsection{"+kind.name+"}\n" +
+            "\\begin{thebibliography}{100}\n" +
+        (for (p <- CV.publications.reverse.filter(_.venue.kind==kind)) yield printPublication(p)).mkString +
+        "\\end{thebibliography}\n"
+
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{23}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\begin{thebibliography}{10}" +
-            (for (p <- CV.publications) yield printPublication(p)).mkString + "\\end{thebibliography}{10}"
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{23}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+            CVPublications.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
     val footer = "\\end{document}"
@@ -166,6 +182,7 @@ object GenLatex extends App {
     output += section("Invited Talks", printInvitedTalks())
 
     output += section("Teaching and Advising", courses() + seminars() + theses())
+    output += section("Memberships", printMemberships())
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
     output += section("Software", printSoftware())

@@ -13,9 +13,11 @@ object Config {
 }
 
 object Person {
-    def apply(first:String, last:String, url:URL, affil:String) = new Person(first, last, Some(url), Some(affil))
-    def apply(first:String, last:String,affil:String) = new Person(first, last, None, Some(affil))
-    def apply(first:String, last:String) = new Person(first, last, None, None)
+    def apply(first: String, last: String, url: URL, affil: String) = new Person(first, last, Some(url), Some(affil))
+
+    def apply(first: String, last: String, affil: String) = new Person(first, last, None, Some(affil))
+
+    def apply(first: String, last: String) = new Person(first, last, None, None)
 }
 
 case class Person(
@@ -153,7 +155,7 @@ object Book {
                 formater.title(pub.title), formater.text(endDot(pub.title)),
                 formater.space, formater.newBlock,
                 pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot,
-                (pub.note.map(t => formater.concat(formater.newBlock, formater.space, formater.markdown(t), formater.dot)).getOrElse(formater.none))
+                (pub.note.map(t => formater.concat(formater.space, formater.newBlock, formater.markdown(t), formater.dot)).getOrElse(formater.none))
             )
 
         override def getBibtexAuthorField(p: Publication): Map[String, String] =
@@ -201,7 +203,7 @@ abstract class PublicationRenderer {
             formater.space, formater.newBlock,
             renderRest(p, style, formater),
             (if (style.withAcceptanceRate) renderAcceptanceRate(p, formater) else formater.none),
-            (p.note.map(t=>formater.concat(formater.newBlock, formater.space, formater.markdown(t), formater.dot)).getOrElse(formater.none))
+            (p.note.map(t => formater.concat(formater.space, formater.newBlock, formater.markdown(t), formater.dot)).getOrElse(formater.none))
         )
 
     def renderRest[A](p: Publication, style: BibStyle, formater: Formater[A]): A
@@ -350,6 +352,7 @@ trait Formater[A] {
     def journal(s: String): A
 
     def concat(c: A*): A
+
     def concatL(c: Seq[A]): A
 
     def newBlock: A
@@ -366,8 +369,6 @@ trait Formater[A] {
 
     def markdown(m: String): A
 }
-
-
 
 
 trait BibStyle {
@@ -793,14 +794,17 @@ object StructureTheses {
 }
 
 /** award name supports markdown */
-sealed abstract class AwardOrGrant(val name: String,val url:URL, val date:Date)
-case class Award(aname: String, aurl: URL, dateAnnounced: Date, extraLinks: List[(URL, String)] = Nil, budget: Option[Budget]=None) extends AwardOrGrant(aname, aurl, dateAnnounced)
-case class Grant(aname: String, aurl: URL, dateAnnounced: Date, dateBegin: Date, dateEnd: Date, foundingAg:String, budget: Budget) extends AwardOrGrant(aname, aurl, dateAnnounced)
+sealed abstract class AwardOrGrant(val name: String, val url: URL, val date: Date)
 
-sealed abstract class Budget(val value:Int)
+case class Award(aname: String, aurl: URL, dateAnnounced: Date, extraLinks: List[(URL, String)] = Nil, budget: Option[Budget] = None) extends AwardOrGrant(aname, aurl, dateAnnounced)
+
+case class Grant(aname: String, aurl: URL, dateAnnounced: Date, dateBegin: Date, dateEnd: Date, foundingAg: String, budget: Budget) extends AwardOrGrant(aname, aurl, dateAnnounced)
+
+sealed abstract class Budget(val value: Int)
+
 case class EUR(v: Int) extends Budget(v)
+
 case class USD(v: Int) extends Budget(v)
 
 
-
-case class InvitedTalk( when:Date, title: String,where: String)
+case class InvitedTalk(when: Date, title: String, where: String)

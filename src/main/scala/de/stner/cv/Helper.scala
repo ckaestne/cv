@@ -7,13 +7,17 @@ class StringTexHelper(str: String) {
     def toTex = str.
         replace("&", "\\&").
         replace("%", "\\%").
+        replace(" \\%", "\\,\\%").
         replace("#", "\\#").
         replace("^", "\\textasciicircum{}").
         replace("ü", "{\\\"u}").
         replace("ä", "{\\\"a}").
         replace("ö", "{\\\"o}").
         replace("é", "{\\'e}").
-        replace("ß", "{\\ss}")
+        replace("ß", "{\\ss}").
+        replace("ą", "{\\k{a}}")
+
+
 
     def toId = toAscii.replaceAll("\\W", "")
 

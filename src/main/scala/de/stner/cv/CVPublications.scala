@@ -5,6 +5,7 @@ object CVPublications {
 
   import Venues._
 
+  val publicationKinds= Seq(KJournal,KInConferenceProceedings,KInvited,KWorkshopDemoTool,KTechnicalReport,KMisc).sorted
 
   object KJournal extends PublicationKind("Refereed Journal Articles", 1)
 
@@ -14,7 +15,7 @@ object CVPublications {
 
   object KWorkshopDemoTool extends PublicationKind("Refereed Workshop Papers, Posters, and Tool Demos", 4)
 
-  object KTechnicalReport extends PublicationKind("Technical Report", 5)
+  object KTechnicalReport extends PublicationKind("Technical Reports", 5)
 
   object KMisc extends PublicationKind("Miscellaneous", 6)
 

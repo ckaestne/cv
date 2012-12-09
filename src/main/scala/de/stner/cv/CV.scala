@@ -212,6 +212,12 @@ object CV {
         TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2007), "IT-Projekt", URL("http://www.uni-magdeburg.de/mytt/"))
     )
 
+    val memberships = Seq(
+        "IFIP Working Group 2.11 (Program Generation)",
+        "Association for Computing Machinery (ACM)",
+        "Gesellschaft für Informatik (GI)",
+        "Deutscher Hochschulverband"
+    )
 
     val advisedTheses = CVTheses.advisedTheses
 
@@ -228,8 +234,9 @@ object CV {
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",
             URL("http://www.se2013.rwth-aachen.de/")), PC),
+        Committee(FOSD(2013), OC),
         Committee(VAMOS(2013), PC),
-        Committee(Workshop("REVE",2013,"1st Workshop on Reverse Variability Engineering",
+        Committee(Workshop("REVE", 2013, "1st Workshop on Reverse Variability Engineering",
             URL("http://www.sea.jku.at/reve2013/")), PC),
         Committee(SLE(2012), DS),
         Committee(GPCE(2012), PC),
