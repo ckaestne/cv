@@ -1,7 +1,7 @@
 package de.stner.cv
 
 import xml.NodeSeq
-import java.util.GregorianCalendar
+import java.util.{Date, GregorianCalendar}
 
 
 object CV {
@@ -10,8 +10,6 @@ object CV {
     import CVPublications._
 
     val name = "Christian Kästner"
-    val title = "Dr.-Ing."
-    val imgURL = "http://www.informatik.uni-marburg.de/~kaestner/me3.jpg"
 
     def printSummary(): NodeSeq =
         <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
@@ -36,7 +34,7 @@ object CV {
         Linux;
         and empirical methods.</p> :+
         <p>Profiles: 
-          <a href="http://www.informatik.uni-marburg.de/~kaestner/cv.pdf">Curriculum vitae</a>, 
+          <a href="cv.pdf">Curriculum vitae</a>,
           <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, 
           <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, 
           <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, 
@@ -52,6 +50,59 @@ object CV {
             <div>Phone: +1 412 268 5254</div>
 	</p>
 
+
+    def headerCVLatex() =
+        """\begin{CV}
+          |\item[Affiliation]
+          |    Assistant Professor \\
+          |    Carnegie Mellon University \\
+          |    Institute for Software Research \\
+          |    5000 Forbes Avenue, Pittsburgh, PA 15213, USA
+          |\item[Contact]
+          |    +1 412 268 5254 (Office)\\
+          |    \href{mailto:kaestner@cs.cmu.edu}{kaestner@cs.cmu.edu}
+          |%\item[]Born 1982 in Schwedt/Oder, Germany; German citizenship
+          |\end{CV}
+          |
+          |\section{Profile}
+          |\begin{CV}
+          |\item[] Assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the \emph{complexity} caused by \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, and to improve program comprehension in systems with a high amount of variability.
+          |\end{CV}
+          |
+          |\section{Education}
+          |\begin{CV}
+          |\item[Apr.\ 2007 -- May 2010]
+          |    Doctoral degree in computer science (Doktor-Ingenieur),\\
+          |    University of Magdeburg, Germany, \\
+          |    Grade ``{\bf summa cum laude}'' (with distinction)\\[.5ex]
+          |		Reviewers: Prof.\ Gunter Saake (University of Magdeburg), Prof.\ Don Batory (University of Texas at Austin), Prof.\ Krzysztof Czarnecki (University of Waterloo)
+          |\item[Oct.\ 2002 -- Mar.\ 2007]
+          |    Diploma degree in business information systems \\(M.Sc.\ equivalent; Diplom-Wirtschaftsinformatiker), \\University of Magdeburg, Germany,\\Grade ``{\bf 1.0}'' (with distinction)
+          |\end{CV}
+          |
+          |\section{Academic Employment}
+          |\begin{CV}
+          |\item[since Sep. 2012]
+          |	Assistant Professor,\\
+          |	Carnegie Mellon University
+          |\item[Jul.\ 2010 -- Aug. 2012]
+          |	Researcher (Post-Doc),\\
+          |	Host: Prof.\ Klaus Ostermann, \\
+          |	Philipps University Marburg, Germany
+          |\item[Apr.\ 2007 -- Jun. 2010]
+          |	Research Assistant,\\
+          |	Host: Prof.\ Gunter Saake,\\
+          |	University of Magdeburg, Germany
+          |\item[Oct.\ 2006 -- Mar.\ 2007]
+          |    Visiting scholar, \\
+          |    Host: Prof. Don Batory \\
+          |    University of Texas at Austin, USA
+          |\item[Oct.\ 2005 -- Sep.\ 2006]
+          |    Student Research Assistent,\\
+          |    Host: Prof.\ Gunter Saake,\\
+          |		University of Magdeburg, Germany
+          |\end{CV
+          | """.stripMargin
 
 
     val teaching = Seq(
@@ -240,52 +291,66 @@ object CV {
     )
 
 
-    val awards: Seq[Award] = Seq(
-        Award("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering. German Research Foundation. 250 000 EUR, October 2012 – October 2015.",
+    val awards: Seq[AwardOrGrant] = Seq(
+        Grant("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering",
             URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
-            new GregorianCalendar(2012, 6, 1).getTime
+            new GregorianCalendar(2012, 6 - 1, 1).getTime,
+            new GregorianCalendar(2012, 10 - 1, 1).getTime,
+            new GregorianCalendar(2015, 10 - 1, 1).getTime,
+            "German Research Foundation",
+            EUR(250000)
         ),
         Award(
             "**GI-Dissertationspreis:** Best Disseration Award of the German Computer Science Association, 2010",
             URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
-            new GregorianCalendar(2011, 10, 1).getTime,
+            new GregorianCalendar(2011, 10 - 1, 1).getTime,
             List(
                 (URL("http://www.gi.de/no_cache/aktuelles/meldungsdetails/meldung/beste-informatikdissertation-im-deutschsprachigen-raum-gi-dissertationspreis-fr-christian-kstner-387.html"), "Annoucement"),
                 (URL("http://www.flickr.com/photos/p0nk/6214434320/"), "Photo")
-            )
+            ),
+            Some(EUR(5000))
         ),
         Award(
             "Distinguished-Paper Award at the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA) 2011",
             URL("http://splashcon.org/2011/program/273"),
-            new GregorianCalendar(2011, 10, 1).getTime,
+            new GregorianCalendar(2011, 10 - 1, 1).getTime,
             (URL("http://www.flickr.com/photos/p0nk/6317966864/in/photostream"), "Photo") :: Nil
         ),
         Award(
             "Best-Research-Paper Award at the International Software Product Line Conference 2011",
             URL("http://www.splc2011.net/program-1/best-paper-awards/index.html"),
-            new GregorianCalendar(2011, 8, 1).getTime
+            new GregorianCalendar(2011, 8 - 1, 1).getTime
         ),
         Award(
             "Best-Dissertation Award of the School of Computer Science, University of Magdeburg, 2010",
             URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html"),
-            new GregorianCalendar(2010, 11, 1).getTime
+            new GregorianCalendar(2010, 11 - 1, 1).getTime,
+            Nil,
+            Some(EUR(1000))
         ),
         Award(
             "Research Award of the School of Computer Science, University of Magdeburg for the Best Paper, 2009",
             URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html"),
-            new GregorianCalendar(2009, 12, 1).getTime
+            new GregorianCalendar(2009, 12 - 1, 1).getTime,
+            Nil,
+            Some(EUR(1000))
         ),
         Award(
             "Software Engineering Award of the Denert Foundation for the Best Master's Thesis, 2007",
             URL("http://www.denert-stiftung.de/"),
-            new GregorianCalendar(2007, 9, 1).getTime,
-            (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil
+            new GregorianCalendar(2007, 9 - 1, 1).getTime,
+            (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil,
+            Some(EUR(2000))
         ),
         Award(
             "Best-Graduate Award of the School of Computer Science, University of Magdeburg, 2007",
             URL("http://www.cs.uni-magdeburg.de/Bester_Absolvent.html"),
-            new GregorianCalendar(2007, 10, 1).getTime,
+            new GregorianCalendar(2007, 10 - 1, 1).getTime,
             (URL("http://www.flickr.com/photos/p0nk/6318413771/in/photostream"), "Photo") :: Nil
+        ),
+        Award("Student Scholarship of the Germany Academic Exchange Service",
+            URL("http://www.daad.de/"),
+            new GregorianCalendar(2006, 9 - 1, 1).getTime
         )
     )
     val projects: Seq[(URL, String, String, Option[String])] = Seq(
@@ -304,4 +369,26 @@ object CV {
     val publications = CVPublications.publications
 
 
+    val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
+    val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
+    val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Passau, Germany"),
+        InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "Carnegie Mellon University, Pittsburgh, PA"),
+        InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Edinburgh, UK"),
+        InvitedTalk(time(2012, 3), parsingandtypecheckingLinux, "Purdue University, West Lafayette, IN"),
+        InvitedTalk(time(2011, 12), parsingandtypecheckingLinux, "Technical University Ilmenau, Germany"),
+        InvitedTalk(time(2011, 10), "Virtual Separation of Concerns", "Oregon State University, Corvallis, OR"),
+        InvitedTalk(time(2011, 10), "Modularity in Feature-Oriented Software Development", "University of Texas at Austin, TX"),
+        InvitedTalk(time(2011, 1), "Variability-Aware Analysis: Type Checking entire Product Lines", "Dagstuhl Seminar 11021 Feature-Oriented Software Development"),
+        InvitedTalk(time(2010, 12), "Modularity -- Current State and Challenges", "University of Waterloo, ON"),
+        InvitedTalk(time(2010, 12), "Variability Analysis of C Code in the Presence of Lexical Macros and Conditional Compilation", "IFIP WG 2.11 Meeting, Waterloo, ON"),
+        InvitedTalk(time(2010, 7), "From Aspectual Decomposition to Virtual Separation of Concerns", "Colloquium Honorary Doctorate Ernst Denert, University of Kaiserslautern"),
+        InvitedTalk(time(2010, 5), vsoc, "Philipps University Marburg, Germany"),
+        InvitedTalk(time(2010, 4), vsoc, "University of Namur (FUNDP), Belgium"),
+        InvitedTalk(time(2010, 3), vsoc, "IFIP WG 2.11 Meeting, St. Andrews, UK"),
+        InvitedTalk(time(2008, 7), "Decomposing Berkeley DB: Granularity and Interactions", "Dagstuhl Seminar 08281 Software Engineering for Tailor-made Data Management")
+    )
+
+    //1=January
+    def time(year: Int, month: Int): Date = new GregorianCalendar(year, month - 1, 1).getTime
 }

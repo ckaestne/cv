@@ -3,7 +3,7 @@ package de.stner.cv
 import de.stner.cv.StructureTheses.AThesis
 import xml._
 import dtd.{PublicID, DocType}
-import java.text.SimpleDateFormat
+import java.text.{DecimalFormat, SimpleDateFormat}
 import java.io.File
 import org.apache.commons.io.FileUtils
 
@@ -246,18 +246,25 @@ object GenHtml extends App {
         </ul>
 
 
-    def printAward(award: Award) = row(<span class="date">{new SimpleDateFormat("MMM. yyyy") format award.date}</span>,
+    val monthyear = new SimpleDateFormat("MMM. yyyy")
+    def printAward(award: AwardOrGrant) = row(<span class="date">{monthyear format award.date}</span>,
         <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+ {
-            if (!award.extraLinks.isEmpty)
-                <span> ({
-                    for (ex <- award.extraLinks.dropRight(1))
-                    yield <span><a href={award.extraLinks.head._1.toString}>{award.extraLinks.head._2}</a>, </span>
-                    }{<span><a href={award.extraLinks.last._1.toString}>{award.extraLinks.last._2}</a></span>})</span>
-            else <span></span>
+            award match {
+                case Award(_,_,_,extraLinks,_) if !extraLinks.isEmpty =>
+                    <span> ({
+                    for (ex <- extraLinks.dropRight(1))
+                    yield <span><a href={extraLinks.head._1.toString}>{extraLinks.head._2}</a>, </span>
+                    }{<span><a href={extraLinks.last._1.toString}>{extraLinks.last._2}</a></span>})</span>
+                case Grant(_,_,_,from,to,ag,budget) =>
+                    <span>{ag + ". "+(monthyear format from) +" – "+ (monthyear format to) +", "+(new DecimalFormat("###,###").format(budget.value).replace(",", " "))+(
+                        budget match { case EUR(_) => " EUR"; case USD(_) => " USD"}
+                        )}</span>
+                case _ => <span></span>
+            }
         }
     )
 
-    def printAwards(awards: Seq[Award]) = rowH2("Grants & Awards") ++ {
+    def printAwards(awards: Seq[AwardOrGrant]) = rowH2("Grants & Awards") ++ {
         for (r <- awards) yield printAward(r)
     }.flatten
 

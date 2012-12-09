@@ -13,9 +13,6 @@ class Validate extends FunSuite {
         assert(url == null || url.check, "URL cannot be resolved " + url + " from " + c)
     }
 
-    test("check urls: images") {
-        checkURL(new HTTPLink(imgURL))
-    }
 
     test("check urls: committees") {
         committees.map(c => c.venue.url.map(checkURL(_, c)))

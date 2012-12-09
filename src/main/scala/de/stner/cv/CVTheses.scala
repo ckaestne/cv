@@ -134,6 +134,13 @@ object CVTheses {
             "Statische Analyse von Produktlinien",
             "Static Analysis of Product Lines",
             MR, (4, 2012), BachelorsThesis
+        ),
+
+        Thesis(
+            Person("Jonas", "Pusch"),
+            "Variability-Aware Interpretation",
+            MR, (11, 2012), BachelorsThesis,
+            PDFFile("thesispusch.pdf")
         )
 
     )

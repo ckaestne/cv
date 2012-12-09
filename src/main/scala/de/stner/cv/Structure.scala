@@ -793,4 +793,14 @@ object StructureTheses {
 }
 
 /** award name supports markdown */
-case class Award(name: String, url: URL, date: Date, extraLinks: List[(URL, String)] = Nil)
+sealed abstract class AwardOrGrant(val name: String,val url:URL, val date:Date)
+case class Award(aname: String, aurl: URL, dateAnnounced: Date, extraLinks: List[(URL, String)] = Nil, budget: Option[Budget]=None) extends AwardOrGrant(aname, aurl, dateAnnounced)
+case class Grant(aname: String, aurl: URL, dateAnnounced: Date, dateBegin: Date, dateEnd: Date, foundingAg:String, budget: Budget) extends AwardOrGrant(aname, aurl, dateAnnounced)
+
+sealed abstract class Budget(val value:Int)
+case class EUR(v: Int) extends Budget(v)
+case class USD(v: Int) extends Budget(v)
+
+
+
+case class InvitedTalk( when:Date, title: String,where: String)

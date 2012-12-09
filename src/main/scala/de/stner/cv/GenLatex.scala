@@ -1,6 +1,7 @@
 package de.stner.cv
 
 import java.io.FileWriter
+import java.text.{DecimalFormat, SimpleDateFormat}
 
 
 object GenLatex extends App {
@@ -8,7 +9,6 @@ object GenLatex extends App {
     import CV._
 
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
-
 
 
     object LatexFormater extends Formater[String] {
@@ -37,6 +37,43 @@ object GenLatex extends App {
         "\\subsection{" + name + "}\n" + body + "\n"
 
     def inCV(body: String): String = "\\begin{CV}\n" + body + "\\end{CV}\n"
+
+    def printAwards(): String = {
+        val r = awards.map({
+            case Award(name, _, date, _, budget) => "\\item[%s] %s".format({monthyear format date}, name.markdownToTex(true)) + budget.map(b => " (%s)".format(formatBudget(b))).getOrElse("")
+            case _ => ""
+        })
+        inCV(r.mkString("\n"))
+    }
+
+    def formatBudget(b: Budget) = b match {
+        case EUR(v) => "{\\EUR{%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
+        case USD(v) => "{${%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
+    }
+
+    val monthyear = new SimpleDateFormat("MMM. yyyy")
+
+    def printGrants(): String = {
+        val r = awards.map({
+            case Grant(name, _, _, from, to, ag, budget) =>
+                "\\item[] %s\\\\%s. %s, %s -- %s".format(
+                    name.markdownToTex(true),
+                    ag, formatBudget(budget),
+                    monthyear format from, monthyear format to)
+            case _ => ""
+        })
+        inCV(r.mkString("\n"))
+    }
+
+    def printInvitedTalks(): String = {
+        val r = invitedTalks.map(it =>
+            "\\item[%s] %s,\\\\%s".format(
+                monthyear format it.when,
+                it.title.markdownToTex(true),
+                it.where)
+        )
+        inCV(r.mkString("\n"))
+    }
 
     def courses(): String = {
         val l = teaching.filter(_.kind.isLecture).groupBy(c => (c.title, c.language)).toList.
@@ -99,30 +136,19 @@ object GenLatex extends App {
         "\\section{Publications \\hfill \\small \\normalfont  h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{20} ~~ g-index: 35}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.uni-marburg.de/fb12/ps/team/kaestner}.\n    \\end{CV}\n    \\begin{thebibliography}{10}" +
             (for (p <- CV.publications) yield printPublication(p)).mkString + "\\end{thebibliography}{10}"
 
-    val header = "\\documentclass[a4paper,10pt]{letter}\n            \\usepackage{../papers/cv/mycv}\n            \\usepackage{eurosym}\n            \\usepackage[stable]{footmisc}\n            \\addtolength{\\textheight}{10mm}\n            \\usepackage{pifont}\n            \\newcommand\\selectedsymbol{\\ding{77}}\n            \\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n            \\begin{document}"
+    val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{../papers/cv/mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
     val footer = "\\end{document}"
 
     var output = ""
 
-    output += "\\chapter{" + name.toTex + "\\hfill {\\normalfont\\small\\isotoday}}"
-    output += "\\section{Curriculum Vitae}"
-    output += """\begin{CV}
-    \item[Affiliation]
-    	Researcher (Post-Doc) \\
-    	Philipps University Marburg \\
-    	Hans-Meerwein-Str, 35032 Marburg, Germany
-    \item[Contact]
-    	0049 6421 28 25349 (Office)\\
-    	0049 6421 28 25419  (Fax)\\
-    \href{mailto:christian.kaestner@uni-marburg.de}{christian.kaestner@uni-marburg.de}
-    \item[]Born 1982 in Schwedt/Oder, Germany; German citizenship
-    \end{CV}
+    output += "\n\\chapter{" + name.toTex + "\\hfill {\\normalfont\\small\\isotoday}}"
+    output += "\n\\section{Curriculum Vitae}"
+    output += "\n" * 3 + CV.headerCVLatex() + "\n" * 3
 
-    \section{Profile}
-    \begin{CV}
-    \item[] Post-doctoral researcher at the Philipps University Marburg interested in controlling the complexity caused by variability in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, and to improve program comprehension in systems with a high amount of variability. %Currently, I investigate approaches to parse and type check all compile-time configurations of the Linux kernel in the TypeChef project.
-    \end{CV}"""
 
+    output += section("Awards and Honors", printAwards())
+    output += section("Research Grants", printGrants())
+    output += section("Invited Talks", printInvitedTalks())
 
     output += section("Teaching and Advising", courses() + seminars() + theses())
 
