@@ -24,6 +24,7 @@ class Validate extends FunSuite {
         reviews.map(c => c.venue.url.map(checkURL(_, c)))
     }
 
+
     test("check urls: teaching") {
         teaching.map(c => checkURL(c.url, c))
         teachingProjects.map(c => checkURL(c.url, c))
@@ -36,6 +37,12 @@ class Validate extends FunSuite {
     test("check urls: advised theses") {
         advisedTheses.map(c => checkURL(c.pdf, c))
     }
+
+    test("check urls: authors") {
+        val allAuthors=publications.map(_.authors).flatten.toSet
+        allAuthors.map(c => c.url.map(checkURL(_, c)))
+    }
+
 
     test("all pdf links in publications should be local") {
         for (p <- publications) {
