@@ -73,7 +73,7 @@ object GenHtml extends App {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
-                   {p.render(DefaultBibStyle).markdownToHtml}
+                  {p.render(DefaultBibStyle,HtmlFormater)}
                [ {
                    for ((key, url) <- links.dropRight(1))
                    yield <a href={url.toString}>{key.print}</a> :+ ", "

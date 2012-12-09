@@ -72,7 +72,7 @@ object GenLatex extends Object {
     def reviewing(): String = subsection("Reviewing", inCV(reviews.map(printReview).mkString))
 
     def printPublication(p: Publication) =
-        "\\bibitem{%s} %s\n\n".format(p.genKey, p.render(DefaultBibStyle).markdownToTex(false))
+        "\\bibitem{%s} %s\n\n".format(p.genKey, p.render(DefaultBibStyle, LatexFormater).markdownToTex(false))
 
     def publications(): String =
         "\\section{Publications \\hfill \\small \\normalfont  h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{20} ~~ g-index: 35}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.uni-marburg.de/fb12/ps/team/kaestner}.\n    \\end{CV}\n    \\begin{thebibliography}{10}" +

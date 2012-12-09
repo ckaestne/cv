@@ -4,6 +4,7 @@ import scala.None
 import de.stner.cv.CVPublications._
 import java.io.File
 import java.util.Date
+import xml._
 
 object Config {
     val pdfWebPath = "pdf/"
@@ -14,9 +15,9 @@ object Config {
 case class Person(
                      firstname: String,
                      lastname: String,
-                     url: URL = null,
-                     affiliation: String = "") {
-    def fullname = firstname + " " + lastname
+                     url: Option[URL] = None,
+                     affiliation: Option[String] = None) {
+    def fullname: String = firstname + " " + lastname
 
     def abbrvname = firstname.charAt(0) + ". " + lastname
 }
@@ -31,10 +32,17 @@ object InProceedings {
         new Publication(renderer, authors, title, venue_, pages, links, abstr)
 
     val renderer = new PublicationRenderer {
-        def renderRest(pub: Publication, style: BibStyle) = {
+        def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A = {
             assert(pub.venue.kind == KInConferenceProceedings || pub.venue.kind == KWorkshopDemoTool, "InProceedings with venue.kind=" + pub.venue.kind + " not supported")
-            "In *Proceedings of the %s (%s)*, ".format(pub.venue.name, pub.venue.short) +
-                pub.venue.renderVolSeries + renderPages(pub) + pub.venue.renderPublisher + pub.venue.renderDate + "."
+            formater.concat(
+                formater.text("In "),
+                formater.journal("Proceedings of the %s (%s)".format(pub.venue.name, pub.venue.short)),
+                formater.text(", "),
+                pub.venue.renderVolSeries(formater),
+                renderPages(pub, formater),
+                pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot
+            )
+
         }
 
         override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("booktitle" -> "Proceedings of the %s (%s)".format(p.venue.name, p.venue.short))
@@ -58,10 +66,16 @@ object Article {
             case _ => ""
         }
 
-        def renderRest(pub: Publication, style: BibStyle) = {
+        def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A = {
             assert(pub.venue.kind == KJournal || pub.venue.kind == KInvited, "Article with venue.kind=" + pub.venue.kind + " not supported " + pub.title)
-            "*" + pub.venue.name + (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "") + "*, " +
-                renderVolNumber(pub.venue) + renderPages(pub, true) + pub.venue.renderDate + "."
+            formater.concat(
+                formater.journal(pub.venue.name + (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "")),
+                formater.text(", "),
+                formater.text(renderVolNumber(pub.venue)),
+                renderPages(pub, true, formater),
+                pub.venue.renderDate(formater),
+                formater.dot
+            )
         }
 
         override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("journal" -> p.venue.name)
@@ -79,8 +93,10 @@ object Thesis {
         new Publication(renderer, authors, title, Venue(null, year, typ, KMisc, None).month(month).publisher(school), null, links, abstr)
 
     val renderer = new PublicationRenderer {
-        def renderRest(pub: Publication, style: BibStyle) =
-            pub.venue.name + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
+        def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A =
+            formater.concat(
+                formater.text(pub.venue.name), formater.text(", "), pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot
+            )
 
         override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("institution" -> p.venue.publisher.map(_.name).getOrElse(""))
     }
@@ -97,9 +113,14 @@ object TechReport {
         new Publication(renderer, authors, title, Venue("", year, "", KTechnicalReport, None).month(month).publisher(school).number(number), null, links, abstr)
 
     val renderer = new PublicationRenderer {
-        def renderRest(pub: Publication, style: BibStyle) = {
+        def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A = {
             assert(pub.venue.kind == KTechnicalReport, "TechReport with venue.kind=" + pub.venue.kind + " not supported")
-            "Technical Report " + pub.venue.number.get + ", " + pub.venue.renderPublisher + pub.venue.renderDate + "."
+            formater.concat(
+                formater.text("Technical Report " + pub.venue.number.get + ", "),
+                pub.venue.renderPublisher(formater),
+                pub.venue.renderDate(formater),
+                formater.dot
+            )
         }
 
         override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("institution" -> p.venue.publisher.map(_.name).getOrElse(""))
@@ -116,13 +137,18 @@ object Book {
         new Publication(rendererEditors, editors, title, venue_, null, links, abstr)
 
     val rendererEditors = new PublicationRenderer {
-        def renderRest(pub: Publication, style: BibStyle) = ""
+        def renderRest[A](p: Publication, style: BibStyle, formater: Formater[A]): A = formater.none
 
-        override def render(pub: Publication, style: BibStyle): String =
-            renderAuthors(pub, style.renderAuthor) + ", editor" + (if (pub.authors.size > 1) "s" else "") + ". [!]" +
-                "*" + pub.title + "*. [!]" +
-                pub.venue.renderPublisher + pub.venue.renderDate + "." +
-                (pub.note.map("[!] " + _ + ".").getOrElse(""))
+        override def render[A](pub: Publication, style: BibStyle, formater: Formater[A]): A =
+            formater.concat(
+                renderAuthors(pub, formater),
+                formater.text(", editor" + (if (pub.authors.size > 1) "s" else "")),
+                formater.dot, formater.space, formater.newBlock,
+                formater.title(pub.title), formater.text(endDot(pub.title)),
+                formater.space, formater.newBlock,
+                pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot,
+                (pub.note.map(t => formater.concat(formater.newBlock, formater.space, formater.text(t), formater.dot)).getOrElse(formater.none))
+            )
 
         override def getBibtexAuthorField(p: Publication): Map[String, String] =
             Map("editor" -> p.authors.map(_.fullname.toTex).mkString(" and "))
@@ -141,10 +167,13 @@ object InBook {
         new Publication(renderer, authors, title, venue_, pages, links, abstr)
 
     val renderer = new PublicationRenderer {
-        def renderRest(pub: Publication, style: BibStyle) = {
-            "In *%s*, ".format(pub.venue.name) +
-                pub.venue.renderVolSeries + renderPages(pub) + pub.venue.renderPublisher + pub.venue.renderDate + "."
-        }
+        def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A =
+            formater.concat(formater.text("In "), formater.journal(pub.venue.name), formater.text(", "),
+                pub.venue.renderVolSeries(formater),
+                renderPages(pub, formater),
+                pub.venue.renderPublisher(formater),
+                pub.venue.renderDate(formater), formater.dot
+            )
 
         override def getBibtexFields(p: Publication) = super.getBibtexFields(p) + ("booktitle" -> p.venue.name)
     }
@@ -156,25 +185,37 @@ object InBook {
 abstract class PublicationRenderer {
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
+    def endDot(s: String) = if (Set('.', '!', '?') contains s.last) "" else "."
 
-    def render(p: Publication, style: BibStyle): String =
-        renderAuthors(p, style.renderAuthor) + ". [!]" +
-            "**" + p.title + "**" + p.title.endDot + " [!]" +
-            renderRest(p, style) +
-            (if (style.withAcceptanceRate) renderAcceptanceRate(p) else "") +
-            (p.note.map("[!] " + _ + ".").getOrElse(""))
+    def render[A](p: Publication, style: BibStyle, formater: Formater[A]): A =
+        formater.concat(
+            renderAuthors(p, formater),
+            formater.dot, formater.space, formater.newBlock,
+            formater.title(p.title), formater.text(p.title.endDot),
+            formater.space, formater.newBlock,
+            renderRest(p, style, formater),
+            (if (style.withAcceptanceRate) renderAcceptanceRate(p, formater) else formater.none),
+            (p.note.map(t=>formater.concat(formater.newBlock, formater.space, formater.text(t), formater.dot)).getOrElse(formater.none))
+        )
 
-    def renderRest(p: Publication, style: BibStyle): String
+    def renderRest[A](p: Publication, style: BibStyle, formater: Formater[A]): A
 
-    def renderAuthors(p: Publication, renderOne: Person => String): String = {
+    def renderAuthors[A](p: Publication, formater: Formater[A]): A = {
         assert(!p.authors.isEmpty, "no authors for " + this)
-        if (p.authors.size == 1) renderOne(p.authors.head)
-        else p.authors.dropRight(1).map(renderOne).mkString(", ") + ", and " + renderOne(p.authors.last)
+        if (p.authors.size == 1) formater.person(p.authors.head)
+        else formater.concat(
+            formater.concatL(p.authors.dropRight(1).map(a => formater.concat(formater.person(a), formater.text(", ")))),
+            formater.text("and "),
+            formater.person(p.authors.last))
     }
 
     private def pextr(e: String): String = if (e == null) "" else ", " + e
 
-    def renderPages(p: Publication, short: Boolean = false) = {
+    def renderPages[A](p: Publication, formater: Formater[A]): A = formater.text(renderPages(p))
+
+    def renderPages[A](p: Publication, short: Boolean, formater: Formater[A]): A = formater.text(renderPages(p, short))
+
+    def renderPages(p: Publication, short: Boolean = false): String = {
         if (p.pages == null) ""
         else p.pages match {
             case Pages(a, b, e) if (a == b) => (if (short) "" else "page ") + a + pextr(e) + ", "
@@ -184,10 +225,11 @@ abstract class PublicationRenderer {
         }
     }
 
-    def renderAcceptanceRate(p: Publication) =
+    def renderAcceptanceRate[A](p: Publication, formater: Formater[A]): A = formater.text(
         p.venue.acceptanceRate.map(
             e => " Acceptance rate: %d %% (%d/%d).".format(scala.math.round(e._1.toDouble / e._2.toDouble * 100), e._1, e._2)
         ).getOrElse("")
+    )
 
     protected def getBibtexAuthorField(p: Publication): Map[String, String] =
         Map("author" -> p.authors.map(_.fullname.toTex).mkString(" and "))
@@ -290,22 +332,70 @@ class Publication(
     /**
      * renders bibtex entry as line with markdown ** and *
      */
-    def render(style: BibStyle): String = renderer.render(this, style)
+    def render[A](style: BibStyle, formater: Formater[A]): A = renderer.render(this, style, formater)
 
     def toBibtex(): String = renderer.toBibtex(this)
 
 }
 
+trait Formater[A] {
+    def title(t: String): A
+
+    def journal(s: String): A
+
+    def concat(c: A*): A
+    def concatL(c: Seq[A]): A
+
+    def newBlock: A
+
+    def text(s: String): A
+
+    def space: A = text(" ")
+
+    def dot: A = text(".")
+
+    def none: A = text("")
+
+    def person(person: Person): A
+}
+
+object HtmlFormater extends Formater[NodeSeq] {
+    def title(t: String): NodeSeq = <strong>{t}</strong>
+
+    def journal(s: String): NodeSeq = <em>{s}</em>
+
+    def concat(c: NodeSeq*): NodeSeq = c.flatten
+
+    def concatL(c: Seq[NodeSeq]): NodeSeq = c.flatten
+
+    def newBlock: NodeSeq = Text("")
+
+    def text(s: String): NodeSeq = Text(s)
+
+    def person(person: Person): NodeSeq = <span style="author" title={person.fullname}>{person.abbrvname}</span>
+}
+
+object LatexFormater extends Formater[String] {
+    def title(t: String): String = "\\textbf{" + t + "}"
+
+    def journal(s: String): String = "\\emph{" + s + "}"
+
+    def concat(c: String*): String = c.mkString
+
+    def concatL(c: Seq[String]): String = c.mkString
+
+    def newBlock: String = "\\newBlock "
+
+    def text(s: String): String = s
+
+    def person(person: Person): String = person.fullname
+}
 
 trait BibStyle {
-    def renderAuthor(p: Person): String
-
     def withAcceptanceRate: Boolean
 }
 
 object DefaultBibStyle extends BibStyle {
-    def renderAuthor(p: Person) = p.fullname
-
     def withAcceptanceRate: Boolean = true
 }
 
@@ -423,20 +513,20 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
     def acceptanceRate(accepted: Int, submitted: Int): Venue = Venue(short, year, name, kind, url, publisher, Some((accepted, submitted)), location, month, number, volume, series)
 
 
-    def renderDate: String =
+    def renderDate[A](formater: Formater[A]): A = formater.text(
         month.map({
             case MonthNr(i) => TextHelper.renderMonth(i)
             case MonthStr(s) => s
-        }).map(_ + " ").getOrElse("") + year
+        }).map(_ + " ").getOrElse("") + year)
 
-    def renderPublisher: String = publisher.map(_.render + ", ").getOrElse("")
+    def renderPublisher[A](formater: Formater[A]): A = formater.text(publisher.map(_.render + ", ").getOrElse(""))
 
-    def renderVolSeries =
+    def renderVolSeries[A](formater: Formater[A]): A =
         if (volume.isDefined && series.isDefined)
-            "volume %s of *%s*, ".format(volume.get, series.get)
+            formater.concat(formater.text("volume %s of ".format(volume.get)), formater.journal(series.get), formater.text(", "))
         else if (volume.isDefined && !series.isDefined)
-            "volume %s, ".format(volume.get)
-        else ""
+            formater.text("volume %s, ".format(volume.get))
+        else formater.none
 }
 
 case class Publisher(name: String, address: String) {
@@ -537,6 +627,7 @@ case class Committee(venue: Venue, role: CommitteeRole)
 abstract class CommitteeRole(val title: String, val abbreviation: String)
 
 object PC extends CommitteeRole("Program-Committee Member", "PC")
+
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
@@ -722,5 +813,5 @@ object StructureTheses {
 
 }
 
-/**award name supports markdown */
+/** award name supports markdown */
 case class Award(name: String, url: URL, date: Date, extraLinks: List[(URL, String)] = Nil)
