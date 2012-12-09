@@ -153,7 +153,7 @@ object Book {
                 formater.title(pub.title), formater.text(endDot(pub.title)),
                 formater.space, formater.newBlock,
                 pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot,
-                (pub.note.map(t => formater.concat(formater.newBlock, formater.space, formater.text(t), formater.dot)).getOrElse(formater.none))
+                (pub.note.map(t => formater.concat(formater.newBlock, formater.space, formater.markdown(t), formater.dot)).getOrElse(formater.none))
             )
 
         override def getBibtexAuthorField(p: Publication): Map[String, String] =
@@ -201,7 +201,7 @@ abstract class PublicationRenderer {
             formater.space, formater.newBlock,
             renderRest(p, style, formater),
             (if (style.withAcceptanceRate) renderAcceptanceRate(p, formater) else formater.none),
-            (p.note.map(t=>formater.concat(formater.newBlock, formater.space, formater.text(t), formater.dot)).getOrElse(formater.none))
+            (p.note.map(t=>formater.concat(formater.newBlock, formater.space, formater.markdown(t), formater.dot)).getOrElse(formater.none))
         )
 
     def renderRest[A](p: Publication, style: BibStyle, formater: Formater[A]): A
@@ -363,25 +363,12 @@ trait Formater[A] {
     def none: A = text("")
 
     def person(person: Person): A
+
+    def markdown(m: String): A
 }
 
 
 
-object LatexFormater extends Formater[String] {
-    def title(t: String): String = "\\textbf{" + t + "}"
-
-    def journal(s: String): String = "\\emph{" + s + "}"
-
-    def concat(c: String*): String = c.mkString
-
-    def concatL(c: Seq[String]): String = c.mkString
-
-    def newBlock: String = "\\newBlock "
-
-    def text(s: String): String = s
-
-    def person(person: Person): String = person.fullname
-}
 
 trait BibStyle {
     def withAcceptanceRate: Boolean

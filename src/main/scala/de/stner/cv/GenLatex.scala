@@ -3,11 +3,32 @@ package de.stner.cv
 import java.io.FileWriter
 
 
-object GenLatex extends Object {
+object GenLatex extends App {
 
     import CV._
 
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
+
+
+
+    object LatexFormater extends Formater[String] {
+        def title(t: String): String = "\\textbf{" + t + "}"
+
+        def journal(s: String): String = "\\emph{" + s + "}"
+
+        def concat(c: String*): String = c.mkString
+
+        def concatL(c: Seq[String]): String = c.mkString
+
+        def newBlock: String = "\\newBlock "
+
+        def text(s: String): String = s
+
+        def person(person: Person): String = person.fullname
+
+        def markdown(m: String): String = m.markdownToTex(true)
+    }
+
 
     def section(name: String, body: String): String =
         "\\pagebreak[3]\n\\section{" + name + "}\n" + body + "\n"

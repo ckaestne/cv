@@ -37,6 +37,8 @@ object GenHtml extends App {
                 <a href={person.url.get.toString()}  class="author" title={person.fullname}>{person.abbrvname}</a>
             else
                 <span class="author" title={person.fullname}>{person.abbrvname}</span>
+
+        def markdown(m: String): NodeSeq = m.markdownToHtml
     }
 
 
