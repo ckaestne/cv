@@ -12,6 +12,12 @@ object Config {
     val pdfPath = new File("src/main/pdf/")
 }
 
+object Person {
+    def apply(first:String, last:String, url:URL, affil:String) = new Person(first, last, Some(url), Some(affil))
+    def apply(first:String, last:String,affil:String) = new Person(first, last, None, Some(affil))
+    def apply(first:String, last:String) = new Person(first, last, None, None)
+}
+
 case class Person(
                      firstname: String,
                      lastname: String,
@@ -359,21 +365,7 @@ trait Formater[A] {
     def person(person: Person): A
 }
 
-object HtmlFormater extends Formater[NodeSeq] {
-    def title(t: String): NodeSeq = <strong>{t}</strong>
 
-    def journal(s: String): NodeSeq = <em>{s}</em>
-
-    def concat(c: NodeSeq*): NodeSeq = c.flatten
-
-    def concatL(c: Seq[NodeSeq]): NodeSeq = c.flatten
-
-    def newBlock: NodeSeq = Text("")
-
-    def text(s: String): NodeSeq = Text(s)
-
-    def person(person: Person): NodeSeq = <span style="author" title={person.fullname}>{person.abbrvname}</span>
-}
 
 object LatexFormater extends Formater[String] {
     def title(t: String): String = "\\textbf{" + t + "}"

@@ -142,3 +142,7 @@ font-weight:bold;
 .margin_h2,.margin_40 {
 margin-bottom:40px;
 }
+
+.author {
+    color: #000; text-decoration: none;
+}

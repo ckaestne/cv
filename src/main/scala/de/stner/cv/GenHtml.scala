@@ -1,5 +1,5 @@
 package de.stner.cv
- 
+
 import de.stner.cv.StructureTheses.AThesis
 import xml._
 import dtd.{PublicID, DocType}
@@ -13,6 +13,31 @@ object GenHtml extends App {
     import CV._
 
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
+
+
+    object HtmlFormater extends Formater[NodeSeq] {
+        def title(t: String): NodeSeq = <strong>{t}</strong>
+
+        def journal(s: String): NodeSeq = <em>{s}</em>
+
+        def concat(c: NodeSeq*): NodeSeq = c.flatten
+
+        def concatL(c: Seq[NodeSeq]): NodeSeq = c.flatten
+
+        def newBlock: NodeSeq = Text("")
+
+        def text(s: String): NodeSeq = Text(s)
+
+        def person(person: Person): NodeSeq =
+            if (person.url.isDefined && person.affiliation.isDefined)
+                <a href={person.url.get.toString()} class="author" title={person.fullname+" • "+person.affiliation.get}>{person.abbrvname}</a>
+            else if (!person.url.isDefined && person.affiliation.isDefined)
+                <span class="author" title={person.fullname+" • "+person.affiliation.get}>{person.abbrvname}</span>
+            else if (person.url.isDefined && !person.affiliation.isDefined)
+                <a href={person.url.get.toString()}  class="author" title={person.fullname}>{person.abbrvname}</a>
+            else
+                <span class="author" title={person.fullname}>{person.abbrvname}</span>
+    }
 
 
     def printCourse(course: Course, withKind: Boolean = false): Elem =
@@ -73,7 +98,7 @@ object GenHtml extends App {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
-                  {p.render(DefaultBibStyle,HtmlFormater)}
+                  {p.render(DefaultBibStyle, HtmlFormater)}
                [ {
                    for ((key, url) <- links.dropRight(1))
                    yield <a href={url.toString}>{key.print}</a> :+ ", "
@@ -291,7 +316,6 @@ object GenHtml extends App {
      <p><div class="tweet"></div></p>
 
 
-      
     def printFullBibtex(): NodeSeq =
         for (p <- CV.publications)
         yield <div><a name={p.genKey} /><pre>{p.toBibtex()}</pre></div>
@@ -299,15 +323,15 @@ object GenHtml extends App {
     def mainPage: NodeSeq =
         <div itemscope="" itemtype="http://data-vocabulary.org/Person">{
         printTitle(true) ++
-        row(printPicture(), printSummary())}</div> ++
+            row(printPicture(), printSummary())}</div> ++
             printNews() ++
             printTeachingSummary(teaching) ++
             printCommittees(committees) ++
             printAwards(awards) ++
             printProjects(projects) ++
             printKeyPublications(publications) ++
-            printCoolWall() ++ 
-            printPrivate() 
+            printCoolWall() ++
+            printPrivate()
 
 
     def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
@@ -339,7 +363,7 @@ object GenHtml extends App {
     def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
 
-    /**central build activities */
+    /** central build activities */
     println("copying files.")
     val targetPath = new File("target/site")
     targetPath.mkdirs()
