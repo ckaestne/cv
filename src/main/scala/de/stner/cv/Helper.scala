@@ -25,7 +25,7 @@ class StringTexHelper(str: String) {
         //** -> nothing, just remove
         while (r != oldR) {
             oldR = r
-            val pieces = r.split("\\*\\*")
+            val pieces = r.split("\\*\\*",-1)
             if (pieces.size >= 3)
                 r =
                     (if (mayBold) pieces.head + "{\\bfseries " + pieces.tail.head + "}"
@@ -35,7 +35,7 @@ class StringTexHelper(str: String) {
         //* -> \em
         while (r != oldR) {
             oldR = r
-            val pieces = r.split("\\*")
+            val pieces = r.split("\\*",-1)
             if (pieces.size >= 3)
                 r = pieces.head + "{\\em " + pieces.tail.head + "}" + pieces.tail.tail.mkString("**")
         }
@@ -57,7 +57,7 @@ class StringTexHelper(str: String) {
             oldR = r
             r = r.flatMap({
                 case t@Text(txt) =>
-                    val pieces = txt.split("\\*\\*")
+                    val pieces = txt.split("\\*\\*",-1)
                     if (pieces.size >= 3)
                         Seq(Text(pieces.head), {<strong>{pieces.tail.head}</strong>}, Text(pieces.tail.tail.mkString("**")))
                     else t
@@ -70,7 +70,7 @@ class StringTexHelper(str: String) {
             oldR = r
             r = r.flatMap({
                 case t@Text(txt) =>
-                    val pieces = txt.split("\\*")
+                    val pieces = txt.split("\\*",-1)
                     if (pieces.size >= 3)
                         Seq(Text(pieces.head), {<em>{pieces.tail.head}</em>}, Text(pieces.tail.tail.mkString("*")))
                     else t
