@@ -97,7 +97,8 @@ object CVPublications {
   val Wasowski = Person("Andrzej", "Wąsowski",URL("http://www.itu.dk/~wasowski/"),"IT University Copenhagen")
   val Guo = Person("Jianmei", "Guo","University of Waterloo")
   val Hunsen = Person("Claus", "Hunsen","University of Passau")
-
+  val Mitschke = Person("Ralf", "Mitschke","Technical University of Darmstadt")
+  
 
   val fop = Topic("Feature-oriented programming")
   val aop = Topic("Aspect-oriented programming")
@@ -2438,8 +2439,35 @@ A key result is that variability-aware analysis can outperform even very limited
         |of finding ``acceptable'' products more efficient. We discuss and compare
         |several strategies to incorporate predictors in the sampling process.
       """.stripMargin
-    ).topic(interactions, spl)
+    ).topic(interactions, spl),
 
+    InProceedings(
+      Seq(Giarrusso, Ostermann, Eichberg, Mitschke, Rendel, Kaestner),
+      "Reify Your Collection Queries for Modularity and Speed!",
+      Conference("AOSD", 2013, "12th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
+        month(3).acceptanceRate(17, 72),
+      ToAppear(),
+      Map(),
+      """
+The collections API of a programming language
+forms an embedded domain-specific language to express queries
+and operations on collections. Unfortunately, the ordinary style
+of implementing such APIs does not allow automatic domain-specific 
+analyses and optimizations such as fusion of collection 
+traversals, usage of indexing, or reordering of filters.
+Performance-critical code using collections must instead be 
+hand-optimized, leading to non-modular, brittle, and redundant code.
+We propose SQuOpt, the Scala Query Optimizer---a *deep embedding* of 
+the Scala collections API that allows such analyses
+and optimizations to be defined and executed within Scala, with-
+out relying on external tools or compiler extensions. SQuOpt
+provides the same ``look and feel'' (syntax and static typing guar-
+antees) as the standard collections API. We evaluate SQuOpt
+by re-implementing several code analyses of the Findbugs tool
+using SQuOpt and demonstrate that SQuOpt can reconcile
+modularity and efficiency in real-world applications.
+      """.stripMargin
+    ).topic(dsl)
 
   )
 }
