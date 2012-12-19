@@ -417,6 +417,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+	InvitedTalk(time(2012,12), "A Variability-Aware Module System", "Dagstuhl Seminar 12511: Divide and Conquer: the Quest for Compositional Design and Analysis"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Passau, Germany"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "Carnegie Mellon University, Pittsburgh, PA"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Edinburgh, UK"),
@@ -424,14 +425,15 @@ object CV {
         InvitedTalk(time(2011, 12), parsingandtypecheckingLinux, "Technical University Ilmenau, Germany"),
         InvitedTalk(time(2011, 10), "Virtual Separation of Concerns", "Oregon State University, Corvallis, OR"),
         InvitedTalk(time(2011, 10), "Modularity in Feature-Oriented Software Development", "University of Texas at Austin, TX"),
-        InvitedTalk(time(2011, 1), "Variability-Aware Analysis: Type Checking entire Product Lines", "Dagstuhl Seminar 11021 Feature-Oriented Software Development"),
+        InvitedTalk(time(2011, 6), vsoc, "Kolloquium zum GI Dissertationspreis 2010 at Dagstuhl 11222"),
+        InvitedTalk(time(2011, 1), "Variability-Aware Analysis: Type Checking entire Product Lines", "Dagstuhl Seminar 11021: Feature-Oriented Software Development"),
         InvitedTalk(time(2010, 12), "Modularity -- Current State and Challenges", "University of Waterloo, ON"),
         InvitedTalk(time(2010, 12), "Variability Analysis of C Code in the Presence of Lexical Macros and Conditional Compilation", "IFIP WG 2.11 Meeting, Waterloo, ON"),
         InvitedTalk(time(2010, 7), "From Aspectual Decomposition to Virtual Separation of Concerns", "Colloquium Honorary Doctorate Ernst Denert, University of Kaiserslautern"),
         InvitedTalk(time(2010, 5), vsoc, "Philipps University Marburg, Germany"),
         InvitedTalk(time(2010, 4), vsoc, "University of Namur (FUNDP), Belgium"),
         InvitedTalk(time(2010, 3), vsoc, "IFIP WG 2.11 Meeting, St. Andrews, UK"),
-        InvitedTalk(time(2008, 7), "Decomposing Berkeley DB: Granularity and Interactions", "Dagstuhl Seminar 08281 Software Engineering for Tailor-made Data Management")
+        InvitedTalk(time(2008, 7), "Decomposing Berkeley DB: Granularity and Interactions", "Dagstuhl Seminar 08281: Software Engineering for Tailor-made Data Management")
     )
 
     //1=January
