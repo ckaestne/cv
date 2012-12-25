@@ -10,6 +10,7 @@ object CV {
     import CVPublications._
 
     val name = "Christian Kästner"
+    val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
         <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,

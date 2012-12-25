@@ -6,6 +6,7 @@ import dtd.{PublicID, DocType}
 import java.text.{DecimalFormat, SimpleDateFormat}
 import java.io.File
 import org.apache.commons.io.FileUtils
+import java.util.{Locale, Date}
 
 
 object GenHtml extends App {
@@ -15,7 +16,8 @@ object GenHtml extends App {
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
 
-    object HtmlFormater extends Formater[NodeSeq] {
+
+    trait PlainHtmlFormater extends Formater[NodeSeq] {
         def title(t: String): NodeSeq = <strong>{t}</strong>
 
         def journal(s: String): NodeSeq = <em>{s}</em>
@@ -28,7 +30,13 @@ object GenHtml extends App {
 
         def text(s: String): NodeSeq = Text(s)
 
-        def person(person: Person): NodeSeq =
+        def person(person: Person): NodeSeq = Text(person.fullname)
+
+        def markdown(m: String): NodeSeq = m.markdownToHtml
+    }
+
+    object FancyPersonHtmlFormater extends PlainHtmlFormater {
+        override def person(person: Person): NodeSeq =
             if (person.url.isDefined && person.affiliation.isDefined)
                 <a href={person.url.get.toString()} class="author" title={person.fullname+" • "+person.affiliation.get}>{person.abbrvname}</a>
             else if (!person.url.isDefined && person.affiliation.isDefined)
@@ -38,7 +46,6 @@ object GenHtml extends App {
             else
                 <span class="author" title={person.fullname}>{person.abbrvname}</span>
 
-        def markdown(m: String): NodeSeq = m.markdownToHtml
     }
 
 
@@ -100,7 +107,7 @@ object GenHtml extends App {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                    <a name={p.genKey} />
-                  {p.render(DefaultBibStyle, HtmlFormater)}
+                  {p.render(DefaultBibStyle, FancyPersonHtmlFormater)}
                [ {
                    for ((key, url) <- links.dropRight(1))
                    yield <a href={url.toString}>{key.print}</a> :+ ", "
@@ -181,7 +188,7 @@ object GenHtml extends App {
 
     // or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
-        rowH2("Key Publications",
+        rowH2_(<span>Key Publications {rssLogo("pub.rss","Full publication feed")}</span>,
         <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
             for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
         }.flatten ++
@@ -191,7 +198,7 @@ object GenHtml extends App {
 
     //        A full publication list is available as <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
     def printPublications(pubs: Seq[Publication]) =
-        rowH2("Publications",
+        rowH2_(<span>Publications {rssLogo("pub.rss","Publication feed")}</span>,
     <div class="bib">
         <p>Key publications highlighted in yellow.</p>
         {printFilterHeader(pubs)}
@@ -297,9 +304,10 @@ object GenHtml extends App {
 
     def printPicture(): NodeSeq = <img src="me.jpg" alt="Christian Kästner" />
 
-    def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
+    def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = rowH2_(Text(title), body, leftExtra)
+    def rowH2_(title: Node, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
 
-    def printNews(): NodeSeq = rowH2("News") ++ {
+    def printNews(): NodeSeq = rowH2_(<span>News {rssLogo("news.rss","News feed")}</span>) ++ {
         for (newsItem <- News.news.take(3))
         yield row(
         {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
@@ -321,7 +329,7 @@ object GenHtml extends App {
         <a href="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png"><img src="http://www.informatik.uni-marburg.de/~kaestner/coolwall2012.png" alt="Cool Wall 2012" id="coolwall" /></a>)
 
 
-    def printTwitterWidget(): NodeSeq = 
+    def printTwitterWidget(): NodeSeq =
      <p><div class="tweet"></div></p>
 
 
@@ -369,7 +377,68 @@ object GenHtml extends App {
         scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", doctype = doct)
     }
 
-    def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
+    private val RFC822 =
+        new SimpleDateFormat("EEE', 'dd' 'MMM' 'yyyy' 'HH:mm:ss' 'Z", Locale.US)
+
+    def printNewsFeed(file: File) =
+        printFeed(CV.name+" :: News Feed",CV.url,"News feed for "+CV.name,{
+            for (newsitem<-News.news) yield
+                    <item>
+                        <title>{newsitem.title}</title>
+                        <description>{newsitem.body}</description>
+                        <pubDate>{RFC822.format(newsitem.date)}</pubDate>
+                        <guid>{CV.url+newsitem.getID()}</guid>
+                    </item>
+        }, file)
+
+    private val pubPage=CV.url+"publications.html"
+    private def renderPubRSS(pub:Publication):String = {
+        <div><p>{pub.render(new BibStyle {
+             override def withAcceptanceRate=false
+            }, new PlainHtmlFormater{})}
+        </p>
+        {if (!pub.isHideAbstract && pub.abstr != "") <br/><br/>  <blockquote><p>{pub.abstr.markdownToHtml}</p></blockquote> }
+        </div>
+        .toString
+    }
+    def printPubsFeed(file: File) =
+        printFeed(CV.name+" :: Publication Feed",pubPage,"Publication feed for "+CV.name,{
+            for (pub<-CV.publications) yield
+                    <item>
+                        <title>{pub.title}</title>
+                        <link>{pubPage+"#"+pub.genKey}</link>
+                        <description>{renderPubRSS(pub).toString}</description>
+                        <guid>{pubPage+"#"+pub.genKey}</guid>
+                    </item>
+        }, file)
+
+
+
+    def printFeed(title: String, url: String, desc:String, items:NodeSeq, file:File) {
+
+        val doc:Node =
+        <rss version="2.0">
+            <channel>
+                <title>{title}</title>
+                <link>{url}</link>
+                <description>{desc}</description>
+                <language>en-us</language>
+                <lastBuildDate>{RFC822.format(new Date())}</lastBuildDate>
+                {items}
+            </channel>
+        </rss>
+        scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", true)
+    }
+    def rssLogo(link:String, title:String):Node=
+           <a href={link} title={title}><img src="rss.png" alt={title} /></a>
+
+  def getNewsRSSHeader() =
+    <link title="News Feed" type="application/rss+xml" rel="alternate" href="news.rss" />
+
+  def getPubsRSSHeader() =
+      <link title="Publication Feed" type="application/rss+xml" rel="alternate" href="pub.rss" />
+
+  def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
 
     /** central build activities */
@@ -387,11 +456,13 @@ object GenHtml extends App {
 
 
     println("generating html.")
-    printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"))
+    printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"), getNewsRSSHeader() ++ getPubsRSSHeader())
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name + " :: Spelling", new File(targetPath, "spelling.html"))
-    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications())
+    printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications()++getPubsRSSHeader())
     printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"))
+    printNewsFeed(new File(targetPath,"news.rss"))
+    printPubsFeed(new File(targetPath,"pub.rss"))
     println("done.")
 
 }

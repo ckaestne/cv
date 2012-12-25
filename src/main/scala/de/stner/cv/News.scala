@@ -1,11 +1,14 @@
 package de.stner.cv
 
 import java.util.{GregorianCalendar, Date}
+import java.text.SimpleDateFormat
 
 
 object News {
 
-    case class NewsItem(date: Date, title: String, body: String)
+    case class NewsItem(date: Date, title: String, body: String) {
+        def getID() = new SimpleDateFormat("yyyy-MM-dd").format(date)+"_"+title.replaceAll("[\\W]|_", "_")
+    }
 
     val news: List[NewsItem] =
         NewsItem(new GregorianCalendar(2012, 9-1, 30).getTime, "GPCE 2013", "I will chair the program committee of GPCE 2013, colocated with SPLASH in Indianapolis. Already start thinking about submitting there next spring :). Updates to follow.") ::
