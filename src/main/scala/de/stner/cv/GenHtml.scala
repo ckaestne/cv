@@ -387,7 +387,7 @@ object GenHtml extends App {
                         <title>{newsitem.title}</title>
                         <description>{newsitem.body}</description>
                         <pubDate>{RFC822.format(newsitem.date)}</pubDate>
-                        <guid>{CV.url+newsitem.getID()}</guid>
+                        <guid>{CV.url+"#"+newsitem.getID()}</guid>
                         <link>{CV.url+"#"+newsitem.getID()}</link>
                     </item>
         }, file)
