@@ -311,7 +311,7 @@ object GenHtml extends App {
         for (newsItem <- News.news.take(3))
         yield row(
         {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
-            <div class="newsheadline">{newsItem.title}</div> :+
+            <div class="newsheadline"><a name={newsItem.getID()}></a>{newsItem.title}</div> :+
             <div class="newsbody">{newsItem.body}</div>
         }, "newsitem")
     }.flatten
@@ -388,6 +388,7 @@ object GenHtml extends App {
                         <description>{newsitem.body}</description>
                         <pubDate>{RFC822.format(newsitem.date)}</pubDate>
                         <guid>{CV.url+newsitem.getID()}</guid>
+                        <link>{CV.url+"#"+newsitem.getID()}</link>
                     </item>
         }, file)
 
