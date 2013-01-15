@@ -107,6 +107,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
+            English, SummerTerm(2013), new CourseKind with Lecture
+        ),
         Course("Empirical Methods for Computer Scientists",
             "Einführung in empirische Methoden für Informatiker",
             URL("http://www.uni-marburg.de/fb12/ps/teaching/ss12/em"),
