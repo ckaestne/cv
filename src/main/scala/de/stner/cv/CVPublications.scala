@@ -2022,12 +2022,12 @@ object CVPublications {
     Article(
       Seq(Apel, Kaestner, Lengauer),
       "Language-Independent and Automated Software Composition: The {FeatureHouse} Experience",
-      TSE(2012),
-      ToAppear(),
+      TSE(2013).number(1).volume(39),
+      Pages(63,79),
       Map(PDF -> PDFFile("tse_fh.pdf"),
         HTTP -> URL("http://doi.ieeecomputersociety.org/10.1109/TSE.2011.120")),
       """Superimposition is a composition technique that has been applied successfully in many areas of software development. Although superimposition is a general-purpose concept, it has been (re)invented and implemented individually for various kinds of software artifacts. We unify languages and tools that rely on superimposition by using the language-independent model of *feature structure trees* (FSTs). On the basis of the FST model, we propose a general approach to the composition of software artifacts written in different languages. Furthermore, we offer a supporting framework and tool chain, called FeatureHouse. We use attribute grammars to automate the integration of additional languages. In particular, we have integrated Java, C#, C, Haskell, Alloy, and JavaCC. A substantial number of case studies demonstrate the practicality and scalability of our approach and reveal insights into the properties that a language must have in order to be ready for superimposition. We discuss perspectives of our approach and demonstrate how we extended FeatureHouse with support for XML languages (in particular, XHTML, XMI/UML, and Ant) and alternative composition approaches (in particular, aspect weaving). Rounding off our previous work, we provide here a holistic view of the FeatureHouse approach based on rich experience with numerous languages and case studies and reflections on several years of research.""").
-      selected().note("to appear; submitted 21 Oct 2010, accepted 29 Nov 2011"),
+      selected(),
 
     InProceedings(
       Seq(Siegmund, Kolesnikov, Kaestner, Apel, Batory, Rosenmueller, Saake),
