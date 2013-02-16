@@ -141,7 +141,7 @@ object CVPublications {
   val SPLC11 = SPLC(2011).publisher(IEEE).location("Munich").month(8)
   val OOPSLA11 = OOPSLA(2011).acceptanceRate(61, 166).month(10).isbn("978-1-4503-0940-0").location("Portland, OR")
   val OOPSLAComp11 = Venue("OOPSLA", 2011, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).isbn("978-1-4503-0942-4").location("Portland, OR").publisher(ACM)
-  val VAMOS12 = VAMOS(2012).month(1).location("Pisa").publisher(ACM)
+  val VAMOS13 = VAMOS(2013).month(1).location("Pisa").publisher(ACM).acceptanceRate(19,45).isbn("978-1-4503-1541-8")
 
 
   val publications = Seq(
@@ -227,7 +227,7 @@ object CVPublications {
     Article(
       Seq(Apel, Kaestner, Leich, Saake),
       "Aspect Refinement - Unifying {AOP} and Stepwise Refinement",
-      JOT(2007).volume(6).number(9).month(10),
+      JOT(2007).volume(6).number(9).month(10).specialIssueOn("TOOLS EUROPE 2007"),
       Pages(13, 33),
 
       Map(PDF -> PDFLink("TOOLS2007.pdf"),
@@ -241,7 +241,7 @@ object CVPublications {
        mechanisms for refining all kinds of structural elements of aspects in a uniform way
        (methods, pointcuts, advice). To underpin our proposal, we contribute a fully functional
        compiler on top of AspectJ, present a non-trivial, medium-sized case study, and
-       derive a set of programming guidelines.""").note("Special Issue: TOOLS EUROPE 2007").
+       derive a set of programming guidelines.""").
       topic(fop, aop),
     //	nocomment={Acceptance rate: 31 % (24/78)},
 
@@ -1440,7 +1440,7 @@ object CVPublications {
     Article(
       Seq(Apel, Kolesnikov, Liebig, Kaestner, Kuhlemann, Leich),
       "Access Control in Feature-Oriented Programming",
-      SCP(2012).subtitle("Special Issue on Feature-Oriented Software Development").month(3).volume(77).number(3),
+      SCP(2012).specialIssueOn("Feature-Oriented Software Development").month(3).volume(77).number(3),
       Pages(174, 187),
       Map(PDF -> PDFFile("SCP_FOSD2010.pdf"),
         DOI -> DOI("10.1016/j.scico.2010.07.005")),
@@ -1755,7 +1755,7 @@ object CVPublications {
       Seq(Siegmund, Rosenmueller, Kuhlemann, Kaestner, Apel, Saake),
       "SPL Conqueror: Toward Optimization of Non-functional Properties in Software Product Lines",
       Journal("SQJ", 2011, "Software Quality Journal").volume(20).number(3).
-        subtitle("Special issue on Quality Engineering for Software Product Lines"),
+        specialIssueOn("Quality Engineering for Software Product Lines"),
       Pages(487, 517),
       Map(PDF -> PDFFile("jsoftwarequality11.pdf"),
         HTTP -> URL("http://www.springerlink.com/content/ax788q46h1702j34/"),
@@ -2259,9 +2259,11 @@ the open source product line Busybox with 811 compile-time options.""").
     Article(
       Seq(Siegmund, Rosenmueller, Kaestner, Giarrusso, Apel, Kolesnikov),
       "Scalable Prediction of Non-functional Properties in Software Product Lines: Footprint and Memory Consumption",
-      IST(2012),
-      ToAppear(),
-      Map(PDF -> PDFFile("IST12.pdf")),
+      IST(2013).volume(55).number(3).month(3).specialIssueOn("Software Reuse and Product Lines"),
+      Pages( 491,507),
+      Map(PDF -> PDFFile("IST12.pdf"),
+         DOI->DOI("10.1016/j.infsof.2012.07.020"),
+      HTTP->URL("http://www.sciencedirect.com/science/article/pii/S0950584912001541")),
       """
         |Context: A software product line is a family of related software products,
         |typically created from a set of common assets. Users select features to derive
@@ -2295,26 +2297,28 @@ the open source product line Busybox with 811 compile-time options.""").
         |number of measurements. With this technique, we provide a basis for many
         |reasoning and product-derivation approaches.
       """.stripMargin
-    ).note("to appear; accepted 30 Jul 2012"),
+    ),
 
     InProceedings(
       Seq(Erdweg, Rendel, Kaestner, Ostermann),
       "Layout-Sensitive Generalized Parsing",
-      SLE(2012).acceptanceRate(20, 62),
-      ToAppear(),
-      Map(PDF -> PDFFile("sle12.pdf")),
+      SLE(2012).acceptanceRate(20, 62).isbn("978-3-642-36088-6").publisher(Springer).month(9),
+      Pages(244,263),
+      Map(PDF -> PDFFile("sle12.pdf"),
+          DOI->DOI("10.1007/978-3-642-36089-3_14")),
       """
         |The theory of context-free languages is well-understood and context-free parsers can be used as off-the-shelf tools in practice. In particular, to use a context-free parser framework, a user does not need to understand its internals but can specify a language declaratively as a grammar. However, many languages in practice are not context-free. One particularly important class of such languages is layout-sensitive languages, in which the structure of code depends on indentation and whitespace. For example, Python, Haskell, F\#, and Markdown use indentation instead of curly braces to determine the block structure of code. Their parsers (and lexers) are not declaratively specified but hand-tuned to account for layout-sensitivity.
         |To support *declarative* specifications of layout-sensitive languages, we propose a parsing framework in which a user can annotate layout in a grammar as constraints on the relative positioning of tokens in the parsed subtrees. For example, a user can declare that a block consists of statements that all start on the same column. We have integrated layout constraints into SDF and implemented a layout-sensitive generalized parser as an extension of generalized LR parsing. We evaluate the correctness and performance of our parser by parsing 33290 open-source Haskell files. Layout-sensitive generalized parsing is easy to use, and its performance overhead compared to layout-insensitive parsing is small enough for most practical applications.
       """.stripMargin
-    ).note("to appear"),
+    ),
 
     InProceedings(
       Seq(JSiegmund, Kaestner, Liebig, Apel),
       "Comparing Program Comprehension of Physically and Virtually Separated Concerns",
       FOSD12,
       Pages(17, 24),
-      Map(PDF -> PDFFile("FOSD12_pc.pdf")),
+      Map(PDF -> PDFFile("FOSD12_pc.pdf"),
+      DOI->DOI("10.1145/2377816.2377819")),
       """
         |It is common believe that separating source code along concerns
         |or features improves program comprehension of source
@@ -2333,7 +2337,8 @@ the open source product line Busybox with 811 compile-time options.""").
       "Toward Variability-Aware Testing",
       FOSD12,
       Pages(1, 8),
-      Map(PDF -> PDFFile("FOSD12_testing.pdf")),
+      Map(PDF -> PDFFile("FOSD12_testing.pdf"),
+            DOI->DOI("10.1145/2377816.2377817")),
       """We investigate how to execute a unit test in all configurations of a product line without generating each product in isolation in a brute-force fashion. Learning from variability-aware analyses, we (a) design and implement a variability-aware interpreter and (b) reencode variability of the product line to simulate the test cases with a model checker. The interpreter internally reasons about variability, executing paths not affected by variability only once for the whole product line. The model checker achieves similar results by reusing powerful off-the-shelf analyses. We experimented with a prototype implementation for each strategy. We compare both strategies and discuss trade-offs and future directions."""
     ).topic(vaanalysis, testing),
 
@@ -2343,7 +2348,8 @@ the open source product line Busybox with 811 compile-time options.""").
       "Toward Measuring Program Comprehension with Functional Magnetic Resonance Imaging",
       Conference("FSE-NIER", 2012, "20th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
       Pages("24:1", "24:4"),
-      Map(PDF -> PDFFile("fsenier12.pdf")),
+      Map(PDF -> PDFFile("fsenier12.pdf"),
+          DOI -> DOI("10.1145/2393596.2393624")),
       """
         |Program comprehension is an often evaluated, internal cognitive process.
         |In neuroscience, *functional magnetic resonance (fMRI)* imaging is used to
@@ -2376,18 +2382,22 @@ A key result is that variability-aware analysis can outperform even very limited
     InProceedings(
       Seq(vonRhein, Apel, Kaestner, Thuem, Schaefer),
       "The PLA Model: On the Combination of Product-Line Analyses",
-      VAMOS12,
-      ToAppear(),
-      Map(),
+      VAMOS13,
+        Pages("14:1","14:8"),
+        Map(DOI -> DOI("10.1145/2430502.2430522"),
+            PDF -> PDFFile("vamos13_pla.pdf")
+        ),
       "Product-line analysis has received considerable attention in the past. As it is often infeasible to analyze each product of a product line individually, researchers have developed analyses, called variability-aware analyses, that consider and exploit variability manifested in a code base. Variability-aware analyses are often significantly more efficient than traditional analyses, but each of them has certain weaknesses regarding applicability or scalability, as we discuss in this paper. We present the Product-Line-Analysis Model, a formal model for the classification and comparison of existing analyses, including traditional and variability-aware analyses, and lay a foundation for formulating and exploring further, combined analyses. As a proof of concept, we discuss different examples of analyses in the light of our model, and demonstrate its benefits for systematic comparison and exploration of product-line analyses."
     ).topic(vaanalysis, spl),
 
     InProceedings(
       Seq(Kolesnikov, Apel, Siegmund, Sobernig, Kaestner, Senkaya),
       "Predicting Quality Attributes of Software Product Lines Using Software and Network Measures and Feature Sampling",
-      VAMOS12,
-      ToAppear(),
-      Map(),
+      VAMOS13,
+      Pages("6:1","6:5"),
+        Map(DOI -> DOI("10.1145/2430502.2430511"),
+            PDF -> PDFFile("vamos13_pred.pdf")
+            ),
       """
         |Software product-line engineering aims at the development of families of
         |related products that share common assets. An important aspect is that
@@ -2413,11 +2423,13 @@ A key result is that variability-aware analysis can outperform even very limited
 
 
     InProceedings(
-      Seq(Passos, Czarnecki, Apel, Wasowski, Kaestner, Guo, Hunsen),
+      Seq(Passos, Czarnecki, Apel, Wasowski, Kaestner, Guo),
       "Feature Oriented Software Evolution",
-      VAMOS12,
-      ToAppear(),
-      Map(),
+      VAMOS13,
+        Pages("17:1","17:8"),
+        Map(DOI -> DOI("10.1145/2430502.2430526"),
+            PDF -> PDFFile("vamos13_evol.pdf")
+        ),
       """
         |Software product-line engineering aims at the development of families of
         |related products that share common assets. An important aspect is that
@@ -2447,7 +2459,7 @@ A key result is that variability-aware analysis can outperform even very limited
       Conference("AOSD", 2013, "12th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
         month(3).acceptanceRate(17, 72),
       ToAppear(),
-      Map(),
+      Map(PDF -> PDFFile("aosd13.pdf")),
       """
 The collections API of a programming language
 forms an embedded domain-specific language to express queries
@@ -2467,7 +2479,35 @@ by re-implementing several code analyses of the Findbugs tool
 using SQuOpt and demonstrate that SQuOpt can reconcile
 modularity and efficiency in real-world applications.
       """.stripMargin
-    ).topic(dsl)
+    ).topic(dsl).
+        note("to appear; accepted 10 Dec 2012"),
+
+
+      Article(
+          Seq(Apel, vonRhein, Thuem, Kaestner),
+          "Feature-Interaction Detection based on Feature-Based Specifications",
+          Journal("COMNET", 2013, "Computer Networks").specialIssueOn("Feature Interaction").publisher(Elsevier),
+          ToAppear(),
+          Map(PDF -> PDFFile("comnet13.pdf")),
+          """Formal specification and verification techniques have been used successfully to
+            |detect feature interactions. We investigate whether feature-based specifications
+            |can be used for this task. Feature-based specifications are a special class of
+            |specifications that aim at modularity in open-world, feature-oriented systems. The
+            |question we address is whether modularity of specifications impairs the ability
+            |to detect feature interactions, which cut across feature boundaries. In an
+            |exploratory study on 10 feature-oriented systems, we found that the majority of
+            |feature interactions could be detected based on feature-based specifications, but
+            |some specifications have not been modularized properly and require undesirable
+            |workarounds to modularization. Based on the study, we discuss the merits and
+            |limitations of feature-based specifications, as well as open issues and
+            |perspectives. A goal that underlies our work is to raise awareness of the importance
+            |and challenges of feature-based specification.""".stripMargin
+      ).topic(interactions, vaanalysis).
+          note("to appear; accepted 15 Feb 2013")
+
+
+
+
 
   )
 }
