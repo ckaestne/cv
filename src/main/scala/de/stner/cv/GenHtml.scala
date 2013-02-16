@@ -307,14 +307,15 @@ object GenHtml extends App {
     def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = rowH2_(Text(title), body, leftExtra)
     def rowH2_(title: Node, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
 
-    def printNews(): NodeSeq = rowH2_(<span>News {rssLogo("news.rss","News feed")}</span>) ++ {
-        for (newsItem <- News.news.take(3))
+    def printNews(full:Boolean=false): NodeSeq = rowH2_(<span>News {rssLogo("news.rss","News feed")}</span>) ++ {
+        val news=if (full) News.news else News.news.take(3)
+        for (newsItem <- news)
         yield row(
         {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
             <div class="newsheadline"><a name={newsItem.getID()}></a>{newsItem.title}</div> :+
             <div class="newsbody">{newsItem.body}</div>
         }, "newsitem")
-    }.flatten
+    }.flatten ++ {row(null, if (!full) <a href="news.html">Older News...</a> else <a href="index.html">Back...</a> )}
 
     def printTeachingSummary(teaching: Seq[Course]) =
         rowH2("Teaching") ++
@@ -353,6 +354,7 @@ object GenHtml extends App {
 
     def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
 
+    def newsPage: NodeSeq = printTitle() ++ printNews(true)
 
     def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null) = {
 
@@ -459,6 +461,7 @@ object GenHtml extends App {
     println("generating html.")
     printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"), getNewsRSSHeader() ++ getPubsRSSHeader())
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
+    printDoc(newsPage, CV.name + " :: News :: CMU", new File(targetPath, "news.html"))
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name + " :: Spelling", new File(targetPath, "spelling.html"))
     printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications()++getPubsRSSHeader())
     printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"))

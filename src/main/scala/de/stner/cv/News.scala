@@ -2,18 +2,26 @@ package de.stner.cv
 
 import java.util.{GregorianCalendar, Date}
 import java.text.SimpleDateFormat
+import xml.NodeSeq
 
 
 object News {
 
-    case class NewsItem(date: Date, title: String, body: String) {
+    case class NewsItem(date: Date, title: String, body: NodeSeq) {
         def getID() = new SimpleDateFormat("yyyy-MM-dd").format(date)+"_"+title.replaceAll("[\\W]|_", "_")
     }
 
     val news: List[NewsItem] =
-        NewsItem(new GregorianCalendar(2012, 9-1, 30).getTime, "GPCE 2013", "I will chair the program committee of GPCE 2013, colocated with SPLASH in Indianapolis. Already start thinking about submitting there next spring :). Updates to follow.") ::
-        NewsItem(new GregorianCalendar(2012, 9-1, 7).getTime, "FOSD and GPCE in Dresden", "I'll be in Dresden, Germany in the last week of September to present our paper Toward Variability-Aware Testing at the FOSD workshop. I also will be giving a tech talk on Variability-Aware Analysis at GPCE. Come and join, it will be fun events. (FOSD is still accepting lightning talks and tool demos.)") ::
-        NewsItem(new GregorianCalendar(2012, 8-1, 25).getTime, "Moving to CMU", "Just im time for the fall term, I'm moving from Marburg, Germany to Pittsburgh, PA to start a faculty position at CMU. Starting next week, you can reach me there.") ::
+        NewsItem(new GregorianCalendar(2013, 2-1, 17).getTime, "Dagstuhl Variability Analysis and FOSD",
+            <span>Next week, I will attend the Dagstuhl seminar <a href="http://www.dagstuhl.de/en/program/calendar/semhp/?semnr=13091">Analysis, Test and Verification in The Presence of Variability</a> and will run the <a href="http://fosd.net/treffen2013">German FOSD student meeting</a>, also in Dagstuhl this year. Looking forward to many inspiring discussions.</span>) ::
+        NewsItem(new GregorianCalendar(2013, 2-1, 12).getTime, "Book: Feature-Oriented Software Product Lines",
+            <span>After over a year of work, we (Sven Apel, Don Batory, Gunter Saake, and I) finally finished the final draft of our book "Feature-Oriented Software Product Lines: Concepts and Implementation", a textbook for our product-line lectures. The book will be published by Springer and will appear late Spring.</span>) ::
+        NewsItem(new GregorianCalendar(2012, 9-1, 30).getTime, "GPCE 2013",
+            <span>I will chair the program committee of <a href="http://program-transformation.org/GPCE13">GPCE 2013</a>, colocated with SPLASH in Indianapolis. Already start thinking about submitting there next spring :). Updates to follow.</span>) ::
+        NewsItem(new GregorianCalendar(2012, 9-1, 7).getTime, "FOSD and GPCE in Dresden",
+            <span>I'll be in Dresden, Germany in the last week of September to present our paper <a href="pdf/FOSD12_testing.pdf">Toward Variability-Aware Testing</a> at the <a href="http://fosd.net/2012/">FOSD workshop</a>. I also will be giving a tech talk on Variability-Aware Analysis at <a href="http://program-transformation.org/GPCE12">GPCE</a>, together with Sven Apel. Come and join, it will be fun events. (FOSD is still accepting lightning talks and tool demos.)</span>) ::
+        NewsItem(new GregorianCalendar(2012, 8-1, 25).getTime, "Moving to CMU",
+            <span>Just im time for the fall term, I'm moving from Marburg, Germany to Pittsburgh, PA to start a faculty position at CMU. Starting next week, you can reach me there.</span>) ::
             Nil
 
 
