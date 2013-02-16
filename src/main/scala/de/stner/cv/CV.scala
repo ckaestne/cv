@@ -237,6 +237,9 @@ object CV {
     val committees = Seq[Committee](
         Committee(OOPSLA(2013).url(URL("http://splashcon.org/2013")), PC),
         Committee(GPCE(2013), PCChair),
+        Committee(Workshop("SCORE", 2013,
+            "Student Contest on Software Engineering at ICSE",
+            URL("http://score-contest.org/2013/")), PC),
         Committee(Conference("SE", 2013,
             "SE 13 -- GI Konferenz Software Engineering",
             URL("http://www.se2013.rwth-aachen.de/")), PC),
@@ -423,7 +426,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
-	InvitedTalk(time(2012,12), "A Variability-Aware Module System", "Dagstuhl Seminar 12511: Divide and Conquer: the Quest for Compositional Design and Analysis"),
+        InvitedTalk(time(2013, 2), "Analyzing the #ifdef Hell with TypeChef – Or the Quest for Realistic Subjects in Product-Line Analysis", "Dagstuhl Seminar 13091: Analysis, Test and Verification in The Presence of Variability"),
+        InvitedTalk(time(2012, 12), "A Variability-Aware Module System", "Dagstuhl Seminar 12511: Divide and Conquer: the Quest for Compositional Design and Analysis"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Passau, Germany"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "Carnegie Mellon University, Pittsburgh, PA"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Edinburgh, UK"),

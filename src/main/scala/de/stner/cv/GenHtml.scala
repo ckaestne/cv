@@ -211,8 +211,8 @@ object GenHtml extends App {
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
-    def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE12">
-    <img title="Generative Programming and Component Engineering 2012" src="GPCE-201.png" alt="GPCE2012" width="135" height="200" />
+    def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE13">
+    <img title="Generative Programming and Component Engineering 2013" src="GPCE-2013.png" alt="GPCE2013" width="180" height="220" />
     </a>
 
     def printCommittees(committees: Seq[Committee]) = rowH2("Committees",
