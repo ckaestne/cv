@@ -644,7 +644,7 @@ private[cv] case class HTTPLink(link: String, ignoreError: Boolean = false) exte
             connection.connect()
             true
         } catch {
-            case e => false
+            case e: Throwable => false
         }
     }
 }
