@@ -77,7 +77,10 @@ object Article {
         def renderRest[A](pub: Publication, style: BibStyle, formater: Formater[A]): A = {
             assert(pub.venue.kind == KJournal || pub.venue.kind == KInvited, "Article with venue.kind=" + pub.venue.kind + " not supported " + pub.title)
             formater.concat(
-                formater.journal(pub.venue.name + (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "")),
+                formater.journal(
+                    pub.venue.name +
+                        (if (pub.venue.short != "") " (" + pub.venue.short + ")" else "") +
+                        pub.venue.specialIssue.map(", Special Issue on " + _).getOrElse("")),
                 formater.text(", "),
                 formater.text(renderVolNumber(pub.venue)),
                 renderPages(pub, true, formater),
@@ -452,10 +455,10 @@ case class MonthStr(str: String) extends Month {
 }
 
 
-case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None) {
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None, specialIssue: Option[String] = None) {
 
-    def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series) =
-        Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series)
+    def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series, specialIssue: Option[String] = this.specialIssue) =
+        Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series, specialIssue)
 
     def issn(s: String) = this
 
@@ -472,26 +475,27 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def kind(k: PublicationKind): Venue = copy(kind = k)
 
-    def publisher(pub: Publisher): Venue = Venue(short, year, name, kind, url, Some(pub), acceptanceRate, location, month, number, volume, series)
+    def publisher(pub: Publisher): Venue = copy(publisher = Some(pub))
 
-    def month(m: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(MonthNr(m)), number, volume, series)
+    def month(m: Int): Venue = copy(month = Some(MonthNr(m)))
 
-    def month(m: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, Some(MonthStr(m)), number, volume, series)
+    def month(m: String): Venue = copy(month = Some(MonthStr(m)))
 
-    def url(u: URL): Venue = Venue(short, year, name, kind, Some(u), publisher, acceptanceRate, location, month, number, volume, series)
+    def url(u: URL): Venue = copy(url = Some(u))
 
-    def number(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u), volume, series)
+    def number(u: String): Venue = copy(number = Some(u))
 
-    def number(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, Some(u.toString), volume, series)
+    def number(u: Int): Venue = copy(number = Some(u.toString))
 
-    def volume(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u), series)
+    def volume(u: String): Venue = copy(volume = Some(u))
 
-    def volume(u: Int): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, Some(u.toString), series)
+    def volume(u: Int): Venue = copy(volume = Some(u.toString))
 
-    def series(u: String): Venue = Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, Some(u))
+    def series(u: String): Venue = copy(series = Some(u))
 
-    def acceptanceRate(accepted: Int, submitted: Int): Venue = Venue(short, year, name, kind, url, publisher, Some((accepted, submitted)), location, month, number, volume, series)
+    def acceptanceRate(accepted: Int, submitted: Int): Venue = copy(acceptanceRate = Some((accepted, submitted)))
 
+    def specialIssueOn(str: String): Venue = copy(specialIssue = Some(str))
 
     def renderDate[A](formater: Formater[A]): A = formater.text(
         month.map({
