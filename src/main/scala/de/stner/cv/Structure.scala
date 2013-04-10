@@ -2,6 +2,9 @@ package de.stner.cv
 
 import scala.None
 import de.stner.cv.CVPublications._
+import java.io.File
+import java.util.Date
+import xml._
 
 object Config {
     val pdfWebPath = "pdf/"

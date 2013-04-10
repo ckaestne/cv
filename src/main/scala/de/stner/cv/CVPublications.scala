@@ -2511,7 +2511,7 @@ modularity and efficiency in real-world applications.
             Seq(Apel, Batory, Kaestner, Saake),
             "Feature-Oriented Software Product Lines: Concepts and Implementation",
             Venue("", 2013, "", KBook).publisher(Springer),
-            Map(),
+            Map(HTTP->URL("http://www.springer.com/computer/swe/book/978-3-642-37520-0")),
             """
               |While standardization has empowered the software industry to substantially scale software development and to provide affordable software to a broad market, it often does not address smaller market segments, nor the needs and wishes of individual customers.  Software product lines reconcile mass production and standardization with mass customization in software engineering. Ideally, based on a set of reusable parts, a software manufacturer can generate a software product based on the requirements of its customer. The concept of features is central to achieving this level of automation, because features bridge the gap between the requirements the customer has and the functionality a product provides. Thus features are a central concept in all phases of product-line development.
               |
@@ -2519,7 +2519,7 @@ modularity and efficiency in real-world applications.
               |
               |To tie the book together, the authors use two running examples that are well documented in the product-line literature: data management for embedded systems, and variations of graph data structures. They start every chapter by explicitly stating the respective learning goals and finish it with a set of exercises; additional teaching material is also available online. All these features make the book ideally suited for teaching – both for academic classes and for professionals interested in self-study.
             """.stripMargin).
-            note("text book to appear in late Spring 2013").
+            note("308 pages, ISBN 978-3-642-37520-0, text book to appear May 31, 2013").
             topic(fop, aop, spl, vsoc, vaanalysis, fmanalysis, tmdb, interactions, adoption, overview, modularity).
             selected()
 
