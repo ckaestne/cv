@@ -5,7 +5,7 @@ object CVPublications {
 
     import Venues._
 
-    val publicationKinds = Seq(KJournal, KInConferenceProceedings, KInvited, KWorkshopDemoTool, KTechnicalReport, KMisc).sorted
+    val publicationKinds = Seq(KBook, KJournal, KInConferenceProceedings, KInvited, KWorkshopDemoTool, KTechnicalReport, KMisc).sorted
 
     object KJournal extends PublicationKind("Refereed Journal Articles", 1)
 
@@ -18,6 +18,8 @@ object CVPublications {
     object KTechnicalReport extends PublicationKind("Technical Reports", 5)
 
     object KMisc extends PublicationKind("Miscellaneous", 6)
+
+    object KBook extends PublicationKind("Books", 0)
 
 
     object Conference {
@@ -1202,7 +1204,7 @@ object CVPublications {
                 Finally, we present some early results of our first experiment
                 on comparing CPP with CIDE.    """).topic(vsoc, experiment),
 
-        Book(
+        BookEd(
             Seq(Apel, Cook, Czarnecki, Kaestner, Person("Neil", "Loughran"), Person("Oscar", "Nierstrasz")),
             "Proceedings of the First International Workshop on Feature-Oriented Software Development {(FOSD)}, October 6, 2009, Denver, Colorado, USA",
             Venue("", 2009, "", KMisc).publisher(ACM).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10),
@@ -1511,7 +1513,7 @@ object CVPublications {
             topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
-        Book(
+        BookEd(
             Seq(Apel, Batory, Czarnecki, Heidenreich, Kaestner, Person("Oscar", "Nierstrasz")),
             "Proceedings of the Second International Workshop on Feature-Oriented Software Development {(FOSD)}, October 10, 2010, Eindhoven, The Netherlands",
             Venue("", 2010, "", KMisc).publisher(ACM).location("Eindhoven, The Netherlands").isbn("978-1-4503-0208-1").month(10),
@@ -1999,7 +2001,7 @@ object CVPublications {
             Seq(Pukall, Kaestner, Cazzola, Goetz, Grebhahn, Schroeter, Saake),
             "{JavAdaptor}: Flexible Runtime Updates of {Java} Applications",
             Journal("SPE", 2013, "Software: Practice and Experience").volume(43).number(2).month(2),
-            Pages(153,185),
+            Pages(153, 185),
             Map(PDF -> PDFFile("SPE12_JavAdaptor.pdf"),
                 HTTP -> URL("http://onlinelibrary.wiley.com/doi/10.1002/spe.2107/abstract"),
                 DOI -> DOI("10.1002/spe.2107")),
@@ -2503,7 +2505,23 @@ modularity and efficiency in real-world applications.
               |perspectives. A goal that underlies our work is to raise awareness of the importance
               |and challenges of feature-based specification.""".stripMargin
         ).topic(interactions, vaanalysis).
-            note("to appear; accepted 15 Feb 2013")
+            note("to appear; accepted 15 Feb 2013"),
+
+        Book(
+            Seq(Apel, Batory, Kaestner, Saake),
+            "Feature-Oriented Software Product Lines: Concepts and Implementation",
+            Venue("", 2013, "", KBook).publisher(Springer),
+            Map(),
+            """
+              |While standardization has empowered the software industry to substantially scale software development and to provide affordable software to a broad market, it often does not address smaller market segments, nor the needs and wishes of individual customers.  Software product lines reconcile mass production and standardization with mass customization in software engineering. Ideally, based on a set of reusable parts, a software manufacturer can generate a software product based on the requirements of its customer. The concept of features is central to achieving this level of automation, because features bridge the gap between the requirements the customer has and the functionality a product provides. Thus features are a central concept in all phases of product-line development.
+              |
+              |The authors take a developer’s viewpoint, focus on the development, maintenance, and implementation of product-line variability, and especially concentrate on automated product derivation based on a user’s feature selection.   The book consists of three parts. Part I provides a general introduction to feature-oriented software product lines, describing the product-line approach and introducing the product-line development process with its two elements of domain and application engineering. The pivotal Part II covers a wide variety of implementation techniques including design patterns, frameworks, components, feature-oriented programming, and aspect-oriented programming, as well as tool-based approaches including preprocessors, build systems, version-control systems, and virtual separation of concerns. Finally, Part III is devoted to advanced topics related to feature-oriented product lines like refactoring, feature interaction, and  analysis tools specific to product lines. In addition, an Appendix lists various helpful tools for software product-line development, along with a description of how they relate to the topics covered in this book.
+              |
+              |To tie the book together, the authors use two running examples that are well documented in the product-line literature: data management for embedded systems, and variations of graph data structures. They start every chapter by explicitly stating the respective learning goals and finish it with a set of exercises; additional teaching material is also available online. All these features make the book ideally suited for teaching – both for academic classes and for professionals interested in self-study.
+            """.stripMargin).
+            note("text book to appear in late Spring 2013").
+            topic(fop, aop, spl, vsoc, vaanalysis, fmanalysis, tmdb, interactions, adoption, overview, modularity).
+            selected()
 
 
     )

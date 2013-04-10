@@ -2,9 +2,6 @@ package de.stner.cv
 
 import scala.None
 import de.stner.cv.CVPublications._
-import java.io.File
-import java.util.Date
-import xml._
 
 object Config {
     val pdfWebPath = "pdf/"
@@ -140,6 +137,32 @@ object TechReport {
 
 
 object Book {
+    def apply(authors: Seq[Person],
+              title: String,
+              venue_ : Venue /*title and short are not used!)*/ ,
+              links: Map[LinkKind, URL],
+              abstr: String) =
+        new Publication(rendererAuthors, authors, title, venue_, null, links, abstr)
+
+    val rendererAuthors = new PublicationRenderer {
+        def renderRest[A](p: Publication, style: BibStyle, formater: Formater[A]): A = formater.none
+
+        override def render[A](pub: Publication, style: BibStyle, formater: Formater[A]): A =
+            formater.concat(
+                renderAuthors(pub, formater),
+                formater.dot, formater.space, formater.newBlock,
+                formater.title(pub.title), formater.text(endDot(pub.title)),
+                formater.space, formater.newBlock,
+                pub.venue.renderPublisher(formater), pub.venue.renderDate(formater), formater.dot,
+                (pub.note.map(t => formater.concat(formater.space, formater.newBlock, formater.markdown(t), formater.dot)).getOrElse(formater.none))
+            )
+
+        override def getBibtexAuthorField(p: Publication): Map[String, String] =
+            Map("author" -> p.authors.map(_.fullname.toTex).mkString(" and "))
+    }
+}
+
+object BookEd {
     def apply(editors: Seq[Person],
               title: String,
               venue_ : Venue /*title and short are not used!)*/ ,
@@ -283,6 +306,7 @@ abstract class PublicationRenderer {
             case KWorkshopDemoTool => "inproceedings"
             case KJournal => "article"
             case KTechnicalReport => "techreport"
+            case KBook => "book"
             case KMisc => "misc"
             case KInvited => "misc"
         }) + "{" + p.genKey + ",\n" +
