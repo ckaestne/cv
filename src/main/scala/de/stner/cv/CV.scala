@@ -75,10 +75,10 @@ object CV {
           |\item[Apr.\ 2007 -- May 2010]
           |    Doctoral degree in computer science (Doktor-Ingenieur),\\
           |    University of Magdeburg, Germany, \\
-          |    Grade ``{\bf summa cum laude}'' (with distinction)\\[.5ex]
+          |    Grade summa cum laude (with distinction)\\[.5ex]
           |		Reviewers: Prof.\ Gunter Saake (University of Magdeburg), Prof.\ Don Batory (University of Texas at Austin), Prof.\ Krzysztof Czarnecki (University of Waterloo)
           |\item[Oct.\ 2002 -- Mar.\ 2007]
-          |    Diploma degree in business information systems \\(M.Sc.\ equivalent; Diplom-Wirtschaftsinformatiker), \\University of Magdeburg, Germany,\\Grade ``{\bf 1.0}'' (with distinction)
+          |    Diploma degree in business information systems \\(M.Sc.\ equivalent; Diplom-Wirtschaftsinformatiker), \\University of Magdeburg, Germany,\\Grade ``1.0'' (with distinction)
           |\end{CV}
           |
           |\section{Academic Employment}
@@ -429,7 +429,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
-        InvitedTalk(time(2013, 2), "Analyzing the #ifdef Hell with TypeChef – Or the Quest for Realistic Subjects in Product-Line Analysis", "Dagstuhl Seminar 13091: Analysis, Test and Verification in The Presence of Variability"),
+        InvitedTalk(time(2013, 2), "Analyzing the #ifdef Hell with TypeChef -- Or the Quest for Realistic Subjects in Product-Line Analysis", "Dagstuhl Seminar 13091: Analysis, Test and Verification in The Presence of Variability"),
         InvitedTalk(time(2012, 12), "A Variability-Aware Module System", "Dagstuhl Seminar 12511: Divide and Conquer: the Quest for Compositional Design and Analysis"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Passau, Germany"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "Carnegie Mellon University, Pittsburgh, PA"),

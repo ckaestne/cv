@@ -164,7 +164,7 @@ object GenLatex extends App {
 
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{23}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{25}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
             CVPublications.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
