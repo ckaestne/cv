@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2013, 4-1, 17).getTime, "Book available for preorder: Feature-Oriented Software Product Lines",
+          <span>Our book "Feature-Oriented Software Product Lines" can now be preordered from <a href="http://www.springer.com/computer/swe/book/978-3-642-37520-0">Springer</a> and <a href="http://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/">Amazon</a> and is scheduled to be shipped May 31st.</span>) ::
         NewsItem(new GregorianCalendar(2013, 3-1, 21).getTime, "TypeChef release 3.4",
             <span>TypeChef 0.3.4 is finally released and contains many updates and bugfixes. This version is finally able to typecheck the entire subsystem of the Linux kernel we have been targeting. For code and changelog see the <a href="https://github.com/ckaestne/TypeChef">github page</a></span>) ::
         NewsItem(new GregorianCalendar(2013, 2-1, 17).getTime, "Dagstuhl Variability Analysis and FOSD",
