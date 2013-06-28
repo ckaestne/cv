@@ -2379,7 +2379,7 @@ We close this gap by developing and applying two full-fledged analyses to two re
 We report on our experience with making variability-aware analysis ready for the real world, and with applying it to large-scale product lines.
 A key result is that variability-aware analysis can outperform even very limited sampling heuristics with respect to analysis time.            
             """).
-            topic(vaanalysis, fop, spl, typechef),
+            topic(vaanalysis, fop, spl, typechef).crosscite("superseded by ESEC/FSE 2013 paper").hideabstract(),
 
         InProceedings(
             Seq(vonRhein, Apel, Kaestner, Thuem, Schaefer),
@@ -2459,9 +2459,10 @@ A key result is that variability-aware analysis can outperform even very limited
             Seq(Giarrusso, Ostermann, Eichberg, Mitschke, Rendel, Kaestner),
             "Reify Your Collection Queries for Modularity and Speed!",
             Conference("AOSD", 2013, "12th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
-                month(3).acceptanceRate(17, 72),
-            ToAppear(),
-            Map(PDF -> PDFFile("aosd13.pdf")),
+                month(3).acceptanceRate(17, 72).location("Fukuoka, Japan"),
+            Pages(1,12),
+            Map(PDF -> PDFFile("aosd13.pdf"),
+                DOI -> DOI("10.1145/2451436.2451438")),
             """
 The collections API of a programming language
 forms an embedded domain-specific language to express queries
@@ -2481,8 +2482,7 @@ by re-implementing several code analyses of the Findbugs tool
 using SQuOpt and demonstrate that SQuOpt can reconcile
 modularity and efficiency in real-world applications.
             """.stripMargin
-        ).topic(dsl).
-            note("to appear; accepted 10 Dec 2012"),
+        ).topic(dsl),
 
 
         Article(
@@ -2490,7 +2490,8 @@ modularity and efficiency in real-world applications.
             "Feature-Interaction Detection based on Feature-Based Specifications",
             Journal("COMNET", 2013, "Computer Networks").specialIssueOn("Feature Interaction").publisher(Elsevier),
             ToAppear(),
-            Map(PDF -> PDFFile("comnet13.pdf")),
+            Map(PDF -> PDFFile("comnet13.pdf"),
+                DOI-> DOI("10.1016/j.comnet.2013.02.025")),
             """Formal specification and verification techniques have been used successfully to
               |detect feature interactions. We investigate whether feature-based specifications
               |can be used for this task. Feature-based specifications are a special class of
@@ -2519,9 +2520,32 @@ modularity and efficiency in real-world applications.
               |
               |To tie the book together, the authors use two running examples that are well documented in the product-line literature: data management for embedded systems, and variations of graph data structures. They start every chapter by explicitly stating the respective learning goals and finish it with a set of exercises; additional teaching material is also available online. All these features make the book ideally suited for teaching – both for academic classes and for professionals interested in self-study.
             """.stripMargin).
-            note("308 pages, ISBN 978-3-642-37520-0, text book to appear May 31, 2013").
+            note("308 pages, ISBN 978-3-642-37520-0").
             topic(fop, aop, spl, vsoc, vaanalysis, fmanalysis, tmdb, interactions, adoption, overview, modularity).
-            selected()
+            selected(),
+
+
+
+     InProceedings(
+            Seq(Liebig, vonRhein, Kaestner, Apel, Doerre, Lengauer),
+            "Scalable Analysis of Variable Software",
+            ESECFSE(2013).month(8).location("Saint Petersburg").acceptanceRate(51, 251),
+            ToAppear(),
+            Map(),
+            """
+The advent of proper variability management and generator technology enables users to derive individual variants from a variable code base solely based on a selection of desired configuration options.
+This approach gives rise to a huge configuration space,
+but the high degree of variability comes at a cost: classic analysis methods do not scale any more; there are simply too many potential variants to analyze.
+To address this issue, researchers and practitioners usually apply sampling techniques---only a subset of all possible variants is analyzed.
+While sampling promises to reduce the analysis effort significantly, the information obtained is necessarily incomplete.
+Furthermore, it is unknown whether sampling strategies scale to billions of variants, because even samples may be huge and expensive to compute.
+Recently, researchers have begun to develop variability-aware analyses that analyze the variable code base directly with the goal to exploit the similarities among individual variants to reduce analysis effort.
+However, while being promising, so far, variability-aware analyses have been applied mostly only to small academic systems.
+To learn about the mutual strengths and weaknesses of variability-aware and sampling-based analyses of large-scale, real-world software systems, we compared the two by means of two concrete analysis implementations (type checking and liveness analysis) applied to three subject systems: the Busybox tool suite, the x86 Linux kernel, and the cryptographic library OpenSSL.
+A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
+            """.stripMargin
+        ).topic(spl, vaanalysis, typechef).
+            note("to appear; accepted 30 May 2013").selected()
 
 
     )
