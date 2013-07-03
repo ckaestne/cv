@@ -9,6 +9,7 @@ object CV {
     import Venues._
     import CVPublications._
 
+
     val name = "Christian Kästner"
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
