@@ -2531,7 +2531,7 @@ modularity and efficiency in real-world applications.
             "Scalable Analysis of Variable Software",
             ESECFSE(2013).month(8).location("Saint Petersburg").acceptanceRate(51, 251),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFILE("fse13.pdf")),
             """
 The advent of proper variability management and generator technology enables users to derive individual variants from a variable code base solely based on a selection of desired configuration options.
 This approach gives rise to a huge configuration space,
