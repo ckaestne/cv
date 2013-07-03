@@ -251,7 +251,7 @@ object CV {
             URL("http://www.se2013.rwth-aachen.de/")), PC),
         Committee(Workshop("MPLE", 2013,
             "SPLC Workshop on Multi Product Line Engineering",
-            URL("")), PC),
+            URL("https://sites.google.com/site/wmultiple2013/")), PC),
         Committee(FOSD(2013), OC),
         Committee(VAMOS(2013), PC),
         Committee(Workshop("REVE", 2013, "1st Workshop on Reverse Variability Engineering",
