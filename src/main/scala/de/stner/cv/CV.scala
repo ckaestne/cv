@@ -236,6 +236,7 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ASE(2014).url(URL("http://ase2014.org/")), PC),
         Committee(Conference("ICSE-Tut-TB", 2014,
             "ICSE 2014 - Tutorial and Technical Briefings track",
             URL("http://2014.icse-conferences.org/")), PC),
