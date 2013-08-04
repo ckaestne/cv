@@ -108,6 +108,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL(""),
+            English, FallTerm(2013), new CourseKind with Lecture
+        ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
@@ -236,6 +241,7 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ECOOP(2014), ERC),
         Committee(Conference("ICSE-Tut-TB", 2014,
             "ICSE 2014 - Tutorial and Technical Briefings track",
             URL("http://2014.icse-conferences.org/")), PC),
