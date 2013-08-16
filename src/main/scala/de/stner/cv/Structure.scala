@@ -573,6 +573,7 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
         case SummerTerm(thatYear) => year.compareTo(thatYear)
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
+        case FallTerm(thatYear) => year.compareTo(thatYear)
     }
 
     override def toString = "Summer " + year
@@ -582,11 +583,21 @@ case class WinterTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
         case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
+        case FallTerm(thatYear) => year.compareTo(thatYear)
     }
 
     override def toString = "Winter " + year + "/" + (year + 1 - 2000)
 }
 
+case class FallTerm(ayear: Int) extends Term(ayear) {
+    def compare(that: Term) = that match {
+        case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
+        case WinterTerm(thatYear) => year.compareTo(thatYear)
+        case FallTerm(thatYear) => year.compareTo(thatYear)
+    }
+
+    override def toString = "Fall " + year 
+  }
 
 case class Course(
                      title: String,
@@ -638,6 +649,7 @@ case class Committee(venue: Venue, role: CommitteeRole)
 abstract class CommitteeRole(val title: String, val abbreviation: String)
 
 object PC extends CommitteeRole("Program-Committee Member", "PC")
+object ERC extends CommitteeRole("External-Review-Committee Member", "ERC")
 
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 
