@@ -12,8 +12,10 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2013, 8-1, 16).getTime, "Variability Mining paper accepted",
+          <span>Some papers have a history. We started our work on variability mining in 2009. A corresponing paper has matured over time and has now finally been accepted at IEEE Transactions for Software Engineering. I've uploaded a preprint <a href="http://www.cs.cmu.edu/~ckaestne/pdf/tse_fm.pdf">here</a>. If you are interested how feature location techniques can be tuned to locate product-line features in legacy code, check it out.</span>) ::
         NewsItem(new GregorianCalendar(2013, 6-1, 28).getTime, "NSF Grant: Reverse Engineering Variability Implementations",
-          <span>I'm happy to announce that NSF will sponsor our work on reverse engineering variability implementations. After years of looking into preprocessors, this will allow us to take closer looks at build systems, branches, patches, and runtime variability. If you are interested in doing a PhD around these topics, consider applying to the <a href="http://www.isri.cmu.edu/education/se-phd/">CMU SE PhD program</a>.</span>) ::
+          <span>I'm happy to announce that NSF will sponsor our work on reverse engineering variability implementations. After years of looking into preprocessors, this will allow us to take closer looks at build systems, branches, patches, and runtime variability. I am actively recruiting now for this project. If you are a CMU graduate student and could imagine doing research in this field, feel free to send me an email or drop by my office. If you are interested in starting a PhD around these topics, consider applying to the <a href="http://www.isri.cmu.edu/education/se-phd/">CMU SE PhD program</a>.</span>) ::
         NewsItem(new GregorianCalendar(2013, 4-1, 17).getTime, "Book available for preorder: Feature-Oriented Software Product Lines",
           <span>Our book "Feature-Oriented Software Product Lines" can now be preordered from <a href="http://www.springer.com/computer/swe/book/978-3-642-37520-0">Springer</a> and <a href="http://www.amazon.com/Feature-Oriented-Software-Product-Lines-Implementation/dp/3642375200/">Amazon</a> and is scheduled to be shipped May 31st.</span>) ::
         NewsItem(new GregorianCalendar(2013, 3-1, 21).getTime, "TypeChef release 3.4",

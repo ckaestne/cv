@@ -76,7 +76,7 @@ object GenHtml extends App {
 
     def printThesis(thesis: AThesis) =
         <dd>
-          <a name={thesis.genKey} />{thesis.author.fullname}.
+          <a name={thesis.genKey}></a>{thesis.author.fullname}.
           <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }

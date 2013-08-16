@@ -2545,8 +2545,19 @@ To learn about the mutual strengths and weaknesses of variability-aware and samp
 A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
             """.stripMargin
         ).topic(spl, vaanalysis, typechef).
-            note("to appear; accepted 30 May 2013").selected()
+            note("to appear; accepted 30 May 2013").selected(),
 
+
+        Article(
+            Seq(Kaestner, Dreiling, Ostermann),
+            "Variability Mining: Consistent Semiautomatic Detection of Product-Line Features",
+            TSE(2013),
+            ToAppear(),
+            Map(PDF -> PDFFile("tse_fm.pdf")),
+            """Software product line engineering is an efficient means to generate a set of tailored software products from a common implementation. 
+            However, adopting a product-line approach poses a major challenge and significant risks, since typically legacy code must be migrated toward a product line. Our aim is to lower the adoption barrier by providing semiautomatic tool support---called *variability mining*---to support developers in locating, documenting, and extracting implementations of product-line features from legacy code. Variability mining combines prior work on concern location, reverse engineering, and variability-aware type systems, but is tailored specifically for the use in product lines. Our work pursues three technical goals: (1) we provide a *consistency indicator* based on a variability-aware type system, (2) we mine features at a *fine level of granularity*, and (3) we exploit *domain knowledge* about the relationship between features when available. With a quantitative study, we demonstrate that variability mining can efficiently support developers in locating features.""").
+            selected().topic(adoption, spl).
+            note("to appear; accepted 29 Jul 2013")
 
     )
 }
