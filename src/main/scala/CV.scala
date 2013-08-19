@@ -249,6 +249,7 @@ object CV {
         Committee(Conference("MV", 2014,
             "MODULARITY 2014 - Modularity Visions track",
             URL("http://aosd.net/2014/mvtrack/")), PC),
+        Committee(VAMOS(2014), PC),
         Committee(OOPSLA(2013).url(URL("http://splashcon.org/2013")), PC),
         Committee(GPCE(2013), PCChair),
         Committee(Workshop("SCORE", 2013,
