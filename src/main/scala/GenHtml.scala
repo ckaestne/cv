@@ -263,9 +263,9 @@ object GenHtml extends App {
                     yield <span><a href={extraLinks.head._1.toString}>{extraLinks.head._2}</a>, </span>
                     }{<span><a href={extraLinks.last._1.toString}>{extraLinks.last._2}</a></span>})</span>
                 case Grant(_,_,_,from,to,ag,budget) =>
-                    <span>{ag + ". "+(monthyear format from) +" – "+ (monthyear format to) +", "+(new DecimalFormat("###,###").format(budget.value).replace(",", " "))+(
+                    <span>{" "+ag + ". "+(monthyear format from) +" – "+ (monthyear format to) /*+", "+(new DecimalFormat("###,###").format(budget.value).replace(",", " "))+(
                         budget match { case EUR(_) => " EUR"; case USD(_) => " USD"}
-                        )}</span>
+                        )*/}</span>
                 case _ => <span></span>
             }
         }

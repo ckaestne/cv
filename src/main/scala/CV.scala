@@ -110,7 +110,7 @@ object CV {
     val teaching = Seq(
         Course("15-313 Foundations of Software Engineering",
             "",
-            URL(""),
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/2013/"),
             English, FallTerm(2013), new CourseKind with Lecture
         ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
@@ -333,6 +333,14 @@ object CV {
 
 
     val awards: Seq[AwardOrGrant] = Seq(
+        Grant("Grant: Reverse Engineering Variability Implementations",
+            URL("http://www.nsf.gov/awardsearch/showAward?AWD_ID=1318808"),
+            new GregorianCalendar(2013, 6 - 1, 24).getTime,
+            new GregorianCalendar(2013, 9 - 1, 1).getTime,
+            new GregorianCalendar(2016, 8 - 1, 31).getTime,
+            "National Science Foundation",
+            USD(400797)
+        ),
         Grant("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering",
             URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
             new GregorianCalendar(2012, 6 - 1, 1).getTime,
