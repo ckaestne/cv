@@ -100,6 +100,7 @@ object CVPublications {
     val Guo = Person("Jianmei", "Guo", "University of Waterloo")
     val Hunsen = Person("Claus", "Hunsen", "University of Passau")
     val Mitschke = Person("Ralf", "Mitschke", "Technical University of Darmstadt")
+    val Garvin = Person("Brady", "Garvin", URL("http://cse.unl.edu/~bgarvin/"), "University of Nebraska–Lincoln")
 
 
     val fop = Topic("Feature-oriented programming")
@@ -140,6 +141,7 @@ object CVPublications {
     val FOSD09 = FOSD(2009).location("Denver, CO").isbn("978-1-60558-567-3").month(10)
     val FOSD10 = FOSD(2010).location("Eindhoven").isbn("978-1-4503-0208-1").acceptanceRate(11, 20).month(10)
     val FOSD12 = FOSD(2012).location("Dresden").isbn("978-1-4503-1309-4").acceptanceRate(8, 14).month(9)
+    val FOSD13 = FOSD(2013).location("Indianapolis, IN").acceptanceRate(6, 8).month(10)
     val ICSE11Demo = ICSE(2011).subtitle("Demonstration Track").acceptanceRate(22, 60).location("Waikiki, Honolulu, HI").publisher(ACM).isbn("978-1-4503-0445-0")
     val SPLC11 = SPLC(2011).publisher(IEEE).location("Munich").month(8)
     val OOPSLA11 = OOPSLA(2011).acceptanceRate(61, 166).month(10).isbn("978-1-4503-0940-0").location("Portland, OR")
@@ -2236,8 +2238,8 @@ the open source product line Busybox with 811 compile-time options.""").
         InBook(
             Seq(Kaestner, Apel),
             "Feature-Oriented Software Development: A Short Tutorial on Feature-Oriented Programming, Virtual Separation of Concerns, and Variability-Aware Analysis",
-            Venue("GTTSE", 2011, "GTTSE Summer School: Generative & Transformational Techniques in Software Engineering", KMisc).location("Braga").publisher(Springer),
-            ToAppear(),
+            Venue("GTTSE", 2011, "GTTSE Summer School: Generative & Transformational Techniques in Software Engineering", KMisc).location("Braga").publisher(Springer).series(LNCS).volume(7680),
+            Pages(346,382),
             Map(PDF -> PDFFile("gttse11.pdf"), HTTP -> URL("http://gttse.wikidot.com/2011:short-tutorials")),
             """Feature-oriented software development is a paradigm for the
             construction, customization, and synthesis of large-scale and variable
@@ -2485,6 +2487,26 @@ modularity and efficiency in real-world applications.
         ).topic(dsl),
 
 
+   InProceedings(
+            Seq(JSiegmund, Kaestner, Apel, Brechmann, Saake),
+            "Experience from Measuring Program Comprehension—Toward a General Framework",
+            Conference("SE", 2013, "Software Engineering 2013 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(2).
+                series("Lecture Notes in Informatics").
+                publisher(GI).
+                volume("P-213").
+                location("Aachen, Germany"),
+            Pages(239, 257),
+            Map(PDF -> PDFFile("SE2013.pdf"),
+                HTTP -> URL("http://www.gi.de/service/publikationen/lni/gi-edition-proceedings-2013/gi-edition-lecture-notes-in-informatics-lni-p-213.html")),
+            """Program comprehension plays a crucial role during the software-development life cycle: Maintenance programmers spend most of their time with comprehending source code, and maintenance is the main cost factor in software development.
+Thus, if we can improve program comprehension, we can save considerable amount of time and cost. To improve program comprehension, we have to measure it first. However, program comprehension is a complex, internal cognitive process that we cannot
+observe directly. Typically, we need to conduct controlled experiments to soundly measure program comprehension. However, empirical research is applied only reluctantly in software engineering. To close this gap, we set out to support researchers in
+planning and conducting experiments regarding program comprehension. We report our experience with experiments that we conducted and present the resulting framework to support researchers in planning and conducting experiments. Additionally, we
+discuss the role of teaching for the empirical researchers of tomorrow.""").
+            topic(programcomprehension, experiment),
+
+
+
         Article(
             Seq(Apel, vonRhein, Thuem, Kaestner),
             "Feature-Interaction Detection based on Feature-Based Specifications",
@@ -2557,7 +2579,15 @@ A key result is that in these settings already setting up sampling techniques is
             """Software product line engineering is an efficient means to generate a set of tailored software products from a common implementation. 
             However, adopting a product-line approach poses a major challenge and significant risks, since typically legacy code must be migrated toward a product line. Our aim is to lower the adoption barrier by providing semiautomatic tool support---called *variability mining*---to support developers in locating, documenting, and extracting implementations of product-line features from legacy code. Variability mining combines prior work on concern location, reverse engineering, and variability-aware type systems, but is tailored specifically for the use in product lines. Our work pursues three technical goals: (1) we provide a *consistency indicator* based on a variability-aware type system, (2) we mine features at a *fine level of granularity*, and (3) we exploit *domain knowledge* about the relationship between features when available. With a quantitative study, we demonstrate that variability mining can efficiently support developers in locating features.""").
             selected().topic(adoption, spl).
-            note("to appear; accepted 29 Jul 2013")
+            note("to appear; accepted 29 Jul 2013"),
 
-    )
+  InProceedings(
+            Seq(Apel, Kolesnikov, Siegmund, Kaestner, Garvin),
+            "Exploring Feature Interactions in the Wild: The New Feature-Interaction Challenge",
+            FOSD13,
+            ToAppear(),
+            Map(PDF -> PDFFile("FOSD13-fi.pdf")),
+            """The feature-interaction problem has been keeping researchers and practitioners in suspense for years. Although there has been substantial progress in developing approaches for modeling, detecting, managing, and resolving feature interactions, we lack sufficient knowledge on the kind of feature interactions that occur in real-world systems. In this position paper, we set out the goal to explore the nature of feature interactions systematically and comprehensively, classified in terms of order and visibility. Understanding this nature will have significant implications on research in this area, for example, on the efficiency of interaction-detection or performance-prediction techniques. A set of preliminary results as well as a discussion of possible experimental setups and corresponding challenges give us confidence that this endeavor is within reach but requires a collaborative effort of the community.""").topic(interactions)
+
+        )
 }
