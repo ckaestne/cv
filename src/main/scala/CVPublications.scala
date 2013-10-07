@@ -2587,7 +2587,30 @@ A key result is that in these settings already setting up sampling techniques is
             FOSD13,
             ToAppear(),
             Map(PDF -> PDFFile("FOSD13-fi.pdf")),
-            """The feature-interaction problem has been keeping researchers and practitioners in suspense for years. Although there has been substantial progress in developing approaches for modeling, detecting, managing, and resolving feature interactions, we lack sufficient knowledge on the kind of feature interactions that occur in real-world systems. In this position paper, we set out the goal to explore the nature of feature interactions systematically and comprehensively, classified in terms of order and visibility. Understanding this nature will have significant implications on research in this area, for example, on the efficiency of interaction-detection or performance-prediction techniques. A set of preliminary results as well as a discussion of possible experimental setups and corresponding challenges give us confidence that this endeavor is within reach but requires a collaborative effort of the community.""").topic(interactions)
+            """The feature-interaction problem has been keeping researchers and practitioners in suspense for years. Although there has been substantial progress in developing approaches for modeling, detecting, managing, and resolving feature interactions, we lack sufficient knowledge on the kind of feature interactions that occur in real-world systems. In this position paper, we set out the goal to explore the nature of feature interactions systematically and comprehensively, classified in terms of order and visibility. Understanding this nature will have significant implications on research in this area, for example, on the efficiency of interaction-detection or performance-prediction techniques. A set of preliminary results as well as a discussion of possible experimental setups and corresponding challenges give us confidence that this endeavor is within reach but requires a collaborative effort of the community.""").topic(interactions),
+
+
+        Article(
+            Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
+            "Measuring and Modeling Programming Experience",
+            ESE(2013),
+            ToAppear(),
+            Map(PDF -> PDFFile("ese13.pdf")),
+            """
+Programming experience is an important confounding parameter in controlled
+experiments regarding program comprehension. In literature, ways to measure or
+control programming experience vary. Often, researchers neglect it or do not specify
+how they controlled for it. We set out to find a well-defined understanding of
+programming experience and a way to measure it. From published comprehension
+experiments, we extracted questions that assess programming experience. In a
+controlled experiment, we compare the answers of computer-science students to these
+questions with their performance in solving program-comprehension tasks. We found
+that self estimation seems to be a reliable way to measure programming experience.
+Furthermore, we applied exploratory and confirmatory factor analyses to extract and
+evaluate a model of programming experience. With our analysis, we initiate a path
+toward validly and reliably measuring and describing programming experience to better
+understand and control its influence in program-comprehension experiments."""
+).note("accepted for publication Oct 4, 2013").topic(experiment, programcomprehension)
 
         )
 }
