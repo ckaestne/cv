@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2013, 10-1, 23).getTime, "New students",
+          <span>I am looking for at least two new Ph.D. students to start in Fall 2014. Topics include reverse engineering variability implementations, testing and analysis of highly configurable systems, and deadling with imperfect modularity in software ecosystems; experience with software analysis, testing, product lines, or empirical research methods is appreciated. All admitted Ph.D. students are fully funded. Please consider applying to our <a href="http://www.isri.cmu.edu/education/se-phd/">CMU SE PhD program</a>.</span>) ::
         NewsItem(new GregorianCalendar(2013, 8-1, 16).getTime, "Variability Mining paper accepted",
           <span>Some papers have a history. We started our work on variability mining in 2009. A corresponing paper has matured over time and has now finally been accepted at IEEE Transactions for Software Engineering. I've uploaded a preprint <a href="http://www.cs.cmu.edu/~ckaestne/pdf/tse_fm.pdf">here</a>. If you are interested how feature location techniques can be tuned to locate product-line features in legacy code, check it out.</span>) ::
         NewsItem(new GregorianCalendar(2013, 6-1, 28).getTime, "NSF Grant: Reverse Engineering Variability Implementations",

@@ -2552,8 +2552,10 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
             Seq(Liebig, vonRhein, Kaestner, Apel, Doerre, Lengauer),
             "Scalable Analysis of Variable Software",
             ESECFSE(2013).month(8).location("Saint Petersburg").acceptanceRate(51, 251),
-            ToAppear(),
-            Map(PDF->PDFFile("fse13.pdf")),
+            Pages(81,91),
+            Map(PDF->PDFFile("fse13.pdf"),
+             DOI -> DOI("10.1145/2491411.2491437"),
+             HTTP -> URL("http://dl.acm.org/citation.cfm?id=2491437")),
             """
 The advent of proper variability management and generator technology enables users to derive individual variants from a variable code base solely based on a selection of desired configuration options.
 This approach gives rise to a huge configuration space,
@@ -2567,7 +2569,7 @@ To learn about the mutual strengths and weaknesses of variability-aware and samp
 A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
             """.stripMargin
         ).topic(spl, vaanalysis, typechef).
-            note("to appear; accepted 30 May 2013").selected(),
+            selected(),
 
 
         Article(
