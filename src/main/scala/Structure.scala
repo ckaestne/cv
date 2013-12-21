@@ -572,6 +572,7 @@ sealed abstract class Term(val year: Int) extends Ordered[Term]
 case class SummerTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
         case SummerTerm(thatYear) => year.compareTo(thatYear)
+        case SpringTerm(thatYear) => year.compareTo(thatYear)
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
     }
@@ -579,9 +580,21 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
     override def toString = "Summer " + year
 }
 
+case class SpringTerm(ayear: Int) extends Term(ayear) {
+    def compare(that: Term) = that match {
+        case SummerTerm(thatYear) => year.compareTo(thatYear)
+        case SpringTerm(thatYear) => year.compareTo(thatYear)
+        case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
+        case FallTerm(thatYear) => year.compareTo(thatYear)
+    }
+
+    override def toString = "Spring " + year
+}
+
 case class WinterTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
         case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
+        case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
     }
@@ -592,6 +605,7 @@ case class WinterTerm(ayear: Int) extends Term(ayear) {
 case class FallTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
         case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
+        case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
     }
@@ -655,9 +669,11 @@ object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
+object SC extends CommitteeRole("Steering-Committee Member", "SC")
+
 object TC extends CommitteeRole("Tool-Demonstration Committee Member", "TC")
 
-object DS extends CommitteeRole("Doctorial-Symposium Committee Member", "DC")
+object DS extends CommitteeRole("Doctoral-Symposium Committee Member", "DC")
 
 case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
 
