@@ -2229,11 +2229,11 @@ the open source product line Busybox with 811 compile-time options.""").
         Article(
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
             "{FeatureIDE}: An Extensible Framework for Feature-Oriented Software Development",
-            SCP(2012),
-            ToAppear(),
+            SCP(2014).volume(79).specialIssueOn("Experimental Software and Toolkits"),
+            Pages(70,85),
             Map(DOI -> DOI("10.1016/j.scico.2012.06.002")),
             """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
-        ).note("to appear; accepted 7 Jun 2012"),
+        ),
 
         InBook(
             Seq(Kaestner, Apel),
