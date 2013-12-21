@@ -108,6 +108,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
+            English, SpringTerm(2014), new CourseKind with Lecture
+        ),
         Course("15-313 Foundations of Software Engineering",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/15313/2013/"),
@@ -116,7 +121,7 @@ object CV {
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
-            English, SummerTerm(2013), new CourseKind with Lecture
+            English, SpringTerm(2013), new CourseKind with Lecture
         ),
         Course("Empirical Methods for Computer Scientists",
             "Einführung in empirische Methoden für Informatiker",
@@ -241,6 +246,7 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(SPLC(2014).url(URL("http://www.splc2014.net")), PC),
         Committee(ASE(2014).url(URL("http://ase2014.org/")), PC),
         Committee(ECOOP(2014), ERC),
         Committee(Conference("ICSE-Tut-TB", 2014,
@@ -250,6 +256,7 @@ object CV {
             "MODULARITY 2014 - Modularity Visions track",
             URL("http://aosd.net/2014/mvtrack/")), PC),
         Committee(VAMOS(2014), PC),
+        Committee(GPCE(2014), SC),
         Committee(OOPSLA(2013).url(URL("http://splashcon.org/2013")), PC),
         Committee(GPCE(2013), PCChair),
         Committee(Workshop("SCORE", 2013,
@@ -304,6 +311,7 @@ object CV {
         Committee(FOSD(2009), OC)
     )
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2014)), //IEEE Transactions on Software Engineering
         Review(TOPLAS(2012)),
         Review(ESE(2012)),
         Review(JSEP(2012)), //Journal of Software: Evolution and Process
@@ -350,7 +358,7 @@ object CV {
             EUR(250000)
         ),
         Award(
-            "**GI-Dissertationspreis:** Best Disseration Award of the German Computer Science Association, 2010",
+            "**GI-Dissertationspreis:** Best Dissertation Award of the German Computer Science Association, 2010",
             URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
             new GregorianCalendar(2011, 10 - 1, 1).getTime,
             List(
@@ -452,6 +460,10 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2013, 12), "Variability Mining", "University of Waterloo -- Product Line Engineering Workshop"),
+        InvitedTalk(time(2013, 12), parsingandtypecheckingLinux, "University of Nebraska at Lincoln, Lincoln, NE"),
+        InvitedTalk(time(2013, 8), "Analyzing Highly Configurable Systems: From Linux to Eclipse", "Technical University Darmstadt, Germany"),
+        InvitedTalk(time(2013, 8), "Accepting Change - Awareness instead of Stability Guarantees", "University of Passau, Germany"),
         InvitedTalk(time(2013, 2), "Analyzing the #ifdef Hell with TypeChef -- Or the Quest for Realistic Subjects in Product-Line Analysis", "Dagstuhl Seminar 13091: Analysis, Test and Verification in The Presence of Variability"),
         InvitedTalk(time(2012, 12), "A Variability-Aware Module System", "Dagstuhl Seminar 12511: Divide and Conquer: the Quest for Compositional Design and Analysis"),
         InvitedTalk(time(2012, 4), parsingandtypecheckingLinux, "University of Passau, Germany"),
