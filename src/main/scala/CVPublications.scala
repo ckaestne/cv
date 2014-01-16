@@ -101,6 +101,13 @@ object CVPublications {
     val Hunsen = Person("Claus", "Hunsen", "University of Passau")
     val Mitschke = Person("Ralf", "Mitschke", "Technical University of Darmstadt")
     val Garvin = Person("Brady", "Garvin", URL("http://cse.unl.edu/~bgarvin/"), "University of Nebraska–Lincoln")
+    val Bethmann = Person("Anja", "Bethmann", "University of Magdeburg")
+    val Parnin = Person("Chris", "Parnin", URL("http://www.cc.gatech.edu/~vector/"), "Georgia Institute of Technology")
+    val Ribeiro = Person("Márcio", "Ribeiro", URL("http://www.ic.ufal.br/marcio"), "Federal University of Alagoas")
+    val Borba = Person("Paulo", "Borba", URL("http://www.cin.ufpe.br/~phmb/"), "Federal University of Pernambuco")
+    val HNguyen = Person("Hung Viet", "Nguyen", URL("http://home.engineering.iastate.edu/~hungnv/"), "Iowa State University")
+    val TNguyen = Person("Tien N.", "Nguyen", URL("http://home.engineering.iastate.edu/~tien/"), "Iowa State University")
+    val Nadi = Person("Sarah", "Nadi", URL("http://swag.uwaterloo.ca/~snadi/"), "University of Waterloo")
 
 
     val fop = Topic("Feature-oriented programming")
@@ -136,6 +143,7 @@ object CVPublications {
     val MCGPLE08 = Workshop("McGPLE", 2008, "GPCE Workshop on Modularization, Composition and Generative Techniques for Product Line Engineering").month(10).location("Nashville, TN, USA").publisher(PATR)
     //    .number("MIP - 0802"),
     val ICSE09 = ICSE(2009).month(5).location("Vancouver").publisher(IEEE).isbn("978-1-4244-3452-7").issn("0270-5257").acceptanceRate(50, 405)
+    val ICSE14 = ICSE(2014).month(6).location("Hyderabad").acceptanceRate(99, 495)
     val BTW09 = Conference("BTW", 2009, "13. GI-Fachtagung Datenbanksysteme für Business, Technologie und Web").month(3).series("Lecture Notes in Informatics").volume("P-144").isbn("978-3-88579-238-3").issn("1617-5468").publisher(GI).location("Münster, Germany")
     val SC09 = Conference("SC", 2009, "8th International Conference on Software Composition (SC)").series("Lecture Notes in Computer Science").volume(5634).publisher(Springer).location("Zurich, Switzerland").issn("0302-9743").isbn("978-3-642-02654-6").acceptanceRate(10, 30).month(7)
     val FOSD09 = FOSD(2009).location("Denver, CO").isbn("978-1-60558-567-3").month(10)
@@ -2230,7 +2238,7 @@ the open source product line Busybox with 811 compile-time options.""").
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
             "{FeatureIDE}: An Extensible Framework for Feature-Oriented Software Development",
             SCP(2014).volume(79).specialIssueOn("Experimental Software and Toolkits"),
-            Pages(70,85),
+            Pages(70, 85),
             Map(DOI -> DOI("10.1016/j.scico.2012.06.002")),
             """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
         ),
@@ -2239,7 +2247,7 @@ the open source product line Busybox with 811 compile-time options.""").
             Seq(Kaestner, Apel),
             "Feature-Oriented Software Development: A Short Tutorial on Feature-Oriented Programming, Virtual Separation of Concerns, and Variability-Aware Analysis",
             Venue("GTTSE", 2011, "GTTSE Summer School: Generative & Transformational Techniques in Software Engineering", KMisc).location("Braga").publisher(Springer).series(LNCS).volume(7680),
-            Pages(346,382),
+            Pages(346, 382),
             Map(PDF -> PDFFile("gttse11.pdf"), HTTP -> URL("http://gttse.wikidot.com/2011:short-tutorials")),
             """Feature-oriented software development is a paradigm for the
             construction, customization, and synthesis of large-scale and variable
@@ -2462,7 +2470,7 @@ A key result is that variability-aware analysis can outperform even very limited
             "Reify Your Collection Queries for Modularity and Speed!",
             Conference("AOSD", 2013, "12th ACM International Conference on Aspect-Oriented Software Development").publisher(ACM).
                 month(3).acceptanceRate(17, 72).location("Fukuoka, Japan"),
-            Pages(1,12),
+            Pages(1, 12),
             Map(PDF -> PDFFile("aosd13.pdf"),
                 DOI -> DOI("10.1145/2451436.2451438")),
             """
@@ -2487,7 +2495,7 @@ modularity and efficiency in real-world applications.
         ).topic(dsl),
 
 
-   InProceedings(
+        InProceedings(
             Seq(JSiegmund, Kaestner, Apel, Brechmann, Saake),
             "Experience from Measuring Program Comprehension—Toward a General Framework",
             Conference("SE", 2013, "Software Engineering 2013 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(2).
@@ -2506,14 +2514,13 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
             topic(programcomprehension, experiment),
 
 
-
         Article(
             Seq(Apel, vonRhein, Thuem, Kaestner),
             "Feature-Interaction Detection based on Feature-Based Specifications",
             Journal("COMNET", 2013, "Computer Networks").specialIssueOn("Feature Interaction").publisher(Elsevier),
             ToAppear(),
             Map(PDF -> PDFFile("comnet13.pdf"),
-                DOI-> DOI("10.1016/j.comnet.2013.02.025")),
+                DOI -> DOI("10.1016/j.comnet.2013.02.025")),
             """Formal specification and verification techniques have been used successfully to
               |detect feature interactions. We investigate whether feature-based specifications
               |can be used for this task. Feature-based specifications are a special class of
@@ -2534,7 +2541,7 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
             Seq(Apel, Batory, Kaestner, Saake),
             "Feature-Oriented Software Product Lines: Concepts and Implementation",
             Venue("", 2013, "", KBook).publisher(Springer),
-            Map(HTTP->URL("http://www.springer.com/computer/swe/book/978-3-642-37520-0")),
+            Map(HTTP -> URL("http://www.springer.com/computer/swe/book/978-3-642-37520-0")),
             """
               |While standardization has empowered the software industry to substantially scale software development and to provide affordable software to a broad market, it often does not address smaller market segments, nor the needs and wishes of individual customers.  Software product lines reconcile mass production and standardization with mass customization in software engineering. Ideally, based on a set of reusable parts, a software manufacturer can generate a software product based on the requirements of its customer. The concept of features is central to achieving this level of automation, because features bridge the gap between the requirements the customer has and the functionality a product provides. Thus features are a central concept in all phases of product-line development.
               |
@@ -2547,15 +2554,14 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
             selected(),
 
 
-
-     InProceedings(
+        InProceedings(
             Seq(Liebig, vonRhein, Kaestner, Apel, Doerre, Lengauer),
             "Scalable Analysis of Variable Software",
             ESECFSE(2013).month(8).location("Saint Petersburg").acceptanceRate(51, 251),
-            Pages(81,91),
-            Map(PDF->PDFFile("fse13.pdf"),
-             DOI -> DOI("10.1145/2491411.2491437"),
-             HTTP -> URL("http://dl.acm.org/citation.cfm?id=2491437")),
+            Pages(81, 91),
+            Map(PDF -> PDFFile("fse13.pdf"),
+                DOI -> DOI("10.1145/2491411.2491437"),
+                HTTP -> URL("http://dl.acm.org/citation.cfm?id=2491437")),
             """
 The advent of proper variability management and generator technology enables users to derive individual variants from a variable code base solely based on a selection of desired configuration options.
 This approach gives rise to a huge configuration space,
@@ -2583,7 +2589,7 @@ A key result is that in these settings already setting up sampling techniques is
             selected().topic(adoption, spl).
             note("to appear; accepted 29 Jul 2013"),
 
-  InProceedings(
+        InProceedings(
             Seq(Apel, Kolesnikov, Siegmund, Kaestner, Garvin),
             "Exploring Feature Interactions in the Wild: The New Feature-Interaction Challenge",
             FOSD13,
@@ -2612,7 +2618,107 @@ Furthermore, we applied exploratory and confirmatory factor analyses to extract 
 evaluate a model of programming experience. With our analysis, we initiate a path
 toward validly and reliably measuring and describing programming experience to better
 understand and control its influence in program-comprehension experiments."""
-).note("accepted for publication Oct 4, 2013").topic(experiment, programcomprehension)
+        ).note("accepted for publication Oct 4, 2013").topic(experiment, programcomprehension),
 
-        )
+        InProceedings(
+            Seq(Ribeiro, Borba, Kaestner),
+            "Feature Maintenance with Emergent Interfaces",
+            ICSE14,
+            ToAppear(),
+            Map(),
+            """
+          Hidden code dependencies are responsible for many complications in maintenance tasks.
+          With the introduction of variable features in product lines, dependencies may even cross
+          feature boundaries and related problems are prone to be detected late. Many current
+          implementation techniques for product lines lack proper interfaces, which could make
+          such dependencies explicit. As alternative to changing the implementation approach, we
+          provide a comprehensive tool-based solution to support developers in recognizing and
+          dealing with feature dependencies: emergent interfaces. Emergent interfaces are computed
+          on demand, based on feature-sensitive *interprocedural* data-flow analysis. They emerge
+          in the IDE and emulate benefits of modularity not available in the host language. To
+          evaluate the potential of emergent interfaces, we conducted and replicated a
+          controlled experiment, and found, in the studied context, that emergent interfaces
+          can improve performance of code change tasks by up to 3 times while also reducing
+          the number of errors.
+            """).selected().
+            topic(fop, vsoc, vaanalysis, empirical, experiment, modularity),
+
+        InProceedings(
+            Seq(Nadi, Berger, Kaestner, Czarnecki),
+            "Mining Configuration Constraints: Static Analyses and Empirical Results",
+            ICSE14,
+            ToAppear(),
+            Map(),
+            """
+              Highly configurable systems offer configuration options for tailoring
+              software to specific needs. Not all combinations of configuration
+              options are valid, and constraints arise for technical or non-technical
+              reasons. To reason about configurations, it is valuable to formally
+              describe the constraints in a variability model. To support creating
+              variability models, we propose an approach to automatically extract
+              configuration constraints from C code, based on build-time errors
+              and a novel feature-effect heuristic. We analyze the feasibility of our
+              approach on four highly configurable open-source systems, and use
+              the results to qualitatively and quantitatively study the various kinds
+              of constraints in existing variability models. Both our extraction
+              heuristics are highly accurate (92 % and 76 % respectively). We find
+              that an average of a quarter of the variability model constraints are
+              technically reflected in the code. However, many of the remaining
+              constraints cannot be justified technically. This suggests that substantial
+              parts of variability models can be reversed-engineered from
+              the codebase, but also that significant domain knowledge is necessary
+              when constructing such models. Interestingly, we find that our
+              novel feature effect heuristic alone, can effectively recover 18 % of
+              the model constraints. We believe that our approach, tooling, and
+              experimental results support researchers and practitioners working
+              on variability model re-engineering, evolution, and consistency-checking
+              techniques.
+            """).selected().
+            topic(spl, vaanalysis, adoption),
+
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications",
+            ICSE14,
+            ToAppear(),
+            Map(),
+            """
+              In plugin-based systems, plugin conflicts may occur when two or more
+              plugins interfere with one another, changing their expected
+              behaviors.
+              It is highly challenging to detect plugin conflicts due to the
+              exponential explosion of the combinations of plugins (i.e.,
+              configurations). In this paper, we address the challenge of executing
+              a test case over many configurations. Leveraging the fact that many
+              executions of a test are similar, our variability-aware execution runs
+              common code once. Only when encountering values that are different
+              depending on specific configurations will the execution split to run
+              for each of them. To evaluate the scalability of variability-aware
+              execution on a large real-world setting, we built a prototype PHP
+              interpreter called Varex and ran it on the popular WordPress
+              blogging Web application. The results show that while plugin
+              interactions exist, there is a significant amount of sharing that
+              allows variability-aware execution to scale to 2^50 configurations
+              within seven minutes of running time. During our study, with Varex, we were
+              able to detect two plugin conflicts: one was recently reported on
+              WordPress forum, and another one is not yet discovered.
+            """).selected().
+            topic(testing, empirical, interactions, empirical),
+
+        InProceedings(
+            Seq(JSiegmund, Kaestner, Apel, Parnin, Bethmann, Leich, Saake, Brechmann),
+            "Understanding Understanding Source Code with Functional Magnetic Resonance Imaging",
+            ICSE14,
+            ToAppear(),
+            Map(),
+            """
+          Program comprehension is an important cognitive process that inherently eludes direct measurement. Thus, researchers are struggling with providing optimal programming languages, tools, or coding conventions to support developers in their everyday work.
+          With our approach, we explore whether *functional magnetic resonance imaging (fMRI)*, which is well established in cognitive neuroscience, is feasible to directly measure program comprehension. To this end, we observed 17 participants inside an fMRI scanner while comprehending short source-code snippets, which we contrasted with locating syntax errors.
+          We found a clear, distinct activation pattern of five brain regions, which are related to working memory, attention, and language processing---all processes that fit well to our understanding of program comprehension. Based on the results, we propose a model of program comprehension.
+          Our results encourage us to use fMRI in future studies to measure program comprehension and, in the long run, answer questions, such as: Can we predict whether someone will be an excellent programmer? How effective are new languages and tools for program understanding? How do we train someone to become an excellent programmer?
+            """).selected().
+            topic(programcomprehension, empirical, experiment)
+    )
+
+
 }
