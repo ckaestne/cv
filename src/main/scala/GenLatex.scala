@@ -49,7 +49,7 @@ object GenLatex extends App {
 
     def formatBudget(b: Budget) = b match {
         case EUR(v) => "{\\EUR{%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
-        case USD(v) => "{${%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
+        case USD(v) => "{\\$\\,{%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
     }
 
     val monthyear = new SimpleDateFormat("MMM. yyyy")
