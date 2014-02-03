@@ -112,6 +112,7 @@ object Venues {
     val JASE = JournalFactory("ASE", "Automated Software Engineering -- An International Journal", Springer)
     val JSEP = JournalFactory("JSEP", "Journal of Software: Evolution and Process")
     val HOSC = JournalFactory("HOSC", "Higher-Order and Symbolic Computation")
+    val CSUR = JournalFactory("CSUR", "ACM Computing Surveys")
 
 
     val ACoM = ConferenceFactory("ACoM", 0,

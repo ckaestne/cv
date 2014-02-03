@@ -2717,8 +2717,30 @@ understand and control its influence in program-comprehension experiments."""
           We found a clear, distinct activation pattern of five brain regions, which are related to working memory, attention, and language processing---all processes that fit well to our understanding of program comprehension. Based on the results, we propose a model of program comprehension.
           Our results encourage us to use fMRI in future studies to measure program comprehension and, in the long run, answer questions, such as: Can we predict whether someone will be an excellent programmer? How effective are new languages and tools for program understanding? How do we train someone to become an excellent programmer?
             """).selected().
-            topic(programcomprehension, empirical, experiment)
+            topic(programcomprehension, empirical, experiment),
+
+  Article(
+            Seq(Thuem, Apel, Kaestner, Schaefer, Saake),
+            "A Classification and Survey of Analysis Strategies for Software Product Lines",
+            CSUR(2014),
+            ToAppear(),
+            Map(),
+            """
+Software-product-line engineering has gained considerable momentum in recent years, both in industry and
+in academia. A software product line is a set of software products that share a common set of features.
+Software product lines challenge traditional analysis techniques, such as type checking, model checking,
+and theorem proving, in their quest of ensuring correctness and reliability of software. Simply creating and
+analyzing all products of a product line is usually not feasible, due to the potentially exponential number
+of valid feature combinations. Recently, researchers began to develop analysis techniques that take the
+distinguishing properties of software product lines into account, for example, by checking feature-related
+code in isolation or by exploiting variability information during analysis. The emerging field of product-line
+analyses is both broad and diverse, such that it is difficult for researchers and practitioners to understand
+their similarities and differences. We propose a classification of product-line analyses to enable systematic
+research and application. Based on our insights with classifying and comparing a corpus of 76 articles, we
+infer a research agenda to guide future research on product-line analyses."""
+        ).note("accepted for publication Jan 30, 2014").topic(vaanalysis,spl,overview).selected()
+
+ 
+
     )
-
-
 }
