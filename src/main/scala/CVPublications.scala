@@ -108,6 +108,10 @@ object CVPublications {
     val HNguyen = Person("Hung Viet", "Nguyen", URL("http://home.engineering.iastate.edu/~hungnv/"), "Iowa State University")
     val TNguyen = Person("Tien N.", "Nguyen", URL("http://home.engineering.iastate.edu/~tien/"), "Iowa State University")
     val Nadi = Person("Sarah", "Nadi", URL("http://swag.uwaterloo.ca/~snadi/"), "University of Waterloo")
+    val Coker = Person("Zack", "Coker", "Carnegie Mellon University")
+    val Hasan = Person("Samir", "Hasan", "Auburn University")
+    val Overbey = Person("Jeffrey", "Overbey", "Auburn University")
+    val Hafiz = Person("Munawar", "Hafiz", "Auburn University")
 
 
     val fop = Topic("Feature-oriented programming")
@@ -133,6 +137,7 @@ object CVPublications {
     val dsl = Topic("Domain-specific languages")
     val parsing = Topic("Parsing")
     val testing = Topic("Testing")
+    val security = Topic("Security")
 
 
     //shorthands because they are reused
@@ -2738,8 +2743,35 @@ analyses is both broad and diverse, such that it is difficult for researchers an
 their similarities and differences. We propose a classification of product-line analyses to enable systematic
 research and application. Based on our insights with classifying and comparing a corpus of 76 articles, we
 infer a research agenda to guide future research on product-line analyses."""
-        ).note("accepted for publication Jan 30, 2014").topic(vaanalysis,spl,overview).selected()
+        ).note("accepted for publication Jan 30, 2014").topic(vaanalysis,spl,overview).selected(),
 
+        TechReport(
+            Seq(Coker, Hasan, Overbey, Hafiz, Kaestner),
+            "Integers In C: An Open Invitation to Security Attacks?",
+            2014, 2, 
+            Publisher("College of Engineering, Auburn University", "Auburn, AL"), "CSSE14-01",
+            Map(PDF -> PDFFile("csse14-01.pdf")),
+            """We performed an empirical study to explore how closely
+            well-known, open source C programs follow the safe C standards 
+            for integer behavior, with the goal of understanding
+            how difficult it is to migrate legacy code to these stricter
+            standards. We performed an automated analysis on fifty-two
+            releases of seven C programs (6 million lines of preprocessed
+              C code), as well as releases of Busybox and Linux (nearly
+              one billion lines of partially-preprocessed C code). We found
+            that integer issues, that are allowed by the C standard but
+            not by the safer C standards, are ubiquitous—one out of four
+            integers were inconsistently declared, and one out of eight
+            integers were inconsistently used. Integer issues did not improve 
+            over time as the programs evolved. Also, detecting
+            the issues is complicated by a large number of integers whose
+            types vary under different preprocessor configurations. Most
+            of these issues are benign, but the chance of finding fatal 
+            errors and exploitable vulnerabilities among these many issues
+            remains significant. A preprocessor-aware, tool-assisted approach 
+            may be the most viable way to migrate legacy C code
+            to comply with the standards for secure programming."""
+          ).topic(vaanalysis,empirical,security)
  
 
     )
