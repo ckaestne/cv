@@ -106,7 +106,7 @@ object GenHtml extends App {
     def printPublication(p: Publication): NodeSeq = {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
-                   <a name={p.genKey} />
+                  <a name={p.genKey}></a>
                   {p.render(DefaultBibStyle, FancyPersonHtmlFormater)}
                [ {
                    for ((key, url) <- links.dropRight(1))
@@ -336,7 +336,7 @@ object GenHtml extends App {
 
     def printFullBibtex(): NodeSeq =
         for (p <- CV.publications)
-        yield <div><a name={p.genKey} /><pre>{p.toBibtex()}</pre></div>
+          yield <div><a name={p.genKey}></a><pre>{p.toBibtex()}</pre></div>
 
     def mainPage: NodeSeq =
         <div itemscope="" itemtype="http://data-vocabulary.org/Person">{
