@@ -2630,7 +2630,7 @@ understand and control its influence in program-comprehension experiments."""
             "Feature Maintenance with Emergent Interfaces",
             ICSE14,
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("icse14_emergo.pdf")),
             """
           Hidden code dependencies are responsible for many complications in maintenance tasks.
           With the introduction of variable features in product lines, dependencies may even cross
@@ -2653,7 +2653,7 @@ understand and control its influence in program-comprehension experiments."""
             "Mining Configuration Constraints: Static Analyses and Empirical Results",
             ICSE14,
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("icse14_mining.pdf")),
             """
               Highly configurable systems offer configuration options for tailoring
               software to specific needs. Not all combinations of configuration
