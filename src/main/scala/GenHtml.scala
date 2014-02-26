@@ -211,7 +211,8 @@ object GenHtml extends App {
 
     def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
-    def printCommitteePicture(): NodeSeq = <a href="http://program-transformation.org/GPCE13">
+    def printCommitteePicture(): NodeSeq = 
+      <a href="http://program-transformation.org/GPCE13">
     <img title="Generative Programming and Component Engineering 2013" src="GPCE-2013.png" alt="GPCE2013" width="180" height="220" />
     </a>
 
@@ -219,8 +220,8 @@ object GenHtml extends App {
             <div>{
                 for (c <- committees.dropRight(1))
                 yield printCommittee(c, true)
-            }{printCommittee(committees.last, false)}</div>,
-        printCommitteePicture()
+            }{printCommittee(committees.last, false)}</div>/*,
+        printCommitteePicture()*/
     )
 
 
