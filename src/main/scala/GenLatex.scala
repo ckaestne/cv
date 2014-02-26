@@ -136,8 +136,8 @@ object GenLatex extends App {
             (if (c.role != PC) " -- " + c.role.title else "") + "\n"
 
     def organizationCommittees(): String = subsection("Organization Committees", inCV(
-        committees.filter(Set(OC, PCChair) contains _.role).map(printCommittee).mkString +
-            "\\item[FOSD-Tr.\\ 2009-12] Annual German Student Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Dagstuhl)\n"
+        committees.filter(Set(OC, PCChair, SC) contains _.role).map(printCommittee).mkString +
+            "\\item[FOSD-Tr.\\ 2009-15] Annual German Student Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
     ))
 
     def programCommittees(): String = subsection("Program Committees", inCV(

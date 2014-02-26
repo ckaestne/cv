@@ -311,6 +311,8 @@ object CV {
         Committee(FOSD(2009), OC)
     )
     val reviews: Seq[Review] = Seq(
+        Review(SCP(2014)), //Science of Computer Programming
+        Review(JOSER(2014)), //Science of Computer Programming
         Review(TSE(2014)), //IEEE Transactions on Software Engineering
         Review(TOPLAS(2012)),
         Review(ESE(2012)),
