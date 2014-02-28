@@ -2715,7 +2715,7 @@ understand and control its influence in program-comprehension experiments."""
             "Understanding Understanding Source Code with Functional Magnetic Resonance Imaging",
             ICSE14,
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("icse14_fmri.pdf")),
             """
           Program comprehension is an important cognitive process that inherently eludes direct measurement. Thus, researchers are struggling with providing optimal programming languages, tools, or coding conventions to support developers in their everyday work.
           With our approach, we explore whether *functional magnetic resonance imaging (fMRI)*, which is well established in cognitive neuroscience, is feasible to directly measure program comprehension. To this end, we observed 17 participants inside an fMRI scanner while comprehending short source-code snippets, which we contrasted with locating syntax errors.
