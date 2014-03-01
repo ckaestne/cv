@@ -2685,7 +2685,7 @@ understand and control its influence in program-comprehension experiments."""
             Seq(HNguyen, Kaestner, TNguyen),
             "Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications",
             ICSE14,
-            ToAppear(),
+            Map(PDF->PDFFile("icse14_varex.pdf")),
             Map(),
             """
               In plugin-based systems, plugin conflicts may occur when two or more
