@@ -332,7 +332,10 @@ object GenHtml extends App {
 
 
     def printTwitterWidget(): NodeSeq =
-     <p><div class="tweet"></div></p>
+    <p><a class="twitter-timeline"  href="https://twitter.com/p0nk"  data-widget-id="252400439511879680">twitter</a>
+      <script>{"""!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');"""}</script>
+  
+  </p>
 
 
     def printFullBibtex(): NodeSeq =
@@ -371,7 +374,6 @@ object GenHtml extends App {
                 <link rel="stylesheet" type="text/css" media="all" href="css/jquery.tweet.css" />
                 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
                 <script type="text/javascript" src="js/script.js"></script>
-                <script type="text/javascript" src="js/jquery.tweet.js"></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>

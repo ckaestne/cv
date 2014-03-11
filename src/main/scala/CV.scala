@@ -414,7 +414,7 @@ object CV {
     )
     val projects: Seq[(URL, String, String, Option[String])] = Seq(
         (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef", "Variability-Aware Analysis and Parsing of C Code", None),
-        (URL("http://www.informatik.uni-marburg.de/~kaestner/leadt/"), "Feature Mining", "Consistent Semi-Automatic Detection of Product-Line Features", None),
+        (URL("https://github.com/ckaestne/LEADT"), "Feature Mining", "Consistent Semi-Automatic Detection of Product-Line Features", None),
         (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE", "Virtual Separation of Concerns", None),
         (URL("http://www.sugarj.org/"), "SugarJ", "Library-based Syntactic Language Extensibility", None),
         (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE", "Tool Support for Feature-Oriented Software Development", None),

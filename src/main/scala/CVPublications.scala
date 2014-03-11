@@ -2655,29 +2655,27 @@ understand and control its influence in program-comprehension experiments."""
             ToAppear(),
             Map(PDF->PDFFile("icse14_mining.pdf")),
             """
-              Highly configurable systems offer configuration options for tailoring
-              software to specific needs. Not all combinations of configuration
-              options are valid, and constraints arise for technical or non-technical
-              reasons. To reason about configurations, it is valuable to formally
-              describe the constraints in a variability model. To support creating
-              variability models, we propose an approach to automatically extract
-              configuration constraints from C code, based on build-time errors
-              and a novel feature-effect heuristic. We analyze the feasibility of our
-              approach on four highly configurable open-source systems, and use
-              the results to qualitatively and quantitatively study the various kinds
-              of constraints in existing variability models. Both our extraction
-              heuristics are highly accurate (92 % and 76 % respectively). We find
-              that an average of a quarter of the variability model constraints are
-              technically reflected in the code. However, many of the remaining
-              constraints cannot be justified technically. This suggests that substantial
-              parts of variability models can be reversed-engineered from
-              the codebase, but also that significant domain knowledge is necessary
-              when constructing such models. Interestingly, we find that our
-              novel feature effect heuristic alone, can effectively recover 18 % of
-              the model constraints. We believe that our approach, tooling, and
-              experimental results support researchers and practitioners working
-              on variability model re-engineering, evolution, and consistency-checking
-              techniques.
+            Highly-configurable systems allow users to tailor the software to
+            their specific needs. Not all combinations of configuration options
+            are valid though, and constraints arise for technical or non-technical
+            reasons. Explicitly describing these constraints in a variability model
+            allows reasoning about the supported configurations. To automate
+            creating variability models, we need to identify the origin of such
+            configuration constraints. We propose an approach which uses build-time 
+            errors and a novel feature-effect heuristic to automatically
+            extract configuration constraints from C code. We conduct an empirical 
+            study on four highly-configurable open-source systems with
+            existing variability models having three objectives in mind: evaluate
+            the accuracy of our approach, determine the recoverability of existing 
+            variability-model constraints using our analysis, and classify the
+            sources of variability-model constraints. We find that both our extraction 
+            heuristics are highly accurate (93 % and 77 % respectively),
+            and that we can recover 19 % of the existing variability-models
+            using our approach. However, we find that many of the remaining
+            constraints require expert knowledge or more expensive analyses.
+            We argue that our approach, tooling, and experimental results support 
+            researchers and practitioners working on variability model
+            re-engineering, evolution, and consistency-checking techniques.
             """).selected().
             topic(spl, vaanalysis, adoption),
 
