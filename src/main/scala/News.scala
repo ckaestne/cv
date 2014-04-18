@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2014, 3-1, 27).getTime, "Research Experiences for Undergraduates in Software Engineering",
+          <span>We are looking for a number of undergraduate students who would be interested in doing software-engineering research at CMU this summer. I'd be interested in working with somebody on several of my projects (around TypeChef, Github, or Energy Measurements). If you might be interested spending the summer in Pittsburgh, please consider applying. See our <a href="http://www.isri.cs.cmu.edu/education/reu-se/">REU-SE website</a> for projects and details.</span>) ::
         NewsItem(new GregorianCalendar(2014, 2-1, 24).getTime, "Huffington Post Article",
           <span>Chris Parnin has written an article about our fMRI research for the Huffington Post: <a href="http://www.huffingtonpost.com/chris-parnin/scientists-begin-looking-_b_4829981.html">Scientists Begin Looking at Programmers' Brains: The Neuroscience of Programming</a>. Join the discussion <a href="http://science.slashdot.org/story/14/02/23/0239241/the-neuroscience-of-computer-programming">here</a>.</span>) ::
         NewsItem(new GregorianCalendar(2014, 1-1, 16).getTime, "Going to Hyderabad",

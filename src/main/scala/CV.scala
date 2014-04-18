@@ -108,6 +108,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/2014/"),
+            English, FallTerm(2014), new CourseKind with Lecture
+        ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
@@ -246,6 +251,8 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(Workshop("REVE", 2012, "2nd Workshop on Reverse Variability Engineering",
+            URL("http://www.sea.jku.at/reve2014/")), PC),
         Committee(SPLC(2014).url(URL("http://www.splc2014.net")), PC),
         Committee(ASE(2014).url(URL("http://ase2014.org/")), PC),
         Committee(ECOOP(2014), ERC),
@@ -462,6 +469,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2014, 14), "Quality Assurance for Highly-Configurable Systems", "University of Magdeburg"),
         InvitedTalk(time(2013, 12), "Variability Mining", "University of Waterloo -- Product Line Engineering Workshop"),
         InvitedTalk(time(2013, 12), parsingandtypecheckingLinux, "University of Nebraska at Lincoln, Lincoln, NE"),
         InvitedTalk(time(2013, 8), "Analyzing Highly Configurable Systems: From Linux to Eclipse", "Technical University Darmstadt, Germany"),

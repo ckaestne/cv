@@ -1395,7 +1395,7 @@ object CVPublications {
         Thesis(
             Seq(Kaestner),
             "Virtual Separation of Concerns: Toward Preprocessors 2.0",
-            2010, 5, "PhD thesis", MRTR,
+            2010, 5, "PhD thesis", MDTR,
             Map(DOI -> URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044"),
                 HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
                 PDF -> PDFFile("diss_kaestner_virtual_separation_of_concerns.pdf")),
