@@ -218,9 +218,13 @@ object GenHtml extends App {
 
     def printCommittees(committees: Seq[Committee]) = rowH2("Committees",
             <div>{
-                for (c <- committees.dropRight(1))
+                for (c <- committees_conferences.dropRight(1))
                 yield printCommittee(c, true)
-            }{printCommittee(committees.last, false)}</div>/*,
+            }{printCommittee(committees_conferences.last, false)}</div> <div>&nbsp;</div>
+                <div>{
+                for (c <- committees_workshops.dropRight(1))
+                yield printCommittee(c, true)
+            }{printCommittee(committees_workshops.last, false)}</div>/*,
         printCommitteePicture()*/
     )
 

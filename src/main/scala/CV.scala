@@ -251,20 +251,24 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(Workshop("MultiPLE", 2014,
+            "SPLC Workshop on Multi Product Line Engineering",
+            URL("https://sites.google.com/site/wmultiple2014/")), PC),
         Committee(Workshop("SPLat", 2014, "Software Product Line Analysis Tools 2014",
             URL("")), PC),
         Committee(Workshop("SPLTea", 2014, "First International Workshop on Software Product Line Teaching",
             URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("REVE", 2014, "2nd Workshop on Reverse Variability Engineering",
             URL("http://www.sea.jku.at/reve2014/")), PC),
+        Committee(FOSD(2014), OC),
         Committee(SPLC(2014).url(URL("http://www.splc2014.net")), PC),
         Committee(ASE(2014).url(URL("http://ase2014.org/")), PC),
         Committee(ECOOP(2014), ERC),
-        Committee(Conference("ICSE-Tut-TB", 2014,
-            "ICSE 2014 - Tutorial and Technical Briefings track",
+        Committee(Workshop("ICSE-TB", 2014,
+            "ICSE 2014 - Tutorial and Technical Briefings Track",
             URL("http://2014.icse-conferences.org/")), PC),
         Committee(Conference("MV", 2014,
-            "MODULARITY 2014 - Modularity Visions track",
+            "MODULARITY 2014 - Modularity Visions Track",
             URL("http://aosd.net/2014/mvtrack/")), PC),
         Committee(VAMOS(2014), PC),
         Committee(GPCE(2014), SC),
@@ -283,12 +287,14 @@ object CV {
         Committee(VAMOS(2013), PC),
         Committee(Workshop("REVE", 2013, "1st Workshop on Reverse Variability Engineering",
             URL("http://www.sea.jku.at/reve2013/")), PC),
-        Committee(SLE(2012), DS),
+        Committee(Workshop("SLE-DS", 2012,
+            "International Conference on Software Language Engineering - Doctoral Symposium",
+            URL("http://planet-sl.org/sle2012")), PC),
         Committee(GPCE(2012), PC),
         Committee(FOSD(2012), OC),
-        Committee(Conference("SPLC", 2012,
-            "16th International Software Product Line Conference",
-            URL("http://www.splc2012.net")), OtherCommittee("Tools and Demonstrations Track", "TC")),
+        Committee(Workshop("SPLC-TD", 2012,
+            "16th International Software Product Line Conference - Tools and Demonstrations Track",
+            URL("http://www.splc2012.net")), PC),
         Committee(Workshop("NFPinDSML", 2012,
             "4th  Workshop on Non-functional System Properties and Domain Specific Modeling Languages",
             URL("https://nfpindsml.semtech.athabascau.ca/", true)), PC),
@@ -300,7 +306,7 @@ object CV {
         Committee(Workshop("MISS", 2012,
             "2nd Workshop on Modularity in Systems Software",
             URL("http://www.aosd.net/workshops/miss/")), PC),
-        Committee(Conference("PEPM", 2012,
+        Committee(Workshop("PEPM", 2012,
             "21st ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation",
             URL("http://www.program-transformation.org/PEPM12")), PC),
         Committee(VAMOS(2012), PC),
@@ -313,14 +319,18 @@ object CV {
             "ECOOP Workshop on Free Composition",
             URL("http://trese.ewi.utwente.nl/workshops/FREECO/FREECO11/home.html")), PC),
         Committee(FOSD(2010), OC),
-        Committee(Conference("ASE", 2010,
+        Committee(Workshop("ASE-TD", 2010,
             "25th International Conference on Automated Software Engineering -- Tool Demonstration Committee",
-            URL("http://soft.vub.ac.be/ase2010/")), TC),
+            URL("http://soft.vub.ac.be/ase2010/")), PC),
         Committee(Workshop("PLEERPS", 2010,
             "Workshop on Product-Line Engineering for Enterprise Resource Planning Systems",
             URL("http://researchr.org/conference/pleerps-2010")), PC),
         Committee(FOSD(2009), OC)
     )
+
+    val committees_conferences = committees.filterNot(_.venue.kind == KWorkshopDemoTool)
+    val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
+
     val reviews: Seq[Review] = Seq(
         Review(SCP(2014)), //Science of Computer Programming
         Review(JOSER(2014)), //Science of Computer Programming
@@ -473,7 +483,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
-        InvitedTalk(time(2014, 14), "Quality Assurance for Highly-Configurable Systems", "University of Magdeburg"),
+        InvitedTalk(time(2014, 4), "Quality Assurance for Highly-Configurable Systems", "University of Magdeburg, Germany"),
+        InvitedTalk(time(2014, 4), "Analysis of Software Product Lines", "Dagstuhl Seminar 14172: Unifying Product and Software Configuration"),
         InvitedTalk(time(2013, 12), "Variability Mining", "University of Waterloo -- Product Line Engineering Workshop"),
         InvitedTalk(time(2013, 12), parsingandtypecheckingLinux, "University of Nebraska at Lincoln, Lincoln, NE"),
         InvitedTalk(time(2013, 8), "Analyzing Highly Configurable Systems: From Linux to Eclipse", "Technical University Darmstadt, Germany"),

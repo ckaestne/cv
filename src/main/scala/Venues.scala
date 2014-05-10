@@ -78,8 +78,8 @@ object Venues {
         "International Conference on Software Language Engineering")
     val AOSD = ConferenceFactory("AOSD", 2002,
         "International Conference on Aspect-Oriented Software Development")
-    val ASE = ConferenceFactory("ASE", 2002,
-        "International Conference on Automated Software Engineering", publisher = IEEE)
+    val ASE = ConferenceFactory("ASE", 1986,
+        "%num% IEEE/ACM International Conference on Automated Software Engineering", publisher = IEEE)
     val SPLC = ConferenceFactory("SPLC", 1997, "%num% International Software Product Line Conference")
     val SPLCDemo = ConferenceFactory("SPLC", 1997,
         "%num% International Software Product Line Conference, second volume (Demonstration)")

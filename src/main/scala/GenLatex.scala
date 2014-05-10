@@ -1,5 +1,6 @@
 package de.stner.cv
 
+import de.stner.cv.CVPublications.KWorkshopDemoTool
 import java.io._
 import java.text.{DecimalFormat, SimpleDateFormat}
 import org.apache.commons.io.FileUtils
@@ -100,7 +101,7 @@ object GenLatex extends App {
         val l = teaching.filter(_.kind.isLecture).groupBy(c => (c.title, c.language)).toList.
             sortBy(c => c._2.map(_.term).max).reverse
         val r = l.map({
-            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.map(_.term.year).sorted.mkString(", "), t, l)
+            case ((t, l), c) => "\\item[%s] %s%s".format(c.map(_.term.year).sorted.mkString(", "), t, if (l!=English) " (in %s)".format(l) else "")
         })
         subsection("Courses", inCV(r.mkString("\n")))
     }
@@ -137,12 +138,16 @@ object GenLatex extends App {
 
     def organizationCommittees(): String = subsection("Organization Committees", inCV(
         committees.filter(Set(OC, PCChair, SC) contains _.role).map(printCommittee).mkString +
-            "\\item[FOSD-Tr.\\ 2009-15] Annual German Student Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
+            "\\item[FOSD-Me.\\ 2009-15] Annual Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
     ))
 
-    def programCommittees(): String = subsection("Program Committees", inCV(
-        committees.filterNot(Set(OC, PCChair) contains _.role).map(printCommittee).mkString
-    ))
+    def programCommittees(): String =
+        subsection("Program Committees (Conferences)", inCV(
+            committees_conferences.filterNot(Set(OC, PCChair) contains _.role).map(printCommittee).mkString
+        ))    +
+            subsection("Program Committees (Workshops and Other)", inCV(
+                committees_workshops.filterNot(Set(OC, PCChair) contains _.role).filter(_.venue.kind == KWorkshopDemoTool).map(printCommittee).mkString
+            ))
 
     def printReview(r: Review) =
         "\\item[%s %d] %s".format(r.venue.short.toTex, r.venue.year, r.venue.name.toTex) +
