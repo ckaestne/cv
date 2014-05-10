@@ -42,7 +42,32 @@ class StringTexHelper(str: String) {
             oldR = r
             val pieces = r.split("\\*",-1)
             if (pieces.size >= 3)
-                r = pieces.head + "{\\em " + pieces.tail.head + "}" + pieces.tail.tail.mkString("**")
+                r = pieces.head + "{\\em " + pieces.tail.head + "}" + pieces.tail.tail.mkString("*")
+        }
+        r
+    }
+
+    def markdownToPlainText: String = {
+        var r = str.replace("[!]", "")
+        var oldR: String = null
+
+        // `` '' =>
+        r = r.replace("``", "“").replace("''", "”").replace("---", "—").replace("--", "–")
+        //** -> nothing, just remove
+        while (r != oldR) {
+            oldR = r
+            val pieces = r.split("\\*\\*",-1)
+            if (pieces.size >= 3)
+                r =
+                    pieces.head + pieces.tail.head + pieces.tail.tail.mkString("**")
+        }
+        oldR = null
+        //* -> \em
+        while (r != oldR) {
+            oldR = r
+            val pieces = r.split("\\*",-1)
+            if (pieces.size >= 3)
+                r = pieces.head + pieces.tail.head + pieces.tail.tail.mkString("*")
         }
         r
     }

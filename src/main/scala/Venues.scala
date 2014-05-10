@@ -117,7 +117,7 @@ object Venues {
 
 
     val ACoM = ConferenceFactory("ACoM", 0,
-        "ICSE Workshop on Assessment of Contemporary Modularization Techniques (ACoM)", NoURLFactory, true, IEEE)
+        "ICSE Workshop on Assessment of Contemporary Modularization Techniques", NoURLFactory, true, IEEE)
 
     val RAMSE = ConferenceFactory("RAM-SE", 2003,
         "%num% Workshop on Reflection, AOP and Meta-Data for Software Evolution", NoURLFactory, true)
