@@ -209,7 +209,7 @@ object GenHtml extends App {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
+    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short}&nbsp;{c.venue.year}</a>&nbsp;(<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = 
       <a href="http://program-transformation.org/GPCE13">
