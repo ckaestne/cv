@@ -144,5 +144,11 @@ margin-bottom:40px;
 }
 
 .author {
-    color: #000; text-decoration: none;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.committee {
+    white-space: nowrap;
 }
