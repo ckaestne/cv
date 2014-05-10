@@ -191,7 +191,7 @@ object GenLatex extends App {
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
     output += section("Software", printSoftware())
-    output += section("References", printReferences())
+//    output += section("References", printReferences())
 
     output += publications()
 
