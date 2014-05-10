@@ -251,7 +251,11 @@ object CV {
     )
 
     val committees = Seq[Committee](
-        Committee(Workshop("REVE", 2012, "2nd Workshop on Reverse Variability Engineering",
+        Committee(Workshop("SPLat", 2014, "Software Product Line Analysis Tools 2014",
+            URL("")), PC),
+        Committee(Workshop("SPLTea", 2014, "First International Workshop on Software Product Line Teaching",
+            URL("http://spltea.irisa.fr/")), PC),
+        Committee(Workshop("REVE", 2014, "2nd Workshop on Reverse Variability Engineering",
             URL("http://www.sea.jku.at/reve2014/")), PC),
         Committee(SPLC(2014).url(URL("http://www.splc2014.net")), PC),
         Committee(ASE(2014).url(URL("http://ase2014.org/")), PC),

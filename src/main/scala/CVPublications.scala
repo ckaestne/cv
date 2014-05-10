@@ -2727,7 +2727,8 @@ understand and control its influence in program-comprehension experiments."""
             "A Classification and Survey of Analysis Strategies for Software Product Lines",
             CSUR(2014),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("CSUR14.pdf"),
+                HTTP->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/spl-strategies/")),
             """
 Software-product-line engineering has gained considerable momentum in recent years, both in industry and
 in academia. A software product line is a set of software products that share a common set of features.
