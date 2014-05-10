@@ -2078,7 +2078,7 @@ object CVPublications {
         Article(
             Seq(Kaestner),
             "Virtual Separation of Concerns: Toward Preprocessors 2.0",
-            Journal("it", 2012, "Information Technology").volume(54).number(1),
+            Journal("it", 2012, "Information Technology").volume(54).number(1).kind(KInvited),
             Pages(42, 46),
             Map(DOI -> DOI("10.1524/itit.2012.0662"),
                 HTTP -> URL("http://it-information-technology.de/"),
@@ -2141,10 +2141,11 @@ object CVPublications {
         Article(
             Seq(Feigenspan, Kaestner, Apel, Liebig, MSchulze, Dachselt, Papendieck, Leich, Saake),
             "Do Background Colors Improve Program Comprehension in the #ifdef Hell?",
-            ESE(2012),
-            ToAppear(),
+            ESE(2012).volume(18).number(4),
+            Pages(699,745),
             Map(PDF -> PDFFile("ese12.pdf"),
-                HTTP -> URL("http://www.springerlink.com/content/w537p64015xp367v/")
+                HTTP -> URL("http://link.springer.com/article/10.1007%2Fs10664-012-9208-x"),
+                DOI -> DOI("10.1007/s10664-012-9208-x")
             ),
             """Software-product-line engineering aims at the development of variable
 and reusable software systems. In practice, software product lines are
@@ -2166,7 +2167,7 @@ product. Additionally, we found that subjects generally favor background
 colors. We integrate these and other findings in a tool called FeatureCommander,
 which facilitates program comprehension in practice and which can serve
 as a basis for further research.""").
-            note("online first").selected().topic(experiment, vsoc),
+            selected().topic(experiment, vsoc),
 
 
         TechReport(
@@ -2522,8 +2523,8 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
         Article(
             Seq(Apel, vonRhein, Thuem, Kaestner),
             "Feature-Interaction Detection based on Feature-Based Specifications",
-            Journal("COMNET", 2013, "Computer Networks").specialIssueOn("Feature Interaction").publisher(Elsevier),
-            ToAppear(),
+            Journal("COMNET", 2013, "Computer Networks").month(8).specialIssueOn("Feature Interaction").publisher(Elsevier).volume(57).number(12),
+            Pages(2399,2409),
             Map(PDF -> PDFFile("comnet13.pdf"),
                 DOI -> DOI("10.1016/j.comnet.2013.02.025")),
             """Formal specification and verification techniques have been used successfully to
@@ -2539,8 +2540,7 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
               |limitations of feature-based specifications, as well as open issues and
               |perspectives. A goal that underlies our work is to raise awareness of the importance
               |and challenges of feature-based specification.""".stripMargin
-        ).topic(interactions, vaanalysis).
-            note("to appear; accepted 15 Feb 2013"),
+        ).topic(interactions, vaanalysis),
 
         Book(
             Seq(Apel, Batory, Kaestner, Saake),
@@ -2586,20 +2586,22 @@ A key result is that in these settings already setting up sampling techniques is
         Article(
             Seq(Kaestner, Dreiling, Ostermann),
             "Variability Mining: Consistent Semiautomatic Detection of Product-Line Features",
-            TSE(2013),
-            ToAppear(),
-            Map(PDF -> PDFFile("tse_fm.pdf")),
+            TSE(2014).volume(40).number(1),
+            Pages(67, 82),
+            Map(PDF -> PDFFile("tse_fm.pdf"),
+                DOI -> DOI("10.1109/TSE.2013.45"),
+                HTTP -> URL("http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6613490")),
             """Software product line engineering is an efficient means to generate a set of tailored software products from a common implementation. 
             However, adopting a product-line approach poses a major challenge and significant risks, since typically legacy code must be migrated toward a product line. Our aim is to lower the adoption barrier by providing semiautomatic tool support---called *variability mining*---to support developers in locating, documenting, and extracting implementations of product-line features from legacy code. Variability mining combines prior work on concern location, reverse engineering, and variability-aware type systems, but is tailored specifically for the use in product lines. Our work pursues three technical goals: (1) we provide a *consistency indicator* based on a variability-aware type system, (2) we mine features at a *fine level of granularity*, and (3) we exploit *domain knowledge* about the relationship between features when available. With a quantitative study, we demonstrate that variability mining can efficiently support developers in locating features.""").
-            selected().topic(adoption, spl).
-            note("to appear; accepted 29 Jul 2013"),
+            selected().topic(adoption, spl),
 
         InProceedings(
             Seq(Apel, Kolesnikov, Siegmund, Kaestner, Garvin),
             "Exploring Feature Interactions in the Wild: The New Feature-Interaction Challenge",
             FOSD13,
-            ToAppear(),
-            Map(PDF -> PDFFile("FOSD13-fi.pdf")),
+            Pages(1,8),
+            Map(PDF -> PDFFile("FOSD13-fi.pdf"),
+                DOI -> DOI("10.1145/2528265.2528267")),
             """The feature-interaction problem has been keeping researchers and practitioners in suspense for years. Although there has been substantial progress in developing approaches for modeling, detecting, managing, and resolving feature interactions, we lack sufficient knowledge on the kind of feature interactions that occur in real-world systems. In this position paper, we set out the goal to explore the nature of feature interactions systematically and comprehensively, classified in terms of order and visibility. Understanding this nature will have significant implications on research in this area, for example, on the efficiency of interaction-detection or performance-prediction techniques. A set of preliminary results as well as a discussion of possible experimental setups and corresponding challenges give us confidence that this endeavor is within reach but requires a collaborative effort of the community.""").topic(interactions),
 
 
@@ -2608,7 +2610,8 @@ A key result is that in these settings already setting up sampling techniques is
             "Measuring and Modeling Programming Experience",
             ESE(2013),
             ToAppear(),
-            Map(PDF -> PDFFile("ese13.pdf")),
+            Map(PDF -> PDFFile("ese13.pdf"),
+                DOI -> DOI("10.1007/s10664-013-9286-4")),
             """
 Programming experience is an important confounding parameter in controlled
 experiments regarding program comprehension. In literature, ways to measure or
@@ -2629,7 +2632,7 @@ understand and control its influence in program-comprehension experiments."""
             Seq(Ribeiro, Borba, Kaestner),
             "Feature Maintenance with Emergent Interfaces",
             ICSE14,
-            ToAppear(),
+            Pages(989,1000),
             Map(PDF->PDFFile("icse14_emergo.pdf")),
             """
           Hidden code dependencies are responsible for many complications in maintenance tasks.
@@ -2652,7 +2655,7 @@ understand and control its influence in program-comprehension experiments."""
             Seq(Nadi, Berger, Kaestner, Czarnecki),
             "Mining Configuration Constraints: Static Analyses and Empirical Results",
             ICSE14,
-            ToAppear(),
+            Pages(140,151),
             Map(PDF->PDFFile("icse14_mining.pdf")),
             """
             Highly-configurable systems allow users to tailor the software to
@@ -2683,7 +2686,7 @@ understand and control its influence in program-comprehension experiments."""
             Seq(HNguyen, Kaestner, TNguyen),
             "Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications",
             ICSE14,
-            ToAppear(),
+            Pages(907,918),
             Map(PDF->PDFFile("icse14_varex.pdf")),
             """
               In plugin-based systems, plugin conflicts may occur when two or more
@@ -2712,7 +2715,7 @@ understand and control its influence in program-comprehension experiments."""
             Seq(JSiegmund, Kaestner, Apel, Parnin, Bethmann, Leich, Saake, Brechmann),
             "Understanding Understanding Source Code with Functional Magnetic Resonance Imaging",
             ICSE14,
-            ToAppear(),
+            Pages(378,389),
             Map(PDF->PDFFile("icse14_fmri.pdf")),
             """
           Program comprehension is an important cognitive process that inherently eludes direct measurement. Thus, researchers are struggling with providing optimal programming languages, tools, or coding conventions to support developers in their everyday work.
