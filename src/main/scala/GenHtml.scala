@@ -80,7 +80,7 @@ object GenHtml extends App {
           <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
-        [ <a href={"./bibtex.html#" + thesis.genKey}>bib</a>
+        [&nbsp;<a href={"./bibtex.html#" + thesis.genKey}>bib</a>
             {if (thesis.pdf != null)
             <span>| <a href={thesis.pdf.toString()}>.pdf</a></span>
             }]
@@ -108,7 +108,7 @@ object GenHtml extends App {
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                   <a name={p.genKey}></a>
                   {p.render(DefaultBibStyle, FancyPersonHtmlFormater)}
-               [ {
+               [&nbsp;{
                    for ((key, url) <- links.dropRight(1))
                    yield <a href={url.toString}>{key.print}</a> :+ ", "
                } <a href={links.last._2.toString}>{links.last._1.print}</a> ]
@@ -209,7 +209,7 @@ object GenHtml extends App {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short} {c.venue.year}</a> (<span title={c.role.title}>{c.role.abbreviation}</span>){if (comma) ","} </span>
+    def printCommittee(c: Committee, comma: Boolean) = <span><span class="committee"><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short}&nbsp;{c.venue.year}</a>&nbsp;(<span title={c.role.title}>{c.role.abbreviation}</span>)</span>{if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = 
       <a href="http://program-transformation.org/GPCE13">
