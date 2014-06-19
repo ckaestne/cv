@@ -234,8 +234,8 @@ object GenHtml extends App {
         <p><a href={URL("http://www.flickr.com/photos/p0nk/sets/72157627689187184/").toString}>Jugg</a><a href={URL("juggling.xhtml").toString}>ling</a>,
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
         <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
-        Concerts (<a href={URL("concerts.xhtml").toString}>past</a>
-        &amp; <a href={URL("http://www.last.fm/user/christianwebuni/events").toString}>future</a>)</p> ++ printTwitterWidget())
+        <a href={URL("concerts.xhtml").toString}>Concerts</a>
+        </p> ++ printTwitterWidget())
 
     def printSpelling() =
         <p class="spelling">

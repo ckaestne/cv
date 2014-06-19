@@ -89,10 +89,14 @@ object Venues {
         "%num% International Conference on Evaluation and Assessment in Software Engineering")
     val ESEM = ConferenceFactory("ESEM", 2007,
         "%num% International Symposium on Empirical Software Engineering and Measurement", publisher = IEEE)
+    val FSE = ConferenceFactory("FSE", -1,
+        "ACM SIGSOFT Symposium on the Foundations of Software Engineering", publisher = ACM)
     val ESECFSE = ConferenceFactory("ESEC/FSE", -1,
         "European Software Engineering Conference and ACM SIGSOFT Symposium on the Foundations of Software Engineering", publisher = ACM)
     val OOPSLA = ConferenceFactory("OOPSLA", 1986,
         "%num% Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", publisher = ACM)
+    val Onward = ConferenceFactory("Onward!", 2002,
+        "%num% SIGPLAN Symposium on New Ideas in Programming and Reflections on Software at SPLASH", publisher = ACM)
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")

@@ -112,6 +112,9 @@ object CVPublications {
     val Hasan = Person("Samir", "Hasan", "Auburn University")
     val Overbey = Person("Jeffrey", "Overbey", "Auburn University")
     val Hafiz = Person("Munawar", "Hafiz", "Auburn University")
+    val Walkingshaw = Person("Eric", "Walkingshaw", "Oregon State University")
+    val Erwig = Person("Martin", "Erwig", URL("http://web.engr.oregonstate.edu/~erwig/"), "Oregon State University")
+    val Bodden = Person("Eric", "Bodden", URL("http://www.bodden.de/"), "Fraunhofer SIT & TU Darmstadt")
 
 
     val fop = Topic("Feature-oriented programming")
@@ -138,6 +141,7 @@ object CVPublications {
     val parsing = Topic("Parsing")
     val testing = Topic("Testing")
     val security = Topic("Security")
+    val web = Topic("Web development/analysis")
 
 
     //shorthands because they are reused
@@ -2709,7 +2713,7 @@ understand and control its influence in program-comprehension experiments."""
               able to detect two plugin conflicts: one was recently reported on
               WordPress forum, and another one is not yet discovered.
             """).selected().
-            topic(testing, empirical, interactions, empirical),
+            topic(testing, empirical, interactions, vaanalysis, web),
 
         InProceedings(
             Seq(JSiegmund, Kaestner, Apel, Parnin, Bethmann, Leich, Saake, Brechmann),
@@ -2773,8 +2777,44 @@ infer a research agenda to guide future research on product-line analyses."""
             remains significant. A preprocessor-aware, tool-assisted approach 
             may be the most viable way to migrate legacy C code
             to comply with the standards for secure programming."""
-          ).topic(vaanalysis,empirical,security)
+          ).topic(vaanalysis,empirical,security),
+
+
+        InProceedings(
+            Seq(Walkingshaw, Kaestner, Erwig, Apel, Bodden),
+            "Variational Data Structures: Exploring Tradeoffs in Computing with Variability",
+            Onward(2014),
+            ToAppear(),
+            Map(),
+            """Variation is everywhere, but in the construction and analysis of customizable software it is paramount. In this context, there arises a need for variational data structures for efficiently representing and computing with related variants of an underlying data type. So far, variational data structures have been explored and developed ad hoc. This paper is a first attempt and a call to action for systematic and foundational research in this area. Research on variational data structures will benefit not only customizable software, but the many other application domains that must cope with variability. In this paper, we show how support for variation can be understood as a general and orthogonal property of data types, data structures, and algorithms. We begin a systematic exploration of basic variational data structures, exploring the tradeoffs between different implementations. Finally, we retrospectively analyze the design decisions in our own previous work where we have independently encountered problems requiring variational data structures."""
+          ).topic(typechef,vaanalysis).selected(),
+
+
  
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "Building Call Graphs for Embedded Client-Side Code in Dynamic Web Applications",
+            FSE(2014).month(11).location("Hong Kong").acceptanceRate(61, 273),
+            ToAppear(),
+            Map(),
+            """
+          When developing and maintaining a software system, programmers often rely on
+          IDEs to provide editor services such as syntax highlighting, auto-completion,
+          and ``jump to declaration''. In dynamic web applications, such tool support is
+          currently limited to either the server-side code or to hand-written or
+          generated client-side code. Our goal is to build a call graph for providing
+          editor services on client-side code while it is still *embedded* as
+          string literals within server-side code. First, we symbolically execute the
+          server-side code to identify all possible client-side code variations. 
+          Subsequently, we parse the generated client-side code with all its variations
+          into a *VarDOM* that compactly represents all DOM variations for further
+          analysis. Based on VarDOM, we build conditional call graphs for embedded
+          HTML, CSS, and JS. Our empirical evaluation on real-world web applications
+          show that our analysis achieves 100 % precision in identifying
+          call-graph edges. 62 % of the edges cross PHP strings, and 17 % of them cross files---in both situations, navigation 
+          without tool support is tedious and error prone."""
+        ).selected().topic(vaanalysis,typechef,web)
+
 
     )
 }
