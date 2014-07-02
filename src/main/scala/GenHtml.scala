@@ -288,17 +288,20 @@ object GenHtml extends App {
                   <div><a href={p._1.toString}>{p._3}</a>{if (p._4.isDefined) " (" + p._4.get + ")"}</div>, "tool")
         }.flatten
 
-    def printTitle(spellingHint: Boolean = false): NodeSeq =
+    def printTitle(spellingHint: Boolean = false, withLink: Boolean = false): NodeSeq = {
+        def addLink(v:NodeSeq) = if (withLink) <a href="http://www.cs.cmu.edu/~ckaestne/">{v}</a> else v
+
         <div class="grid_3 ">&nbsp;</div> :+
         	<div class="grid_9 header headline">
                 {if (spellingHint)
-        <div><h1 style="display: inline;" itemprop="name">Christian Kästner</h1> {printSpellingLink}</div>
-            else  <h1 itemprop="name">Christian Kästner</h1>}
+        <div>{addLink(<h1 style="display: inline;" itemprop="name">Christian Kästner</h1>)} {printSpellingLink}</div>
+            else  addLink(<h1 itemprop="name">Christian Kästner</h1>)}
                 <div id="spellingbox" style="display:none">{printSpelling()}</div>
                 <p><span itemprop="role">Assistant Professor</span> · <span itemprop="affiliation">Carnegie Mellon University</span> · Institute for Software Research</p>
                 <meta itemprop="url" content="http://www.cs.cmu.edu/~ckaestne/" />
         	</div> :+
         	<div class="clear margin_40">&nbsp;</div>
+    }
 
     val nbsp: Node = <span>&nbsp;</span>.child.head
 
@@ -364,7 +367,7 @@ object GenHtml extends App {
 
     def newsPage: NodeSeq = printTitle() ++ printNews(true)
 
-    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null) = {
+    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot:String="") = {
 
         val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
@@ -372,12 +375,12 @@ object GenHtml extends App {
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <link rel="stylesheet" type="text/css" media="all" href="css/reset.css" />
-                <link rel="stylesheet" type="text/css" media="all" href="css/text.css" />
-                <link rel="stylesheet" type="text/css" media="all" href="css/960.css" />
-                <link rel="stylesheet" type="text/css" media="all" href="css/jquery.tweet.css" />
-                <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-                <script type="text/javascript" src="js/script.js"></script>
+                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot+"css/reset.css"} />
+                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot+"css/text.css"} />
+                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot+"css/960.css"} />
+                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot+"css/jquery.tweet.css"} />
+                <script type="text/javascript" src={pathToRoot+"js/jquery-1.7.2.min.js"}></script>
+                <script type="text/javascript" src={pathToRoot+"js/script.js"}></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>
@@ -450,6 +453,39 @@ object GenHtml extends App {
 
   def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
+  def printArticles(articleDir: File, targetDir: File) {
+      for (articleSubdir <- articleDir.listFiles(); if articleSubdir.isDirectory) {
+          val contentFile = new File(articleSubdir, "index.xml")
+          assert(contentFile.exists(), "index.xml not found in "+articleSubdir)
+          val xml = XML.loadFile(contentFile)
+          val title = (xml \\ "article" \ "title").text
+          val date = xml \\ "article" \ "date"
+          val content = xml \\ "article" \ "content"
+          assert(title.nonEmpty, "no title defined")
+          assert(title.nonEmpty, "no content defined")
+
+          val targetDir = new File(targetPath,articleSubdir.getName)
+          targetDir.mkdir()
+          val body = printTitle(withLink=true) ++
+              rowH2(title, content, <span>{date}</span>) ++
+              printCommentWidget() ++
+              row(nbsp, <a href="..">back to main page</a>)
+          printDoc(body, title.toString(), new File(targetDir, "index.html"),pathToRoot = "../")
+      }
+  }
+
+  def printCommentWidget() = row(<span>Comments</span>, <div id="disqus_thread"></div> :+
+    <script type="text/javascript"><!--
+        var disqus_shortname = 'christiankaestner'; // required: replace example with your forum shortname
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    --></script> :+
+    <noscript>Enable JavaScript to view <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
+    )
+
 
     /** central build activities */
     println("copying files.")
@@ -463,6 +499,8 @@ object GenHtml extends App {
     pdfDir.mkdir()
     FileUtils.copyDirectory(new File("src/main/pdf"), pdfDir)
 
+    val articleDir = new File("src/main/article")
+    FileUtils.copyDirectory(articleDir, targetPath)
 
 
     println("generating html.")
@@ -474,6 +512,7 @@ object GenHtml extends App {
     printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"))
     printNewsFeed(new File(targetPath,"news.rss"))
     printPubsFeed(new File(targetPath,"pub.rss"))
+    printArticles(articleDir, targetPath)
     println("done.")
 
 }

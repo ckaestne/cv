@@ -152,3 +152,8 @@ margin-bottom:40px;
 .committee {
     white-space: nowrap;
 }
+
+pre {
+line-height:105%;
+margin: 8px
+}

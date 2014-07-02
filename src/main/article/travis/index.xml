@@ -1,39 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
-            <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-                <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css"/>
-                <link rel="stylesheet" type="text/css" media="all" href="../css/text.css"/>
-                <link rel="stylesheet" type="text/css" media="all" href="../css/960.css"/>
-                <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
-                <script type="text/javascript" src="../js/script.js"></script>
-                
-                <title>Christian Kästner :: News :: CMU</title>
-            </head>
-            <body><div class="container_12"><div class="grid_3 ">&nbsp;</div><div class="grid_9 header headline">
-                <h1 itemprop="name">Christian Kästner</h1>
-                <div id="spellingbox" style="display:none"><p class="spelling">
-        My last name Kästner is pronounced <a href="http://en.wikipedia.org/wiki/Wikipedia:IPA_for_German">[ˈkɛstnɐ]</a>.
-        It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
-        The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronunciation.
-        The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
-        To correctly typeset the name in LaTeX use <span class="code">K{\&quot;a}stner</span>.
-        To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
-        </p></div>
-                <p><span itemprop="role">Assistant Professor</span> · <span itemprop="affiliation">Carnegie Mellon University</span> · Institute for Software Research</p>
-                <meta itemprop="url" content="http://www.cs.cmu.edu/~ckaestne/"/>
-
-
-        	</div>
-
-            <div class="clear margin_40">&nbsp;</div><div class="clear margin_h2">&nbsp;</div>
-
-            <div class="grid_3 right"><span class="newsdate">27 May 2014</span></div><div class="grid_9"><h2><span>Teaching Software Construction with Travis CI</span></h2>
-
-
-            <!-- div class="newsheadline"><a name="2014-05-10_FOSD_Meeting_2015"></a>FOSD Meeting 2015</div -->
-
-<p>We had great experiences introducing continuous integration tools into our software construction course using Travis CI. I greatly recommend to use this in other courses as well. It's easy to set up, works well and reliably and helps both students and TAs.</p>
+<?xml version="1.0"?>
+<article><date>27 May 2014</date><title>Teaching Software Construction with Travis CI</title>
+    <content>
+    <p>We had great experiences introducing continuous integration tools into our software construction course using Travis CI. I greatly recommend to use this in other courses as well. It's easy to set up, works well and reliably and helps both students and TAs.</p>
 
 <h3>Context</h3>
 <p> I've been teaching the CMU undergraduate course <em><a href="http://www.cs.cmu.edu/~charlie/courses/15-214/2014-spring/">15-214 Principles of Software Construction: Objects, Design, and Concurrency</a></em> for the second time this semester. This is a second year course introducing software design and object-oriented programming and challenges many students with their first medium-sized programming assignments after more algorithm centered courses in the first year. Among others, students practice unit testing, design and implement a Scabble-like game (from core logic to user interface), implement social-media analysis tools (focusing on reuse through libraries and frameworks), and implement a simple map reduce framework. The course it taught in Java. Its a large course with about 180 students each semester. In the previous semester, I've already experimented with Github and Travis-CI with the 17 students that took our more traditional software engineering course 15-313, where we used it also for testing of small projects and code reviews.</p>
@@ -58,22 +26,22 @@ Our goal in this course is to teach realistic software development and software 
 <p>In our startup plan, we had two concurrent builds. We were concerned whether this would be sufficient for 180 students, especially in the hours before deadlines. In addition, Travis would timeout a build only after one hour and we had seen students write test cases with infinite loops in the past. So we searched for a mechanism to limit the build length. As first step, we activated only the builds of the current homework assignment in the root build script, removing builds from previous assignments. Then, we looked for a mechanism for timeouts. When selecting a build system, ant had the feature we were looking for: timeouts for sub-builds (we didn't find something similar in Gradle or sbt which we would have preferred to ant). In the end, our root ant file looked as follows:</p>
 
 <pre>
-<?xml version="1.0"?>
-<project name="214repo" default="test" basedir=".">
-  <target name="test">
-    <parallel threadCount="1" timeout="60000">
-      <sequential>
-        <echo message="==================== BEGIN ANT BUILD =====================" />
+&lt;?xml version="1.0"?&gt;
+&lt;project name="214repo" default="test" basedir="."&gt;
+  &lt;target name="test"&gt;
+    &lt;parallel threadCount="1" timeout="60000"&gt;
+      &lt;sequential&gt;
+        &lt;echo message="==================== BEGIN ANT BUILD =====================" /&gt;
 
-        <subant target="test">
-            <fileset dir="homework/4/" includes="build.xml"/>
-          </subant>
-        <echo message="==================== END HW4 OUTPUT ======================" />
+        &lt;subant target="test"&gt;
+            &lt;fileset dir="homework/4/" includes="build.xml"/&gt;
+          &lt;/subant&gt;
+        &lt;echo message="==================== END HW4 OUTPUT ======================" /&gt;
 
-    </sequential>
-    </parallel>
-  </target>
-</project>
+    &lt;/sequential&gt;
+    &lt;/parallel&gt;
+  &lt;/target&gt;
+&lt;/project&gt;
 </pre>
 
 <p>Students were responsible for the ant files in the respective homework directories and had complete freedom how to write them, except that they should respond to a “test” target. In later assignments we also asked students to provide a “run” target, so our TAs could easily compile and execute their submitted programs.</p>
@@ -98,8 +66,5 @@ Overall, the experience was great and we plan to continue using Github and Travi
 
 
 
-
-
-            </span></div></div><div class="clear margin_newsitem">&nbsp;</div><div class="grid_3 right">&nbsp;</div><div class="grid_9"><a href="index.html">Back...</a></div><div class="clear">&nbsp;</div></div></body>
-        </html>
-
+    </content>
+    </article>
