@@ -115,6 +115,7 @@ object CVPublications {
     val Walkingshaw = Person("Eric", "Walkingshaw", "Oregon State University")
     val Erwig = Person("Martin", "Erwig", URL("http://web.engr.oregonstate.edu/~erwig/"), "Oregon State University")
     val Bodden = Person("Eric", "Bodden", URL("http://www.bodden.de/"), "Fraunhofer SIT & TU Darmstadt")
+    val Lillack = Person("Max", "Lillack","University of Leipzig")
 
 
     val fop = Topic("Feature-oriented programming")
@@ -2732,10 +2733,11 @@ understand and control its influence in program-comprehension experiments."""
   Article(
             Seq(Thuem, Apel, Kaestner, Schaefer, Saake),
             "A Classification and Survey of Analysis Strategies for Software Product Lines",
-            CSUR(2014),
-            ToAppear(),
+            CSUR(2014).number(1).volume(47).month(6),            
+            PagesStr("Article 6"),
             Map(PDF->PDFFile("CSUR14.pdf"),
-                HTTP->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/spl-strategies/")),
+                HTTP->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/spl-strategies/"),
+                DOI->DOI("10.1145/2580950")),
             """
 Software-product-line engineering has gained considerable momentum in recent years, both in industry and
 in academia. A software product line is a set of software products that share a common set of features.
@@ -2813,8 +2815,36 @@ infer a research agenda to guide future research on product-line analyses."""
           show that our analysis achieves 100 % precision in identifying
           call-graph edges. 62 % of the edges cross PHP strings, and 17 % of them cross files---in both situations, navigation 
           without tool support is tedious and error prone."""
-        ).selected().topic(vaanalysis,typechef,web)
+        ).selected().topic(vaanalysis,typechef,web),
 
+
+        InProceedings(
+            Seq(Lillack, Kaestner, Bodden),
+            "Tracking Load-time Configuration Options",
+            ASE(2014).month(9).location("Västerås, Sweden"),
+            ToAppear(),
+            Map(),
+            """
+            Highly-configurable software systems are pervasive, although
+            configuration options and their interactions raise complexity
+            of the program and increase maintenance effort. Especially
+            load-time configuration options, such as parameters from
+            command-line options or configuration files, are used with
+            standard programming constructs such as variables and if
+            statements intermixed with the program’s implementation;
+            manually tracking configuration options from the time they
+            are loaded to the point where they may influence control-flow
+            decisions is tedious and error prone. We design and
+            implement Lotrack, an extended static taint analysis to
+            automatically track configuration options. Lotrack derives
+            a configuration map that explains for each code fragment under
+            which configurations it may be executed. An evaluation
+            on Android applications shows that Lotrack yields high
+            accuracy with reasonable performance. We use Lotrack to
+            empirically characterize how much of the implementation of
+            Android apps depends on the platform’s configuration options
+            or interactions of these options.
+            """).selected().topic(vaanalysis, spl, adoption)
 
     )
 }

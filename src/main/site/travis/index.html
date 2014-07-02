@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/reset.css"/>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/text.css"/>
+                <link rel="stylesheet" type="text/css" media="all" href="../css/960.css"/>
+                <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+                <script type="text/javascript" src="../js/script.js"></script>
+                
+                <title>Christian Kästner :: News :: CMU</title>
+            </head>
+            <body><div class="container_12"><div class="grid_3 ">&nbsp;</div><div class="grid_9 header headline">
+                <h1 itemprop="name">Christian Kästner</h1>
+                <div id="spellingbox" style="display:none"><p class="spelling">
+        My last name Kästner is pronounced <a href="http://en.wikipedia.org/wiki/Wikipedia:IPA_for_German">[ˈkɛstnɐ]</a>.
+        It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
+        The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronunciation.
+        The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
+        To correctly typeset the name in LaTeX use <span class="code">K{\&quot;a}stner</span>.
+        To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
+        </p></div>
+                <p><span itemprop="role">Assistant Professor</span> · <span itemprop="affiliation">Carnegie Mellon University</span> · Institute for Software Research</p>
+                <meta itemprop="url" content="http://www.cs.cmu.edu/~ckaestne/"/>
+
+
+        	</div>
+
+            <div class="clear margin_40">&nbsp;</div><div class="clear margin_h2">&nbsp;</div>
+
+            <div class="grid_3 right"><span class="newsdate">27 May 2014</span></div><div class="grid_9"><h2><span>Teaching Software Construction with Travis CI</span></h2>
+
+
+            <!-- div class="newsheadline"><a name="2014-05-10_FOSD_Meeting_2015"></a>FOSD Meeting 2015</div -->
+
+<p>We had great experiences introducing continuous integration tools into our software construction course using Travis CI. I greatly recommend to use this in other courses as well. It's easy to set up, works well and reliably and helps both students and TAs.</p>
+
+<h3>Context</h3>
+<p> I've been teaching the CMU undergraduate course <em><a href="http://www.cs.cmu.edu/~charlie/courses/15-214/2014-spring/">15-214 Principles of Software Construction: Objects, Design, and Concurrency</a></em> for the second time this semester. This is a second year course introducing software design and object-oriented programming and challenges many students with their first medium-sized programming assignments after more algorithm centered courses in the first year. Among others, students practice unit testing, design and implement a Scabble-like game (from core logic to user interface), implement social-media analysis tools (focusing on reuse through libraries and frameworks), and implement a simple map reduce framework. The course it taught in Java. Its a large course with about 180 students each semester. In the previous semester, I've already experimented with Github and Travis-CI with the 17 students that took our more traditional software engineering course 15-313, where we used it also for testing of small projects and code reviews.</p>
+
+<h3>Goals</h3>
+<p>
+Our goal in this course is to teach realistic software development and software engineering practices (in this course, focused on the more technical side). Although hardly taught explicitly in the course, version control and continuous integration are definitively tools that students should learn how to use and embrace for their daily use, just as debuggers, refactoring tools, and IDEs in general.</p>
+
+<p>We have several goals for using continuous integration in the course. First, of course, we want to teach build systems and continuous integration as useful tools, getting students out of the it-compiles-in-my-IDE mode. Second, having a separate service compile each submission can point out when students forgot to check in files, which was a common problem especially later in the semester when configuration files and libraries were involved. Third, we want to emphasize that students should not rely exclusively on a specific IDE (and expect that everybody is using the same IDE) or specific operating system but should actually practice to automate the build. Finally, continuous integration also simplified the grading process: We no longer needed to search for build dependencies or forgotten Eclipse project files, but we could quickly check on Travis whether the submission compiled and tests were executed. Travis-CI served as a neutral instance that students could use to sanity check their submissions.</p>
+
+<h3>Setup</h3> 
+<p>We want students to use a version control system for their work and also submit their assignments this way. However, we need to keep student code private; students should not see the submissions of other students.</p>
+
+<p>Every student in the course has their own private Github repository to which only they and the course staff have access. Github provided us with a private organization account for that purpose. We use the same repository for all assignments and recitations with different subfolders for the different assignments (otherwise we would need to manage some 1000 repositories). The only exception is one team assignment for which we created separate repositories. We created a couple of simple web and shell scripts to create repositories (self signup) and push new content to all 180 repositories at a time. We also used Github's issue tracker for one assignment asking students to report every bug they identified during testing (in some code we provided) and to subsequently close the bug and associate it with the commit that fixes it.</p>
+
+<p>After the first few introductory assignments we came to the part of the course where we introduced unit testing and continuous integration. We briefly considered setting up our own infrastructure, for example with Jenkins, but quickly decided against it. There are too many pitfalls and security implications (after all students should not see each others submissions and the build could run arbitrary code) and it would require investing too much effort. We went for Travis-CI instead, which worked out of the box pretty much and does essentially exactly what we need.</p>
+
+<p>Since we need support for private repositories, we went for Travis Pro. When we approached the Travis team to purchase a startup plan for the semester (after the typical legal review our admins were checking out how they could pay), Travis generously offered to sponsor the service for our class. After that linking Travis-CI with each student's repository was only a matter of clicking the ON buttons in Travis' interface for every of the 180 projects (seriously, is there a way to script this? unfortunately, since students do not have admin access to their own repositories, they cannot activate this themselves). This causes Github to send some fishy-looking notifications about private keys being added to the students, about which we warned them upfront. It initially took us some time to figure out whether Travis-CI would actually support our scenario, but once we figured that out, the entire setup was straightforward and easy.</p>
+
+<p>We pushed two files to each student's Github repository: a .travis.yml file with the only line “language: java” and an build.xml ant that was calling the ant files that the students were supposed to provide for their homeworks (remember we have one repository with multiple homework projects; the build script in the repository's root simply calls the build scripts of the individual homework projects).</p>
+
+<p>In our startup plan, we had two concurrent builds. We were concerned whether this would be sufficient for 180 students, especially in the hours before deadlines. In addition, Travis would timeout a build only after one hour and we had seen students write test cases with infinite loops in the past. So we searched for a mechanism to limit the build length. As first step, we activated only the builds of the current homework assignment in the root build script, removing builds from previous assignments. Then, we looked for a mechanism for timeouts. When selecting a build system, ant had the feature we were looking for: timeouts for sub-builds (we didn't find something similar in Gradle or sbt which we would have preferred to ant). In the end, our root ant file looked as follows:</p>
+
+<pre>
+<?xml version="1.0"?>
+<project name="214repo" default="test" basedir=".">
+  <target name="test">
+    <parallel threadCount="1" timeout="60000">
+      <sequential>
+        <echo message="==================== BEGIN ANT BUILD =====================" />
+
+        <subant target="test">
+            <fileset dir="homework/4/" includes="build.xml"/>
+          </subant>
+        <echo message="==================== END HW4 OUTPUT ======================" />
+
+    </sequential>
+    </parallel>
+  </target>
+</project>
+</pre>
+
+<p>Students were responsible for the ant files in the respective homework directories and had complete freedom how to write them, except that they should respond to a “test” target. In later assignments we also asked students to provide a “run” target, so our TAs could easily compile and execute their submitted programs.</p>
+
+<h3>Lessons learned</h3>
+<p>
+Overall, the experience was great and we plan to continue using Github and Travis-CI also in future semesters. While some students complained that they had to learn how to write ant build scripts, we received only neutral to positive feedback on using continuous integration in general. Several students expressed wishes to learn more about continuous integration and other tools than we covered in the course.</p>
+
+<p>We were worried about long build queues since we only had 2 concurrent builds (and there is some overhead for Travis when starting a new build of about 15 seconds), but we never observed them in practice. There were some queues and very active periods in some nights before deadlines, but generally builds for students submissions were processed relatively quickly.</p>
+
+<p>The only time we had really long build queues was when we pushed new homework assignments and implicitly triggered builds in all 180 repositories. We quickly learned how to use “<a href="http://docs.travis-ci.com/user/how-to-skip-a-build/">[skip ci]</a>” then. :)</p>
+
+<p>We also learned that we should plan in advance. Travis-CI worked entirely in the background and so well that we didn't always include it in our planning. In one case, we forgot to change the root build script to run the new homework assignment until a few days before the deadline. When creating new repositories for the group assignment, we initially forgot to activate Travis-CI for them as well.</p>
+
+<p>We still need to figure out how to use git submodules with Travis-CI, where both the module and the submodule are private projects (a setup we need for one assignment where groups implement plugins for a framework developed by another group). There seem to be ways with additional key setups, but we haven't investigated this close enough because we didn't have sufficient time. Next semester.</p>
+
+<p>Another nice thing about Travis-CI is that it provides nice timestamps. The timestamps of git commits are inherently unreliable, so we actually need to check timestamps of when students pushed their work to Github. This information is accessible through Github's API but not well visible on the Github web page. On Travis-CI this is actually very convenient to check.</p>
+
+<p>Another project for a future semester is to integrate Findbugs and Checkstyle in the build scripts. We already encourage students to run Findbugs, but my impression is they rarely do this unless we threaten to take of points for issues that Findbugs could have found. Integrating a mechanism where dependencies (including Findbugs) would be pulled automatically from a Maven repository is another direction worth exploring, but maybe not straightforward to set up with ant.</p>
+
+<p>I'd be interested to hear if anybody else has integrated continuous integration in a similar way and has some tips. I know that some courses use autolab and other auto-grading tools to automatically run instructor-provided test cases on student code, but we prefer to provide a more realistic infrastructure where students are responsible for testing and that students could immediately use in their next project outside the course (and I don't like automated grading anyway). I'd be happy to share more details and possibly some of our scripts on demand if somebody wants to try a similar setup.</p>
+
+
+
+
+
+            </span></div></div><div class="clear margin_newsitem">&nbsp;</div><div class="grid_3 right">&nbsp;</div><div class="grid_9"><a href="index.html">Back...</a></div><div class="clear">&nbsp;</div></div></body>
+        </html>
+
