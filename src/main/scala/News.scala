@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2014, 7-1, 2).getTime, "Teaching Software Construction with Travis CI",
+          <span>We had great experiences introducing continuous integration tools into our software construction course using Travis CI and I've been meaning to write down our experience for a while now. I finally got around doing that: <a href="travis">Teaching Software Construction with Travis CI</a>. Feedback is welcome.</span>) :: 
         NewsItem(new GregorianCalendar(2014, 5-1, 10).getTime, "FOSD Meeting 2015",
           <span>The FOSD Meeting 2014 last week in Dagstuhl was great fun. Thanks for everybody who came, presented, and discussed.
           We have already started planning for 2015. We will be in Austria in <a href="http://www.akademietraunkirchen.com/en">Traunkirchen</a> the week before ICSE.

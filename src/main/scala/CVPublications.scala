@@ -2751,7 +2751,7 @@ analyses is both broad and diverse, such that it is difficult for researchers an
 their similarities and differences. We propose a classification of product-line analyses to enable systematic
 research and application. Based on our insights with classifying and comparing a corpus of 76 articles, we
 infer a research agenda to guide future research on product-line analyses."""
-        ).note("accepted for publication Jan 30, 2014").topic(vaanalysis,spl,overview).selected(),
+        ).topic(vaanalysis,spl,overview).selected(),
 
         TechReport(
             Seq(Coker, Hasan, Overbey, Hafiz, Kaestner),
@@ -2787,7 +2787,7 @@ infer a research agenda to guide future research on product-line analyses."""
             "Variational Data Structures: Exploring Tradeoffs in Computing with Variability",
             Onward(2014),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("onward14.pdf")),
             """Variation is everywhere, but in the construction and analysis of customizable software it is paramount. In this context, there arises a need for variational data structures for efficiently representing and computing with related variants of an underlying data type. So far, variational data structures have been explored and developed ad hoc. This paper is a first attempt and a call to action for systematic and foundational research in this area. Research on variational data structures will benefit not only customizable software, but the many other application domains that must cope with variability. In this paper, we show how support for variation can be understood as a general and orthogonal property of data types, data structures, and algorithms. We begin a systematic exploration of basic variational data structures, exploring the tradeoffs between different implementations. Finally, we retrospectively analyze the design decisions in our own previous work where we have independently encountered problems requiring variational data structures."""
           ).topic(typechef,vaanalysis).selected(),
 
@@ -2798,7 +2798,7 @@ infer a research agenda to guide future research on product-line analyses."""
             "Building Call Graphs for Embedded Client-Side Code in Dynamic Web Applications",
             FSE(2014).month(11).location("Hong Kong").acceptanceRate(61, 273),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("fse14.pdf")),
             """
           When developing and maintaining a software system, programmers often rely on
           IDEs to provide editor services such as syntax highlighting, auto-completion,
@@ -2823,7 +2823,7 @@ infer a research agenda to guide future research on product-line analyses."""
             "Tracking Load-time Configuration Options",
             ASE(2014).month(9).location("Västerås, Sweden"),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("ase14.pdf")),
             """
             Highly-configurable software systems are pervasive, although
             configuration options and their interactions raise complexity

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<article><date>27 May 2014</date><title>Teaching Software Construction with Travis CI</title>
+<article><date>2 July 2014</date><title>Teaching Software Construction with Travis CI</title>
     <content>
     <p>We had great experiences introducing continuous integration tools into our software construction course using Travis CI. I greatly recommend to use this in other courses as well. It's easy to set up, works well and reliably and helps both students and TAs.</p>
 

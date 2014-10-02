@@ -251,6 +251,8 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(VAMOS(2015), PC),
+        Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
         Committee(Workshop("ICSE-D", 2015,
             "International Conference on Software Engineering -- Demonstrations Committee",
             URL("http://2015.icse-conferences.org/call-dates/call-for-contributions/demonstrations")), PC),
@@ -486,6 +488,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2014, 7), "Feature Interactions in Software Systems An Implementation Perspective", "Dagstuhl Seminar 14281: Feature Interactions: The Next Generation"),
+        InvitedTalk(time(2014, 6), "Analyzing Highly-Configurable Software Systems", "University of Toronto -- Workshop on the State of the Art in Automated Software Engineering Research"),
         InvitedTalk(time(2014, 4), "Quality Assurance for Highly-Configurable Systems", "University of Magdeburg, Germany"),
         InvitedTalk(time(2014, 4), "Analysis of Software Product Lines", "Dagstuhl Seminar 14172: Unifying Product and Software Configuration"),
         InvitedTalk(time(2013, 12), "Variability Mining", "University of Waterloo -- Product Line Engineering Workshop"),

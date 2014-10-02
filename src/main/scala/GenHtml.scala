@@ -474,7 +474,7 @@ object GenHtml extends App {
       }
   }
 
-  def printCommentWidget() = row(<span>Comments</span>, <div id="disqus_thread"></div> :+
+  def printCommentWidget() = row(nbsp, <div id="disqus_thread"></div> :+
     <script type="text/javascript"><!--
         var disqus_shortname = 'christiankaestner'; // required: replace example with your forum shortname
         (function() {
