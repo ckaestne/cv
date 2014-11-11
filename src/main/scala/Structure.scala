@@ -288,7 +288,7 @@ abstract class PublicationRenderer {
         if (p.venue.url.isDefined)
             r += ("vurl" -> p.venue.url.get.toString)
         if (p.venue.publisher.isDefined && p.venue.publisher.get != null)
-            r = r + ("pubisher" -> p.venue.publisher.get.name) + ("address" -> p.venue.publisher.get.address)
+            r = r + ("publisher" -> p.venue.publisher.get.name) + ("address" -> p.venue.publisher.get.address)
         if (p.venue.location.isDefined)
             r += ("location" -> p.venue.location.get)
         if (p.venue.month.isDefined)

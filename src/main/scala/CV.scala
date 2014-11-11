@@ -1,56 +1,96 @@
 package de.stner.cv
 
-import xml.NodeSeq
 import java.util.{Date, GregorianCalendar}
+
+import scala.xml.NodeSeq
 
 
 object CV {
 
-    import Venues._
-    import CVPublications._
+    import de.stner.cv.CVPublications._
+    import de.stner.cv.Venues._
 
 
     val name = "Christian Kästner"
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
-        <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
-        languages, and tools to
-        <strong>implement variability in a disciplined way</strong>,
-        to <strong>detect errors</strong>, and
-        to <strong>improve program comprehension</strong> in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the <strong>Linux kernel</strong> in the <strong>TypeChef</strong> project.</p> :+
-    <p>My research in keywords:
-        variability and reuse;
-        software product lines;
-        multidimensional separation of concerns;
-        modularity, cohesion, information hiding and module systems;
-        program comprehension;
-        virtual separation of concerns;
-        feature-oriented software development;
-        parsers, type systems, and lightweight program analyses;
-        refactoring;
-        aspect-orientation;
-        program synthesis;
-        feature interactions;
-        feature location;
-        Linux;
-        and empirical methods.</p> :+
-        <p>Profiles: 
-          <a href="cv.pdf">Curriculum vitae</a>,
-          <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>, 
-          <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>, 
-          <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>, 
-          <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a><span style="display:none">, <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a></span>.</p> :+
-        <p><div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
-            <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
-            <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
-            <div itemprop="address" itemscope="" itemtype="http://data-vocabulary.org/Address"><span itemprop="street-address">5000 Forbes Avenue</span>, <span itemprop="locality">Pittsburgh</span>, <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>, <span itemprop="country">USA</span></div>
-            <div>&nbsp;</div>
-            <div>Office: Wean 5122</div>
-            <div>&nbsp;</div>
-            <div>E-mail: kaestner (at) cs.cmu.edu</div>
-            <div>Phone: +1 412 268 5254</div>
-	</p>
+        <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the
+            <strong>complexity</strong>
+            caused by
+            <strong>variability</strong>
+            in software systems. I develop mechanisms,
+            languages, and tools to
+            <strong>implement variability in a disciplined way</strong>
+            ,
+            to
+            <strong>detect errors</strong>
+            , and
+            to
+            <strong>improve program comprehension</strong>
+            in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the
+            <strong>Linux kernel</strong>
+            in the
+            <strong>TypeChef</strong>
+            project.</p> :+
+            <p>My research in keywords:
+                variability and reuse;
+                software product lines;
+                multidimensional separation of concerns;
+                modularity, cohesion, information hiding and module systems;
+                program comprehension;
+                virtual separation of concerns;
+                feature-oriented software development;
+                parsers, type systems, and lightweight program analyses;
+                refactoring;
+                aspect-orientation;
+                program synthesis;
+                feature interactions;
+                feature location;
+                Linux;
+                and empirical methods.</p> :+
+            <p>Profiles:
+                <a href="cv.pdf">Curriculum vitae</a>
+                ,
+                <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>
+                ,
+                <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>
+                ,
+                <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>
+                ,
+                <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a> <span style="display:none">,
+                <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
+            </span>
+                .</p> :+
+            <p>
+                <div>Institute for Software Research (
+                    <a href="http://www.isri.cmu.edu/">Link</a>
+                    )</div>
+                <div>School of Computer Science (
+                    <a href="http://www.cs.cmu.edu/">Link</a>
+                    )</div>
+                <div>Carnegie Mellon University (
+                    <a href="http://www.cmu.edu/">Link</a>
+                    )</div>
+                <div itemprop="address" itemscope=" " itemtype="http://data-vocabulary.org/Address">
+                    <span itemprop="street-address">5000 Forbes Avenue</span>
+                    ,
+                    <span itemprop="locality">Pittsburgh</span>
+                    ,
+                    <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>
+                    ,
+                    <span itemprop="country">USA</span>
+                </div>
+                <div>
+                    &nbsp;
+                </div>
+                <div>Office: Wean 5122</div>
+                <div>
+                    &nbsp;
+                </div>
+                <div>E-mail: kaestner (at) cs.cmu.edu</div>
+                <div>Phone: +1 412 268 5254</div>
+            </p>
 
 
     def headerCVLatex() =
@@ -518,4 +558,29 @@ object CV {
 
     //1=January
     def time(year: Int, month: Int): Date = new GregorianCalendar(year, month - 1, 1).getTime
+
+
+    /**
+     * list of groups
+     *
+     * each group has a list of persons with potential comments
+     */
+    def students: List[(String, List[(Person, Option[String])])] = List(
+        ("Current PhD students", List(
+            (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
+            (Coutinho, Some("(coadvised with Jürgen Pfeffer)")),
+            (Wong, None),
+            (Zhou, None)
+        )),
+        ("Close collaborations / coadvising", List(
+            (HNguyen, Some("(working with Tien N. Ngyuen at Iowa State)")),
+            (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
+            (Lessenich, Some("(working with Sven Apel at the University of Passau)"))
+        )),
+        ("Visiting students", List(
+            (Medeiros, Some("(2014)")),
+            (Meinicke, Some("(2014)"))
+        ))
+    )
+
 }

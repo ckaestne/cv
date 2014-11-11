@@ -153,7 +153,7 @@ object GenLatex extends App {
         "\\item[%s %d] %s".format(r.venue.short.toTex, r.venue.year, r.venue.name.toTex) +
             (if (!r.invitedBy.isEmpty) " (invited by " + r.invitedBy + ")" else "") + "\n"
 
-    def reviewing(): String = subsection("Reviewing", inCV(reviews.map(printReview).mkString))
+    def reviewing(): String = subsection("Reviewing", inCV(reviews.filter(_.invitedBy.isEmpty).map(printReview).mkString))
 
     def printPublication(p: Publication) =
         "\\bibitem{%s}%s %s\n\n".format(

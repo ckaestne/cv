@@ -87,7 +87,7 @@ object CVPublications {
     val Schaefer = Person("Ina", "Schaefer", URL("https://www.tu-braunschweig.de/sse/mitarbeiter/schaefer"), "Technische Universität Braunschweig")
     val Czarnecki = Person("Krzysztof", "Czarnecki", URL("http://gsd.uwaterloo.ca/kczarnec"), "University of Waterloo")
     val Benduhn = Person("Fabian", "Benduhn", "University of Magdeburg")
-    val Meinicke = Person("Jens", "Meinicke", "University of Magdeburg")
+    val Meinicke = Person("Jens", "Meinicke", URL("http://wwwiti.cs.uni-magdeburg.de/~meinicke/"), "University of Magdeburg")
     val Eichberg = Person("Michael", "Eichberg", "Technical University of Darmstadt")
     val vonRhein = Person("Alexander", "von Rhein", URL("http://www.infosun.fim.uni-passau.de/spl/people-rhein.php"), "University of Passau")
     val Pusch = Person("Jonas", "Pusch", "University of Marburg")
@@ -98,7 +98,7 @@ object CVPublications {
     val Passos = Person("Leonardo", "Passos", URL("http://gsd.uwaterloo.ca/lpassos"), "University of Waterloo")
     val Wasowski = Person("Andrzej", "Wąsowski", URL("http://www.itu.dk/~wasowski/"), "IT University Copenhagen")
     val Guo = Person("Jianmei", "Guo", "University of Waterloo")
-    val Hunsen = Person("Claus", "Hunsen", "University of Passau")
+    val Hunsen = Person("Claus", "Hunsen", URL("https://www.infosun.fim.uni-passau.de/spl/staticPages/people-hunsen.php"),"University of Passau")
     val Mitschke = Person("Ralf", "Mitschke", "Technical University of Darmstadt")
     val Garvin = Person("Brady", "Garvin", URL("http://cse.unl.edu/~bgarvin/"), "University of Nebraska–Lincoln")
     val Bethmann = Person("Anja", "Bethmann", "University of Magdeburg")
@@ -115,7 +115,14 @@ object CVPublications {
     val Walkingshaw = Person("Eric", "Walkingshaw", "Oregon State University")
     val Erwig = Person("Martin", "Erwig", URL("http://web.engr.oregonstate.edu/~erwig/"), "Oregon State University")
     val Bodden = Person("Eric", "Bodden", URL("http://www.bodden.de/"), "Fraunhofer SIT & TU Darmstadt")
-    val Lillack = Person("Max", "Lillack","University of Leipzig")
+    val Lillack = Person("Max", "Lillack", "University of Leipzig")
+
+    val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
+    val Medeiros = Person("Flávio", "Medeiros", "Federal University of Campina Grande")
+    val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
+    val Coutinho = Person("Gabriel", "Coutinho", "Carnegie Mellon University")
+    val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
+    val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
 
 
     val fop = Topic("Feature-oriented programming")
