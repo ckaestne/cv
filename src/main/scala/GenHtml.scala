@@ -36,16 +36,19 @@ object GenHtml extends App {
     }
 
     object FancyPersonHtmlFormater extends PlainHtmlFormater {
-        override def person(person: Person): NodeSeq =
-            if (person.url.isDefined && person.affiliation.isDefined)
-                <a href={person.url.get.toString()} class="author" title={person.fullname+" • "+person.affiliation.get}>{person.abbrvname}</a>
-            else if (!person.url.isDefined && person.affiliation.isDefined)
-                <span class="author" title={person.fullname+" • "+person.affiliation.get}>{person.abbrvname}</span>
-            else if (person.url.isDefined && !person.affiliation.isDefined)
-                <a href={person.url.get.toString()}  class="author" title={person.fullname}>{person.abbrvname}</a>
-            else
-                <span class="author" title={person.fullname}>{person.abbrvname}</span>
+        override def person(person: Person): NodeSeq = renderPerson(person)
 
+        def renderPerson(person: Person, fullname:Boolean = false, htmlClass:String = "author"): NodeSeq = {
+            val name = if (fullname) person.fullname else person.abbrvname
+            if (person.url.isDefined && person.affiliation.isDefined)
+                <a href={person.url.get.toString()} class={htmlClass} title={person.fullname+" • "+person.affiliation.get}>{name}</a>
+            else if (!person.url.isDefined && person.affiliation.isDefined)
+                <span class={htmlClass} title={person.fullname+" • "+person.affiliation.get}>{name}</span>
+            else if (person.url.isDefined && !person.affiliation.isDefined)
+                <a href={person.url.get.toString()}  class={htmlClass} title={person.fullname}>{name}</a>
+            else
+                <span class={htmlClass} title={person.fullname}>{name}</span>
+        }
     }
 
 
@@ -350,11 +353,11 @@ object GenHtml extends App {
           yield <div><a name={p.genKey}></a><pre>{p.toBibtex()}</pre></div>
 
   def printStudents(students: List[(String, List[(Person, Option[String])])]): NodeSeq =
-    rowH2("Team", students.flatMap(printStudentSection))
+    rowH2("Team") ++ students.flatMap(printStudentSection)
 
   private def printStudentSection(s:(String, List[(Person, Option[String])])): NodeSeq =
-    <p>{s._1}</p> :+
-    <ul>{for ((student, str)<-s._2) yield <li>{student.fullname+" "+str.getOrElse("")}</li>}</ul>
+    row(<span>{s._1}</span>,
+        <ul>{for ((student, str)<-s._2) yield <li>{FancyPersonHtmlFormater.renderPerson(student,true,"")} {str.getOrElse("")}</li>}</ul>)
 
 
   def mainPage: NodeSeq =

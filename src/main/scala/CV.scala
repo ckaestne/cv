@@ -567,7 +567,7 @@ object CV {
      */
     def students: List[(String, List[(Person, Option[String])])] = List(
         ("Current PhD students", currentStudents),
-        ("Close collaborations / coadvising", collaboratingStudents),
+        ("Close external collaborations / coadvising", collaboratingStudents),
         ("Visiting students",visitingStudents)
 
 
