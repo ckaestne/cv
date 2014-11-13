@@ -63,22 +63,13 @@ object CV {
             </span>
                 .</p> :+
             <p>
-                <div>Institute for Software Research (
-                    <a href="http://www.isri.cmu.edu/">Link</a>
-                    )</div>
-                <div>School of Computer Science (
-                    <a href="http://www.cs.cmu.edu/">Link</a>
-                    )</div>
-                <div>Carnegie Mellon University (
-                    <a href="http://www.cmu.edu/">Link</a>
-                    )</div>
+                <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
+                <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
+                <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
                 <div itemprop="address" itemscope=" " itemtype="http://data-vocabulary.org/Address">
-                    <span itemprop="street-address">5000 Forbes Avenue</span>
-                    ,
-                    <span itemprop="locality">Pittsburgh</span>
-                    ,
-                    <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>
-                    ,
+                    <span itemprop="street-address">5000 Forbes Avenue</span>,
+                    <span itemprop="locality">Pittsburgh</span>,
+                    <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>,
                     <span itemprop="country">USA</span>
                 </div>
                 <div>
