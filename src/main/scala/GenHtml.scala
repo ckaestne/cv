@@ -349,12 +349,21 @@ object GenHtml extends App {
         for (p <- CV.publications)
           yield <div><a name={p.genKey}></a><pre>{p.toBibtex()}</pre></div>
 
-    def mainPage: NodeSeq =
+  def printStudents(students: List[(String, List[(Person, Option[String])])]): NodeSeq =
+    rowH2("Team", students.flatMap(printStudentSection))
+
+  private def printStudentSection(s:(String, List[(Person, Option[String])])): NodeSeq =
+    <p>{s._1}</p> :+
+    <ul>{for ((student, str)<-s._2) yield <li>{student.fullname+" "+str.getOrElse("")}</li>}</ul>
+
+
+  def mainPage: NodeSeq =
         <div itemscope="" itemtype="http://data-vocabulary.org/Person">{
         printTitle(true) ++
             row(printPicture(), printSummary())}</div> ++
             printNews() ++
             printTeachingSummary(teaching) ++
+            printStudents(students) ++
             printCommittees(committees) ++
             printAwards(awards) ++
             printProjects(projects) ++

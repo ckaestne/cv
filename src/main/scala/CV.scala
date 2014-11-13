@@ -566,21 +566,27 @@ object CV {
      * each group has a list of persons with potential comments
      */
     def students: List[(String, List[(Person, Option[String])])] = List(
-        ("Current PhD students", List(
-            (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
-            (Coutinho, Some("(coadvised with Jürgen Pfeffer)")),
-            (Wong, None),
-            (Zhou, None)
-        )),
-        ("Close collaborations / coadvising", List(
-            (HNguyen, Some("(working with Tien N. Ngyuen at Iowa State)")),
-            (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
-            (Lessenich, Some("(working with Sven Apel at the University of Passau)"))
-        )),
-        ("Visiting students", List(
-            (Medeiros, Some("(2014)")),
-            (Meinicke, Some("(2014)"))
-        ))
+        ("Current PhD students", currentStudents),
+        ("Close collaborations / coadvising", collaboratingStudents),
+        ("Visiting students",visitingStudents)
+
+
+    )
+
+    val currentStudents = List(
+        (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
+        (Coutinho, Some("(coadvised with Jürgen Pfeffer)")),
+        (Wong, None),
+        (Zhou, None)
+    )
+    val collaboratingStudents = List(
+        (HNguyen, Some("(working with Tien N. Ngyuen at Iowa State)")),
+        (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
+        (Lessenich, Some("(working with Sven Apel at the University of Passau)"))
+    )
+    val visitingStudents =  List(
+        (Medeiros, Some("(2014)")),
+        (Meinicke, Some("(2014)"))
     )
 
 }
