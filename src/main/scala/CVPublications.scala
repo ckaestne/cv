@@ -116,6 +116,9 @@ object CVPublications {
     val Erwig = Person("Martin", "Erwig", URL("http://web.engr.oregonstate.edu/~erwig/"), "Oregon State University")
     val Bodden = Person("Eric", "Bodden", URL("http://www.bodden.de/"), "Fraunhofer SIT & TU Darmstadt")
     val Lillack = Person("Max", "Lillack", "University of Leipzig")
+    val Zhang = Person("Bo", "Zhang", URL("http://wwwagse.informatik.uni-kl.de/staff/zhang/"), "University of Kaiserslautern")
+    val Becker = Person("Martin", "Becker", "Fraunhofer IESE")
+
 
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
     val Medeiros = Person("Flávio", "Medeiros", "Federal University of Campina Grande")
@@ -2620,8 +2623,8 @@ A key result is that in these settings already setting up sampling techniques is
         Article(
             Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
             "Measuring and Modeling Programming Experience",
-            ESE(2013),
-            ToAppear(),
+            ESE(2014).volume(19).number(5).month(10),
+            Pages(1299,1334),
             Map(PDF -> PDFFile("ese13.pdf"),
                 DOI -> DOI("10.1007/s10664-013-9286-4")),
             """
@@ -2638,14 +2641,15 @@ Furthermore, we applied exploratory and confirmatory factor analyses to extract 
 evaluate a model of programming experience. With our analysis, we initiate a path
 toward validly and reliably measuring and describing programming experience to better
 understand and control its influence in program-comprehension experiments."""
-        ).note("accepted for publication Oct 4, 2013").topic(experiment, programcomprehension),
+        ).topic(experiment, programcomprehension),
 
         InProceedings(
             Seq(Ribeiro, Borba, Kaestner),
             "Feature Maintenance with Emergent Interfaces",
             ICSE14,
             Pages(989,1000),
-            Map(PDF->PDFFile("icse14_emergo.pdf")),
+            Map(PDF->PDFFile("icse14_emergo.pdf"),
+                DOI->DOI("10.1145/2568225.2568289")),
             """
           Hidden code dependencies are responsible for many complications in maintenance tasks.
           With the introduction of variable features in product lines, dependencies may even cross
@@ -2668,7 +2672,8 @@ understand and control its influence in program-comprehension experiments."""
             "Mining Configuration Constraints: Static Analyses and Empirical Results",
             ICSE14,
             Pages(140,151),
-            Map(PDF->PDFFile("icse14_mining.pdf")),
+            Map(PDF->PDFFile("icse14_mining.pdf"),
+                DOI->DOI("10.1145/2568225.2568283")),
             """
             Highly-configurable systems allow users to tailor the software to
             their specific needs. Not all combinations of configuration options
@@ -2699,7 +2704,8 @@ understand and control its influence in program-comprehension experiments."""
             "Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications",
             ICSE14,
             Pages(907,918),
-            Map(PDF->PDFFile("icse14_varex.pdf")),
+            Map(PDF->PDFFile("icse14_varex.pdf"),
+                DOI->DOI("10.1145/2568225.2568300")),
             """
               In plugin-based systems, plugin conflicts may occur when two or more
               plugins interfere with one another, changing their expected
@@ -2728,7 +2734,8 @@ understand and control its influence in program-comprehension experiments."""
             "Understanding Understanding Source Code with Functional Magnetic Resonance Imaging",
             ICSE14,
             Pages(378,389),
-            Map(PDF->PDFFile("icse14_fmri.pdf")),
+            Map(PDF->PDFFile("icse14_fmri.pdf"),
+                DOI->DOI("10.1145/2568225.2568252")),
             """
           Program comprehension is an important cognitive process that inherently eludes direct measurement. Thus, researchers are struggling with providing optimal programming languages, tools, or coding conventions to support developers in their everyday work.
           With our approach, we explore whether *functional magnetic resonance imaging (fMRI)*, which is well established in cognitive neuroscience, is feasible to directly measure program comprehension. To this end, we observed 17 participants inside an fMRI scanner while comprehending short source-code snippets, which we contrasted with locating syntax errors.
@@ -2793,8 +2800,9 @@ infer a research agenda to guide future research on product-line analyses."""
             Seq(Walkingshaw, Kaestner, Erwig, Apel, Bodden),
             "Variational Data Structures: Exploring Tradeoffs in Computing with Variability",
             Onward(2014),
-            ToAppear(),
-            Map(PDF->PDFFile("onward14.pdf")),
+            Pages(213, 226),
+            Map(PDF->PDFFile("onward14.pdf"),
+                DOI->DOI("10.1145/2661136.2661143")),
             """Variation is everywhere, but in the construction and analysis of customizable software it is paramount. In this context, there arises a need for variational data structures for efficiently representing and computing with related variants of an underlying data type. So far, variational data structures have been explored and developed ad hoc. This paper is a first attempt and a call to action for systematic and foundational research in this area. Research on variational data structures will benefit not only customizable software, but the many other application domains that must cope with variability. In this paper, we show how support for variation can be understood as a general and orthogonal property of data types, data structures, and algorithms. We begin a systematic exploration of basic variational data structures, exploring the tradeoffs between different implementations. Finally, we retrospectively analyze the design decisions in our own previous work where we have independently encountered problems requiring variational data structures."""
           ).topic(typechef,vaanalysis).selected(),
 
@@ -2828,9 +2836,10 @@ infer a research agenda to guide future research on product-line analyses."""
         InProceedings(
             Seq(Lillack, Kaestner, Bodden),
             "Tracking Load-time Configuration Options",
-            ASE(2014).month(9).location("Västerås, Sweden"),
-            ToAppear(),
-            Map(PDF -> PDFFile("ase14.pdf")),
+            ASE(2014).month(9).location("Västerås, Sweden").acceptanceRate(55,276),
+            Pages(445,456),
+            Map(PDF -> PDFFile("ase14.pdf"),
+                DOI->DOI("10.1145/2642937.2643001")),
             """
             Highly-configurable software systems are pervasive, although
             configuration options and their interactions raise complexity
@@ -2851,7 +2860,43 @@ infer a research agenda to guide future research on product-line analyses."""
             empirically characterize how much of the implementation of
             Android apps depends on the platform’s configuration options
             or interactions of these options.
-            """).selected().topic(vaanalysis, spl, adoption)
+            """).selected().topic(vaanalysis, spl, adoption),
+
+        Article(
+            Seq(Hunsen,JSiegmund,Lessenich,Apel,Zhang,Kaestner,Becker),
+            "Preprocessor-Based Variability in Open-Source and Industrial Software Systems: An Empirical Study",
+            ESE(2015).specialIssueOn("Empirical Evidence on Software Product Line Engineering"),
+            ToAppear(),
+            Map(),
+            """
+              |Almost every sufficiently complex software system today is configurable.
+              |*Conditional compilation* is a simple variability-implementation mechanism that is widely used in open-source projects and industry.
+              |Especially, the C preprocessor (cpp) is very popular in practice, but it is
+              |also gaining (again) interest in academia.
+              |Although there have been several attempts to understand and improve cpp,
+              |there is a lack of understanding of how it is used in open-source and
+              |industrial systems and whether different usage patterns have emerged.
+              |The background is that much research on configurable systems and product lines
+              |concentrates on open-source systems, simply because they are available for
+              |study in the first place.
+              |This leads to the potentially problematic situation that it is unclear whether
+              |the results obtained from these studies are transferable to industrial systems.
+              |We aim at lowering this gap by comparing the use of cpp in open-source
+              |projects and industry---especially from the embedded-systems domain---, based
+              |on a substantial set of subject systems and well-known variability metrics,
+              |including size, scattering, and tangling metrics.
+              |A key result of our empirical study is that, regarding almost all aspects we
+              |studied, the analyzed open-source systems and the considered embedded systems
+              |from industry have comparable distributions regarding most metrics, including
+              |systems that have been developed in industry and made open source at some point.
+              |So, our study indicates that, regarding cpp as variability-implementation
+              |mechanism, insights, methods, and tools developed based on studies of open-
+              |source systems are transferable to industrial systems---at least, with respect
+              |to the metrics we considered.
+            """.stripMargin
+        ).topic(spl,empirical)
+
+
 
     )
 }
