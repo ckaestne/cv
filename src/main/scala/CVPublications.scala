@@ -3,7 +3,7 @@ package de.stner.cv
 
 object CVPublications {
 
-    import Venues._
+    import de.stner.cv.Venues._
 
     val publicationKinds = Seq(KBook, KJournal, KInConferenceProceedings, KInvited, KWorkshopDemoTool, KTechnicalReport, KMisc).sorted
 
@@ -98,7 +98,7 @@ object CVPublications {
     val Passos = Person("Leonardo", "Passos", URL("http://gsd.uwaterloo.ca/lpassos"), "University of Waterloo")
     val Wasowski = Person("Andrzej", "Wąsowski", URL("http://www.itu.dk/~wasowski/"), "IT University Copenhagen")
     val Guo = Person("Jianmei", "Guo", "University of Waterloo")
-    val Hunsen = Person("Claus", "Hunsen", URL("https://www.infosun.fim.uni-passau.de/spl/staticPages/people-hunsen.php"),"University of Passau")
+    val Hunsen = Person("Claus", "Hunsen", URL("https://www.infosun.fim.uni-passau.de/spl/staticPages/people-hunsen.php"), "University of Passau")
     val Mitschke = Person("Ralf", "Mitschke", "Technical University of Darmstadt")
     val Garvin = Person("Brady", "Garvin", URL("http://cse.unl.edu/~bgarvin/"), "University of Nebraska–Lincoln")
     val Bethmann = Person("Anja", "Bethmann", "University of Magdeburg")
@@ -2157,7 +2157,7 @@ object CVPublications {
             Seq(Feigenspan, Kaestner, Apel, Liebig, MSchulze, Dachselt, Papendieck, Leich, Saake),
             "Do Background Colors Improve Program Comprehension in the #ifdef Hell?",
             ESE(2012).volume(18).number(4),
-            Pages(699,745),
+            Pages(699, 745),
             Map(PDF -> PDFFile("ese12.pdf"),
                 HTTP -> URL("http://link.springer.com/article/10.1007%2Fs10664-012-9208-x"),
                 DOI -> DOI("10.1007/s10664-012-9208-x")
@@ -2539,7 +2539,7 @@ discuss the role of teaching for the empirical researchers of tomorrow.""").
             Seq(Apel, vonRhein, Thuem, Kaestner),
             "Feature-Interaction Detection based on Feature-Based Specifications",
             Journal("COMNET", 2013, "Computer Networks").month(8).specialIssueOn("Feature Interaction").publisher(Elsevier).volume(57).number(12),
-            Pages(2399,2409),
+            Pages(2399, 2409),
             Map(PDF -> PDFFile("comnet13.pdf"),
                 DOI -> DOI("10.1016/j.comnet.2013.02.025")),
             """Formal specification and verification techniques have been used successfully to
@@ -2614,7 +2614,7 @@ A key result is that in these settings already setting up sampling techniques is
             Seq(Apel, Kolesnikov, Siegmund, Kaestner, Garvin),
             "Exploring Feature Interactions in the Wild: The New Feature-Interaction Challenge",
             FOSD13,
-            Pages(1,8),
+            Pages(1, 8),
             Map(PDF -> PDFFile("FOSD13-fi.pdf"),
                 DOI -> DOI("10.1145/2528265.2528267")),
             """The feature-interaction problem has been keeping researchers and practitioners in suspense for years. Although there has been substantial progress in developing approaches for modeling, detecting, managing, and resolving feature interactions, we lack sufficient knowledge on the kind of feature interactions that occur in real-world systems. In this position paper, we set out the goal to explore the nature of feature interactions systematically and comprehensively, classified in terms of order and visibility. Understanding this nature will have significant implications on research in this area, for example, on the efficiency of interaction-detection or performance-prediction techniques. A set of preliminary results as well as a discussion of possible experimental setups and corresponding challenges give us confidence that this endeavor is within reach but requires a collaborative effort of the community.""").topic(interactions),
@@ -2624,7 +2624,7 @@ A key result is that in these settings already setting up sampling techniques is
             Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
             "Measuring and Modeling Programming Experience",
             ESE(2014).volume(19).number(5).month(10),
-            Pages(1299,1334),
+            Pages(1299, 1334),
             Map(PDF -> PDFFile("ese13.pdf"),
                 DOI -> DOI("10.1007/s10664-013-9286-4")),
             """
@@ -2647,9 +2647,9 @@ understand and control its influence in program-comprehension experiments."""
             Seq(Ribeiro, Borba, Kaestner),
             "Feature Maintenance with Emergent Interfaces",
             ICSE14,
-            Pages(989,1000),
-            Map(PDF->PDFFile("icse14_emergo.pdf"),
-                DOI->DOI("10.1145/2568225.2568289")),
+            Pages(989, 1000),
+            Map(PDF -> PDFFile("icse14_emergo.pdf"),
+                DOI -> DOI("10.1145/2568225.2568289")),
             """
           Hidden code dependencies are responsible for many complications in maintenance tasks.
           With the introduction of variable features in product lines, dependencies may even cross
@@ -2671,9 +2671,9 @@ understand and control its influence in program-comprehension experiments."""
             Seq(Nadi, Berger, Kaestner, Czarnecki),
             "Mining Configuration Constraints: Static Analyses and Empirical Results",
             ICSE14,
-            Pages(140,151),
-            Map(PDF->PDFFile("icse14_mining.pdf"),
-                DOI->DOI("10.1145/2568225.2568283")),
+            Pages(140, 151),
+            Map(PDF -> PDFFile("icse14_mining.pdf"),
+                DOI -> DOI("10.1145/2568225.2568283")),
             """
             Highly-configurable systems allow users to tailor the software to
             their specific needs. Not all combinations of configuration options
@@ -2703,9 +2703,9 @@ understand and control its influence in program-comprehension experiments."""
             Seq(HNguyen, Kaestner, TNguyen),
             "Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications",
             ICSE14,
-            Pages(907,918),
-            Map(PDF->PDFFile("icse14_varex.pdf"),
-                DOI->DOI("10.1145/2568225.2568300")),
+            Pages(907, 918),
+            Map(PDF -> PDFFile("icse14_varex.pdf"),
+                DOI -> DOI("10.1145/2568225.2568300")),
             """
               In plugin-based systems, plugin conflicts may occur when two or more
               plugins interfere with one another, changing their expected
@@ -2733,9 +2733,9 @@ understand and control its influence in program-comprehension experiments."""
             Seq(JSiegmund, Kaestner, Apel, Parnin, Bethmann, Leich, Saake, Brechmann),
             "Understanding Understanding Source Code with Functional Magnetic Resonance Imaging",
             ICSE14,
-            Pages(378,389),
-            Map(PDF->PDFFile("icse14_fmri.pdf"),
-                DOI->DOI("10.1145/2568225.2568252")),
+            Pages(378, 389),
+            Map(PDF -> PDFFile("icse14_fmri.pdf"),
+                DOI -> DOI("10.1145/2568225.2568252")),
             """
           Program comprehension is an important cognitive process that inherently eludes direct measurement. Thus, researchers are struggling with providing optimal programming languages, tools, or coding conventions to support developers in their everyday work.
           With our approach, we explore whether *functional magnetic resonance imaging (fMRI)*, which is well established in cognitive neuroscience, is feasible to directly measure program comprehension. To this end, we observed 17 participants inside an fMRI scanner while comprehending short source-code snippets, which we contrasted with locating syntax errors.
@@ -2744,14 +2744,14 @@ understand and control its influence in program-comprehension experiments."""
             """).selected().
             topic(programcomprehension, empirical, experiment),
 
-  Article(
+        Article(
             Seq(Thuem, Apel, Kaestner, Schaefer, Saake),
             "A Classification and Survey of Analysis Strategies for Software Product Lines",
-            CSUR(2014).number(1).volume(47).month(6),            
+            CSUR(2014).number(1).volume(47).month(6),
             PagesStr("Article 6"),
-            Map(PDF->PDFFile("CSUR14.pdf"),
-                HTTP->URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/spl-strategies/"),
-                DOI->DOI("10.1145/2580950")),
+            Map(PDF -> PDFFile("CSUR14.pdf"),
+                HTTP -> URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/spl-strategies/"),
+                DOI -> DOI("10.1145/2580950")),
             """
 Software-product-line engineering has gained considerable momentum in recent years, both in industry and
 in academia. A software product line is a set of software products that share a common set of features.
@@ -2765,12 +2765,12 @@ analyses is both broad and diverse, such that it is difficult for researchers an
 their similarities and differences. We propose a classification of product-line analyses to enable systematic
 research and application. Based on our insights with classifying and comparing a corpus of 76 articles, we
 infer a research agenda to guide future research on product-line analyses."""
-        ).topic(vaanalysis,spl,overview).selected(),
+        ).topic(vaanalysis, spl, overview).selected(),
 
         TechReport(
             Seq(Coker, Hasan, Overbey, Hafiz, Kaestner),
             "Integers In C: An Open Invitation to Security Attacks?",
-            2014, 2, 
+            2014, 2,
             Publisher("College of Engineering, Auburn University", "Auburn, AL"), "CSSE14-01",
             Map(PDF -> PDFFile("csse14-01.pdf")),
             """We performed an empirical study to explore how closely
@@ -2793,7 +2793,7 @@ infer a research agenda to guide future research on product-line analyses."""
             remains significant. A preprocessor-aware, tool-assisted approach 
             may be the most viable way to migrate legacy C code
             to comply with the standards for secure programming."""
-          ).topic(vaanalysis,empirical,security),
+        ).topic(vaanalysis, empirical, security),
 
 
         InProceedings(
@@ -2801,13 +2801,12 @@ infer a research agenda to guide future research on product-line analyses."""
             "Variational Data Structures: Exploring Tradeoffs in Computing with Variability",
             Onward(2014),
             Pages(213, 226),
-            Map(PDF->PDFFile("onward14.pdf"),
-                DOI->DOI("10.1145/2661136.2661143")),
+            Map(PDF -> PDFFile("onward14.pdf"),
+                DOI -> DOI("10.1145/2661136.2661143")),
             """Variation is everywhere, but in the construction and analysis of customizable software it is paramount. In this context, there arises a need for variational data structures for efficiently representing and computing with related variants of an underlying data type. So far, variational data structures have been explored and developed ad hoc. This paper is a first attempt and a call to action for systematic and foundational research in this area. Research on variational data structures will benefit not only customizable software, but the many other application domains that must cope with variability. In this paper, we show how support for variation can be understood as a general and orthogonal property of data types, data structures, and algorithms. We begin a systematic exploration of basic variational data structures, exploring the tradeoffs between different implementations. Finally, we retrospectively analyze the design decisions in our own previous work where we have independently encountered problems requiring variational data structures."""
-          ).topic(typechef,vaanalysis).selected(),
+        ).topic(typechef, vaanalysis).selected(),
 
 
- 
         InProceedings(
             Seq(HNguyen, Kaestner, TNguyen),
             "Building Call Graphs for Embedded Client-Side Code in Dynamic Web Applications",
@@ -2830,16 +2829,16 @@ infer a research agenda to guide future research on product-line analyses."""
           show that our analysis achieves 100 % precision in identifying
           call-graph edges. 62 % of the edges cross PHP strings, and 17 % of them cross files---in both situations, navigation 
           without tool support is tedious and error prone."""
-        ).selected().topic(vaanalysis,typechef,web),
+        ).selected().topic(vaanalysis, typechef, web),
 
 
         InProceedings(
             Seq(Lillack, Kaestner, Bodden),
             "Tracking Load-time Configuration Options",
-            ASE(2014).month(9).location("Västerås, Sweden").acceptanceRate(55,276),
-            Pages(445,456),
+            ASE(2014).month(9).location("Västerås, Sweden").acceptanceRate(55, 276),
+            Pages(445, 456),
             Map(PDF -> PDFFile("ase14.pdf"),
-                DOI->DOI("10.1145/2642937.2643001")),
+                DOI -> DOI("10.1145/2642937.2643001")),
             """
             Highly-configurable software systems are pervasive, although
             configuration options and their interactions raise complexity
@@ -2863,7 +2862,7 @@ infer a research agenda to guide future research on product-line analyses."""
             """).selected().topic(vaanalysis, spl, adoption),
 
         Article(
-            Seq(Hunsen,JSiegmund,Lessenich,Apel,Zhang,Kaestner,Becker),
+            Seq(Hunsen, JSiegmund, Lessenich, Apel, Zhang, Kaestner, Becker),
             "Preprocessor-Based Variability in Open-Source and Industrial Software Systems: An Empirical Study",
             ESE(2015).specialIssueOn("Empirical Evidence on Software Product Line Engineering"),
             ToAppear(),
@@ -2894,8 +2893,7 @@ infer a research agenda to guide future research on product-line analyses."""
               |source systems are transferable to industrial systems---at least, with respect
               |to the metrics we considered.
             """.stripMargin
-        ).topic(spl,empirical)
-
+        ).topic(spl, empirical)
 
 
     )
