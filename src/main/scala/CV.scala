@@ -21,11 +21,9 @@ object CV {
             <strong>variability</strong>
             in software systems. I develop mechanisms,
             languages, and tools to
-            <strong>implement variability in a disciplined way</strong>
-            ,
+            <strong>implement variability in a disciplined way</strong>,
             to
-            <strong>detect errors</strong>
-            , and
+            <strong>detect errors</strong>, and
             to
             <strong>improve program comprehension</strong>
             in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the
@@ -50,14 +48,10 @@ object CV {
                 Linux;
                 and empirical methods.</p> :+
             <p>Profiles:
-                <a href="cv.pdf">Curriculum vitae</a>
-                ,
-                <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>
-                ,
-                <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>
-                ,
-                <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>
-                ,
+                <a href="cv.pdf">Curriculum vitae</a>,
+                <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>,
+                <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>,
+                <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>,
                 <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a> <span style="display:none">,
                 <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
             </span>
