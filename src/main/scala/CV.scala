@@ -50,12 +50,10 @@ object CV {
             <p>Profiles:
                 <a href="cv.pdf">Curriculum vitae</a>,
                 <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>,
-                <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>,
                 <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>,
-                <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a> <span style="display:none">,
+                <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a><span style="display:none">,
                 <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
-            </span>
-                .</p> :+
+            </span>.</p> :+
             <p>
                 <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
                 <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
@@ -276,6 +274,9 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(Conference("SBCARS", 2014,
+            "Brazilian Symposium on Software Components, Architectures and Reuse",
+            URL("http://cbsoft.org/sbcars2015/")), PC),
         Committee(VAMOS(2015), PC),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
         Committee(Workshop("ICSE-D", 2015,

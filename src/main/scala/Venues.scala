@@ -49,6 +49,7 @@ object Venues {
     val MDTR = Publisher("University of Magdeburg", "Magdeburg, Germany")
     val PATR = Publisher("Department of Informatics and Mathematics, University of Passau", "Passau, Germany")
     val MRTR = Publisher("Department of Mathematics and Computer Science, Philipps University Marburg", "Marburg, Germany")
+    val WaterlooTR = Publisher("Generative Software Development Laboratory, University of Waterloo", "Waterloo, ON, Canada")
     val IEEE = Publisher("IEEE Computer Society", "Los Alamitos, CA")
     val TUBerlin = Publisher("TU Berlin", "Berlin, Germany")
     val TREssen = Publisher("University of Duisburg-Essen", "Essen, Germany")
