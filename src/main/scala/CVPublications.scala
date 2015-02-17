@@ -2916,7 +2916,37 @@ infer a research agenda to guide future research on product-line analyses."""
             our results indicate that creating a complete model requires further substantial domain knowledge and testing. Our results aim at
             supporting researchers and practitioners working on variability model engineering, evolution, and verification techniques.
             """).hideabstract().
-            topic(spl, vaanalysis, adoption)
+            topic(spl, vaanalysis, adoption),
+
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "{Varis}: {IDE} Support for Embedded Client Code in {PHP} Web Applications",
+            ICSE(2015).month(5).location("Florence"),
+            ToAppear(),
+            Map(PDF -> PDFFile("icse15_varis_demo.pdf")),
+            """
+            In software development, IDE services such as
+              syntax highlighting, code completion, and ``jump to declara-
+              tion'' are used to assist developers in programming tasks. In
+              dynamic web applications, however, since the client-side code is
+              dynamically generated from the server-side code and is *embedded*
+              in the server-side program as string literals, providing IDE
+              services for such embedded code is challenging. In this work,
+              we introduce Varis, a tool that provides editor services on
+              the client-side code of a PHP-based web application, while it
+              is still embedded within server-side code. Technically, we first
+              perform symbolic execution on a PHP program to approximate
+              all possible variations of the generated client-side code and
+              subsequently parse this client code into a *VarDOM* that compactly
+              represents all its variations. Finally, using the VarDOM, we
+              implement various types of IDE services for embedded client
+              code including syntax highlighting, code completion, and ``jump
+              to declaration''.
+            """).
+            topic(vaanalysis, web)
+
+
+
 
 
     )
