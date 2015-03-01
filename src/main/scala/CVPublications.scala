@@ -118,6 +118,7 @@ object CVPublications {
     val Lillack = Person("Max", "Lillack", "University of Leipzig")
     val Zhang = Person("Bo", "Zhang", URL("http://wwwagse.informatik.uni-kl.de/staff/zhang/"), "University of Kaiserslautern")
     val Becker = Person("Martin", "Becker", "Fraunhofer IESE")
+    val AlKofahi = Person("Jafar", "Al-Kofahi", "Iowa State University")
 
 
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
@@ -2943,7 +2944,29 @@ infer a research agenda to guide future research on product-line analyses."""
               code including syntax highlighting, code completion, and ``jump
               to declaration''.
             """).note("Formal Demonstration paper").
-            topic(vaanalysis, web)
+            topic(vaanalysis, web),
+
+
+        InProceedings(
+            Seq(Zhou, AlKofahi, TNguyen, Kaestner, Nadi),
+            "Extracting Configuration Knowledge from Build Files with Symbolic Analysis",
+            Workshop("Releng", 2015, "3rd International Workshop on Release Engineering").location("Florence, Italy").month(5).publisher(ACM),
+            ToAppear(),
+            Map(PDF -> PDFFile("Releng2015.pdf")),
+            """Build systems contain a lot of configuration
+            knowledge about a software system, such as under which
+            conditions specific files are compiled. Extracting such
+            configuration knowledge is important for many tools analyzing
+            highly-configurable systems, but very challenging due to the
+            complex nature of build systems. We design an approach, based
+            on SYMake, that symbolically evaluates Makefiles and extracts
+            configuration knowledge in terms of file presence conditions and
+            conditional parameters. We implement an initial prototype and
+            demonstrate feasibility on small examples.
+         """
+        ).topic(vaanalysis, adoption)
+
+
 
 
 
