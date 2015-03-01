@@ -2942,7 +2942,7 @@ infer a research agenda to guide future research on product-line analyses."""
               implement various types of IDE services for embedded client
               code including syntax highlighting, code completion, and ``jump
               to declaration''.
-            """).
+            """).note("Formal Demonstration paper").
             topic(vaanalysis, web)
 
 
