@@ -21,11 +21,9 @@ object CV {
             <strong>variability</strong>
             in software systems. I develop mechanisms,
             languages, and tools to
-            <strong>implement variability in a disciplined way</strong>
-            ,
+            <strong>implement variability in a disciplined way</strong>,
             to
-            <strong>detect errors</strong>
-            , and
+            <strong>detect errors</strong>, and
             to
             <strong>improve program comprehension</strong>
             in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the
@@ -50,18 +48,12 @@ object CV {
                 Linux;
                 and empirical methods.</p> :+
             <p>Profiles:
-                <a href="cv.pdf">Curriculum vitae</a>
-                ,
-                <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>
-                ,
-                <a href="http://academic.research.microsoft.com/Author/3564951">Microsoft Academic</a>
-                ,
-                <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>
-                ,
-                <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a> <span style="display:none">,
+                <a href="cv.pdf">Curriculum vitae</a>,
+                <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>,
+                <a href="http://dl.acm.org/author_page.cfm?id=81331495728">ACM</a>,
+                <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/k/K=auml=stner:Christian.html">dblp</a><span style="display:none">,
                 <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
-            </span>
-                .</p> :+
+            </span>.</p> :+
             <p>
                 <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
                 <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
@@ -139,6 +131,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
+            English, SpringTerm(2015), new CourseKind with Lecture
+        ),
         Course("15-313 Foundations of Software Engineering",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/15313/2014/"),
@@ -282,8 +279,12 @@ object CV {
     )
 
     val committees = Seq[Committee](
-        Committee(VAMOS(2015), PC),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
+        Committee(Conference("SBCARS", 2014,
+            "Brazilian Symposium on Software Components, Architectures and Reuse",
+            URL("http://cbsoft.org/sbcars2015/")), PC),
+        Committee(VAMOS(2015), PC),
+        Committee(SPLC(2015).url(URL("http://www.splc2015.net")), PC),
         Committee(Workshop("ICSE-D", 2015,
             "International Conference on Software Engineering -- Demonstrations Committee",
             URL("http://2015.icse-conferences.org/call-dates/call-for-contributions/demonstrations")), PC),

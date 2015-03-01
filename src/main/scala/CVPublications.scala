@@ -81,7 +81,7 @@ object CVPublications {
     val Khan = Person("Ateeq", "Khan", "University of Magdeburg")
     val Kats = Person("Lennart C.L.", "Kats", "TU Delft")
     val Visser = Person("Eelco", "Visser", URL("http://eelcovisser.org/"), "TU Delft")
-    val Berger = Person("Thorsten", "Berger", URL("http://bis.informatik.uni-leipzig.de/ThorstenBerger"), "IT University Copenhagen")
+    val Berger = Person("Thorsten", "Berger", URL("http://www.itu.dk/~thbe/"), "University of Waterloo")
     val Dreiling = Person("Alexander", "Dreiling", "Deutsche Bank")
     val Hanenberg = Person("Stefan", "Hanenberg", URL("http://www.dawis.wiwi.uni-due.de/team/stefan-hanenberg/"), "Universität Duisburg-Essen")
     val Schaefer = Person("Ina", "Schaefer", URL("https://www.tu-braunschweig.de/sse/mitarbeiter/schaefer"), "Technische Universität Braunschweig")
@@ -107,7 +107,7 @@ object CVPublications {
     val Borba = Person("Paulo", "Borba", URL("http://www.cin.ufpe.br/~phmb/"), "Federal University of Pernambuco")
     val HNguyen = Person("Hung Viet", "Nguyen", URL("http://home.engineering.iastate.edu/~hungnv/"), "Iowa State University")
     val TNguyen = Person("Tien N.", "Nguyen", URL("http://home.engineering.iastate.edu/~tien/"), "Iowa State University")
-    val Nadi = Person("Sarah", "Nadi", URL("http://swag.uwaterloo.ca/~snadi/"), "University of Waterloo")
+    val Nadi = Person("Sarah", "Nadi", URL("http://www.sarahnadi.org/"), "Technische Universität Darmstadt")
     val Coker = Person("Zack", "Coker", "Carnegie Mellon University")
     val Hasan = Person("Samir", "Hasan", "Auburn University")
     val Overbey = Person("Jeffrey", "Overbey", "Auburn University")
@@ -2866,7 +2866,8 @@ infer a research agenda to guide future research on product-line analyses."""
             "Preprocessor-Based Variability in Open-Source and Industrial Software Systems: An Empirical Study",
             ESE(2015).specialIssueOn("Empirical Evidence on Software Product Line Engineering"),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("ese14.pdf"),
+                DOI -> DOI("10.1007/s10664-014-9355-3")),
             """
               |Almost every sufficiently complex software system today is configurable.
               |*Conditional compilation* is a simple variability-implementation mechanism that is widely used in open-source projects and industry.
@@ -2893,7 +2894,59 @@ infer a research agenda to guide future research on product-line analyses."""
               |source systems are transferable to industrial systems---at least, with respect
               |to the metrics we considered.
             """.stripMargin
-        ).topic(spl, empirical)
+        ).topic(spl, empirical),
+
+
+        TechReport(
+            Seq(Nadi, Berger, Kaestner, Czarnecki),
+            "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
+            2015, 1, WaterlooTR, "GSDLAB-TR 2015-01-27",
+            Map(PDF -> PDFFile("tr_configconstraints15.pdf"),
+                HTTP -> URL("http://gsd.uwaterloo.ca/node/607")),
+            """
+            Highly configurable systems allow users to tailor software to specific needs. Valid combinations of configuration options are
+            often restricted by intricate constraints. Describing options and constraints in a variability model allows reasoning about the supported
+            configurations. To automate creating and verifying such models, we need to identify the origin of such constraints. We propose a static
+            analysis approach, based on two rules, to extract configuration constraints from code. We apply it on four highly configurable systems to
+            evaluate the accuracy of our approach and to determine which constraints are recoverable from the code. We find that our approach is
+            highly accurate (93 % and 77 % respectively) and that we can recover 28 % of existing constraints. We complement our approach with a
+            qualitative study to identify constraint sources, triangulating results from our automatic extraction, manual inspections, and interviews
+            with 27 developers. We find that, apart from low-level implementation dependencies, configuration constraints enforce correct runtime
+            behavior, improve users’ configuration experience, and prevent corner cases. While the majority of constraints is extractable from code,
+            our results indicate that creating a complete model requires further substantial domain knowledge and testing. Our results aim at
+            supporting researchers and practitioners working on variability model engineering, evolution, and verification techniques.
+            """).hideabstract().
+            topic(spl, vaanalysis, adoption),
+
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "{Varis}: {IDE} Support for Embedded Client Code in {PHP} Web Applications",
+            ICSE(2015).month(5).location("Florence"),
+            ToAppear(),
+            Map(PDF -> PDFFile("icse15_varis_demo.pdf")),
+            """
+            In software development, IDE services such as
+              syntax highlighting, code completion, and ``jump to declara-
+              tion'' are used to assist developers in programming tasks. In
+              dynamic web applications, however, since the client-side code is
+              dynamically generated from the server-side code and is *embedded*
+              in the server-side program as string literals, providing IDE
+              services for such embedded code is challenging. In this work,
+              we introduce Varis, a tool that provides editor services on
+              the client-side code of a PHP-based web application, while it
+              is still embedded within server-side code. Technically, we first
+              perform symbolic execution on a PHP program to approximate
+              all possible variations of the generated client-side code and
+              subsequently parse this client code into a *VarDOM* that compactly
+              represents all its variations. Finally, using the VarDOM, we
+              implement various types of IDE services for embedded client
+              code including syntax highlighting, code completion, and ``jump
+              to declaration''.
+            """).
+            topic(vaanalysis, web)
+
+
+
 
 
     )
