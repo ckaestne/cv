@@ -119,10 +119,10 @@ object CVPublications {
     val Zhang = Person("Bo", "Zhang", URL("http://wwwagse.informatik.uni-kl.de/staff/zhang/"), "University of Kaiserslautern")
     val Becker = Person("Martin", "Becker", "Fraunhofer IESE")
     val AlKofahi = Person("Jafar", "Al-Kofahi", "Iowa State University")
-
-
+    val Gheyi = Person("Rohit", "Gheyi", URL("http://www.dsc.ufcg.edu.br/~rohit/Rohit_Gheyi/Home.html"), "Federal University of Campina Grande")
+    val Medeiros = Person("Flávio", "Medeiros", URL("http://fmmspg.appspot.com/"), "Federal University of Campina Grande")
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
-    val Medeiros = Person("Flávio", "Medeiros", "Federal University of Campina Grande")
+
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Coutinho = Person("Gabriel", "Coutinho", "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
@@ -147,13 +147,14 @@ object CVPublications {
     val merge = Topic("Software merging")
     val typechef = Topic("TypeChef")
     val modularity = Topic("Modularity")
-    val empirical = Topic("Empirical evaluation")
+    val empirical = Topic("Empirical studies")
     val programcomprehension = Topic("Program comprehension")
     val dsl = Topic("Domain-specific languages")
     val parsing = Topic("Parsing")
     val testing = Topic("Testing")
     val security = Topic("Security")
     val web = Topic("Web development/analysis")
+    val preprocessor = Topic("Preprocessors/conditional compilation")
 
 
     //shorthands because they are reused
@@ -1541,7 +1542,7 @@ object CVPublications {
         demonstrate its capabilities so far with a case study: By type checking
         the open-source web server *Boa* with potentially 2^110 variants,
         we found type errors in several variants.""").
-            topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
+            topic(vaanalysis, vsoc, preprocessor, typechef).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
         BookEd(
@@ -1938,7 +1939,7 @@ object CVPublications {
                 by parsing the product line MobileMedia and the
                 entire X86 architecture of the Linux kernel with 6065 variable
                 features.                          """).selected().
-            topic(vsoc, vaanalysis, parsing),
+            topic(vsoc, vaanalysis, parsing, typechef, preprocessor),
 
         InProceedings(
             Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
@@ -2227,7 +2228,7 @@ ecosystems and product lines of product lines developed in an open fashion.
 We discuss the design and implementation of such a module system on a core
 calculus and provide an implementation for C, which we use to type check
 the open source product line Busybox with 811 compile-time options.""").
-            topic(modularity, vaanalysis, typechef)
+            topic(modularity, vaanalysis, typechef, preprocessor)
 
 
         ,
@@ -2254,7 +2255,7 @@ the open source product line Busybox with 811 compile-time options.""").
               |calculus and provide an implementation for C, which we use to type check
               |the open source product line Busybox with 811 compile-time options.
             """.stripMargin
-        ).selected().topic(modularity, vaanalysis, typechef).crosscite("superseeds \\cite{KOE:MR12}"),
+        ).selected().topic(modularity, vaanalysis, typechef, preprocessor).crosscite("superseeds \\cite{KOE:MR12}"),
 
         Article(
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
@@ -2411,7 +2412,7 @@ We close this gap by developing and applying two full-fledged analyses to two re
 We report on our experience with making variability-aware analysis ready for the real world, and with applying it to large-scale product lines.
 A key result is that variability-aware analysis can outperform even very limited sampling heuristics with respect to analysis time.            
             """).
-            topic(vaanalysis, fop, spl, typechef).crosscite("superseded by ESEC/FSE 2013 paper").hideabstract(),
+            topic(vaanalysis, fop, spl, typechef, preprocessor).crosscite("superseded by ESEC/FSE 2013 paper").hideabstract(),
 
         InProceedings(
             Seq(vonRhein, Apel, Kaestner, Thuem, Schaefer),
@@ -2595,7 +2596,7 @@ However, while being promising, so far, variability-aware analyses have been app
 To learn about the mutual strengths and weaknesses of variability-aware and sampling-based analyses of large-scale, real-world software systems, we compared the two by means of two concrete analysis implementations (type checking and liveness analysis) applied to three subject systems: the Busybox tool suite, the x86 Linux kernel, and the cryptographic library OpenSSL.
 A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
             """.stripMargin
-        ).topic(spl, vaanalysis, typechef).
+        ).topic(spl, vaanalysis, typechef, preprocessor).
             selected(),
 
 
@@ -2964,10 +2965,50 @@ infer a research agenda to guide future research on product-line analyses."""
             conditional parameters. We implement an initial prototype and
             demonstrate feasibility on small examples.
          """
-        ).topic(vaanalysis, adoption)
+        ).topic(vaanalysis, adoption),
+
+        InProceedings(
+            Seq(Medeiros, Kaestner, Ribeiro, Nadi, Gheyi),
+            "The Love/Hate Relationship with The C Preprocessor: An Interview Study",
+            ECOOP(2015).series(LNCS),
+            ToAppear(),
+            Map(),
+            """
+              The C preprocessor has received strong criticism in academia, among others regarding separation of concerns, error proneness, and code obfuscation, but is widely used in practice.
+              Many (mostly academic) alternatives to the preprocessor exist, but have not been adopted in practice.
+              Since developers continue to use the preprocessor despite all criticism and research, we ask how practitioners perceive the C preprocessor.
+              We performed interviews with 40 developers, used grounded theory to analyze the data, and cross-validated the results with data from a survey among 202 developers, repository mining, and results from previous studies.
+              In particular, we investigated four research questions related to why the preprocessor is still widely used in practice, common problems, alternatives, and the impact of undisciplined annotations.
+              Our study shows that developers are aware of the criticism the C preprocessor receives, but use it nonetheless, mainly for portability and variability.
+              They indicate that they regularly face preprocessor-related problems and preprocessor-related bugs.
+              The majority of our interviewees do not see any current C-native technologies that can entirely replace the C preprocessor.
+              However, developers tend to mitigate problems with guidelines, but those guidelines are not enforced consistently.
+              We report the key insights gained from our study and discuss implications for practitioners and researchers on how to better use the C preprocessor to minimize its negative impact.
+        """).
+            selected().topic(empirical, spl, preprocessor),
 
 
 
+        Article(
+            Seq(Nadi, Berger, Kaestner, Czarnecki),
+            "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
+            TSE(2015),
+            ToAppear(),
+            Map(),
+            """
+            Highly configurable systems allow users to tailor software to specific needs. Valid combinations of configuration options are
+            often restricted by intricate constraints. Describing options and constraints in a variability model allows reasoning about the supported
+            configurations. To automate creating and verifying such models, we need to identify the origin of such constraints. We propose a static
+            analysis approach, based on two rules, to extract configuration constraints from code. We apply it on four highly configurable systems to
+            evaluate the accuracy of our approach and to determine which constraints are recoverable from the code. We find that our approach is
+            highly accurate (93 % and 77 % respectively) and that we can recover 28 % of existing constraints. We complement our approach with a
+            qualitative study to identify constraint sources, triangulating results from our automatic extraction, manual inspections, and interviews
+            with 27 developers. We find that, apart from low-level implementation dependencies, configuration constraints enforce correct runtime
+            behavior, improve users’ configuration experience, and prevent corner cases. While the majority of constraints is extractable from code,
+            our results indicate that creating a complete model requires further substantial domain knowledge and testing. Our results aim at
+            supporting researchers and practitioners working on variability model engineering, evolution, and verification techniques.
+            """).
+            selected().topic(spl, vaanalysis, adoption)
 
 
 

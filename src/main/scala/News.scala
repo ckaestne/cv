@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2015, 3-1, 13).getTime, "The Love/Hate Relationship with the Preprocessor at ECOOP 2015",
+          <span>Last summer, we interviewed quite a number of open source developers about their perceptions of the C preprocessor. The resulting paper has now been accepted at ECOOP 2015. While we still need a few days on producing the final version, I have used this as an opportunity to write a few words on <a href="ontitles/">(rejected) paper titles</a></span>) ::
         NewsItem(new GregorianCalendar(2014, 7-1, 2).getTime, "Teaching Software Construction with Travis CI",
           <span>We had great experiences introducing continuous integration tools into our software construction course using Travis CI and I've been meaning to write down our experience for a while now. I finally got around doing that: <a href="travis">Teaching Software Construction with Travis CI</a>. Feedback is welcome.</span>) :: 
         NewsItem(new GregorianCalendar(2014, 5-1, 10).getTime, "FOSD Meeting 2015",
