@@ -131,6 +131,16 @@ object CV {
 
 
     val teaching = Seq(
+        Course("17-708 Software Product Lines: Concepts and Implementation",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/17708/"),
+            English, FallTerm(2015), new CourseKind with Lecture
+        ),
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
+            English, FallTerm(2015), new CourseKind with Lecture
+        ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
@@ -279,12 +289,15 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), DS),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
         Committee(Conference("SBCARS", 2015,
             "Brazilian Symposium on Software Components, Architectures and Reuse",
             URL("http://cbsoft.org/sbcars2015/")), PC),
         Committee(VAMOS(2015), PC),
         Committee(SPLC(2015).url(URL("http://www.splc2015.net")), PC),
+        Committee(Workshop("SPLTea", 2015, "Second International Workshop on Software Product Line Teaching",
+            URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("ICSE-D", 2015,
             "International Conference on Software Engineering -- Demonstrations Committee",
             URL("http://2015.icse-conferences.org/call-dates/call-for-contributions/demonstrations")), PC),
@@ -567,7 +580,7 @@ object CV {
 
     val currentStudents = List(
         (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
-        (Coutinho, Some("(coadvised with Jürgen Pfeffer)")),
+        (Ferreira, Some("(coadvised with Jürgen Pfeffer)")),
         (Wong, None),
         (Zhou, None)
     )

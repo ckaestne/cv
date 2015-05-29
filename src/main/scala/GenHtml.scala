@@ -337,8 +337,8 @@ object GenHtml extends App {
 
     def printCoolWall() =
         rowH2("FOSD Cool Wall",
-            <p>The cool wall was created and evolved during the yearly FOSD student meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we would like to encourage researchers to look for better tool names. Up to 2012, the listing was completely subjective, feel free to complain. Starting 2013, we started <a href="coolwallvoting.jpg">voting</a> and giving out a <a href="coolwallaward.jpg">Coolest Tool Name award</a>.</p> :+
-        <a href="coolwall2013.pdf"><img src="coolwall2013.png" alt="Cool Wall 2013" id="coolwall" /></a>)
+            <p>The cool wall was created and evolved during the yearly FOSD  meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we encourage researchers to look for better tool names. Up to 2012, the listing was completely subjective, feel free to complain. Starting 2013, we started <a href="coolwallvoting.jpg">voting</a>. In 2013 and 2014 we even gave out a <a href="coolwallaward.jpg">Coolest Tool Name award</a>. Unfortunately, the 2014 listing is incomplete, as the photos of the votes got lost.</p> :+
+        <a href="coolwall2015.pdf"><img src="coolwall2015.png" alt="Cool Wall 2015" id="coolwall" /></a>)
 
 
     def printTwitterWidget(): NodeSeq =

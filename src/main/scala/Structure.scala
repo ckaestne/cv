@@ -670,6 +670,7 @@ object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
 object SC extends CommitteeRole("Steering-Committee Member", "SC")
+object DS extends CommitteeRole("Doctorial Symposium Committee Member", "DS")
 
 case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
 

@@ -49,11 +49,11 @@ object CVPublications {
     val Batory = Person("Don", "Batory", URL("http://www.cs.utexas.edu/~dsb/"), "University of Texas at Austin")
     val Lengauer = Person("Christian", "Lengauer", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/lengauer/"), "University of Passau")
     val Moeller = Person("Bernhard", "Möller", URL("http://www.informatik.uni-augsburg.de/~moeller/"), "University of Augsburg")
-    val Siegmund = Person("Norbert", "Siegmund", URL("http://wwwiti.cs.uni-magdeburg.de/~nsiegmun/"), "University of Magdeburg")
+    val Siegmund = Person("Norbert", "Siegmund", URL("http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php"), "University of Passau")
     val Rosenmueller = Person("Marko", "Rosenmüller", URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/"), "General Electric")
     val Pukall = Person("Mario", "Pukall", URL("http://wwwiti.cs.uni-magdeburg.de/~pukall/"), "University of Magdeburg")
     val Rahman = Person("Syed Saif", "ur Rahman", "SZABIST")
-    val Thuem = Person("Thomas", "Thüm", URL("http://wwwiti.cs.uni-magdeburg.de/~tthuem/"), "University of Magdeburg")
+    val Thuem = Person("Thomas", "Thüm", URL("https://www.tu-braunschweig.de/isf/team/thuem"), "Technische Universität Braunschweig")
     val Groesslinger = Person("Armin", "Größlinger", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/groesslinger/"), "University of Passau")
     val Heidenreich = Person("Florian", "Heidenreich", "Technical University of Dresden")
     val Sunkle = Person("Sagar", "Sunkle")
@@ -72,7 +72,7 @@ object CVPublications {
     val Haase = Person("Steffen", "Haase", "University of Magdeburg")
     val Giarrusso = Person("Paolo G.", "Giarrusso", URL("http://www.informatik.uni-marburg.de/~pgiarrusso/"), "University of Marburg")
     val Ostermann = Person("Klaus", "Ostermann", URL("http://www.informatik.uni-marburg.de/~kos/"), "University of Marburg")
-    val Grebhahn = Person("Alexander", "Grebhahn", "University of Magdeburg")
+    val Grebhahn = Person("Alexander", "Grebhahn", "University of Passau")
     val Schroeter = Person("Reimar", "Schröter", "University of Magdeburg")
     val Stengel = Person("Michael", "Stengel")
     val Koeppen = Person("Veit", "Köppen", "University of Magdeburg")
@@ -124,7 +124,7 @@ object CVPublications {
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
-    val Coutinho = Person("Gabriel", "Coutinho", "Carnegie Mellon University")
+    val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
 
@@ -2972,7 +2972,7 @@ infer a research agenda to guide future research on product-line analyses."""
             "The Love/Hate Relationship with The C Preprocessor: An Interview Study",
             ECOOP(2015).series(LNCS),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("ecoop15.pdf")),
             """
               The C preprocessor has received strong criticism in academia, among others regarding separation of concerns, error proneness, and code obfuscation, but is widely used in practice.
               Many (mostly academic) alternatives to the preprocessor exist, but have not been adopted in practice.
@@ -2994,7 +2994,7 @@ infer a research agenda to guide future research on product-line analyses."""
             "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
             TSE(2015),
             ToAppear(),
-            Map(),
+            Map(PDF -> PDFFile("tse15.pdf")),
             """
             Highly configurable systems allow users to tailor software to specific needs. Valid combinations of configuration options are
             often restricted by intricate constraints. Describing options and constraints in a variability model allows reasoning about the supported
@@ -3008,7 +3008,79 @@ infer a research agenda to guide future research on product-line analyses."""
             our results indicate that creating a complete model requires further substantial domain knowledge and testing. Our results aim at
             supporting researchers and practitioners working on variability model engineering, evolution, and verification techniques.
             """).
-            selected().topic(spl, vaanalysis, adoption)
+            selected().topic(spl, vaanalysis, adoption),
+
+
+
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "Cross-language Program Slicing for Dynamic Web Applications",
+            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
+            ToAppear(),
+            Map(),
+            """
+During software maintenance, program slicing is a useful technique
+to assist developers in understanding the impact of their changes.
+While different program-slicing techniques have been proposed for
+traditional software systems, program slicing for dynamic web applications 
+is challenging since the client-side code is *generated* from
+the server-side code and data entities are referenced across *different languages* 
+and are often *embedded* in string literals in the server-side
+program. To address those challenges, we introduce WebSlice, an
+approach to compute program slices across different languages for
+web applications. We first identify data-flow dependencies among
+data entities for PHP code based on symbolic execution. We also
+compute SQL queries and a conditional DOM that represents client-code 
+variations and construct the data flows for embedded languages:
+SQL, HTML, and JavaScript. Next, we connect the data flows across
+different languages and those across PHP pages. Finally, we compute 
+a program slice for any given entity based on the established
+data flows. Running WebSlice on five real-world PHP systems,
+we found that out of 40,670 program slices, 10 % cross languages,
+38 % cross files, and 13 % cross string fragments, demonstrating the
+potential benefit of tool support for cross-language program slicing
+in web applications.      
+"""
+        ).selected().topic(vaanalysis, typechef, web),
+
+
+
+        InProceedings(
+            Seq(Siegmund, Grebhahn, Kaestner, Apel),
+            "Performance-Influence Models for Highly Configurable Systems",
+            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
+            ToAppear(),
+            Map(),
+            """
+Almost every complex software system today is configurable. 
+While configurability has many benefits, it challenges
+performance prediction, optimization, and debugging.
+Often, the influences of the individual configurations options on performance
+is unknown. Worse, configuration options may interact, giving rise to a
+configuration space of possibly exponential size. Addressing this
+challenge, we propose an approach that derives a *performance-influence model* 
+for a given configurable system, describing all *relevant*
+influences of configuration options and their interactions. Such a model
+shall be useful for automatic performance prediction and optimization,
+on the one hand, and performance debugging for developers, on the other
+hand. Our approach combines
+machine-learning and sampling technique in a novel way. Our approach
+improves over standard
+techniques in that it (1) represents influences of options and their
+interactions explicitly (which eases debugging), (2) smoothly integrates
+binary and numeric configuration options for the first time, (3) incorporates 
+domain knowledge, if available (which eases learning and
+increases accuracy), (4) considers complex constraints among options, and
+ (5) systematically reduces the solution space to a tractable size. A
+series of experiments demonstrates the feasibility of our approach in
+terms of the accuracy of the models learned as well as the accuracy of
+the performances predictions one can make with them. Using our approach,
+we were able to identify a number of real performance bugs and other
+problems in real-world systems.
+            """.stripMargin
+        ).topic(nfp, spl, empirical).
+            selected()
+
 
 
 
