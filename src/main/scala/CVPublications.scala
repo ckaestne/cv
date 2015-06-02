@@ -2262,7 +2262,8 @@ the open source product line Busybox with 811 compile-time options.""").
             "{FeatureIDE}: An Extensible Framework for Feature-Oriented Software Development",
             SCP(2014).volume(79).specialIssueOn("Experimental Software and Toolkits"),
             Pages(70, 85),
-            Map(DOI -> DOI("10.1016/j.scico.2012.06.002")),
+            Map(DOI -> DOI("10.1016/j.scico.2012.06.002"),
+                PDF -> PDFFile("SCP12.pdf")),
             """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
         ),
 
@@ -2813,8 +2814,9 @@ infer a research agenda to guide future research on product-line analyses."""
             Seq(HNguyen, Kaestner, TNguyen),
             "Building Call Graphs for Embedded Client-Side Code in Dynamic Web Applications",
             FSE(2014).month(11).location("Hong Kong").acceptanceRate(61, 273),
-            ToAppear(),
-            Map(PDF -> PDFFile("fse14.pdf")),
+            Pages(518,529),
+            Map(PDF -> PDFFile("fse14.pdf"),
+                DOI -> DOI("10.1145/2635868.2635928")),
             """
           When developing and maintaining a software system, programmers often rely on
           IDEs to provide editor services such as syntax highlighting, auto-completion,
@@ -2923,9 +2925,10 @@ infer a research agenda to guide future research on product-line analyses."""
         InProceedings(
             Seq(HNguyen, Kaestner, TNguyen),
             "{Varis}: {IDE} Support for Embedded Client Code in {PHP} Web Applications",
-            ICSE(2015).month(5).location("Florence"),
-            ToAppear(),
-            Map(PDF -> PDFFile("icse15_varis_demo.pdf")),
+            ICSE(2015).subtitle("Volume 2").month(5).location("Florence"),
+            Pages(693, 696),
+            Map(PDF -> PDFFile("icse15_varis_demo.pdf"),
+                DOI -> DOI("10.1109/ICSE.2015.225")),
             """
             In software development, IDE services such as
               syntax highlighting, code completion, and ``jump to declara-
@@ -2944,7 +2947,7 @@ infer a research agenda to guide future research on product-line analyses."""
               implement various types of IDE services for embedded client
               code including syntax highlighting, code completion, and ``jump
               to declaration''.
-            """).note("Formal Demonstration paper").
+            """).note("Formal Demonstration paper, **Best Demonstration Award**").
             topic(vaanalysis, web),
 
 
@@ -2952,8 +2955,9 @@ infer a research agenda to guide future research on product-line analyses."""
             Seq(Zhou, AlKofahi, TNguyen, Kaestner, Nadi),
             "Extracting Configuration Knowledge from Build Files with Symbolic Analysis",
             Workshop("Releng", 2015, "3rd International Workshop on Release Engineering").location("Florence, Italy").month(5).publisher(ACM),
-            ToAppear(),
-            Map(PDF -> PDFFile("Releng2015.pdf")),
+            Pages(20, 23),
+            Map(PDF -> PDFFile("Releng2015.pdf"),
+                DOI -> DOI("10.1109/RELENG.2015.15")),
             """Build systems contain a lot of configuration
             knowledge about a software system, such as under which
             conditions specific files are compiled. Extracting such
@@ -2994,7 +2998,8 @@ infer a research agenda to guide future research on product-line analyses."""
             "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
             TSE(2015),
             ToAppear(),
-            Map(PDF -> PDFFile("tse15.pdf")),
+            Map(PDF -> PDFFile("tse15.pdf"),
+                DOI -> DOI("10.1109/TSE.2015.2415793")),
             """
             Highly configurable systems allow users to tailor software to specific needs. Valid combinations of configuration options are
             often restricted by intricate constraints. Describing options and constraints in a variability model allows reasoning about the supported

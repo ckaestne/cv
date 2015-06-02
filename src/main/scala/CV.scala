@@ -305,7 +305,7 @@ object CV {
             "SPLC Workshop on Multi Product Line Engineering",
             URL("https://sites.google.com/site/wmultiple2014/")), PC),
         Committee(Workshop("SPLat", 2014, "Software Product Line Analysis Tools 2014",
-            URL("")), PC),
+            URL("https://www.win.tue.nl/~evink/research/Postscript/splatworkshop2014.pdf")), PC),
         Committee(Workshop("SPLTea", 2014, "First International Workshop on Software Product Line Teaching",
             URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("REVE", 2014, "2nd Workshop on Reverse Variability Engineering",
