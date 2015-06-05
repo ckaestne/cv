@@ -2521,7 +2521,7 @@ modularity and efficiency in real-world applications.
 
         InProceedings(
             Seq(JSiegmund, Kaestner, Apel, Brechmann, Saake),
-            "Experience from Measuring Program Comprehension—Toward a General Framework",
+            "Experience from Measuring Program Comprehension -- Toward a General Framework",
             Conference("SE", 2013, "Software Engineering 2013 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(2).
                 series("Lecture Notes in Informatics").
                 publisher(GI).
