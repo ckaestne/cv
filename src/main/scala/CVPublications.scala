@@ -122,6 +122,8 @@ object CVPublications {
     val Gheyi = Person("Rohit", "Gheyi", URL("http://www.dsc.ufcg.edu.br/~rohit/Rohit_Gheyi/Home.html"), "Federal University of Campina Grande")
     val Medeiros = Person("Flávio", "Medeiros", URL("http://fmmspg.appspot.com/"), "Federal University of Campina Grande")
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
+    val MNguyen = Person("My Huu", "Nguyen", "Ho Chi Minh City University of Science")
+    val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
@@ -3084,7 +3086,44 @@ we were able to identify a number of real performance bugs and other
 problems in real-world systems.
             """.stripMargin
         ).topic(nfp, spl, empirical).
-            selected()
+            selected(),
+
+
+        InProceedings(
+            Seq(HNguyen, MNguyen, Dang, Kaestner, TNguyen),
+            "Detecting Semantic Merge Conflicts With Variability-Aware Execution",
+            Conference("ESEC/FSE-NIER", 2015, "International Symposium on Foundations of Software Engineering -- New Ideas Track").month(8).location("Bergamo"),
+            ToAppear(),
+            Map(),
+            """
+            In collaborative software development, when two or more developers 
+            incorporate their changes, a merge conflict may arise if the
+            changes are incompatible. Previous research has shown that such
+            conflicts are common and occur as textual conflicts or build/test
+            failure, i.e., semantic conflicts. When a merge conflict occurs for
+            a large number of parallel changes, it is desirable to identify the
+            actual (minimum) set of changes that directly results in the conflict.
+            Pinpointing the specific conflicting changes directly leading to test
+            failure facilitates quick accountability and correction from developers. 
+            For semantic conflicts, to identify such subset of the changes is
+            challenging. A naive approach trying all possible subsets would not
+            scale due to the exponential number of possible combinations.
+            We propose Semex, a novel approach to detect semantic conflicts
+            using variability-aware execution. In the first step, we encode all parallel 
+            changes into a single program with variability in which we use
+            symbolic variables to represent whether a given change is applied to
+            the original program. In the second step, we run the test cases via
+            variability-aware execution. Variability-aware execution explores
+            all possible executions of the combined program with regard to all
+            possible values of the symbolic variables representing all changes,
+            and returns a propositional formula over the set of variables repre-
+            senting the condition in which a test case fails. Due to our encoding
+            algorithm, such a set corresponds to the minimum set of changes
+            that are responsible for the conflict. In our preliminary experimental
+            study on seven PHP applications with a total of 50 test cases and 19
+            semantic conflicts, Semex correctly detected all 19 conflicts.
+            """.stripMargin
+        ).topic(testing, interactions, vaanalysis, web, merge)
 
 
 

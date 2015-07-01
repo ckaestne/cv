@@ -90,12 +90,6 @@ object GenLatex extends App {
         inCV(r.mkString("\n"))
     }
 
-    def printReferences(): String = {
-        val r = references.map(s =>
-            "\\item %s, %s,\\\\\\url{%s}".format(s._1, s._2, s._3.toString)
-        )
-        inCV(r.mkString("\n"))
-    }
 
     def courses(): String = {
         val l = teaching.filter(_.kind.isLecture).groupBy(c => (c.title, c.language)).toList.
@@ -191,7 +185,6 @@ object GenLatex extends App {
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
     output += section("Software", printSoftware())
-//    output += section("References", printReferences())
 
     output += publications()
 

@@ -518,15 +518,6 @@ object CV {
             URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
     )
 
-    //title+name,where,url
-    val references: Seq[(String, String, URL)] = Seq(
-        ("Prof. Don Batory, Ph.D.", "University of Texas at Austin", URL("http://www.cs.utexas.edu/~dsb/")),
-        ("Prof. Krzysztof Czarnecki, Ph.D.", "University of Waterloo", URL("http://gsd.uwaterloo.ca/kczarnec")),
-        ("Prof. Christian Lengauer, Ph.D.", "University of Passau", URL("http://www.infosun.fim.uni-passau.de/cl/staff/lengauer/")),
-        ("Prof. Dr. Klaus Ostermann", "Philipps University Marburg", URL("http://www.mathematik.uni-marburg.de/~kos/")),
-        ("Prof. Dr. Gunter Saake", "University of Magdeburg", URL("http://wwwiti.cs.uni-magdeburg.de/~saake/"))
-    )
-
     val publications = CVPublications.publications
 
 
