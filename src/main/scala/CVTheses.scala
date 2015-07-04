@@ -141,7 +141,11 @@ object CVTheses {
             "Variability-Aware Interpretation",
             MR, (11, 2012), BachelorsThesis,
             PDFFile("thesispusch.pdf")
+        ),
+        Thesis(
+            Person("Jens", "Meinicke"),
+            "VarexJ: A Variability-Aware Interpreter for Java Applications",
+            MD, (12, 2014), MastersThesis
         )
-
     )
 }

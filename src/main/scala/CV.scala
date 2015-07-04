@@ -131,6 +131,16 @@ object CV {
 
 
     val teaching = Seq(
+        Course("17-708 Software Product Lines: Concepts and Implementation",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/17708/"),
+            English, FallTerm(2015), new CourseKind with Lecture
+        ),
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
+            English, FallTerm(2015), new CourseKind with Lecture
+        ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("http://www.cs.cmu.edu/~charlie/courses/15-214/"),
@@ -279,12 +289,15 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), DS),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
-        Committee(Conference("SBCARS", 2014,
+        Committee(Conference("SBCARS", 2015,
             "Brazilian Symposium on Software Components, Architectures and Reuse",
             URL("http://cbsoft.org/sbcars2015/")), PC),
         Committee(VAMOS(2015), PC),
         Committee(SPLC(2015).url(URL("http://www.splc2015.net")), PC),
+        Committee(Workshop("SPLTea", 2015, "Second International Workshop on Software Product Line Teaching",
+            URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("ICSE-D", 2015,
             "International Conference on Software Engineering -- Demonstrations Committee",
             URL("http://2015.icse-conferences.org/call-dates/call-for-contributions/demonstrations")), PC),
@@ -292,7 +305,7 @@ object CV {
             "SPLC Workshop on Multi Product Line Engineering",
             URL("https://sites.google.com/site/wmultiple2014/")), PC),
         Committee(Workshop("SPLat", 2014, "Software Product Line Analysis Tools 2014",
-            URL("")), PC),
+            URL("https://www.win.tue.nl/~evink/research/Postscript/splatworkshop2014.pdf")), PC),
         Committee(Workshop("SPLTea", 2014, "First International Workshop on Software Product Line Teaching",
             URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("REVE", 2014, "2nd Workshop on Reverse Variability Engineering",
@@ -505,15 +518,6 @@ object CV {
             URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
     )
 
-    //title+name,where,url
-    val references: Seq[(String, String, URL)] = Seq(
-        ("Prof. Don Batory, Ph.D.", "University of Texas at Austin", URL("http://www.cs.utexas.edu/~dsb/")),
-        ("Prof. Krzysztof Czarnecki, Ph.D.", "University of Waterloo", URL("http://gsd.uwaterloo.ca/kczarnec")),
-        ("Prof. Christian Lengauer, Ph.D.", "University of Passau", URL("http://www.infosun.fim.uni-passau.de/cl/staff/lengauer/")),
-        ("Prof. Dr. Klaus Ostermann", "Philipps University Marburg", URL("http://www.mathematik.uni-marburg.de/~kos/")),
-        ("Prof. Dr. Gunter Saake", "University of Magdeburg", URL("http://wwwiti.cs.uni-magdeburg.de/~saake/"))
-    )
-
     val publications = CVPublications.publications
 
 
@@ -567,7 +571,7 @@ object CV {
 
     val currentStudents = List(
         (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
-        (Coutinho, Some("(coadvised with Jürgen Pfeffer)")),
+        (Ferreira, Some("(coadvised with Jürgen Pfeffer)")),
         (Wong, None),
         (Zhou, None)
     )

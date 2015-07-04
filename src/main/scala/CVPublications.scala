@@ -49,11 +49,11 @@ object CVPublications {
     val Batory = Person("Don", "Batory", URL("http://www.cs.utexas.edu/~dsb/"), "University of Texas at Austin")
     val Lengauer = Person("Christian", "Lengauer", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/lengauer/"), "University of Passau")
     val Moeller = Person("Bernhard", "Möller", URL("http://www.informatik.uni-augsburg.de/~moeller/"), "University of Augsburg")
-    val Siegmund = Person("Norbert", "Siegmund", URL("http://wwwiti.cs.uni-magdeburg.de/~nsiegmun/"), "University of Magdeburg")
+    val Siegmund = Person("Norbert", "Siegmund", URL("http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php"), "University of Passau")
     val Rosenmueller = Person("Marko", "Rosenmüller", URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/"), "General Electric")
     val Pukall = Person("Mario", "Pukall", URL("http://wwwiti.cs.uni-magdeburg.de/~pukall/"), "University of Magdeburg")
     val Rahman = Person("Syed Saif", "ur Rahman", "SZABIST")
-    val Thuem = Person("Thomas", "Thüm", URL("http://wwwiti.cs.uni-magdeburg.de/~tthuem/"), "University of Magdeburg")
+    val Thuem = Person("Thomas", "Thüm", URL("https://www.tu-braunschweig.de/isf/team/thuem"), "Technische Universität Braunschweig")
     val Groesslinger = Person("Armin", "Größlinger", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/groesslinger/"), "University of Passau")
     val Heidenreich = Person("Florian", "Heidenreich", "Technical University of Dresden")
     val Sunkle = Person("Sagar", "Sunkle")
@@ -72,7 +72,7 @@ object CVPublications {
     val Haase = Person("Steffen", "Haase", "University of Magdeburg")
     val Giarrusso = Person("Paolo G.", "Giarrusso", URL("http://www.informatik.uni-marburg.de/~pgiarrusso/"), "University of Marburg")
     val Ostermann = Person("Klaus", "Ostermann", URL("http://www.informatik.uni-marburg.de/~kos/"), "University of Marburg")
-    val Grebhahn = Person("Alexander", "Grebhahn", "University of Magdeburg")
+    val Grebhahn = Person("Alexander", "Grebhahn", "University of Passau")
     val Schroeter = Person("Reimar", "Schröter", "University of Magdeburg")
     val Stengel = Person("Michael", "Stengel")
     val Koeppen = Person("Veit", "Köppen", "University of Magdeburg")
@@ -118,12 +118,15 @@ object CVPublications {
     val Lillack = Person("Max", "Lillack", "University of Leipzig")
     val Zhang = Person("Bo", "Zhang", URL("http://wwwagse.informatik.uni-kl.de/staff/zhang/"), "University of Kaiserslautern")
     val Becker = Person("Martin", "Becker", "Fraunhofer IESE")
-
-
+    val AlKofahi = Person("Jafar", "Al-Kofahi", "Iowa State University")
+    val Gheyi = Person("Rohit", "Gheyi", URL("http://www.dsc.ufcg.edu.br/~rohit/Rohit_Gheyi/Home.html"), "Federal University of Campina Grande")
+    val Medeiros = Person("Flávio", "Medeiros", URL("http://fmmspg.appspot.com/"), "Federal University of Campina Grande")
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
-    val Medeiros = Person("Flávio", "Medeiros", "Federal University of Campina Grande")
+    val MNguyen = Person("My Huu", "Nguyen", "Ho Chi Minh City University of Science")
+    val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
+
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
-    val Coutinho = Person("Gabriel", "Coutinho", "Carnegie Mellon University")
+    val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
 
@@ -146,13 +149,14 @@ object CVPublications {
     val merge = Topic("Software merging")
     val typechef = Topic("TypeChef")
     val modularity = Topic("Modularity")
-    val empirical = Topic("Empirical evaluation")
+    val empirical = Topic("Empirical studies")
     val programcomprehension = Topic("Program comprehension")
     val dsl = Topic("Domain-specific languages")
     val parsing = Topic("Parsing")
     val testing = Topic("Testing")
     val security = Topic("Security")
     val web = Topic("Web development/analysis")
+    val preprocessor = Topic("Preprocessors/conditional compilation")
 
 
     //shorthands because they are reused
@@ -1540,7 +1544,7 @@ object CVPublications {
         demonstrate its capabilities so far with a case study: By type checking
         the open-source web server *Boa* with potentially 2^110 variants,
         we found type errors in several variants.""").
-            topic(vaanalysis, vsoc).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
+            topic(vaanalysis, vsoc, preprocessor, typechef).crosscite("extended by \\cite{KGREOB:OOPSLA11}"),
 
 
         BookEd(
@@ -1937,7 +1941,7 @@ object CVPublications {
                 by parsing the product line MobileMedia and the
                 entire X86 architecture of the Linux kernel with 6065 variable
                 features.                          """).selected().
-            topic(vsoc, vaanalysis, parsing),
+            topic(vsoc, vaanalysis, parsing, typechef, preprocessor),
 
         InProceedings(
             Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
@@ -2226,7 +2230,7 @@ ecosystems and product lines of product lines developed in an open fashion.
 We discuss the design and implementation of such a module system on a core
 calculus and provide an implementation for C, which we use to type check
 the open source product line Busybox with 811 compile-time options.""").
-            topic(modularity, vaanalysis, typechef)
+            topic(modularity, vaanalysis, typechef, preprocessor)
 
 
         ,
@@ -2253,14 +2257,15 @@ the open source product line Busybox with 811 compile-time options.""").
               |calculus and provide an implementation for C, which we use to type check
               |the open source product line Busybox with 811 compile-time options.
             """.stripMargin
-        ).selected().topic(modularity, vaanalysis, typechef).crosscite("superseeds \\cite{KOE:MR12}"),
+        ).selected().topic(modularity, vaanalysis, typechef, preprocessor).crosscite("superseeds \\cite{KOE:MR12}"),
 
         Article(
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
             "{FeatureIDE}: An Extensible Framework for Feature-Oriented Software Development",
             SCP(2014).volume(79).specialIssueOn("Experimental Software and Toolkits"),
             Pages(70, 85),
-            Map(DOI -> DOI("10.1016/j.scico.2012.06.002")),
+            Map(DOI -> DOI("10.1016/j.scico.2012.06.002"),
+                PDF -> PDFFile("SCP12.pdf")),
             """FeatureIDE is an open-source framework for feature-oriented software development (FOSD) based on Eclipse. FOSD is a paradigm for the construction, customization, and synthesis of software systems. Code artifacts are mapped to features, and a customized software system can be generated given a selection of features. The set of software systems that can be generated is called a software product line (SPL). FeatureIDE supports several FOSD implementation techniques such as feature-oriented programming, aspect-oriented programming, delta-oriented programming, and preprocessors. All phases of FOSD are supported in FeatureIDE, namely domain analysis, requirements analysis, domain implementation, and software generation."""
         ),
 
@@ -2410,7 +2415,7 @@ We close this gap by developing and applying two full-fledged analyses to two re
 We report on our experience with making variability-aware analysis ready for the real world, and with applying it to large-scale product lines.
 A key result is that variability-aware analysis can outperform even very limited sampling heuristics with respect to analysis time.            
             """).
-            topic(vaanalysis, fop, spl, typechef).crosscite("superseded by ESEC/FSE 2013 paper").hideabstract(),
+            topic(vaanalysis, fop, spl, typechef, preprocessor).crosscite("superseded by ESEC/FSE 2013 paper").hideabstract(),
 
         InProceedings(
             Seq(vonRhein, Apel, Kaestner, Thuem, Schaefer),
@@ -2518,7 +2523,7 @@ modularity and efficiency in real-world applications.
 
         InProceedings(
             Seq(JSiegmund, Kaestner, Apel, Brechmann, Saake),
-            "Experience from Measuring Program Comprehension—Toward a General Framework",
+            "Experience from Measuring Program Comprehension -- Toward a General Framework",
             Conference("SE", 2013, "Software Engineering 2013 -- Fachtagung des GI-Fachbereichs Softwaretechnik").month(2).
                 series("Lecture Notes in Informatics").
                 publisher(GI).
@@ -2594,7 +2599,7 @@ However, while being promising, so far, variability-aware analyses have been app
 To learn about the mutual strengths and weaknesses of variability-aware and sampling-based analyses of large-scale, real-world software systems, we compared the two by means of two concrete analysis implementations (type checking and liveness analysis) applied to three subject systems: the Busybox tool suite, the x86 Linux kernel, and the cryptographic library OpenSSL.
 A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
             """.stripMargin
-        ).topic(spl, vaanalysis, typechef).
+        ).topic(spl, vaanalysis, typechef, preprocessor).
             selected(),
 
 
@@ -2811,8 +2816,9 @@ infer a research agenda to guide future research on product-line analyses."""
             Seq(HNguyen, Kaestner, TNguyen),
             "Building Call Graphs for Embedded Client-Side Code in Dynamic Web Applications",
             FSE(2014).month(11).location("Hong Kong").acceptanceRate(61, 273),
-            ToAppear(),
-            Map(PDF -> PDFFile("fse14.pdf")),
+            Pages(518,529),
+            Map(PDF -> PDFFile("fse14.pdf"),
+                DOI -> DOI("10.1145/2635868.2635928")),
             """
           When developing and maintaining a software system, programmers often rely on
           IDEs to provide editor services such as syntax highlighting, auto-completion,
@@ -2921,9 +2927,10 @@ infer a research agenda to guide future research on product-line analyses."""
         InProceedings(
             Seq(HNguyen, Kaestner, TNguyen),
             "{Varis}: {IDE} Support for Embedded Client Code in {PHP} Web Applications",
-            ICSE(2015).month(5).location("Florence"),
-            ToAppear(),
-            Map(PDF -> PDFFile("icse15_varis_demo.pdf")),
+            ICSE(2015).subtitle("Volume 2").month(5).location("Florence"),
+            Pages(693, 696),
+            Map(PDF -> PDFFile("icse15_varis_demo.pdf"),
+                DOI -> DOI("10.1109/ICSE.2015.225")),
             """
             In software development, IDE services such as
               syntax highlighting, code completion, and ``jump to declara-
@@ -2942,8 +2949,181 @@ infer a research agenda to guide future research on product-line analyses."""
               implement various types of IDE services for embedded client
               code including syntax highlighting, code completion, and ``jump
               to declaration''.
+            """).note("Formal Demonstration paper, **Best Demonstration Award**").
+            topic(vaanalysis, web),
+
+
+        InProceedings(
+            Seq(Zhou, AlKofahi, TNguyen, Kaestner, Nadi),
+            "Extracting Configuration Knowledge from Build Files with Symbolic Analysis",
+            Workshop("Releng", 2015, "3rd International Workshop on Release Engineering").location("Florence, Italy").month(5).publisher(ACM),
+            Pages(20, 23),
+            Map(PDF -> PDFFile("Releng2015.pdf"),
+                DOI -> DOI("10.1109/RELENG.2015.15")),
+            """Build systems contain a lot of configuration
+            knowledge about a software system, such as under which
+            conditions specific files are compiled. Extracting such
+            configuration knowledge is important for many tools analyzing
+            highly-configurable systems, but very challenging due to the
+            complex nature of build systems. We design an approach, based
+            on SYMake, that symbolically evaluates Makefiles and extracts
+            configuration knowledge in terms of file presence conditions and
+            conditional parameters. We implement an initial prototype and
+            demonstrate feasibility on small examples.
+         """
+        ).topic(vaanalysis, adoption),
+
+        InProceedings(
+            Seq(Medeiros, Kaestner, Ribeiro, Nadi, Gheyi),
+            "The Love/Hate Relationship with The C Preprocessor: An Interview Study",
+            ECOOP(2015).series(LNCS),
+            ToAppear(),
+            Map(PDF -> PDFFile("ecoop15.pdf")),
+            """
+              The C preprocessor has received strong criticism in academia, among others regarding separation of concerns, error proneness, and code obfuscation, but is widely used in practice.
+              Many (mostly academic) alternatives to the preprocessor exist, but have not been adopted in practice.
+              Since developers continue to use the preprocessor despite all criticism and research, we ask how practitioners perceive the C preprocessor.
+              We performed interviews with 40 developers, used grounded theory to analyze the data, and cross-validated the results with data from a survey among 202 developers, repository mining, and results from previous studies.
+              In particular, we investigated four research questions related to why the preprocessor is still widely used in practice, common problems, alternatives, and the impact of undisciplined annotations.
+              Our study shows that developers are aware of the criticism the C preprocessor receives, but use it nonetheless, mainly for portability and variability.
+              They indicate that they regularly face preprocessor-related problems and preprocessor-related bugs.
+              The majority of our interviewees do not see any current C-native technologies that can entirely replace the C preprocessor.
+              However, developers tend to mitigate problems with guidelines, but those guidelines are not enforced consistently.
+              We report the key insights gained from our study and discuss implications for practitioners and researchers on how to better use the C preprocessor to minimize its negative impact.
+        """).
+            selected().topic(empirical, spl, preprocessor),
+
+
+
+        Article(
+            Seq(Nadi, Berger, Kaestner, Czarnecki),
+            "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
+            TSE(2015),
+            ToAppear(),
+            Map(PDF -> PDFFile("tse15.pdf"),
+                DOI -> DOI("10.1109/TSE.2015.2415793")),
+            """
+            Highly configurable systems allow users to tailor software to specific needs. Valid combinations of configuration options are
+            often restricted by intricate constraints. Describing options and constraints in a variability model allows reasoning about the supported
+            configurations. To automate creating and verifying such models, we need to identify the origin of such constraints. We propose a static
+            analysis approach, based on two rules, to extract configuration constraints from code. We apply it on four highly configurable systems to
+            evaluate the accuracy of our approach and to determine which constraints are recoverable from the code. We find that our approach is
+            highly accurate (93 % and 77 % respectively) and that we can recover 28 % of existing constraints. We complement our approach with a
+            qualitative study to identify constraint sources, triangulating results from our automatic extraction, manual inspections, and interviews
+            with 27 developers. We find that, apart from low-level implementation dependencies, configuration constraints enforce correct runtime
+            behavior, improve users’ configuration experience, and prevent corner cases. While the majority of constraints is extractable from code,
+            our results indicate that creating a complete model requires further substantial domain knowledge and testing. Our results aim at
+            supporting researchers and practitioners working on variability model engineering, evolution, and verification techniques.
             """).
-            topic(vaanalysis, web)
+            selected().topic(spl, vaanalysis, adoption),
+
+
+
+        InProceedings(
+            Seq(HNguyen, Kaestner, TNguyen),
+            "Cross-language Program Slicing for Dynamic Web Applications",
+            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
+            ToAppear(),
+            Map(),
+            """
+During software maintenance, program slicing is a useful technique
+to assist developers in understanding the impact of their changes.
+While different program-slicing techniques have been proposed for
+traditional software systems, program slicing for dynamic web applications 
+is challenging since the client-side code is *generated* from
+the server-side code and data entities are referenced across *different languages* 
+and are often *embedded* in string literals in the server-side
+program. To address those challenges, we introduce WebSlice, an
+approach to compute program slices across different languages for
+web applications. We first identify data-flow dependencies among
+data entities for PHP code based on symbolic execution. We also
+compute SQL queries and a conditional DOM that represents client-code 
+variations and construct the data flows for embedded languages:
+SQL, HTML, and JavaScript. Next, we connect the data flows across
+different languages and those across PHP pages. Finally, we compute 
+a program slice for any given entity based on the established
+data flows. Running WebSlice on five real-world PHP systems,
+we found that out of 40,670 program slices, 10 % cross languages,
+38 % cross files, and 13 % cross string fragments, demonstrating the
+potential benefit of tool support for cross-language program slicing
+in web applications.      
+"""
+        ).selected().topic(vaanalysis, typechef, web),
+
+
+
+        InProceedings(
+            Seq(Siegmund, Grebhahn, Kaestner, Apel),
+            "Performance-Influence Models for Highly Configurable Systems",
+            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
+            ToAppear(),
+            Map(),
+            """
+Almost every complex software system today is configurable. 
+While configurability has many benefits, it challenges
+performance prediction, optimization, and debugging.
+Often, the influences of the individual configurations options on performance
+is unknown. Worse, configuration options may interact, giving rise to a
+configuration space of possibly exponential size. Addressing this
+challenge, we propose an approach that derives a *performance-influence model* 
+for a given configurable system, describing all *relevant*
+influences of configuration options and their interactions. Such a model
+shall be useful for automatic performance prediction and optimization,
+on the one hand, and performance debugging for developers, on the other
+hand. Our approach combines
+machine-learning and sampling technique in a novel way. Our approach
+improves over standard
+techniques in that it (1) represents influences of options and their
+interactions explicitly (which eases debugging), (2) smoothly integrates
+binary and numeric configuration options for the first time, (3) incorporates 
+domain knowledge, if available (which eases learning and
+increases accuracy), (4) considers complex constraints among options, and
+ (5) systematically reduces the solution space to a tractable size. A
+series of experiments demonstrates the feasibility of our approach in
+terms of the accuracy of the models learned as well as the accuracy of
+the performances predictions one can make with them. Using our approach,
+we were able to identify a number of real performance bugs and other
+problems in real-world systems.
+            """.stripMargin
+        ).topic(nfp, spl, empirical).
+            selected(),
+
+
+        InProceedings(
+            Seq(HNguyen, MNguyen, Dang, Kaestner, TNguyen),
+            "Detecting Semantic Merge Conflicts With Variability-Aware Execution",
+            Conference("ESEC/FSE-NIER", 2015, "International Symposium on Foundations of Software Engineering -- New Ideas Track").month(8).location("Bergamo"),
+            ToAppear(),
+            Map(),
+            """
+            In collaborative software development, when two or more developers 
+            incorporate their changes, a merge conflict may arise if the
+            changes are incompatible. Previous research has shown that such
+            conflicts are common and occur as textual conflicts or build/test
+            failure, i.e., semantic conflicts. When a merge conflict occurs for
+            a large number of parallel changes, it is desirable to identify the
+            actual (minimum) set of changes that directly results in the conflict.
+            Pinpointing the specific conflicting changes directly leading to test
+            failure facilitates quick accountability and correction from developers. 
+            For semantic conflicts, to identify such subset of the changes is
+            challenging. A naive approach trying all possible subsets would not
+            scale due to the exponential number of possible combinations.
+            We propose Semex, a novel approach to detect semantic conflicts
+            using variability-aware execution. In the first step, we encode all parallel 
+            changes into a single program with variability in which we use
+            symbolic variables to represent whether a given change is applied to
+            the original program. In the second step, we run the test cases via
+            variability-aware execution. Variability-aware execution explores
+            all possible executions of the combined program with regard to all
+            possible values of the symbolic variables representing all changes,
+            and returns a propositional formula over the set of variables repre-
+            senting the condition in which a test case fails. Due to our encoding
+            algorithm, such a set corresponds to the minimum set of changes
+            that are responsible for the conflict. In our preliminary experimental
+            study on seven PHP applications with a total of 50 test cases and 19
+            semantic conflicts, Semex correctly detected all 19 conflicts.
+            """.stripMargin
+        ).topic(testing, interactions, vaanalysis, web, merge)
 
 
 

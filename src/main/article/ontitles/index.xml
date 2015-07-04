@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<article><date>13 March 2015</date><title>On Paper Titles (Bad Ideas, Rejected Ideas, and Final Titles)</title>
+    <content>
+        <p>Our paper <strong>"The Love/Hate Relationship with The C Preprocessor: An Interview Study"</strong> has just been accepted for ECOOP 2015 and that was one of the papers for which we discussed possible titles in quite some length. I would like to use this opportunity to reflect a little about our process of selecting titles and would like to share some rejected title ideas below...</p>
+
+
+        <p>I find selecting good paper titles quite difficult. A good title is short and easy to remember and says something about the work and preferably even something about the results. A title is the first thing a potential reader encounters and is the first and sometimes only criteria to decide whether to read or review the paper or attend the talk. A good title probably has quite some impact on whether the work is read and remembered.</p>
+
+        <p>I have a number of papers for which I regret the title. Our OOPSLA'11 paper <a href="https://dl.acm.org/citation.cfm?id=2048128">“Variability-Aware Parsing in the Presence of Lexical Macros and Conditional Compilation”</a> is a good example.
+            Its title is technically precise but clunky. Variability-aware parsing is our own term and I don't expect others have an intuitive idea of what it entails.
+            A year later, an almost identical approach was published as <a href="http://dl.acm.org/citation.cfm?id=2254103">“SuperC: Parsing all of C by taming the preprocessor”</a>
+            (there are lots of technical differences, but conceptually both papers are very similar and make ideas of splitting and joining parsers going back to the early <a href="http://ijcai.org/Past%20Proceedings/IJCAI-85-VOL2/PDF/014.pdf">1980s</a> and <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=160319">1990s work</a> at a large scale).
+            The SuperC title is shorter and much more intuitive. It describes the goal from the user's perspective (parsing all of C) instead of the technical issues that make parsing unpreprocessed C code
+            hard (lexical macros and conditional compilation). Although it's true that you could use the technique also for other languages that use lexical macros and conditional compilation
+            (and we have actually done so, for example, in the context of <a href="https://dl.acm.org/citation.cfm?id=2635928">analyzing PHP</a>), the main goal was and is to analyze C;
+            I guess that people who can figure out that their problem is similar to parsing unpreprocessed C code can figure out that our tools might apply.
+            The tool name <em>SuperC</em> in the title is definitively flashier than our concept of <em>Variability-Aware Parsing</em>. Although I like our tool name <em>TypeChef</em>, it doesn't convey what it is about.
+            Furthermore, since we used the name TypeChef in the title of an early <a href="https://dl.acm.org/citation.cfm?id=1868693">workshop paper</a> sketching a rough idea of the project,
+            now some people tend to cite that now completely outdated paper rather than the <a href="https://dl.acm.org/citation.cfm?id=2048128">actual</a> <a href="https://dl.acm.org/citation.cfm?id=2384673">later</a> <a href="https://dl.acm.org/citation.cfm?id=2491437">research</a> that now allows us to parse, type check, and statically analyze unmodified and unpreprocessed C code at the scale of the Linux kernel.</p>
+
+        <p>For the ECOOP paper, we actually had a longer discussion about the title  through several iterations over email and Skype. The paper is about an interview study with open source developers on how they perceive the C preprocessor. Essentially, we were wondering why people kept using the C preprocessor despite heavy criticism and why they would not adopt any of the alternatives that researchers have come up over the years (from syntactic preprocessors to languages with sophisticated metaprogramming facilities). Although problems are well known, even C# still contains lexical conditional compilation. Anyway, we needed a title describing that we studied the developers' perception of the C preprocessor with interviews.</p>
+        <p>Our first placeholder title was <strong>“Why is the C preprocessor still breathing?”</strong>, but that felt a little aggressive and wasn't saying much anyway. Going back to my email archive, here are a bunch of early suggestions:
+            <ul style="  padding-left: 32px">
+                <li>The C Preprocessor in Practice</li>
+                <li>50 Years is Long Enough</li>
+                <li>Perceiving the Problems and Alternatives to the C Preprocessor</li>
+                <li>Talking About the C preprocessor: Problems and Alternatives</li>
+                <li>Interviewing Developers: Problems and Alternatives to the C Preprocessor</li>
+                <li>Facts and Misconceptions about the C Preprocessor: A developer perspective ---</li>
+                <li>A Developer perspective of the C preprocessor : Several problems but no alternatives</li>
+                <li>Problems and Alternatives to the C Preprocessor: A developer perspective</li>
+            </ul>
+            </p>
+        <p>Some of them indicate how we performed the study and they are more or less describing our research questions, but none cover any results. At this point, we started brainstorming a bit for titles.
+            One patterns for titles that I like (that I  noticed first explicitly with Emerson's paper <a href="https://dl.acm.org/citation.cfm?id=2568226">“Cowboys, ankle sprains, and keepers of quality: how is video game development different from software development?”</a>)
+            is to use bits of results or quotes in the title. This doesn't convey much meaning upfront, but makes the paper easy to remember when you have seen the results and see how they are reflected in the title. Here are a list of suggestions:
+
+            <ul style="  padding-left: 32px">
+                <li>Talking to C Preprocessor Experts: Problems, Discipline and No Alternatives</li>
+                <li>The Love and Hate Relationship with the C Preprocessor: An Interview Study</li>
+                <li>The Necessary Evil: Interviewing C Preprocessor Experts</li>
+                <li>Talking about the C Preprocessor: Practices, Guidelines, and Enforcement</li>
+                <li>Talking about the C Preprocessor: Errorprone but needed</li>
+                <li>The Love/Hate Relationship with The C Preprocessor: An Interview Study</li>
+                <li>Aware of Criticism, but Needed Nonetheless - Interviewing Developers about the C Preprocessor</li>
+                <li>Error Prone but Needed Nonetheless - Interviewing Developers about Conditional Compilation</li>
+                <li>Developers and the C Preprocessor: From Problem Awareness to Guidelines</li>
+                <li>Talking about the C Preprocessor: Problems, Discipline, and Tools</li>
+                <li>Error prone but needed: A Study on the Perception of the C Preprocessor</li>
+                <li>"Don't do it": A Study on the Perception of Conditional Compilation (quote from the linux guideline that we quote on the first page)</li>
+                <li>"Don't do it": An Interview Study on the C Preprocessor</li>
+                <li>"Depends on the Project": An Interview Study on the C Preprocessor</li>
+                <li>"A real mess": An Interview Study on the C Preprocessor</li>
+                <li>Messy code, discipline, and guidelines: An Interview Study on the C Preprocessor</li>
+                <li>"A necessary evil": An Interview Study on the C Preprocessor</li>
+                <li>"A necessary evil, much like goto": An Interview Study on the C Preprocessor</li>
+                <li>Bad ideas, messy code, and discipline: An Interview Study on the C Preprocessor</li>
+                <li>Bad ideas, messy code, and balanced parentheses: An Interview Study on the C Preprocessor</li>
+                <li>"Don't Do It", otherwise "Cross Your Fingers": An Interview Study on the C Preprocessor</li>
+                <li>#ifdef PREPROCESSOR "Cross Your Fingers" #else "No Alternatives" #endif: An Interview Study on the C Preprocessor</li>
+            </ul>
+            Together the titles actually already give a quite nice picture of the paper's main results. As usual, the list develops from more to less serious suggestions, although the later ones often provide input for new ideas. After collecting many different ideas, we went through a number of additional refinements and then a voting process, resulting in a showdown between variations of
+            <ul style="  padding-left: 32px">
+                <li>The Love and Hate Relationship with the C Preprocessor: An Interview Study</li>
+                <li>The Necessary Evil: Interviewing C Preprocessor Experts</li>
+            </ul>
+            The “Love/Hate relationship” we finally agreed on is actually one of the less descriptive titles, but still conveys a significant part of the story. It's relatively short and easy to remember. Better to be remembered for the “Love/Hate” paper than for the “bad ideas” or “messy code” paper. :)
+        </p>
+        <p> -- </p>
+        <p>
+            And while I'm already diving into old emails, here some alternatives to our paper <strong><a href="http://dl.acm.org/citation.cfm?id=2568252">“Understanding Understanding Source Code with Functional Magnetic Resonance Imaging”</a></strong>.
+            I really like this title although (or because) almost everybody stumbles over the “Understanding Understanding” part in the beginning and we actually explain this in the beginning of the talk, but it also pretty exactly describes what the paper is about.
+        </p><p>
+        We went from
+        <ul style="  padding-left: 32px">
+            <li>"Measuring Program Comprehension with Functional Magnetic Resonance Imaging" (exact, somewhat bold, short enough, boring)</li>
+            <li>"Understanding Program Comprehension from a Cognitive Neuroscience Perspective" (less precise, somewhat boring)</li>
+            <li>"Looking into a Programmer's Head -- Understanding Program Comprehension"</li>
+        </ul>
+        to
+        <ul style="  padding-left: 32px">
+            <li>Measuring Brain Activity during Program Comprehension</li>
+            <li>Cognitive Processes during Program Comprehension</li>
+            <li>Understanding Understanding Source Code: An fMRI Study</li>
+            <li>Program Comprehension requires Working Memory, Attention and Language Processing</li>
+            <li>Left-Hemisphere Lateralization and other results from an fMRI study on Program Comprehension</li>
+            <li>Program Comprehension with the Middle Frontal Gyrus (and some Inferior Gyri)</li>
+            <li>Program Comprehension in the Brain</li>
+            <li>We're fed up with controlled experiments - Let's look inside developers</li>
+            <li>Why all your experiments were wasted time -- The better way of measuring program comprehension</li>
+            <li>Identifying genetic predestination for becoming an excellent programmer (or just Gattaca 2.0)</li>
+            <li>Brains!</li>
+            <li>Understand this!</li>
+            <li>All this effort to design software metrics? Sure!</li>
+            <li>Should I teach my child programming at the age of 3? (Maybe!)</li>
+        </ul></p>
+
+        <p>And finally we met somewhere in the middle.</p>
+
+
+
+
+
+</content>
+        </article>
