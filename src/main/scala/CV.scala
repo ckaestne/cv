@@ -289,6 +289,11 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ECOOP(2016), ERC),
+        Committee(VAMOS(2016), PC),
+        Committee(Conference("MV", 2016,
+            "MODULARITY 2016 - Modularity Visions Track",
+            URL("http://2016.modularity.info/track/modularity-2016-mvpapers")), PC),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), DS),
         Committee(ASE(2015).url(URL("http://ase2015.unl.edu/")), PC),
         Committee(Conference("SBCARS", 2015,

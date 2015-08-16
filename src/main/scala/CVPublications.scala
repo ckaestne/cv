@@ -3057,7 +3057,7 @@ in web applications.
             "Performance-Influence Models for Highly Configurable Systems",
             ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("fse15_influence.pdf")),
             """
 Almost every complex software system today is configurable. 
 While configurability has many benefits, it challenges
