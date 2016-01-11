@@ -131,6 +131,11 @@ object CV {
 
 
     val teaching = Seq(
+        Course("Paper Reading Group",
+            "",
+            URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
+            English, Continuous("PRG"), Seminar
+        ),
         Course("17-708 Software Product Lines: Concepts and Implementation",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/17708/"),
@@ -290,6 +295,7 @@ object CV {
 
     val committees = Seq[Committee](
         Committee(ECOOP(2016), ERC),
+        Committee(SPLC(2016).url(URL("http://www.splc2016.net")), PC),
         Committee(VAMOS(2016), PC),
         Committee(Conference("MV", 2016,
             "MODULARITY 2016 - Modularity Visions Track",
@@ -419,6 +425,12 @@ object CV {
 
 
     val awards: Seq[AwardOrGrant] = Seq(
+        Award(
+            "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2015",
+            URL("http://ase2015.unl.edu/"),
+            new GregorianCalendar(2012, 11 - 1, 12).getTime,
+            Nil
+        ),
         Grant("Grant: Reverse Engineering Variability Implementations",
             URL("http://www.nsf.gov/awardsearch/showAward?AWD_ID=1318808"),
             new GregorianCalendar(2013, 6 - 1, 24).getTime,
@@ -529,6 +541,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2015, 10), "Parsing Unpreprocessed C Code - The TypeChef Experience", "Invited Talk for the Parsing@SLE Workshop"),
+        InvitedTalk(time(2015, 9), "Understanding Feature Interactions: From Bugs to Performance Surprises", "Keynote at Brazilian Symposium on Software Components, Architectures, and Reuse (SBCARS)"),
         InvitedTalk(time(2014, 7), "Feature Interactions in Software Systems An Implementation Perspective", "Dagstuhl Seminar 14281: Feature Interactions: The Next Generation"),
         InvitedTalk(time(2014, 6), "Analyzing Highly-Configurable Software Systems", "University of Toronto -- Workshop on the State of the Art in Automated Software Engineering Research"),
         InvitedTalk(time(2014, 4), "Quality Assurance for Highly-Configurable Systems", "University of Magdeburg, Germany"),

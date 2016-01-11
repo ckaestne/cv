@@ -124,6 +124,8 @@ object CVPublications {
     val Lessenich = Person("Olaf", "Leßenich", URL("https://www.infosun.fim.uni-passau.de/spl/people-lessenich.php"), "University of Passau")
     val MNguyen = Person("My Huu", "Nguyen", "Ho Chi Minh City University of Science")
     val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
+    val Herbsleb = Person("James", "Herbsleb", "Carnegie Mellon University")
+    val Bogart = Person("Christopher", "Bogart", "Carnegie Mellon University")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
@@ -157,6 +159,7 @@ object CVPublications {
     val security = Topic("Security")
     val web = Topic("Web development/analysis")
     val preprocessor = Topic("Preprocessors/conditional compilation")
+    val awareness = Topic("Awareness/Transparency")
 
 
     //shorthands because they are reused
@@ -2976,8 +2979,8 @@ infer a research agenda to guide future research on product-line analyses."""
         InProceedings(
             Seq(Medeiros, Kaestner, Ribeiro, Nadi, Gheyi),
             "The Love/Hate Relationship with The C Preprocessor: An Interview Study",
-            ECOOP(2015).series(LNCS),
-            ToAppear(),
+            ECOOP(2015).series(LIPIcs).volume(37).publisher(Dagstuhl),
+            Pages(495,518),
             Map(PDF -> PDFFile("ecoop15.pdf")),
             """
               The C preprocessor has received strong criticism in academia, among others regarding separation of concerns, error proneness, and code obfuscation, but is widely used in practice.
@@ -2998,8 +3001,8 @@ infer a research agenda to guide future research on product-line analyses."""
         Article(
             Seq(Nadi, Berger, Kaestner, Czarnecki),
             "Where do Configuration Constraints Stem From? An Extraction Approach and an Empirical Study",
-            TSE(2015),
-            ToAppear(),
+            TSE(2015).volume(41).number(8),
+            Pages(820,841),
             Map(PDF -> PDFFile("tse15.pdf"),
                 DOI -> DOI("10.1109/TSE.2015.2415793")),
             """
@@ -3022,9 +3025,9 @@ infer a research agenda to guide future research on product-line analyses."""
         InProceedings(
             Seq(HNguyen, Kaestner, TNguyen),
             "Cross-language Program Slicing for Dynamic Web Applications",
-            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
-            ToAppear(),
-            Map(),
+            ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291).publisher(ACM),
+            Pages(369,380),
+            Map(PDF->PDFFile("fse15_webslice.pdf")),
             """
 During software maintenance, program slicing is a useful technique
 to assist developers in understanding the impact of their changes.
@@ -3056,7 +3059,7 @@ in web applications.
             Seq(Siegmund, Grebhahn, Kaestner, Apel),
             "Performance-Influence Models for Highly Configurable Systems",
             ESECFSE(2015).month(8).location("Bergamo").acceptanceRate(74, 291),
-            ToAppear(),
+            Pages(284,294),
             Map(PDF->PDFFile("fse15_influence.pdf")),
             """
 Almost every complex software system today is configurable. 
@@ -3092,9 +3095,9 @@ problems in real-world systems.
         InProceedings(
             Seq(HNguyen, MNguyen, Dang, Kaestner, TNguyen),
             "Detecting Semantic Merge Conflicts With Variability-Aware Execution",
-            Conference("ESEC/FSE-NIER", 2015, "International Symposium on Foundations of Software Engineering -- New Ideas Track").month(8).location("Bergamo"),
-            ToAppear(),
-            Map(),
+            Conference("ESEC/FSE-NIER", 2015, "International Symposium on Foundations of Software Engineering -- New Ideas Track").month(8).location("Bergamo").publisher(ACM),
+            Pages(926,929),
+            Map(PDF -> PDFFile("fse15nier.pdf")),
             """
             In collaborative software development, when two or more developers 
             incorporate their changes, a merge conflict may arise if the
@@ -3123,7 +3126,71 @@ problems in real-world systems.
             study on seven PHP applications with a total of 50 test cases and 19
             semantic conflicts, Semex correctly detected all 19 conflicts.
             """.stripMargin
-        ).topic(testing, interactions, vaanalysis, web, merge)
+        ).topic(testing, interactions, vaanalysis, web, merge),
+
+        InProceedings(
+            Seq(Bogart, Kaestner, Herbsleb),
+            "When it Breaks, it Breaks: How Ecosystem Developers Reason About the Stability of Dependencies",
+            Workshop("SCGSE", 2015, "ASE Workshop on Software Support for Collaborative and Global Software Engineering").month(11).
+                location("Lincoln, NE"),
+            ToAppear(),
+            Map(PDF -> PDFFile("scgse15.pdf")),
+            """Dependencies among software projects and libraries are an indicator of the
+            often implicit collaboration among many developers in software ecosystems.
+            Negotiating change can be tricky: changes to one module may cause ripple
+            effects to many other modules that depend on it, yet insisting on only backward-compatible 
+            changes may incur significant opportunity cost and stifle
+            change. We argue that awareness mechanisms based on various notions of stability
+            can enable developers to make  decisions that are independent yet wise and
+            provide stewardship rather  than disruption to the ecosystem.  In ongoing
+            interviews with developers in two software ecosystems  (CRAN and Node.js), 
+            we are finding that developers in fact struggle with change, that they
+            often use adhoc mechanisms to negotiate change, and that existing awareness
+            mechanisms like Github notification feeds are rarely used due to information
+            overload. We study the state of the
+            art and current information needs and outline a vision toward a change-based
+            awareness system.         """).topic(awareness,empirical),
+
+        Article(
+            Seq(Herbsleb, Kaestner, Bogart),
+            "Intelligently Transparent Software Ecosystems",
+            Journal("IEEE-Sw", 2015, "IEEE Software"),
+            ToAppear(),
+            Map(HTTP->URL("http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7325197"),
+                DOI->DOI("http://dx.doi.org/10.1109/MS.2015.156")),
+            """
+            Today’s social coding tools foreshadow a transformation of the software industry, as it increasingly relies on open libraries, frameworks, and code fragments. Our vision calls for new “intelligently transparent” services that support rapid development of innovative products while managing risk and receiving early warnings of looming failures. Intelligent transparency is enabled by an infrastructure that applies analytics to data from all phases of the lifecycle of open source projects, from development to deployment, bringing stakeholders the information they need when they need it.
+            """).
+            topic(awareness),
+
+            
+        InProceedings(
+            Seq(Medeiros, Kaestner, Ribeiro, Gheyi, Apel),
+            "A Comparison of 10 Sampling Algorithms for Configurable Systems",
+            ICSE(2016).month(5).location("Austin, TX").acceptanceRate(101, 530).publisher(ACM),
+            ToAppear(),
+            Map(),
+            """
+Almost every software system provides configuration options
+to tailor the system to the target platform and application
+scenario. Often, this configurability renders the analysis of
+every individual system configuration infeasible. To address
+this problem, researchers proposed a diverse set of sampling
+algorithms. We present a comparative study of 10 state-of-the-art 
+sampling algorithms regarding their fault-detection
+capability and size of sample sets. The former is important
+to improve software quality and the latter to reduce the
+time of analysis. In a nutshell, we found that the sampling
+algorithms with larger sample sets detected higher numbers
+of faults. Furthermore, we observed that the limiting assumptions 
+made in previous work influence the number of
+detected faults, the size of sample sets, and the ranking of
+algorithms. Finally, we identified a number of technical challenges 
+when trying to avoid the limiting assumptions, which
+question the practicality of certain sampling algorithms.
+            """).
+            selected().topic(vaanalysis, testing, empirical, preprocessor)
+
 
 
 

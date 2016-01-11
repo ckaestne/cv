@@ -575,6 +575,7 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
         case SpringTerm(thatYear) => year.compareTo(thatYear)
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
+        case Continuous(_) => -1
     }
 
     override def toString = "Summer " + year
@@ -586,6 +587,7 @@ case class SpringTerm(ayear: Int) extends Term(ayear) {
         case SpringTerm(thatYear) => year.compareTo(thatYear)
         case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
+        case Continuous(_) => -1
     }
 
     override def toString = "Spring " + year
@@ -597,6 +599,7 @@ case class WinterTerm(ayear: Int) extends Term(ayear) {
         case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
+        case Continuous(_) => -1
     }
 
     override def toString = "Winter " + year + "/" + (year + 1 - 2000)
@@ -608,10 +611,20 @@ case class FallTerm(ayear: Int) extends Term(ayear) {
         case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
         case WinterTerm(thatYear) => year.compareTo(thatYear)
         case FallTerm(thatYear) => year.compareTo(thatYear)
+        case Continuous(_) => -1
     }
 
     override def toString = "Fall " + year 
   }
+
+case class Continuous(label: String) extends Term(5000) {
+    def compare(that: Term) = that match {
+        case Continuous(l) => label.compareTo(l)
+        case _ => 1
+      }
+    override def toString=label
+}
+
 
 case class Course(
                      title: String,
