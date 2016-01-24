@@ -368,7 +368,7 @@ object GenHtml extends App {
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
-            printAwards(awards) ++
+//            printAwards(awards) ++
             printProjects(projects) ++
             printKeyPublications(publications) ++
             printCoolWall() ++

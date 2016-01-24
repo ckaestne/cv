@@ -294,6 +294,8 @@ object CV {
     )
 
     val committees = Seq[Committee](
+        Committee(ICSE(2016), PC),
+        Committee(ASE(2016), ERC),
         Committee(ECOOP(2016), ERC),
         Committee(SPLC(2016).url(URL("http://www.splc2016.net")), PC),
         Committee(VAMOS(2016), PC),
@@ -393,6 +395,8 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2015)),
+        Review(SPE(2015)),
         Review(SCP(2014)), //Science of Computer Programming
         Review(JOSER(2014)), //Science of Computer Programming
         Review(TSE(2014)), //IEEE Transactions on Software Engineering
@@ -590,18 +594,25 @@ object CV {
 
     val currentStudents = List(
         (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
-        (Ferreira, Some("(coadvised with Jürgen Pfeffer)")),
+        (Ferreira, None),
         (Wong, None),
         (Zhou, None)
     )
     val collaboratingStudents = List(
-        (HNguyen, Some("(working with Tien N. Ngyuen at Iowa State)")),
+        (HNguyen, Some("(Iowa State)")),
+        (Lillack, Some("(University of Leipzig)")),
+        (Meinicke, Some("(University of Magdeburg)")),
         (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
         (Lessenich, Some("(working with Sven Apel at the University of Passau)"))
     )
     val visitingStudents =  List(
         (Medeiros, Some("(2014)")),
-        (Meinicke, Some("(2014)"))
+        (Meinicke, Some("(2014)")),
+        (Person("Raman", "Goyal"), Some("(2015)")),
+        (Person("Htut Khine", "Htay Win"), Some("(2015)")),
+        (Stanciulescu, Some("(2016)")),
+        (Person("Prasad", "Kawthekar"), Some("(2016)")),
+        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(2016)"))
     )
 
 }

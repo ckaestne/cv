@@ -126,6 +126,7 @@ object CVPublications {
     val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
     val Herbsleb = Person("James", "Herbsleb", "Carnegie Mellon University")
     val Bogart = Person("Christopher", "Bogart", "Carnegie Mellon University")
+    val Stanciulescu = Person("Ștefan","Stănciulescu", "IT University Copenhagen")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")

@@ -12,6 +12,11 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2016, 1-1, 24).getTime, "FOSD Meeting 2016",
+            <span>The deadline for submitting a talk abstract for the <a href="http://fosd.net/2016">FOSD Meeting 2016</a> in Copenhagen is approaching soon.
+                This year, Ștefan Stănciulescu, Claus Brabrand, and Andrzej Wąsowski will host the meeting at ITU Copenhagen.
+                Really looking forward to it. Consider attending if you are interested in research on variability implementations.
+                Contact me in case of questions.</span>) ::
         NewsItem(new GregorianCalendar(2015, 3-1, 13).getTime, "The Love/Hate Relationship with the Preprocessor at ECOOP 2015",
           <span>Last summer, we interviewed quite a number of open source developers about their perceptions of the C preprocessor. The resulting paper has now been accepted at ECOOP 2015. While we still need a few days on producing the final version, I have used this as an opportunity to write a few words on <a href="ontitles/">(rejected) paper titles</a></span>) ::
         NewsItem(new GregorianCalendar(2014, 7-1, 2).getTime, "Teaching Software Construction with Travis CI",
