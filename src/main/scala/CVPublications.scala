@@ -3154,10 +3154,11 @@ problems in real-world systems.
         Article(
             Seq(Herbsleb, Kaestner, Bogart),
             "Intelligently Transparent Software Ecosystems",
-            Journal("IEEE-Sw", 2015, "IEEE Software"),
-            ToAppear(),
+            Journal("IEEE-Sw", 2015, "IEEE Software").volume(33).number(1).publisher(IEEE),
+            Pages(89,96),
             Map(HTTP->URL("http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=7325197"),
-                DOI->DOI("http://dx.doi.org/10.1109/MS.2015.156")),
+                DOI->DOI("10.1109/MS.2015.156"),
+                PDF->PDFFile("ieeesw16.pdf")),
             """
             Today’s social coding tools foreshadow a transformation of the software industry, as it increasingly relies on open libraries, frameworks, and code fragments. Our vision calls for new “intelligently transparent” services that support rapid development of innovative products while managing risk and receiving early warnings of looming failures. Intelligent transparency is enabled by an infrastructure that applies analytics to data from all phases of the lifecycle of open source projects, from development to deployment, bringing stakeholders the information they need when they need it.
             """).
