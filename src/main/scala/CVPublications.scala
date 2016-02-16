@@ -3171,7 +3171,7 @@ problems in real-world systems.
             "A Comparison of 10 Sampling Algorithms for Configurable Systems",
             ICSE(2016).month(5).location("Austin, TX").acceptanceRate(101, 530).publisher(ACM),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("icse16.pdf")),
             """
 Almost every software system provides configuration options
 to tailor the system to the target platform and application
