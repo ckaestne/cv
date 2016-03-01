@@ -295,7 +295,7 @@ object CV {
 
     val committees = Seq[Committee](
         Committee(ICSE(2016), PC),
-        Committee(ASE(2016), ERC, PubC),
+        Committee(ASE(2016), ERC/*, PubC*/),
         Committee(ECOOP(2016), ERC),
         Committee(SPLC(2016).url(URL("http://www.splc2016.net")), PC),
         Committee(VAMOS(2016), PC),
@@ -432,7 +432,7 @@ object CV {
         Award(
             "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2015",
             URL("http://ase2015.unl.edu/"),
-            new GregorianCalendar(2012, 11 - 1, 12).getTime,
+            new GregorianCalendar(2015, 11 - 1, 12).getTime,
             Nil
         ),
         Grant("Grant: Reverse Engineering Variability Implementations",
@@ -545,7 +545,9 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
-        InvitedTalk(time(2015, 10), "Parsing Unpreprocessed C Code - The TypeChef Experience", "Invited Talk for the Parsing@SLE Workshop"),
+        InvitedTalk(time(2016, 5), "Quality Assurance for Highly-Configurable   Systems", "Keynote Talk for the VACE Workshop at ICSE'16"),
+        InvitedTalk(time(2015, 11), "Starting an Academic Career -- Reflecting on Habits that Worked for Me", "Keynote Talk for the ASE 2015 Doctoral Symposium"),
+        InvitedTalk(time(2015, 10), "Parsing Unpreprocessed C Code - The TypeChef Experience", "Keynote Talk for the Parsing@SLE Workshop at SPLASH'15"),
         InvitedTalk(time(2015, 9), "Understanding Feature Interactions: From Bugs to Performance Surprises", "Keynote at Brazilian Symposium on Software Components, Architectures, and Reuse (SBCARS)"),
         InvitedTalk(time(2014, 7), "Feature Interactions in Software Systems An Implementation Perspective", "Dagstuhl Seminar 14281: Feature Interactions: The Next Generation"),
         InvitedTalk(time(2014, 6), "Analyzing Highly-Configurable Software Systems", "University of Toronto -- Workshop on the State of the Art in Automated Software Engineering Research"),
