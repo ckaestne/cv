@@ -126,7 +126,10 @@ object CVPublications {
     val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
     val Herbsleb = Person("James", "Herbsleb", "Carnegie Mellon University")
     val Bogart = Person("Christopher", "Bogart", "Carnegie Mellon University")
-    val Stanciulescu = Person("Ștefan","Stănciulescu", "IT University Copenhagen")
+    val Stanciulescu = Person("Ștefan", "Stănciulescu", "IT University Copenhagen")
+    val Sunshine = Person("Joshua", "Sunshine", URL("https://www.cs.cmu.edu/~jssunshi/"), "Carnegie Mellon University")
+    val Aldrich = Person("Jonathan", "Aldrich", URL("https://www.cs.cmu.edu/~aldrich/"), "Carnegie Mellon University")
+    val Wynne = Person("Adam", "Wynne", "Bosch Research and Technology Center, USA")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
@@ -161,6 +164,7 @@ object CVPublications {
     val web = Topic("Web development/analysis")
     val preprocessor = Topic("Preprocessors/conditional compilation")
     val awareness = Topic("Awareness/Transparency")
+    val ecosystem = Topic("Software ecosystems")
 
 
     //shorthands because they are reused
@@ -2234,7 +2238,7 @@ ecosystems and product lines of product lines developed in an open fashion.
 We discuss the design and implementation of such a module system on a core
 calculus and provide an implementation for C, which we use to type check
 the open source product line Busybox with 811 compile-time options.""").
-            topic(modularity, vaanalysis, typechef, preprocessor)
+            topic(modularity, vaanalysis, typechef, preprocessor, ecosystem)
 
 
         ,
@@ -2261,7 +2265,7 @@ the open source product line Busybox with 811 compile-time options.""").
               |calculus and provide an implementation for C, which we use to type check
               |the open source product line Busybox with 811 compile-time options.
             """.stripMargin
-        ).selected().topic(modularity, vaanalysis, typechef, preprocessor).crosscite("superseeds \\cite{KOE:MR12}"),
+        ).selected().topic(modularity, vaanalysis, typechef, preprocessor, ecosystem).crosscite("superseeds \\cite{KOE:MR12}"),
 
         Article(
             Seq(Thuem, Kaestner, Benduhn, Meinicke, Saake, Leich),
@@ -3130,6 +3134,44 @@ problems in real-world systems.
         ).topic(testing, interactions, vaanalysis, web, merge),
 
         InProceedings(
+            Seq(Ahmad, Sunshine, Kaestner, Wynne),
+            "Enforcing Fine-Grained Security and Privacy Policies in an Ecosystem within an Ecosystem",
+            Workshop("MobileDeLi", 2015, "3rd International Workshop on Mobile Development Lifecycle").month(10).
+                location("Pittsburgh, PA"),
+            Pages(28,34),
+            Map(PDF -> PDFFile("mobiledeli15.pdf")),
+            """Smart home automation and IoT promise to bring many advantages
+but they also expose their users to certain security
+and privacy vulnerabilities. For example, leaking the information
+about the absence of a person from home or the
+medicine somebody is taking may have serious security and
+privacy consequences for home users and potential legal implications
+for providers of home automation and IoT platforms.
+We envision that a new ecosystem within an existing
+smartphone ecosystem will be a suitable platform for distribution
+of apps for smart home and IoT devices. Android is
+increasingly becoming a popular platform for smart home
+and IoT devices and applications. Built-in security mechanisms
+in ecosystems such as Android have limitations that
+can be exploited by malicious apps to leak users’ sensitive
+data to unintended recipients. For instance, Android enforces
+that an app requires the Internet permission in order to access
+a web server but it does not control which servers the
+app talks to or what data it shares with other apps. Therefore,
+sub-ecosystems that enforce additional fine-grained custom
+policies on top of existing policies of the smartphone ecosystems
+are necessary for smart home or IoT platforms. To this
+end, we have built a tool that enforces additional policies
+on inter-app interactions and permissions of Android apps.
+We have done preliminary testing of our tool on three proprietary
+apps developed by a future provider of a home automation
+platform. Our initial evaluation demonstrates that
+it is possible to develop mechanisms that allow definition
+and enforcement of custom security policies appropriate for
+ecosystems of the like smart home automation and IoT.""").topic(security, ecosystem),
+
+
+        InProceedings(
             Seq(Bogart, Kaestner, Herbsleb),
             "When it Breaks, it Breaks: How Ecosystem Developers Reason About the Stability of Dependencies",
             Workshop("SCGSE", 2015, "ASE Workshop on Software Support for Collaborative and Global Software Engineering").month(11).
@@ -3150,7 +3192,7 @@ problems in real-world systems.
             mechanisms like Github notification feeds are rarely used due to information
             overload. We study the state of the
             art and current information needs and outline a vision toward a change-based
-            awareness system.         """).topic(awareness,empirical),
+            awareness system.         """).topic(awareness,empirical,ecosystem),
 
         Article(
             Seq(Herbsleb, Kaestner, Bogart),
@@ -3163,7 +3205,7 @@ problems in real-world systems.
             """
             Today’s social coding tools foreshadow a transformation of the software industry, as it increasingly relies on open libraries, frameworks, and code fragments. Our vision calls for new “intelligently transparent” services that support rapid development of innovative products while managing risk and receiving early warnings of looming failures. Intelligent transparency is enabled by an infrastructure that applies analytics to data from all phases of the lifecycle of open source projects, from development to deployment, bringing stakeholders the information they need when they need it.
             """).
-            topic(awareness),
+            topic(awareness,ecosystem),
 
             
         InProceedings(
@@ -3171,7 +3213,7 @@ problems in real-world systems.
             "A Comparison of 10 Sampling Algorithms for Configurable Systems",
             ICSE(2016).month(5).location("Austin, TX").acceptanceRate(101, 530).publisher(ACM),
             ToAppear(),
-            Map(),
+            Map(PDF->PDFFile("icse16.pdf")),
             """
 Almost every software system provides configuration options
 to tailor the system to the target platform and application
@@ -3191,8 +3233,42 @@ algorithms. Finally, we identified a number of technical challenges
 when trying to avoid the limiting assumptions, which
 question the practicality of certain sampling algorithms.
             """).
-            selected().topic(vaanalysis, testing, empirical, preprocessor)
+            selected().topic(vaanalysis, testing, empirical, preprocessor),
 
+
+        InProceedings(
+            Seq(Ahmad, Kaestner, Sunshine, Aldrich),
+            "Inter-app Communication in Android: Developer Challenges",
+            Conference("MSR", 2016, " 13th International Conference on Mining Software Repositories").month(5).location("Austin, TX").publisher(ACM).acceptanceRate(36,133),
+            ToAppear(),
+            Map(),
+            """
+            The Android platform is designed to support mutually untrusted 
+            third-party apps, which run as isolated processes but
+            may interact via platform-controlled mechanisms, called Intents.
+            Interactions among third-party apps are intended and
+            can contribute to a rich user experience, for example, the
+            ability to share pictures from one app with another. The
+            Android platform presents an interesting point in a design
+            space of module systems that is biased toward isolation, 
+            extensibility, and untrusted contributions. The Intent mechanism
+            essentially provides message channels among modules,
+            in which the set of message types is extensible. However,
+            the module system has design limitations including the lack
+            of consistent mechanisms to document message types, very
+            limited checking that a message conforms to its specification, 
+            the inability to explicitly declare dependencies on other
+            modules, and the lack of checks for backward compatibility
+            as message types evolve over time. In order to understand
+            the degree to which these design limitations result in real 
+            issues, we studied a broad corpus of apps and cross-validated
+            our results against app documentation and Android support
+            forums. Our findings suggest that design limitations do 
+            indeed cause development problems. Based on our results,
+            we outline further research questions and propose possible
+            mitigation strategies.
+            """).
+            topic(empirical, interactions, ecosystem)
 
 
 
