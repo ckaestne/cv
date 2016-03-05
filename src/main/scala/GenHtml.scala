@@ -191,7 +191,7 @@ object GenHtml extends App {
 
     // or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
-        rowH2_(<span>Key Publications {rssLogo("pub.rss","Full publication feed")}</span>,
+        rowH2_(<span>Selected Publications {rssLogo("pub.rss","Full publication feed")}</span>,
         <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
             for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
         }.flatten ++
@@ -369,7 +369,7 @@ object GenHtml extends App {
             printStudents(students) ++
             printCommittees(committees) ++
 //            printAwards(awards) ++
-            printProjects(projects) ++
+//            printProjects(projects) ++
             printKeyPublications(publications) ++
             printCoolWall() ++
             printPrivate()
