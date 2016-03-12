@@ -22,12 +22,12 @@ trait RSSFeed {
         new SimpleDateFormat("EEE', 'dd' 'MMM' 'yyyy' 'HH:mm:ss' 'Z", Locale.US)
 
     def printNewsFeed(file: File) =
-        printFeed(CV.name + " :: News Feed", CV.url, "News feed for " + CV.name, {
+        printFeed(CV.name + " :: News Feed", newsRSSURL, CV.url, "News feed for " + CV.name, {
             for (newsitem <- News.news) yield
                 <item>
                     <title>{newsitem.title}</title>
-                    <author>Christian Kästner</author>
-                    <description>{newsitem.body}</description>
+                    <author>kaestner@cs.cmu.edu (Christian Kästner)</author>
+                    <description>{newsitem.body.toString()}</description>
                     <pubDate>{RFC822.format(newsitem.date)}</pubDate>
                     <guid>{CV.url + "#" + newsitem.getID()}</guid>
                     <link>{CV.url + "#" + newsitem.getID()}</link>
@@ -45,11 +45,12 @@ trait RSSFeed {
     }
 
     val rssFeedURL = "https://www.cs.cmu.edu/~ckaestne/pub.rss"
+    val newsRSSURL = "https://www.cs.cmu.edu/~ckaestne/news.rss"
 
     def printPubsFeed(file: File) = try {
         val rss = XML.load(new java.net.URL(rssFeedURL))
 
-        printFeed(CV.name + " :: Publication Feed", pubPage, "Publication feed for " + CV.name, {
+        printFeed(CV.name + " :: Publication Feed", rssFeedURL, pubPage, "Publication feed for " + CV.name, {
             for (pub <- CV.publications) yield {
                 val pubId = pubPage + "#" + pub.genKey
                 val pubDesc = renderPubRSS(pub).toString
@@ -65,7 +66,7 @@ trait RSSFeed {
 
                 <item>
                     <title>{pub.title}</title>
-                    <author>{authors}</author>
+                    <author>kaestner@cs.cmu.edu ({authors})</author>
                     <link>{pubId}</link>
                     <description>{pubDesc}</description>
                     <guid>{pubId}</guid>
@@ -78,16 +79,17 @@ trait RSSFeed {
     }
 
 
-    def printFeed(title: String, url: String, desc: String, items: NodeSeq, file: File) {
+    def printFeed(title: String, feedURL: String, webURL: String, desc: String, items: NodeSeq, file: File) {
 
         val doc: Node =
-            <rss version="2.0">
+            <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
                 <channel>
                     <title>{title}</title>
-                    <link>{url}</link>
+                    <link>{webURL}</link>
                     <description>{desc}</description>
                     <language>en-us</language>
                     <pubDate>{RFC822.format(new Date())}</pubDate>
+                    <atom:link href={feedURL} rel="self" type="application/rss+xml" />
                     {items}
                 </channel>
             </rss>

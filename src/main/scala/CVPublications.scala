@@ -2879,9 +2879,9 @@ infer a research agenda to guide future research on product-line analyses."""
             Seq(Hunsen, JSiegmund, Lessenich, Apel, Zhang, Kaestner, Becker),
             "Preprocessor-Based Variability in Open-Source and Industrial Software Systems: An Empirical Study",
             ESE(2015).specialIssueOn("Empirical Evidence on Software Product Line Engineering"),
-            ToAppear(),
+            Pages(1,34),
             Map(PDF -> PDFFile("ese14.pdf"),
-                DOI -> DOI("10.1007/s10664-014-9355-3")),
+                DOI -> DOI("10.1007/s10664-015-9360-1")),
             """
               |Almost every sufficiently complex software system today is configurable.
               |*Conditional compilation* is a simple variability-implementation mechanism that is widely used in open-source projects and industry.
@@ -2986,7 +2986,8 @@ infer a research agenda to guide future research on product-line analyses."""
             "The Love/Hate Relationship with The C Preprocessor: An Interview Study",
             ECOOP(2015).series(LIPIcs).volume(37).publisher(Dagstuhl),
             Pages(495,518),
-            Map(PDF -> PDFFile("ecoop15.pdf")),
+            Map(PDF -> PDFFile("ecoop15.pdf"),
+                DOI -> DOI("10.4230/LIPIcs.ECOOP.2015.495")),
             """
               The C preprocessor has received strong criticism in academia, among others regarding separation of concerns, error proneness, and code obfuscation, but is widely used in practice.
               Many (mostly academic) alternatives to the preprocessor exist, but have not been adopted in practice.
@@ -3102,7 +3103,8 @@ problems in real-world systems.
             "Detecting Semantic Merge Conflicts With Variability-Aware Execution",
             Conference("ESEC/FSE-NIER", 2015, "International Symposium on Foundations of Software Engineering -- New Ideas Track").month(8).location("Bergamo").publisher(ACM),
             Pages(926,929),
-            Map(PDF -> PDFFile("fse15nier.pdf")),
+            Map(PDF -> PDFFile("fse15nier.pdf"),
+                DOI -> DOI("10.1145/2786805.2803208")),
             """
             In collaborative software development, when two or more developers 
             incorporate their changes, a merge conflict may arise if the
@@ -3139,7 +3141,8 @@ problems in real-world systems.
             Workshop("MobileDeLi", 2015, "3rd International Workshop on Mobile Development Lifecycle").month(10).
                 location("Pittsburgh, PA"),
             Pages(28,34),
-            Map(PDF -> PDFFile("mobiledeli15.pdf")),
+            Map(PDF -> PDFFile("mobiledeli15.pdf"),
+                DOI -> DOI("10.1145/2846661.2846664")),
             """Smart home automation and IoT promise to bring many advantages
 but they also expose their users to certain security
 and privacy vulnerabilities. For example, leaking the information
@@ -3266,7 +3269,7 @@ question the practicality of certain sampling algorithms.
             forums. Our findings suggest that design limitations do 
             indeed cause development problems. Based on our results,
             we outline further research questions and propose possible
-            mitigation strategies.
+            mitigation strategies..
             """).
             topic(empirical, interactions, ecosystem)
 
