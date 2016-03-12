@@ -1,5 +1,7 @@
 package de.stner.cv
 
+import de.stner.cv.VenueStructure._
+
 import scala.None
 import de.stner.cv.CVPublications._
 import java.io.File

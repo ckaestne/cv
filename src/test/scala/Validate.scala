@@ -6,7 +6,6 @@ import java.io.File
 class Validate extends FunSuite {
 
     import CV._
-    import CVPublications.publications
     import CVTheses.advisedTheses
 
     def checkURL(url: URL, c: Any = null) {

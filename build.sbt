@@ -9,6 +9,8 @@ scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.0.4"
 
+libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.7"
+
 libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
 
 libraryDependencies += "commons-io" % "commons-io" % "2.1"

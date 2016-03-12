@@ -8,7 +8,7 @@ import scala.xml.NodeSeq
 object CV {
 
     import de.stner.cv.CVPublications._
-    import de.stner.cv.Venues._
+    import de.stner.cv.VenueStructure._
 
 
     val name = "Christian Kästner"
@@ -293,6 +293,7 @@ object CV {
         "Software product lines, program synthesis, feature interactions, feature location, empirical analyses"
     )
 
+    import Venues._
     val committees = Seq[Committee](
         Committee(ICSE(2016), PC),
         Committee(ASE(2016), ERC/*, PubC*/),
@@ -395,13 +396,14 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(COMLAN(2016)),
         Review(TSE(2015)),
         Review(SPE(2015)),
         Review(SCP(2014)), //Science of Computer Programming
         Review(JOSER(2014)), //Science of Computer Programming
         Review(TSE(2014)), //IEEE Transactions on Software Engineering
         Review(TOPLAS(2012)),
-        Review(ESE(2012)),
+        Review(ESEM(2012)),
         Review(JSEP(2012)), //Journal of Software: Evolution and Process
         Review(HOSC(2012)), //Higher-Order and Symbolic Computation
         Review(AI(2012)), //Acta Informatica
@@ -539,7 +541,14 @@ object CV {
             URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
     )
 
-    val publications = CVPublications.publications
+    lazy val publications: List[Publication] = {
+        //get members via reflection
+        import reflect.runtime.universe._
+        val im = reflect.runtime.currentMirror reflect CVPublications
+        typeOf[CVPublications.type].members.
+            filter(m=>m.isMethod && m.asMethod.isAccessor).
+            map(m=>im.reflectMethod(m.asMethod).apply().asInstanceOf[Publication]).toList.reverse
+    }
 
 
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
@@ -594,6 +603,7 @@ object CV {
 
     )
 
+    import Coauthors._
     val currentStudents = List(
         (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
         (Ferreira, None),

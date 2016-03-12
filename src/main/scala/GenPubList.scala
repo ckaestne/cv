@@ -1,9 +1,10 @@
 package de.stner.cv
 
-import de.stner.cv.CVPublications._
-import de.stner.cv.CV._
 import java.io._
 import java.text._
+
+import de.stner.cv.CV._
+import de.stner.cv.VenueStructure._
 
 
 /**
