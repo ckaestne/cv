@@ -96,6 +96,7 @@ width:720px;
 
 #spellinglink {
 font-size:80%;
+z-index: 1;
 }
 
 #spellingbox .spelling {
@@ -161,3 +162,51 @@ margin: 8px
 }
 
 .researchthemesummary { margin-bottom:10px}
+
+.navbar {
+    background:#990000;
+    color:white;
+    position:fixed;
+    top:0;
+    width:100%;
+    font-family:"Roboto", Verdana, sans-serif;
+    padding-top:4px;
+    padding-bottom  :4px;
+}
+
+.navbar a {
+    color:white;
+}
+
+.navbar a:hover {
+    color:#d17702;
+}
+
+.navbar grid_3 { }
+
+.navbar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #990000;
+    min-width: 240px;
+    padding:8px 4px;
+    z-index: 1;
+}
+
+.navbar .dropdown-content p {
+    margin:0px
+}
+
+.navbar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.sectionanch {
+    position:relative;
+    padding-top:2.5ex
+}

@@ -89,7 +89,7 @@ object GenHtml extends App with RSSFeed {
 
 
     def printSupervisedTheses(theses: Seq[AThesis]) = rowH2(
-        "Supervised Theses",
+        "Supervised Theses", "theses",
           <div class="bib"><dl>
               {for (thesis <- theses.reverse) yield printThesis(thesis) }
               </dl></div> )
@@ -189,7 +189,7 @@ object GenHtml extends App with RSSFeed {
 
     // or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
-        rowH2_(<span>Selected Publications {rssLogo("pub.rss", "Full publication feed")}</span>,
+        rowH2_(<span>Selected Publications {rssLogo("pub.rss", "Full publication feed")}</span>, "publications",
         <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
             for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
         }.flatten ++
@@ -199,7 +199,7 @@ object GenHtml extends App with RSSFeed {
 
     //        A full publication list is available as <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>.</p>
     def printPublications(pubs: Seq[Publication]) =
-        rowH2_(<span>Publications {rssLogo("pub.rss", "Publication feed")}</span>,
+        rowH2_(<span>Publications {rssLogo("pub.rss", "Publication feed")}</span>, "publications",
     <div class="bib">
         <p>Key publications highlighted in yellow.</p>
         {printFilterHeader(pubs)}
@@ -217,7 +217,7 @@ object GenHtml extends App with RSSFeed {
     <img title="Generative Programming and Component Engineering 2013" src="GPCE-2013.png" alt="GPCE2013" width="180" height="220" />
     </a>
 
-    def printCommittees(committees: Seq[Committee]) = rowH2("Service",
+    def printCommittees(committees: Seq[Committee]) = rowH2("Service", "service",
             <div>{
                 for (c <- committees_conferences.dropRight(1))
                     yield printCommittee(c, true)
@@ -231,7 +231,7 @@ object GenHtml extends App with RSSFeed {
 
 
     def printPrivate(): NodeSeq = rowH2(
-        "Private Interests",
+        "Private Interests", "private",
         <p><a href={URL("http://www.flickr.com/photos/p0nk/sets/72157627689187184/").toString}>Jugg</a><a href={URL("juggling.xhtml").toString}>ling</a>,
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
         <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
@@ -248,15 +248,7 @@ object GenHtml extends App with RSSFeed {
         To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
         </p>
 
-    def printSpellingLink() = <span style="position:absolute;top:0"><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
-
-
-    def printResearchInterests(researchInterests: Seq[String]) =
-        <h2>Research Interests</h2> :+
-        <ul>
-            <li><strong>{researchInterests.head}</strong></li>
-            {for (r <- researchInterests.tail) yield <li>{r}</li>}
-        </ul>
+    def printSpellingLink() = <span style={"position:absolute;top:" + navBarHeight}><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
 
 
     val monthyear = new SimpleDateFormat("MMM. yyyy")
@@ -278,13 +270,13 @@ object GenHtml extends App with RSSFeed {
         }
     )
 
-    def printAwards(awards: Seq[AwardOrGrant]) = rowH2("Grants & Awards") ++ {
+    def printAwards(awards: Seq[AwardOrGrant]) = rowH2("Grants & Awards", "awards") ++ {
         for (r <- awards) yield printAward(r)
     }.flatten
 
 
     def printProjects(pr: Seq[(URL, String, String, Option[String])]): NodeSeq =
-        rowH2("Research Projects & Software") ++ {
+        rowH2("Research Projects & Software", "software") ++ {
             for (p <- pr) yield
                 row(<span class="toolname">{p._2}</span>,
                   <div><a href={p._1.toString}>{p._3}</a>{if (p._4.isDefined) " (" + p._4.get + ")"}</div>, "tool")
@@ -314,11 +306,11 @@ object GenHtml extends App with RSSFeed {
 
     def printPicture(): NodeSeq = <img src="me.jpg" alt="Christian Kästner" />
 
-    def rowH2(title: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = rowH2_(Text(title), body, leftExtra)
+    def rowH2(title: String, anchor: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = rowH2_(Text(title), anchor, body, leftExtra)
 
-    def rowH2_(title: Node, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2>{title}</h2> ++: body)
+    def rowH2_(title: Node, anchor: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = <div class="clear margin_h2">&nbsp;</div> +: row(leftExtra, <h2><a name={anchor} class="sectionanch"></a>{title}</h2> ++: body)
 
-    def printNews(full: Boolean = false): NodeSeq = rowH2_(<span>News {rssLogo("news.rss", "News feed")}</span>) ++ {
+    def printNews(full: Boolean = false): NodeSeq = rowH2_(<span>News {rssLogo("news.rss", "News feed")}</span>, "news") ++ {
         val news = if (full) News.news else News.news.take(3)
         for (newsItem <- news)
             yield row(
@@ -331,14 +323,14 @@ object GenHtml extends App with RSSFeed {
     }
 
     def printTeachingSummary(teaching: Seq[Course]) =
-        rowH2("Teaching") ++
+        rowH2("Teaching", "teaching") ++
             printTeaching(teaching.filter(_.term >= WinterTerm(2014))) ++
             row(null,
                 <div>See also the full <a href="teaching.html">teaching history</a>.</div>
                 )
 
     def printCoolWall() =
-        rowH2("FOSD Cool Wall",
+        rowH2("FOSD Cool Wall", "coolwall",
             <p>The cool wall was created and evolved during the yearly FOSD  meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we encourage researchers to look for better tool names. Up to 2012, the listing was completely subjective, feel free to complain. Starting 2013, we started <a href="coolwallvoting.jpg">voting</a>. In 2013 and 2014 we even gave out a <a href="coolwallaward.jpg">Coolest Tool Name award</a>. Unfortunately, the 2014 listing is incomplete, as the photos of the votes got lost.</p> :+
         <a href="coolwall2015.pdf"><img src="coolwall2015.png" alt="Cool Wall 2015" id="coolwall" /></a>)
 
@@ -346,8 +338,7 @@ object GenHtml extends App with RSSFeed {
     def printTwitterWidget(): NodeSeq =
     <p><a class="twitter-timeline"  href="https://twitter.com/p0nk"  data-widget-id="252400439511879680">twitter</a>
       <script>{"""!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');"""}</script>
-  
-  </p>
+    </p>
 
 
     def printFullBibtex(): NodeSeq =
@@ -355,7 +346,7 @@ object GenHtml extends App with RSSFeed {
             yield <div><a name={p.genKey}></a><pre>{p.toBibtex()}</pre></div>
 
     def printStudents(students: List[(String, List[(Person, Option[String])])]): NodeSeq =
-        rowH2("Team") ++ students.flatMap(printStudentSection)
+        rowH2("Team", "team") ++ students.flatMap(printStudentSection)
 
     private def printStudentSection(s: (String, List[(Person, Option[String])])): NodeSeq =
         row(<span>{s._1}</span>,
@@ -378,9 +369,52 @@ object GenHtml extends App with RSSFeed {
             printPrivate()
 
 
-    def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History") ++ printTeaching(teaching)
+    def teachingPage: NodeSeq = printTitle() ++ rowH2("Teaching History", "teachinghistory") ++ printTeaching(teaching)
 
     def newsPage: NodeSeq = printTitle() ++ printNews(true)
+
+    case class Nav(title: String, link: String, subnav: List[Nav] = Nil)
+
+    def navigationLinks = List(
+        Nav("News", "index.html#news"),
+        Nav("Research", "index.html#researchoverview",
+            Nav("Overview", "index.html#researchoverview") ::
+                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
+        Nav("Publications", "index.html#publications", List(
+            Nav("Selected Publications", "index.html#publications"),
+            Nav("All Publications", "publications.html"))),
+        Nav("Teaching", "index.html#teaching", List(
+            Nav("Current Teaching", "index.html#teaching"),
+            Nav("Teaching History", "teaching.html"))),
+        Nav("Team", "index.html#team"),
+        Nav("Misc", "index.html#coolwall", List(
+            Nav("Service", "index.html#service"),
+            Nav("FOSD Cool Wall", "index.html#coolwall"),
+            Nav("Juggling", "juggling.xhtml"),
+            Nav("Other Interests", "index.html#otherinterests")))
+    )
+
+    private def renderNav(n: Nav): NodeSeq = {
+        val l = <a href={n.link}>{n.title}</a>
+        if (n.subnav.isEmpty) l
+        else
+           <span class="dropdown">{l}<ul class="dropdown-content">{
+                for (sn <- n.subnav) yield
+                    <li><a href={sn.link}>{sn.title}</a></li>
+                }</ul>
+           </span>
+    }
+
+
+    def navigationBar =
+        <div class="navbar">
+            <div class="container_12">
+                <div class="grid_3 right"><a href="index.html#">Christian Kästner</a></div>
+                <div class="grid_9">{navigationLinks.map(renderNav).reduce(_ ++ Text(" · ") ++ _)}</div>
+            </div>
+        </div>
+
+    def navBarHeight = "6ex"
 
     def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot: String = "") = {
 
@@ -400,7 +434,7 @@ object GenHtml extends App with RSSFeed {
                 {extraHeader}
                 <title>{title}</title>
             </head>
-            <body><div class="container_12">{body}</div></body>
+            <body>{navigationBar}<div class="container_12" style={"margin-top:" + navBarHeight}>{body}</div></body>
         </html>
         scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", doctype = doct)
     }
@@ -423,7 +457,7 @@ object GenHtml extends App with RSSFeed {
             val targetDir = new File(targetPath, articleSubdir.getName)
             targetDir.mkdir()
             val body = printTitle(withLink = true) ++
-                rowH2(title, content, <span>{date}</span>) ++
+                rowH2(title, ResearchStructure.stringToKey(title), content, <span>{date}</span>) ++
                 printCommentWidget() ++
                 row(nbsp, <a href="..">back to main page</a>)
             printDoc(body, title.toString(), new File(targetDir, "index.html"), pathToRoot = "../")

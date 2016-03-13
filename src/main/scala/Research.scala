@@ -20,7 +20,7 @@ object ResearchStructure {
 
     case class Software(title: String, onelineDescription: String, url: URL)
 
-    private def stringToKey(s: String) = s.split("\\s").map(_.replaceAll("[^\\p{L}\\p{Nd}]+","")).filter(_.length>3).take(4).map(_.capitalize).mkString
+    def stringToKey(s: String) = s.split("\\s").map(_.replaceAll("[^\\p{L}\\p{Nd}]+","")).filter(_.length>3).take(4).map(_.capitalize).mkString
 
 }
 
@@ -35,12 +35,12 @@ object ResearchGenHtml extends App {
         printResearchOverview(themes) ++
         printResearch(themes)
 
-    def printResearchOverview(themes: List[Theme]): NodeSeq = rowH2("Research Overview") ++ themes.map(printThemeShort).flatten
+    def printResearchOverview(themes: List[Theme]): NodeSeq = rowH2("Research Overview", "researchoverview") ++ themes.map(printThemeShort).flatten
 
     def printThemeShort(theme: Theme): NodeSeq =
         row(null,
             <div class="researchthemesummary">
-                <h3><a name={theme.key}></a>{theme.title}</h3>
+                <h3>{theme.title}</h3>
                 <p class="researchthemedesc">{theme.shortdescription} <a href={"research.html#"+theme.key}>show details...</a></p>
                 <p class="researchthemetopics">Topics: {theme.topics.map(printTopicLink).reduce(_ ++ Text(" · ") ++ _)}</p>
             </div>
@@ -53,7 +53,7 @@ object ResearchGenHtml extends App {
     def printResearch(themes: List[Theme]): NodeSeq = themes.map(printThemeDetailed).flatten
 
     def printThemeDetailed(theme: Theme): NodeSeq =
-        rowH2(theme.title, theme.description) ++
+        rowH2(theme.title, theme.key, theme.description) ++
             theme.topics.map(printTopicLong).flatten
 
     def printTopicLong(topic: ResearchTopic): NodeSeq =
