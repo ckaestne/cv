@@ -217,7 +217,7 @@ object GenHtml extends App with RSSFeed {
     <img title="Generative Programming and Component Engineering 2013" src="GPCE-2013.png" alt="GPCE2013" width="180" height="220" />
     </a>
 
-    def printCommittees(committees: Seq[Committee]) = rowH2("Committees",
+    def printCommittees(committees: Seq[Committee]) = rowH2("Service",
             <div>{
                 for (c <- committees_conferences.dropRight(1))
                     yield printCommittee(c, true)
@@ -248,7 +248,7 @@ object GenHtml extends App with RSSFeed {
         To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
         </p>
 
-    def printSpellingLink() = <span style="font-size:small;position:absolute;top:0"><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
+    def printSpellingLink() = <span style="position:absolute;top:0"><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
 
 
     def printResearchInterests(researchInterests: Seq[String]) =
@@ -305,7 +305,7 @@ object GenHtml extends App with RSSFeed {
         	<div class="clear margin_40">&nbsp;</div>
     }
 
-    val nbsp: Node = <span>&nbsp;</span>.child.head
+    def nbsp: Node = <span>&nbsp;</span>.child.head
 
     def row(left: NodeSeq, right: NodeSeq, marginafter: String = "") =
         <div class="grid_3 right">{if (left == null) nbsp else left}</div> :+
@@ -332,7 +332,7 @@ object GenHtml extends App with RSSFeed {
 
     def printTeachingSummary(teaching: Seq[Course]) =
         rowH2("Teaching") ++
-            printTeaching(teaching.filter(_.term >= WinterTerm(2010))) ++
+            printTeaching(teaching.filter(_.term >= WinterTerm(2014))) ++
             row(null,
                 <div>See also the full <a href="teaching.html">teaching history</a>.</div>
                 )
@@ -367,6 +367,7 @@ object GenHtml extends App with RSSFeed {
         printTitle(true) ++
             row(printPicture(), printSummary())}</div> ++
             printNews() ++
+            ResearchGenHtml.printResearchOverview(Research.themes) ++
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
@@ -393,6 +394,7 @@ object GenHtml extends App with RSSFeed {
                 <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/text.css"} />
                 <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/960.css"} />
                 <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/jquery.tweet.css"} />
+                <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,400italic|Roboto+Slab:400,700' rel='stylesheet' type='text/css' />
                 <script type="text/javascript" src={pathToRoot + "js/jquery-1.7.2.min.js"}></script>
                 <script type="text/javascript" src={pathToRoot + "js/script.js"}></script>
                 {extraHeader}

@@ -1,5 +1,11 @@
+body {
+    font-family:"Roboto Slab", Georgia, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 h1 {
-font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-family:"Roboto", Verdana, sans-serif;
 font-weight:normal;
 font-size:300%;
 color:#464646;
@@ -7,25 +13,23 @@ vertical-align:text-bottom;
 }
 
 h2 {
-font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-family:"Roboto", Verdana, sans-serif;
 font-weight:bold;
-font-size:150%;
+font-size:200%;
 margin-top:0;
-margin-bottom:1em;
+margin-bottom:0.5em;
 vertical-align:text-bottom;
 color:#990000;
 padding:0;
+line-height: 148%;
 }
 
 h3 {
-font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-family:"Roboto Slab", Georgia, serif;
 font-weight:bold;
-font-size:130%;
 margin-top:0;
-margin-bottom:1em;
 vertical-align:text-bottom;
-color:#990000;
-padding:0;
+line-height: 148%;
 }
 
 .title {
@@ -69,9 +73,7 @@ font-size:60%;
 font-style:italic;
 }
 
-body {
-font-family:Verdana, Arial, Helvetica, sans-serif;
-}
+
 
 p {
 line-height:148%;
@@ -93,7 +95,7 @@ width:720px;
 }
 
 #spellinglink {
-font-size:50%;
+font-size:80%;
 }
 
 #spellingbox .spelling {
@@ -116,9 +118,9 @@ margin-bottom:10px;
 }
 
 .headline h1 {
+font-family:"Roboto", Verdana, sans-serif;
 padding-top:8px;
-font-size:300%;
-font-family:'ATF Antique', Georgia, Times New Roman, sans-serif;
+font-size:350%;
 font-weight:bold;
 line-height:110%;
 }
@@ -157,3 +159,5 @@ pre {
 line-height:105%;
 margin: 8px
 }
+
+.researchthemesummary { margin-bottom:10px}

@@ -2455,7 +2455,7 @@ object CVPublications {
         """.stripMargin
     ).topic(programcomprehension, empirical, vsoc, fop, experiment)
 
-    val fpsd12_varex = InProceedings(
+    val fosd12_varex = InProceedings(
         Seq(Kaestner, vonRhein, Erdweg, Pusch, Apel, Rendel, Ostermann),
         "Toward Variability-Aware Testing",
         FOSD12,

@@ -15,38 +15,15 @@ object CV {
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
-        <p>I am an assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the
-            <strong>complexity</strong>
-            caused by
-            <strong>variability</strong>
-            in software systems. I develop mechanisms,
-            languages, and tools to
-            <strong>implement variability in a disciplined way</strong>,
-            to
-            <strong>detect errors</strong>, and
-            to
-            <strong>improve program comprehension</strong>
-            in systems with a high amount of variability. Currently, I investigate approaches to parse and type check all compile-time configurations of the
-            <strong>Linux kernel</strong>
-            in the
-            <strong>TypeChef</strong>
-            project.</p> :+
-            <p>My research in keywords:
-                variability and reuse;
-                software product lines;
-                multidimensional separation of concerns;
-                modularity, cohesion, information hiding and module systems;
-                program comprehension;
-                virtual separation of concerns;
-                feature-oriented software development;
-                parsers, type systems, and lightweight program analyses;
-                refactoring;
-                aspect-orientation;
-                program synthesis;
-                feature interactions;
-                feature location;
-                Linux;
-                and empirical methods.</p> :+
+        <p>I am an assistant professor in the School of Computer Science at Carnegie Mellon University, interested in controlling the
+            <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
+            languages, and tools to <strong>implement variability in a disciplined way</strong> despite
+            imperfect modularity,
+            to understand <strong>feature interactions</strong> and <strong>interoperability</strong> issues,
+            to <strong>detect errors</strong>, and to <strong>improve program comprehension</strong>
+            in systems with a high amount of variability. Among others, I have developed approaches to parse and
+            type check all compile-time configurations of the <strong>Linux kernel</strong> in the
+            <strong>TypeChef</strong> project.</p> :+
             <p>Profiles:
                 <a href="cv.pdf">Curriculum vitae</a>,
                 <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>,
@@ -68,11 +45,7 @@ object CV {
                     &nbsp;
                 </div>
                 <div>Office: Wean 5122</div>
-                <div>
-                    &nbsp;
-                </div>
-                <div>E-mail: kaestner (at) cs.cmu.edu</div>
-                <div>Phone: +1 412 268 5254</div>
+                <div>Email: kaestner (at) cs.cmu.edu</div>
             </p>
 
 

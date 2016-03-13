@@ -411,6 +411,10 @@ object DefaultBibStyle extends BibStyle {
     def withAcceptanceRate: Boolean = true
 }
 
+object SimpleBibStyle extends BibStyle {
+    def withAcceptanceRate: Boolean = false
+}
+
 trait LinkKind {
     def print: String
 
