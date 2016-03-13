@@ -358,7 +358,7 @@ object GenHtml extends App with RSSFeed {
         printTitle(true) ++
             row(printPicture(), printSummary())}</div> ++
             printNews() ++
-            ResearchGenHtml.printResearchOverview(Research.themes) ++
+//            ResearchGenHtml.printResearchOverview(Research.themes) ++
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
@@ -377,9 +377,9 @@ object GenHtml extends App with RSSFeed {
 
     def navigationLinks = List(
         Nav("News", "index.html#news"),
-        Nav("Research", "index.html#researchoverview",
-            Nav("Overview", "index.html#researchoverview") ::
-                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
+//        Nav("Research", "index.html#researchoverview",
+//            Nav("Overview", "index.html#researchoverview") ::
+//                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
         Nav("Publications", "index.html#publications", List(
             Nav("Selected Publications", "index.html#publications"),
             Nav("All Publications", "publications.html"))),
