@@ -15,4 +15,7 @@ libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
 
 libraryDependencies += "commons-io" % "commons-io" % "2.1"
 
+libraryDependencies += "com.mortennobel" % "java-image-scaling" % "0.8.6"
+
+
 //watchSources <+= baseDirectory { _ / "demo" / "examples.txt" }
