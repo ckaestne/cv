@@ -3318,7 +3318,7 @@ object CVPublications {
         "Inter-app Communication in Android: Developer Challenges",
         Conference("MSR", 2016, " 13th International Conference on Mining Software Repositories").month(5).location("Austin, TX").publisher(ACM).acceptanceRate(36, 133),
         ToAppear(),
-        Map(),
+        Map(PDF -> PDFFile("msr16.pdf")),
         """
             The Android platform is designed to support mutually untrusted 
             third-party apps, which run as isolated processes but
