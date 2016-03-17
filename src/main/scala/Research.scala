@@ -1,5 +1,7 @@
 package de.stner.cv
 
+import java.awt.Color
+import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -16,7 +18,7 @@ object ResearchStructure {
         def key = stringToKey(title)
     }
 
-    case class ResearchTopic(title: String, description: NodeSeq, pictureFile: Option[String] = None, insights: List[Elem] = Nil, tools: List[Software] = Nil, collaborators: List[Person] = Nil) {
+    case class ResearchTopic(title: String, description: NodeSeq, pictureFile: Option[String] = None, insights: List[Elem] = Nil, tools: List[Software] = Nil, collaborators: List[Person] = Nil, scaleImg: Float = 1) {
         def key = stringToKey(title)
     }
 
@@ -30,7 +32,7 @@ object ResearchStructure {
 object ResearchGenHtml extends App {
 
     import de.stner.cv.GenHtml._
-    import de.stner.cv.Research.themes
+    import de.stner.cv.Research._
     import de.stner.cv.ResearchStructure._
 
 
@@ -62,15 +64,16 @@ object ResearchGenHtml extends App {
     def imgWidth = 200 //px
 
     def printTopicLong(topic: ResearchTopic): NodeSeq = {
+        val width = Math.round(imgWidth * topic.scaleImg)
         val picturePath = topic.pictureFile.map(p => {
             val imgDir = "research"
             assert(new File(sourcePath, p).exists(), s"image $p does not exist in $sourcePath")
             FileUtils.copyFile(new File(sourcePath, p), new File(new File(targetPath, imgDir), p), true)
             val smallImgFilename = p.dropRight(4) + "-min.png"
-            scaleImage(new File(sourcePath, p), new File(new File(targetPath, imgDir), smallImgFilename), imgWidth)
+            scaleImage(new File(sourcePath, p), new File(new File(targetPath, imgDir), smallImgFilename), width)
             (imgDir + "/" + p, imgDir + "/" + smallImgFilename)
         })
-        row(picturePath.map(p => <a href={p._1}><img src={p._2} alt={topic.title} width={imgWidth + "px"} /></a>).getOrElse(null),
+        row(picturePath.map(p => <a href={p._1}><img class="topicimg" src={p._2} alt={topic.title} width={width + "px"} /></a>).getOrElse(null),
             <div class="researchtopic">
                 <h3><a name={topic.key}></a>{topic.title}</h3>
                 {topic.description}
@@ -78,8 +81,58 @@ object ResearchGenHtml extends App {
         )
     }
 
+    def trimImage(bmp: BufferedImage): BufferedImage = {
+        val imgHeight = bmp.getHeight
+        val imgWidth = bmp.getWidth
+
+        def isNonWhite(rgb: Int) = rgb != Color.WHITE.getRGB &&
+            (rgb >> 24 & 255) > 0
+
+        //TRIM WIDTH
+        var widthStart = imgWidth
+        var widthEnd = 0
+        var stop = false
+        for (y <- 0 until imgHeight) {
+            stop = false
+            for (x <- (0 until imgWidth - 1).reverse) {
+                if (!stop && isNonWhite(bmp.getRGB(x, y)) && x < widthStart) {
+                    widthStart = x
+                }
+                if (!stop && isNonWhite(bmp.getRGB(x, y)) && x > widthEnd) {
+                    widthEnd = x
+                    stop = true
+                }
+            }
+        }
+        //TRIM HEIGHT
+        var heightStart = imgHeight
+        var heightEnd = 0
+        for (x <- 0 until imgWidth) {
+            stop = false
+            for (y <- (0 until imgHeight - 1).reverse) {
+                if (!stop && isNonWhite(bmp.getRGB(x, y)) && y < heightStart) {
+                    heightStart = y
+                }
+                if (!stop && isNonWhite(bmp.getRGB(x, y)) && y > heightEnd) {
+                    heightEnd = y
+                    stop = true
+                }
+            }
+        }
+
+        val finalWidth = widthEnd - widthStart
+        val finalHeight = heightEnd - heightStart
+
+        val newImg = new BufferedImage(finalWidth, finalHeight,
+            BufferedImage.TYPE_INT_ARGB)
+        val g = newImg.createGraphics()
+        g.drawImage(bmp, -widthStart, -heightStart, null)
+        newImg
+    }
+
+
     def scaleImage(inputFile: File, outputFile: File, width: Int) = {
-        val image = ImageIO.read(inputFile)
+        val image = trimImage(ImageIO.read(inputFile))
 
         val resampleOp = new ResampleOp(width, (width * image.getHeight) / image.getWidth)
         resampleOp.setFilter(ResampleFilters.getLanczos3Filter)
@@ -121,6 +174,9 @@ object Research {
         case CiteExternal(authorYear, longForm, link) =>
             <a href={link.toString} title={longForm}>{authorYear}</a>
     }
+
+    def linkTopic(topic: ResearchTopic, linkText: Option[String]) =
+        <a href={"research.html#" + topic.key} title={topic.title}>{linkText.getOrElse(topic.title)}</a>
 
     case class CiteExternal(authorYear: String, longForm: String, link: URL)
 
@@ -336,7 +392,7 @@ object Research {
             that many sampling strategies are only easy to apply when making strong simplifying assumptions, such as
             that the system does not contain constraints or that each file can be analyzed separately {cite(fse13, icse16)}.
         </p>,
-        Some("sampling.png")
+        Some("sampling.png"), scaleImg = .8f
         //            Insights: Most configuration-related issues indeed involve only few configuration options and can be found with combinatorial sampling. There are however also issues that involve more configuration options and are much harder to find.
         //    Insights: Most sampling strategies are challenging to set up, when considering constraints among options, analyzes that cross files, or variability from C header files.
     )
@@ -463,36 +519,11 @@ object Research {
             recertification and certification of systems composed from parts (ecosystems,
             plugin systems, configurable systems).
         </p>,
-        Some("heartbleed.png")
+        Some("heartbleed.png"), scaleImg = 0.8f
         //        Insight: Performance-influence models can describe which options or interactions affect the performance of a highly-configurable system. With moderate effort, we can build relatively accurate models for real-world software systems that are useful for debugging, understanding, prediction, and optimization.
         //    Insight: Most configuration options have only limited influence on most quality attributes. Considering interactions among options is important to achieve accuracy, but usually only few significant interactions occur in each system that can often be found with certain heuristics.
         //    Tools: SPLConqueror
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //////////////////////////////////////////// imperfect modularity /////////////////////////////////////////////
@@ -533,8 +564,9 @@ object Research {
             achieve separate compilation or open-world reasoning, it might be a
             lightweight practical alternative for many development scenarios where classic
             modularity is not practical or too expensive.
-        </p>
-//    [cide screenshot]
+        </p>,
+        Some("cide.png")
+        //    [cide screenshot]
         //    Example insight: Tool support can emulate many, though not all benefits of modularity even in scattered crosscutting implementations.
     )
 
@@ -556,8 +588,8 @@ object Research {
             upstream change. We develop tailored awareness mechanisms that identify which
             changes are relevant for individual users of a software package to allow a
             timely reaction.
-        </p>
-//    [node.js/cran/Eclipse logos? Something from the presentation in passau?]
+        </p>,
+        Some("ecosys.png") //    [node.js/cran/Eclipse logos? Something from the presentation in passau?]
         //
         //        Example insight: Raw notification feeds are leading to information overload but the actual amount of important information is often very manageable.
     )
@@ -573,40 +605,11 @@ object Research {
             We investigated from a conceptual perspective assumptions, costs, and
             limitations of modularity, both in the context of scattered variability
             implementations [] and more broadly from a philosophical perspective [].
-        </p>
-    //    [micromodularity picture]
+        </p>,
+        Some("micromod.png")
+        //    [micromodularity picture]
         //        Example Insights: For many fine-grained, interacting, or crosscutting implementation the expected benefits of modularity may not justify the required overhead.
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //////////////////////////////////////////// maintenance /////////////////////////////////////////////
@@ -647,11 +650,11 @@ object Research {
             various changes in the branches into disciplined variability mechanisms [].
             Finally, we also investigate mechanisms to extract configuration knowledge
             from build systems [].
-        </p>
-    //    [plots from proposal]
+        </p> ,
+        Some("splpromise.png")
+        //    [plots from proposal]
         //        Todo: reverse engineering feature models
     )
-
 
 
     def fop = ResearchTopic("Feature-Oriented Programming",
@@ -668,8 +671,9 @@ object Research {
             product line development and feature-oriented programming specifically, we
             developed an Eclipse plugin FeatureIDE that makes the languages and tools more
             accessible [].
-        </p>
-    //    [fop collaboration diagram]
+        </p>,
+        Some("fop.png")
+        //    [fop collaboration diagram]
     )
 
 
@@ -688,10 +692,10 @@ object Research {
             metrics [], have analyzed how configurability relates to proneness for bugs
             and vulnerabilities [], and how we can support developers to handle the
             complexity with tools and visualizations [].
-        </p>
-    //    [distribution plots from gabriels paper]
+        </p>,
+        Some("vulndist.png")
+        //    [distribution plots from gabriels paper]
     )
-
 
 
     def understandingifdef = ResearchTopic("Understanding Preprocessor Use",
@@ -707,8 +711,9 @@ object Research {
             in dozens of open source programs [] as well as in industrial software product
             lines []. In addition, we have interviewed C programmers to understand how
             they perceive the challenges of the C preprocessor [].
-        </p>
-    //        [undisciplined vim example]
+        </p>,
+        Some("undiscipl.png")
+        //        [undisciplined vim example]
         //    Insights: Among others, we found that developers strongly favor disciplined usage but nonetheless about 16 percent of all conditional-compilation directives are undisciplined in practice.
     )
 
@@ -731,25 +736,37 @@ object Research {
             from using conditional compilation directives around those code fragments [].
             Exploiting the fact that configuration options are used differently from other
             state in the program, we achieve a highly accurate tracking in most programs.
-        </p>
-    //        [config map from paper]
+        </p>,
+        Some("lotrack.png") //        [config map from paper]
     )
 
 
     def buildsys = ResearchTopic("Build Systems",
         <p>
-            We investigate how to extract configuration knowledge from build systems. Build systems control a significant amount of compile-time variability in many software systems, but are often encoded in various, hard to analyze tools and languages such as make. The complicated build logic of many project can make it difficult to answer simple questions, such as, in which configurations is a file even compiled or which extra parameters are passed in which configurations. The problem of extracting configuration knowledge is limiting many quality assurance and reverse engineering approaches in their accuracy. So far, we have pursued a static extraction approach based on symbolic execution of make files [] but are planning to investigate other build systems and other analysis strategies.
-        </p>
-    //    [some picture from Shurui’s paper]
+            We investigate how to extract configuration knowledge from build systems. Build systems control a
+            significant amount of compile-time variability in many software systems, but are often encoded in
+            various, hard to analyze tools and languages such as make. The complicated build logic of many project
+            can make it difficult to answer simple questions, such as, in which configurations is a file even
+            compiled or which extra parameters are passed in which configurations. The problem of extracting
+            configuration knowledge is limiting many quality assurance and reverse engineering approaches in
+            their accuracy. So far, we have pursued a static extraction approach based on symbolic execution
+            of make files [] but are planning to investigate other build systems and other analysis strategies.
+        </p>,
+        Some("make.png") //    [some picture from Shurui’s paper]
     )
 
     def modularityfi = ResearchTopic("Modularity and Feature Interactions",
         <p>
-            We investigate how to modularity implement features in a way that avoids accidental feature interactions but still allows intended interactions among features. For example, a total isolation of features would be possible, but would prevent intended interactions as well. We study various ecosystems to understand what implementation mechanisms they use to control interactions, such as Android [], and explore alternative forms of implementation. Among others, we have designed a module system that makes variability inside a module and its interface very explicit []. However, how to best implement variability to tame interactions but allow sufficient flexibility is still an open research challenge.
-        </p>
-    //    [android figure from mobiledeli paper?]
+            We investigate how to modularity implement features in a way that avoids accidental feature interactions
+            but still allows intended interactions among features. For example, a total isolation of features would
+            be possible, but would prevent intended interactions as well. We study various ecosystems to understand
+            what implementation mechanisms they use to control interactions, such as Android [], and explore
+            alternative forms of implementation. Among others, we have designed a module system that makes
+            variability inside a module and its interface very explicit []. However, how to best implement
+            variability to tame interactions but allow sufficient flexibility is still an open research challenge.
+        </p>,
+        Some("androidiot.png") //    [android figure from mobiledeli paper?]
     )
-
 
 
     //////////////////////////////////////////// beyond spl /////////////////////////////////////////////
@@ -786,7 +803,7 @@ object Research {
             help to solve problems entirely outside the product line domain, in this case
             the analysis of staged programs.
         </p>,
-        Some("varis.png")//        [ide snapshot from demo/parsing keynote]
+        Some("varis.png") //        [ide snapshot from demo/parsing keynote]
         //        Tool: varis
     )
 
@@ -794,7 +811,7 @@ object Research {
         <p>
             Performance analysis of highly configurable systems can be generalized as a
             form of sensitivity analysis. The same techniques we use to learn
-            [performance-influence models] can be used to understand design spaces and
+            {linkTopic(performance, Some("performance-influence models"))} can be used to understand design spaces and
             consequences of changes in domains outside of traditional product lines, as
             long as we can evaluate the impact of these changes in an interpreter. For
             example, we can model which changes to parameters or variable types in a
@@ -803,8 +820,8 @@ object Research {
             that potentially share similar characteristics about the nature of
             interactions of changes, where both black-box and white-box sensitivity-
             analysis techniques for highly-configurable systems can be reused.
-        </p>
-//    [cobot picture?]
+        </p>,
+        Some("cobot.png") //    [cobot picture?]
     )
 
     def vtests = ResearchTopic("Tests and Patches",
@@ -816,8 +833,8 @@ object Research {
             break a test. We hope that these techniques will allow efficient exploration
             of large search spaces, as used for mutation-based testing or automatic
             program repair.
-        </p>
-//        [genprog picture?]
+        </p>,
+        Some("genprog.png") //        [genprog picture?]
     )
 
     //////////////////////////////////////////// misc /////////////////////////////////////////////
