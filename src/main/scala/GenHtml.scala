@@ -391,7 +391,7 @@ object GenHtml extends App with RSSFeed {
             Nav("Service", "index.html#service"),
             Nav("FOSD Cool Wall", "index.html#coolwall"),
             Nav("Juggling", "juggling.xhtml"),
-            Nav("Other Interests", "index.html#otherinterests")))
+            Nav("Other Interests", "index.html#private")))
     )
 
     private def renderNav(n: Nav): NodeSeq = {
