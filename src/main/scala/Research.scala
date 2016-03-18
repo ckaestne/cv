@@ -46,10 +46,12 @@ object ResearchGenHtml extends App {
         row(null,
             <div class="researchthemesummary">
                 <h3>{theme.title}</h3>
-                <p class="researchthemedesc">{theme.shortdescription} <a href={"research.html#" + theme.key}>[details]</a></p>
-                <p class="researchthemetopics">Topics: {theme.topics.map(printTopicLink).reduce(_ ++ Text(" · ") ++ _)}</p>
+                <p class="researchthemedesc">{theme.shortdescription}
+                    {theme.topics.map(printTopicLink).reduce(_ ++ Text(" · ") ++ _)}</p>
             </div>
         )
+
+    // <a href={"research.html#" + theme.key}>[details]</a>
 
     def printTopicLink(topic: ResearchTopic): NodeSeq =
         <a href={"research.html#" + topic.key}>{topic.title}</a>
@@ -170,28 +172,65 @@ object Research {
 
     def citeOne(p: Any): NodeSeq = p match {
         case p: Publication =>
-            <a href={"publications.html#" + p.genKey} title={p.render(SimpleBibStyle, TextFormater)}>{p.venue.short} {p.venue.year}</a>
+            <a href={"publications.html#" + p.genKey} title={p.render(SimpleBibStyle, TextFormater)}>{
+                val ven = p.venue.short
+                if (ven == null || ven.trim == "")
+                    p.venue.publisher.map(_.name).getOrElse("")
+                else ven
+            } {p.venue.year}</a>
         case CiteExternal(authorYear, longForm, link) =>
             <a href={link.toString} title={longForm}>{authorYear}</a>
     }
 
-    def linkTopic(topic: ResearchTopic, linkText: Option[String]) =
+    def linkTopic(topic: ResearchTopic, linkText: Option[String] = None): NodeSeq =
         <a href={"research.html#" + topic.key} title={topic.title}>{linkText.getOrElse(topic.title)}</a>
+
+    def linkTool(sw: Software, linkText: Option[String] = None): NodeSeq =
+        <a href={sw.url.toString} title={sw.title + ": " + sw.onelineDescription}>{linkText.getOrElse(sw.title)}</a>
 
     case class CiteExternal(authorYear: String, longForm: String, link: URL)
 
 
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
     //////////////////////////////////////////// quality assurance /////////////////////////////////////////////
 
     def qualityAssurance = Theme(
         "Quality Assurance for Highly-Configurable Software Systems",
-        "We investigate approaches to scale various quality assurance strategies, including parsing, type " +
-            "checking, data-flow analysis, and testing, to entire configuration spaces in order to find variability bugs" +
-            "and detect feature interactions.",
+        "We explore approaches to scale quality assurance strategies, including parsing, type " +
+            "checking, data-flow analysis, and testing, to huge configuration spaces in order to find variability bugs " +
+            "and detect feature interactions:",
         <p>
           We investigate approaches to scale various quality assurance strategies to entire configuration
-          spaces. Although configurability in software and software product lines is important to customize
-          it for different stakeholders and usage scenarios, it causes key challenges for quality assurance.
+          spaces.
           Configuration options can change the behavior of a system and can interact with other configuration
           options, leading to an exponential configuration space, often complicated further by constraints.
           For example, the Linux kernel has 13,000 compile-time options alone that could be combined into up
@@ -199,8 +238,8 @@ object Research {
           at one configuration at a time. We investigate a wide range of approaches (including parsing,
           type checking, data-flow analysis, testing, energy analysis, and sampling) for a large number of
           languages and environments (conditional compilation in C, load-time options in Java, plugin
-          mechanisms in PHP). A typical goal is to make assurance judgements for the entire configuration
-          space that is comparable to but much faster than looking at each configuration separately,
+          mechanisms in PHP). Our typical goal is to make assurance judgements for the entire configuration
+          space that yields equivalent results but is much faster than looking at each configuration separately,
           typically by exploiting the similarities among configurations.
         </p><p>
           I think variability-related complexity is a fascinating topic. On the surface it seems impossible
@@ -229,19 +268,19 @@ object Research {
     def variationalAnalysis = ResearchTopic(
         "Variational Analysis",
         <p>
-          Variational analysis is the idea of analyzing the entire configuration space at once instead of
+          Variational analysis (or variability-aware analysis) is the idea of analyzing the entire configuration space at once instead of
           analyzing individual configurations either brute force or by sampling. Variational analysis typically
           represents the entire program and all its variations together and considers those variations in every
           analysis step. For example, if a variable in a program can have three alternative types depending on
           two configuration options, a type checker would track all alternative types and their corresponding
           conditions and make sure that they are used appropriately in every context.
         </p><p>
-          Variational analysis is typically sound and complete with regard to a brute-force strategy -- that is
+          Variational analysis is typically sound and complete with regard to a brute-force strategy&mdash;that is
           it finds exactly the same issues a baseline brute-force analysis would find and introduces no false
-          positives -- but much faster because it exploits the similarities in the program. While variations in different parts of the program can interact and lead to
+          positives&mdash;but much faster because it exploits the similarities in the program. While variations in different parts of the program can interact and lead to
           an exponential explosion, we have shown empirically for many problems that those interactions,
           although they exist, are often relatively rare and local, enabling to scale variational analyses to
-          huge configuration spaces as in the Linux kernel with 13000 compile-time options.
+          huge configuration spaces as in the Linux kernel with thousands of compile-time options.
         </p><p>
           We have investigated variational analyses and built tools for parsing {cite(oopsla11_typechef)}, type checking {cite(ase08, tosem12, oopsla12)},
           linker checks (compositionality) {cite(oopsla12)}, control-flow and data-flow analysis {cite(fse13)}, and testing {cite(icse14_varex, fosd12_varex)}.
@@ -259,12 +298,12 @@ object Research {
     def unpreprocessedC = ResearchTopic(
         "Analysis of Unpreprocessed C Code",
         <p>
-            With our TypeChef infrastructure, we have built the first sound and complete parser and analysis
-            infrastructure for unpreprocessed C code. Most analyses for C code work on preprocessed code, after
-            expanding macros, including files, and deciding conditional compilation conditions, but by preprocessing
-            code though, they loose information about all other configurations. For
-            the same reason, building tools such as refactoring engines that work on unpreprocessed code that a
-            developer edits is very challenging. Before TypeChef, parsing unpreprocessed C code was only possible
+            With our {linkTool(typechef)} infrastructure, we have built the first sound and complete parser and analysis
+            infrastructure for unpreprocessed C code. Most analyses for C code work on preprocessed code of a single configuration, after
+            expanding macros, including files, and deciding conditional compilation conditions&mdash;by preprocessing
+            code, they loose information about other configurations. For
+            the same reason, tools such as refactoring engines that work on unpreprocessed code which a
+            developer edits are very challenging to build. Before TypeChef, parsing unpreprocessed C code was only possible
             with unsound heuristics or by restricting heavily how developers could use the C preprocessor. The
             TypeChef lexer and parser explore all possible branches of conditional compilation decisions, all
             possible macro expansions, and file inclusions and build an abstract syntax tree representing all
@@ -383,7 +422,7 @@ object Research {
     def sampling = ResearchTopic("Sampling",
         <p>
             While I am personally biased toward sound variational analyses that cover entire configuration spaces,
-            we have investigated sampling strategies toward quality assurance. Sampling is by its very nature unsound
+            we have investigated sampling strategies toward quality assurance. Sampling is by its very nature incomplete
             with regard to the configuration space because it does not analyze all configurations, but it is typically
             much easier to perform. Among others, we have compared different sampling strategies and have compared
             variational analyses to sampling, where variational analysis can provide a ground truth about issues in
@@ -399,7 +438,7 @@ object Research {
 
     def featureInteraction = ResearchTopic("Feature Interactions",
         <p>
-            Feature interactions are still a mystery to me. They are emergent properties
+            Feature interactions are still a mystery to me. They are <em>emergent properties</em>
             in a system and surface as interoperability problems. They emerge from a
             failure of compositionality, when the behavior of combining two parts is
             unexpected from their individual behaviors. In the common example of flood
@@ -410,7 +449,7 @@ object Research {
             of a blogging software should often interact to reach a common goal. Although
             feature interactions have been studied in depth from a requirements
             perspective in the 90s and some success has been achieved in understanding
-            interactions and designing for them in specific domains as telecommunications,
+            interactions and designing for them in the telecommunications domain,
             to me it is still largely unclear how we can detect them in practice or design
             new systems to allow intentional interactions but prevent undesired ones. For
             example, how can we ensure orthogonality or isolation of options except for
@@ -426,7 +465,7 @@ object Research {
             (compile-time, run-time, plugins), but take a very wide view on interactions
             that includes diverging behavior, alternative values of a variable depending
             on multiple options, structural interactions as nested #ifdefs, as well as
-            performance interactions.
+            {linkTopic(performance, Some("performance interactions"))}.
             I am mostly interested in interactions at the code level, but with broad
             ranges of domains, such as infrastructure software, plugin systems, software
             ecosystems, home automation, or medical devices.
@@ -448,12 +487,12 @@ object Research {
             interactions is to specify for each feature separately the expected behavior,
             independent of any other options. Such feature-specific specification will
             allow us to detect when that feature is negatively influenced by other
-            options. This view shapes my view on interactions and is a main reason for
+            options {cite(comnet13)}. This view shapes my view on interactions and is a main reason for
             pursuing variational execution as an efficient way of checking such
             specifications encoded as test cases in large configuration spaces. I believe
             that writing test cases that assert a feature’s behavior independent from
             other features, combined with variational execution, will allow us to get a
-            handle on interoperability and detecting feature interactions.
+            handle on interoperability and detecting feature interactions {cite(icse14_varex)}.
         </p>,
         Some("featurespec.png")
         //            Insights: Correctness in highly configurable systems can only be specified effectively through global or per-feature specifications.
@@ -466,15 +505,14 @@ object Research {
             systems. With their configuration options, many configurable software systems
             have a built-in potential to tweak performance and other quality attributes,
             for example to trade off faster encoding with lower video quality in a video
-            encoder or longer compile time with faster execution for a compiler in a high-
-            performance-computing scenario. However, understanding which configuration
+            encoder. However, understanding which configuration
             options affect performance or other quality attributes is difficult. Not all
             configuration options influence performance significantly and sometimes the
             interactions of multiple options have strong positive or negative
-            influences---again the scale of the configuration space makes an analysis difficult.
+            influences&mdash;again the scale of the configuration space makes an analysis difficult.
         </p><p>
-            We have primarily focused on building performance-influence models and energy-
-            influence models in a form of sensitivity analysis in which we measure quality
+            We have focused on building performance-influence models and energy-influence
+            models in a form of <em>sensitivity analysis</em> in which we measure quality
             attributes in various configurations and subsequently learn a model that
             describes which options and which interactions influence the quality
             attribute. These models are suitable for debugging, understanding, predicting,
@@ -482,11 +520,11 @@ object Research {
             software systems. For example, by showing the influence of configuration
             options on energy consumption, we expect that users make more energy-conscious
             configuration decisions weighing the benefits of a feature against its
-            cost---in a tool we call <em>green configurator</em>.
+            cost&mdash;in a tool we call <em>green configurator</em>.
         </p><p>
             We have learned that we can build relatively accurate models even with few
             measurements and that there are various heuristics for learning about
-            interactions, rooted in common observations in real-world systems. So far, we
+            interactions, rooted in common observations in real-world systems {cite(splc11_nfp,icse12,fse15_influence)}. So far, we
             focused mainly on a black-box approach, where we just measure performance
             while executing the system, but there are many opportunities for static and
             dynamic analyses to inform the sampling strategy and reduce the number of
@@ -515,7 +553,7 @@ object Research {
             flows differ in different configurations, we investigate whether configuration
             complexity statistically associates with vulnerabilities in the
             implementation, and we investigate how current certification approaches along
-            the lines of Common Criteria can be improved toward supporting easier
+            the lines of <em>Common Criteria</em> can be improved toward supporting easier
             recertification and certification of systems composed from parts (ecosystems,
             plugin systems, configurable systems).
         </p>,
@@ -526,21 +564,52 @@ object Research {
     )
 
 
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
     //////////////////////////////////////////// imperfect modularity /////////////////////////////////////////////
 
     def imperfectModularity = Theme("Working with Imperfect Modularity",
-        "We investigate mechanisms to support developers in scenarios where modularity, the separation of changeable " +
-            "internals from stable interfaces, reaches its limits. We explore ideas to complement modularity mechanisms " +
-            "with tooling, such as virtual separation of concerns and awareness mechanisms.",
+        "We explore mechanisms to support developers in scenarios in which traditional modularity mechanisms face " +
+            "challenges; among others, we explore strategies to complement modularity mechanisms " +
+            "with tooling:",
         <p>
             We investigate mechanisms to support developers in scenarios where modularity, the separation of changeable
-            internals from stable interfaces, reaches its limits. We then often complement traditional modularity
+            internals from stable interfaces, reaches its limits. We then  complement traditional modularity
             mechanisms with tool support and awareness mechanisms. Challenges to classic modularity mechanisms
             includes crosscutting concerns and feature implementations that are difficult or inefficient to
             modularize, as well as large and distributed development activities in software ecosystems without
-            central planning. Software product lines have been an excellent case to study modularity, because variable
-            source code often is a concern that one might naturally try to modularize, but that is often scattered in
-            the source code with control-flow mechanisms (if statements) or conditional compilation (#ifdef directives).
+            central planning. Software product lines have been an excellent case study for modularity challenges, because variable
+            source code often is an important concern that is often challenging to modularize, due to
+            its scattered and fine-grained nature and common implementation with
+            control-flow mechanisms (if statements) and conditional compilation (#ifdef directives).
         </p>,
         List(vsoc, awareness, concepts))
 
@@ -549,18 +618,18 @@ object Research {
         <p>
             Observing the common crosscutting implementations of features in product
             lines, often scattered with conditional compilation directives, we discussed
-            whether modularizing those would be worth the required costs []. We argue that
+            whether modularizing those would be worth the required costs {cite(fosd11)}. We argue that
             for many kinds of implementations, it might be simpler to provide tool support
             that would mimic several benefits of modularity, while still preserving the
-            simplicity of scattered implementations. In what we call virtual separation of
-            concerns, tool support synthesizes editable views on individual features and
+            simplicity of scattered implementations. In what we call <em>virtual separation of
+            concerns</em>, tool support synthesizes editable views on individual features and
             configurations of a product. Developers can switch between different views,
             depending on their tasks; tooling emulates many navigation and cohesion
-            benefits otherwise expected from modularity []. Static analysis can even
+            benefits otherwise expected from modularity {cite(jot09_vsoc)}. Static analysis can even
             compute certain interfaces on demand (called emergent interfaces) that can
-            summarize the interactions with hidden code []. Finally, we have developed
+            summarize the interactions with hidden code {cite(icse14_emergo)}. Finally, we have developed
             prototype tools that would rewrite the actual code base between virtual and
-            actual physical separation []. While virtual separation of concerns cannot
+            actual physical separation {cite(gpce09)}. While virtual separation of concerns cannot
             achieve separate compilation or open-world reasoning, it might be a
             lightweight practical alternative for many development scenarios where classic
             modularity is not practical or too expensive.
@@ -583,11 +652,11 @@ object Research {
         </p><p>
             We study how developers plan changes and cope with changes in practice and how
             those practices are influenced by community values and technologies of the
-            ecosystem []. Among others, we found that developers are overwhelmed with raw
+            ecosystem {cite(scgse15)}. Among others, we found that developers are overwhelmed with raw
             notification feeds but have found many mitigation strategies to cope with
             upstream change. We develop tailored awareness mechanisms that identify which
             changes are relevant for individual users of a software package to allow a
-            timely reaction.
+            timely reaction {cite(ieeesw15)}.
         </p>,
         Some("ecosys.png") //    [node.js/cran/Eclipse logos? Something from the presentation in passau?]
         //
@@ -604,7 +673,7 @@ object Research {
         </p><p>
             We investigated from a conceptual perspective assumptions, costs, and
             limitations of modularity, both in the context of scattered variability
-            implementations [] and more broadly from a philosophical perspective [].
+            implementations {cite(fosd11)} and more broadly from a philosophical perspective {cite(ecoop11)}.
         </p>,
         Some("micromod.png")
         //    [micromodularity picture]
@@ -612,15 +681,48 @@ object Research {
     )
 
 
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
     //////////////////////////////////////////// maintenance /////////////////////////////////////////////
 
 
-    def maintenanceAndImplOfVariability = Theme("Maintenance and Implementation of Highly-Configurable Systems", "",
+    def maintenanceAndImplOfVariability = Theme("Maintenance and Implementation of Highly-Configurable Systems",
+        "We explore a wide range of different variability implementation mechanisms and their tradeoffs; in addition, " +
+            "we explore reverse engineering and refactoring mechanisms for variability  " +
+            "and support developers with variability-related maintenance:",
         <p>
             We are interested in how to best implement highly-configurable systems and software product lines to enable
             long-term maintenance. There is a huge range of implementation mechanisms, from branches in version control
             systems, to components and plugin systems, to #ifdefs and specialized languages for crosscutting
-            implementations, all with their distinct tradeoffs. As with much technical debt, many approaches
+            implementations, all with their distinct tradeoffs {cite(fosplbook)}. As with much technical debt, many approaches
             that are easy to use in the short-term can turn into maintenance nightmares in the long run. In
             addition to analyzing tradeoffs of existing approaches and developing new implementation approaches,
             we research tooling, reverse engineering, and migration support for the various implementation techniques.
@@ -641,15 +743,15 @@ object Research {
             We have explored reverse engineering for conditional compilation, command-line
             options, branches, and build systems. We have built an infrastructure to parse
             unpreprocessed C code and we explored mechanisms to enforce more disciplined
-            usage of the preprocessor [] or refactor conditional compilation into other
-            variability mechanisms []. For load-time parameters like command-line options
+            usage of the preprocessor {cite(oopsla11_typechef)} and to refactor conditional compilation into other
+            variability mechanisms {cite(gpce09)}. For load-time parameters like command-line options
             and configuration files, we use a variation of taint tracking to identify
             which (often scattered) statements in Java and Android programs are controlled
-            by these options [lotrack]. For branches and clown-and-own development we look
+            by these options {cite(ase14)}. For branches and clown-and-own development we look
             into merging and feature location techniques to enable an integration of the
-            various changes in the branches into disciplined variability mechanisms [].
+            various changes in the branches into disciplined variability mechanisms {cite(fse11)}.
             Finally, we also investigate mechanisms to extract configuration knowledge
-            from build systems [].
+            from build systems {cite(releng15)}.
         </p> ,
         Some("splpromise.png")
         //    [plots from proposal]
@@ -662,15 +764,15 @@ object Research {
             We have explored alternative language features and composition mechanisms that
             can support implementing features in product lines. In early work, we explored
             aspect-oriented programming as a possible means to implement features
-            (identifying lots of problems) [] and compared aspect-oriented programming
-            with feature-oriented programming []. Subsequently, we explored mechanisms to
+            (identifying lots of problems) {cite(splc07,jot07)} and compared aspect-oriented programming
+            with feature-oriented programming {cite(isse07,fosd09_emp,fosplbook)}. Subsequently, we explored mechanisms to
             generalize feature-oriented programming to provide uniform mechanisms across
-            multiple languages within the FeatureHouse tool suite [], discuss modularity
-            issues [], and to perform various quality assurance activities, such as
-            variational type checking, for these languages []. To support teaching of
+            multiple languages within the FeatureHouse tool suite {cite(icse09_fh,tse13,scp12)}, discuss modularity
+            issues {cite(fosd11,scp12)}, and to perform various quality assurance activities, such as
+            variational type checking, for these languages {cite(jase10)}. To support teaching of
             product line development and feature-oriented programming specifically, we
             developed an Eclipse plugin FeatureIDE that makes the languages and tools more
-            accessible [].
+            accessible {cite(icse09_demo,scp14)}.
         </p>,
         Some("fop.png")
         //    [fop collaboration diagram]
@@ -689,9 +791,9 @@ object Research {
             complexity one would expect from the exponentially growing configuration
             space: What distinguishes manageable from not manageable implementations? We
             have attempted to assess configuration complexity in systems with various
-            metrics [], have analyzed how configurability relates to proneness for bugs
-            and vulnerabilities [], and how we can support developers to handle the
-            complexity with tools and visualizations [].
+            metrics {cite(icse10,esem11,emse15)}, have analyzed how configurability relates to proneness for bugs
+            and vulnerabilities, and how we can support developers to handle the
+            complexity with tools and visualizations {cite(emse12,icse11demo_vi,iet12,icse14_emergo)}.
         </p>,
         Some("vulndist.png")
         //    [distribution plots from gabriels paper]
@@ -705,12 +807,12 @@ object Research {
             is one of the most commonly used variability-implementation mechanism in
             practice. We argue that, when used with some discipline and supported by
             tooling, conditional compilation can be an easy and effective implementation
-            strategy [] (see also [virtual separation of concerns]), but uncontrolled use
+            strategy {cite(jot09_vsoc,fosplbook)} (see also {linkTopic(vsoc,Some("virtual separation of concerns"))}), but uncontrolled use
             can hinder understanding, quality assurance, and tool support substantially.
             We have investigated at scale how the C preprocessor is used in practice, both
-            in dozens of open source programs [] as well as in industrial software product
-            lines []. In addition, we have interviewed C programmers to understand how
-            they perceive the challenges of the C preprocessor [].
+            in dozens of open source programs {cite(icse10,aosd11)} as well as in industrial software product
+            lines {cite(emse15)}. In addition, we have interviewed C programmers to understand how
+            they perceive the challenges of the C preprocessor {cite(fosplbook)}.
         </p>,
         Some("undiscipl.png")
         //        [undisciplined vim example]
@@ -733,7 +835,7 @@ object Research {
             options are used for control-flow decisions in the program. We create a
             configuration map that indicates for each line of code under which
             configurations it can be executed, similar to traceability one might expect
-            from using conditional compilation directives around those code fragments [].
+            from using conditional compilation directives around those code fragments {cite(ase14)}.
             Exploiting the fact that configuration options are used differently from other
             state in the program, we achieve a highly accurate tracking in most programs.
         </p>,
@@ -750,7 +852,7 @@ object Research {
             compiled or which extra parameters are passed in which configurations. The problem of extracting
             configuration knowledge is limiting many quality assurance and reverse engineering approaches in
             their accuracy. So far, we have pursued a static extraction approach based on symbolic execution
-            of make files [] but are planning to investigate other build systems and other analysis strategies.
+            of make files {cite(releng15)} but are planning to investigate other build systems and other analysis strategies.
         </p>,
         Some("make.png") //    [some picture from Shurui’s paper]
     )
@@ -760,18 +862,51 @@ object Research {
             We investigate how to modularity implement features in a way that avoids accidental feature interactions
             but still allows intended interactions among features. For example, a total isolation of features would
             be possible, but would prevent intended interactions as well. We study various ecosystems to understand
-            what implementation mechanisms they use to control interactions, such as Android [], and explore
+            what implementation mechanisms they use to control interactions, such as Android {cite(mobiledeli15,msr16)}, and explore
             alternative forms of implementation. Among others, we have designed a module system that makes
-            variability inside a module and its interface very explicit []. However, how to best implement
+            variability inside a module and its interface very explicit {cite(oopsla12)}. However, how to best implement
             variability to tame interactions but allow sufficient flexibility is still an open research challenge.
         </p>,
         Some("androidiot.png") //    [android figure from mobiledeli paper?]
     )
 
 
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
     //////////////////////////////////////////// beyond spl /////////////////////////////////////////////
 
-    def beyondVariability = Theme("Variability Mechanisms Beyond Configurable Software Systems", "",
+    def beyondVariability = Theme("Variability Mechanisms Beyond Configurable Software Systems",
+        "We explore how analyses developed for variability can solve problems in contexts " +
+            "beyond software product lines, such as design space exploration, that share facets of the problem such as large " +
+            "finite search spaces with similarities among candidates:",
         <p>
             We are increasingly interested in applying analysis mechanisms developed for configurable systems beyond
             traditional application areas of software product lines. Many technologies that we have developed for large
@@ -795,10 +930,10 @@ object Research {
             output. The approximated client-side code contains symbolic values and
             decisions from control-flow decisions. Interestingly, this can be interpreted
             similar to unpreprocessed C code with conditional output and we can use the
-            same variational parsers from TypeChef to build variational representations of
+            same {linkTopic(unpreprocessedC, Some("variational parsers"))} from TypeChef to build variational representations of
             the HTML DOM and JavaScript programs, and we can subsequently build
             variational call graphs on top to enable various forms of tool support from
-            navigation, to bug detection, to refactoring, and to slicing []. This is a
+            navigation, to bug detection, to refactoring, and to slicing {cite(fse14,fse15_webslice,icse15demo)}. This is a
             perfect example, where techniques originally developed for product lines can
             help to solve problems entirely outside the product line domain, in this case
             the analysis of staged programs.
@@ -807,7 +942,7 @@ object Research {
         //        Tool: varis
     )
 
-    def sensitivity = ResearchTopic("Sensitivity Analysis",
+    def sensitivity: ResearchTopic = ResearchTopic("Sensitivity Analysis",
         <p>
             Performance analysis of highly configurable systems can be generalized as a
             form of sensitivity analysis. The same techniques we use to learn
@@ -821,7 +956,7 @@ object Research {
             interactions of changes, where both black-box and white-box sensitivity-
             analysis techniques for highly-configurable systems can be reused.
         </p>,
-        Some("cobot.png") //    [cobot picture?]
+        Some("hpc.png") //    [cobot picture?]
     )
 
     def vtests = ResearchTopic("Tests and Patches",
@@ -837,18 +972,48 @@ object Research {
         Some("genprog.png") //        [genprog picture?]
     )
 
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
     //////////////////////////////////////////// misc /////////////////////////////////////////////
 
 
     def otherTopics = Theme("Other Topics",
         "We have collaborated on a number of other software engineering and programming languages topics, " +
             "including dynamic software updates, extensible domain-specific languages, " +
-            "software merging, and various empirical methods topics.",
+            "software merging, and various empirical methods topics:",
         <p>
             We are generally open to research and collaborations in a broad spectrum of software engineering questions.
             We have worked on dynamic software updates {cite(spe13)}, embedded and extensible domain specific languages {cite(oopsla11_sugarj, gpce11)},
             software merging {cite(fse11)}, and exploring various empirical methods, including assessing
-            program comprehension as a confounding factor {cite(esem14)} and using fMRI scanners {cite(icse14_fmri)}.
+            program comprehension as a confounding factor {cite(emse14)} and using fMRI scanners {cite(icse14_fmri)}.
         </p>,
         List(fmri)
     )

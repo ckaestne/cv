@@ -828,7 +828,7 @@ object CVPublications {
     ).topic(fop, vsoc, spl, adoption)
 
 
-    val icse08_fh = InProceedings(
+    val icse09_fh = InProceedings(
         Seq(Apel, Kaestner, Lengauer),
         "{FeatureHouse}: Language-Independent, Automated Software Composition",
         ICSE09,
@@ -855,7 +855,7 @@ object CVPublications {
     ).selected().topic(fop)
 
 
-    val icse08_fm = InProceedings(
+    val icse09_fm = InProceedings(
         Seq(Thuem, Batory, Kaestner),
         "Reasoning about Edits to Feature Models",
         ICSE09,
@@ -2243,7 +2243,7 @@ object CVPublications {
         crosscite("extended version of \\cite{FSPKDKF:EASE11}, see also \\cite{FKALSDPLS:ESE12}").topic(vsoc, experiment)
 
 
-    val esem12 = Article(
+    val emse12 = Article(
         Seq(Feigenspan, Kaestner, Apel, Liebig, MSchulze, Dachselt, Papendieck, Leich, Saake),
         "Do Background Colors Improve Program Comprehension in the #ifdef Hell?",
         EMSE(2012).volume(18).number(4),
@@ -2708,7 +2708,7 @@ object CVPublications {
     ).topic(interactions)
 
 
-    val esem14 = Article(
+    val emse14 = Article(
         Seq(Feigenspan, Kaestner, Liebig, Apel, Hanenberg),
         "Measuring and Modeling Programming Experience",
         EMSE(2014).volume(19).number(5).month(10),
@@ -2951,7 +2951,7 @@ object CVPublications {
         """
     ).selected().topic(vaanalysis, spl, adoption)
 
-    val esem15 = Article(
+    val emse15 = Article(
         Seq(Hunsen, JSiegmund, Lessenich, Apel, Zhang, Kaestner, Becker),
         "Preprocessor-Based Variability in Open-Source and Industrial Software Systems: An Empirical Study",
         EMSE(2015).specialIssueOn("Empirical Evidence on Software Product Line Engineering"),

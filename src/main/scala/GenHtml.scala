@@ -358,7 +358,7 @@ object GenHtml extends App with RSSFeed {
         printTitle(true) ++
             row(printPicture(), printSummary())}</div> ++
             printNews() ++
-//            ResearchGenHtml.printResearchOverview(Research.themes) ++
+            ResearchGenHtml.printResearchOverview(Research.themes) ++
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
@@ -377,9 +377,9 @@ object GenHtml extends App with RSSFeed {
 
     def navigationLinks = List(
         Nav("News", "index.html#news"),
-//        Nav("Research", "index.html#researchoverview",
-//            Nav("Overview", "index.html#researchoverview") ::
-//                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
+        Nav("Research", "index.html#researchoverview",
+            Nav("Overview", "index.html#researchoverview") ::
+                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
         Nav("Publications", "index.html#publications", List(
             Nav("Selected Publications", "index.html#publications"),
             Nav("All Publications", "publications.html"))),
@@ -477,6 +477,7 @@ object GenHtml extends App with RSSFeed {
     )
 
 
+
     /** central build activities */
     println("copying files.")
     val targetPath = new File("target/site")
@@ -492,7 +493,6 @@ object GenHtml extends App with RSSFeed {
     val articleDir = new File("src/main/article")
     FileUtils.copyDirectory(articleDir, targetPath)
 
-
     println("generating html.")
     printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"), getNewsRSSHeader() ++ getPubsRSSHeader())
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
@@ -503,6 +503,7 @@ object GenHtml extends App with RSSFeed {
     printNewsFeed(new File(targetPath, "news.rss"))
     printPubsFeed(new File(targetPath, "pub.rss"))
     printArticles(articleDir, targetPath)
+    printDoc(ResearchGenHtml.researchPage, "Research Overview :: " + CV.name + " :: CMU", new File(targetPath, "research.html"))
     println("done.")
 
 }
