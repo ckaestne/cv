@@ -92,13 +92,13 @@ object Coauthors {
     val Dang = Person("Son Cuu", "Dang", "University of Technology Sydney")
     val Herbsleb = Person("James", "Herbsleb", "Carnegie Mellon University")
     val Bogart = Person("Christopher", "Bogart", "Carnegie Mellon University")
-    val Stanciulescu = Person("Ștefan", "Stănciulescu", "IT University Copenhagen")
+    val Stanciulescu = Person("Ștefan", "Stănciulescu", URL("http://www.itu.dk/people/scas/webpage/index.html"), "IT University Copenhagen")
     val Sunshine = Person("Joshua", "Sunshine", URL("https://www.cs.cmu.edu/~jssunshi/"), "Carnegie Mellon University")
     val Aldrich = Person("Jonathan", "Aldrich", URL("https://www.cs.cmu.edu/~aldrich/"), "Carnegie Mellon University")
     val Wynne = Person("Adam", "Wynne", "Bosch Research and Technology Center, USA")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
-    val Ferreira = Person("Gabriel", "Ferreira", "Carnegie Mellon University")
+    val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
 
