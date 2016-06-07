@@ -219,6 +219,7 @@ object Venues {
     val CSUR = JournalFactory("CSUR", "ACM Computing Surveys")
     val JOSER = JournalFactory("JOSER", "Journal of Software Engineering in Robotics")
     val COMLAN = JournalFactory("COMLAN", "Journal of Computer Languages, Systems & Structures")
+    val SOSYM = JournalFactory("SOSYM", "International Journal on Software and Systems Modeling")
 
 
     val ACoM = ConferenceFactory("ACoM", 0,

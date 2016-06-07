@@ -12,6 +12,15 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2016, 4-1, 15).getTime, "On the ICSE 2017 Author Limit Policy",
+          <span>A short comment why I think the recently announced submission limit for ICSE 2017 is hurting collaboration and causing anxiety in our community: <a href="https://www.cs.cmu.edu/~ckaestne/icse17/">ICSE 2017s author limit considered harmful for collaboration</a>.
+                </span>) ::
+        NewsItem(new GregorianCalendar(2016, 4-1, 15).getTime, "NSF Career Award",
+          <span>The NSF awarded a career grant for our work on <a href="https://www.cs.cmu.edu/~ckaestne/research.html#VariationalExecutionTesting">variational execution</a> and understanding feature interactions. We have a small press release about it: <a href="http://isri.cmu.edu/news/2016/20160412-kastner-nsf.html">Saving Software from Itself</a>.
+                </span>) ::
+        NewsItem(new GregorianCalendar(2016, 3-1, 29).getTime, "ASE 2015 Doctoral Symposium Keynote",
+          <span>Before I completely forget: I repeated my keynote talk from the ASE 2015 Doctoral Symposium here at a CMU seminar and had the chance of recording it. Here it is: <a href="https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5c80c0ae-4420-4b0a-ab35-58ad4817c6fa">Starting an Academic Career: Reflection on Habits that Worked for Me</a>.
+                </span>) ::
         NewsItem(new GregorianCalendar(2016, 1-1, 24).getTime, "FOSD Meeting 2016",
             <span>The deadline for submitting a talk abstract for the <a href="http://fosd.net/2016">FOSD Meeting 2016</a> in Copenhagen is approaching soon.
                 This year, Ștefan Stănciulescu, Claus Brabrand, and Andrzej Wąsowski will host the meeting at ITU Copenhagen.

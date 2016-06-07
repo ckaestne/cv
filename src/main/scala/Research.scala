@@ -77,7 +77,7 @@ object ResearchGenHtml extends App {
         })
         row(picturePath.map(p => <a href={p._1}><img class="topicimg" src={p._2} alt={topic.title} width={width + "px"} /></a>).getOrElse(null),
             <div class="researchtopic">
-                <h3><a name={topic.key}></a>{topic.title}</h3>
+                <h3><a name={topic.key}  class="sectionanch"></a>{topic.title}</h3>
                 {topic.description}
             </div>
         )

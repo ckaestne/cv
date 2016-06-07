@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<article><date>16 April 2016</date><title>ICSE 2017’s author limit considered harmful for collaboration</title>
+    <content>
+      <p>
+        I hadn’t planned to write about it, but the explanation annoyed me so much more than the policy that I feel I should write this down:
+        </p><p>
+        ICSE 2017 has announced a <a href="http://icse2017.gatech.edu/?q=technical-research-cfp">policy</a> to restrict submissions to at most three papers per author. The idea seems to be to reduce the number of submissions. I think this specific policy is a terrible move and will hurt one of the facets of software engineering research that I enjoy most: <strong>collaboration</strong>. 
+
+        </p><p>
+        I enjoy working with a wide range of researchers on software engineering topics, both in my home institution and in colleges across multiple countries. I actively try to foster collaboration in our community with event series like the <a href="http://fosd.net/meeting2015">FOSD meeting</a>. 
+        </p><p>
+
+        Let’s be specific: My submission numbers fluctuate, but in previous years I would have run into this policy multiple times. For example, for ICSE 2014, I submitted 6 papers with disjoint groups of collaborators (21 coauthors total); for ICSE 2016, I submitted 5 papers with different first authors and mostly disjoint collaborators. Only 2 of those 11 papers were resubmissions (significantly revised). Each of these papers was prepared by a collaborator who has worked hard on the submission for many month. There would have been no way for me to scoop in at the last minute and ask my collaborators to not submit. I might not mind delaying the submission personally, but the involved students certainly would. Even though there were papers that were less polished than others, who am I to tell students and collaborators that their hard work should be sent somewhere else, just because I also happen to work with other people who also happen do good work and happen to be ready to submit in the same season? If I had to plan in advance to submit only three papers, how should I pick whom to support? (BTW: announcing this policy only a few month before the submission deadline is VERY LATE for such decisions). This policy would not have reduced the number of submissions (okay maybe by 1 for 2014), but would have forced me to take my name of papers that resulted from long-term collaborations. 
+        </p><p>
+
+        In addition, this policy creates unnecessary anxiety: Students have approached me last week whether this policy would endanger their plans to work on a paper over this summer (that's how I learned about this policy actually). At this point, I'm aware of three students and collaborators who aim for a paper this summer, putting me into an awkward place for every additional paper plan that may emerge in the following weeks.
+        </p><p>
+
+        The <a href="http://www.cs.mcgill.ca/~martin/blog/2016-04-15.html">"explanation"</a> by the PC chairs does not acknowledge these issues at all. Pointing to `there is room for additional pre-submission reviewing to be done` would maybe work for discussions within a single cohesive research group and especially if all authors overlap on all submissions, but appears to me as totally unrealistic in collaboration networks with various disjoint projects. The data provided points only to a single year and does not even discuss how effective the policy would have been in reducing submissions. It points to the 42 authors who submitted more than 3 papers last year but seems to ignore the collaborators of those authors for the considerations, which might imply that hundreds of students may not be able to submit their work. It ignores that in several years authors have had more than 3 accepted papers in ICSE (e.g., me in 2014). I don’t even understand why data about a 50% acceptance rate is mentioned; why should authors of multiple papers have an acceptance rate almost 2.5 times higher than the average (also given the noise in the review system). Finally, I find comparison with the SSP policy almost insulting. The SSP policy explicitly does not prevent authors from submitting more papers, but simply introduces a mechanism to discourage a large number of resubmissions without significant changes; it discourages a specific problematic behavior without affecting collaboration; that’s not even close to the ICSE 2017 policy.
+        </p><p>
+
+        There are many discussions about how to scale and fix the reviewing system. The SSP policy actually seems pretty reasonable to me to fix a specific problem of resubmissions (assuming there is data to show that that problem exists, considering also that the CfP explicitly invites resubmissions). I think the community should openly discuss those. But I also think that finding ways to discouraging submissions while at the same time celebrating submission records in the opening session, is likely not the way to go. We need to be careful of how to design interventions, consider possible side effects, and announce changes early. Instead of wasting energy on this, it might be worth to finally introduce double-blind reviewing. Collaboration is a facet of this community that I do not want to lose. 
+        </p><p>
+
+        </p><p>
+        Christian
+        </p><p>
+
+        BTW, the policy does not do anything about the supply problem of too few reviewers. Frankly, if ICSE continues with this collaboration-hostile policy I will have a hard time accepting future invitations to the program committee. 
+        
+      </p>        
+
+
+    </content>
+    </article>

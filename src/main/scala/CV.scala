@@ -268,11 +268,14 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
-        Committee(ICSE(2016), PC),
-        Committee(ASE(2016), ERC/*, PubC*/),
-        Committee(ECOOP(2016), ERC),
+        Committee(ECOOP(2017).url(URL("http://conf.researchr.org/home/pldi-ecoop-2017")), PC),
+        Committee(ICSE(2017).url(URL("http://icse2017.gatech.edu/")), PC),
+        Committee(Workshop("RELENG", 2016, "4th International Workshop on Release Engineering",
+            URL("http://releng.polymtl.ca")), PC),
+        Committee(ASE(2016).url(URL("http://ase2016.org/home.html")), ERC/*, PubC*/),
+        Committee(ECOOP(2016).url(URL("http://2016.ecoop.org/")), ERC),
         Committee(SPLC(2016).url(URL("http://www.splc2016.net")), PC),
-        Committee(VAMOS(2016), PC),
+        Committee(VAMOS(2016).url(URL("https://vamos2016.wordpress.com/")), PC),
         Committee(Conference("MV", 2016,
             "MODULARITY 2016 - Modularity Visions Track",
             URL("http://2016.modularity.info/track/modularity-2016-mvpapers")), PC),
@@ -369,6 +372,7 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(SOSYM(2016)),
         Review(COMLAN(2016)),
         Review(TSE(2015)),
         Review(SPE(2015)),

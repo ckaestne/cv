@@ -77,7 +77,7 @@ object GenHtml extends App with RSSFeed {
 
     def printThesis(thesis: AThesis) =
         <dd>
-          <a name={thesis.genKey}></a>{thesis.author.fullname}.
+          <a name={thesis.genKey} class="sectionanch"></a>{thesis.author.fullname}.
           <strong>{ thesis.title.markdownToHtml}</strong>{thesis.title.endDot()}
             {thesis.kind.name}, {thesis.where.name}, {thesis.where.country}, {thesis.monthStr} {thesis.year}.
             {if (!thesis.note.isEmpty) <em>{thesis.note.markdownToHtml}</em> }
@@ -107,7 +107,7 @@ object GenHtml extends App with RSSFeed {
     def printPublication(p: Publication): NodeSeq = {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
-                  <a name={p.genKey}></a>
+                  <a name={p.genKey} class="sectionanch"></a>
                   {p.render(DefaultBibStyle, FancyPersonHtmlFormater)}
                [&nbsp;{
                    for ((key, url) <- links.dropRight(1))
@@ -315,7 +315,7 @@ object GenHtml extends App with RSSFeed {
         for (newsItem <- news)
             yield row(
                 {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
-                    <div class="newsheadline"><a name={newsItem.getID()}></a>{newsItem.title}</div> :+
+                    <div class="newsheadline"><a name={newsItem.getID()}  class="sectionanch"></a>{newsItem.title}</div> :+
             <div class="newsbody">{newsItem.body}</div>
                 }, "newsitem")
     }.flatten ++ {
@@ -332,7 +332,7 @@ object GenHtml extends App with RSSFeed {
     def printCoolWall() =
         rowH2("FOSD Cool Wall", "coolwall",
             <p>The cool wall was created and evolved during the yearly FOSD  meetings (see <a href="http://fosd.net">fosd.net</a>). With it, we encourage researchers to look for better tool names. Up to 2012, the listing was completely subjective, feel free to complain. Starting 2013, we started <a href="coolwallvoting.jpg">voting</a>. In 2013 and 2014 we even gave out a <a href="coolwallaward.jpg">Coolest Tool Name award</a>. Unfortunately, the 2014 listing is incomplete, as the photos of the votes got lost.</p> :+
-        <a href="coolwall2015.pdf"><img src="coolwall2015.png" alt="Cool Wall 2015" id="coolwall" /></a>)
+        <a href="coolwall2016.pdf"><img src="coolwall2016.png" alt="Cool Wall 2016" id="coolwall" /></a>)
 
 
     def printTwitterWidget(): NodeSeq =
@@ -343,7 +343,7 @@ object GenHtml extends App with RSSFeed {
 
     def printFullBibtex(): NodeSeq =
         for (p <- CV.publications)
-            yield <div><a name={p.genKey}></a><pre>{p.toBibtex()}</pre></div>
+            yield <div><a name={p.genKey} class="sectionanch"></a><pre>{p.toBibtex()}</pre></div>
 
     def printStudents(students: List[(String, List[(Person, Option[String])])]): NodeSeq =
         rowH2("Team", "team") ++ students.flatMap(printStudentSection)
