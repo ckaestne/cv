@@ -96,6 +96,10 @@ object Coauthors {
     val Sunshine = Person("Joshua", "Sunshine", URL("https://www.cs.cmu.edu/~jssunshi/"), "Carnegie Mellon University")
     val Aldrich = Person("Jonathan", "Aldrich", URL("https://www.cs.cmu.edu/~aldrich/"), "Carnegie Mellon University")
     val Wynne = Person("Adam", "Wynne", "Bosch Research and Technology Center, USA")
+    val Pfeffer = Person("Juergen", "Pfeffer", URL("http://www.pfeffer.at/"), "Technical University of Munich")
+    val Malik = Person("Momin", "Malik", "Carnegie Mellon University")
+    val Thung = Person("Ferdian", "Thung", "Singapore Management University")
+    val Kawthekar = Person("Prasad", "Kawthekar", "Carnegie Mellon University")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
@@ -3347,6 +3351,108 @@ object CVPublications {
             mitigation strategies..
         """
     ).topic(empirical, interactions, ecosystem)
+
+
+
+    val splc16 = InProceedings(
+        Seq(Ferreira, Malik, Kaestner, Pfeffer, Apel),
+        "Do #ifdefs Influence the Occurrence of Vulnerabilities? An Empirical Study of the Linux Kernel",
+        SPLC(2016).publisher(ACM).location("Beijing").month(9).acceptanceRate(17,44),
+        ToAppear(),
+        Map(PDF -> PDFFile("splc16.pdf")),
+        """
+          Preprocessors support the diversification of software products 
+          with #ifdefs, but also require additional effort from developers 
+          to maintain and understand variable code. We conjecture 
+          that #ifdefs cause developers to produce more vulnerable 
+          code because they are required to reason about multiple 
+          features simultaneously and maintain complex mental
+          models of dependencies of configurable code.
+
+          We extracted a variational call graph across all configurations 
+          of the Linux kernel, and used configuration complexity
+          metrics to compare vulnerable and non-vulnerable functions
+          considering their vulnerability history. Our goal was to learn
+          about whether we can observe a measurable influence of configuration 
+          complexity on the occurrence of vulnerabilities.
+          Our results suggest, among others, that vulnerable functions 
+          have higher variability than non-vulnerable ones and
+          are also constrained by fewer configuration options. This
+          suggests that developers are inclined to notice functions appear 
+          in frequently-compiled product variants. We aim to
+          raise developers’ awareness to address variability more systematically, 
+          since configuration complexity is an important,
+          but often ignored aspect of software product lines.
+        """
+    ).topic(empirical, interactions, security)
+
+
+
+
+    val fse16 = InProceedings(
+        Seq(Bogart, Kaestner, Herbsleb, Thung),
+        "How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems",
+        FSE(2016).month(11).location("Seattle, WA").publisher(ACM).acceptanceRate(74, 273),
+        ToAppear(),
+        Map(),
+        """
+            Change introduces conflict into software ecosystems: breaking
+            changes may ripple through the ecosystem and trigger rework
+            for users of a package, but often developers can invest additional 
+            effort or accept opportunity costs to alleviate or delay
+            downstream costs. We performed a multiple case study of
+            three software ecosystems with different tooling and philosophies 
+            toward change, Eclipse, R/CRAN, and Node.js/npm,
+            to understand how developers make decisions about change
+            and change-related costs and what practices, tooling, and
+            policies are used. We found that all three ecosystems differ 
+            substantially in their practices and expectations toward
+            change and that those differences can be explained largely by
+            different community values in each ecosystem. Our results
+            illustrate that there is a large design space in how to build
+            an ecosystem, its policies and its supporting infrastructure;
+            and there is value in making community values and accepted
+            tradeoffs explicit and transparent in order to resolve conflicts
+            and negotiate change-related costs.
+        """
+    ).topic(empirical, ecosystem).selected()
+
+
+    val wsr16 = InProceedings(
+        Seq(Kawthekar, Kaestner),
+        "Sensitivity Analysis For Building Evolving & Adaptive Robotic Software",
+        Workshop("WSR", 2016, "IJCAI Workshop on Autonomous Mobile Service Robots").month(7).
+            location("New York, NY"),
+        ToAppear(),
+        Map(),
+        """
+        There has been a considerable growth in research
+        and development of service robots in recent years.
+        For deployment in diverse environment conditions
+        for a wide range of service tasks, novel features and
+        algorithms are developed and existing ones undergo
+        change. However, developing and evolving the robot
+        software requires making and revising many design
+        decisions that can affect the quality of performance
+        of the robots and that are non-trivial to reason about
+        intuitively because of interactions among them. We
+        propose to use sensitivity analysis to build models
+        of the quality of performance to the different design
+        decisions to ease design and evolution. Moreover,
+        we envision these models to be used for run-time
+        adaptation in response to changing goals or environment 
+        conditions. Constructing these models is challenging 
+        due to the exponential size of the decision
+        space. We build on previous work on performance
+        influence models of highly-configurable software
+        systems using a machine-learning-based approach
+        to construct influence models for robotic software.
+        """
+    ).topic(nfp)
+
+
+
+
 
 
 }
