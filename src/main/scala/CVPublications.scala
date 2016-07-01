@@ -3359,7 +3359,7 @@ object CVPublications {
         "Do #ifdefs Influence the Occurrence of Vulnerabilities? An Empirical Study of the Linux Kernel",
         SPLC(2016).publisher(ACM).location("Beijing").month(9).acceptanceRate(17,44),
         ToAppear(),
-        Map(PDF -> PDFFile("splc16.pdf")),
+        Map(PDF -> PDFFile("splc2016.pdf")),
         """
           Preprocessors support the diversification of software products 
           with #ifdefs, but also require additional effort from developers 

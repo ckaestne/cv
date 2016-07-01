@@ -652,7 +652,7 @@ object Research {
         </p><p>
             We study how developers plan changes and cope with changes in practice and how
             those practices are influenced by community values and technologies of the
-            ecosystem {cite(scgse15)}. Among others, we found that developers are overwhelmed with raw
+            ecosystem {cite(scgse15,fse16)}. Among others, we found that developers are overwhelmed with raw
             notification feeds but have found many mitigation strategies to cope with
             upstream change. We develop tailored awareness mechanisms that identify which
             changes are relevant for individual users of a software package to allow a

@@ -596,12 +596,15 @@ object CV {
     )
     val visitingStudents =  List(
         (Medeiros, Some("(2014)")),
-        (Meinicke, Some("(2014, 2016)")),
+        (Meinicke, Some("(2014, 2016-2017)")),
         (Person("Raman", "Goyal"), Some("(2015)")),
         (Person("Htut Khine", "Htay Win"), Some("(2015)")),
-        (Stanciulescu, Some("(2016)")),
+        (Stanciulescu, Some("(2016-2017)")),
         (Person("Prasad", "Kawthekar"), Some("(2016)")),
-        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(2016)"))
+        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(2016)")),
+        (Person("Kyle", "McDonell", "Colby College"), Some("(2016)")),
+        (Person("Xia", "Xiao", "Dickinson College"), Some("(2016)")),
+        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(2016-2017)"))
     )
 
 }
