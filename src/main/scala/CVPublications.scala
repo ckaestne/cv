@@ -50,7 +50,7 @@ object Coauthors {
     val Berger = Person("Thorsten", "Berger", URL("http://www.itu.dk/~thbe/"), "University of Waterloo")
     val Dreiling = Person("Alexander", "Dreiling", "Deutsche Bank")
     val Hanenberg = Person("Stefan", "Hanenberg", URL("http://www.dawis.wiwi.uni-due.de/team/stefan-hanenberg/"), "Universität Duisburg-Essen")
-    val Schaefer = Person("Ina", "Schaefer", URL("https://www.tu-braunschweig.de/sse/mitarbeiter/schaefer"), "Technische Universität Braunschweig")
+    val Schaefer = Person("Ina", "Schaefer", URL("https://www.tu-braunschweig.de/isf/team/schaefer"), "Technische Universität Braunschweig")
     val Czarnecki = Person("Krzysztof", "Czarnecki", URL("http://gsd.uwaterloo.ca/kczarnec"), "University of Waterloo")
     val Benduhn = Person("Fabian", "Benduhn", "University of Magdeburg")
     val Meinicke = Person("Jens", "Meinicke", URL("http://wwwiti.cs.uni-magdeburg.de/~meinicke/"), "University of Magdeburg")
