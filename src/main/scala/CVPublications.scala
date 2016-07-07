@@ -3424,7 +3424,7 @@ object CVPublications {
         Workshop("WSR", 2016, "IJCAI Workshop on Autonomous Mobile Service Robots").month(7).
             location("New York, NY"),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("wsr16.pdf")),
         """
         There has been a considerable growth in research
         and development of service robots in recent years.
@@ -3450,6 +3450,27 @@ object CVPublications {
         """
     ).topic(nfp)
 
+
+    val ase16 = InProceedings(
+        Seq(Meinicke, Wong, Kaestner, Thuem, Saake),
+        "On Essential Configuration Complexity: Measuring Interactions In Highly-Configurable Systems",
+        ASE(2016).month(9).location("Singapore").publisher(ACM).acceptanceRate(57, 298),
+        ToAppear(),
+        Map(),
+        """
+        Quality assurance for highly-configurable systems is challenging due to the exponentially growing configuration space. 
+        Interactions among multiple options can lead to surprising behaviors, bugs, and security vulnerabilities.
+        Analyzing all configurations systematically might be possible though if most options do
+        not interact or interactions follow specific patterns that can be exploited by
+        analysis tools.
+        To better understand interactions in practice, we analyze program traces to identify where interactions occur on control flow and data.
+        To this end, we developed a dynamic analysis for Java based on variability-aware execution and monitor executions
+        of multiple mid-sized real-world programs.
+        We find that the essential configuration complexity of these programs is indeed much lower than
+        the combinatorial explosion of the configuration space indicates, but also that
+        the interaction characteristics that allow scalable and complete analyses are more nuanced than
+        what is exploited by existing state-of-the-art quality assurance strategies.
+        """).selected().topic(testing, empirical, interactions, vaanalysis)
 
 
 
