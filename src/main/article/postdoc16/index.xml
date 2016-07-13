@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<article><date>13 July 2016</date><title>Postdoc Position on Software Analysis and Machine Learning for Robotics Software</title>
+    <content>
+      <p>I am looking for a postdoc (and also potentially interested undergraduate or visiting students) for a project on improving evolution and configuration of robotics software. We pursue a strategy based on sensitivity analysis, combining machine learning with static or dynamic software analysis, roughly following the line of work of our FSE 2015 paper (<a href="https://www.cs.cmu.edu/~ckaestne/pdf/fse15_influence.pdf">Performance-Influence Models for Highly Configurable Systems</a>, with Norbert Siegmund, Alex Grebhahn and Sven Apel), also recently outlined in a workshop paper (<a href="https://www.cs.cmu.edu/~ckaestne/pdf/wsr16.pdf">Sensitivity Analysis For Building Evolving &amp; Adaptive Robotic Software</a>, with Prasad Kawthekar). The position is part of a large collaborative effort sponsored by DARPA.</p>
+          <p>Here is the actual call:
+            <pre>
+Multiple post-doctoral scholar positions on software engineering and 
+programming language topics are available in a project on “Intelligent 
+Model-Based Adaptation of Robotics Systems” in the School of Computer 
+Science at Carnegie Mellon University (CMU) in Pittsburgh, PA. The 
+project is a collaboration involving CMU faculty Jonathan Aldrich, David 
+Garlan, Christian Kaestner, Claire Le Goues, and Manuela Veloso.
+
+The research project concerns the construction and analysis of robotics 
+software with respect to various quality attributes like performance and 
+mission success, the automated adaptation and repair of that software, 
+and the automated understanding of properties of that software. There 
+are many interesting research directions within the project, including 
+sensitivity analysis to understand the influence of changes in large 
+configuration spaces (machine learning, sampling), the analysis of 
+interactions among various changes (static or dynamic analysis, 
+instrumentation), the integration of software architecture within the 
+language to ease architecture-based adaptation, and the definition of 
+domain-specific languages that facilitate adaptation in robotics
+systems.
+
+Candidates should have, or shortly expect to receive, a doctoral degree 
+in computer science or a related field.  They should have a background 
+in either static or dynamic program analysis, programming languages, 
+machine learning, or robotics software (ROS). Skills in building 
+analysis tools and automating evaluations (e.g. shell scripts) are 
+expected. Candidates interested in this position should email a CV 
+together with a brief description of research interests and a list of 
+two to three references to Christian Kaestner (kaestner@cs.cmu.edu).
+
+Possible postdoc advisors are primarily Jonathan Aldrich or Christian 
+Kaestner. The initial contract will be for 12 months. Review of 
+applications will begin upon receipt and continue until all positions 
+are filled.
+
+            </pre>
+          </p>
+
+          <p>Please send applications or possible leads by email.</p>
+
+
+
+    </content>
+    </article>
