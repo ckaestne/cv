@@ -1,6 +1,7 @@
 package de.stner.cv
 
 import java.io.File
+import java.net.URI
 import java.text.SimpleDateFormat
 
 import de.stner.cv.StructureTheses.AThesis
@@ -13,6 +14,8 @@ import scala.xml.dtd.{DocType, PublicID}
 object GenHtml extends App with RSSFeed {
 
     import CV._
+    val pageRoot = new URI("https://www.cs.cmu.edu/~ckaestne/")
+
 
 
     trait PlainHtmlFormater extends Formater[NodeSeq] {
@@ -388,35 +391,36 @@ object GenHtml extends App with RSSFeed {
             Nav("Teaching History", "teaching.html"))),
         Nav("Team", "index.html#team"),
         Nav("Misc", "index.html#coolwall", List(
+            Nav("Articles", "articles.html"),
             Nav("Service", "index.html#service"),
             Nav("FOSD Cool Wall", "index.html#coolwall"),
             Nav("Juggling", "juggling.xhtml"),
             Nav("Other Interests", "index.html#private")))
     )
 
-    private def renderNav(n: Nav): NodeSeq = {
-        val l = <a href={n.link}>{n.title}</a>
+    private def renderNav(linkToRoot: URI)(n: Nav): NodeSeq = {
+        val l = <a href={(linkToRoot resolve n.link).toASCIIString}>{n.title}</a>
         if (n.subnav.isEmpty) l
         else
            <span class="dropdown">{l}<ul class="dropdown-content">{
                 for (sn <- n.subnav) yield
-                    <li><a href={sn.link}>{sn.title}</a></li>
+                    <li><a href={(linkToRoot resolve sn.link).toASCIIString}>{sn.title}</a></li>
                 }</ul>
            </span>
     }
 
 
-    def navigationBar =
+    def navigationBar(pathToRoot: URI) =
         <div class="navbar">
             <div class="container_12">
-                <div class="grid_3 right"><a href="index.html#">Christian Kästner</a></div>
-                <div class="grid_9">{navigationLinks.map(renderNav).reduce(_ ++ Text(" · ") ++ _)}</div>
+                <div class="grid_3 right"><a href={(pathToRoot resolve "index.html#").toASCIIString}>Christian Kästner</a></div>
+                <div class="grid_9">{navigationLinks.map(renderNav(pathToRoot)).reduce(_ ++ Text(" · ") ++ _)}</div>
             </div>
         </div>
 
     def navBarHeight = "6ex"
 
-    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot: String = "") = {
+    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot: URI = pageRoot) = {
 
         val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
@@ -424,17 +428,17 @@ object GenHtml extends App with RSSFeed {
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/reset.css"} />
-                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/text.css"} />
-                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/960.css"} />
-                <link rel="stylesheet" type="text/css" media="all" href={pathToRoot + "css/jquery.tweet.css"} />
+                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/reset.css").toASCIIString} />
+                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/text.css").toASCIIString} />
+                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/960.css").toASCIIString} />
+                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/jquery.tweet.css").toASCIIString} />
                 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,400italic|Roboto+Slab:400,700' rel='stylesheet' type='text/css' />
-                <script type="text/javascript" src={pathToRoot + "js/jquery-1.7.2.min.js"}></script>
-                <script type="text/javascript" src={pathToRoot + "js/script.js"}></script>
+                <script type="text/javascript" src={(pathToRoot resolve "js/jquery-1.7.2.min.js").toASCIIString}></script>
+                <script type="text/javascript" src={(pathToRoot resolve "js/script.js").toASCIIString}></script>
                 {extraHeader}
                 <title>{title}</title>
             </head>
-            <body>{navigationBar}<div class="container_12" style={"margin-top:" + navBarHeight}>{body}</div></body>
+            <body>{navigationBar(pathToRoot)}<div class="container_12" style={"margin-top:" + navBarHeight}>{body}</div></body>
         </html>
         scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", doctype = doct)
     }
@@ -443,13 +447,13 @@ object GenHtml extends App with RSSFeed {
 
     def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
-    def printArticles(articleDir: File, targetDir: File) {
-        for (articleSubdir <- articleDir.listFiles(); if articleSubdir.isDirectory) {
+    def printArticles(articleDir: File, targetPath: File) {
+        val articles = for (articleSubdir <- articleDir.listFiles(); if articleSubdir.isDirectory) yield {
             val contentFile = new File(articleSubdir, "index.xml")
             assert(contentFile.exists(), "index.xml not found in " + articleSubdir)
             val xml = XML.loadFile(contentFile)
             val title = (xml \\ "article" \ "title").text
-            val date = xml \\ "article" \ "date"
+            val dateNode = xml \\ "article" \ "date"
             val content = xml \\ "article" \ "content"
             assert(title.nonEmpty, "no title defined")
             assert(title.nonEmpty, "no content defined")
@@ -457,12 +461,28 @@ object GenHtml extends App with RSSFeed {
             val targetDir = new File(targetPath, articleSubdir.getName)
             targetDir.mkdir()
             val body = printTitle(withLink = true) ++
-                rowH2(title, ResearchStructure.stringToKey(title), content, <span>{date}</span>) ++
+                rowH2(title, ResearchStructure.stringToKey(title), content, <span>{dateNode.text}</span>) ++
                 printCommentWidget() ++
                 row(nbsp, <a href="..">back to main page</a>)
-            printDoc(body, title.toString(), new File(targetDir, "index.html"), pathToRoot = "../")
+            printDoc(body, title.toString(), new File(targetDir, "index.html"), pathToRoot = pageRoot)
+
+            val parserSDF=new SimpleDateFormat("d MMM yyyy")
+            val date = parserSDF.parse(dateNode.text)
+
+            (title, articleSubdir.getName, dateNode.text, date)
         }
+
+        val articleList =
+                for ((title, dir, date, _)<- articles.sortBy(_._4)) yield
+                    row(<span>{date}</span>,  <p><a href={dir+"/"}>{title}</a></p>)
+
+        printDoc(printTitle(withLink = true) ++
+            rowH2("Articles", ResearchStructure.stringToKey("Articles")) ++ articleList.toList.flatten ++
+            printCommentWidget() ,
+            "Articles", new File(targetPath, "articles.html"))
     }
+
+
 
     def printCommentWidget() = row(nbsp, <div id="disqus_thread"></div> :+
     <script type="text/javascript"><!--
