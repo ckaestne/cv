@@ -271,6 +271,7 @@ object CV {
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
         Committee(ECOOP(2017).url(URL("http://conf.researchr.org/home/pldi-ecoop-2017")), PC),
         Committee(ICSE(2017).url(URL("http://icse2017.gatech.edu/")), PC),
+        Committee(VAMOS(2017).url(URL("https://vamos2017.wordpress.com/")), PC),
         Committee(Workshop("RELENG", 2016, "4th International Workshop on Release Engineering",
             URL("http://releng.polymtl.ca")), PC),
         Committee(ASE(2016).url(URL("http://ase2016.org/home.html")), ERC/*, PubC*/),

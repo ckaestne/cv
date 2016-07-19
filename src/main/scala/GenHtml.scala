@@ -477,8 +477,7 @@ object GenHtml extends App with RSSFeed {
                     row(<span>{date}</span>,  <p><a href={dir+"/"}>{title}</a></p>)
 
         printDoc(printTitle(withLink = true) ++
-            rowH2("Articles", ResearchStructure.stringToKey("Articles")) ++ articleList.toList.flatten ++
-            printCommentWidget() ,
+            rowH2("Articles", ResearchStructure.stringToKey("Articles")) ++ articleList.toList.flatten,
             "Articles", new File(targetPath, "articles.html"))
     }
 
