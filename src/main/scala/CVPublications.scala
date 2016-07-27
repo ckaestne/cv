@@ -3456,7 +3456,7 @@ object CVPublications {
         "On Essential Configuration Complexity: Measuring Interactions In Highly-Configurable Systems",
         ASE(2016).month(9).location("Singapore").publisher(ACM).acceptanceRate(57, 298),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("ase16.pdf")),
         """
         Quality assurance for highly-configurable systems is challenging due to the exponentially growing configuration space. 
         Interactions among multiple options can lead to surprising behaviors, bugs, and security vulnerabilities.
