@@ -103,7 +103,7 @@ object Coauthors {
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
-    val Wong = Person("Chu-Pan", "Wong", "Carnegie Mellon University")
+    val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
 
 
@@ -3394,7 +3394,7 @@ object CVPublications {
         "How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems",
         FSE(2016).month(11).location("Seattle, WA").publisher(ACM).acceptanceRate(74, 273),
         ToAppear(),
-        Map(),
+        Map(HTTP -> URL("http://breakingapis.org")),
         """
             Change introduces conflict into software ecosystems: breaking
             changes may ripple through the ecosystem and trigger rework

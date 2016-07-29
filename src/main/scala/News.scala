@@ -13,7 +13,7 @@ object News {
 
     val news: List[NewsItem] =
         NewsItem(new GregorianCalendar(2016, 7-1, 13).getTime, "Postdoc position available",
-          <span>I'm looking for a postdoc as well as interested undergradudate or even visiting students for a project applying software analysis and machine learning to improve evolution and configuration of robotics software. Details, see here: <a href="https://www.cs.cmu.edu/~ckaestne/postdoc16/">Post-doc position at Carnegie Mellon University</a>.</span>) ::
+          <span>(Update July 29: The postdoc position in my group has been filled.) I'm looking for a postdoc as well as interested undergradudate or even visiting students for a project applying software analysis and machine learning to improve evolution and configuration of robotics software. Details, see here: <a href="https://www.cs.cmu.edu/~ckaestne/postdoc16/">Post-doc position at Carnegie Mellon University</a>.</span>) ::
         NewsItem(new GregorianCalendar(2016, 4-1, 16).getTime, "On the ICSE 2017 Author Limit Policy",
           <span>A short comment why I think the recently announced submission limit for ICSE 2017 is hurting collaboration and causing anxiety in our community: <a href="https://www.cs.cmu.edu/~ckaestne/icse17/">ICSE 2017s author limit considered harmful for collaboration</a>.
                 </span>) ::
