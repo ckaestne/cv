@@ -677,19 +677,28 @@ object Tutorium extends CourseKind {
 }
 
 
-case class Committee(venue: Venue, role: CommitteeRole)
+case class Committee(venue: Venue, role: CommitteeRole*)
 
 abstract class CommitteeRole(val title: String, val abbreviation: String)
 
 object PC extends CommitteeRole("Program-Committee Member", "PC")
 object ERC extends CommitteeRole("External-Review-Committee Member", "ERC")
 
+object GeneralChair extends CommitteeRole("General Chair", "General Chair")
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
+object PCCChair extends CommitteeRole("Program-Committee Co-Chair", "PC Co-Chair")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
 object SC extends CommitteeRole("Steering-Committee Member", "SC")
 object DS extends CommitteeRole("Doctorial Symposium Committee Member", "DS")
+object DSCChair extends CommitteeRole("Doctoral Symposium Co-Chair", "DS Chair")
+
+object CommitteeRoles {
+    val organizationRoles = Set[CommitteeRole](GeneralChair, PCCChair, PCCChair, OC, SC, DSCChair)
+    val pcRoles = Set(PC, ERC)
+    val pcAndDsRoles = pcRoles+DS
+}
 
 case class OtherCommittee(long: String, short: String) extends CommitteeRole(long, short)
 

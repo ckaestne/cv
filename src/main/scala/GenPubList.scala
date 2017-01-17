@@ -88,17 +88,18 @@ object GenPubList extends App {
 
     def printCommittee(c: Committee) =
         "%s %d: %s".format(c.venue.short.toTex, c.venue.year, c.venue.name.toTex) +
-            (if (c.role != PC) " -- " + c.role.title else "") + "\n"
+            (if (c.role != PC) " -- " + c.role.map(_.title).mkString(", ") else "") + "\n"
 
     def printCommittees(): String = {
         section("Organization Committees",
-            committees.filter(Set(OC, PCChair, SC) contains _.role).map(printCommittee).mkString +
+            committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
+                map(printCommittee).mkString +
                 "Annual Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
         ) + section("Program Committees (Conferences)",
-                committees_conferences.filterNot(Set(OC, PCChair) contains _.role).map(printCommittee).mkString
+                committees_conferences.filter(_.role.toSet.intersect(CommitteeRoles.pcRoles).nonEmpty).map(printCommittee).mkString
             )    +
                 section("Program Committees (Workshops and Other)",
-                    committees_workshops.filterNot(Set(OC, PCChair) contains _.role).filter(_.venue.kind == KWorkshopDemoTool).map(printCommittee).mkString
+                    committees_workshops.filter(_.role.toSet.intersect(CommitteeRoles.pcAndDsRoles).nonEmpty).filter(_.venue.kind == KWorkshopDemoTool).map(printCommittee).mkString
                 )
     }
 

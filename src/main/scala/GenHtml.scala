@@ -213,7 +213,7 @@ object GenHtml extends App with RSSFeed {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><span class="committee"><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short}&nbsp;{c.venue.year}</a>&nbsp;(<span title={c.role.title}>{c.role.abbreviation}</span>)</span>{if (comma) ","} </span>
+    def printCommittee(c: Committee, comma: Boolean) = <span><span class="committee"><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short}&nbsp;{c.venue.year}</a>&nbsp;(<span title={c.role.map(_.title).mkString(", ")}>{c.role.map(_.abbreviation).mkString(", ")}</span>)</span>{if (comma) ","} </span>
 
     def printCommitteePicture(): NodeSeq = 
       <a href="http://program-transformation.org/GPCE13">

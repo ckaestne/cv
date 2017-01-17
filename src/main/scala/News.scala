@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2016, 9-1, 20).getTime, "Ecosystem Survey",
+          <span>I'm really excited about our ongoing research on change in software ecosystems. Based on our <a href="http://breakingapis.org/fse2016.pdf">FSE'16 interview study</a> of how developers negotiate costs around breaking changes and how practices seem to align well within an ecosystem but differ significantly across ecosystems, we are currently running a large scale survey across 28 ecosystems, asking about ecosystem values, community health, and various practices related to change planning and dealing with changes in dependencies. We encourage all developers familiar with any of those ecosystems to participate in our survey. Both results of our previous study and the survey can be found on <a href="http://breakingapis.org">http://breakingapis.org</a>.</span>) ::
         NewsItem(new GregorianCalendar(2016, 7-1, 13).getTime, "Postdoc position available",
           <span>(Update July 29: The postdoc position in my group has been filled.) I'm looking for a postdoc as well as interested undergradudate or even visiting students for a project applying software analysis and machine learning to improve evolution and configuration of robotics software. Details, see here: <a href="https://www.cs.cmu.edu/~ckaestne/postdoc16/">Post-doc position at Carnegie Mellon University</a>.</span>) ::
         NewsItem(new GregorianCalendar(2016, 4-1, 16).getTime, "On the ICSE 2017 Author Limit Policy",

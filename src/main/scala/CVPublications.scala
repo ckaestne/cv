@@ -100,11 +100,13 @@ object Coauthors {
     val Malik = Person("Momin", "Malik", "Carnegie Mellon University")
     val Thung = Person("Ferdian", "Thung", "Singapore Management University")
     val Kawthekar = Person("Prasad", "Kawthekar", "Carnegie Mellon University")
+    val Meng = Person("Meng", "Meng", "Oregon State University")
 
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
+    val Velez = Person("Miguel", "Velez", URL("http://www.cs.cmu.edu/~mvelezce/"), "Carnegie Mellon University")
 
 
 }
@@ -139,6 +141,7 @@ object Topics {
     val preprocessor = Topic("Preprocessors/conditional compilation")
     val awareness = Topic("Awareness/Transparency")
     val ecosystem = Topic("Software ecosystems")
+    val buildsys = Topic("Build systems")
 
 }
 
@@ -2030,7 +2033,7 @@ object CVPublications {
                     by parsing the product line MobileMedia and the
                     entire X86 architecture of the Linux kernel with 6065 variable
                     features.                          """
-    ).selected().topic(vsoc, vaanalysis, parsing, typechef, preprocessor)
+    ).selected().topic(vsoc, vaanalysis, parsing, typechef, preprocessor, buildsys)
 
     val splc11demo = InProceedings(
         Seq(Feigenspan, Papendieck, Kaestner, Frisch, Dachselt),
@@ -3060,7 +3063,7 @@ object CVPublications {
                 conditional parameters. We implement an initial prototype and
                 demonstrate feasibility on small examples.
         """
-    ).topic(vaanalysis, adoption)
+    ).topic(vaanalysis, adoption, buildsys)
 
     val ecoop15 = InProceedings(
         Seq(Medeiros, Kaestner, Ribeiro, Nadi, Gheyi),
@@ -3394,7 +3397,8 @@ object CVPublications {
         "How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems",
         FSE(2016).month(11).location("Seattle, WA").publisher(ACM).acceptanceRate(74, 273),
         ToAppear(),
-        Map(HTTP -> URL("http://breakingapis.org")),
+        Map(HTTP -> URL("http://breakingapis.org"), 
+            PDF -> PDFFile("fse16.pdf")),
         """
             Change introduces conflict into software ecosystems: breaking
             changes may ripple through the ecosystem and trigger rework
@@ -3473,7 +3477,52 @@ object CVPublications {
         """).selected().topic(testing, empirical, interactions, vaanalysis)
 
 
+    val releng16 = InProceedings(
+        Seq(AlKofahi, TNguyen, Kaestner),
+        "Escaping AutoHell: A Vision For Automated Analysis and Migration of Autotools Build Systems",
+        Workshop("Releng", 2016, "4rd International Workshop on Release Engineering").location("Seattle, WA").month(11).publisher(ACM),
+        ToAppear(),
+        Map(PDF -> PDFFile("releng16.pdf")),
+        """
+        GNU Autotools is a widely used build tool in the open source
+        community. As open source projects grow more complex,
+        maintaining their build systems becomes more challenges,
+        due to the lack of tool support. Here we propose a platform
+        to mitigate this problem, and aid developers by providing
+        a platform to build support tools for GNU Autotools build
+        systems. The platform would provide an abstract approximation 
+        for the build system to be used in different analysis
+        techniques.
+        """).topic(buildsys)
 
+
+    val vamos17 = InProceedings(
+        Seq(Meng, Meinicke, Wong, Walkingshaw, Kaestner),
+        "A Choice of Variational Stacks: Exploring Variational Data Structures",
+        VAMOS(2017),
+        ToAppear(),
+        Map(),
+        """
+Many applications require not only representing variability in software and
+data, but also computing with it. To do so efficiently requires variational
+data structures that make the variability explicit in the underlying data and
+the operations used to manipulate it. Variational data structures have been
+developed ad hoc for many applications, but there is little general
+understanding of how to design them or what tradeoffs exist among them.
+In this paper, we take a first step towards a more systematic exploration and
+analysis of a variational data structure. We want to know how different design
+decisions affect the performance and scalability of a variational data
+structure, and what properties of the underlying data and operation sequences
+need to be considered.
+Specifically, we study several alternative designs of a variational stack, a
+data structure that supports efficiently representing and computing with
+multiple variants of a plain stack, and that is a common building block in many
+algorithms. The different variational stacks are presented as a small product
+line organized by three design decisions. We analyze how these design decisions
+affect the performance of a variational stack with different usage profiles.
+Finally, we evaluate how these design decisions affect the performance of the
+variational stack in a real-world scenario: in the interpreter VarexJ when
+executing real software containing variability.""").topic(vaanalysis)
 
 
 }

@@ -109,6 +109,16 @@ object CV {
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
         ),
+        Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("https://www.cs.cmu.edu/~ckaestne/15214/s2017/"),
+            English, SpringTerm(2017), new CourseKind with Lecture
+        ),
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
+            English, FallTerm(2016), new CourseKind with Lecture
+        ),
         Course("17-708 Software Product Lines: Concepts and Implementation",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/17708/"),
@@ -268,9 +278,15 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(ASE(2018), PCCChair),
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
+        Committee(Workshop("WAPI", 2017,
+          "ICSE Workshop on API Usage and Evolution",
+          URL("https://w-api.github.io/")), PC),
         Committee(ECOOP(2017).url(URL("http://conf.researchr.org/home/pldi-ecoop-2017")), PC),
+        Committee(ASE(2017).url(URL("http://ase2017.org/")), PC, DSCChair),
         Committee(ICSE(2017).url(URL("http://icse2017.gatech.edu/")), PC),
+        Committee(ESECFSE(2017).url(URL("http://esec-fse17.uni-paderborn.de/")), PC),
         Committee(VAMOS(2017).url(URL("https://vamos2017.wordpress.com/")), PC),
         Committee(Workshop("RELENG", 2016, "4th International Workshop on Release Engineering",
             URL("http://releng.polymtl.ca")), PC),
@@ -288,6 +304,7 @@ object CV {
             URL("http://cbsoft.org/sbcars2015/")), PC),
         Committee(VAMOS(2015), PC),
         Committee(SPLC(2015).url(URL("http://www.splc2015.net")), PC),
+        Committee(GPCE(2015), GeneralChair),
         Committee(Workshop("SPLTea", 2015, "Second International Workshop on Software Product Line Teaching",
             URL("http://spltea.irisa.fr/")), PC),
         Committee(Workshop("ICSE-D", 2015,
@@ -586,6 +603,7 @@ object CV {
     val currentStudents = List(
         (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
         (Ferreira, None),
+        (Velez, None),
         (Wong, None),
         (Zhou, None)
     )

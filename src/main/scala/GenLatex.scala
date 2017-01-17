@@ -106,10 +106,10 @@ object GenLatex extends App {
         val l = teaching.filter(isRelevant).groupBy(c => (c.title, c.language)).toList.
             sortBy(c => c._2.map(_.term).max).reverse
         var r = l.map({
-            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.map(_.term.year).sorted.mkString(", "), t, l)
+            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.map(_.term.year).sorted.map(y => if (y>3000)"" else y).mkString(", "), t, l)
         })
         val projectYears = teachingProjects.map(_.term)
-        r = r :+ "\\item[%d--%d] Supervised %d Student Software Projects".format(projectYears.min.year, projectYears.max.year, teachingProjects.size)
+//        r = r :+ "\\item[%d--%d] Supervised %d Student Software Projects".format(projectYears.min.year, projectYears.max.year, teachingProjects.size)
         subsection("Exercise Classes, Seminars, and Others", inCV(r.mkString("\n")))
     }
 
@@ -127,21 +127,24 @@ object GenLatex extends App {
 
     //    def printCommittee()
 
-    def printCommittee(c: Committee) =
-        "\\item[%s %d] %s".format(c.venue.short.toTex, c.venue.year, c.venue.name.toTex) +
-            (if (c.role != PC) " -- " + c.role.title else "") + "\n"
+    def printCommittee(c:Committee): String = printCommittee(c.venue, c.role)
+    def printCommittee(venue: Venue, roles: Seq[CommitteeRole]): String =
+        "\\item[%s %d] %s".format(venue.short.toTex, venue.year, venue.name.toTex) +
+            (if (roles != Seq(PC)) " -- " + roles.map(_.title).mkString(", ") else "") + "\n"
 
     def organizationCommittees(): String = subsection("Organization Committees", inCV(
-        committees.filter(Set(OC, PCChair, SC) contains _.role).map(printCommittee).mkString +
-            "\\item[FOSD-Me.\\ 2009-15] Annual Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
+        committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
+        map(committee=>printCommittee(committee.venue, committee.role.intersect(CommitteeRoles.organizationRoles.toSeq))).
+        mkString +
+            "\\item[FOSD-Me.\\ 2009-18] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg)\n"
     ))
 
     def programCommittees(): String =
         subsection("Program Committees (Conferences)", inCV(
-            committees_conferences.filterNot(Set(OC, PCChair) contains _.role).map(printCommittee).mkString
+            committees_conferences.filter(_.role.toSet.intersect(CommitteeRoles.pcRoles).nonEmpty).map(printCommittee).mkString
         ))    +
             subsection("Program Committees (Workshops and Other)", inCV(
-                committees_workshops.filterNot(Set(OC, PCChair) contains _.role).filter(_.venue.kind == KWorkshopDemoTool).map(printCommittee).mkString
+                committees_workshops.filter(_.role.toSet.intersect(CommitteeRoles.pcAndDsRoles).nonEmpty).filter(_.venue.kind == KWorkshopDemoTool).map(printCommittee).mkString
             ))
 
     def printReview(r: Review) =
@@ -178,10 +181,11 @@ object GenLatex extends App {
 
 
     output += section("Awards and Honors", printAwards())
-    output += section("Research Grants", printGrants())
+//    output += section("Research Grants", printGrants())
     output += section("Invited Talks", printInvitedTalks())
 
-    output += section("Teaching and Advising", courses() + seminars() + theses())
+//    output += section("Teaching and Advising", courses() + seminars() + theses())
+    output += section("Teaching", courses() + seminars())
     output += section("Memberships", printMemberships())
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
