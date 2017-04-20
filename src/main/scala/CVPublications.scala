@@ -107,7 +107,10 @@ object Coauthors {
     val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
     val Velez = Person("Miguel", "Velez", URL("http://www.cs.cmu.edu/~mvelezce/"), "Carnegie Mellon University")
-
+    val Jamshidi = Person("Pooyan", "Jamshidi", URL("https://www.cs.cmu.edu/~pjamshid/"), "Carnegie Mellon University")
+    val FerreiraB = Person("Bruno", "Ferreira", " Federal University of Alagoas, Maceio")
+    val Carvalho = Person("Luiz", "Carvalho", " Federal University of Alagoas, Maceio")
+    val Fonseca = Person("Baldoino", "Fonseca", " Federal University of Alagoas, Maceio")
 
 }
 
@@ -3260,8 +3263,8 @@ object CVPublications {
         "When it Breaks, it Breaks: How Ecosystem Developers Reason About the Stability of Dependencies",
         Workshop("SCGSE", 2015, "ASE Workshop on Software Support for Collaborative and Global Software Engineering").month(11).
             location("Lincoln, NE"),
-        ToAppear(),
-        Map(PDF -> PDFFile("scgse15.pdf")),
+        Pages(86,89),
+        Map(PDF -> PDFFile("scgse15.pdf"), DOI->DOI("10.1109/ASEW.2015.21")),
         """Dependencies among software projects and libraries are an indicator of the
                 often implicit collaboration among many developers in software ecosystems.
                 Negotiating change can be tricky: changes to one module may cause ripple
@@ -3297,8 +3300,8 @@ object CVPublications {
         Seq(Medeiros, Kaestner, Ribeiro, Gheyi, Apel),
         "A Comparison of 10 Sampling Algorithms for Configurable Systems",
         ICSE(2016).month(5).location("Austin, TX").acceptanceRate(101, 530).publisher(ACM),
-        ToAppear(),
-        Map(PDF -> PDFFile("icse16.pdf")),
+        Pages(643,654),
+        Map(PDF -> PDFFile("icse16.pdf"), DOI -> DOI("10.1145/2884781.2884793")),
         """
     Almost every software system provides configuration options
     to tailor the system to the target platform and application
@@ -3325,8 +3328,8 @@ object CVPublications {
         Seq(Ahmad, Kaestner, Sunshine, Aldrich),
         "Inter-app Communication in Android: Developer Challenges",
         Conference("MSR", 2016, " 13th International Conference on Mining Software Repositories").month(5).location("Austin, TX").publisher(ACM).acceptanceRate(36, 133),
-        ToAppear(),
-        Map(PDF -> PDFFile("msr16.pdf")),
+        Pages(177,188),
+        Map(PDF -> PDFFile("msr16.pdf"), DOI -> DOI("10.1145/2901739.2901762")),
         """
             The Android platform is designed to support mutually untrusted 
             third-party apps, which run as isolated processes but
@@ -3361,8 +3364,8 @@ object CVPublications {
         Seq(Ferreira, Malik, Kaestner, Pfeffer, Apel),
         "Do #ifdefs Influence the Occurrence of Vulnerabilities? An Empirical Study of the Linux Kernel",
         SPLC(2016).publisher(ACM).location("Beijing").month(9).acceptanceRate(17,44),
-        ToAppear(),
-        Map(PDF -> PDFFile("splc2016.pdf")),
+        Pages(65, 744),
+        Map(PDF -> PDFFile("splc2016.pdf"), DOI -> DOI("10.1145/2934466.2934467")),
         """
           Preprocessors support the diversification of software products 
           with #ifdefs, but also require additional effort from developers 
@@ -3396,9 +3399,10 @@ object CVPublications {
         Seq(Bogart, Kaestner, Herbsleb, Thung),
         "How to Break an API: Cost Negotiation and Community Values in Three Software Ecosystems",
         FSE(2016).month(11).location("Seattle, WA").publisher(ACM).acceptanceRate(74, 273),
-        ToAppear(),
+        Pages(109, 120),
         Map(HTTP -> URL("http://breakingapis.org"), 
-            PDF -> PDFFile("fse16.pdf")),
+            PDF -> PDFFile("fse16.pdf"),
+            DOI -> DOI("10.1145/2950290.2950325")),
         """
             Change introduces conflict into software ecosystems: breaking
             changes may ripple through the ecosystem and trigger rework
@@ -3427,8 +3431,8 @@ object CVPublications {
         "Sensitivity Analysis For Building Evolving & Adaptive Robotic Software",
         Workshop("WSR", 2016, "IJCAI Workshop on Autonomous Mobile Service Robots").month(7).
             location("New York, NY"),
-        ToAppear(),
-        Map(PDF->PDFFile("wsr16.pdf")),
+        PagesStr(""),
+        Map(PDF->PDFFile("wsr16.pdf"), HTTP -> URL("https://sites.google.com/site/ijcai2016wsrobots/program")),
         """
         There has been a considerable growth in research
         and development of service robots in recent years.
@@ -3459,8 +3463,8 @@ object CVPublications {
         Seq(Meinicke, Wong, Kaestner, Thuem, Saake),
         "On Essential Configuration Complexity: Measuring Interactions In Highly-Configurable Systems",
         ASE(2016).month(9).location("Singapore").publisher(ACM).acceptanceRate(57, 298),
-        ToAppear(),
-        Map(PDF->PDFFile("ase16.pdf")),
+        Pages(483,494),
+        Map(PDF->PDFFile("ase16.pdf"), DOI -> DOI("10.1145/2970276.2970322")),
         """
         Quality assurance for highly-configurable systems is challenging due to the exponentially growing configuration space. 
         Interactions among multiple options can lead to surprising behaviors, bugs, and security vulnerabilities.
@@ -3481,8 +3485,8 @@ object CVPublications {
         Seq(AlKofahi, TNguyen, Kaestner),
         "Escaping AutoHell: A Vision For Automated Analysis and Migration of Autotools Build Systems",
         Workshop("Releng", 2016, "4rd International Workshop on Release Engineering").location("Seattle, WA").month(11).publisher(ACM),
-        ToAppear(),
-        Map(PDF -> PDFFile("releng16.pdf")),
+        Pages(12, 15),
+        Map(PDF -> PDFFile("releng16.pdf"), DOI -> DOI("10.1145/2993274.2993279")),
         """
         GNU Autotools is a widely used build tool in the open source
         community. As open source projects grow more complex,
@@ -3500,8 +3504,9 @@ object CVPublications {
         Seq(Meng, Meinicke, Wong, Walkingshaw, Kaestner),
         "A Choice of Variational Stacks: Exploring Variational Data Structures",
         VAMOS(2017),
-        ToAppear(),
-        Map(),
+        Pages(28,35),
+        Map(PDF -> PDFFile("vamos17.pdf"),
+            DOI -> DOI("10.1145/3023956.3023966")),
         """
 Many applications require not only representing variability in software and
 data, but also computing with it. To do so efficiently requires variational
@@ -3524,5 +3529,40 @@ Finally, we evaluate how these design decisions affect the performance of the
 variational stack in a real-world scenario: in the interpreter VarexJ when
 executing real software containing variability.""").topic(vaanalysis)
 
+    val tse17 = Article(
+        Seq(Medeiros, Ribeiro, Gheyi, Apel, Kaestner, FerreiraB, Carvalho, Fonseca),
+        "Discipline Matters: Refactoring of Preprocessor Directives in the #ifdef Hell",
+        TSE(2017),
+        ToAppear(),
+        Map(PDF -> PDFFile("tse17-refactoringifdef.pdf")),
+        """
+        The C preprocessor is used in many C projects to support variability and portability. However, researchers and practitioners
+        criticize the C preprocessor because of its negative effect on code understanding and maintainability and its error proneness. More
+        importantly, the use of the preprocessor hinders the development of tool support that is standard in other languages, such as automated
+        refactoring. Developers aggravate these problems when using the preprocessor in undisciplined ways (e.g., conditional blocks that do
+          not align with the syntactic structure of the code). In this article, we proposed a catalogue of refactorings and we evaluated the number
+        of application possibilities of the refactorings in practice, the opinion of developers about the usefulness of the refactorings, and whether
+        the refactorings preserve behavior. Overall, we found 5670 application possibilities for the refactorings in 63 real-world C projects. In
+        addition, we performed an online survey among 246 developers, and we submitted 28 patches to convert undisciplined directives into
+        disciplined ones. According to our results, 63% of developers prefer to use the refactored (i.e., disciplined) version of the code instead
+        of the original code with undisciplined preprocessor usage. To verify that the refactorings are indeed behavior preserving, we applied
+        them to more than 36 thousand programs generated automatically using a model of a subset of the C language, running the same
+        test cases in the original and refactored programs. Furthermore, we applied the refactorings to three real-world projects: BusyBox,
+        OpenSSL, and SQLite. This way, we detected and fixed a few behavioral changes, 62% caused by unspecified behavior in the C
+        programming language.
+        """
+      ).selected().topic(preprocessor, empirical)
 
+    val seams17 = InProceedings(
+        Seq(Jamshidi, Velez, Kaestner, Siegmund, Kawthekar),
+        "Transfer Learning for Improving Model Predictions in Highly Configurable Software",
+        Conference("SEAMS", 2017, "12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5).location("Buenos Aires").publisher(IEEE).acceptanceRate(14, 61),
+        ToAppear(),
+        Map(PDF -> PDFFile("seams17.pdf")),
+        """
+        Modern software systems are now being built to be used in dynamic environments utilizing configuration capabilities to adapt to changes and external uncertainties. In a self-adaptation context, we are often interested in reasoning about the performance of the systems under different configurations. Usually, we learn a black-box model based on real measurements to predict the performance of the system given a specific configuration. However, as modern systems become more complex, there are many configuration parameters that may interact and, therefore, we end up learning an exponentially large configuration space. Naturally, this does not scale when relying on real measurements in the actual changing environment. 
+        We propose a different solution: Instead of taking the measurements from the real system, we learn the model using samples from other sources, such as simulators that approximate performance of the real system at low cost. We define a cost model that transform the traditional view of model learning into a multi-objective problem that not only takes into account model accuracy but also measurements effort as well.
+        We evaluate our cost-aware transfer learning solution using real world configurable software including (i) a robotic system, (ii) 3 different stream processing applications, and (iii) a NoSQL database system. The experimental results demonstrate that our approach can achieve (a) high prediction accuracy as well as (b) high model reliability with only few samples from the target environment.
+        """
+      ).topic(nfp)
 }

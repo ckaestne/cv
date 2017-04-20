@@ -43,7 +43,10 @@ class Validate extends FunSuite {
     test("all pdf links in publications should be local") {
         for (p <- publications) {
             p.links.get(PDF) map {
-                case PDFLink(_) => //great
+                case PDFLink(file) => 
+                  //great
+                  val pdfFile = new File("src/main/pdf/"+file)
+                  assert(pdfFile.exists(), "pdf file "+file+"not found")
                 case HTTPLink(url, _) =>
                     System.err.println("Warning: publication %s has remote pdf link %s, consider a local one".format(p.genKey, url))
             }

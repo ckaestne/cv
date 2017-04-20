@@ -44,7 +44,7 @@ object CV {
                 <div>
                     &nbsp;
                 </div>
-                <div>Office: Wean 5122</div>
+                <div>Office: Wean 5126</div>
                 <div>Email: kaestner (at) cs.cmu.edu</div>
             </p>
 
@@ -280,6 +280,7 @@ object CV {
     val committees = Seq[Committee](
         Committee(ASE(2018), PCCChair),
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
+        Committee(VAMOS(2018).url(URL("https://vamos2018.wordpress.com/")), PC),
         Committee(Workshop("WAPI", 2017,
           "ICSE Workshop on API Usage and Evolution",
           URL("https://w-api.github.io/")), PC),
@@ -593,7 +594,8 @@ object CV {
      */
     def students: List[(String, List[(Person, Option[String])])] = List(
         ("Current PhD students", currentStudents),
-        ("Close external collaborations / coadvising", collaboratingStudents),
+        ("Postdocs", postdocs),
+//        ("Close external collaborations / coadvising", collaboratingStudents),
         ("Visiting students",visitingStudents)
 
 
@@ -601,7 +603,7 @@ object CV {
 
     import Coauthors._
     val currentStudents = List(
-        (Ahmad, Some("(coadvised with Jonathan Aldrich)")),
+        //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
         (Ferreira, None),
         (Velez, None),
         (Wong, None),
@@ -625,6 +627,9 @@ object CV {
         (Person("Kyle", "McDonell", "Colby College"), Some("(2016)")),
         (Person("Xia", "Xiao", "Dickinson College"), Some("(2016)")),
         (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(2016-2017)"))
+    )
+    val postdocs = List(
+        (Jamshidi, None)
     )
 
 }
