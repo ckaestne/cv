@@ -84,12 +84,12 @@ object GenLatex extends App {
         inCV(r.mkString("\n"))
     }
 
-    def printSoftware(): String = {
-        val r = software.map(s =>
-            "\\item[{%s}] %s,\\\\\\url{%s}".format(s._1, s._2.markdownToTex(), s._3.toString)
-        )
-        inCV(r.mkString("\n"))
-    }
+//    def printSoftware(): String = {
+//        val r = software.map(s =>
+//            "\\item[{%s}] %s,\\\\\\url{%s}".format(s._1, s._2.markdownToTex(), s._3.toString)
+//        )
+//        inCV(r.mkString("\n"))
+//    }
 
 
     def courses(): String = {
@@ -167,7 +167,7 @@ object GenLatex extends App {
 
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{39}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{44}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
             VenueStructure.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\usepackage[stable]{footmisc}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
@@ -189,7 +189,7 @@ object GenLatex extends App {
     output += section("Memberships", printMemberships())
 
     output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
-    output += section("Software", printSoftware())
+//    output += section("Software", printSoftware())
 
     output += publications()
 

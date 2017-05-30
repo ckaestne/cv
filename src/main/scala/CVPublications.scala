@@ -110,7 +110,8 @@ object Coauthors {
     val Jamshidi = Person("Pooyan", "Jamshidi", URL("https://www.cs.cmu.edu/~pjamshid/"), "Carnegie Mellon University")
     val FerreiraB = Person("Bruno", "Ferreira", " Federal University of Alagoas, Maceio")
     val Carvalho = Person("Luiz", "Carvalho", " Federal University of Alagoas, Maceio")
-    val Fonseca = Person("Baldoino", "Fonseca", " Federal University of Alagoas, Maceio")
+    val Fonseca = Person("Baldoino", "Fonseca", "Federal University of Alagoas, Maceio")
+    val Goyal = Person("Raman", "Goyal", "Indian Institute of Information Technology, Allahabad")
 
 }
 
@@ -3565,4 +3566,40 @@ executing real software containing variability.""").topic(vaanalysis)
         We evaluate our cost-aware transfer learning solution using real world configurable software including (i) a robotic system, (ii) 3 different stream processing applications, and (iii) a NoSQL database system. The experimental results demonstrate that our approach can achieve (a) high prediction accuracy as well as (b) high model reliability with only few samples from the target environment.
         """
       ).topic(nfp)
+
+
+
+    val jsep17 = Article(
+        Seq(Goyal, Ferreira, Kaestner, Herbsleb),
+        "Identifying Unusual Commits on GitHub",
+        JSEP(2017),
+        ToAppear(),
+        Map(),
+        """
+          Transparent environments and social-coding platforms as GitHub help
+          developers to stay abreast of changes during the development and
+          maintenance phase of a project. Especially, notification feeds can help developers
+          to learn about relevant changes in other projects.
+          Unfortunately, transparent environments can quickly overwhelm developers
+          with too many notifications, such that they loose the important ones
+          in a sea of noise.
+          Complementing existing prioritization and filtering strategies
+          based on binary compatibility and code ownership, we
+          develop an anomaly-detection mechanism to identify unusual
+          commits in a repository, that stand out with respect to other
+          changes in the same repository or by the same developer.
+          Among others, we detect exceptionally large commits, commits at
+          unusual times, and commits touching rarely changed file types
+          given the characteristics of a particular repository or developer.
+          We automatically flag unusual commits on GitHub through a browser plugin.
+          In an interactive survey with 173 active GitHub
+          users, rating commits in a project of their interest, we
+          found that, though our unusual score is only a weak predictor of
+          whether developers want to be notified about a commit,
+          information about unusual characteristics of a commit change how developers regard commits.
+          Our anomaly-detection mechanism is a building block for scaling
+          transparent environments.
+        """
+    ).topic(empirical, awareness)
+
 }

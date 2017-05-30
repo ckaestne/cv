@@ -15,13 +15,13 @@ object CV {
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
-        <p>I am an assistant professor in the School of Computer Science at Carnegie Mellon University, interested in controlling the
-            <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
+        <p>I am an assistant professor in the School of Computer Science at Carnegie Mellon University, interested in <strong>limits of modularity</strong>
+            and <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
             languages, and tools to <strong>implement variability in a disciplined way</strong> despite
             imperfect modularity,
             to understand <strong>feature interactions</strong> and <strong>interoperability</strong> issues,
-            to <strong>detect errors</strong>, and to <strong>improve program comprehension</strong>
-            in systems with a high amount of variability. Among others, I have developed approaches to parse and
+            to <strong>detect errors</strong>, to help with <strong>nonmodular changes</strong>, and to <strong>improve program comprehension</strong>
+            in software systems, typically systems with a high amount of variability. Among others, I have developed approaches to parse and
             type check all compile-time configurations of the <strong>Linux kernel</strong> in the
             <strong>TypeChef</strong> project.</p> :+
             <p>Profiles:
@@ -54,6 +54,7 @@ object CV {
           |\item[Affiliation]
           |    Assistant Professor \\
           |    Carnegie Mellon University \\
+          |    School of Computer Science\\
           |    Institute for Software Research \\
           |    5000 Forbes Avenue, Pittsburgh, PA 15213, USA
           |\item[Contact]
@@ -64,7 +65,7 @@ object CV {
           |
           |\section{Profile}
           |\begin{CV}
-          |\item[] Assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in controlling the \emph{complexity} caused by \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, and to improve program comprehension in systems with a high amount of variability.
+          |\item[] Assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
           |\end{CV}
           |
           |\section{Education}
@@ -72,8 +73,8 @@ object CV {
           |\item[Apr.\ 2007 -- May 2010]
           |    Doctoral degree in computer science (Doktor-Ingenieur),\\
           |    University of Magdeburg, Germany, \\
-          |    Grade summa cum laude (with distinction)\\[.5ex]
-          |		Reviewers: Prof.\ Gunter Saake (University of Magdeburg), Prof.\ Don Batory (University of Texas at Austin), Prof.\ Krzysztof Czarnecki (University of Waterloo)
+          |    Summa cum laude (with distinction)\\[.5ex]
+          |	   Committee: Prof.\ Gunter Saake (University of Magdeburg), Prof.\ Don Batory (University of Texas at Austin), Prof.\ Krzysztof Czarnecki (University of Waterloo)
           |\item[Oct.\ 2002 -- Mar.\ 2007]
           |    Diploma degree in business information systems \\(M.Sc.\ equivalent; Diplom-Wirtschaftsinformatiker), \\University of Magdeburg, Germany,\\Grade ``1.0'' (with distinction)
           |\end{CV}
@@ -108,6 +109,11 @@ object CV {
             "",
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
+        ),
+        Course("15-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
+            English, FallTerm(2017), new CourseKind with Lecture
         ),
         Course("15-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
@@ -392,6 +398,8 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2017)),
+        Review(TSE(2016)),
         Review(SOSYM(2016)),
         Review(COMLAN(2016)),
         Review(TSE(2015)),
@@ -429,27 +437,33 @@ object CV {
 
     val awards: Seq[AwardOrGrant] = Seq(
         Award(
+            "Distinguished Reviewer Award at the International Conference on Software Engineering (ICSE) 2017",
+            URL("http://icse2017.gatech.edu/"),
+            new GregorianCalendar(2017, 5 - 1, 20).getTime,
+            Nil
+        ),
+        Award(
             "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2015",
             URL("http://ase2015.unl.edu/"),
             new GregorianCalendar(2015, 11 - 1, 12).getTime,
             Nil
         ),
-        Grant("Grant: Reverse Engineering Variability Implementations",
-            URL("http://www.nsf.gov/awardsearch/showAward?AWD_ID=1318808"),
-            new GregorianCalendar(2013, 6 - 1, 24).getTime,
-            new GregorianCalendar(2013, 9 - 1, 1).getTime,
-            new GregorianCalendar(2016, 8 - 1, 31).getTime,
-            "National Science Foundation",
-            USD(400797)
-        ),
-        Grant("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering",
-            URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
-            new GregorianCalendar(2012, 6 - 1, 1).getTime,
-            new GregorianCalendar(2012, 10 - 1, 1).getTime,
-            new GregorianCalendar(2015, 10 - 1, 1).getTime,
-            "German Research Foundation",
-            EUR(250000)
-        ),
+//        Grant("Grant: Reverse Engineering Variability Implementations",
+//            URL("http://www.nsf.gov/awardsearch/showAward?AWD_ID=1318808"),
+//            new GregorianCalendar(2013, 6 - 1, 24).getTime,
+//            new GregorianCalendar(2013, 9 - 1, 1).getTime,
+//            new GregorianCalendar(2016, 8 - 1, 31).getTime,
+//            "National Science Foundation",
+//            USD(400797)
+//        ),
+//        Grant("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering",
+//            URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
+//            new GregorianCalendar(2012, 6 - 1, 1).getTime,
+//            new GregorianCalendar(2012, 10 - 1, 1).getTime,
+//            new GregorianCalendar(2015, 10 - 1, 1).getTime,
+//            "German Research Foundation",
+//            EUR(250000)
+//        ),
         Award(
             "**GI-Dissertationspreis:** Best Dissertation Award of the German Computer Science Association, 2010",
             URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
@@ -503,40 +517,40 @@ object CV {
             new GregorianCalendar(2006, 9 - 1, 1).getTime
         )
     )
-    val projects: Seq[(URL, String, String, Option[String])] = Seq(
-        (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef", "Variability-Aware Analysis and Parsing of C Code", None),
-        (URL("https://github.com/ckaestne/LEADT"), "Feature Mining", "Consistent Semi-Automatic Detection of Product-Line Features", None),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE", "Virtual Separation of Concerns", None),
-        (URL("http://www.sugarj.org/"), "SugarJ", "Library-based Syntactic Language Extensibility", None),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE", "Tool Support for Feature-Oriented Software Development", None),
-        (URL("http://www.infosun.fim.uni-passau.de/cl/apel/fh/"), "FeatureHouse", "Language-Independent, Automatic Software Composition", None),
-        (URL("http://www.fame-dbms.org/"), "FAME-DBMS", "Tailor-Made Data Management", Some("finished")),
-        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ", "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished"))
-        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
-        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
-    )
+//    val projects: Seq[(URL, String, String, Option[String])] = Seq(
+//        (URL("http://ckaestne.github.com/TypeChef/"), "TypeChef", "Variability-Aware Analysis and Parsing of C Code", None),
+//        (URL("https://github.com/ckaestne/LEADT"), "Feature Mining", "Consistent Semi-Automatic Detection of Product-Line Features", None),
+//        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/cide/"), "CIDE", "Virtual Separation of Concerns", None),
+//        (URL("http://www.sugarj.org/"), "SugarJ", "Library-based Syntactic Language Extensibility", None),
+//        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/"), "FeatureIDE", "Tool Support for Feature-Oriented Software Development", None),
+//        (URL("http://www.infosun.fim.uni-passau.de/cl/apel/fh/"), "FeatureHouse", "Language-Independent, Automatic Software Composition", None),
+////        (URL("http://www.fame-dbms.org/"), "FAME-DBMS", "Tailor-Made Data Management", Some("finished")),
+//        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/arj/"), "ARJ", "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance", Some("finished"))
+//        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/ajdtstats/"), "AJDTStats: A Statistics Collector for AJDT", Some("finished")),
+//        //        (URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/research/berkeley/"), "Aspect-oriented refactoring of Berkeley DB", Some("finished"))
+//    )
 
     //name, title, url
-    val software: Seq[(String, String, URL)] = Seq(
-        ("TypeChef",
-            "Parsing and Analyzing #ifdef Variability in C Code",
-            URL("https://github.com/ckaestne/TypeChef")),
-        ("CIDE",
-            "Feature-Oriented Analysis and Decomposition of Legacy Code",
-            URL("http://fosd.net/cide/")),
-        ("FeatureIDE",
-            "A Tool Framework for Feature-Oriented Software Development",
-            URL("http://fosd.net/featureide/")),
-        ("LEADT",
-            "Consistent Semi-Automatic Detection of Product-Line Features",
-            URL("http://fosd.net/leadt/")),
-        ("FeatureHouse",
-            "Language-Independent, Automated Software Composition",
-            URL("http://fosd.net/fh/")),
-        ("ARJ",
-            "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance",
-            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
-    )
+//    val software: Seq[(String, String, URL)] = Seq(
+//        ("TypeChef",
+//            "Parsing and Analyzing #ifdef Variability in C Code",
+//            URL("https://github.com/ckaestne/TypeChef")),
+//        ("CIDE",
+//            "Feature-Oriented Analysis and Decomposition of Legacy Code",
+//            URL("http://fosd.net/cide/")),
+//        ("FeatureIDE",
+//            "A Tool Framework for Feature-Oriented Software Development",
+//            URL("http://fosd.net/featureide/")),
+//        ("LEADT",
+//            "Consistent Semi-Automatic Detection of Product-Line Features",
+//            URL("http://fosd.net/leadt/")),
+//        ("FeatureHouse",
+//            "Language-Independent, Automated Software Composition",
+//            URL("http://fosd.net/fh/")),
+//        ("ARJ",
+//            "Extending AspectJ with Aspect Refinement and Mixin-Based Aspect Inheritance",
+//            URL("http://wwwiti.cs.uni-magdeburg.de/iti_db/forschung/arj/"))
+//    )
 
     lazy val publications: List[Publication] = {
         //get members via reflection
@@ -551,7 +565,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
-        InvitedTalk(time(2016, 5), "Quality Assurance for Highly-Configurable   Systems", "Keynote Talk for the VACE Workshop at ICSE'16"),
+        InvitedTalk(time(2017, 5), "How to Break an API: How Community Values Influence Practices", "Speaker at jsconf.eu"),
+        InvitedTalk(time(2016, 5), "Quality Assurance for Highly-Configurable Systems", "Keynote Talk for the VACE Workshop at ICSE'16"),
         InvitedTalk(time(2015, 11), "Starting an Academic Career -- Reflecting on Habits that Worked for Me", "Keynote Talk for the ASE 2015 Doctoral Symposium"),
         InvitedTalk(time(2015, 10), "Parsing Unpreprocessed C Code - The TypeChef Experience", "Keynote Talk for the Parsing@SLE Workshop at SPLASH'15"),
         InvitedTalk(time(2015, 9), "Understanding Feature Interactions: From Bugs to Performance Surprises", "Keynote at Brazilian Symposium on Software Components, Architectures, and Reuse (SBCARS)"),
@@ -596,7 +611,7 @@ object CV {
         ("Current PhD students", currentStudents),
         ("Postdocs", postdocs),
 //        ("Close external collaborations / coadvising", collaboratingStudents),
-        ("Visiting students",visitingStudents)
+        ("Visiting scholars",visitingStudents)
 
 
     )
@@ -611,6 +626,7 @@ object CV {
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State)")),
+        (AlKofahi, Some("(Iowa State)")),
         (Lillack, Some("(University of Leipzig)")),
         (Meinicke, Some("(University of Magdeburg)")),
         (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
@@ -618,7 +634,7 @@ object CV {
     )
     val visitingStudents =  List(
         (Medeiros, Some("(2014)")),
-        (Meinicke, Some("(2014, 2016-2017)")),
+        (Meinicke, Some("(2014, 2016-2018)")),
         (Person("Raman", "Goyal"), Some("(2015)")),
         (Person("Htut Khine", "Htay Win"), Some("(2015)")),
         (Stanciulescu, Some("(2016-2017)")),
@@ -626,7 +642,9 @@ object CV {
         (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(2016)")),
         (Person("Kyle", "McDonell", "Colby College"), Some("(2016)")),
         (Person("Xia", "Xiao", "Dickinson College"), Some("(2016)")),
-        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(2016-2017)"))
+        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(2016-2017)")),
+        (Person("Larissa", "Rocha", "Federal University of Bahia"), Some("(2017-2018)")),
+        (Person("Eduardo", "Figueiredo", URL("http://homepages.dcc.ufmg.br/~figueiredo/"), "Federal University of Minas Gerais"), Some("(2017-2018)"))
     )
     val postdocs = List(
         (Jamshidi, None)
