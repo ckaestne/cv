@@ -395,7 +395,7 @@ object Research {
             similarities across configurations, which allows us to scale over brute-force
             approaches.
             We have experimented with different implementations, primarily by lifting
-            interpreters. We created experimental variational interpreters for PHP {cite(icse14_varex)} and Java {cite(jensThesis)}.
+            interpreters. We created experimental variational interpreters for PHP {cite(icse14_varex)} and Java {cite(jensThesis,ase16)}.
         </p><p>
             Our primary goal is testing highly configurable systems, but we expect that we
             will use the infrastructure for many applications of dynamic analyses to large
@@ -656,7 +656,7 @@ object Research {
             notification feeds but have found many mitigation strategies to cope with
             upstream change. We develop tailored awareness mechanisms that identify which
             changes are relevant for individual users of a software package to allow a
-            timely reaction {cite(ieeesw15)}.
+            timely reaction {cite(ieeesw15,jsep17)}.
         </p>,
         Some("ecosys.png") //    [node.js/cran/Eclipse logos? Something from the presentation in passau?]
         //
