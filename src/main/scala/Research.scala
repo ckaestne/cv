@@ -466,7 +466,7 @@ object Research {
             that includes diverging behavior, alternative values of a variable depending
             on multiple options, structural interactions as nested #ifdefs, as well as
             {linkTopic(performance, Some("performance interactions"))}.
-            I am mostly interested in interactions at the code level, but with broad
+            I am mostly interested in interactions at the code level {cite(ase16)}, but with broad
             ranges of domains, such as infrastructure software, plugin systems, software
             ecosystems, home automation, or medical devices.
         </p>,
@@ -528,7 +528,8 @@ object Research {
             focused mainly on a black-box approach, where we just measure performance
             while executing the system, but there are many opportunities for static and
             dynamic analyses to inform the sampling strategy and reduce the number of
-            measurements.
+            measurements. In addition, we explore the use of transfer learning
+            to reuse measurements for more accurate learning {cite(seams17)}.
         </p>,
         Some("greenconfig.png")
         //        Insight: Performance-influence models can describe which options or interactions affect the performance of a highly-configurable system. With moderate effort, we can build relatively accurate models for real-world software systems that are useful for debugging, understanding, prediction, and optimization.
@@ -743,7 +744,7 @@ object Research {
             We have explored reverse engineering for conditional compilation, command-line
             options, branches, and build systems. We have built an infrastructure to parse
             unpreprocessed C code and we explored mechanisms to enforce more disciplined
-            usage of the preprocessor {cite(oopsla11_typechef)} and to refactor conditional compilation into other
+            usage of the preprocessor {cite(oopsla11_typechef,tse17)} and to refactor conditional compilation into other
             variability mechanisms {cite(gpce09)}. For load-time parameters like command-line options
             and configuration files, we use a variation of taint tracking to identify
             which (often scattered) statements in Java and Android programs are controlled
@@ -751,7 +752,7 @@ object Research {
             into merging and feature location techniques to enable an integration of the
             various changes in the branches into disciplined variability mechanisms {cite(fse11)}.
             Finally, we also investigate mechanisms to extract configuration knowledge
-            from build systems {cite(releng15)}.
+            from build systems {cite(releng15,releng16)}.
         </p> ,
         Some("splpromise.png")
         //    [plots from proposal]

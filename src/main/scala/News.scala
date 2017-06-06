@@ -12,6 +12,10 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2017, 6-1, 5).getTime, "jsconf.eu talk: How to Break an API",
+          <span>I recently gave a talk at <a href="https://2017.nodejs.eu/">jsconf.eu</a> about our interviews and survey regarding how developers deal with breaking changes, and how community values influence practices. A recording is now available:<br>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/xJHeHCZtmAU" frameborder="0" allowfullscreen="true"></iframe></br>
+          Detailed results can be found on <a href="http://breakingapis.org">breakingapis.org</a></span>) ::
         NewsItem(new GregorianCalendar(2016, 9-1, 20).getTime, "Ecosystem Survey",
           <span>I'm really excited about our ongoing research on change in software ecosystems. Based on our <a href="http://breakingapis.org/fse2016.pdf">FSE'16 interview study</a> of how developers negotiate costs around breaking changes and how practices seem to align well within an ecosystem but differ significantly across ecosystems, we are currently running a large scale survey across 28 ecosystems, asking about ecosystem values, community health, and various practices related to change planning and dealing with changes in dependencies. We encourage all developers familiar with any of those ecosystems to participate in our survey. Both results of our previous study and the survey can be found on <a href="http://breakingapis.org">http://breakingapis.org</a>.</span>) ::
         NewsItem(new GregorianCalendar(2016, 7-1, 13).getTime, "Postdoc position available",
