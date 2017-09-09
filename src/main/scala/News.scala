@@ -12,6 +12,10 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2017, 6-1, 29).getTime, "Differential Testing for KConfigReader",
+          <span>I talked about this at FOSD'16 and wanted to write it down since: My experience with using differential testing systematically
+          in developing <a href="https://github.com/ckaestne/kconfigreader">KConfigReader</a>. I have finally written this up
+          and you can find it on <a href="https://arxiv.org/abs/1706.09357">arxiv</a>.</span>) ::
         NewsItem(new GregorianCalendar(2017, 6-1, 5).getTime, "jsconf.eu talk: How to Break an API",
           <span>I recently gave a talk at <a href="https://2017.nodejs.eu/">jsconf.eu</a> about our interviews and survey regarding how developers deal with breaking changes, and how community values influence practices. A recording is now available:<br>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/xJHeHCZtmAU" frameborder="0" allowfullscreen="true"></iframe></br>

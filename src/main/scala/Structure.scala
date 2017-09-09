@@ -695,7 +695,7 @@ object DS extends CommitteeRole("Doctorial Symposium Committee Member", "DS")
 object DSCChair extends CommitteeRole("Doctoral Symposium Co-Chair", "DS Chair")
 
 object CommitteeRoles {
-    val organizationRoles = Set[CommitteeRole](GeneralChair, PCCChair, PCCChair, OC, SC, DSCChair)
+    val organizationRoles = Set[CommitteeRole](GeneralChair, PCChair, PCCChair, OC, SC, DSCChair)
     val pcRoles = Set(PC, ERC)
     val pcAndDsRoles = pcRoles+DS
 }

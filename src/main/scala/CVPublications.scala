@@ -112,7 +112,13 @@ object Coauthors {
     val Carvalho = Person("Luiz", "Carvalho", " Federal University of Alagoas, Maceio")
     val Fonseca = Person("Baldoino", "Fonseca", "Federal University of Alagoas, Maceio")
     val Goyal = Person("Raman", "Goyal", "Indian Institute of Information Technology, Allahabad")
-
+    val Seibt = Person("Georg", "Seibt", "University of Passau")
+    val Patel = Person("Akshay", "Patel", "Carnegie Mellon University")
+    val Agarwal = Person("Yuvraj", "Agarwal", "Carnegie Mellon University")
+    val Peitek = Person("Norman", "Peitek", "Leibniz Institute for Neurobiology")
+    val Hofmeister = Person("Johannes", "Hofmeister", "University of Passau")
+    val Begel = Person("Andrew", "Begel", URL("http://www.andrewbegel.com"), "Microsoft Research")
+    val Kothari = Person("Suresh", "Kothari", URL("http://class.ece.iastate.edu/kothari/"), "Iowa State University")
 }
 
 object Topics {
@@ -157,6 +163,7 @@ object Venues {
     val MDTR = Publisher("University of Magdeburg", "Magdeburg, Germany")
     val PATR = Publisher("Department of Informatics and Mathematics, University of Passau", "Passau, Germany")
     val MRTR = Publisher("Department of Mathematics and Computer Science, Philipps University Marburg", "Marburg, Germany")
+    val ARXIV = Publisher("arXiv", "")
     val WaterlooTR = Publisher("Generative Software Development Laboratory, University of Waterloo", "Waterloo, ON, Canada")
     val IEEE = Publisher("IEEE Computer Society", "Los Alamitos, CA")
     val TUBerlin = Publisher("TU Berlin", "Berlin, Germany")
@@ -2961,7 +2968,7 @@ object CVPublications {
                 Android apps depends on the platform’s configuration options
                 or interactions of these options.
         """
-    ).selected().topic(vaanalysis, spl, adoption)
+    ).topic(vaanalysis, spl, adoption)
 
     val emse15 = Article(
         Seq(Hunsen, JSiegmund, Lessenich, Apel, Zhang, Kaestner, Becker),
@@ -3535,7 +3542,7 @@ executing real software containing variability.""").topic(vaanalysis)
         "Discipline Matters: Refactoring of Preprocessor Directives in the #ifdef Hell",
         TSE(2017),
         ToAppear(),
-        Map(PDF -> PDFFile("tse17-refactoringifdef.pdf")),
+        Map(PDF -> PDFFile("tse17-refactoringifdef.pdf"), DOI->DOI("10.1109/TSE.2017.2688333")),
         """
         The C preprocessor is used in many C projects to support variability and portability. However, researchers and practitioners
         criticize the C preprocessor because of its negative effect on code understanding and maintainability and its error proneness. More
@@ -3558,8 +3565,8 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Jamshidi, Velez, Kaestner, Siegmund, Kawthekar),
         "Transfer Learning for Improving Model Predictions in Highly Configurable Software",
         Conference("SEAMS", 2017, "12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5).location("Buenos Aires").publisher(IEEE).acceptanceRate(14, 61),
-        ToAppear(),
-        Map(PDF -> PDFFile("seams17.pdf")),
+        Pages(31, 41),
+        Map(PDF -> PDFFile("seams17.pdf"), DOI->DOI("10.1109/SEAMS.2017.11")),
         """
         Modern software systems are now being built to be used in dynamic environments utilizing configuration capabilities to adapt to changes and external uncertainties. In a self-adaptation context, we are often interested in reasoning about the performance of the systems under different configurations. Usually, we learn a black-box model based on real measurements to predict the performance of the system given a specific configuration. However, as modern systems become more complex, there are many configuration parameters that may interact and, therefore, we end up learning an exponentially large configuration space. Naturally, this does not scale when relying on real measurements in the actual changing environment. 
         We propose a different solution: Instead of taking the measurements from the real system, we learn the model using samples from other sources, such as simulators that approximate performance of the real system at low cost. We define a cost model that transform the traditional view of model learning into a multi-objective problem that not only takes into account model accuracy but also measurements effort as well.
@@ -3574,7 +3581,7 @@ executing real software containing variability.""").topic(vaanalysis)
         "Identifying Unusual Commits on GitHub",
         JSEP(2017),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("jsep17.pdf")),
         """
           Transparent environments and social-coding platforms as GitHub help
           developers to stay abreast of changes during the development and
@@ -3601,5 +3608,177 @@ executing real software containing variability.""").topic(vaanalysis)
           transparent environments.
         """
     ).topic(empirical, awareness)
+
+
+    val tr17_difftest = TechReport(
+        Seq(Kaestner),
+        "Differential Testing for Variational Analyses: Experience from Developing KConfigReader",
+        2017, 6, ARXIV, "1706.09357",
+        Map(PDF -> PDFFile("difftesting17.pdf"),
+            HTTP -> URL("https://arxiv.org/abs/1706.09357")),
+        """
+        Differential testing to solve the oracle problem has been applied in many scenarios where multiple supposedly equivalent implementations exist, such as multiple implementations of a C compiler. If the multiple systems disagree on the output for a given test input, we have likely discovered a bug without every having to specify what the expected output is. Research on variational analyses (or variability-aware or family-based analyses) can benefit from similar ideas. The goal of most variational analyses is to perform an analysis, such as type checking or model checking, over a large number of configurations much faster than an existing traditional analysis could by analyzing each configuration separately. Variational analyses are very suitable for differential testing, since the existence nonvariational analysis can provide the oracle for test cases that would otherwise be tedious or difficult to write. In this experience paper, I report how differential testing has helped in developing KConfigReader, a tool for translating the Linux kernel's kconfig model into a propositional formula. Differential testing allows us to quickly build a large test base and incorporate external tests that avoided many regressions during development and made KConfigReader likely the most precise kconfig extraction tool available.
+        """).topic(vaanalysis,typechef)
+
+
+    val fse17 = InProceedings(
+        Seq(JSiegmund, Peitek, Parnin, Apel, Hofmeister, Kaestner, Begel, Bethmann, Brechmann),
+        "Measuring Neural Efficiency of Program Comprehension",
+        ESECFSE(2017).month(9),
+        ToAppear(),
+        Map(PDF->PDFFile("fse17.pdf")),
+        """
+        Most modern software programs cannot be understood in their
+        entirety by a single programmer. Instead, programmers must rely
+        on a set of cognitive processes that aid in seeking, filtering, and
+        shaping relevant information for a given programming task. Several
+        theories have been proposed to explain these processes, such
+        as “beacons,” for locating relevant code, and “plans,” for encoding
+        cognitive models. However, these theories are decades old and lack
+        validation with modern cognitive-neuroscience methods. In this
+        paper, we report on a study using functional magnetic resonance
+        imaging (fMRI) with 11 participants who performed program comprehension
+        tasks. We manipulated experimental conditions related
+        to beacons and layout to isolate specific cognitive processes related
+        to bottom-up comprehension and comprehension based on semantic
+        cues. We found evidence of semantic chunking during bottom-up
+        comprehension and lower activation of brain areas during comprehension
+        based on semantic cues, confirming that beacons ease
+        comprehension.
+        """
+      ).topic(programcomprehension, empirical, experiment)
+
+
+    val ase17merge = InProceedings(
+        Seq(Lessenich, Apel, Kaestner, Seibt, JSiegmund),
+        "Renaming and Shifted Code in Structured Merging: Looking Ahead for Precision and Performance",
+        ASE(2017).month(11),
+        ToAppear(),
+        Map(),
+        """
+        Diffing and merging of source-code artifacts is an essential task when
+        integrating changes in software versions. While state-of-the-art line-based
+        tools (e.g., git merge) are fast and independent of the programming language
+        used, they have only a low precision. Recently, it has been shown that the
+        precision of merging can be substantially improved by using a language-aware,
+        structured approach that works on abstract syntax trees. But, precise
+        structured merging is NP hard, especially, when considering the notoriously
+        difficult scenarios of renamings and shifted code. To address these scenarios
+        without compromising scalability, we propose a syntax-aware, heuristic
+        optimization for structured merging that employs a lookahead mechanism during
+        tree matching. The key idea is that renamings and shifted code are not
+        arbitrarily distributed but their occurrence follows patterns, which we
+        address with a syntax-specific lookahead. Our experiments with 48 real-world
+        open-source projects (4878 merge scenarios with over 400 million lines of
+          code) demonstrate that we can significantly improve matching precision in 28
+        percent while maintaining performance.
+        """).topic(merge)
+
+    val ase17pf = InProceedings(
+        Seq(Jamshidi, Siegmund, Velez, Kaestner, Patel, Agarwal),
+        "Transfer Learning for Performance Modeling of Configurable Systems: An Exploratory Analysis",
+        ASE(2017).month(11),
+        ToAppear(PDF -> PDFFile("ase17_transfer.pdf")),
+        Map(),
+        """
+        Modern software systems provide many configuration 
+        options which not only influence their functionality but also
+        non-functional properties such as response-time. To understand
+        and predict the effect of configuration options, several sampling,
+        analysis, and learning strategies have been proposed, albeit often
+        with significant cost to cover the highly dimensional configuration
+        space. Recently, transfer learning has been applied to reduce
+        the effort of constructing performance models by transferring
+        knowledge about performance behavior across environments.
+        While this line of research is promising to learn more accurate
+        models at lower cost, it is unclear until now why and when
+        transfer learning works for performance modeling and analysis in
+        highly configurable systems. To shed light on when it is beneficial
+        to apply transfer learning, we conducted an empirical study on
+        four popular software systems, varying software configurations
+        and environmental conditions, such as hardware, workload, and
+        software versions, to identify the key knowledge pieces that can
+        be exploited for transfer learning. Our results show that in small
+        environmental changes (e.g., homogeneous workload change), by
+        applying a linear transformation to the performance model of
+        the source environment, we can understand the performance behavior 
+        of the target environment, while for severe environmental
+        changes (e.g., drastic workload change) we can transfer only
+        knowledge that makes sampling in the target environment more
+        efficient, e.g., by reducing the dimensionality of the configuration
+        space.
+        """).topic(nfp).selected()
+
+
+    val gpce17 = InProceedings(
+        Seq(AlKofahi, Kothari, Kaestner),
+        "Four Languages and Lots of Macros: Analyzing Autotools Build Systems",
+        GPCE(2017).month(10).acceptanceRate(18, 56).location("Vancouver, Canada"),
+        ToAppear(),
+        Map(PDF -> PDFFile("gpce17.pdf")),
+        """Build systems are crucial for software system development,
+        however there is a lack of tool support to help with their
+        high maintenance overhead. GNU Autotools are widely used
+        in the open source community, but users face various challenges 
+        from its hard to comprehend nature and staging of
+        multiple code generation steps, often leading to low quality 
+        and error-prone build code. In this paper, we present a
+        platform AutoHaven to provide a foundation for developers
+        to create analysis tools to help them understand, maintain,
+        and migrate their GNU Autotools build systems. Internally it
+        uses approximate parsing and symbolic analysis of the build
+        logic. We illustrate the use of the platform with two tools:
+        ACSense helps developers to better understand their build
+        systems and ACSniff detects build smells to improve build
+        code quality. Our evaluation shows that AutoHaven can support 
+        most GNU Autotools build systems and can detect build
+        smells in the wild."""
+    ).topic(buildsys)
+
+    val tse17_lotrack = Article(
+        Seq(Lillack, Kaestner, Bodden),
+        "Tracking Load-time Configuration Options",
+        TSE(2017),
+        ToAppear(),
+        Map(),
+        """
+                Highly configurable software systems are pervasive, although configuration options and their interactions raise complexity
+                of the program and increase maintenance effort. Especially load-time configuration options, such as parameters from command-line
+                options or configuration files, are used with standard programming constructs such as variables and if-statements intermixed with the
+                program’s implementation; manually tracking configuration options from the time they are loaded to the point where they may influence
+                control-flow decisions is tedious and error prone. We design and implement LOTRACK , an extended static taint analysis to track
+                configuration options automatically. LOTRACK derives a configuration map that explains for each code fragment under which
+                configurations it may be executed. An evaluation on Android apps and Java applications from different domains shows that LOTRACK
+                yields high accuracy with reasonable performance. We use LOTRACK to empirically characterize how much of the implementation of
+                Android apps depends on the platform’s configuration options or interactions of these options.
+        """
+    ).selected().
+        crosscite("extended version of \\cite{LKB:ASE15}").topic(vaanalysis, spl, adoption)
+
+    val jase17 = Article(
+        Seq(Lessenich, JSiegmund, Apel, Kaestner, Hunsen),
+        "Indicators for Merge Conflicts in the Wild: Survey and Empirical Study",
+        JASE(2017).issn("0928-8910"),
+        ToAppear(),
+        Map(HTTP -> URL("https://www.infosun.fim.uni-passau.de/publications/docs/LSA+17ase.pdf"),
+            PDF -> PDFFile("jase17.pdf")),
+        """
+            While the creation of new branches and forks is easy and fast with
+			modern version-control systems, merging is often time-consuming. Especially
+			when dealing with many branches or forks, a prediction of merge costs based
+			on lightweight indicators would be desirable to help developers recognize problematic
+			merging scenarios before potential conflicts become too severe in the
+			evolution of a complex software project. We analyze the predictive power of
+			several indicators, such as the number, size or scattering degree of commits in
+			each branch, derived either from the version-control system or directly from
+			the source code. Based on a survey of 41 developers, we inferred 7 potential
+			indicators to predict the number of merge conflicts. We tested corresponding
+			hypotheses by studying 163 open-source projects, including 21,488 merge scenarios
+			and comprising 49,449,773 lines of code. A notable (negative) result is
+			that none of the 7 indicators suggested by the participants of the developer
+			survey has a predictive power concerning the frequency of merge conflicts. We
+			discuss this and other findings as well as perspectives thereof. """
+    ).topic(merge, empirical)
+
 
 }
