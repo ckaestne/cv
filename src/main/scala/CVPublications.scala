@@ -3654,7 +3654,7 @@ executing real software containing variability.""").topic(vaanalysis)
         "Renaming and Shifted Code in Structured Merging: Looking Ahead for Precision and Performance",
         ASE(2017).month(11),
         ToAppear(),
-        Map(),
+        Map(PDF -> PDFFile("ase17_merge.pdf")),
         """
         Diffing and merging of source-code artifacts is an essential task when
         integrating changes in software versions. While state-of-the-art line-based
@@ -3678,8 +3678,8 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Jamshidi, Siegmund, Velez, Kaestner, Patel, Agarwal),
         "Transfer Learning for Performance Modeling of Configurable Systems: An Exploratory Analysis",
         ASE(2017).month(11),
-        ToAppear(PDF -> PDFFile("ase17_transfer.pdf")),
-        Map(),
+        ToAppear(),
+        Map(PDF -> PDFFile("ase17_transfer.pdf")),
         """
         Modern software systems provide many configuration 
         options which not only influence their functionality but also
@@ -3740,7 +3740,8 @@ executing real software containing variability.""").topic(vaanalysis)
         "Tracking Load-time Configuration Options",
         TSE(2017),
         ToAppear(),
-        Map(),
+        Map(DOI -> DOI("10.1109/TSE.2017.2756048"),
+            PDF -> PDFFile("tse17_lotrack.pdf")),
         """
                 Highly configurable software systems are pervasive, although configuration options and their interactions raise complexity
                 of the program and increase maintenance effort. Especially load-time configuration options, such as parameters from command-line
@@ -3761,7 +3762,8 @@ executing real software containing variability.""").topic(vaanalysis)
         JASE(2017).issn("0928-8910"),
         ToAppear(),
         Map(HTTP -> URL("https://www.infosun.fim.uni-passau.de/publications/docs/LSA+17ase.pdf"),
-            PDF -> PDFFile("jase17.pdf")),
+            PDF -> PDFFile("jase17.pdf"),
+            DOI -> DOI("10.1007/s10515-017-0227-0")),
         """
             While the creation of new branches and forks is easy and fast with
 			modern version-control systems, merging is often time-consuming. Especially
