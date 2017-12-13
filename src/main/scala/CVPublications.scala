@@ -101,7 +101,6 @@ object Coauthors {
     val Thung = Person("Ferdian", "Thung", "Singapore Management University")
     val Kawthekar = Person("Prasad", "Kawthekar", "Carnegie Mellon University")
     val Meng = Person("Meng", "Meng", "Oregon State University")
-
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
@@ -119,6 +118,11 @@ object Coauthors {
     val Hofmeister = Person("Johannes", "Hofmeister", "University of Passau")
     val Begel = Person("Andrew", "Begel", URL("http://www.andrewbegel.com"), "Microsoft Research")
     val Kothari = Person("Suresh", "Kothari", URL("http://class.ece.iastate.edu/kothari/"), "Iowa State University")
+    val deAlmeida = Person("Eduardo Santana", "de Almeida", "Universidade Federal da Bahia")
+    val Soares = Person("Larissa Rocha", "Soares", "Universidade Federal da Bahia")
+    val Trockman = Person("Asher", "Trockman", "University of Evansville")
+    val Xiong = Person("Yingfei", "Xiong", URL("http://sei.pku.edu.cn/~xiongyf04/"), "Peking University")
+    val Vasilescu = Person("Bogdan", "Vasilescu", URL("https://bvasiles.github.io"), "Carnegie Mellon University")
 }
 
 object Topics {
@@ -3781,6 +3785,40 @@ executing real software containing variability.""").topic(vaanalysis)
 			survey has a predictive power concerning the frequency of merge conflicts. We
 			discuss this and other findings as well as perspectives thereof. """
     ).topic(merge, empirical)
+
+
+
+    val vamos18 = InProceedings(
+        Seq(Soares, Meinicke, Nadi, Kaestner, deAlmeida),
+        "VarXplorer: Lightweight Process for Dynamic Inspection of Feature Interactions",
+        VAMOS(2018),
+        ToAppear(),
+        Map(),
+        """
+        Features in highly configurable systems can interact in undesiredways which may result in faults. However, most interactions arenot easily detectable as specifications of feature interactions areusually missing. In this paper, we aim to detect interactions and tohelp create feature-interaction specifications. We use variational ex-ecution to observe internal interactions on control and data flow ofhighly configurable systems. The number of potential interactionscan be large and hard to understand, especially as many interac-tions are benign. To help developers understand these interactions,we propose feature-interaction graphs as a concise representationof all pairwise interactions. We provide two analyses that reportsuspicious interactions, namely suppress and require interactionsFinally, we propose a specification language that enables develop-ers to define different kinds of allowed and forbidden interactions.Our tool, VarXplorer, provides a visualization of feature-interactiongraphs and supports the creation of feature interaction specifi-cations. VarXplorer also provides an iterative analysis of featureinteractions allowing developers to focus on suspicious cases.
+        """)
+
+    val icse18forks = InProceedings(
+        Seq(Zhou, Stanciulescu, Lessenich, Xiong, Wasowski, Kaestner),
+        "Identifying Features in Forks",
+        ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM),
+        ToAppear(),
+        Map(),
+        """
+    	Fork-based development has been widely used both in open source community and industry, because it gives developers flexibility to modify their own fork without affecting others. Unfortunately, this mechanism has downsides; when the number of forks becomes large, it is difficult for developers to get or maintain an overview of activities in the forks. Current tools provide little help. We introduced INFOX, an approach to automatically identifies not-merged features in forks and generates an overview of active forks in a project. The approach clusters cohesive code fragments using code and network analysis techniques and uses information-retrieval techniques to label clusters with keywords. The clustering is effective, with 90% accuracy on a set of known features. In addition, a human-subject evaluation shows that INFOX can provide actionable insight for developers of forks.
+        """
+    ).selected().topic(awareness, merge)
+
+    val icse18badges = InProceedings(
+        Seq(Trockman, Zhou, Kaestner, Vasilescu),
+        "Adding Sparkle to Social Coding: An Empirical Study of Repository Badges in the npm Ecosystem",
+        ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM),
+        ToAppear(),
+        Map(),
+        """
+    	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
+        """
+    ).selected().topic(ecosystem, empirical,awareness)
 
 
 }

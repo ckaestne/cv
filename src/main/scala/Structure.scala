@@ -687,6 +687,7 @@ object ERC extends CommitteeRole("External-Review-Committee Member", "ERC")
 object GeneralChair extends CommitteeRole("General Chair", "General Chair")
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 object PCCChair extends CommitteeRole("Program-Committee Co-Chair", "PC Co-Chair")
+case class OtherChair(atitle: String, abbrev: String) extends CommitteeRole(atitle, abbrev)
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 

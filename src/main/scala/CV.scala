@@ -110,6 +110,16 @@ object CV {
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
         ),
+        Course("17-313 Foundations of Software Engineering",
+            "",
+            URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
+            English, FallTerm(2018), new CourseKind with Lecture
+        ),
+        Course("17-654 Analysis of Software Artifacts",
+            "",
+            URL("http://mse.isri.cmu.edu/software-engineering/Courses/17-654-analysis-of-software-artifacts.html"),
+            English, SpringTerm(2018), new CourseKind with Lecture
+        ),
         Course("15-313 Foundations of Software Engineering",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/15313/"),
@@ -269,7 +279,7 @@ object CV {
     val memberships = Seq(
         "IFIP Working Group 2.11 (Program Generation)",
         "Association for Computing Machinery (ACM)",
-        "Gesellschaft für Informatik (GI)",
+        //"Gesellschaft für Informatik (GI)",
         "Deutscher Hochschulverband"
     )
 
@@ -284,9 +294,10 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
-        Committee(ASE(2018), PCCChair),
+        Committee(ESECFSE(2019), OtherChair("Journal First Co-Chair", "JF Chair")),
+        Committee(ICSE(2019), OtherChair("Student Mentoring Program Co-Chair", "SMP Chair")),
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
-        Committee(Conference("SC", 2018,
+        Committee(Conference("SE", 2018,
             "Software Engineering Conference of the Gesellschaft für Informatik (GI)",
             URL("https://se18.uni-ulm.de/")), PC),
         Committee(VAMOS(2018).url(URL("https://vamos2018.wordpress.com/")), PC),
