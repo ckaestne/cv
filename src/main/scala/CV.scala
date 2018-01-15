@@ -412,6 +412,9 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(TOSEM(2018)),
+        Review(JASE(2018)),
+        Review(ESEM(2017)),
         Review(TSE(2017)),
         Review(TSE(2016)),
         Review(SOSYM(2016)),
@@ -450,6 +453,12 @@ object CV {
 
 
     val awards: Seq[AwardOrGrant] = Seq(
+        Award(
+            "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2017",
+            URL("http://ase2017.org"),
+            new GregorianCalendar(2017, 11 - 1, 1).getTime,
+            Nil
+        ),
         Award(
             "Distinguished Reviewer Award at the International Conference on Software Engineering (ICSE) 2017",
             URL("http://icse2017.gatech.edu/"),
@@ -622,46 +631,47 @@ object CV {
      * each group has a list of persons with potential comments
      */
     def students: List[(String, List[(Person, Option[String])])] = List(
-        ("Current PhD students", currentStudents),
-        ("Postdocs", postdocs),
+        ("Current", current),
+        ("Former", former)
 //        ("Close external collaborations / coadvising", collaboratingStudents),
-        ("Visiting scholars",visitingStudents)
-
-
     )
 
     import Coauthors._
-    val currentStudents = List(
+
+    val current = List(
         //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
-        (Ferreira, None),
-        (Velez, None),
-        (Wong, None),
-        (Zhou, None)
+        (Ferreira, Some("(PhD student since 2014)")),
+        (Figueiredo, Some("(visiting scholar, 2017-2018)")),
+        (Jamshidi, Some("(Postdoc since 2016)")),
+        (Meinicke, Some("(visiting scholar, 2014, 2016-2018)")),
+        (Soares, Some("(visiting scholar, 2017-2018)")),
+        (Velez, Some("(PhD student since 2016)")),
+        (Wong, Some("(PhD student since 2014)")),
+        (Zhou, Some("(PhD student since 2014)")),
+    )
+    val former = List(
+        (Ahmad, Some("(graduated MSc, 2016)")),
+        (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
+        (Person("Raman", "Goyal"), Some("(visiting scholar, 2015)")),
+        (Person("Htut Khine", "Htay Win"), Some("(REU student, 2015)")),
+        (Kawthekar, Some("(visiting scholar, 2016, now PhD student at Stanford)")),
+        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016)")),
+        (Person("Kyle", "McDonell", "Colby College"), Some("(REU student, 2016)")),
+        (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
+        (Stanciulescu, Some("(visiting scholar, 2016-2017, now at ABB)")),
+        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017)")),
+        (Trockman, Some("(REU student, 2017)")),
+        (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017)")),
+        (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
+        (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)"))
     )
     val collaboratingStudents = List(
-        (HNguyen, Some("(Iowa State)")),
+        (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),
         (AlKofahi, Some("(Iowa State)")),
-        (Lillack, Some("(University of Leipzig)")),
+        (Lillack, Some("(University of Leipzig, graduated 2017)")),
         (Meinicke, Some("(University of Magdeburg)")),
         (Hunsen, Some("(working with Sven Apel at the University of Passau)")),
         (Lessenich, Some("(working with Sven Apel at the University of Passau)"))
-    )
-    val visitingStudents =  List(
-        (Medeiros, Some("(2014)")),
-        (Meinicke, Some("(2014, 2016-2018)")),
-        (Person("Raman", "Goyal"), Some("(2015)")),
-        (Person("Htut Khine", "Htay Win"), Some("(2015)")),
-        (Stanciulescu, Some("(2016-2017)")),
-        (Person("Prasad", "Kawthekar"), Some("(2016)")),
-        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(2016)")),
-        (Person("Kyle", "McDonell", "Colby College"), Some("(2016)")),
-        (Person("Xia", "Xiao", "Dickinson College"), Some("(2016)")),
-        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(2016-2017)")),
-        (Person("Larissa", "Rocha", "Federal University of Bahia"), Some("(2017-2018)")),
-        (Person("Eduardo", "Figueiredo", URL("http://homepages.dcc.ufmg.br/~figueiredo/"), "Federal University of Minas Gerais"), Some("(2017-2018)"))
-    )
-    val postdocs = List(
-        (Jamshidi, None)
     )
 
 }

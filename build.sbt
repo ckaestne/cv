@@ -2,16 +2,16 @@ name := "cv"
 
 version := "0.1"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.4"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.0.4"
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.0.6"
 
-libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.7"
+libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.12.4"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
 libraryDependencies += "commons-io" % "commons-io" % "2.1"
 

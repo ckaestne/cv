@@ -104,7 +104,7 @@ object Coauthors {
     val Ahmad = Person("Waqar", "Ahmad", "Carnegie Mellon University")
     val Ferreira = Person("Gabriel", "Ferreira", URL("https://www.cs.cmu.edu/~gferreir/"), "Carnegie Mellon University")
     val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
-    val Zhou = Person("Shurui", "Zhou", "Carnegie Mellon University")
+    val Zhou = Person("Shurui", "Zhou", URL("https://www.cs.cmu.edu/~shuruiz/"), "Carnegie Mellon University")
     val Velez = Person("Miguel", "Velez", URL("http://www.cs.cmu.edu/~mvelezce/"), "Carnegie Mellon University")
     val Jamshidi = Person("Pooyan", "Jamshidi", URL("https://www.cs.cmu.edu/~pjamshid/"), "Carnegie Mellon University")
     val FerreiraB = Person("Bruno", "Ferreira", " Federal University of Alagoas, Maceio")
@@ -123,6 +123,7 @@ object Coauthors {
     val Trockman = Person("Asher", "Trockman", "University of Evansville")
     val Xiong = Person("Yingfei", "Xiong", URL("http://sei.pku.edu.cn/~xiongyf04/"), "Peking University")
     val Vasilescu = Person("Bogdan", "Vasilescu", URL("https://bvasiles.github.io"), "Carnegie Mellon University")
+    val Figueiredo = Person("Eduardo", "Figueiredo", URL("http://homepages.dcc.ufmg.br/~figueiredo/"), "Federal University of Minas Gerais")
 }
 
 object Topics {
@@ -156,6 +157,7 @@ object Topics {
     val awareness = Topic("Awareness/Transparency")
     val ecosystem = Topic("Software ecosystems")
     val buildsys = Topic("Build systems")
+    val sensitivity = Topic("Sensitivity analysis")
 
 }
 
@@ -1842,7 +1844,7 @@ object CVPublications {
         """A software product line (SPL) is a family of related software products, from which users can derive a product that fulfills their needs.
             Often, users expect a product to have specific non-functional properties, for example, to not exceed a footprint limit or to respond in a given time frame. Unfortunately, it is usually not feasible to generate and measure non-functional properties for each possible product of an SPL in isolation, because an SPL can contain millions of products. Hence, we propose an approach to *estimate* each product's non-functional properties in advance, based on the product's configuration. To this end, we approximate non-functional properties *per features* and per feature interaction. We generate and measure a small set of products and approximated non-functional properties by comparing the measurements. Our approach is implementation independent and language independent. We present three different approaches with different trade-offs regarding accuracy and required number of measurements. With nine case studies, we demonstrate that our approach can predict non-functional properties with an accuracy of 2\%."""
     ).
-        note("**Best Paper Award**").topic(nfp, spl, empirical)
+        note("**Best Paper Award**").topic(nfp, spl, empirical, sensitivity)
 
 
     val splc11_af = InProceedings(
@@ -1928,7 +1930,7 @@ object CVPublications {
             and operating systems). Moreover, we show that SPL Conqueror is implementation and
             language independent by using SPLs that are implemented with different mechanisms,
             such as conditional compilation and feature-oriented programming."""
-    ).topic(nfp, spl)
+    ).topic(nfp, spl, sensitivity)
 
 
     val fse11 = InProceedings(
@@ -2200,7 +2202,7 @@ object CVPublications {
             using different configuration techniques (e.g., configuration files
             and preprocessor flags). Results show, on average, a prediction
             accuracy of 95 %. """
-    ).topic(nfp, spl, empirical).selected()
+    ).topic(nfp, spl, empirical, sensitivity).selected()
 
 
     val it12 = Article(
@@ -2443,7 +2445,7 @@ object CVPublications {
           |number of measurements. With this technique, we provide a basis for many
           |reasoning and product-derivation approaches.
         """.stripMargin
-    ).topic(nfp, spl, vaanalysis)
+    ).topic(nfp, spl, vaanalysis, sensitivity)
 
     val sle12 = InProceedings(
         Seq(Erdweg, Rendel, Kaestner, Ostermann),
@@ -3190,7 +3192,7 @@ object CVPublications {
     we were able to identify a number of real performance bugs and other
     problems in real-world systems.
         """.stripMargin
-    ).topic(nfp, spl, empirical).selected()
+    ).topic(nfp, spl, empirical,sensitivity).selected()
 
 
     val fsenier15 = InProceedings(
@@ -3468,7 +3470,7 @@ object CVPublications {
         systems using a machine-learning-based approach
         to construct influence models for robotic software.
         """
-    ).topic(nfp)
+    ).topic(nfp,sensitivity)
 
 
     val ase16 = InProceedings(
@@ -3576,7 +3578,7 @@ executing real software containing variability.""").topic(vaanalysis)
         We propose a different solution: Instead of taking the measurements from the real system, we learn the model using samples from other sources, such as simulators that approximate performance of the real system at low cost. We define a cost model that transform the traditional view of model learning into a multi-objective problem that not only takes into account model accuracy but also measurements effort as well.
         We evaluate our cost-aware transfer learning solution using real world configurable software including (i) a robotic system, (ii) 3 different stream processing applications, and (iii) a NoSQL database system. The experimental results demonstrate that our approach can achieve (a) high prediction accuracy as well as (b) high model reliability with only few samples from the target environment.
         """
-      ).topic(nfp)
+      ).topic(nfp,sensitivity)
 
 
 
@@ -3711,7 +3713,7 @@ executing real software containing variability.""").topic(vaanalysis)
         knowledge that makes sampling in the target environment more
         efficient, e.g., by reducing the dimensionality of the configuration
         space.
-        """).topic(nfp).selected()
+        """).topic(nfp,sensitivity).selected()
 
 
     val gpce17 = InProceedings(
@@ -3819,6 +3821,40 @@ executing real software containing variability.""").topic(vaanalysis)
     	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
         """
     ).selected().topic(ecosystem, empirical,awareness)
+
+
+    val tr17_extint = TechReport(
+        Seq(Kolesnikov, Siegmund, Kaestner, Apel),
+        "On the Relation of External and Internal Feature Interactions: A Case Study",
+        2017, 12, ARXIV, "1712.07440",
+        Map(HTTP -> URL("https://arxiv.org/abs/1712.07440")),
+        """
+        Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance prediction techniques rely on supervised machine learning for detecting feature interactions, which, in turn, relies on time consuming performance measurements to obtain training data. By providing information about potentially interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time efficient. We expect that the information about potentially interacting features can be obtained by statically analyzing the source code of a highly-configurable system, which is computationally cheaper than performing multiple performance measurements. To this end, we conducted a qualitative case study in which we explored the relation between control-flow feature interactions (detected through static program analysis) and performance feature interactions (detected by performance prediction techniques using performance measurements). We found that a relation exists, which can potentially be exploited to predict performance interactions.
+        """).topic(vaanalysis,interactions,nfp,sensitivity)
+
+
+    val sosym18 = Article(
+        Seq(Kolesnikov, Siegmund, Kaestner, Grebhahn, Apel),
+        "Tradeoffs in Modeling Performance of Highly-Configurable Software Systems",
+        SOSYM(2018),
+        ToAppear(),
+        Map(),
+        """
+Modeling the performance of a highly-configurable software system requires capturing the influences of its configuration options and their interactions on the system's performance.
+Performance-influence models quantify these influences, explaining this way the performance behavior of a configurable system as a whole.
+To be useful in practice, a performance-influence model should have a low prediction error, small model size, and reasonable computation time.
+Because of the inherent tradeoffs among these properties, optimizing for one property may negatively influence the others.
+It is unclear, though, to what extent these tradeoffs manifest themselves in practice, that is, whether a large configuration space can be described accurately only with large models and significant resource investment.
+By means of 10 real-world highly-configurable systems from different domains, we have systematically studied the tradeoffs between the three properties.
+Surprisingly, we found that the tradeoffs between prediction error and model size and between prediction error and computation time are rather marginal.
+That is, we can learn accurate and small models in reasonable time, so that one performance-influence model can fit different use cases, such as program comprehension and performance prediction.
+We further investigated the reasons for why the tradeoffs are marginal.
+We found that interactions among four or more configuration options have only a minor influence on the prediction error and that ignoring them when learning a performance-influence model can save a substantial amount of computation time, while keeping the model small without considerably increasing the prediction error.
+This is an important insight for new sampling and learning techniques as they can focus on specific regions of the configuration space and find a sweet spot between accuracy and effort.
+We further analyzed the causes for the configuration options and their interactions having the observed influences on the systems' performance.
+We were able to identify several patterns across subject systems, such as dominant configuration options and data pipelines, that explain the influences of highly influential configuration options and interactions, and give further insights into the domain of highly-configurable systems.    
+    """).topic(interactions,nfp,sensitivity)
+
 
 
 }

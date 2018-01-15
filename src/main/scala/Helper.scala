@@ -16,6 +16,8 @@ class StringTexHelper(str: String) {
         replace("é", "{\\'e}").
         replace("ß", "{\\ss}").
         replace("ą", "{\\k{a}}").
+        replace("Ș", "{\\c{S}}").
+        replace("ă", "{\\~{a}}").
         replace("á", "{\\'a}")
 
 

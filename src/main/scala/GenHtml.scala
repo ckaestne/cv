@@ -307,7 +307,9 @@ object GenHtml extends App with RSSFeed {
         	<div class="grid_9">{if (right == null) nbsp else right}</div> :+
         	<div class={if (marginafter.length > 0) "clear margin_" + marginafter else "clear"}>&nbsp;</div>
 
-    def printPicture(): NodeSeq = <img src="me.jpg" alt="Christian Kästner" />
+    def printPicture(): NodeSeq = <img src="me.jpg" class="sideimg" alt="Christian Kästner" />
+
+    def printGroupPicture(): NodeSeq = <a href="group17.jpg"><img src="group17-min.jpg" alt="Team photo Dec. 2017" class="sideimg" /></a>
 
     def rowH2(title: String, anchor: String, body: NodeSeq = Nil, leftExtra: NodeSeq = null): NodeSeq = rowH2_(Text(title), anchor, body, leftExtra)
 
@@ -352,7 +354,7 @@ object GenHtml extends App with RSSFeed {
         rowH2("Team", "team") ++ students.flatMap(printStudentSection)
 
     private def printStudentSection(s: (String, List[(Person, Option[String])])): NodeSeq =
-        row(<span>{s._1}</span>,
+        row(<span>{if (s._1=="Current") printGroupPicture() else s._1}</span>,
         <ul>{for ((student, str) <- s._2) yield <li>{FancyPersonHtmlFormater.renderPerson(student, true, "")} {str.getOrElse("")}</li>}</ul>)
 
 
