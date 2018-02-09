@@ -3446,7 +3446,8 @@ object CVPublications {
         Workshop("WSR", 2016, "IJCAI Workshop on Autonomous Mobile Service Robots").month(7).
             location("New York, NY"),
         PagesStr(""),
-        Map(PDF->PDFFile("wsr16.pdf"), HTTP -> URL("https://sites.google.com/site/ijcai2016wsrobots/program")),
+        Map(PDF->PDFFile("wsr16.pdf"), 
+            HTTP -> URL("https://sites.google.com/site/ijcai2016wsrobots/program")),
         """
         There has been a considerable growth in research
         and development of service robots in recent years.
@@ -3478,7 +3479,8 @@ object CVPublications {
         "On Essential Configuration Complexity: Measuring Interactions In Highly-Configurable Systems",
         ASE(2016).month(9).location("Singapore").publisher(ACM).acceptanceRate(57, 298),
         Pages(483,494),
-        Map(PDF->PDFFile("ase16.pdf"), DOI -> DOI("10.1145/2970276.2970322")),
+        Map(PDF->PDFFile("ase16.pdf"), 
+            DOI -> DOI("10.1145/2970276.2970322")),
         """
         Quality assurance for highly-configurable systems is challenging due to the exponentially growing configuration space. 
         Interactions among multiple options can lead to surprising behaviors, bugs, and security vulnerabilities.
@@ -3500,7 +3502,8 @@ object CVPublications {
         "Escaping AutoHell: A Vision For Automated Analysis and Migration of Autotools Build Systems",
         Workshop("Releng", 2016, "4rd International Workshop on Release Engineering").location("Seattle, WA").month(11).publisher(ACM),
         Pages(12, 15),
-        Map(PDF -> PDFFile("releng16.pdf"), DOI -> DOI("10.1145/2993274.2993279")),
+        Map(PDF -> PDFFile("releng16.pdf"), 
+            DOI -> DOI("10.1145/2993274.2993279")),
         """
         GNU Autotools is a widely used build tool in the open source
         community. As open source projects grow more complex,
@@ -3548,7 +3551,8 @@ executing real software containing variability.""").topic(vaanalysis)
         "Discipline Matters: Refactoring of Preprocessor Directives in the #ifdef Hell",
         TSE(2017),
         ToAppear(),
-        Map(PDF -> PDFFile("tse17-refactoringifdef.pdf"), DOI->DOI("10.1109/TSE.2017.2688333")),
+        Map(PDF -> PDFFile("tse17-refactoringifdef.pdf"), 
+            DOI->DOI("10.1109/TSE.2017.2688333")),
         """
         The C preprocessor is used in many C projects to support variability and portability. However, researchers and practitioners
         criticize the C preprocessor because of its negative effect on code understanding and maintainability and its error proneness. More
@@ -3572,7 +3576,8 @@ executing real software containing variability.""").topic(vaanalysis)
         "Transfer Learning for Improving Model Predictions in Highly Configurable Software",
         Conference("SEAMS", 2017, "12th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5).location("Buenos Aires").publisher(IEEE).acceptanceRate(14, 61),
         Pages(31, 41),
-        Map(PDF -> PDFFile("seams17.pdf"), DOI->DOI("10.1109/SEAMS.2017.11")),
+        Map(PDF -> PDFFile("seams17.pdf"), 
+            DOI->DOI("10.1109/SEAMS.2017.11")),
         """
         Modern software systems are now being built to be used in dynamic environments utilizing configuration capabilities to adapt to changes and external uncertainties. In a self-adaptation context, we are often interested in reasoning about the performance of the systems under different configurations. Usually, we learn a black-box model based on real measurements to predict the performance of the system given a specific configuration. However, as modern systems become more complex, there are many configuration parameters that may interact and, therefore, we end up learning an exponentially large configuration space. Naturally, this does not scale when relying on real measurements in the actual changing environment. 
         We propose a different solution: Instead of taking the measurements from the real system, we learn the model using samples from other sources, such as simulators that approximate performance of the real system at low cost. We define a cost model that transform the traditional view of model learning into a multi-objective problem that not only takes into account model accuracy but also measurements effort as well.
@@ -3585,9 +3590,11 @@ executing real software containing variability.""").topic(vaanalysis)
     val jsep17 = Article(
         Seq(Goyal, Ferreira, Kaestner, Herbsleb),
         "Identifying Unusual Commits on GitHub",
-        JSEP(2017),
-        ToAppear(),
-        Map(PDF->PDFFile("jsep17.pdf")),
+        JSEP(2018).volume(30).number(1).month(1),
+        PagesStr(""),
+        Map(PDF->PDFFile("jsep17.pdf"),
+            DOI->DOI("10.1002/smr.1893"),
+            HTTP->URL("http://onlinelibrary.wiley.com/doi/10.1002/smr.1893/full")),
         """
           Transparent environments and social-coding platforms as GitHub help
           developers to stay abreast of changes during the development and
@@ -3631,8 +3638,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(JSiegmund, Peitek, Parnin, Apel, Hofmeister, Kaestner, Begel, Bethmann, Brechmann),
         "Measuring Neural Efficiency of Program Comprehension",
         ESECFSE(2017).month(9),
-        ToAppear(),
-        Map(PDF->PDFFile("fse17.pdf")),
+        Pages(140, 150),
+        Map(PDF->PDFFile("fse17.pdf"),
+            DOI->DOI("10.1145/3106237.3106268"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3106268")),
         """
         Most modern software programs cannot be understood in their
         entirety by a single programmer. Instead, programmers must rely
@@ -3659,8 +3668,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Lessenich, Apel, Kaestner, Seibt, JSiegmund),
         "Renaming and Shifted Code in Structured Merging: Looking Ahead for Precision and Performance",
         ASE(2017).month(11),
-        ToAppear(),
-        Map(PDF -> PDFFile("ase17_merge.pdf")),
+        Pages(543, 553),
+        Map(PDF -> PDFFile("ase17_merge.pdf"),
+            DOI->DOI("10.1109/ASE.2017.8115665"),
+            HTTP->URL("http://ieeexplore.ieee.org/document/8115665/")),
         """
         Diffing and merging of source-code artifacts is an essential task when
         integrating changes in software versions. While state-of-the-art line-based
@@ -3684,8 +3695,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Jamshidi, Siegmund, Velez, Kaestner, Patel, Agarwal),
         "Transfer Learning for Performance Modeling of Configurable Systems: An Exploratory Analysis",
         ASE(2017).month(11),
-        ToAppear(),
-        Map(PDF -> PDFFile("ase17_transfer.pdf")),
+        Pages(497, 508),
+        Map(PDF -> PDFFile("ase17_transfer.pdf"),
+            DOI->DOI("10.1109/ASE.2017.8115661"),
+            HTTP->URL("https://arxiv.org/abs/1709.02280")),
         """
         Modern software systems provide many configuration 
         options which not only influence their functionality but also
@@ -3720,8 +3733,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(AlKofahi, Kothari, Kaestner),
         "Four Languages and Lots of Macros: Analyzing Autotools Build Systems",
         GPCE(2017).month(10).acceptanceRate(18, 56).location("Vancouver, Canada"),
-        ToAppear(),
-        Map(PDF -> PDFFile("gpce17.pdf")),
+        Pages(176,186),
+        Map(PDF -> PDFFile("gpce17.pdf"),
+            DOI->DOI("10.1145/3170492.3136051"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3136051")),
         """Build systems are crucial for software system development,
         however there is a lack of tool support to help with their
         high maintenance overhead. GNU Autotools are widely used
@@ -3794,8 +3809,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Soares, Meinicke, Nadi, Kaestner, deAlmeida),
         "VarXplorer: Lightweight Process for Dynamic Inspection of Feature Interactions",
         VAMOS(2018),
-        ToAppear(),
-        Map(),
+        Pages(59,66),
+        Map(PDF->PDFFile("vamos18.pdf"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3168376"),
+            DOI->DOI("10.1145/3168365.3168376")),
         """
         Features in highly configurable systems can interact in undesiredways which may result in faults. However, most interactions arenot easily detectable as specifications of feature interactions areusually missing. In this paper, we aim to detect interactions and tohelp create feature-interaction specifications. We use variational ex-ecution to observe internal interactions on control and data flow ofhighly configurable systems. The number of potential interactionscan be large and hard to understand, especially as many interac-tions are benign. To help developers understand these interactions,we propose feature-interaction graphs as a concise representationof all pairwise interactions. We provide two analyses that reportsuspicious interactions, namely suppress and require interactionsFinally, we propose a specification language that enables develop-ers to define different kinds of allowed and forbidden interactions.Our tool, VarXplorer, provides a visualization of feature-interactiongraphs and supports the creation of feature interaction specifi-cations. VarXplorer also provides an iterative analysis of featureinteractions allowing developers to focus on suspicious cases.
         """)
@@ -3827,7 +3844,8 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Kolesnikov, Siegmund, Kaestner, Apel),
         "On the Relation of External and Internal Feature Interactions: A Case Study",
         2017, 12, ARXIV, "1712.07440",
-        Map(HTTP -> URL("https://arxiv.org/abs/1712.07440")),
+        Map(HTTP -> URL("https://arxiv.org/abs/1712.07440"),
+            PDF->PDFFile("arxiv18.pdf")),
         """
         Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance prediction techniques rely on supervised machine learning for detecting feature interactions, which, in turn, relies on time consuming performance measurements to obtain training data. By providing information about potentially interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time efficient. We expect that the information about potentially interacting features can be obtained by statically analyzing the source code of a highly-configurable system, which is computationally cheaper than performing multiple performance measurements. To this end, we conducted a qualitative case study in which we explored the relation between control-flow feature interactions (detected through static program analysis) and performance feature interactions (detected by performance prediction techniques using performance measurements). We found that a relation exists, which can potentially be exploited to predict performance interactions.
         """).topic(vaanalysis,interactions,nfp,sensitivity)
@@ -3838,7 +3856,9 @@ executing real software containing variability.""").topic(vaanalysis)
         "Tradeoffs in Modeling Performance of Highly-Configurable Software Systems",
         SOSYM(2018),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("sosym18.pdf"),
+            HTTP->URL("https://link.springer.com/article/10.1007%2Fs10270-018-0662-9"),
+            DOI->DOI("10.1007/s1027")),
         """
 Modeling the performance of a highly-configurable software system requires capturing the influences of its configuration options and their interactions on the system's performance.
 Performance-influence models quantify these influences, explaining this way the performance behavior of a configurable system as a whole.
