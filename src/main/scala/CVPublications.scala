@@ -124,6 +124,19 @@ object Coauthors {
     val Xiong = Person("Yingfei", "Xiong", URL("http://sei.pku.edu.cn/~xiongyf04/"), "Peking University")
     val Vasilescu = Person("Bogdan", "Vasilescu", URL("https://bvasiles.github.io"), "Carnegie Mellon University")
     val Figueiredo = Person("Eduardo", "Figueiredo", URL("http://homepages.dcc.ufmg.br/~figueiredo/"), "Federal University of Minas Gerais")
+    val Ren = Person("Luyao", "Ren", "Peking University")
+    val Cates = Person("Keenen", "Cates", "University of Evansville")
+    val Mozina = Person("Mark", "Mozina", "University of Evansville")
+    val NguyenTuan = Person("Tuan", "Nguyen", "University of Evansville")
+    val Hilton = Person("Michael", "Hilton", URL("https://www.cs.cmu.edu/~mhilton/"), "Carnegie Mellon University")
+    val Widder = Person("David", "Widder", URL("http://davidwidder.me/"), "Carnegie Mellon University")
+    val Mori = Person("Allan", "Mori", "Federal University of Minas Gerais")
+    val Vale = Person("Gustavo", "Vale", "University of Passau")
+    val Viggiato = Person("Markos", "Viggiato", "Federal University of Minas Gerais")
+    val Oliveira = Person("Johnatan", "Oliveira", "Pontifical Catholic University of Minas Gerais")
+    val Cirilo = Person("Elder", "Cirilo", "Federal University of Sao Joao del-Rei")
+    val Janker = Person("Andreas", "Janker", "University of Passau")
+    val Lazarek = Person("Lukas", "Lazarek", "University of Massachusetts Lowell")
 }
 
 object Topics {
@@ -221,6 +234,9 @@ object Venues {
         "%num% Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", publisher = ACM)
     val Onward = ConferenceFactory("Onward!", 2002,
         "%num% SIGPLAN Symposium on New Ideas in Programming and Reflections on Software at SPLASH", publisher = ACM)
+    val MSR = ConferenceFactory("MSR", 2003,
+        "%num% International Conference on Mining Software Repositories")
+       
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
@@ -277,7 +293,8 @@ object Venues {
     val OOPSLA11 = OOPSLA(2011).acceptanceRate(61, 166).month(10).isbn("978-1-4503-0940-0").location("Portland, OR")
     val OOPSLAComp11 = Venue("OOPSLA", 2011, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).isbn("978-1-4503-0942-4").location("Portland, OR").publisher(ACM)
     val VAMOS13 = VAMOS(2013).month(1).location("Pisa").publisher(ACM).acceptanceRate(19, 45).isbn("978-1-4503-1541-8")
-
+    val MSR18 = MSR(2018).location("Gothenburg").publisher(ACM).acceptanceRate(37+11, 145).month(5)
+    val ICSE18 = ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM).month(5)
 }
 
 object CVPublications {
@@ -2707,7 +2724,7 @@ object CVPublications {
     To learn about the mutual strengths and weaknesses of variability-aware and sampling-based analyses of large-scale, real-world software systems, we compared the two by means of two concrete analysis implementations (type checking and liveness analysis) applied to three subject systems: the Busybox tool suite, the x86 Linux kernel, and the cryptographic library OpenSSL.
     A key result is that in these settings already setting up sampling techniques is challenging while variability-aware analysis even outperforms most sampling approximations with respect to analysis time.
         """.stripMargin
-    ).topic(spl, vaanalysis, typechef, preprocessor).selected()
+    ).topic(spl, vaanalysis, typechef, preprocessor)
 
 
     val tse14 = Article(
@@ -3341,7 +3358,7 @@ object CVPublications {
     val msr16 = InProceedings(
         Seq(Ahmad, Kaestner, Sunshine, Aldrich),
         "Inter-app Communication in Android: Developer Challenges",
-        Conference("MSR", 2016, " 13th International Conference on Mining Software Repositories").month(5).location("Austin, TX").publisher(ACM).acceptanceRate(36, 133),
+        MSR(2016).month(5).location("Austin, TX").publisher(ACM).acceptanceRate(36, 133),
         Pages(177,188),
         Map(PDF -> PDFFile("msr16.pdf"), DOI -> DOI("10.1145/2901739.2901762")),
         """
@@ -3549,8 +3566,8 @@ executing real software containing variability.""").topic(vaanalysis)
     val tse17 = Article(
         Seq(Medeiros, Ribeiro, Gheyi, Apel, Kaestner, FerreiraB, Carvalho, Fonseca),
         "Discipline Matters: Refactoring of Preprocessor Directives in the #ifdef Hell",
-        TSE(2017),
-        ToAppear(),
+        TSE(2018).volume(44).number(5).month(5),
+        Pages(453,469),
         Map(PDF -> PDFFile("tse17-refactoringifdef.pdf"), 
             DOI->DOI("10.1109/TSE.2017.2688333")),
         """
@@ -3815,14 +3832,14 @@ executing real software containing variability.""").topic(vaanalysis)
             DOI->DOI("10.1145/3168365.3168376")),
         """
         Features in highly configurable systems can interact in undesiredways which may result in faults. However, most interactions arenot easily detectable as specifications of feature interactions areusually missing. In this paper, we aim to detect interactions and tohelp create feature-interaction specifications. We use variational ex-ecution to observe internal interactions on control and data flow ofhighly configurable systems. The number of potential interactionscan be large and hard to understand, especially as many interac-tions are benign. To help developers understand these interactions,we propose feature-interaction graphs as a concise representationof all pairwise interactions. We provide two analyses that reportsuspicious interactions, namely suppress and require interactionsFinally, we propose a specification language that enables develop-ers to define different kinds of allowed and forbidden interactions.Our tool, VarXplorer, provides a visualization of feature-interactiongraphs and supports the creation of feature interaction specifi-cations. VarXplorer also provides an iterative analysis of featureinteractions allowing developers to focus on suspicious cases.
-        """)
+        """).topic(interactions)
 
     val icse18forks = InProceedings(
         Seq(Zhou, Stanciulescu, Lessenich, Xiong, Wasowski, Kaestner),
         "Identifying Features in Forks",
-        ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM),
+        ICSE18,
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("icse18forks.pdf")),
         """
     	Fork-based development has been widely used both in open source community and industry, because it gives developers flexibility to modify their own fork without affecting others. Unfortunately, this mechanism has downsides; when the number of forks becomes large, it is difficult for developers to get or maintain an overview of activities in the forks. Current tools provide little help. We introduced INFOX, an approach to automatically identifies not-merged features in forks and generates an overview of active forks in a project. The approach clusters cohesive code fragments using code and network analysis techniques and uses information-retrieval techniques to label clusters with keywords. The clustering is effective, with 90% accuracy on a set of known features. In addition, a human-subject evaluation shows that INFOX can provide actionable insight for developers of forks.
         """
@@ -3831,9 +3848,9 @@ executing real software containing variability.""").topic(vaanalysis)
     val icse18badges = InProceedings(
         Seq(Trockman, Zhou, Kaestner, Vasilescu),
         "Adding Sparkle to Social Coding: An Empirical Study of Repository Badges in the npm Ecosystem",
-        ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM),
+        ICSE18,
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("icse18badges.pdf")),
         """
     	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
         """
@@ -3874,6 +3891,243 @@ This is an important insight for new sampling and learning techniques as they ca
 We further analyzed the causes for the configuration options and their interactions having the observed influences on the systems' performance.
 We were able to identify several patterns across subject systems, such as dominant configuration options and data pipelines, that explain the influences of highly influential configuration options and interactions, and give further insights into the domain of highly-configurable systems.    
     """).topic(interactions,nfp,sensitivity)
+
+
+    val msr18underst = InProceedings(
+        Seq(Trockman, Cates, Mozina, NguyenTuan, Kaestner, Vasilescu),
+        "\"Automatically Assessing Code Understandability\" Reanalyzed: Combined Metrics Matter",
+        MSR18,
+        ToAppear(),
+        Map(PDF -> PDFFile("msr18underst.pdf")),
+        """
+            Previous research shows that developers spend most of their time
+            understanding code. Despite the importance of code understandability
+            for maintenance-related activities, an objective measure of it
+            remains an elusive goal. Recently, Scalabrino et al. reported on an
+            experiment with 46 Java developers designed to evaluate metrics
+            for code understandability. The authors collected and analyzed data
+            on more than a hundred features describing the code snippets, the
+            developers’ experience, and the developers’ performance on a quiz
+            designed to assess understanding. They concluded that none of the
+            metrics considered can individually capture understandability. Expecting
+            that understandability is better captured by a combination
+            of multiple features, we present a reanalysis of the data from the
+            Scalabrino et al. study, in which we use different statistical modeling
+            techniques. Our models suggest that some computed features of
+            code, such as those arising from syntactic structure and documentation,
+            have a small but significant correlation with understandability.
+            Further, we construct a binary classifier of understandability based
+            on various interpretable code features, which has a small amount
+            of discriminating power. Our encouraging results, based on a small
+            data set, suggest that a useful metric of understandability could
+            feasibly be created, but more data is needed.
+        """
+    ).topic(programcomprehension)
+
+    val msr18travis = InProceedings(
+        Seq(Widder, Hilton, Kaestner, Vasilescu),
+        "I’m Leaving You, Travis: A Continuous Integration Breakup Story",
+        MSR18,
+        ToAppear(),
+        Map(PDF -> PDFFile("msr18travis.pdf")),
+        """
+            Continuous Integration (CI) services, which can automatically build,
+            test, and deploy software projects, are an invaluable asset in distributed
+            teams, increasing productivity and helping to maintain
+            code quality. Prior work has shown that CI pipelines can be sophisticated,
+            and choosing and configuring a CI system involves tradeoffs.
+            As CI technology matures, new CI tool offerings arise to meet the
+            distinct wants and needs of software teams, as they negotiate a
+            path through these tradeoffs, depending on their context. In this
+            paper, we begin to uncover these nuances, and tell the story of
+            open-source projects falling out of love with Travis, the earliest
+            and most popular cloud-based CI system. Using logistic regression,
+            we quantify the effects that open-source community factors and
+            project technical factors have on the rate of Travis abandonment.
+            We find that increased build complexity reduces the chances of
+            abandonment, that larger projects abandon at higher rates, and that
+            a project’s dominant language has significant but varying effects.
+            Finally, we find the surprising result that metrics of configuration
+            attempts and knowledge dispersion in the project do not affect the
+            rate of abandonment.
+        """
+    ).topic(ecosystem, empirical)
+
+
+    val techdebt18 = InProceedings(
+        Seq(Mori, Vale, Viggiato, Oliveira, Figueiredo, Cirilo, Jamshidi, Kaestner),
+        "Evaluating Domain-Specific Metric Thresholds: An Empirical Study",
+        Conference("TechDebt", 2018, "International Conference on Technical Debt").month(5).location("Gothenburg").publisher(ACM),
+        ToAppear(),
+        Map(PDF -> PDFFile("TechDebt18.pdf")),
+        """
+        Software metrics and thresholds provide means to quantify several
+        quality attributes of software systems. Indeed, they have been used
+        in a wide variety of methods and tools for detecting different sorts
+        of technical debts, such as code smells. Unfortunately, these
+        methods and tools do not take into account characteristics of
+        software domains, as the intrinsic complexity of geo-localization
+        and scientific software systems or the simple protocols employed by
+        messaging applications. Instead, they rely on generic thresholds that
+        are derived from heterogeneous systems. Although derivation of
+        reliable thresholds has long been a concern, we still lack empirical
+        evidence about threshold variation across distinct software domains.
+        To tackle this limitation, this paper investigates whether and how
+        thresholds vary across domains by presenting a large-scale study on
+        3,107 software systems from 15 domains. We analyzed the
+        derivation and distribution of thresholds based on 8 well-known
+        source code metrics. As a result, we observed that software domain
+        and size are relevant factors to be considered when building
+        benchmarks for threshold derivation. Moreover, we also observed
+        that domain-specific metric thresholds are more appropriated than
+        generic ones for code smell detection.
+        """
+      )
+
+    val icse18posterforks = InProceedings(
+        Seq(Ren, Zhou, Kaestner),
+        "Poster: Forks Insight: Providing an Overview of GitHub Forks",
+        Venue("ICSE", 2018, "Companion of the International Conference on Software Engineering", KWorkshopDemoTool).location("Gothenburg").publisher(ACM),
+        ToAppear(),
+        Map(PDF -> PDFFile("icse18poster.pdf")),
+        ""
+    ).note("Poster").topic(awareness, merge)
+
+
+
+    val fse18 = InProceedings(
+        Seq(Jamshidi, Velez, Kaestner, Siegmund),
+        "Learning to Sample: Exploiting Similarities Across Environments to Learn Performance Models for Configurable Systems",
+        ESECFSE(2018).month(11),
+        ToAppear(),
+        Map(PDF->PDFFile("fse18.pdf")),
+        """
+        Most software systems provide options that allow users to tailor the system in terms of functionality and qualities.
+The increased flexibility raises challenges for understanding the configuration space and the effects of options and their interactions on performance and other non-functional properties.
+To identify how options and interactions affect the performance of a system, several sampling and learning strategies have been recently proposed.
+However, existing approaches usually assume a fixed environment (hardware, workload, version) such that learning has to be repeated when the environment changes.
+Repeating learning and measurement for each environment is expensive and often practically infeasible. Instead, we pursue a strategy that transfers knowledge across environments, but sidesteps heavyweight and expensive transfer-learning strategies. 
+Based on empirical insights about common relationships regarding (i) influential options, (ii) their interactions, and (iii) their performance distributions, our approach *L2S* (Learning to Sample) selects better samples in the target environment based on information from the source environment. It progressively shrinks the configuration space and adaptively concentrates on interesting regions of the configuration space. 
+With both synthetic benchmarks and several real systems, we demonstrate that *L2S* outperforms state of the art performance learning and transfer-learning approaches in terms of measurement effort and learning accuracy.
+        """
+      ).topic(nfp,sensitivity)
+
+
+    val varvis = TechReport(
+        Seq(Meinicke, Wong, Kaestner, Saake),
+        "Understanding Differences among Executions with Variational Traces",
+        2018, 7, ARXIV, "1807.03837",
+        Map(PDF -> PDFFile("varviz18.pdf"),
+            HTTP -> URL("https://arxiv.org/pdf/1807.03837.pdf")),
+        """
+        One of the main challenges of debugging is to understand why the program fails for certain inputs but succeeds for others. This
+becomes especially difficult if the fault is caused by an interaction of multiple inputs. To debug such interaction faults, it is necessary to understand
+the individual effect of the input, how these inputs interact and how these interactions cause the fault. The differences between two
+execution traces can explain why one input behaves differently than the other. We propose to compare execution traces of all input options
+to derive explanations of the behavior of all options and interactions among them. To make the relevant information stand out, we represent
+them as variational traces that concisely represents control-flow and data-flow differences among multiple concrete traces. While variational
+traces can be obtained from brute-force execution of all relevant inputs, we use variational execution to scale the generation of variational
+traces to the exponential space of possible inputs. We further provide an Eclipse plugin Varviz that enables users to use variational traces
+for debugging and navigation. In a user study, we show that users of variational traces are more than twice as fast to finish debugging
+tasks than users of the standard Eclipse debugger. We further show that variational traces can be scaled to programs with many options
+        """).topic(vaanalysis,programcomprehension,experiment)
+
+    val tse18_fmri = Article(
+        Seq(Peitek, JSiegmund, Apel, Kaestner, Parnin, Bethmann, Leich, Saake, Brechmann),
+        "A Look into Programmers’ Heads",
+        TSE(2013),
+        ToAppear(),
+        Map(PDF -> PDFFile("tse18_fmri.pdf")),
+        """
+              Program comprehension is an important, but hard to measure cognitive process. This makes it difficult to provide suitable
+programming languages, tools, or coding conventions to support developers in their everyday work. Here, we explore whether
+functional magnetic resonance imaging (fMRI) is feasible for soundly measuring program comprehension. To this end, we observed 17
+participants inside an fMRI scanner while they were comprehending source code. The results show a clear, distinct activation of five
+brain regions, which are related to working memory, attention, and language processing, which all fit well to our understanding of
+program comprehension. Furthermore, we found reduced activity in the default mode network, indicating the cognitive effort necessary
+for program comprehension. We also observed that familiarity with Java as underlying programming language reduced cognitive effort
+during program comprehension. To gain confidence in the results and the method, we replicated the study with 11 new participants and
+largely confirmed our findings. Our results encourage us and, hopefully, others to use fMRI to observe programmers and, in the long
+run, answer questions, such as: How should we train programmers? Can we train someone to become an excellent programmer? How
+effective are new languages and tools for program comprehension?
+        """
+    ).topic(programcomprehension, empirical, experiment)
+
+        
+
+  val fsenier18 = InProceedings(
+        Seq(Wong, Meinicke, Kaestner),
+        "Beyond Testing Configurable Systems: Applying Variational Execution to Automatic Program Repair and Higher Order Mutation Testing",
+        Conference("FSE-NIER", 2018, "26th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
+        ToAppear(),
+        Map(PDF->PDFFile("fsenier18.pdf")),
+        """
+            Variational execution is a novel dynamic analysis technique for exploring
+            highly configurable systems and accurately tracking information flow. It is
+            able to efficiently analyze many configurations by aggressively sharing
+            redundancies of program executions. The idea of variational execution has been
+            demonstrated to be effective in exploring variations in the program, especially
+            when the configuration space grows out of control. Existing implementations of
+            variational execution often require heavy lifting of the runtime interpreter,
+            which is painstaking and error-prone. Furthermore, the performance of this
+            approach is suboptimal. For example, the state-of-the-art variational execution
+            interpreter for Java, VarexJ, slows down executions by 100 to 800~times over a
+            single execution for small to medium size Java programs. Instead of modifying
+            existing JVMs, we propose to transform existing bytecode to make it
+            variational, so it can be executed on an unmodified commodity JVM.  Our
+            evaluation shows a dramatic improvement on performance over the
+            state-of-the-art, with a speedup of 2 to 46 times, and high efficiency in
+            sharing computations. 
+        """
+    ).topic(vaanalysis, testing)
+
+
+    val oopsla18 = InProceedings(
+        Seq(Wong, Meinicke, Lazarek, Kaestner),
+        "Faster Variational Execution with Transparent Bytecode Transformation",
+        OOPSLA(2018).month(11).location("Boston, MA"),
+        ToAppear(),
+        Map(PDF->PDFFile("oopsla18.pdf")),
+        """
+            Variational execution is a novel dynamic analysis technique for exploring
+            highly configurable systems and accurately tracking information flow. It is
+            able to efficiently analyze many configurations by aggressively sharing
+            redundancies of program executions. The idea of variational execution has been
+            demonstrated to be effective in exploring variations in the program, especially
+            when the configuration space grows out of control. Existing implementations of
+            variational execution often require heavy lifting of the runtime interpreter,
+            which is painstaking and error-prone. Furthermore, the performance of this
+            approach is suboptimal. For example, the state-of-the-art variational execution
+            interpreter for Java, VarexJ, slows down executions by 100 to 800~times over a
+            single execution for small to medium size Java programs. Instead of modifying
+            existing JVMs, we propose to transform existing bytecode to make it
+            variational, so it can be executed on an unmodified commodity JVM.  Our
+            evaluation shows a dramatic improvement on performance over the
+            state-of-the-art, with a speedup of 2 to 46 times, and high efficiency in
+            sharing computations. 
+        """
+    ).selected().topic(vaanalysis, testing)
+
+
+    val tosem18 = Article(
+        Seq(vonRhein, Liebig, Janker, Kaestner, Apel),
+        "Variability-Aware Static Analysis at Scale: An Empirical Study",
+        TOSEM(2018),
+        ToAppear(),
+        Map(PDF->PDFFile("tosem18.pdf")),
+        """
+            The advent of variability management and generator technology enables users to derive individual system variants from a configurable code base by selecting desired configuration options.
+This approach gives rise to the generation of possibly billions of variants, which, however, cannot be efficiently analyzed for bugs and other properties with classic analysis techniques.
+To address this issue, researchers and practitioners have developed sampling heuristics and, recently, variability-aware analysis techniques.
+While sampling reduces the analysis effort significantly, the information obtained is necessarily incomplete, and it is unknown whether state-of-the-art sampling techniques scale to billions of variants.
+Variability-aware analysis techniques process the configurable code base directly, exploiting similarities among individual variants with the goal of reducing analysis effort.
+However, while being promising, so far, variability-aware analysis techniques have been applied mostly only to small academic examples.
+To learn about the mutual strengths and weaknesses of variability-aware and sample-based static-analysis techniques, we compared the two by means of seven concrete control-flow and data-flow analyses, applied to five real-world subject systems: BusyBox, OpenSSL, SQLite, the x86 Linux kernel, and uclibc.
+In particular, we compare the efficiency (analysis execution time) of the static analyses and their effectiveness (potential bugs found).
+Overall, we found that variability-aware analysis outperforms most sample-based static-analysis techniques with respect to efficiency and effectiveness.
+For example, checking all variants of OpenSSL with a variability-aware static analysis is faster than checking even only two variants with an analysis that does not exploit  similarities among variants."""
+    ).topic(spl, vaanalysis, typechef, preprocessor).selected().
+        crosscite("extended version of \\cite{LvKADL:ESECFSE13}")
 
 
 

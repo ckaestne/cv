@@ -15,7 +15,7 @@ object CV {
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
-        <p>I am an assistant professor in the School of Computer Science at Carnegie Mellon University, interested in <strong>limits of modularity</strong>
+        <p>I am an associate professor in the School of Computer Science at Carnegie Mellon University, interested in <strong>limits of modularity</strong>
             and <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
             languages, and tools to <strong>implement variability in a disciplined way</strong> despite
             imperfect modularity,
@@ -52,7 +52,7 @@ object CV {
     def headerCVLatex() =
         """\begin{CV}
           |\item[Affiliation]
-          |    Assistant Professor \\
+          |    Associate Professor \\
           |    Carnegie Mellon University \\
           |    School of Computer Science\\
           |    Institute for Software Research \\
@@ -65,7 +65,7 @@ object CV {
           |
           |\section{Profile}
           |\begin{CV}
-          |\item[] Assistant professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
+          |\item[] Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
           |\end{CV}
           |
           |\section{Education}
@@ -81,6 +81,9 @@ object CV {
           |
           |\section{Academic Employment}
           |\begin{CV}
+          |\item[since Jul. 2018]
+          |	Associate Professor,\\
+          |	Carnegie Mellon University
           |\item[since Sep. 2012]
           |	Assistant Professor,\\
           |	Carnegie Mellon University
@@ -294,9 +297,17 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(VAMOS(2019).url(URL("https://vamos2019.github.io/")), PC),
+        Committee(ESECFSE(2019), PC),
+        Committee(OOPSLA(2019), ERC),
         Committee(ESECFSE(2019), OtherChair("Journal First Co-Chair", "JF Chair")),
         Committee(ICSE(2019), OtherChair("Student Mentoring Program Co-Chair", "SMP Chair")),
+        Committee(Conference("ICSE-NIER", 2019,
+            "ICSE New Ideas and Emerging Results (NIER)",
+            URL("https://2019.icse-conferences.org/home")), PC),
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
+        Committee(Workshop("SPLTea", 2018, "Third International Workshop on Software Product Line Teaching",
+            URL("http://spltea.irisa.fr/")), PC),
         Committee(Conference("SE", 2018,
             "Software Engineering Conference of the Gesellschaft für Informatik (GI)",
             URL("https://se18.uni-ulm.de/")), PC),
