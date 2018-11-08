@@ -113,6 +113,11 @@ object CV {
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
         ),
+        Course("17-654 Analysis of Software Artifacts",
+            "",
+            URL("http://mse.isri.cmu.edu/software-engineering/Courses/17-654-analysis-of-software-artifacts.html"),
+            English, SpringTerm(2019), new CourseKind with Lecture
+        ),
         Course("17-313 Foundations of Software Engineering",
             "",
             URL("http://www.cs.cmu.edu/~ckaestne/15313/"),

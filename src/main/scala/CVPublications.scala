@@ -137,6 +137,8 @@ object Coauthors {
     val Cirilo = Person("Elder", "Cirilo", "Federal University of Sao Joao del-Rei")
     val Janker = Person("Andreas", "Janker", "University of Passau")
     val Lazarek = Person("Lukas", "Lazarek", "University of Massachusetts Lowell")
+    val Chen = Person("Serena", "Chen", "Franklin W. Olin College of Engineering")
+    val Phan= Person("Hung Dang", "Phan", "Iowa State University")
 }
 
 object Topics {
@@ -4130,5 +4132,87 @@ For example, checking all variants of OpenSSL with a variability-aware static an
         crosscite("extended version of \\cite{LvKADL:ESECFSE13}")
 
 
+    val jase18 = Article(
+        Seq(HNguyen, Phan, Kaestner, TNguyen),
+        "Exploring Output-Based Coverage for Testing PHP Web Applications",
+        JASE(2018),
+        ToAppear(),
+        Map(
+            PDF -> PDFFile("jase18.pdf"),
+            DOI -> DOI("10.1007/s10515-018-0246-5")),
+        """
+In software testing, different testers focus on different aspects of
+the software such as functionality, performance, design, and other attributes.
+While many tools and coverage metrics exist to support testers at the code
+level, not much support is targeted for testers who want to inspect the output
+of a program such as a dynamic web application. To support this category of
+testers, we propose a family of output-coverage metrics (similar to statement,
+branch, and path coverage metrics on code) that measure how much of the
+possible output has been produced by a test suite and what parts of the output
+are still uncovered. To do that, we first approximate the output universe using
+our existing symbolic execution technique. Then, given a set of test cases, we
+map the produced outputs onto the output universe to identify the covered
+and uncovered parts and compute output-coverage metrics. In our empirical
+evaluation on seven real-world PHP web applications, we show that selecting
+test cases by output coverage is more effective at identifying presentation faults
+such as HTML validation errors and spelling errors than selecting test cases
+by traditional code coverage. In addition, to help testers understand output
+coverage and augment test cases, we also develop a tool called WebTest that
+displays the output universe in one single web page and allows testers to visually
+explore covered and uncovered parts of the output.
+	""").topic(web)
+
+
+    val gpce18 = InProceedings(
+        Seq(Soares, Meinicke, Nadi, Kaestner, deAlmeida),
+        "Exploring Feature Interactions Without Specifications: A Controlled Experiment",
+        GPCE(2018),
+        Pages(41,52),
+        Map(PDF->PDFFile("gpce18.pdf"),
+            HTTP->URL("http://doi.acm.org/10.1145/3278122.3278127"),
+            DOI->DOI("10.1145/3278122.3278127")),
+        """
+        In highly configurable systems, features may interact unexpectedly and produce faulty behavior. Those faults are not easily identified from the analysis of each feature separately, especially when feature specifications are missing. We propose VarXplorer, a dynamic and iterative approach to detect suspicious interactions. It provides information on how features impact the control and data flow of the program. VarXplorer supports developers with a graph that visualizes this information, mainly showing suppress and require relations between features. To evaluate whether VarXplorer helps improve the performance of identifying suspicious interactions, we perform a controlled study with 24 subjects. We find that with our proposed feature-interaction graphs, participants are able to identify suspicious interactions more than 3 times faster compared to the state-of-the-art tool.
+        """).topic(interactions)
+
+    val splashsrc17= InProceedings(
+        Seq(Lazarek),
+        "How to Efficiently Process $2^{100}$ List Variations",
+        Venue("SPLASH-SRC", 2017, "Companion of the 2017 ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications: Software for Humanity", KWorkshopDemoTool).publisher(ACM),
+        Pages(36,38),
+        Map(PDF->PDFFile("srcsplash18.pdf"),
+            HTTP->URL("http://doi.acm.org/10.1145/3135932.3135951"),
+            DOI->DOI("10.1145/3135932.3135951")),
+        """
+        Variational execution offers an avenue of efficiently analyzing configurable systems, but data structures like lists require special consideration. We implement automatic substitution of a more efficient list representation in a variational execution framework and evaluate its performance in micro-benchmarks. The results suggest that the substitution may offer substantial performance improvements to programs involving highly variational lists.
+        """
+    ).topic(vaanalysis).note("SPLASH Student research competition, first place")
+
+
+    val icsesrc18= InProceedings(
+        Seq(Trockman),
+        "Adding sparkle to social coding: an empirical study of repository badges in the npm ecosystem",
+        Venue("ICSE-SRC", 2017, "Companion Proceedings of the 40th International Conference on Software Engineering", KWorkshopDemoTool).publisher(ACM),
+        Pages(524,526),
+        Map(PDF->PDFFile("srcicse18.pdf"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3190335"),
+            DOI->DOI("10.1145/3183440.3190335")),
+        """
+        Contemporary software development is characterized by increased reuse and speed. Open source software forges such as GitHub host millions of repositories of libraries and tools, which developers reuse liberally, creating complex and often fragile networks of interdependencies. Hence, developers must make more decisions at a higher speed, finding which libraries to depend on and which projects to contribute to. This decision making process is supported by the transparency provided by social coding platforms like GitHub, where user profile pages display information on a one's contributions, and repository pages provide information on a project's social standing (e.g., through stars and watchers).
+        """
+    ).topic(vaanalysis).note("ICSE Student research competition, first place")
+
+
+
+    val splashsrc18= TechReport(
+        Seq(Chen),
+        "Finding Higher Order Mutants Using Variational Execution",
+        2018, 9, ARXIV, "1809.04563",
+        Map(PDF->PDFFile("srcsplash17.pdf"),
+            HTTP->URL("https://arxiv.org/abs/1809.04563")),
+        """
+        Mutation testing is an effective but time consuming method for gauging the quality of a test suite. It functions by repeatedly making changes, called mutants, to the source code and checking whether the test suite fails (i.e., whether the mutant is killed). Recent work has shown cases in which applying multiple changes, called a higher order mutation, is more difficult to kill than a single change, called a first order mutation. Specifically, a special kind of higher order mutation, called a strongly subsuming higher order mutation (SSHOM), can enable equivalent accuracy in assessing the quality of the test suite with fewer executions of tests. Little is known about these SSHOMs, as they are difficult to find. Our goal in this research is to identify a faster, more reliable method for finding SSHOMs in order to characterize them in the future. We propose an approach based on variational execution to find SSHOMs. Preliminary results indicate that variational execution performs better than the existing genetic algorithm in terms of speed and completeness of results. Out of a set of 33 first order mutations, our variational execution approach finds all 38 SSHOMs in 4.5 seconds, whereas the genetic algorithm only finds 36 of the 38 SSHOMs in 50 seconds.
+        """
+    ).topic(vaanalysis,testing).note("SPLASH Student research competition")
 
 }
