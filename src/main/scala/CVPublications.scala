@@ -139,6 +139,10 @@ object Coauthors {
     val Lazarek = Person("Lukas", "Lazarek", "University of Massachusetts Lowell")
     val Chen = Person("Serena", "Chen", "Franklin W. Olin College of Engineering")
     val Phan= Person("Hung Dang", "Phan", "Iowa State University")
+    val Lima = Person("Gabriel", "Lima", "Federal Institute of Alagoas (IFAL)")
+    val Amaral = Person("Guilherme", "Amaral", "Federal University of Alagoas (UFAL)")
+    val Fraser = Person("Gordon", "Fraser", "University of Passau")
+    val Huchard = Person("Marianne","Huchard", "University of Montpellier")
 }
 
 object Topics {
@@ -248,8 +252,8 @@ object Venues {
     val JSS = JournalFactory("JSS", "Journal of Systems and Software")
     val STTT = JournalFactory("STTT", "Software Tools for Technology Transfer")
     val IST = JournalFactory("IST", "Information and Software Technology")
-    val TSE = JournalFactory("TSE", "IEEE Transactions on Software Engineering")
-    val IS = JournalFactory("IS", "IEEE Software")
+    val TSE = JournalFactory("TSE", "IEEE Transactions on Software Engineering", IEEE)
+    val IS = JournalFactory("IS", "IEEE Software", IEEE)
     val DKE = JournalFactory("DKE", "Data & Knowledge Engineering")
     val TII = JournalFactory("TII", "IEEE Transactions on Industrial Informatics")
     val JOT = JournalFactory("JOT", "Journal of Object Technology")
@@ -258,10 +262,12 @@ object Venues {
     val JASE = JournalFactory("ASE", "Automated Software Engineering -- An International Journal", Springer)
     val JSEP = JournalFactory("JSEP", "Journal of Software: Evolution and Process")
     val HOSC = JournalFactory("HOSC", "Higher-Order and Symbolic Computation")
-    val CSUR = JournalFactory("CSUR", "ACM Computing Surveys")
+    val CSUR = JournalFactory("CSUR", "ACM Computing Surveys", ACM)
     val JOSER = JournalFactory("JOSER", "Journal of Software Engineering in Robotics")
     val COMLAN = JournalFactory("COMLAN", "Journal of Computer Languages, Systems & Structures")
     val SOSYM = JournalFactory("SOSYM", "International Journal on Software and Systems Modeling")
+    
+    val OOPSLAJ = JournalFactory("OOPSLA", "Proceedings of the ACM on Programming Languages, Issue OOPSLA", ACM)
 
 
     val ACoM = ConferenceFactory("ACoM", 0,
@@ -3686,7 +3692,7 @@ executing real software containing variability.""").topic(vaanalysis)
     val ase17merge = InProceedings(
         Seq(Lessenich, Apel, Kaestner, Seibt, JSiegmund),
         "Renaming and Shifted Code in Structured Merging: Looking Ahead for Precision and Performance",
-        ASE(2017).month(11),
+        ASE(2017).month(11).acceptanceRate(88,388),
         Pages(543, 553),
         Map(PDF -> PDFFile("ase17_merge.pdf"),
             DOI->DOI("10.1109/ASE.2017.8115665"),
@@ -3799,8 +3805,8 @@ executing real software containing variability.""").topic(vaanalysis)
     val jase17 = Article(
         Seq(Lessenich, JSiegmund, Apel, Kaestner, Hunsen),
         "Indicators for Merge Conflicts in the Wild: Survey and Empirical Study",
-        JASE(2017).issn("0928-8910"),
-        ToAppear(),
+        JASE(2018).issn("0928-8910").volume(25).number(2),
+        Pages(279,313),
         Map(HTTP -> URL("https://www.infosun.fim.uni-passau.de/publications/docs/LSA+17ase.pdf"),
             PDF -> PDFFile("jase17.pdf"),
             DOI -> DOI("10.1007/s10515-017-0227-0")),
@@ -3840,8 +3846,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Zhou, Stanciulescu, Lessenich, Xiong, Wasowski, Kaestner),
         "Identifying Features in Forks",
         ICSE18,
-        ToAppear(),
-        Map(PDF->PDFFile("icse18forks.pdf")),
+        Pages(105,116),
+        Map(PDF->PDFFile("icse18forks.pdf"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3180205"),
+            DOI->DOI("10.1145/3180155.3180205")),
         """
     	Fork-based development has been widely used both in open source community and industry, because it gives developers flexibility to modify their own fork without affecting others. Unfortunately, this mechanism has downsides; when the number of forks becomes large, it is difficult for developers to get or maintain an overview of activities in the forks. Current tools provide little help. We introduced INFOX, an approach to automatically identifies not-merged features in forks and generates an overview of active forks in a project. The approach clusters cohesive code fragments using code and network analysis techniques and uses information-retrieval techniques to label clusters with keywords. The clustering is effective, with 90% accuracy on a set of known features. In addition, a human-subject evaluation shows that INFOX can provide actionable insight for developers of forks.
         """
@@ -3851,8 +3859,10 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Trockman, Zhou, Kaestner, Vasilescu),
         "Adding Sparkle to Social Coding: An Empirical Study of Repository Badges in the npm Ecosystem",
         ICSE18,
-        ToAppear(),
-        Map(PDF->PDFFile("icse18badges.pdf")),
+        Pages(511,522),
+        Map(PDF->PDFFile("icse18badges.pdf"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3180209"),
+            DOI->DOI("10.1145/3180155.3180209")),
         """
     	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
         """
@@ -3899,8 +3909,9 @@ We were able to identify several patterns across subject systems, such as domina
         Seq(Trockman, Cates, Mozina, NguyenTuan, Kaestner, Vasilescu),
         "\"Automatically Assessing Code Understandability\" Reanalyzed: Combined Metrics Matter",
         MSR18,
-        ToAppear(),
-        Map(PDF -> PDFFile("msr18underst.pdf")),
+        Pages(314,318),
+        Map(PDF -> PDFFile("msr18underst.pdf"),
+            DOI->DOI("10.1145/3196398.3196441")),
         """
             Previous research shows that developers spend most of their time
             understanding code. Despite the importance of code understandability
@@ -3930,8 +3941,9 @@ We were able to identify several patterns across subject systems, such as domina
         Seq(Widder, Hilton, Kaestner, Vasilescu),
         "I’m Leaving You, Travis: A Continuous Integration Breakup Story",
         MSR18,
-        ToAppear(),
-        Map(PDF -> PDFFile("msr18travis.pdf")),
+        Pages(165,169),
+        Map(PDF -> PDFFile("msr18travis.pdf"),
+            DOI->DOI("10.1145/3196398.3196422")),
         """
             Continuous Integration (CI) services, which can automatically build,
             test, and deploy software projects, are an invaluable asset in distributed
@@ -3960,8 +3972,8 @@ We were able to identify several patterns across subject systems, such as domina
         Seq(Mori, Vale, Viggiato, Oliveira, Figueiredo, Cirilo, Jamshidi, Kaestner),
         "Evaluating Domain-Specific Metric Thresholds: An Empirical Study",
         Conference("TechDebt", 2018, "International Conference on Technical Debt").month(5).location("Gothenburg").publisher(ACM),
-        ToAppear(),
-        Map(PDF -> PDFFile("TechDebt18.pdf")),
+        Pages(41,50),
+        Map(PDF -> PDFFile("TechDebt18.pdf"), DOI->DOI("10.1145/3194164.3194173")),
         """
         Software metrics and thresholds provide means to quantify several
         quality attributes of software systems. Indeed, they have been used
@@ -3990,8 +4002,9 @@ We were able to identify several patterns across subject systems, such as domina
         Seq(Ren, Zhou, Kaestner),
         "Poster: Forks Insight: Providing an Overview of GitHub Forks",
         Venue("ICSE", 2018, "Companion of the International Conference on Software Engineering", KWorkshopDemoTool).location("Gothenburg").publisher(ACM),
-        ToAppear(),
-        Map(PDF -> PDFFile("icse18poster.pdf")),
+        Pages(179,180),
+        Map(PDF -> PDFFile("icse18poster.pdf"),
+            DOI->DOI("10.1145/3183440.3195085")),
         ""
     ).note("Poster").topic(awareness, merge)
 
@@ -4000,9 +4013,10 @@ We were able to identify several patterns across subject systems, such as domina
     val fse18 = InProceedings(
         Seq(Jamshidi, Velez, Kaestner, Siegmund),
         "Learning to Sample: Exploiting Similarities Across Environments to Learn Performance Models for Configurable Systems",
-        ESECFSE(2018).month(11),
-        ToAppear(),
-        Map(PDF->PDFFile("fse18.pdf")),
+        ESECFSE(2018).month(11).acceptanceRate(61,289),
+        Pages(71,82),
+        Map(PDF->PDFFile("fse18.pdf"),
+            DOI->DOI("10.1145/3236024.3236074")),
         """
         Most software systems provide options that allow users to tailor the system in terms of functionality and qualities.
 The increased flexibility raises challenges for understanding the configuration space and the effects of options and their interactions on performance and other non-functional properties.
@@ -4037,9 +4051,9 @@ tasks than users of the standard Eclipse debugger. We further show that variatio
     val tse18_fmri = Article(
         Seq(Peitek, JSiegmund, Apel, Kaestner, Parnin, Bethmann, Leich, Saake, Brechmann),
         "A Look into Programmers’ Heads",
-        TSE(2013),
+        TSE(2018),
         ToAppear(),
-        Map(PDF -> PDFFile("tse18_fmri.pdf")),
+        Map(PDF -> PDFFile("tse18_fmri.pdf"), DOI->DOI("10.1109/TSE.2018.2863303")),
         """
               Program comprehension is an important, but hard to measure cognitive process. This makes it difficult to provide suitable
 programming languages, tools, or coding conventions to support developers in their everyday work. Here, we explore whether
@@ -4060,9 +4074,9 @@ effective are new languages and tools for program comprehension?
   val fsenier18 = InProceedings(
         Seq(Wong, Meinicke, Kaestner),
         "Beyond Testing Configurable Systems: Applying Variational Execution to Automatic Program Repair and Higher Order Mutation Testing",
-        Conference("FSE-NIER", 2018, "26th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Cary, NC").acceptanceRate(12, 59),
-        ToAppear(),
-        Map(PDF->PDFFile("fsenier18.pdf")),
+        Conference("FSE-NIER", 2018, "26th International Symposium on Foundations of Software Engineering -- New Ideas Track").month(11).location("Lake Buena Vista, FL"),
+        Pages(749,753),
+        Map(PDF->PDFFile("fsenier18.pdf"), DOI->DOI("10.1145/3236024.3264837")),
         """
             Variational execution is a novel dynamic analysis technique for exploring
             highly configurable systems and accurately tracking information flow. It is
@@ -4084,12 +4098,12 @@ effective are new languages and tools for program comprehension?
     ).topic(vaanalysis, testing)
 
 
-    val oopsla18 = InProceedings(
+    val oopsla18 = Article(
         Seq(Wong, Meinicke, Lazarek, Kaestner),
         "Faster Variational Execution with Transparent Bytecode Transformation",
-        OOPSLA(2018).month(11).location("Boston, MA"),
-        ToAppear(),
-        Map(PDF->PDFFile("oopsla18.pdf")),
+        OOPSLAJ(2018).volume(2).location("Boston, MA"),
+        Pages("117:1","117:30"),
+        Map(PDF->PDFFile("oopsla18.pdf"), DOI->DOI("10.1145/3276487")),
         """
             Variational execution is a novel dynamic analysis technique for exploring
             highly configurable systems and accurately tracking information flow. It is
@@ -4114,9 +4128,9 @@ effective are new languages and tools for program comprehension?
     val tosem18 = Article(
         Seq(vonRhein, Liebig, Janker, Kaestner, Apel),
         "Variability-Aware Static Analysis at Scale: An Empirical Study",
-        TOSEM(2018),
-        ToAppear(),
-        Map(PDF->PDFFile("tosem18.pdf")),
+        TOSEM(2018).volume(27).number(4),
+        PagesStr("Article No. 18"),
+        Map(PDF->PDFFile("tosem18.pdf"), DOI->DOI("10.1145/3280986")),
         """
             The advent of variability management and generator technology enables users to derive individual system variants from a configurable code base by selecting desired configuration options.
 This approach gives rise to the generation of possibly billions of variants, which, however, cannot be efficiently analyzed for bugs and other properties with classic analysis techniques.
@@ -4214,5 +4228,25 @@ explore covered and uncovered parts of the output.
         Mutation testing is an effective but time consuming method for gauging the quality of a test suite. It functions by repeatedly making changes, called mutants, to the source code and checking whether the test suite fails (i.e., whether the mutant is killed). Recent work has shown cases in which applying multiple changes, called a higher order mutation, is more difficult to kill than a single change, called a first order mutation. Specifically, a special kind of higher order mutation, called a strongly subsuming higher order mutation (SSHOM), can enable equivalent accuracy in assessing the quality of the test suite with fewer executions of tests. Little is known about these SSHOMs, as they are difficult to find. Our goal in this research is to identify a faster, more reliable method for finding SSHOMs in order to characterize them in the future. We propose an approach based on variational execution to find SSHOMs. Preliminary results indicate that variational execution performs better than the existing genetic algorithm in terms of speed and completeness of results. Out of a set of 33 first order mutations, our variational execution approach finds all 38 SSHOMs in 4.5 seconds, whereas the genetic algorithm only finds 36 of the 38 SSHOMs in 50 seconds.
         """
     ).topic(vaanalysis,testing).note("SPLASH Student research competition")
+
+    val emse18 = Article(
+        Seq(Medeiros, Lima, Amaral, Apel, Kaestner, Ribeiro, Gheyi),
+        "An Investigation of Misunderstanding Code Patterns in C Open-Source Software Projects",
+        EMSE(2018),
+        ToAppear(),
+        Map(PDF -> PDFFile("emse18.pdf"),
+            HTTP -> URL("http://link.springer.com/article/10.1007/s10664-018-9666-x"),
+            DOI -> DOI("10.1007/s10664-018-9666-x")
+        ),
+        """Maintenance consumes 40% to 80% of software development costs. So, it is essential to write source code that is easy to understand to reduce the costs with maintenance. Improving code understanding is important because developers often mistake the meaning of code, and misjudge the program behavior, which can lead to errors. There are patterns in source code, such as operator precedence, and comma operator, that have been shown to influence code understanding negatively. Despite initial results, these patterns have not been evaluated in a real-world setting, though. Thus, it is not clear whether developers agree that the patterns studied by researchers can cause substantial misunderstandings in real-world practice. To better understand the relevance of misunderstanding patterns, we applied a mixed research method approach, by performing repository mining and a survey with developers, to evaluate misunderstanding patterns in 50 C open-source projects, including Apache, OpenSSL, and Python. Overall, we found more than 109K occurrences of the 12 patterns in practice. Our study shows that according to developers only some patterns considered previously by researchers may cause misunderstandings. Our results complement previous studies by taking the perception of developers into account."""
+    ).topic(empirical)
+
+    val aseproc18 = BookEd(
+        Seq(Huchard, Kaestner, Fraser),
+        "Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering",
+        Venue("", 2018, "", KMisc).publisher(ACM).location("Montpellier").isbn("978-1-4503-5937-5").month(9),
+        Map(HTTP -> URL("https://dl.acm.org/citation.cfm?doid=3238147")),
+        "")
+
 
 }
