@@ -136,7 +136,7 @@ object GenLatex extends App {
         committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
         map(committee=>printCommittee(committee.venue, committee.role.intersect(CommitteeRoles.organizationRoles.toSeq))).
         mkString +
-            "\\item[FOSD-Me.\\ 2009-18] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg)\n"
+            "\\item[FOSD-Me.\\ 2009-19] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg, 2019~Weimar)\n"
     ))
 
     def programCommittees(): String =

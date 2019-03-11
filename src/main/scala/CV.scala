@@ -84,7 +84,7 @@ object CV {
           |\item[since Jul. 2018]
           |	Associate Professor,\\
           |	Carnegie Mellon University
-          |\item[since Sep. 2012]
+          |\item[Sep. 2012 -- Jun. 2018]
           |	Assistant Professor,\\
           |	Carnegie Mellon University
           |\item[Jul.\ 2010 -- Aug. 2012]
@@ -302,6 +302,7 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(ICSE(2020), PC),
         Committee(ESECFSE(2019), PC),
         Committee(ASE(2019).url(URL("https://2019.ase-conferences.org/")), PC),
         Committee(SPLC(2019).url(URL("http://www.splc.net")), PC),
@@ -312,6 +313,7 @@ object CV {
         Committee(Conference("ICSE-NIER", 2019,
             "ICSE New Ideas and Emerging Results (NIER)",
             URL("https://2019.icse-conferences.org/home")), PC),
+        Committee(ASE(2018).url(URL("http://ase2018.com/")), PCCChair),
         Committee(ICSE(2018).url(URL("http://www.icse2018.org/")), PC),
         Committee(Workshop("SPLTea", 2018, "Third International Workshop on Software Product Line Teaching",
             URL("http://spltea.irisa.fr/")), PC),
@@ -608,6 +610,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2018, 7), "How to Break an API: How Community Values Influence Practices", "École Polytechnique de Montréal"),
         InvitedTalk(time(2017, 5), "How to Break an API: How Community Values Influence Practices", "Speaker at jsconf.eu"),
         InvitedTalk(time(2016, 5), "Quality Assurance for Highly-Configurable Systems", "Keynote Talk for the VACE Workshop at ICSE'16"),
         InvitedTalk(time(2015, 11), "Starting an Academic Career -- Reflecting on Habits that Worked for Me", "Keynote Talk for the ASE 2015 Doctoral Symposium"),
@@ -662,28 +665,33 @@ object CV {
         //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
         (Ferreira, Some("(PhD student since 2014)")),
         (Figueiredo, Some("(visiting scholar, 2017-2018)")),
-        (Jamshidi, Some("(Postdoc since 2016)")),
-        (Meinicke, Some("(visiting scholar, 2014, 2016-2018)")),
-        (Soares, Some("(visiting scholar, 2017-2018)")),
         (Velez, Some("(PhD student since 2016)")),
         (Wong, Some("(PhD student since 2014)")),
         (Zhou, Some("(PhD student since 2014)")),
+        (Person("Kattiana","Constantino", "Federal University of Minas Gerais"), Some("(visiting scholar 2018-2019)")),
+        (Meinicke, Some("(visiting scholar, 2014, 2016-2019)"))
     )
     val former = List(
         (Ahmad, Some("(graduated MSc, 2016)")),
+        (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
         (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
-        (Person("Raman", "Goyal"), Some("(visiting scholar, 2015)")),
+        (Person("Raman", "Goyal"), Some("(visiting scholar, 2015, now at Epic)")),
         (Person("Htut Khine", "Htay Win"), Some("(REU student, 2015)")),
-        (Kawthekar, Some("(visiting scholar, 2016, now PhD student at Stanford)")),
-        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016)")),
+        (Kawthekar, Some("(visiting scholar, 2016, now graduate student at Stanford)")),
+        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016, now PhD student at University of Weimar)")),
         (Person("Kyle", "McDonell", "Colby College"), Some("(REU student, 2016)")),
         (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
-        (Stanciulescu, Some("(visiting scholar, 2016-2017, now at ABB)")),
-        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017)")),
+        (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
+        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017, now at Configit)")),
         (Trockman, Some("(REU student, 2017)")),
-        (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017)")),
+        (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017, now PhD student at Northwestern)")),
         (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
-        (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)"))
+        (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)")),
+        (Soares, Some("(visiting scholar, 2017-2018)")),
+        (Ren, Some("(REU student, 2018)")),
+        (Chen, Some("(REU student, 2018)")),
+        (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018)")),
+        (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)"))
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),

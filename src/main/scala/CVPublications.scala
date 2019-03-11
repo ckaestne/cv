@@ -106,7 +106,7 @@ object Coauthors {
     val Wong = Person("Chu-Pan", "Wong", URL("https://www.cs.cmu.edu/~chupanw/"), "Carnegie Mellon University")
     val Zhou = Person("Shurui", "Zhou", URL("https://www.cs.cmu.edu/~shuruiz/"), "Carnegie Mellon University")
     val Velez = Person("Miguel", "Velez", URL("http://www.cs.cmu.edu/~mvelezce/"), "Carnegie Mellon University")
-    val Jamshidi = Person("Pooyan", "Jamshidi", URL("https://www.cs.cmu.edu/~pjamshid/"), "Carnegie Mellon University")
+    val Jamshidi = Person("Pooyan", "Jamshidi", URL("https://pooyanjamshidi.github.io/"), "University of South Carolina")
     val FerreiraB = Person("Bruno", "Ferreira", " Federal University of Alagoas, Maceio")
     val Carvalho = Person("Luiz", "Carvalho", " Federal University of Alagoas, Maceio")
     val Fonseca = Person("Baldoino", "Fonseca", "Federal University of Alagoas, Maceio")
@@ -143,6 +143,24 @@ object Coauthors {
     val Amaral = Person("Guilherme", "Amaral", "Federal University of Alagoas (UFAL)")
     val Fraser = Person("Gordon", "Fraser", "University of Passau")
     val Huchard = Person("Marianne","Huchard", "University of Montpellier")
+    val Jaervi = Person("Jaakko","Järvi","Texas A&M University")
+    val Gokhale = Person("Aniruddha S.","Gokhale","Vanderbilt University")
+    val Miller = Person("Courtney","Miller","New College of Florida, USA")
+    val Garrett = Person("Kalil","Garrett","Georgia State University")
+    val Garlan = Person("David", "Garlan", "Carnegie Mellon University")
+    val LeGoues = Person("Claire", "Le Goues", "Carnegie Mellon University")
+    val MohseniKabir = Person("Anahita", "Mohseni-Kabir", "Carnegie Mellon University")
+    val Ruchkin = Person("Ivan", "Ruchkin", "Carnegie Mellon University")
+    val Samuel = Person("Selva", "Samuel", "Carnegie Mellon University")
+    val Schmerl = Person("Bradley", "Schmerl", "Carnegie Mellon University")
+    val Timperley = Person("Christopher", "Timperley", "Carnegie Mellon University")
+    val Voysey = Person("Ian", "Voysey", "Carnegie Mellon University")
+    val Veloso = Person("Manuela", "Veloso", "Carnegie Mellon University")
+    val Biswas = Person("Joydeep", "Biswas", "University of Massachusetts, Amherst")
+    val Guha = Person("Arjun", "Guha", "University of Massachusetts, Amherst")
+    val Holtz = Person("Jarrett", "Holtz", "University of Massachusetts, Amherst")
+    val Camara = Person("Javier", "Cámara", "University of York")
+    val Jia = Person("Limin", "Jia", "Carnegie Mellon University")
 }
 
 object Topics {
@@ -175,6 +193,7 @@ object Topics {
     val preprocessor = Topic("Preprocessors/conditional compilation")
     val awareness = Topic("Awareness/Transparency")
     val ecosystem = Topic("Software ecosystems")
+    val opensource = Topic("Open source")
     val buildsys = Topic("Build systems")
     val sensitivity = Topic("Sensitivity analysis")
 
@@ -242,6 +261,8 @@ object Venues {
         "%num% SIGPLAN Symposium on New Ideas in Programming and Reflections on Software at SPLASH", publisher = ACM)
     val MSR = ConferenceFactory("MSR", 2003,
         "%num% International Conference on Mining Software Repositories")
+    val SANER = ConferenceFactory("SANER", 1993,
+        "%num% IEEE International Conference on Software Analysis, Evolution and Reengineering")
        
 
     val AI = JournalFactory("AI", "Acta Informatica")
@@ -3719,7 +3740,7 @@ executing real software containing variability.""").topic(vaanalysis)
     val ase17pf = InProceedings(
         Seq(Jamshidi, Siegmund, Velez, Kaestner, Patel, Agarwal),
         "Transfer Learning for Performance Modeling of Configurable Systems: An Exploratory Analysis",
-        ASE(2017).month(11),
+        ASE(2017).month(11).acceptanceRate(88,388),
         Pages(497, 508),
         Map(PDF -> PDFFile("ase17_transfer.pdf"),
             DOI->DOI("10.1109/ASE.2017.8115661"),
@@ -3784,8 +3805,8 @@ executing real software containing variability.""").topic(vaanalysis)
     val tse17_lotrack = Article(
         Seq(Lillack, Kaestner, Bodden),
         "Tracking Load-time Configuration Options",
-        TSE(2017),
-        ToAppear(),
+        TSE(2018).volume(44).number(12).issn("0098-5589"),
+        Pages(1269,1291),
         Map(DOI -> DOI("10.1109/TSE.2017.2756048"),
             PDF -> PDFFile("tse17_lotrack.pdf")),
         """
@@ -3853,7 +3874,7 @@ executing real software containing variability.""").topic(vaanalysis)
         """
     	Fork-based development has been widely used both in open source community and industry, because it gives developers flexibility to modify their own fork without affecting others. Unfortunately, this mechanism has downsides; when the number of forks becomes large, it is difficult for developers to get or maintain an overview of activities in the forks. Current tools provide little help. We introduced INFOX, an approach to automatically identifies not-merged features in forks and generates an overview of active forks in a project. The approach clusters cohesive code fragments using code and network analysis techniques and uses information-retrieval techniques to label clusters with keywords. The clustering is effective, with 90% accuracy on a set of known features. In addition, a human-subject evaluation shows that INFOX can provide actionable insight for developers of forks.
         """
-    ).selected().topic(awareness, merge)
+    ).selected().topic(awareness, merge, opensource)
 
     val icse18badges = InProceedings(
         Seq(Trockman, Zhou, Kaestner, Vasilescu),
@@ -3866,7 +3887,7 @@ executing real software containing variability.""").topic(vaanalysis)
         """
     	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
         """
-    ).selected().topic(ecosystem, empirical,awareness)
+    ).selected().topic(ecosystem, empirical,awareness,opensource)
 
 
     val tr17_extint = TechReport(
@@ -4149,8 +4170,8 @@ For example, checking all variants of OpenSSL with a variability-aware static an
     val jase18 = Article(
         Seq(HNguyen, Phan, Kaestner, TNguyen),
         "Exploring Output-Based Coverage for Testing PHP Web Applications",
-        JASE(2018),
-        ToAppear(),
+        JASE(2019).number(1).volume(26).month(3),
+        Pages(59,85),
         Map(
             PDF -> PDFFile("jase18.pdf"),
             DOI -> DOI("10.1007/s10515-018-0246-5")),
@@ -4214,7 +4235,7 @@ explore covered and uncovered parts of the output.
         """
         Contemporary software development is characterized by increased reuse and speed. Open source software forges such as GitHub host millions of repositories of libraries and tools, which developers reuse liberally, creating complex and often fragile networks of interdependencies. Hence, developers must make more decisions at a higher speed, finding which libraries to depend on and which projects to contribute to. This decision making process is supported by the transparency provided by social coding platforms like GitHub, where user profile pages display information on a one's contributions, and repository pages provide information on a project's social standing (e.g., through stars and watchers).
         """
-    ).topic(vaanalysis).note("ICSE Student research competition, first place")
+    ).topic(ecosystem, opensource).note("ICSE Student research competition, first place")
 
 
 
@@ -4222,7 +4243,7 @@ explore covered and uncovered parts of the output.
         Seq(Chen),
         "Finding Higher Order Mutants Using Variational Execution",
         2018, 9, ARXIV, "1809.04563",
-        Map(PDF->PDFFile("srcsplash17.pdf"),
+        Map(PDF->PDFFile("srcsplash18.pdf"),
             HTTP->URL("https://arxiv.org/abs/1809.04563")),
         """
         Mutation testing is an effective but time consuming method for gauging the quality of a test suite. It functions by repeatedly making changes, called mutants, to the source code and checking whether the test suite fails (i.e., whether the mutant is killed). Recent work has shown cases in which applying multiple changes, called a higher order mutation, is more difficult to kill than a single change, called a first order mutation. Specifically, a special kind of higher order mutation, called a strongly subsuming higher order mutation (SSHOM), can enable equivalent accuracy in assessing the quality of the test suite with fewer executions of tests. Little is known about these SSHOMs, as they are difficult to find. Our goal in this research is to identify a faster, more reliable method for finding SSHOMs in order to characterize them in the future. We propose an approach based on variational execution to find SSHOMs. Preliminary results indicate that variational execution performs better than the existing genetic algorithm in terms of speed and completeness of results. Out of a set of 33 first order mutations, our variational execution approach finds all 38 SSHOMs in 4.5 seconds, whereas the genetic algorithm only finds 36 of the 38 SSHOMs in 50 seconds.
@@ -4239,14 +4260,88 @@ explore covered and uncovered parts of the output.
             DOI -> DOI("10.1007/s10664-018-9666-x")
         ),
         """Maintenance consumes 40% to 80% of software development costs. So, it is essential to write source code that is easy to understand to reduce the costs with maintenance. Improving code understanding is important because developers often mistake the meaning of code, and misjudge the program behavior, which can lead to errors. There are patterns in source code, such as operator precedence, and comma operator, that have been shown to influence code understanding negatively. Despite initial results, these patterns have not been evaluated in a real-world setting, though. Thus, it is not clear whether developers agree that the patterns studied by researchers can cause substantial misunderstandings in real-world practice. To better understand the relevance of misunderstanding patterns, we applied a mixed research method approach, by performing repository mining and a survey with developers, to evaluate misunderstanding patterns in 50 C open-source projects, including Apache, OpenSSL, and Python. Overall, we found more than 109K occurrences of the 12 patterns in practice. Our study shows that according to developers only some patterns considered previously by researchers may cause misunderstandings. Our results complement previous studies by taking the perception of developers into account."""
-    ).topic(empirical)
+    ).topic(empirical, opensource)
+
+    val gpceproc13 = BookEd(
+        Seq(Jaervi, Kaestner),
+        "Generative Programming: Concepts and Experiences, GPCE'13, Indianapolis, IN, USA - October 27 - 28, 2013",
+        Venue("", 2013, "", KMisc).publisher(ACM).location("Indianapolis, IN").isbn("978-1-4503-2373-4").month(10),
+        Map(HTTP -> URL("http://dl.acm.org/citation.cfm?id=2814204")),
+        "")
+
+    val gpceproc15 = BookEd(
+        Seq(Kaestner, Gokhale),
+        "Proceedings of the 2015 ACM SIGPLAN International Conference on Generative Programming: Concepts and Experiences, GPCE 2015, Pittsburgh, PA, USA, October 26-27, 2015",
+        Venue("", 2015, "", KMisc).publisher(ACM).location("Pittsburgh, PA").isbn("978-1-4503-3687-1").month(10),
+        Map(HTTP -> URL("http://dl.acm.org/citation.cfm?id=2814204")),
+        "")
 
     val aseproc18 = BookEd(
         Seq(Huchard, Kaestner, Fraser),
-        "Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering",
+        "Proceedings of the 33rd ACM/IEEE International Conference on Automated Software Engineering, ASE 2018, Montpellier, France, September 3-7, 2018",
         Venue("", 2018, "", KMisc).publisher(ACM).location("Montpellier").isbn("978-1-4503-5937-5").month(9),
         Map(HTTP -> URL("https://dl.acm.org/citation.cfm?doid=3238147")),
         "")
+
+    val saner19 = InProceedings(
+        Seq(Ren, Zhou, Kaestner, Wasowski),
+        "Identifying Redundancies in Fork-based Development",
+        SANER(2019),
+        ToAppear(),
+        Map(PDF->PDFFile("saner19.pdf")),
+        """Fork-based development is popular and easy to use, but makes it difficult to maintain an overview of the whole community when the number of forks increases, which leads to redundant development where multiple developers are solving the same problem in parallel without being aware of each other. Redundant development wastes effort for both maintainers and developers. In this paper, we designed an approach to identify redundant code changes in forks as early as possible by extracting clues indicating similarities between code changes, and building a machine learning model to predict redundancies. We evaluated the effectiveness from both the maintainer's and the developer's perspectives. The result shows that we achieve 57%-83% precision for detecting duplicate code changes from maintainer's perspective, and we could save developers' effort of 1.9-3.0 commits on average. Also, we show that our approach significantly outperforms existing state-of-art."""
+    ).topic(awareness, ecosystem, opensource)
+
+    val oss19 = InProceedings(
+        Seq(Miller, Widder, Kaestner, Vasilescu),
+        "Why Do People Give Up FLOSSing? A Study of Contributor Disengagement in Open Source",
+        Conference("OSS", 2019, "Proceedings of the 15th International Conference on Open Source Systems").month(5),
+        ToAppear(),
+        Map(),
+        """
+        Established contributors are the backbone of many free/libre open source software (FLOSS) projects.  Previous research has shown that it is critically important to retain contributors and has also revealed motives behind why contributors choose to participate 
+        in FLOSS in the first place.  However, there has been limited research done on the reasons why established contributors disengage, and factors (on an individual and project level) that predict their disengagement.  In this paper, we conduct a mixed-methods empirical study, combining surveys and survival modeling, in order to identify reasons and predictive factors behind established contributor disengagement. We find that different groups of contributors tend to disengage for different reasons, however, overall contributors most commonly cite some kind of transition (e.g., switching jobs or leaving academia).  We also find that factors such as the popularity of the projects a contributor works on, whether they have experienced a transition, when they work, and how much they work are all factors that can be used to predict their disengagement from open source. 
+        """
+    ).topic(ecosystem, opensource, empirical)
+
+    val icsenier19 = InProceedings(
+        Seq(Garrett, Ferreira, Kaestner, Sunshine, Jia),
+        "Detecting Suspicious Package Updates",
+        Conference("ICSE-NIER", 2019, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
+        ToAppear(),
+        Map(),
+        """
+            With an increased level of automation provided bypackage managers, which sometimes allow updates to be installedautomatically, malicious package updates are becoming a realthreat in software ecosystems. To address this issue, we proposean approach based on anomaly detection, to identify suspiciousupdates based on security-relevant features that attackers coulduse in an attack. We evaluate our approach in the contextof Node.js/npm ecosystem, to show its feasibility in terms ofreduced review effort and the correct identification of a confirmedmalicious update attack. Although we do not expect it to bea complete solution in isolation, we believe it is an importantsecurity building block for software ecosystems.
+        """
+    ).topic(security, ecosystem)
+
+    val icgse19 = InProceedings(
+        Seq(Viggiato, Oliveira, Figueiredo, Jamshidi, Kaestner),
+        "Understanding Similarities and Differences in Software Development Practices Across Domains",
+        Conference("ICGSE", 2019, "Proc. 14th ACM/IEEE International Conference on Global Software Engineering").month(5),
+        ToAppear(),
+        Map(),
+        """Since software engineering is not a homogeneous whole, we expect that development practices are differently adopted across domains. However, little is known about how practices are followed in different software domains (e.g., healthcare, banking, and Oil and gas). In this paper, we report the results of an exploratory and inductive research, in which we seek differences and similarities regarding the adoption of several practices across 13 domains. We interviewed 19 developers with experience in multiple domains (i.e., cross-domain developers) from large multinational companies, such as Facebook, Google and Macy's. We also run a Web survey to confirm (or not) the interview results. Our findings show that, in fact, different domains adopt practices in a different fashion. We identified that continuous integration practices are interrupted during important commerce periods (e.g., Black Friday) in the financial domains. We also noticed the company's culture and policies strongly influence the adopted practices, instead of the domain itself. Our study also has important implications for practice. For instance, companies should provide targeted training for their development teams and new interdisciplinary courses in software engineering and other domains, such as healthcare, are highly recommended."""
+    ).topic(empirical)
+
+    val seams19 = InProceedings(
+        Seq(Jamshidi, Camara, Schmerl, Kaestner, Garlan),
+        "Machine Learning Meets Quantitative Planning: Enabling Self-Adaptation in Autonomous Robots",
+        Conference("SEAMS", 2019, "14th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5),
+        ToAppear(),
+        Map(PDF->PDFFile("seams19.pdf"),
+        """Modern cyber-physical systems (e.g., robotics systems) are typically composed of physical and software components, the characteristics of which are likely to change over time. Assumptions about parts of the system made at design time may not hold at run time, especially when a system is deployed for long periods (e.g., over decades). Self-adaptation is designed to find reconfigurations of systems to handle such run-time inconsistencies. Planners can be used to find and enact optimal reconfigurations in such an evolving context. However, for systems that are highly configurable, such planning becomes intractable due to the size of the adaptation space. To overcome this challenge, in this paper we explore an approach that (a) uses machine learning to find Pareto-optimal configurations without needing to explore every configuration, and (b) restricts the search space to such configurations to make planning tractable. We explore this in the context of robot missions that need to consider task timeliness and energy consumption. An independent evaluation shows that our approach results in high-quality adaptation plans in uncertain and adversarial environments."""
+    ).topic(nfp,sensitivity)
+
+    val ieeesw19 = Article(
+        Seq(Aldrich, Biswas, Camara, Garlan, Guha, Holtz, Jamshidi, Kaestner, LeGoues, MohseniKabir, Ruchkin, Samuel, Schmerl, Timperley, Veloso, Voysey),
+        "Model-based Adaptation for Robotics Software",
+        Journal("IEEE-Sw", 2019, "IEEE Software").volume(36).number(2).publisher(IEEE),
+        Pages(83, 90),
+        Map(DOI -> DOI("10.1109/MS.2018.2885058")),
+        """We developed model-based adaptation, an approach that leverages models of software and its environment to enable automated adaptation. The goal of our approach is to build long-lasting software systems that can effectively adapt to changes in their environment."""
+    ).topic()
+
 
 
 }
