@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<article><date>20 May 2019</date><title>Feature Flags vs Configuration Options – Same Difference?</title>
+    <content>
+<style>.figure img{width:100%} .caption{text-align: center; font-style: italic;} code{   font-size: large;   line-height: 120%;}</style>
+<p>Having spent over a decade researching configurable systems and software product lines, the phenomenon of feature flags is interesting but also deeply familiar. After reading papers and blogs, watching talks, and interviewing several developers, we see some nuance but also many issues that we had thought were solved long ago.</p>
+<p>Several research communities have looked into features, flags, and options: In the 90s researchers were investigating feature interactions in telecommunication systems and were worried about weird interaction bugs stemming from compositions of optional features. The product line community has developed notations and tools for modeling and reasoning about variability at scale (thousands of options) and has discussed implementation, testing, and analysis strategies for systems with planned configurations. The systems community has investigated how the number of options seem to only ever grow and how users are increasingly frustrated with overwhelming configuration spaces, but also how to diagnose, fix, or even prevent configuration mistakes. For feature flags, we now see all those discussions again: too many flags, hard to remove, hard to test, surprising interaction faults, ...</p>
+<p>Let us share some thoughts and a (probably biased) overview of the research landscape:</p>
+<h2 id="feature-interactions-and-complexity">Feature Interactions and Complexity</h2>
+<p>Feature interactions (long studied not only on telecommunication systems []), occur when two options together behave different from what could be expected from each of them individually. There are many well known examples:</p>
+<ul>
+<li>A fire and a flood control system in a building can both be installed and tested independently, but if combined without understanding their interactions, the flood control system may shut down water to a building on fire after the fire control system activates the sprinklers (a form of resource conflict with one feature interfering with the behavior of the other).</li>
+<li>Call waiting and call forwarding can be both independently developed and activated, but how to handle an incoming call on a busy line is unclear when both are activated (two features competing on the same event).</li>
+<li>Plugins in a software system can be developed and tested independently, but may not always work in all combinations. For example, two WordPress plugins that transform the blog post by inserting smileys or weather forecasts may capture overlapping parts of the post:</li>
+</ul>
+<div class="figure">
+<img src="interaction.png" alt="Feature interaction causing a problem when composing two optional plugins" />
+<p class="caption">Feature interaction causing a problem when composing two optional plugins</p>
+</div>
+<p>Feature interactions are a failure of compositionality. Developers think of two features as independent and develop and test them independently, but when composed surprising things may happen. Often interactions are actually intended (true orthogonality is rare) and extra coordination mechanisms are needed, such as priority mechanisms (e.g., fire control overwrites flood control; weather tags are translated before smiley tags, etc). Coordination is easy once interactions are known, however finding and understanding interactions is nontrivial, especially when features are developed separately and there are no clear specifications. We will come back to this later.</p>
+<p><strong>Combinatorial explosion challenges program understanding:</strong> Each decision in the code doubles the number of paths the program can take. Developers have a really hard time reasoning about large configuration spaces. Recent studies have shown that as few as three configuration options can make it really hard for developers to correctly understand the behavior of 20 line programs <span class="citation">(Melo, Brabrand, and Wsowski <a href="#ref-melo2016does">2016</a>)</span>. Although one might argue that the number of combinations does not matter as long as the set of configurations is limited and the options have a fixed values, developers may not have the benefit of such understanding and face code with many decisions. Thus, each additional feature impacts a developers productivity, especially if we are talking about thousands of features.</p>
+<p><strong>Key differences and insights: Adding options or flags is always challenging for understanding, maintenance, and quality assurance. Feature flags are no exception. Unexpected feature interactions among options can be really tricky to find and can have severe consequences. </strong></p>
+<h2 id="temporary-vs-permanent-flags">Temporary vs Permanent Flags</h2>
+<p>The term <strong>feature flag</strong> (or toggle) is used very broadly for many different concepts. They are popular for controlling <em>code paths in operation</em> (A/B testing, canary releases, rollouts and rollbacks) and for <em>hiding incomplete implementations</em> while committing to head (avoiding branches and merge conflicts), as well as for <em>traditional configuration settings</em> (setting parameters, enabling functionality for certain users, etc).</p>
+<p>The research community around configurable systems and product lines use the terms <em>configuration option</em> or <em>feature</em> and focus mostly on the latter problem. Configuration options are often used in a similar way, though usually they are <em>intended to stick around</em> (several researchers found that configuration options are rarely removed), whereas some (but not all) feature flags are <em>intended to be removed after a feature is completed, tested, and deployed</em>. Feature flag removal and technical debt around unremoved feature flags seems to be a key (process) challenge.</p>
+<p>Research in configurable systems has shown that options are also often added and rarely removed and that too many options produce significant maintenance and support costs <span class="citation">(Xu et al. <a href="#ref-xu2015hey">2015</a>; Lotufo et al. <a href="#ref-LSBCW:SPLC10">2010</a>)</span>. It's cheap to introduce an option, but potentially expensive to maintain. If end users can configure the system it can be very difficult to ever get rid of options that some users might use (though in practice there is often little evidence who uses what).</p>
+<p>Since the values of feature flags and their rationale for introducing them is often known, there are great opportunities here to track feature flag use better and introduce mechanisms for removal. Discipline in how feature flags are implemented and documented can simplify management and removal, as discussed below.</p>
+<p><strong>Key differences and insights: Feature flags are often temporary, but removing them is a common process challenge, causing technical debt, that hasn't been a focus of previous work on configurable systems.</strong></p>
+<h2 id="who-is-making-configuration-decisions">Who is Making Configuration Decisions?</h2>
+<p>In the world of product lines and configurable systems, one key distinction that drives many other considerations, especially testing (see below), is who is in charge of configuring the system:</p>
+<ul>
+<li><strong>Developers/operators configure:</strong> In many traditional software product lines, a company releases a small to medium number of distinct products (e.g., different printers for HP, different releases of Windows with different features). Sometimes, features are activated for paying customers only. In these cases, developers or operators are in charge of configuring the system and users just receive the configured (and hopefully tested) configuration. For example, HP's printer firmware has over 2000 boolean flags, but the company releases only around 100 configurations which each go through CI before release.</li>
+<li><strong>Users configure:</strong> Most end-user software and system software has dozens or even thousands of configuration options that users can use to customize the software. For example, end users can use graphical interfaces to change various options in Firefox or Chrome, specify hundreds of parameters in Apache's httpd.conf configuration file, or select from about 14000 compile-time options when they compile their own Linux kernel. When configuration is in the user's hands, it is unpredictable which configurations will actually be used. In most cases (except for web-based systems and systems with good telemetry), we may not even know which configurations are used.</li>
+</ul>
+<p>This has profound consequences for testing, because we can focus on a few known configurations in the first case, but may want to make assurances for all potential configurations a user may select.</p>
+<p>Feature flags again somehow touch both of these worlds. Most feature flags seem to be clearly in the &quot;operators configure&quot; world. When used for A/B testing, canary releases, or to hide unfinished features, they are controlled by the operations team and the used configurations are (or should be) known. However, feature flags are sometimes also used for experimental releases that end users can configure (e.g., Chrome's <code>chrome://flags/</code>, see <span class="citation">Rahman et al. (<a href="#ref-rahman2016feature">2016</a>)</span>), blurring the distinction.</p>
+<div class="figure">
+<img src="chrome.png" alt="Chrome configuration dialog" />
+<p class="caption">Chrome configuration dialog</p>
+</div>
+<p>Being in control of the configuration has major advantages: One can observe which configurations are used, e.g., monitor which flags have not been changed in weeks. One does not have to care about all the combinations of flags that are not actually used (well, only somewhat, as discussed below). And one can actually remove flags without having to fear to break user configurations.</p>
+<p><strong>Key differences and insights: Developer/operator controlled options have many advantages and most feature flags fall into this category. Be explicit about and limit which flags can be configured by end users.</strong></p>
+<h2 id="binding-times">Binding Times</h2>
+<p>A key distinction in implementing configuration options is what <em>binding times</em> are supported, i.e., when the decisions are made. Several papers have discussed different implementation mechanisms and their corresponding binding times <span class="citation">(e.g., Svahnberg, Gurp, and Bosch <a href="#ref-SGB:SPE05">2005</a>; Apel, Batory, et al. <a href="#ref-fospl">2013</a>; Kästner, Apel, and Kuhlemann <a href="#ref-KAK:ICSE08">2008</a>; Muthig and Patzke <a href="#ref-MP:NOD03">2002</a>; Czarnecki and Eisenecker <a href="#ref-generativeprogramming">2000</a>; Anastasopoules and Gacek <a href="#ref-AG:SSR01">2001</a>)</span>.</p>
+<ul>
+<li><strong>Compile-time binding:</strong> Options are set when the project is compiled and not changed afterward. A specific configuration is thus compiled, tested, and deployed. For example, preprocessor <code>#ifdef</code> statements are often used to <em>exclude code at compile time</em>. Various code composition approaches have been suggested to separate feature implementations in distinct modules, but it's just as well possible to use constants and normal <code>if</code> statements in the implementation, or configuration files that don't change after compilation. Even when normal <code>if</code> statements are used, compilers can potentially optimize the code and remove infeasible paths (from simple optimization to partial evaluation <span class="citation">(Jones <a href="#ref-J:CSUR96">1996</a>; Jones, Gomard, and Sestoft <a href="#ref-partialEvaluationBook">1993</a>)</span>).</li>
+<li><strong>Load-time binding:</strong> Options are loaded (e.g., from command-line options or configuration files) when the program starts; from the perspective of a running program they are essentially constants. This is extremely common and usually very simple to implement. However, since configuration options may be set after compilation, it is less common to rigorously test all used configurations in a CI process or similar.</li>
+<li><strong>Run-time variability:</strong> Options may change at runtime, typically when the user changes values in a configuration dialog (e.g., Firefox settings) or, more common for feature flags, when a configuration value is queried through an API from a service and changes at some point (often homegrown solutions or services like <a href="https://launchdarkly.com/">LaunchDarkly</a>). The advantage is that options can be changed in long-running processes without restarting, but the disadvantage is that it is much harder to ensure consistency and avoid stale values (see <span class="citation">Toman and Grossman (<a href="#ref-toman2016staccato">2016</a>)</span> and <span class="citation">Toman and Grossman (<a href="#ref-toman2018legato">2018</a>)</span> for mechanisms to detect such issues). Sometimes it's easier to ask users to restart the system after a configuration change; for short running processes serving web requests it's also easier to essentially assume load-time variability for every request.</li>
+</ul>
+<p>Most research on configurable systems focuses on compile-time or load-time variability. For example, there is a huge amount of research on <code>#ifdef</code>s and module composition mechanisms. Runtime variability seems less common and seems often not worth the extra challenges. For feature flags, consider whether load-time rather than runtime variability is feasible to reduce complexity and the chance of inconsistent states.</p>
+<div class="figure">
+<img src="impl.png" alt="Different variability implementation strategies and their characteristics, from Svahnberg, Gurp, and Bosch (2005)" />
+<p class="caption">Different variability implementation strategies and their characteristics, from <span class="citation">Svahnberg, Gurp, and Bosch (<a href="#ref-SGB:SPE05">2005</a>)</span></p>
+</div>
+<p>A key consideration is the interaction of binding times with testing. Traditionally, automated testing is performed after compilation (i.e., for each compile-time configuration), but rarely for each load-time or run-time configuration decision.</p>
+<p><strong>Key differences and insights: Feature flags mostly use run-time bindings, but often load-time or even compile-time bindings are sufficient and simpler.</strong></p>
+<h2 id="tracing-feature-flags-flag-to-implementation-mapping">Tracing Feature Flags (Flag to Implementation Mapping)</h2>
+<p>How does one find all the code related to an option or flag? In some cases it's trivial: find the <code>#ifdef</code> or <code>if</code> statement that checks a well-named flag and a few statements guarded by it. But things can quickly get complicated.</p>
+<p>First, the flow from where an option's value is read to where it is used is not always obvious or easy to trace in an automated fashion. Options are often loaded into configuration options (e.g., hashmaps) or propagated across function calls and various variables.</p>
+<p>Second, even when only few statements in a method are directly guarded by a flag, these few statements can of course invoke lots of other code elsewhere, that might not obviously be associated with this feature flag--that is, there can be large parts of the code (entire classes, modules, dependencies) that are essentially dead code unless a feature flag is enabled, but that mapping might not always be obvious. Also the extra statements may introduce unusual or complex control flows (e.g., exceptions) that are not easily recognized (our own study has shown that developers often make such mistakes when asked to identify all code belonging to an option <span class="citation">(Lillack, Kästner, and Bodden <a href="#ref-LKB:TSE18">2018</a>)</span>). Finally, code guarded by flags can change various values that are then used later in other places to trigger other <code>if</code> statements or cause various forms of changes and interactions.</p>
+<div class="figure">
+<img src="tracing.png" alt="Understanding how code fragments rely on Android&#39;s options from Lillack, Kästner, and Bodden (2018)" />
+<p class="caption">Understanding how code fragments rely on Android's options from <span class="citation">Lillack, Kästner, and Bodden (<a href="#ref-LKB:TSE18">2018</a>)</span></p>
+</div>
+<p>Lots of research on configurable systems and product lines has shown that options often have <em>fairly limited effects</em> and <em>do not interact with most other options</em>, but also that effects of options are often not strictly local and often cause indirect effects through data flows <span class="citation">(Meinicke et al. <a href="#ref-MWKTS:ASE16">2016</a>)</span>. Several researchers have developed <em>analysis tools to track configuration options across various data and control flows</em>, for example, to approximate possible interactions, detect the scope of an option's implementation, or detect dependencies among options <span class="citation">(Lillack, Kästner, and Bodden <a href="#ref-LKB:TSE18">2018</a>; Nadi et al. <a href="#ref-NBKC:TSE15">2015</a>; Xu et al. <a href="#ref-Xu:2013:BUM:2517349.2522727">2013</a>; Angerer et al. <a href="#ref-angerer2015configuration">2015</a>; Meinicke et al. <a href="#ref-MWKTS:ASE16">2016</a>; Soares et al. <a href="#ref-SMNKd:GPCE18">2018</a>; Tartler et al. <a href="#ref-TLSS:EUROSYS11">2011</a>; Zhang and Ernst <a href="#ref-zhang2014configuration">2014</a>; Xu and Zhou <a href="#ref-xu2015systems">2015</a>)</span>.</p>
+<p><strong>Disciplined option implementation:</strong> Tracing and analysis can be much simplified if <em>discipline</em> is used for implementing options. A key hygiene strategy is to <em>separate configuration options as much as possible from other computations in the program</em>; that is, avoid using options as input parameters to more sophisticated implementations, but rather mostly propagate them to the <code>if</code> statement where they make a decision. <em>Clear naming conventions</em> can help as well. Keep implementations corresponding to an option confined in a clear place and document unusual control or data flows. It might be worth investing in writing custom simple static analysis tools or even language mechanisms or libraries that enforce a separation of configuration mechanisms and program logic.</p>
+<p><strong>Modularity / abstraction / encapsulation:</strong> A common suggestion from the product line community for reducing the complexity if to separate the implementation of features from the rest of the program, thus, to <em>localize or modularize features</em> <span class="citation">(Kästner, Apel, and Ostermann <a href="#ref-KAO:FOSD11">2011</a>)</span>. Many researchers have even explored dedicated language mechanisms (feature modules, aspects, delta modules), but they have never seen much adoption in practice and have various problems of their own <span class="citation">(Apel, Batory, et al. <a href="#ref-fospl">2013</a>; Batory, Sarvela, and Rauschmayer <a href="#ref-BSR:TSE04">2004</a>)</span>. A similar suggestion from our observations on feature flags is to hide features behind abstractions. This, however, adds boilerplate for each flag, which also needs to be removed after the flag is established. Especially for short-term feature flags it might be okay to skip the abstraction step and use a simple but disciplined mechanism to focus on long-term code quality and easy flag removal.</p>
+<p>Our standing hypothesis is that most developers already follow a fairly strong discipline for configuration options and pursue locality of options, because they still want to be able to reason about their work. Options that all interact and are hidden in complicated data-flows are difficult to reason about for humans and analysis algorithms alike due to the combinatorial explosion of possible combinations and corresponding code paths. One can make the lives easier for both by enforcing discipline.</p>
+<p><strong>Key differences and insights: Identifying how flags relate to implementations can be surprisingly complicated, but discipline in the implementation, separating configuration logic from program logic, can make both manual and automated analyses much easier.</strong></p>
+<h2 id="removing-feature-flags">Removing Feature Flags</h2>
+<p>In traditional configurable systems, where users may change configuration options, it is often difficult to decide when an option can be removed, because it is usually not clear which options users actually use or even depend on. In product lines, where the producer maintains a finite list of configurations, removal is easier but often not done because developers may argue an option might still be useful for future product configurations. This may change significantly for feature flags, where at least some flags are intended to be short lived.</p>
+<p>The technical part of removing options from an implementation has been studied and several tools have been built. In theory it could be as simple as removing an <code>if</code> statement, but if the scope of the implementation is not well understood it is easy to make mistakes. Even for <code>#ifdef</code>s the task turned out more complicated as one might expect due to possible data-flow among options with <code>#define</code> and <code>#undef</code> statements <span class="citation">(Baxter and Mehlich <a href="#ref-BM:WCRE01">2001</a>)</span>. Conceptually, removing an option is merely a form of partial evaluation <span class="citation">(Jones, Gomard, and Sestoft <a href="#ref-partialEvaluationBook">1993</a>)</span> where a program is specialized for known values of certain options, but in practice few practical tools exist for removing options and developers rarely go through the effort.</p>
+<p>To make it easier for developers to remove feature flags, it might be useful to invest in building own tools that make such removal easy. To gain confidence that such tools work reliably, it is again useful to have clear conventions for feature flags and limit implementations to few specific patterns.</p>
+<p><strong>Key differences and insights: The problem of removing a flag from an implementation is conceptually well understood (partial evaluation), but not many practical tools are available. (Semi-)automated removal becomes much easier with more disciplined implementations.</strong></p>
+<h2 id="documenting-feature-flags">Documenting Feature Flags</h2>
+<p>For the product line community, features are a central mechanism for communication, planning, and decision making. Much effort is taken to explicitly <em>document features</em> (or options) and <em>their dependencies</em>. The description of features, their possible values, and their constraints is explicitly separated from the actual values chosen for any specific configuration. Simple notations such as <em>feature diagrams</em> (e.g., see <span class="citation">Batory (<a href="#ref-B:SPLC05">2005</a>)</span> or <a href="http://www.featureide.com/">FeatureIDE</a>) are widely adopted to group and document features and especially to describe constraints on possible configurations (most prominently documenting multiple features to be optional, mutually exclusive, depending on another, or in a hierarchical relationship where child features depend on parent features). Clear documentation of constraints enables automated reasoning and checking of configurations.</p>
+<p>Beyond tools focused more on product lines like <a href="http://www.featureide.com/">FeatureIDE</a> or <a href="https://www.pure-systems.com/">pure::variants</a>, a great example is the Linux kernel's variability model <span class="citation">(She et al. <a href="#ref-SLBWC:VaMoS10">2010</a>)</span>, for which the kernel developers have developed their own domain-specific language to describe and document options and an <a href="https://en.wikipedia.org/wiki/Menuconfig">interactive configurator</a> to select configurations that adhere to all constraints. This is used for some 14000 configuration options in the kernel alone.</p>
+<pre><code>menu &quot;Power management and ACPI options&quot;
+    depends on !X86_VOYAGER
+    config PM
+        bool &quot;Power Management support&quot;
+        depends on !IA64_HP_SIM
+        ---help---
+        &quot;Power Management&quot; means that . . .
+    config PM_DEBUG
+        bool &quot;Power Management Debug Support&quot;
+        depends on PM
+    config CPU_IDLE
+        bool &quot;CPU idle PM support&quot;
+        default ACPI
+    config PM_SLEEP
+        bool
+        depends on SUSPEND || HIBERNATION || XEN_SAVE_RESTORE
+        default y
+...
+endmenu</code></pre>
+<p>These kconfig files are part of the Linux kernel source tree and versioned with git (e.g., for <a href="https://github.com/torvalds/linux/blob/master/mm/Kconfig">mm</a> submodule). Specific configurations are simple option value mappings in a separate file that can be generated and checked by tools that process the kconfig language.</p>
+<p>Academic research has invested a considerable amount of effort into tools that can work with such documented feature models, for example, detecting inconsistencies among constraints <span class="citation">(Batory <a href="#ref-B:SPLC05">2005</a>; Benavides, Seguraa, and Ruiz-Cortés <a href="#ref-BSR:IS2010">2010</a>)</span>, analyzing the evolution of model changes <span class="citation">(Lotufo et al. <a href="#ref-LSBCW:SPLC10">2010</a>; Thüm, Batory, and Kästner <a href="#ref-TBK:ICSE09">2009</a>)</span>, resolving conflicts in configurations <span class="citation">(Xiong et al. <a href="#ref-xiong2015range">2015</a>)</span>, or guiding humans through the configuration process <span class="citation">(Schmid, Rabiser, and Grünbacher <a href="#ref-SRG:VAMOS11">2011</a>; Hubaux et al. <a href="#ref-hubaux2013supporting">2013</a>)</span>.</p>
+<p>In our interviews, we saw that documentation and description of dependencies is likely the place where feature flag practitioners most lack behind the product line community and use often at most ad-hoc mechanisms and sparse comments spread across various configuration or source files. In configurable systems more broadly, there is also less consensus on how to specify, load, and document options <span class="citation">(Sayagh et al. <a href="#ref-sayagh2017does">2017</a>; Sayagh et al. <a href="#ref-sayagh2018software">2018</a>)</span>.</p>
+<p>While documentation is often disliked, it is essential for configuration options, because values are often chosen by stakeholders who have not originally created the option and dependencies among options must be enforced, which can be easily missed if options are only added to a text file with a one-line comment at best. A central configuration model also ensures that all options are documented in a single place, rather than scattered across dozens of files or different mechanisms. A single configuration mechanism can be used across different implementation strategies and binding times. Of course, it should undergo version control just as all other parts of the implementation.</p>
+<p>Intentions about defaults and life-time of an option can be used for further automation, such as reminding developers to remove a flag after 1 month or after successful deployment.</p>
+<p>Finally, documentation and implementation of features may drift apart. For example, researchers have found flags in the Linux kernel implementation that can never be enabled, as well as documented flags that are never used in the implementation <span class="citation">(Tartler et al. <a href="#ref-TLSS:EUROSYS11">2011</a>)</span>. It is typically a good idea and easy to implement a static consistency check that assures that only documented options can be used in the implementation and that all options are used somewhere. In addition, more advanced static analyses have been developed in academia to identify dependencies among features from the implementation and check whether those align with the documented constraints <span class="citation">(e.g., Nadi et al. <a href="#ref-NBKC:TSE15">2015</a>)</span>.</p>
+<p><strong>Key differences and insights: Documenting flags and their dependencies is important and enables many forms of reasoning and automation. Much can be learned from feature modeling in the product line community.</strong></p>
+<h2 id="analysis-and-testing">Analysis and Testing</h2>
+<p>Every boolean configuration option doubles the size of the configuration space and it quickly becomes infeasible to test all possible configurations (320 boolean options result in more possible configurations than there are atoms in the universe; the Linux kernel has 14000 compile-time options alone).</p>
+<p>As discussed above, we can distinguish options by who makes the configuration decisions: developers/operators or end users. If developers are in charge we might only care about a few configurations that we release, but if users configure the system we don't know which configurations they choose and have to kind of care about all combinations of options.</p>
+<p>Feature flags are typically, but not always under control of the development or operations team. Having control and full knowledge over used configurations is a major advantage and allows much more targeted testing and also allows monitoring of the use of flags, e.g., to suggest when to remove.</p>
+<p>But even if the developers or operations team is in charge and feature flags are not exposed to users, one may want to change configurations quickly during operation without going through a full test cycle. Also, Detecting bugs, e.g., from unintended interactions among flags, or only when a combination of flags is actually used, may trigger some late and more costly fixes and reduces the agility with which configurations can be changed. Still, in most organizations, making sure that each configuration went through CI before it is deployed and ensuring that quick live changes are only allowed among tested configurations are not unreasonable strategies and can be implemented with moderate infrastructure.</p>
+<p>In practice, it seems many teams using feature flags make changes to configurations live without testing the specific configurations -- which is dangerous.</p>
+<p>If one cares about quality for the entire configuration space, there are a number of approaches. There is a lot of research on giving assurances on the entire space <span class="citation">(Thüm et al. <a href="#ref-TAKSS:CSUR14">2014</a>; Rhein et al. <a href="#ref-vLJKA:TOSEM18">2018</a>)</span>, but the more pragmatic and ready to use approach here is <strong>combinatorial testing</strong> <span class="citation">(Nie and Leung <a href="#ref-NL:CSUR11">2011</a>)</span>: Combinatorial testing selects a small set of configurations, such that every combination of every pair of options is included together in at least one configuration and individually in at least one configuration each. Since a single configuration can cover specific combinations of many pairs at the same time (e.g., a single configuration A, B, !C covers A and B together as well as A without C and B without C), combinatorial testing can typically cover interactions among many options with very few configurations (e.g., 18 test configurations for pairwise coverage of 1000 boolean options). For simple cases without constraints among options, just use the <a href="https://math.nist.gov/coveringarrays/ipof/tables/table.2.2.html">NIST tables</a>, if there are constraints there are many academic and a few commercial tools to explore.</p>
+<p>For example, the following table has 8 configurations (rows) that assign configuration values to 15 boolean options A--O. For every pair of options there is always at least one configuration that enables both options together, two that each enable one but disables the other, and one that enables neither:</p>
+<pre><code>A B C D E F G H I J K L M N O
+0 0 1 0 0 0 1 1 1 0 0 1 1 1 1 
+0 1 0 1 1 0 0 0 1 1 0 0 0 1 1 
+1 0 0 1 0 1 0 1 0 0 0 0 0 1 0 
+1 1 1 0 1 1 0 1 1 0 1 1 0 0 0 
+1 1 0 0 0 0 1 0 0 1 1 1 1 0 1 
+0 0 1 1 1 1 1 0 0 1 1 0 1 0 0 
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 
+0 0 0 1 0 1 0 1 0 1 1 1 1 1 1 </code></pre>
+<p>Many other strategies to sample configurations for testing have been explored. For example, the Linux kernel team uses a number of hand-curated representative configurations together with a farm of computers that perform testing on random configurations (see https://01.org/lkp/documentation/0-day-test-service). Several studies have compared the ability of different sampling strategies to find bugs in configurable systems <span class="citation">(e.g., Medeiros et al. <a href="#ref-MKRGA:ICSE16">2016</a>)</span>.</p>
+<p>Finally, automated tests are only as good as the executed test suites. It can be a good idea to write feature-specific tests that are only executed if that feature is executed but test the behavior of that feature independent of what other features may be enabled <span class="citation">(Nguyen, Kästner, and Nguyen <a href="#ref-NKN:ICSE14">2014</a>; Greiler, Deursen, and Storey <a href="#ref-GDS:ICSE12">2012</a>; Apel, Rhein, et al. <a href="#ref-ARTK:COMNET13">2013</a>)</span>. Similarly, it can be useful to write additional assertions in the source code that state assumptions that the feature implementation makes about the state of the system or other features if needed, so that such issues are more likely to be detected during testing.</p>
+<p><strong>Key differences and insights: Testing all configurations is clearly infeasible, but combinatorial testing and other sampling strategies can effectively cover large spaces. </strong></p>
+<h2 id="whats-new">What's new?</h2>
+<p>What are we missing? Are there any fundamentally new challenges or should we just learn from configurable systems? What are tooling challenges, what are process challenges?</p>
+<p>We'd be happy to have a larger discussion around configuration options and feature flags. Feel free to reach out via comments below or <a href="kaestner@cs.cmu.edu">email</a>.</p>
+<h2 id="readings" class="unnumbered">Readings</h2>
+<div id="refs" class="references">
+<div id="ref-AG:SSR01">
+<p>Anastasopoules, Michalis, and Critina Gacek. 2001. “Implementing Product Line Variabilities.” In <em>Proc. Symposium on Software Reusability (SSR)</em>, 109–17. New York: ACM Press. doi:<a href="https://doi.org/10.1145/375212.375269">10.1145/375212.375269</a>.</p>
+</div>
+<div id="ref-angerer2015configuration">
+<p>Angerer, Florian, Andreas Grimmer, Herbert Prähofer, and Paul Grünbacher. 2015. “Configuration-Aware Change Impact Analysis (T).” In <em>2015 30th IEEE/ACM International Conference on Automated Software Engineering (ASE)</em>, 385–95. IEEE Computer Society. doi:<a href="https://doi.org/10.1109/ASE.2015.58">10.1109/ASE.2015.58</a>.</p>
+</div>
+<div id="ref-fospl">
+<p>Apel, Sven, Don Batory, Christian Kästner, and Gunter Saake. 2013. <em>Feature-Oriented Software Product Lines: Concepts and Implementation</em>. Berlin/Heidelberg: Springer-Verlag. <a href="https://link.springer.com/book/10.1007%2F978-3-642-37521-7">https://link.springer.com/book/10.1007%2F978-3-642-37521-7</a>.</p>
+</div>
+<div id="ref-ARTK:COMNET13">
+<p>Apel, Sven, Alexander von Rhein, Thomas Thüm, and Christian Kästner. 2013. “Feature-Interaction Detection Based on Feature-Based Specifications.” <em>Computer Networks</em>. doi:<a href="https://doi.org/10.1016/j.comnet.2013.02.025">10.1016/j.comnet.2013.02.025</a>.</p>
+</div>
+<div id="ref-B:SPLC05">
+<p>Batory, Don. 2005. “Feature Models, Grammars, and Propositional Formulas.” In <em>Proc. Int’l Software Product Line Conference (SPLC)</em>, 3714:7–20. Lecture Notes in Computer Science. Berlin/Heidelberg: Springer-Verlag. doi:<a href="https://doi.org/10.1007/11554844_3">10.1007/11554844_3</a>.</p>
+</div>
+<div id="ref-BSR:TSE04">
+<p>Batory, Don, Jacob Neal Sarvela, and Axel Rauschmayer. 2004. “Scaling Step-Wise Refinement.” <em>IEEE Trans. Softw. Eng. (TSE)</em> 30 (6). Los Alamitos, CA: IEEE Computer Society: 355–71. doi:<a href="https://doi.org/10.1109/TSE.2004.23">10.1109/TSE.2004.23</a>.</p>
+</div>
+<div id="ref-BM:WCRE01">
+<p>Baxter, Ira, and Michael Mehlich. 2001. “Preprocessor Conditional Removal by Simple Partial Evaluation.” In <em>Proc. Working Conf. Reverse Engineering (WCRE)</em>, 281–90. Washington, DC: IEEE Computer Society. doi:<a href="https://doi.org/10.1109/WCRE.2001.957833">10.1109/WCRE.2001.957833</a>.</p>
+</div>
+<div id="ref-BSR:IS2010">
+<p>Benavides, David, Sergio Seguraa, and Antonio Ruiz-Cortés. 2010. “Automated Analysis of Feature Models 20 Years Later: A Literature Review.” <em>Information Systems</em> 35 (6). Elsevier: 615–36. doi:<a href="https://doi.org/10.1016/j.is.2010.01.001">10.1016/j.is.2010.01.001</a>.</p>
+</div>
+<div id="ref-generativeprogramming">
+<p>Czarnecki, Krzysztof, and Ulrich Eisenecker. 2000. <em>Generative Programming: Methods, Tools, and Applications</em>. New York: ACM Press/Addison-Wesley.</p>
+</div>
+<div id="ref-GDS:ICSE12">
+<p>Greiler, Michaela, Arie van Deursen, and Margaret-Anne Storey. 2012. “Test Confessions: A Study of Testing Practices for Plug-in Systems.” In <em>Proc. Int’l Conf. Software Engineering (ICSE)</em>, 244–54. Los Alamitos, CA: IEEE Computer Society. doi:<a href="https://doi.org/https://dl.acm.org/citation.cfm?id=2337253">https://dl.acm.org/citation.cfm?id=2337253</a>.</p>
+</div>
+<div id="ref-hubaux2013supporting">
+<p>Hubaux, Arnaud, Patrick Heymans, Pierre-Yves Schobbens, Dirk Deridder, and Ebrahim Khalil Abbasi. 2013. “Supporting Multiple Perspectives in Feature-Based Configuration.” <em>Software &amp; Systems Modeling</em> 12 (3). Springer: 641–63.</p>
+</div>
+<div id="ref-J:CSUR96">
+<p>Jones, Neil D. 1996. “An Introduction to Partial Evaluation.” <em>ACM Computing Surveys (CSUR)</em> 28 (3). New York, NY, USA: ACM: 480–503. <a href="http://www.cs.ucdavis.edu/~devanbu/teaching/260/jones-survey.pdf" class="uri">http://www.cs.ucdavis.edu/~devanbu/teaching/260/jones-survey.pdf</a>.</p>
+</div>
+<div id="ref-partialEvaluationBook">
+<p>Jones, Neil D., Carsten K. Gomard, and Peter Sestoft. 1993. <em>Partial Evaluation and Automatic Program Generation</em>. Upper Saddle River, NJ: Prentice-Hall.</p>
+</div>
+<div id="ref-KAK:ICSE08">
+<p>Kästner, Christian, Sven Apel, and Martin Kuhlemann. 2008. “Granularity in Software Product Lines.” In <em>Proc. Int’l Conf. Software Engineering (ICSE)</em>, 311–20. New York: ACM Press. doi:<a href="https://doi.org/10.1145/1368088.1368131">10.1145/1368088.1368131</a>.</p>
+</div>
+<div id="ref-KAO:FOSD11">
+<p>Kästner, Christian, Sven Apel, and Klaus Ostermann. 2011. “The Road to Feature Modularity?” In <em>Proc. SPLC Workshop on Feature-Oriented Software Development (FOSD)</em>. New York: ACM Press. <a href="https://www.cs.cmu.edu/~ckaestne/pdf/FOSD11-modularity.pdf" class="uri">https://www.cs.cmu.edu/~ckaestne/pdf/FOSD11-modularity.pdf</a>.</p>
+</div>
+<div id="ref-LKB:TSE18">
+<p>Lillack, Max, Christian Kästner, and Eric Bodden. 2018. “Tracking Load-Time Configuration Options.” <em>IEEE Transactions on Software Engineering</em> 44 (12). Los Alamitos, CA: IEEE Computer Society: 1269–91. doi:<a href="https://doi.org/10.1109/TSE.2017.2756048">10.1109/TSE.2017.2756048</a>.</p>
+</div>
+<div id="ref-LSBCW:SPLC10">
+<p>Lotufo, Rafael, Steven She, Thorsten Berger, Krzysztof Czarnecki, and Andrzej Wsowski. 2010. “Evolution of the Linux Kernel Variability Model.” In <em>Proc. Int’l Software Product Line Conference (SPLC)</em>, 136–50. Berlin/Heidelberg: Springer-Verlag. <a href="http://dl.acm.org/citation.cfm?id=1885639.1885653" class="uri">http://dl.acm.org/citation.cfm?id=1885639.1885653</a>.</p>
+</div>
+<div id="ref-MKRGA:ICSE16">
+<p>Medeiros, Flávio, Christian Kästner, Márcio Ribeiro, Rohit Gheyi, and Sven Apel. 2016. “A Comparison of 10 Sampling Algorithms for Configurable Systems.” In <em>Proceedings of the 38th International Conference on Software Engineering (ICSE)</em>, 643–54. New York, NY: ACM Press. doi:<a href="https://doi.org/10.1145/2884781.2884793">10.1145/2884781.2884793</a>.</p>
+</div>
+<div id="ref-MWKTS:ASE16">
+<p>Meinicke, Jens, Chu-Pan Wong, Christian Kästner, Thomas Thüm, and Gunter Saake. 2016. “On Essential Configuration Complexity: Measuring Interactions in Highly-Configurable Systems.” In <em>Proceedings of the 31st IEEE/ACM International Conference on Automated Software Engineering (ASE)</em>, 483–94. New York, NY: ACM Press. doi:<a href="https://doi.org/10.1145/2970276.2970322">10.1145/2970276.2970322</a>.</p>
+</div>
+<div id="ref-melo2016does">
+<p>Melo, Jean, Claus Brabrand, and Andrzej Wsowski. 2016. “How Does the Degree of Variability Affect Bug Finding?” In <em>Proceedings of the 38th International Conference on Software Engineering</em>, 679–90. ACM. doi:<a href="https://doi.org/10.1145/2884781.2884831">10.1145/2884781.2884831</a>.</p>
+</div>
+<div id="ref-MP:NOD03">
+<p>Muthig, Dirk, and Thomas Patzke. 2002. “Generic Implementation of Product Line Components.” In <em>Proc. Int’l Conf. Object-Oriented and Internet-Based Technologies, Concepts, and Applications for a Networked World (Net.ObjectDays)</em>, 2591:313–29. Lecture Notes in Computer Science. Berlin/Heidelberg: Springer-Verlag. doi:<a href="https://doi.org/10.1007/3-540-36557-5_23">10.1007/3-540-36557-5_23</a>.</p>
+</div>
+<div id="ref-NBKC:TSE15">
+<p>Nadi, Sarah, Thorsten Berger, Christian Kästner, and Krzysztof Czarnecki. 2015. “Where Do Configuration Constraints Stem from? An Extraction Approach and an Empirical Study.” <em>IEEE Transactions on Software Engineering</em>. doi:<a href="https://doi.org/10.1109/TSE.2015.2415793">10.1109/TSE.2015.2415793</a>.</p>
+</div>
+<div id="ref-NKN:ICSE14">
+<p>Nguyen, Hung Viet, Christian Kästner, and Tien N. Nguyen. 2014. “Exploring Variability-Aware Execution for Testing Plugin-Based Web Applications.” In <em>Proc. Int’l Conf. Software Engineering (ICSE)</em>, 907–18. New York: ACM Press.</p>
+</div>
+<div id="ref-NL:CSUR11">
+<p>Nie, Changhai, and Hareton Leung. 2011. “A Survey of Combinatorial Testing.” <em>ACM Computing Surveys (CSUR)</em> 43 (2). New York: ACM Press: 11:1–11:29. doi:<a href="https://doi.org/10.1145/1883612.1883618">10.1145/1883612.1883618</a>.</p>
+</div>
+<div id="ref-rahman2016feature">
+<p>Rahman, Md Tajmilur, Louis-Philippe Querel, Peter C Rigby, and Bram Adams. 2016. “Feature Toggles: Practitioner Practices and a Case Study.” In <em>Proceedings of the 13th International Conference on Mining Software Repositories</em>, 201–11. ACM. <a href="http://users.encs.concordia.ca/~pcr/paper/Rahman2016MSR.pdf" class="uri">http://users.encs.concordia.ca/~pcr/paper/Rahman2016MSR.pdf</a>.</p>
+</div>
+<div id="ref-vLJKA:TOSEM18">
+<p>Rhein, Alexander von, Jörg Liebig, Andreas Janker, Christian Kästner, and Sven Apel. 2018. “Variability-Aware Static Analysis at Scale: An Empirical Study.” <em>ACM Transactions on Software Engineering and Methodology</em> 27 (4). New York, NY: ACM Press: Article No. 18. doi:<a href="https://doi.org/10.1145/3280986">10.1145/3280986</a>.</p>
+</div>
+<div id="ref-sayagh2017does">
+<p>Sayagh, Mohammed, Zhen Dong, Artur Andrzejak, and Bram Adams. 2017. “Does the Choice of Configuration Framework Matter for Developers? Empirical Study on 11 Java Configuration Frameworks.” In <em>2017 IEEE 17th International Working Conference on Source Code Analysis and Manipulation (SCAM)</em>, 41–50. IEEE. <a href="http://mcis.polymtl.ca/~msayagh/scam17.pdf" class="uri">http://mcis.polymtl.ca/~msayagh/scam17.pdf</a>.</p>
+</div>
+<div id="ref-sayagh2018software">
+<p>Sayagh, Mohammed, Noureddine Kerzazi, Bram Adams, and Fabio Petrillo. 2018. “Software Configuration Engineering in Practice: Interviews, Survey, and Systematic Literature Review.” <em>IEEE Transactions on Software Engineering</em>. IEEE. <a href="http://mcis.polymtl.ca/publications/2019/tse.pdf" class="uri">http://mcis.polymtl.ca/publications/2019/tse.pdf</a>.</p>
+</div>
+<div id="ref-SRG:VAMOS11">
+<p>Schmid, Klaus, Rick Rabiser, and Paul Grünbacher. 2011. “A Comparison of Decision Modeling Approaches in Product Lines.” In <em>Proc. Int’l Workshop on Variability Modelling of Software-Intensive Systems (VaMoS)</em>, 119–26. New York: ACM Press. doi:<a href="https://doi.org/10.1145/1944892.1944907">10.1145/1944892.1944907</a>.</p>
+</div>
+<div id="ref-SLBWC:VaMoS10">
+<p>She, Steven, Rafael Lotufo, Thorsten Berger, Andrzej Wsowski, and Krzysztof Czarnecki. 2010. “The Variability Model of the Linux Kernel.” In <em>Proc. Int’l Workshop on Variability Modelling of Software-Intensive Systems (VaMoS)</em>, 45–51. Essen: University of Duisburg-Essen. <a href="https://gsd.uwaterloo.ca/sites/default/files/camera-vamos-20100107.pdf" class="uri">https://gsd.uwaterloo.ca/sites/default/files/camera-vamos-20100107.pdf</a>.</p>
+</div>
+<div id="ref-SMNKd:GPCE18">
+<p>Soares, Larissa Rocha, Jens Meinicke, Sarah Nadi, Christian Kästner, and Eduardo Santana de Almeida. 2018. “Exploring Feature Interactions Without Specifications: A Controlled Experiment.” In <em>Proceedings of the 17th ACM International Conference on Generative Programming and Component Engineering (GPCE)</em>, 41–52. New York, NY: ACM Press. doi:<a href="https://doi.org/10.1145/3278122.3278127">10.1145/3278122.3278127</a>.</p>
+</div>
+<div id="ref-SGB:SPE05">
+<p>Svahnberg, Mikael, Jilles van Gurp, and Jan Bosch. 2005. “A Taxonomy of Variability Realization Techniques.” <em>Software–Practice &amp; Experience</em> 35 (8). New York, NY: John Wiley &amp; Sons, Inc.: 705–54. doi:<a href="https://doi.org/10.1002/spe.v35:8">10.1002/spe.v35:8</a>.</p>
+</div>
+<div id="ref-TLSS:EUROSYS11">
+<p>Tartler, Reinhard, Daniel Lohmann, Julio Sincero, and Wolfgang Schröder-Preikschat. 2011. “Feature Consistency in Compile-Time-Configurable System Software: Facing the Linux 10,000 Feature Problem.” In <em>Proc. Europ. Conf. Computer Systems (EuroSys)</em>, 47–60. New York: ACM Press. <a href="http://www4.informatik.uni-erlangen.de/Publications/2011/tartler_11_eurosys.pdf" class="uri">http://www4.informatik.uni-erlangen.de/Publications/2011/tartler_11_eurosys.pdf</a>.</p>
+</div>
+<div id="ref-TAKSS:CSUR14">
+<p>Thüm, Thomas, Sven Apel, Christian Kästner, Ina Schaefer, and Gunter Saake. 2014. “A Classification and Survey of Analysis Strategies for Software Product Lines.” <em>ACM Computing Surveys</em> 47 (1). New York, NY: ACM Press: Article 6. doi:<a href="https://doi.org/10.1145/2580950">10.1145/2580950</a>.</p>
+</div>
+<div id="ref-TBK:ICSE09">
+<p>Thüm, Thomas, Don Batory, and Christian Kästner. 2009. “Reasoning About Edits to Feature Models.” In <em>Proc. Int’l Conf. Software Engineering (ICSE)</em>, 254–64. Washington, DC: IEEE Computer Society. <a href="https://www.cs.cmu.edu/~ckaestne/pdf/icse2009_fm.pdf" class="uri">https://www.cs.cmu.edu/~ckaestne/pdf/icse2009_fm.pdf</a>.</p>
+</div>
+<div id="ref-toman2016staccato">
+<p>Toman, John, and Dan Grossman. 2016. “Staccato: A Bug Finder for Dynamic Configuration Updates.” In <em>30th European Conference on Object-Oriented Programming (ECOOP 2016)</em>. Schloss Dagstuhl-Leibniz-Zentrum fuer Informatik. <a href="http://drops.dagstuhl.de/opus/volltexte/2016/6118/pdf/LIPIcs-ECOOP-2016-24.pdf" class="uri">http://drops.dagstuhl.de/opus/volltexte/2016/6118/pdf/LIPIcs-ECOOP-2016-24.pdf</a>.</p>
+</div>
+<div id="ref-toman2018legato">
+<p>———. 2018. “Legato: An at-Most-Once Analysis with Applications to Dynamic Configuration Updates.” In <em>32nd European Conference on Object-Oriented Programming (ECOOP 2018)</em>. Schloss Dagstuhl-Leibniz-Zentrum fuer Informatik. <a href="http://drops.dagstuhl.de/opus/volltexte/2018/9229/pdf/LIPIcs-ECOOP-2018-24.pdf" class="uri">http://drops.dagstuhl.de/opus/volltexte/2018/9229/pdf/LIPIcs-ECOOP-2018-24.pdf</a>.</p>
+</div>
+<div id="ref-xiong2015range">
+<p>Xiong, Yingfei, Hansheng Zhang, Arnaud Hubaux, Steven She, Jie Wang, and Krzysztof Czarnecki. 2015. “Range Fixes: Interactive Error Resolution for Software Configuration.” <em>IEEE Transactions on Software Engineering</em> 41 (6). IEEE: 603–19. <a href="http://sei.pku.edu.cn/~xiongyf04/papers/TSE14.pdf" class="uri">http://sei.pku.edu.cn/~xiongyf04/papers/TSE14.pdf</a>.</p>
+</div>
+<div id="ref-xu2015systems">
+<p>Xu, Tianyin, and Yuanyuan Zhou. 2015. “Systems Approaches to Tackling Configuration Errors: A Survey.” <em>ACM Computing Surveys (CSUR)</em> 47 (4). ACM: 70.</p>
+</div>
+<div id="ref-xu2015hey">
+<p>Xu, Tianyin, Long Jin, Xuepeng Fan, Yuanyuan Zhou, Shankar Pasupathy, and Rukma Talwadker. 2015. “Hey, You Have Given Me Too Many Knobs!: Understanding and Dealing with over-Designed Configuration in System Software.” In <em>Proceedings of the 2015 10th Joint Meeting on Foundations of Software Engineering</em>, 307–19. ACM. <a href="http://cseweb.ucsd.edu/~longjin/FSE15.pdf" class="uri">http://cseweb.ucsd.edu/~longjin/FSE15.pdf</a>.</p>
+</div>
+<div id="ref-Xu:2013:BUM:2517349.2522727">
+<p>Xu, Tianyin, Jiaqi Zhang, Peng Huang, Jing Zheng, Tianwei Sheng, Ding Yuan, Yuanyuan Zhou, and Shankar Pasupathy. 2013. “Do Not Blame Users for Misconfigurations.” In <em>Proceedings of the Twenty-Fourth ACM Symposium on Operating Systems Principles</em>, 244–59. SOSP ’13. New York, NY, USA: ACM. doi:<a href="https://doi.org/10.1145/2517349.2522727">10.1145/2517349.2522727</a>.</p>
+</div>
+<div id="ref-zhang2014configuration">
+<p>Zhang, Sai, and Michael D Ernst. 2014. “Which Configuration Option Should I Change?” In <em>Proceedings of the 36th International Conference on Software Engineering</em>, 152–63. ACM. <a href="http://zhang-sai.github.io/pdf/zhang-icse14.pdf" class="uri">http://zhang-sai.github.io/pdf/zhang-icse14.pdf</a>.</p>
+</div>
+</div>
+
+
+
+</content>
+        </article>

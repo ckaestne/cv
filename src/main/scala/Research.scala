@@ -748,7 +748,7 @@ object Research {
             variability mechanisms {cite(gpce09)}. For load-time parameters like command-line options
             and configuration files, we use a variation of taint tracking to identify
             which (often scattered) statements in Java and Android programs are controlled
-            by these options {cite(ase14)}. For branches and clown-and-own development we look
+            by these options {cite(ase14)}. For branches and clone-and-own development we look
             into merging and feature location techniques to enable an integration of the
             various changes in the branches into disciplined variability mechanisms {cite(fse11)}.
             Finally, we also investigate mechanisms to extract configuration knowledge

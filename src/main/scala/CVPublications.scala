@@ -161,6 +161,8 @@ object Coauthors {
     val Holtz = Person("Jarrett", "Holtz", "University of Massachusetts, Amherst")
     val Camara = Person("Javier", "Cámara", "University of York")
     val Jia = Person("Limin", "Jia", "Carnegie Mellon University")
+    val Sattler = Person("Florian", "Sattler", "University of Passau")
+    val Scherlis = Person("William", "Scherlis", "Carnegie Mellon University")
 }
 
 object Topics {
@@ -4287,8 +4289,9 @@ explore covered and uncovered parts of the output.
         Seq(Ren, Zhou, Kaestner, Wasowski),
         "Identifying Redundancies in Fork-based Development",
         SANER(2019),
-        ToAppear(),
-        Map(PDF->PDFFile("saner19.pdf")),
+        Pages(230, 241),
+        Map(PDF->PDFFile("saner19.pdf"),
+            DOI->DOI("10.1109/SANER.2019.8668023")),
         """Fork-based development is popular and easy to use, but makes it difficult to maintain an overview of the whole community when the number of forks increases, which leads to redundant development where multiple developers are solving the same problem in parallel without being aware of each other. Redundant development wastes effort for both maintainers and developers. In this paper, we designed an approach to identify redundant code changes in forks as early as possible by extracting clues indicating similarities between code changes, and building a machine learning model to predict redundancies. We evaluated the effectiveness from both the maintainer's and the developer's perspectives. The result shows that we achieve 57%-83% precision for detecting duplicate code changes from maintainer's perspective, and we could save developers' effort of 1.9-3.0 commits on average. Also, we show that our approach significantly outperforms existing state-of-art."""
     ).topic(awareness, ecosystem, opensource)
 
@@ -4297,7 +4300,7 @@ explore covered and uncovered parts of the output.
         "Why Do People Give Up FLOSSing? A Study of Contributor Disengagement in Open Source",
         Conference("OSS", 2019, "Proceedings of the 15th International Conference on Open Source Systems").month(5),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("oss19.pdf")),
         """
         Established contributors are the backbone of many free/libre open source software (FLOSS) projects.  Previous research has shown that it is critically important to retain contributors and has also revealed motives behind why contributors choose to participate 
         in FLOSS in the first place.  However, there has been limited research done on the reasons why established contributors disengage, and factors (on an individual and project level) that predict their disengagement.  In this paper, we conduct a mixed-methods empirical study, combining surveys and survival modeling, in order to identify reasons and predictive factors behind established contributor disengagement. We find that different groups of contributors tend to disengage for different reasons, however, overall contributors most commonly cite some kind of transition (e.g., switching jobs or leaving academia).  We also find that factors such as the popularity of the projects a contributor works on, whether they have experienced a transition, when they work, and how much they work are all factors that can be used to predict their disengagement from open source. 
@@ -4308,8 +4311,8 @@ explore covered and uncovered parts of the output.
         Seq(Garrett, Ferreira, Kaestner, Sunshine, Jia),
         "Detecting Suspicious Package Updates",
         Conference("ICSE-NIER", 2019, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
-        ToAppear(),
-        Map(),
+        Pages(13,16),
+        Map(PDF->PDFFile("icsenier19.pdf"),DOI->DOI("10.1109/ICSE-NIER.2019.00012")),
         """
             With an increased level of automation provided bypackage managers, which sometimes allow updates to be installedautomatically, malicious package updates are becoming a realthreat in software ecosystems. To address this issue, we proposean approach based on anomaly detection, to identify suspiciousupdates based on security-relevant features that attackers coulduse in an attack. We evaluate our approach in the contextof Node.js/npm ecosystem, to show its feasibility in terms ofreduced review effort and the correct identification of a confirmedmalicious update attack. Although we do not expect it to bea complete solution in isolation, we believe it is an importantsecurity building block for software ecosystems.
         """
@@ -4329,7 +4332,7 @@ explore covered and uncovered parts of the output.
         "Machine Learning Meets Quantitative Planning: Enabling Self-Adaptation in Autonomous Robots",
         Conference("SEAMS", 2019, "14th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5),
         ToAppear(),
-        Map(PDF->PDFFile("seams19.pdf"),
+        Map(PDF->PDFFile("seams19.pdf")),
         """Modern cyber-physical systems (e.g., robotics systems) are typically composed of physical and software components, the characteristics of which are likely to change over time. Assumptions about parts of the system made at design time may not hold at run time, especially when a system is deployed for long periods (e.g., over decades). Self-adaptation is designed to find reconfigurations of systems to handle such run-time inconsistencies. Planners can be used to find and enact optimal reconfigurations in such an evolving context. However, for systems that are highly configurable, such planning becomes intractable due to the size of the adaptation space. To overcome this challenge, in this paper we explore an approach that (a) uses machine learning to find Pareto-optimal configurations without needing to explore every configuration, and (b) restricts the search space to such configurations to make planning tractable. We explore this in the context of robot missions that need to consider task timeliness and energy consumption. An independent evaluation shows that our approach results in high-quality adaptation plans in uncertain and adversarial environments."""
     ).topic(nfp,sensitivity)
 
@@ -4341,6 +4344,135 @@ explore covered and uncovered parts of the output.
         Map(DOI -> DOI("10.1109/MS.2018.2885058")),
         """We developed model-based adaptation, an approach that leverages models of software and its environment to enable automated adaptation. The goal of our approach is to build long-lasting software systems that can effectively adapt to changes in their environment."""
     ).topic()
+
+   val emse19 = Article(
+        Seq(Kolesnikov, Siegmund, Kaestner, Apel),
+        "On the Relation of Control-flow and Performance Feature Interactions: A Case Study",
+        EMSE(2019),
+        ToAppear(),
+        Map(PDF -> PDFFile("emse19.pdf")),
+        """Detecting feautpublre interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance
+prediction techniques rely on supervised machine learning for detecting feature
+interactions, which, in turn, relies on time-consuming performance measurements to obtain training data. By providing information about potentially
+interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time
+efficient. We expect that information about potentially interacting features
+can be obtained by analyzing the source code of a highly-configurable system, which is computationally cheaper than performing multiple performance
+measurements. To this end, we conducted an in-depth qualitative case study
+on two real-world systems (mbedTLS and SQLite), in which we explored
+the relation between internal (precisely control-flow) feature interactions, detected through static program analysis, and external (precisely performance)
+feature interactions, detected by performance-prediction techniques using performance measurements. We found that a relation exists that can potentially
+be exploited to predict performance interactions."""
+    ).topic(empirical, nfp)
+
+
+
+    val configcr = TechReport(
+        Seq(Velez, Jamshidi, Sattler, Siegmund, Apel, Kaestner),
+        "ConfigCrusher: White-Box Performance Analysis for Configurable Systems",
+        2019, 5, ARXIV, "1905.02066",
+        Map(PDF -> PDFFile("configcr19.pdf"),
+            HTTP -> URL("https://arxiv.org/pdf/1905.02066.pdf")),
+        """
+        In configurable software systems, stakeholders are often interested
+in knowing how configuration options influence the performance of
+a system to facilitate, for example, the debugging and optimization
+processes of these systems. There are several black-box approaches
+to obtain this information, but they usually require a large number
+of samples to make accurate predictions, whereas the few existing
+white-box approaches impose limitations on the systems that they
+can analyze. This paper proposes ConfigCrusher, a white-box performance analysis that exploits several insights of configurable systems. ConfigCrusher employs a static data-flow analysis to identify
+how configuration options may influence control-flow decisions
+and instruments code regions corresponding to these decisions
+to dynamically analyze the influence of configuration options on
+the regions’ performance. Our evaluation using 10 real-world configurable systems shows that ConfigCrusher is more efficient at
+building performance models that are similar to or more accurate
+than current state-of-the-art black-box and white-box approaches.
+Overall, this paper showcases the benefits and potential of whitebox performance analyses to outperform black-box approaches and
+provide additional information for analyzing configurable systems.
+        """).topic(vaanalysis,nfp)
+
+
+    val certtr = TechReport(
+        Seq(Ferreira, Kaestner, Sunshine, Apel, Scherlis),
+        "Design Dimensions for Software Certification: A Grounded Analysis",
+        2019, 5, ARXIV, "1905.09760",
+        Map(PDF -> PDFFile("trcert19.pdf"),
+            HTTP -> URL("https://arxiv.org/pdf/1905.09760.pdf")),
+        """
+        In many domains, software systems cannot be deployed until authorities judge them fit for use in an intended operating environment. Certification standards and processes have been devised and deployed to regulate operations of software systems and prevent their failures. However, practitioners are often unsatisfied with the efficiency and value proposition of certification efforts. In this study, we compare two certification standards, Common Criteria and DO-178C, and collect insights from literature and from interviews with subject-matter experts to identify design options relevant to the design of standards. The results of the comparison of certification efforts---leading to the identification of design dimensions that affect their quality---serve as a framework to guide the comparison, creation, and revision of certification standards and processes. This paper puts software engineering research in context and discusses key issues around process and quality assurance and includes observations from industry about relevant topics such as recertification, timely evaluations, but also technical discussions around model-driven approaches and formal methods. Our initial characterization of the design space of certification efforts can be used to inform technical discussions and to influence the directions of new or existing certification efforts. Practitioners, technical commissions, and government can directly benefit from our analytical framework.
+        """).topic(empirical)
+
+
+
+    val fse19ci = InProceedings(
+        Seq(Widder, Hilton, Kaestner, Vasilescu),
+        "Integrating and Testing the Literature: A Conceptual Replication of Continuous Integration Pain Points",
+        ESECFSE(2019).month(9).acceptanceRate(74,303),
+        ToAppear(),
+        Map(PDF -> PDFFile("fse19_ci.pdf")),
+        """
+        Continuous integration (CI) is an established software quality assurance 
+        practice, and the focus of much prior research with a diverse
+        range of methods and populations. In this paper, we conduct a
+        literature review of 37 papers on CI pain points. We then conduct a
+        conceptual replication study on results from these papers using a
+        triangulation design consisting of a survey with 132 responses, 12
+        interviews, and two logistic regressions predicting CI abandonment
+        and switching on a dataset of 6,239 GitHub projects. We report
+        and discuss which past results we were able to replicate, those
+        for which we found conflicting evidence, those for which we did
+        not find evidence, and the implications of these cases on future CI
+        research, CI tool builders, and CI users.
+        """
+      ).topic(ecosystem,empirical,opensource)
+
+
+
+    val fse19forks = InProceedings(
+        Seq(Zhou, Vasilescu, Kaestner),
+        "What the Fork: A Study of Inefficient and Efficient Forking Practices in Social Coding",
+        ESECFSE(2019).month(9).acceptanceRate(74,303),
+        ToAppear(),
+        Map(PDF -> PDFFile("fse19_forks.pdf")),
+        """
+        Forking and pull requests have been widely used in open-source communities as a uniform development and contribution mechanisms, which gives developers the flexibility to modify their own fork without affecting others. However, some projects observe severe inefficiencies, including lost and duplicate contributions and fragmented communities. We observed that different communities experience these inefficiencies to widely different degrees and interviewed practitioners indicate several project characteristics and practices, including modularity and coordination mechanisms, that may encourage more efficient forking practices. In this paper, we explore how open-source projects on GitHub differ with regard to forking inefficiencies. Using logistic regression models, we analyzed the association of context factors with the inefficiencies and found that better modularity and centralized management can encourage more contributions and a higher fraction of accepted pull requests, suggesting specific good practices that project maintainers can adopt to reduce forking-related inefficiencies in their community.
+        """
+      ).topic(ecosystem,empirical,opensource,merge)
+
+    val icsme19 = InProceedings(
+        Seq(Viggiato, Oliveira, Figueiredo, Jamshidi, Kaestner),
+        "How Do Code Changes Evolve in Different Platforms? A Mining-based Investigation",
+        Conference("ICSME", 2019, "35th International Conference on Software Maintenance and Evolution").
+            month(9).location("Cleveland, OH"),
+        ToAppear(),
+        Map(),
+        """
+        Software developed in different platforms has different 
+characteristics and needs. More specifically, code changes are 
+differently performed in the mobile platform compared to non-mobile 
+platforms (e.g., desktop and Web platforms). Prior works 
+have investigated the differences in specific platforms. However, 
+we still lack a deeper understanding of how code changes 
+evolve across different software platforms. In this paper, we 
+present a study aiming at investigating the frequency of changes 
+and how source code changes, build changes and test changes 
+co-evolve in mobile and non-mobile platforms. We developed 
+linear regression models to explain which factors influence the 
+frequency of changes in different platforms and applied the 
+Apriori algorithm to find types of changes that frequently occur 
+together. Our findings show that non-mobile repositories have 
+a higher number of commits per month compared to mobile 
+and our regression models suggest that being mobile significantly 
+impacts on the number of commits in a negative direction when 
+controlling for confound factors, such as code size. We also 
+found that developers do not usually change source code files 
+together with build files or test files. We argue that our results 
+can provide valuable information for developers on how changes 
+are performed in different platforms so that practices adopted 
+in successful software systems can be followed.
+        """
+      ).topic(empirical,opensource)
+
 
 
 
