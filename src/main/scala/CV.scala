@@ -307,6 +307,7 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(VAMOS(2020).url(URL("https://vamos2020.dbse.iti.cs.ovgu.de")), PC),
         Committee(ICSE(2020), PC),
         Committee(ESECFSE(2019), PC),
         Committee(ASE(2019).url(URL("https://2019.ase-conferences.org/")), PC),
@@ -437,6 +438,8 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val reviews: Seq[Review] = Seq(
+        Review(TOSEM(2019)),
+        Review(TSE(2019)),
         Review(TOSEM(2018)),
         Review(IST(2018)),
         Review(JASE(2018)),
