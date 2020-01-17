@@ -330,7 +330,7 @@ object Venues {
     val ICSE11Demo = ICSE(2011).subtitle("Demonstration Track").acceptanceRate(22, 60).location("Waikiki, Honolulu, HI").publisher(ACM).isbn("978-1-4503-0445-0")
     val SPLC11 = SPLC(2011).publisher(IEEE).location("Munich").month(8)
     val OOPSLA11 = OOPSLA(2011).acceptanceRate(61, 166).month(10).isbn("978-1-4503-0940-0").location("Portland, OR")
-    val OOPSLAComp11 = Venue("OOPSLA", 2011, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).isbn("978-1-4503-0942-4").location("Portland, OR").publisher(ACM)
+    val OOPSLAComp11 = Venue("OOPSLA", 2011, "26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).isbn("978-1-4503-0942-4").location("Portland, OR").publisher(ACM)
     val VAMOS13 = VAMOS(2013).month(1).location("Pisa").publisher(ACM).acceptanceRate(19, 45).isbn("978-1-4503-1541-8")
     val MSR18 = MSR(2018).location("Gothenburg").publisher(ACM).acceptanceRate(37+11, 145).month(5)
     val ICSE18 = ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM)
@@ -2455,7 +2455,7 @@ object CVPublications {
     val oopsla12_poster = InProceedings(
         Seq(Giarrusso, Ostermann, Eichberg, Rendel, Kaestner),
         "Reifying and Optimizing Collection Queries for Modularity",
-        Venue("OOPSLA", 2012, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).location("Tucson, AZ").publisher(ACM),
+        Venue("OOPSLA", 2012, "26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).location("Tucson, AZ").publisher(ACM),
         Pages(77, 78),
         Map(PDF -> PDFFile("oopsla12_poster.pdf")),
         ""
@@ -4033,7 +4033,7 @@ We were able to identify several patterns across subject systems, such as domina
     val icse18posterforks = InProceedings(
         Seq(Ren, Zhou, Kaestner),
         "Poster: Forks Insight: Providing an Overview of GitHub Forks",
-        Venue("ICSE", 2018, "Companion of the International Conference on Software Engineering", KWorkshopDemoTool).location("Gothenburg").publisher(ACM),
+        Venue("ICSE", 2018, "International Conference on Software Engineering", KWorkshopDemoTool).location("Gothenburg").publisher(ACM),
         Pages(179,180),
         Map(PDF -> PDFFile("icse18poster.pdf"),
             DOI->DOI("10.1145/3183440.3195085")),
@@ -4224,7 +4224,7 @@ explore covered and uncovered parts of the output.
     val splashsrc17= InProceedings(
         Seq(Lazarek),
         "How to Efficiently Process $2^{100}$ List Variations",
-        Venue("SPLASH-SRC", 2017, "Companion of the 2017 ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications: Software for Humanity", KWorkshopDemoTool).publisher(ACM),
+        Venue("SPLASH-SRC", 2017, "2017 ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications: Software for Humanity", KWorkshopDemoTool).publisher(ACM),
         Pages(36,38),
         Map(PDF->PDFFile("srcsplash18.pdf"),
             HTTP->URL("http://doi.acm.org/10.1145/3135932.3135951"),
@@ -4238,7 +4238,7 @@ explore covered and uncovered parts of the output.
     val icsesrc18= InProceedings(
         Seq(Trockman),
         "Adding sparkle to social coding: an empirical study of repository badges in the npm ecosystem",
-        Venue("ICSE-SRC", 2017, "Companion Proceedings of the 40th International Conference on Software Engineering", KWorkshopDemoTool).publisher(ACM),
+        Venue("ICSE-SRC", 2017, "40th International Conference on Software Engineering", KWorkshopDemoTool).publisher(ACM),
         Pages(524,526),
         Map(PDF->PDFFile("srcicse18.pdf"),
             HTTP->URL("https://dl.acm.org/citation.cfm?id=3190335"),
@@ -4307,7 +4307,7 @@ explore covered and uncovered parts of the output.
     val oss19 = InProceedings(
         Seq(Miller, Widder, Kaestner, Vasilescu),
         "Why Do People Give Up FLOSSing? A Study of Contributor Disengagement in Open Source",
-        Conference("OSS", 2019, "Proceedings of the 15th International Conference on Open Source Systems").month(5),
+        Conference("OSS", 2019, "15th International Conference on Open Source Systems").month(5),
         Pages(116,129),
         Map(PDF->PDFFile("oss19.pdf"),HTTP->URL("https://link.springer.com/chapter/10.1007/978-3-030-20883-7_11"),
             DOI->DOI("10.1007/978-3-030-20883-7_11")),
@@ -4320,7 +4320,7 @@ explore covered and uncovered parts of the output.
     val icsenier19 = InProceedings(
         Seq(Garrett, Ferreira, Kaestner, Sunshine, Jia),
         "Detecting Suspicious Package Updates",
-        Conference("ICSE-NIER", 2019, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
+        Conference("ICSE-NIER", 2019, "International Conference on Software Engineering -- New Ideas Track").month(5),
         Pages(13,16),
         Map(PDF->PDFFile("icsenier19.pdf"),DOI->DOI("10.1109/ICSE-NIER.2019.00012")),
         """
@@ -4331,7 +4331,7 @@ explore covered and uncovered parts of the output.
     val icgse19 = InProceedings(
         Seq(Viggiato, Oliveira, Figueiredo, Jamshidi, Kaestner),
         "Understanding Similarities and Differences in Software Development Practices Across Domains",
-        Conference("ICGSE", 2019, "Proc. 14th ACM/IEEE International Conference on Global Software Engineering").month(5),
+        Conference("ICGSE", 2019, "14th ACM/IEEE International Conference on Global Software Engineering").month(5),
         Pages(74,84),
         Map(DOI->DOI("10.1109/ICGSE.2019.00013"),HTTP->URL("https://dl.acm.org/citation.cfm?id=3339049")),
         """Since software engineering is not a homogeneous whole, we expect that development practices are differently adopted across domains. However, little is known about how practices are followed in different software domains (e.g., healthcare, banking, and Oil and gas). In this paper, we report the results of an exploratory and inductive research, in which we seek differences and similarities regarding the adoption of several practices across 13 domains. We interviewed 19 developers with experience in multiple domains (i.e., cross-domain developers) from large multinational companies, such as Facebook, Google and Macy's. We also run a Web survey to confirm (or not) the interview results. Our findings show that, in fact, different domains adopt practices in a different fashion. We identified that continuous integration practices are interrupted during important commerce periods (e.g., Black Friday) in the financial domains. We also noticed the company's culture and policies strongly influence the adopted practices, instead of the domain itself. Our study also has important implications for practice. For instance, companies should provide targeted training for their development teams and new interdisciplinary courses in software engineering and other domains, such as healthcare, are highly recommended."""
