@@ -12,6 +12,10 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2019, 9-1, 20).getTime, "SPLC Most Influencial Paper Award",
+          <span>I'm honored to receive the SPLC most influential paper award for our ICSE'08 paper <em>Granularity in Software Product Lines</em>. <a href="https://isri.cmu.edu/news/2019/0906-splc.html">Press release</a>.</span>) ::
+        NewsItem(new GregorianCalendar(2019, 5-1, 20).getTime, "Feature Flags vs Configuration Options",
+          <span>Feature flag discussions still baffle me. After many years of research on configurable systems, this looks like more of the same. Tried to write down my thoughts and various pointers to decades of research on configuration options: <a href="https://cs.cmu.edu/~ckaestne/featureflags/">Feature Flags vs Configuration Options – Same Difference?</a>.</span>) ::
         NewsItem(new GregorianCalendar(2017, 6-1, 29).getTime, "Differential Testing for KConfigReader",
           <span>I talked about this at FOSD'16 and wanted to write it down since: My experience with using differential testing systematically
           in developing <a href="https://github.com/ckaestne/kconfigreader">KConfigReader</a>. I have finally written this up

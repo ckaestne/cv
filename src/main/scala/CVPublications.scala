@@ -137,7 +137,7 @@ object Coauthors {
     val Cirilo = Person("Elder", "Cirilo", "Federal University of Sao Joao del-Rei")
     val Janker = Person("Andreas", "Janker", "University of Passau")
     val Lazarek = Person("Lukas", "Lazarek", "University of Massachusetts Lowell")
-    val Chen = Person("Serena", "Chen", "Franklin W. Olin College of Engineering")
+    val Chen = Person("Serena", "Chen", "Carnegie Mellon University")
     val Phan= Person("Hung Dang", "Phan", "Iowa State University")
     val Lima = Person("Gabriel", "Lima", "Federal Institute of Alagoas (IFAL)")
     val Amaral = Person("Guilherme", "Amaral", "Federal University of Alagoas (UFAL)")
@@ -163,6 +163,8 @@ object Coauthors {
     val Jia = Person("Limin", "Jia", "Carnegie Mellon University")
     val Sattler = Person("Florian", "Sattler", "University of Passau")
     val Scherlis = Person("William", "Scherlis", "Carnegie Mellon University")
+    val Kang = Person("Eunsuk", "Kang", "Carnegie Mellon University")
+    val Overney = Person("Cassandra", "Overney", "Franklin W. Olin College of Engineering")
 }
 
 object Topics {
@@ -198,6 +200,8 @@ object Topics {
     val opensource = Topic("Open source")
     val buildsys = Topic("Build systems")
     val sensitivity = Topic("Sensitivity analysis")
+    val seai = Topic("SE4AI")
+    val featureflags = Topic("Feature flags")
 
 }
 
@@ -206,6 +210,7 @@ object Venues {
     import de.stner.cv.VenueStructure._
 
 
+    val CMUTR = Publisher("Carnegie Mellon University", "Pittsburgh, PA")
     val MDTR = Publisher("University of Magdeburg", "Magdeburg, Germany")
     val PATR = Publisher("Department of Informatics and Mathematics, University of Passau", "Passau, Germany")
     val MRTR = Publisher("Department of Mathematics and Computer Science, Philipps University Marburg", "Marburg, Germany")
@@ -325,7 +330,8 @@ object Venues {
     val OOPSLAComp11 = Venue("OOPSLA", 2011, "Companion of the 26th Annual ACM SIGPLAN Conference on Object-Oriented Programming, Systems, Languages, and Applications", KWorkshopDemoTool).isbn("978-1-4503-0942-4").location("Portland, OR").publisher(ACM)
     val VAMOS13 = VAMOS(2013).month(1).location("Pisa").publisher(ACM).acceptanceRate(19, 45).isbn("978-1-4503-1541-8")
     val MSR18 = MSR(2018).location("Gothenburg").publisher(ACM).acceptanceRate(37+11, 145).month(5)
-    val ICSE18 = ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM).month(5)
+    val ICSE18 = ICSE(2018).month(5).location("Gothenburg").acceptanceRate(105, 502).publisher(ACM)
+    val ICSE20 = ICSE(2020).month(5).location("Seoul").acceptanceRate(129 , 617).publisher(ACM)
 }
 
 object CVPublications {
@@ -3906,11 +3912,11 @@ executing real software containing variability.""").topic(vaanalysis)
     val sosym18 = Article(
         Seq(Kolesnikov, Siegmund, Kaestner, Grebhahn, Apel),
         "Tradeoffs in Modeling Performance of Highly-Configurable Software Systems",
-        SOSYM(2018),
-        ToAppear(),
+        SOSYM(2019).volume(18).number(3),
+        Pages(2265,2283),
         Map(PDF->PDFFile("sosym18.pdf"),
             HTTP->URL("https://link.springer.com/article/10.1007%2Fs10270-018-0662-9"),
-            DOI->DOI("10.1007/s1027")),
+            DOI->DOI("10.1007/s10270-018-0662-9")),
         """
 Modeling the performance of a highly-configurable software system requires capturing the influences of its configuration options and their interactions on the system's performance.
 Performance-influence models quantify these influences, explaining this way the performance behavior of a configurable system as a whole.
@@ -4255,8 +4261,8 @@ explore covered and uncovered parts of the output.
     val emse18 = Article(
         Seq(Medeiros, Lima, Amaral, Apel, Kaestner, Ribeiro, Gheyi),
         "An Investigation of Misunderstanding Code Patterns in C Open-Source Software Projects",
-        EMSE(2018),
-        ToAppear(),
+        EMSE(2019).month(8).volume(24).number(4),
+        Pages( 1693,1726),
         Map(PDF -> PDFFile("emse18.pdf"),
             HTTP -> URL("http://link.springer.com/article/10.1007/s10664-018-9666-x"),
             DOI -> DOI("10.1007/s10664-018-9666-x")
@@ -4299,8 +4305,9 @@ explore covered and uncovered parts of the output.
         Seq(Miller, Widder, Kaestner, Vasilescu),
         "Why Do People Give Up FLOSSing? A Study of Contributor Disengagement in Open Source",
         Conference("OSS", 2019, "Proceedings of the 15th International Conference on Open Source Systems").month(5),
-        ToAppear(),
-        Map(PDF->PDFFile("oss19.pdf")),
+        Pages(116,129),
+        Map(PDF->PDFFile("oss19.pdf"),HTTP->URL("https://link.springer.com/chapter/10.1007/978-3-030-20883-7_11"),
+            DOI->DOI("10.1007/978-3-030-20883-7_11")),
         """
         Established contributors are the backbone of many free/libre open source software (FLOSS) projects.  Previous research has shown that it is critically important to retain contributors and has also revealed motives behind why contributors choose to participate 
         in FLOSS in the first place.  However, there has been limited research done on the reasons why established contributors disengage, and factors (on an individual and project level) that predict their disengagement.  In this paper, we conduct a mixed-methods empirical study, combining surveys and survival modeling, in order to identify reasons and predictive factors behind established contributor disengagement. We find that different groups of contributors tend to disengage for different reasons, however, overall contributors most commonly cite some kind of transition (e.g., switching jobs or leaving academia).  We also find that factors such as the popularity of the projects a contributor works on, whether they have experienced a transition, when they work, and how much they work are all factors that can be used to predict their disengagement from open source. 
@@ -4322,8 +4329,8 @@ explore covered and uncovered parts of the output.
         Seq(Viggiato, Oliveira, Figueiredo, Jamshidi, Kaestner),
         "Understanding Similarities and Differences in Software Development Practices Across Domains",
         Conference("ICGSE", 2019, "Proc. 14th ACM/IEEE International Conference on Global Software Engineering").month(5),
-        ToAppear(),
-        Map(),
+        Pages(74,84),
+        Map(DOI->DOI("10.1109/ICGSE.2019.00013"),HTTP->URL("https://dl.acm.org/citation.cfm?id=3339049")),
         """Since software engineering is not a homogeneous whole, we expect that development practices are differently adopted across domains. However, little is known about how practices are followed in different software domains (e.g., healthcare, banking, and Oil and gas). In this paper, we report the results of an exploratory and inductive research, in which we seek differences and similarities regarding the adoption of several practices across 13 domains. We interviewed 19 developers with experience in multiple domains (i.e., cross-domain developers) from large multinational companies, such as Facebook, Google and Macy's. We also run a Web survey to confirm (or not) the interview results. Our findings show that, in fact, different domains adopt practices in a different fashion. We identified that continuous integration practices are interrupted during important commerce periods (e.g., Black Friday) in the financial domains. We also noticed the company's culture and policies strongly influence the adopted practices, instead of the domain itself. Our study also has important implications for practice. For instance, companies should provide targeted training for their development teams and new interdisciplinary courses in software engineering and other domains, such as healthcare, are highly recommended."""
     ).topic(empirical)
 
@@ -4331,8 +4338,10 @@ explore covered and uncovered parts of the output.
         Seq(Jamshidi, Camara, Schmerl, Kaestner, Garlan),
         "Machine Learning Meets Quantitative Planning: Enabling Self-Adaptation in Autonomous Robots",
         Conference("SEAMS", 2019, "14th International Symposium on Software Engineering for Adaptive and Self-Managing Systems").month(5),
-        ToAppear(),
-        Map(PDF->PDFFile("seams19.pdf")),
+        Pages(39,50),
+        Map(PDF->PDFFile("seams19.pdf"),
+            HTTP->URL("https://ieeexplore.ieee.org/document/8787014"),
+            DOI->DOI("10.1109/SEAMS.2019.00015")),
         """Modern cyber-physical systems (e.g., robotics systems) are typically composed of physical and software components, the characteristics of which are likely to change over time. Assumptions about parts of the system made at design time may not hold at run time, especially when a system is deployed for long periods (e.g., over decades). Self-adaptation is designed to find reconfigurations of systems to handle such run-time inconsistencies. Planners can be used to find and enact optimal reconfigurations in such an evolving context. However, for systems that are highly configurable, such planning becomes intractable due to the size of the adaptation space. To overcome this challenge, in this paper we explore an approach that (a) uses machine learning to find Pareto-optimal configurations without needing to explore every configuration, and (b) restricts the search space to such configurations to make planning tractable. We explore this in the context of robot missions that need to consider task timeliness and energy consumption. An independent evaluation shows that our approach results in high-quality adaptation plans in uncertain and adversarial environments."""
     ).topic(nfp,sensitivity)
 
@@ -4348,10 +4357,12 @@ explore covered and uncovered parts of the output.
    val emse19 = Article(
         Seq(Kolesnikov, Siegmund, Kaestner, Apel),
         "On the Relation of Control-flow and Performance Feature Interactions: A Case Study",
-        EMSE(2019),
-        ToAppear(),
-        Map(PDF -> PDFFile("emse19.pdf")),
-        """Detecting feautpublre interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance
+        EMSE(2019).number(24),
+        Pages(2410,2437),
+        Map(PDF -> PDFFile("emse19.pdf"),
+            DOI->DOI("10.1007/s10664-019-09705-w"),
+            HTTP->URL("https://link.springer.com/article/10.1007/s10664-019-09705-w")),
+        """Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance
 prediction techniques rely on supervised machine learning for detecting feature
 interactions, which, in turn, relies on time-consuming performance measurements to obtain training data. By providing information about potentially
 interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time
@@ -4362,7 +4373,7 @@ on two real-world systems (mbedTLS and SQLite), in which we explored
 the relation between internal (precisely control-flow) feature interactions, detected through static program analysis, and external (precisely performance)
 feature interactions, detected by performance-prediction techniques using performance measurements. We found that a relation exists that can potentially
 be exploited to predict performance interactions."""
-    ).topic(empirical, nfp)
+    ).topic(empirical, nfp)//.superseeds(tr17_extint)
 
 
 
@@ -4371,7 +4382,7 @@ be exploited to predict performance interactions."""
         "ConfigCrusher: White-Box Performance Analysis for Configurable Systems",
         2019, 5, ARXIV, "1905.02066",
         Map(PDF -> PDFFile("configcr19.pdf"),
-            HTTP -> URL("https://arxiv.org/pdf/1905.02066.pdf")),
+            HTTP -> URL("https://arxiv.org/abs/1905.02066")),
         """
         In configurable software systems, stakeholders are often interested
 in knowing how configuration options influence the performance of
@@ -4407,9 +4418,11 @@ provide additional information for analyzing configurable systems.
     val fse19ci = InProceedings(
         Seq(Widder, Hilton, Kaestner, Vasilescu),
         "Integrating and Testing the Literature: A Conceptual Replication of Continuous Integration Pain Points",
-        ESECFSE(2019).month(9).acceptanceRate(74,303),
-        ToAppear(),
-        Map(PDF -> PDFFile("fse19_ci.pdf")),
+        ESECFSE(2019).month(8).acceptanceRate(74,303),
+        Pages(647,658),
+        Map(PDF -> PDFFile("fse19_ci.pdf"), 
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3338922"),
+            DOI->DOI("10.1145/3338906.3338922")),
         """
         Continuous integration (CI) is an established software quality assurance 
         practice, and the focus of much prior research with a diverse
@@ -4431,9 +4444,11 @@ provide additional information for analyzing configurable systems.
     val fse19forks = InProceedings(
         Seq(Zhou, Vasilescu, Kaestner),
         "What the Fork: A Study of Inefficient and Efficient Forking Practices in Social Coding",
-        ESECFSE(2019).month(9).acceptanceRate(74,303),
-        ToAppear(),
-        Map(PDF -> PDFFile("fse19_forks.pdf")),
+        ESECFSE(2019).month(8).acceptanceRate(74,303),
+        Pages(350,361),
+        Map(PDF -> PDFFile("fse19_forks.pdf"),
+            HTTP->URL("https://dl.acm.org/citation.cfm?id=3338918"),
+            DOI->DOI("10.1145/3338906.3338918")),
         """
         Forking and pull requests have been widely used in open-source communities as a uniform development and contribution mechanisms, which gives developers the flexibility to modify their own fork without affecting others. However, some projects observe severe inefficiencies, including lost and duplicate contributions and fragmented communities. We observed that different communities experience these inefficiencies to widely different degrees and interviewed practitioners indicate several project characteristics and practices, including modularity and coordination mechanisms, that may encourage more efficient forking practices. In this paper, we explore how open-source projects on GitHub differ with regard to forking inefficiencies. Using logistic regression models, we analyzed the association of context factors with the inefficiencies and found that better modularity and centralized management can encourage more contributions and a higher fraction of accepted pull requests, suggesting specific good practices that project maintainers can adopt to reduce forking-related inefficiencies in their community.
         """
@@ -4444,8 +4459,9 @@ provide additional information for analyzing configurable systems.
         "How Do Code Changes Evolve in Different Platforms? A Mining-based Investigation",
         Conference("ICSME", 2019, "35th International Conference on Software Maintenance and Evolution").
             month(9).location("Cleveland, OH"),
-        ToAppear(),
-        Map(),
+        Pages( 218, 222),
+        Map(DOI->DOI("10.1109/ICSME.2019.00033"), 
+            HTTP->URL("http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8919007&isnumber=8918933")),
         """
         Software developed in different platforms has different 
 characteristics and needs. More specifically, code changes are 
@@ -4474,6 +4490,60 @@ in successful software systems can be followed.
       ).topic(empirical,opensource)
 
 
+    val seaiTR = TechReport(
+        Seq(Kaestner, Kang),
+        "Teaching Software Engineering for AI-Enabled Systems",
+        2019, 11, CMUTR, "",
+        Map(PDF -> PDFFile("seai19.pdf")),
+        """
+Software engineers have significant expertise to offer when building
+intelligent systems, drawing on decades of experience and methods
+for building systems that scale and are responsive and robust,
+even when built on unreliable components. Systems with artificial-intelligence
+or machine-learning (ML) components raise new challenges
+and require careful engineering. We designed a new course
+to teach software-engineering skills to students with a background
+in ML. We specifically go beyond traditional ML courses that teach
+modeling techniques under artifical conditions and focus, in lecture
+and assignments, on realism with large and changing datasets,
+robust and evolvable infrastructure, and purposeful requirements
+engineering that considers also ethics and fairness. We describe the
+course and our infrastructure and share experience and all material
+from teaching the course for the first time.
+        """
+    ).topic(seai).selected()
 
+
+    val icse20forks = InProceedings(
+        Seq(Zhou, Vasilescu, Kaestner),
+        "How Has Forking Changed in the Last 20 Years? A Study of Hard Forks on GitHub",
+        ICSE20,
+        ToAppear(),
+        Map(/*PDF->PDFFile("icse20forks.pdf")*/),
+        """
+The notion of forking has changed with the rise of distributed version control systems and social coding environments, like GitHub. Traditionally forking refers to splitting off an independent development branch (which we call hard forks); research on hard forks, conducted mostly in pre-GitHub days showed that hard forks were often seen critical as they may fragment a community. Today, in social forking environments, open-source developers are encouraged to fork a project in order to integrate contributions to the community (which we call social forks), which may have also influenced perceptions and practices around hard forks. To revisit hard forks, we identify, study and classify 15,306 hard forks on GitHub and interview 18 owners of hard forks or forked repositories. We find that, among others, hard forks often evolve out of social forks rather than being planned deliberately and that perception about hard forks have indeed changed dramatically, seeing them often as a positive non-competitive alternative to the original project.        """
+    ).selected().topic(opensource, ecosystem, awareness)
+
+    val icse20donations = InProceedings(
+        Seq(Overney, Meinicke, Kaestner, Vasilescu),
+        "How to Not Get Rich: An Empirical Study of Donations in Open Source",
+        ICSE20,
+        ToAppear(),
+        Map(/*PDF->PDFFile("icse20donations.pdf")*/),
+        """
+            Open source is ubiquitous and critical infrastructure, yet funding and sustaining it is challenging. While there are many different funding models for open-source donations and concerted efforts through foundations, donation platforms like Paypal, Patreon, or OpenCollective are popular and low-bar forms to raise funds for open-source development, for which GitHub recently even built explicit support. With a mixed-method study, we explore the emerging and largely unexplored phenomenon of donations in open source: We quantify how commonly open-source projects ask for donations, statistically model characteristics of projects that ask for and receive donations, analyze for what the requested funds are needed and used, and assess whether the received donations achieve the intended outcomes. We find 25,885 projects asking for donations on GitHub, often to support engineering activities; however, we also find no clear evidence that donations influence the activity level of a project. In fact, we find that donations are used in a multitude of ways, raising new research questions about effective funding.
+            """
+    ).selected().topic(opensource, ecosystem, awareness)
+
+    val icseseip20 = InProceedings(
+        Seq(Meinicke, Wong, Vasilescu, Kaestner),
+        "Exploring Differences and Commonalities between Feature Flags and Configuration Options",
+        Conference("ICSE-SEIP", 2020, "Proc. International Conference on Software Engineering -- Software Engineering in Practice Track").month(5),
+        ToAppear(),
+        Map(PDF->PDFFile("icsenier20.pdf")),
+        """
+        Feature flags for continuous deployment and configuration options for customizing software share many similarities, both conceptually and technically. However, neither academic nor practitioner publications seem to distinguish these two concepts. We argue that a distinction is valuable, as applications, goals, and challenges differ fundamentally between feature flags and configuration options. In this work, we explore the differences and commonalities of both concepts to help understand practices and challenges and to help transfer existing solutions (e.g., for testing). To better understand feature flags and how they relate to configuration options, we performed nine semi-structured interviews with feature-flag experts. We discovered a number of distinguishing characteristics but also opportunities for knowledge and technology transfer across both communities. Overall, we think that both communities can learn from each other.        
+        """
+    ).topic(featureflags, spl).selected()
 
 }

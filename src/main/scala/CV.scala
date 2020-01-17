@@ -23,7 +23,9 @@ object CV {
             to <strong>detect errors</strong>, to help with <strong>nonmodular changes</strong>, and to <strong>improve program comprehension</strong>
             in software systems, typically systems with a high amount of variability. Among others, I have developed approaches to parse and
             type check all compile-time configurations of the <strong>Linux kernel</strong> in the
-            <strong>TypeChef</strong> project.</p> :+
+            <strong>TypeChef</strong> project. I am also interested in <strong>open-source sustainability</strong>
+            and teaching <strong>software engineering for AI-enabled systems</strong>.</p>
+            <p>I currently serve as the director of the <a href="https://se-phd.isri.cmu.edu">CMU Software Engineering Ph.D. Program</a>.</p> :+
             <p>Profiles:
                 <a href="cv.pdf">Curriculum vitae</a>,
                 <a href="http://scholar.google.com/citations?user=PR-ZnJUAAAAJ">Google Scholar</a>,
@@ -81,6 +83,9 @@ object CV {
           |
           |\section{Academic Employment}
           |\begin{CV}
+          |\item[since Sep. 2019]
+          | Director of the Software Engineering Ph.D. Program,\\
+          | Carnegie Mellon University
           |\item[since Jul. 2018]
           |	Associate Professor,\\
           |	Carnegie Mellon University
@@ -112,6 +117,11 @@ object CV {
             "",
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
+        ),
+        Course("17-654 Analysis of Software Artifacts",
+            "",
+            URL("http://mse.isri.cmu.edu/software-engineering/Courses/17-654-analysis-of-software-artifacts.html"),
+            English, SpringTerm(2020), new CourseKind with Lecture
         ),
         Course("17-445/645 Software Engineering for AI-Enabled Systems",
             "",
@@ -307,6 +317,7 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(SPLC(2020).url(URL("http://www.splc.net")), PC),
         Committee(VAMOS(2020).url(URL("https://vamos2020.dbse.iti.cs.ovgu.de")), PC),
         Committee(ICSE(2020), PC),
         Committee(ESECFSE(2019), PC),
@@ -484,6 +495,12 @@ object CV {
 
     val awards: Seq[AwardOrGrant] = Seq(
         Award(
+            "Most Influential Paper Award at the International Conference on Software Product Lines (SPLC) 2019",
+            URL("https://splc2019.net"),
+            new GregorianCalendar(2019, 9 - 1, 12).getTime,
+            Nil
+        ),
+        Award(
             "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2017",
             URL("http://ase2017.org"),
             new GregorianCalendar(2017, 11 - 1, 1).getTime,
@@ -618,6 +635,10 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2019, 9), "Performance Analysis for Highly-Configurable Systems", "Keynote for the 2019 System and Software Product Line Conference (SPLC)"),
+        InvitedTalk(time(2019, 9), "Granularity in Software Product Lines: 12 Years Later", "Most Influential Paper Award Talk at the 2019 System and Software Product Line Conference (SPLC)"),
+        InvitedTalk(time(2019, 9), "Efficiently Finding Higher-Order Mutants", "Saarland University"),
+        InvitedTalk(time(2019, 2), "How to Break an API: How Community Values Influence Practices", "University of South Carolina"),
         InvitedTalk(time(2018, 7), "How to Break an API: How Community Values Influence Practices", "École Polytechnique de Montréal"),
         InvitedTalk(time(2017, 5), "How to Break an API: How Community Values Influence Practices", "Speaker at jsconf.eu"),
         InvitedTalk(time(2016, 5), "Quality Assurance for Highly-Configurable Systems", "Keynote Talk for the VACE Workshop at ICSE'16"),
@@ -672,15 +693,15 @@ object CV {
     val current = List(
         //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
         (Ferreira, Some("(PhD student since 2014)")),
-        (Figueiredo, Some("(visiting scholar, 2017-2018)")),
         (Velez, Some("(PhD student since 2016)")),
         (Wong, Some("(PhD student since 2014)")),
         (Zhou, Some("(PhD student since 2014)")),
-        (Person("Kattiana","Constantino", "Federal University of Minas Gerais"), Some("(visiting scholar 2018-2019)")),
         (Meinicke, Some("(visiting scholar, 2014, 2016-2019)"))
     )
     val former = List(
         (Ahmad, Some("(graduated MSc, 2016)")),
+        (Person("Kattiana","Constantino", "Federal University of Minas Gerais"), Some("(visiting scholar 2018-2019)")),
+        (Figueiredo, Some("(visiting scholar, 2017-2018)")),
         (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
         (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
         (Person("Raman", "Goyal"), Some("(visiting scholar, 2015, now at Epic)")),
@@ -691,15 +712,21 @@ object CV {
         (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
         (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
         (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017, now at Configit)")),
-        (Trockman, Some("(REU student, 2017)")),
+        (Trockman, Some("(REU student, 2017, now PhD student at CMU)")),
         (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017, now PhD student at Northwestern)")),
         (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
         (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)")),
         (Soares, Some("(visiting scholar, 2017-2018)")),
         (Ren, Some("(REU student, 2018)")),
-        (Chen, Some("(REU student, 2018)")),
+        (Chen, Some("(REU student, 2018, now PhD student at CMU)")),
         (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018)")),
-        (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)"))
+        (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)")),
+        (Person("Courtney","Miller","New College of Florida"), Some("(REU student, 2018)")),
+        (Person("Sophie", "Rosas-Smith","Wellesley College"), Some("(REU student, 2018)")),
+        (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
+        (Person("Cassandra","Overney","Olin College of Engineering"), Some("(REU student, 2019)")),
+        (Person("Naveen","Raman","University of Maryland, College Park"), Some("(REU student, 2019)")),
+        (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)"))
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),
