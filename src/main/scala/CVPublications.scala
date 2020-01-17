@@ -165,6 +165,9 @@ object Coauthors {
     val Scherlis = Person("William", "Scherlis", "Carnegie Mellon University")
     val Kang = Person("Eunsuk", "Kang", "Carnegie Mellon University")
     val Overney = Person("Cassandra", "Overney", "Franklin W. Olin College of Engineering")
+    val Raman = Person("Naveen", "Raman", "University of Maryland, College Park")
+    val Cao = Person("Minxuan", "Cao", "Carnegie Mellon University")
+    val Tsvetkov = Person("Yulia", "Tsvetkov", "Carnegie Mellon University")
 }
 
 object Topics {
@@ -4490,10 +4493,12 @@ in successful software systems can be followed.
       ).topic(empirical,opensource)
 
 
-    val seaiTR = TechReport(
+    val icseseet20 = InProceedings(
         Seq(Kaestner, Kang),
         "Teaching Software Engineering for AI-Enabled Systems",
-        2019, 11, CMUTR, "",
+		Conference("ICSE-SEET", 2020, "Proc. International Conference on Software Engineering -- Software Engineering Education and Training Track").month(5).
+			location("Seoul").acceptanceRate(21 , 90).publisher(ACM),
+		ToAppear(),
         Map(PDF -> PDFFile("seai19.pdf")),
         """
 Software engineers have significant expertise to offer when building
@@ -4540,10 +4545,24 @@ The notion of forking has changed with the rise of distributed version control s
         "Exploring Differences and Commonalities between Feature Flags and Configuration Options",
         Conference("ICSE-SEIP", 2020, "Proc. International Conference on Software Engineering -- Software Engineering in Practice Track").month(5),
         ToAppear(),
-        Map(PDF->PDFFile("icsenier20.pdf")),
+        Map(PDF->PDFFile("icseseip20.pdf")),
         """
         Feature flags for continuous deployment and configuration options for customizing software share many similarities, both conceptually and technically. However, neither academic nor practitioner publications seem to distinguish these two concepts. We argue that a distinction is valuable, as applications, goals, and challenges differ fundamentally between feature flags and configuration options. In this work, we explore the differences and commonalities of both concepts to help understand practices and challenges and to help transfer existing solutions (e.g., for testing). To better understand feature flags and how they relate to configuration options, we performed nine semi-structured interviews with feature-flag experts. We discovered a number of distinguishing characteristics but also opportunities for knowledge and technology transfer across both communities. Overall, we think that both communities can learn from each other.        
         """
     ).topic(featureflags, spl).selected()
+
+
+    val icsenier20 = InProceedings(
+        Seq(Raman, Cao, Tsvetkov, Kaestner, Vasilescu),
+        "Stress and Burnout in Open Source: Toward Finding, Understanding, and Mitigating Unhealthy Interactions",
+        Conference("ICSE-NIER", 2020, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
+        ToAppear(),
+        Map(/*PDF->PDFFile("icsenier20.pdf")*/),
+        """
+            Developers from open-source communities have reported high stress levels from frequent demands for features and bug fixes and the sometimes aggressive tone of these demands. Toxic conversations may demotivate and burn out developers, creating challenges for sustaining open source. We outline a path toward finding, understanding, and possibly mitigating such unhealthy interactions. We take a first step toward finding them, by developing and demonstrating a measurement instrument (an SVM classifier tailored towards the software engineering domain) to detect toxic discussions in GitHub issues. We used our classifier to analyze trends over time and in different GitHub communities, finding that toxicity varies by community and that toxicity decreased from 2012-2018.
+        """
+    ).topic(ecosystem,empirical,opensource)
+
+
 
 }
