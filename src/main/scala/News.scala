@@ -12,6 +12,14 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2020, 1-1, 31).getTime, "Software Engineering for ML - An Annotated Bibliography",
+          <span>I'm sharing a reading list for SE4ML papers (software engineering for machine learning systems) that I encountered in preparation for our
+            <em>Software Engineering for AI-Enabled Systems</em> course
+            (see <a href="https://ckaestne.github.io/seai/">course web page</a> and <a href="https://arxiv.org/abs/2001.06691">paper about the course</a>)
+            in form of an annotated bibliography: <a href="https://github.com/ckaestne/seaibib">https://github.com/ckaestne/seaibib</a>.
+           Over the last year, I had many discussions with people interested in the topic and they always asked for references.
+           I hope this list of papers with a few comments can help your own exploration in this field. Of course, I'm still happy 
+           to discuss these issues and I'm happy to receive pointers to other interesting readings in the field (e.g. send a pull request to the bibliography).</span>) ::
         NewsItem(new GregorianCalendar(2019, 9-1, 20).getTime, "SPLC Most Influencial Paper Award",
           <span>I'm honored to receive the SPLC most influential paper award for our ICSE'08 paper <em>Granularity in Software Product Lines</em>. <a href="https://isri.cmu.edu/news/2019/0906-splc.html">Press release</a>.</span>) ::
         NewsItem(new GregorianCalendar(2019, 5-1, 20).getTime, "Feature Flags vs Configuration Options",

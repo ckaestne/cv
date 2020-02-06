@@ -4499,7 +4499,7 @@ in successful software systems can be followed.
 		Conference("ICSE-SEET", 2020, "Proc. International Conference on Software Engineering -- Software Engineering Education and Training Track").month(5).
 			location("Seoul").acceptanceRate(21 , 90).publisher(ACM),
 		ToAppear(),
-        Map(PDF -> PDFFile("seai19.pdf")),
+        Map(PDF -> PDFFile("seai19.pdf"), HTTP->URL("http://arxiv.org/abs/2001.06691")),
         """
 Software engineers have significant expertise to offer when building
 intelligent systems, drawing on decades of experience and methods
@@ -4524,7 +4524,7 @@ from teaching the course for the first time.
         "How Has Forking Changed in the Last 20 Years? A Study of Hard Forks on GitHub",
         ICSE20,
         ToAppear(),
-        Map(/*PDF->PDFFile("icse20forks.pdf")*/),
+        Map(/*PDF->PDFFile("icse20-forks.pdf")*/),
         """
 The notion of forking has changed with the rise of distributed version control systems and social coding environments, like GitHub. Traditionally forking refers to splitting off an independent development branch (which we call hard forks); research on hard forks, conducted mostly in pre-GitHub days showed that hard forks were often seen critical as they may fragment a community. Today, in social forking environments, open-source developers are encouraged to fork a project in order to integrate contributions to the community (which we call social forks), which may have also influenced perceptions and practices around hard forks. To revisit hard forks, we identify, study and classify 15,306 hard forks on GitHub and interview 18 owners of hard forks or forked repositories. We find that, among others, hard forks often evolve out of social forks rather than being planned deliberately and that perception about hard forks have indeed changed dramatically, seeing them often as a positive non-competitive alternative to the original project.        """
     ).selected().topic(opensource, ecosystem, awareness)
@@ -4534,7 +4534,7 @@ The notion of forking has changed with the rise of distributed version control s
         "How to Not Get Rich: An Empirical Study of Donations in Open Source",
         ICSE20,
         ToAppear(),
-        Map(/*PDF->PDFFile("icse20donations.pdf")*/),
+        Map(PDF->PDFFile("icse20-donations.pdf")),
         """
             Open source is ubiquitous and critical infrastructure, yet funding and sustaining it is challenging. While there are many different funding models for open-source donations and concerted efforts through foundations, donation platforms like Paypal, Patreon, or OpenCollective are popular and low-bar forms to raise funds for open-source development, for which GitHub recently even built explicit support. With a mixed-method study, we explore the emerging and largely unexplored phenomenon of donations in open source: We quantify how commonly open-source projects ask for donations, statistically model characteristics of projects that ask for and receive donations, analyze for what the requested funds are needed and used, and assess whether the received donations achieve the intended outcomes. We find 25,885 projects asking for donations on GitHub, often to support engineering activities; however, we also find no clear evidence that donations influence the activity level of a project. In fact, we find that donations are used in a multitude of ways, raising new research questions about effective funding.
             """
