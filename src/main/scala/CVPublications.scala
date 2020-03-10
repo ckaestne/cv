@@ -168,6 +168,7 @@ object Coauthors {
     val Raman = Person("Naveen", "Raman", "University of Maryland, College Park")
     val Cao = Person("Minxuan", "Cao", "Carnegie Mellon University")
     val Tsvetkov = Person("Yulia", "Tsvetkov", "Carnegie Mellon University")
+    val Renteria = Person("Juan David Hoyos", "Rentería", "Universidad Nacional de Colombia")
 }
 
 object Topics {
@@ -4557,12 +4558,20 @@ The notion of forking has changed with the rise of distributed version control s
         "Stress and Burnout in Open Source: Toward Finding, Understanding, and Mitigating Unhealthy Interactions",
         Conference("ICSE-NIER", 2020, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
         ToAppear(),
-        Map(/*PDF->PDFFile("icsenier20.pdf")*/),
+        Map(PDF->PDFFile("icsenier20.pdf")),
         """
             Developers from open-source communities have reported high stress levels from frequent demands for features and bug fixes and the sometimes aggressive tone of these demands. Toxic conversations may demotivate and burn out developers, creating challenges for sustaining open source. We outline a path toward finding, understanding, and possibly mitigating such unhealthy interactions. We take a first step toward finding them, by developing and demonstrating a measurement instrument (an SVM classifier tailored towards the software engineering domain) to detect toxic discussions in GitHub issues. We used our classifier to analyze trends over time and in different GitHub communities, finding that toxicity varies by community and that toxicity decreased from 2012-2018.
         """
     ).topic(ecosystem,empirical,opensource)
 
-
+    val msr20 = InProceedings(
+        Seq(Meinicke, Renteria, Kaestner, Vasilescu),
+        "Capture the Feature Flag: Detecting Feature Flags in Open-Source",
+        MSR(2020).month(5).location("Seoul").publisher(ACM).acceptanceRate(45, 171),
+        ToAppear(),
+        Map(),
+        """
+Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidden behind a boolean option during development. Flags are used for many purposes, such as A/B testing and turning off a feature more easily in case of failures. While software engineering feature flags research is burgeoning, examples of software projects using flags rarely come from outside commercial and private projects, stifling academic progress. To address this gap, in this paper we present a novel mining software repositories approach to detect feature flagging open-source projects, based on analyzing the projects' commit messages. We apply our approach to all open-source GitHub projects, identifying 231,223 candidate feature flagging projects, and manually validating 100. We also report on an initial analysis of feature flags in the validated sample of 100 projects, investigating practices that correlate with shorter flag lifespans (typically desirable to reduce technical debt), such as using the issue tracker and having the flag owner (the developer introducing a flag) also be the one removing it."""
+     ).topic(featureflags)
 
 }

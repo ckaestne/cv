@@ -12,6 +12,8 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2020, 3-1, 8).getTime, "Machine Learning is Requirements Engineering — On the Role of Bugs, Verification, and Validation in Machine Learning",
+		<span>I <a href="https://medium.com/@ckaestne/machine-learning-is-requirements-engineering-8957aee55ef4">wrote up</a> some insights from some discussions at Dagstuhl last week about bugs in machine-learned models and that we should rather talk about validation than verification of such models. Feedback welcome.</span>) ::
         NewsItem(new GregorianCalendar(2020, 1-1, 31).getTime, "Software Engineering for ML - An Annotated Bibliography",
           <span>I'm sharing a reading list for SE4ML papers (software engineering for machine learning systems) that I encountered in preparation for our
             <em>Software Engineering for AI-Enabled Systems</em> course

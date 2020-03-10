@@ -37,7 +37,7 @@ object GenHtml extends App with RSSFeed {
     }
 
     object FancyPersonHtmlFormater extends PlainHtmlFormater {
-        override def person(person: Person): NodeSeq = renderPerson(person)
+        override def person(person: Person): NodeSeq = renderPerson(person, true)
 
         def renderPerson(person: Person, fullname: Boolean = false, htmlClass: String = "author"): NodeSeq = {
             val name = if (fullname) person.fullname else person.abbrvname
