@@ -13,14 +13,14 @@ object Coauthors {
     val Kuhlemann = Person("Martin", "Kuhlemann", URL("http://wwwiti.cs.uni-magdeburg.de/~mkuhlema/"), "Daimler AG")
     val Trujillo = Person("Salvador", "Trujillo", "Ikerlan Research Center")
     val Batory = Person("Don", "Batory", URL("http://www.cs.utexas.edu/~dsb/"), "University of Texas at Austin")
-    val Lengauer = Person("Christian", "Lengauer", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/lengauer/"), "University of Passau")
+    val Lengauer = Person("Christian", "Lengauer", URL("https://www.infosun.fim.uni-passau.de/cl/staff/lengauer/"), "University of Passau")
     val Moeller = Person("Bernhard", "Möller", URL("http://www.informatik.uni-augsburg.de/~moeller/"), "University of Augsburg")
     val Siegmund = Person("Norbert", "Siegmund", URL("http://www.infosun.fim.uni-passau.de/spl/people-nsiegmund.php"), "University of Passau")
     val Rosenmueller = Person("Marko", "Rosenmüller", URL("http://wwwiti.cs.uni-magdeburg.de/~rosenmue/"), "General Electric")
     val Pukall = Person("Mario", "Pukall", URL("http://wwwiti.cs.uni-magdeburg.de/~pukall/"), "University of Magdeburg")
     val Rahman = Person("Syed Saif", "ur Rahman", "SZABIST")
     val Thuem = Person("Thomas", "Thüm", URL("https://www.tu-braunschweig.de/isf/team/thuem"), "Technische Universität Braunschweig")
-    val Groesslinger = Person("Armin", "Größlinger", URL("http://www.infosun.fmi.uni-passau.de/cl/staff/groesslinger/"), "University of Passau")
+    val Groesslinger = Person("Armin", "Größlinger", "University of Passau")
     val Heidenreich = Person("Florian", "Heidenreich", "Technical University of Dresden")
     val Sunkle = Person("Sagar", "Sunkle")
     val Liebig = Person("Jörg", "Liebig", URL("http://www.infosun.fim.uni-passau.de/cl/staff/liebig/"), "University of Passau")
@@ -57,7 +57,7 @@ object Coauthors {
     val Eichberg = Person("Michael", "Eichberg", "Technical University of Darmstadt")
     val vonRhein = Person("Alexander", "von Rhein", URL("http://www.infosun.fim.uni-passau.de/spl/people-rhein.php"), "University of Passau")
     val Pusch = Person("Jonas", "Pusch", "University of Marburg")
-    val Brechmann = Person("André", "Brechmann", URL("http://www.ifn-magdeburg.de/en/special_labs/non-invasive_brain_imaging/index.jsp"), "Leibniz Institute for Neurobiology, Madgeburg")
+    val Brechmann = Person("André", "Brechmann", "Leibniz Institute for Neurobiology, Madgeburg")
     val Doerre = Person("Jens", "Dörre", "University of Passau")
     val Sobernig = Person("Stefan", "Sobernig", URL("http://nm.wu-wien.ac.at/nm/sobernig"), "Vienna University of Economics and Business")
     val Senkaya = Person("Semah", "Senkaya", "University of Passau")
@@ -1410,16 +1410,14 @@ object CVPublications {
         Seq(Apel, Cook, Czarnecki, Kaestner, Person("Neil", "Loughran"), Person("Oscar", "Nierstrasz")),
         "Proceedings of the First International Workshop on Feature-Oriented Software Development {(FOSD)}, October 6, 2009, Denver, Colorado, USA",
         Venue("", 2009, "", KMisc).publisher(ACM).location("Denver, CO, USA").isbn("978-1-60558-567-3").month(10),
-        Map(PDF -> URL("http://www.infosun.fim.uni-passau.de/cl/staff/apel/FOSD2009/FOSD2009_Printed_Proceedings.pdf"),
-            HTTP -> URL("http://portal.acm.org/citation.cfm?id=1629716")),
+        Map(HTTP -> URL("http://portal.acm.org/citation.cfm?id=1629716")),
         "")
 
     val tr09_javadapt = TechReport(
         Seq(Pukall, Kaestner, Goetz, Cazzola, Saake),
         "Flexible Runtime Program Adaptations in Java -- A Comparison",
         2009, 11, MDTR, "FIN-2009-14",
-        Map(PDF -> PDFFile("fin-0914.pdf"),
-            HTTP -> URL("http://www.cs.uni-magdeburg.de/Forschung/Technical+Reports/Technical+Reports+2009.html")),
+        Map(PDF -> PDFFile("fin-0914.pdf")),
         "").hideabstract().topic(dsu)
 
 
@@ -1579,8 +1577,7 @@ object CVPublications {
         Seq(Kaestner),
         "Virtual Separation of Concerns: Toward Preprocessors 2.0",
         2010, 5, "PhD thesis", MDTR,
-        Map(DOI -> URL("http://edoc.bibliothek.uni-halle.de/servlets/DocumentServlet?id=8044"),
-            HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
+        Map(HTTP -> URL("http://logos-verlag.de/cgi-bin/engbuchmid?isbn=2527&lng=deu&id="),
             PDF -> PDFFile("diss_kaestner_virtual_separation_of_concerns.pdf")),
         """
             Conditional compilation with preprocessors such as *cpp* is a simple but effective means to implement variability.
@@ -2185,7 +2182,7 @@ object CVPublications {
         Seq(Kuhlemann, Kaestner, Apel, Saake),
         "An Algebra for Refactoring and Feature-Oriented Programming",
         2011, 9, MDTR, "FIN-2011-06",
-        Map(HTTP -> URL("http://www.cs.uni-magdeburg.de/fin_media/downloads/forschung/technical_reports_und_preprints/2011/TechReport06-p-2138.pdf")),
+        Map(PDF -> PDFFile("tr11_algebra.pdf")),
         "").topic(fop).hideabstract()
 
 
@@ -2270,7 +2267,6 @@ object CVPublications {
         Journal("it", 2012, "Information Technology").volume(54).number(1).kind(KInvited),
         Pages(42, 46),
         Map(DOI -> DOI("10.1524/itit.2012.0662"),
-            HTTP -> URL("http://it-information-technology.de/"),
             PDF -> PDFFile("itit12.pdf")),
         "").
         crosscite("Invited summary of \\cite{kaestnerDiss}")
@@ -4228,7 +4224,7 @@ explore covered and uncovered parts of the output.
         "How to Efficiently Process $2^{100}$ List Variations",
         Venue("SPLASH-SRC", 2017, "2017 ACM SIGPLAN Conference on Systems, Programming, Languages, and Applications: Software for Humanity", KWorkshopDemoTool).publisher(ACM),
         Pages(36,38),
-        Map(PDF->PDFFile("srcsplash18.pdf"),
+        Map(PDF->PDFFile("srcsplash17.pdf"),
             HTTP->URL("http://doi.acm.org/10.1145/3135932.3135951"),
             DOI->DOI("10.1145/3135932.3135951")),
         """
@@ -4335,7 +4331,7 @@ explore covered and uncovered parts of the output.
         "Understanding Similarities and Differences in Software Development Practices Across Domains",
         Conference("ICGSE", 2019, "14th ACM/IEEE International Conference on Global Software Engineering").month(5),
         Pages(74,84),
-        Map(DOI->DOI("10.1109/ICGSE.2019.00013"),HTTP->URL("https://dl.acm.org/citation.cfm?id=3339049")),
+        Map(DOI->DOI("10.1109/ICGSE.2019.00013"),HTTP->URL("https://dl.acm.org/citation.cfm?id=3339049"),PDF->PDFFile("icgse19.pdf")),
         """Since software engineering is not a homogeneous whole, we expect that development practices are differently adopted across domains. However, little is known about how practices are followed in different software domains (e.g., healthcare, banking, and Oil and gas). In this paper, we report the results of an exploratory and inductive research, in which we seek differences and similarities regarding the adoption of several practices across 13 domains. We interviewed 19 developers with experience in multiple domains (i.e., cross-domain developers) from large multinational companies, such as Facebook, Google and Macy's. We also run a Web survey to confirm (or not) the interview results. Our findings show that, in fact, different domains adopt practices in a different fashion. We identified that continuous integration practices are interrupted during important commerce periods (e.g., Black Friday) in the financial domains. We also noticed the company's culture and policies strongly influence the adopted practices, instead of the domain itself. Our study also has important implications for practice. For instance, companies should provide targeted training for their development teams and new interdisciplinary courses in software engineering and other domains, such as healthcare, are highly recommended."""
     ).topic(empirical)
 
@@ -4355,7 +4351,7 @@ explore covered and uncovered parts of the output.
         "Model-based Adaptation for Robotics Software",
         Journal("IEEE-Sw", 2019, "IEEE Software").volume(36).number(2).publisher(IEEE),
         Pages(83, 90),
-        Map(DOI -> DOI("10.1109/MS.2018.2885058")),
+        Map(DOI -> DOI("10.1109/MS.2018.2885058"),PDF->PDFFile("ieeesw19.pdf")),
         """We developed model-based adaptation, an approach that leverages models of software and its environment to enable automated adaptation. The goal of our approach is to build long-lasting software systems that can effectively adapt to changes in their environment."""
     ).topic()
 

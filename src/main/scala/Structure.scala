@@ -376,6 +376,8 @@ class Publication(
 
     def toBibtex(): String = renderer.toBibtex(this)
 
+    override def toString(): String =  render(DefaultBibStyle, GenPubList.TextFormater)
+
 }
 
 trait Formater[A] {
@@ -544,6 +546,8 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
         else if (volume.isDefined && !series.isDefined)
             formater.text("volume %s, ".format(volume.get))
         else formater.none
+
+    override def toString = s"Venue($name $year ($short))"
 }
 
 case class Publisher(name: String, address: String) {
