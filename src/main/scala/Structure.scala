@@ -573,7 +573,9 @@ object German extends Language {
     override def toString = "German"
 }
 
-sealed abstract class Term(val year: Int) extends Ordered[Term]
+sealed abstract class Term(val year: Int) extends Ordered[Term] {
+    def toShortString: String
+}
 
 case class SummerTerm(ayear: Int) extends Term(ayear) {
     def compare(that: Term) = that match {
@@ -585,6 +587,7 @@ case class SummerTerm(ayear: Int) extends Term(ayear) {
     }
 
     override def toString = "Summer " + year
+    def toShortString: String = "S"+year.toString().takeRight(2)
 }
 
 case class SpringTerm(ayear: Int) extends Term(ayear) {
@@ -597,6 +600,7 @@ case class SpringTerm(ayear: Int) extends Term(ayear) {
     }
 
     override def toString = "Spring " + year
+    def toShortString: String = "S"+year.toString().takeRight(2)
 }
 
 case class WinterTerm(ayear: Int) extends Term(ayear) {
@@ -609,6 +613,7 @@ case class WinterTerm(ayear: Int) extends Term(ayear) {
     }
 
     override def toString = "Winter " + year + "/" + (year + 1 - 2000)
+    def toShortString: String = "F"+year.toString().takeRight(2)
 }
 
 case class FallTerm(ayear: Int) extends Term(ayear) {
@@ -620,7 +625,8 @@ case class FallTerm(ayear: Int) extends Term(ayear) {
         case Continuous(_) => -1
     }
 
-    override def toString = "Fall " + year 
+    override def toString = "Fall " + year
+    def toShortString: String = "F"+year.toString().takeRight(2)
   }
 
 case class Continuous(label: String) extends Term(5000) {
@@ -629,6 +635,7 @@ case class Continuous(label: String) extends Term(5000) {
         case _ => 1
       }
     override def toString=label
+    def toShortString: String = label
 }
 
 
@@ -687,6 +694,7 @@ object ERC extends CommitteeRole("External-Review-Committee Member", "ERC")
 object GeneralChair extends CommitteeRole("General Chair", "General Chair")
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 object PCCChair extends CommitteeRole("Program-Committee Co-Chair", "PC Co-Chair")
+object ConfChair extends CommitteeRole("Conference Chair", "Conf. Chair")
 case class OtherChair(atitle: String, abbrev: String) extends CommitteeRole(atitle, abbrev)
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
@@ -696,7 +704,7 @@ object DS extends CommitteeRole("Doctorial Symposium Committee Member", "DS")
 object DSCChair extends CommitteeRole("Doctoral Symposium Co-Chair", "DS Chair")
 
 object CommitteeRoles {
-    val organizationRoles = Set[CommitteeRole](GeneralChair, PCChair, PCCChair, OC, SC, DSCChair)
+    val organizationRoles = Set[CommitteeRole](GeneralChair, PCChair, PCCChair, ConfChair, OC, SC, DSCChair)
     val pcRoles = Set(PC, ERC)
     val pcAndDsRoles = pcRoles+DS
 }
@@ -707,6 +715,11 @@ case class Review(
                      venue: Venue,
                      invitedBy: String = ""
                      )
+
+case class Editorship(roletitle: String, journal: Venue, startYear: Int, endYear: Option[Int]) {
+    def yearRange: String = if (endYear.isDefined) (startYear+"-"+endYear.get) else ("since "+startYear)
+    def yearRangeL: String = if (endYear.isDefined) (startYear+"--"+endYear.get) else ("since "+startYear)
+}
 
 class URLException(link: String, e: Exception) extends Exception {
     override def toString = "Cannot resolve URL " + link + " (" + e + ")"

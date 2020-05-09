@@ -4,21 +4,31 @@ import xml.{NodeSeq, Text}
 
 
 class StringTexHelper(str: String) {
-    def toTex = str.
-        replace("&", "\\&").
-        replace("%", "\\%").
-        replace(" \\%", "\\,\\%").
-        replace("#", "\\#").
-        replace("^", "\\textasciicircum{}").
-        replace("ü", "{\\\"u}").
-        replace("ä", "{\\\"a}").
-        replace("ö", "{\\\"o}").
-        replace("é", "{\\'e}").
-        replace("ß", "{\\ss}").
-        replace("ą", "{\\k{a}}").
-        replace("Ș", "{\\c{S}}").
-        replace("ă", "{\\~{a}}").
-        replace("á", "{\\'a}")
+    def toTex: String = {
+        val s: String=str.
+            replace("&", "\\&").
+            replace("%", "\\%").
+            replace(" \\%", "\\,\\%").
+            replace("#", "\\#").
+            replace("’", "'").
+            replace("^", "\\textasciicircum{}").
+            replace("ü", "{\\\"u}").
+            replace("ä", "{\\\"a}").
+            replace("ö", "{\\\"o}").
+            replace("é", "{\\'e}").
+            replace("ß", "{\\ss}").
+            replace("ą", "{\\k{a}}").
+            replace("Ș", "{\\c{S}}").
+            replace("ă", "{\\u{a}}").
+            replace("ã", "{\\~{a}}").
+            replace("í", "{\\'{i}}").
+            replace("à", "{\\`a}").
+            replace("á", "{\\'a}")
+//        assert(s.forall(isAcceptable), "invalid character in "+s+": "+s.find(c=> !isAcceptable(c)).get)
+        s
+    }
+
+    private def isAcceptable(s: Char) :Boolean = (s>='a' && s<='z') || (s>='A' && s<='Z') || (s>='0' && s<='9') || ("\\{}\"'%&,. ~\n#()*-\t:;?!/`$@" contains s)
 
 
 

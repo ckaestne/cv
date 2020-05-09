@@ -137,7 +137,7 @@ object Coauthors {
     val Cirilo = Person("Elder", "Cirilo", "Federal University of Sao Joao del-Rei")
     val Janker = Person("Andreas", "Janker", "University of Passau")
     val Lazarek = Person("Lukas", "Lazarek", "University of Massachusetts Lowell")
-    val Chen = Person("Serena", "Chen", "Carnegie Mellon University")
+    val Chen = Person("Leo", "Chen", "Carnegie Mellon University")
     val Phan= Person("Hung Dang", "Phan", "Iowa State University")
     val Lima = Person("Gabriel", "Lima", "Federal Institute of Alagoas (IFAL)")
     val Amaral = Person("Guilherme", "Amaral", "Federal University of Alagoas (UFAL)")
@@ -169,6 +169,7 @@ object Coauthors {
     val Cao = Person("Minxuan", "Cao", "Carnegie Mellon University")
     val Tsvetkov = Person("Yulia", "Tsvetkov", "Carnegie Mellon University")
     val Renteria = Person("Juan David Hoyos", "Rentería", "Universidad Nacional de Colombia")
+    var Diniz = Person("João P.", "Diniz", "Federal University of Minas Gerais")
 }
 
 object Topics {
@@ -279,7 +280,7 @@ object Venues {
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
     val SCP = JournalFactory("SCP", "Science of Computer Programming", Elsevier)
-    val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology", ACM)
+    val TOSEM = JournalFactory("TOSEM", "ACM Transactions on Software Engineering and Methodology", ACM, Some(URL("https://tosem.acm.org/")))
     val TOPLAS = JournalFactory("TOPLAS", "ACM Transactions on Programming Languages and Systems", ACM)
     val JSS = JournalFactory("JSS", "Journal of Systems and Software")
     val STTT = JournalFactory("STTT", "Software Tools for Technology Transfer")
@@ -4415,7 +4416,7 @@ provide additional information for analyzing configurable systems.
             HTTP -> URL("https://arxiv.org/pdf/1905.09760.pdf")),
         """
         In many domains, software systems cannot be deployed until authorities judge them fit for use in an intended operating environment. Certification standards and processes have been devised and deployed to regulate operations of software systems and prevent their failures. However, practitioners are often unsatisfied with the efficiency and value proposition of certification efforts. In this study, we compare two certification standards, Common Criteria and DO-178C, and collect insights from literature and from interviews with subject-matter experts to identify design options relevant to the design of standards. The results of the comparison of certification efforts---leading to the identification of design dimensions that affect their quality---serve as a framework to guide the comparison, creation, and revision of certification standards and processes. This paper puts software engineering research in context and discusses key issues around process and quality assurance and includes observations from industry about relevant topics such as recertification, timely evaluations, but also technical discussions around model-driven approaches and formal methods. Our initial characterization of the design space of certification efforts can be used to inform technical discussions and to influence the directions of new or existing certification efforts. Practitioners, technical commissions, and government can directly benefit from our analytical framework.
-        """).topic(empirical)
+        """).topic(empirical,security)
 
 
 
@@ -4525,7 +4526,7 @@ from teaching the course for the first time.
         "How Has Forking Changed in the Last 20 Years? A Study of Hard Forks on GitHub",
         ICSE20,
         ToAppear(),
-        Map(/*PDF->PDFFile("icse20-forks.pdf")*/),
+        Map(PDF->PDFFile("icse20-forks.pdf")),
         """
 The notion of forking has changed with the rise of distributed version control systems and social coding environments, like GitHub. Traditionally forking refers to splitting off an independent development branch (which we call hard forks); research on hard forks, conducted mostly in pre-GitHub days showed that hard forks were often seen critical as they may fragment a community. Today, in social forking environments, open-source developers are encouraged to fork a project in order to integrate contributions to the community (which we call social forks), which may have also influenced perceptions and practices around hard forks. To revisit hard forks, we identify, study and classify 15,306 hard forks on GitHub and interview 18 owners of hard forks or forked repositories. We find that, among others, hard forks often evolve out of social forks rather than being planned deliberately and that perception about hard forks have indeed changed dramatically, seeing them often as a positive non-competitive alternative to the original project.        """
     ).selected().topic(opensource, ecosystem, awareness)
@@ -4569,9 +4570,19 @@ The notion of forking has changed with the rise of distributed version control s
         "Capture the Feature Flag: Detecting Feature Flags in Open-Source",
         MSR(2020).month(5).location("Seoul").publisher(ACM).acceptanceRate(45, 171),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("msr20flags.pdf")),
         """
 Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidden behind a boolean option during development. Flags are used for many purposes, such as A/B testing and turning off a feature more easily in case of failures. While software engineering feature flags research is burgeoning, examples of software projects using flags rarely come from outside commercial and private projects, stifling academic progress. To address this gap, in this paper we present a novel mining software repositories approach to detect feature flagging open-source projects, based on analyzing the projects' commit messages. We apply our approach to all open-source GitHub projects, identifying 231,223 candidate feature flagging projects, and manually validating 100. We also report on an initial analysis of feature flags in the validated sample of 100 projects, investigating practices that correlate with shorter flag lifespans (typically desirable to reduce technical debt), such as using the issue tracker and having the flag owner (the developer introducing a flag) also be the one removing it."""
      ).topic(featureflags)
+
+    val homtr = TechReport(
+        Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
+        "Efficiently Finding Higher-Order Mutants",
+        2020, 4, ARXIV, "2004.02000",
+        Map(PDF -> PDFFile("arxiv20hom.pdf"),
+            HTTP->URL("https://arxiv.org/abs/2004.02000")),
+        """
+        Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
+        """).topic(testing, vaanalysis)
 
 }

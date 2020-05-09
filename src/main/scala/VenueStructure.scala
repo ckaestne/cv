@@ -55,8 +55,8 @@ object VenueStructure {
         })
     }
 
-    case class JournalFactory(short: String, name: String, publisher: Publisher = null) {
-        def apply(year: Int) = Journal(short, year, name, null).publisher(publisher)
+    case class JournalFactory(short: String, name: String, publisher: Publisher = null, url: Option[URL]=None) {
+        def apply(year: Int) = Journal(short, year, name, null).publisher(publisher).copy(url=url)
     }
 
     trait URLFactory {

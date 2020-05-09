@@ -67,7 +67,7 @@ object CV {
           |
           |\section{Profile}
           |\begin{CV}
-          |\item[] Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
+          |\item[] Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems, as well as open-source sustainability and software engineering for AI-enabled systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
           |\end{CV}
           |
           |\section{Education}
@@ -319,18 +319,15 @@ object CV {
     val advisedTheses = CVTheses.advisedTheses
 
 
-    val researchInterests = Seq(
-        "Virtual separation of concerns",
-        "Feature-oriented software development (FOSD), type systems, module systems, parsers, refactoring, aspect-orientation, multidimensional separation of concerns",
-        "Software product lines, program synthesis, feature interactions, feature location, empirical analyses"
-    )
-
     import Venues._
     val committees = Seq[Committee](
+        Committee(ICSE(2022), ConfChair),
+        Committee(VAMOS(2021), PC),
+        Committee(ASE(2020).url(URL("https://conf.researchr.org/home/ase-2020")), PC),
         Committee(SPLC(2020).url(URL("http://www.splc.net")), PC),
         Committee(VAMOS(2020).url(URL("https://vamos2020.dbse.iti.cs.ovgu.de")), PC),
-        Committee(ICSE(2020), PC),
-        Committee(ESECFSE(2019), PC),
+        Committee(ICSE(2020).url(URL("https://conf.researchr.org/home/icse-2020")), PC),
+        Committee(ESECFSE(2019).url(URL("https://esec-fse19.ut.ee/")), PC),
         Committee(ASE(2019).url(URL("https://2019.ase-conferences.org/")), PC),
         Committee(SPLC(2019).url(URL("http://www.splc.net")), PC),
         Committee(VAMOS(2019).url(URL("https://vamos2019.github.io/")), PC),
@@ -458,7 +455,14 @@ object CV {
     val committees_conferences = committees.filterNot(_.venue.kind == KWorkshopDemoTool)
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
+    val editor: Seq[Editorship] = Seq(
+        Editorship("Associate Editor", TOSEM(2020), 2019, None)
+    )
+
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2020)),
+        Review(ESEM(2020)),
+        Review(ESEM(2020)),
         Review(TOSEM(2019)),
         Review(TSE(2019)),
         Review(TOSEM(2018)),
@@ -551,8 +555,8 @@ object CV {
             List(
                 (URL("http://www.gi.de/no_cache/aktuelles/meldungsdetails/meldung/beste-informatikdissertation-im-deutschsprachigen-raum-gi-dissertationspreis-fr-christian-kstner-387.html"), "Annoucement"),
                 (URL("http://www.flickr.com/photos/p0nk/6214434320/"), "Photo")
-            ),
-            Some(EUR(5000))
+            )
+//            Some(EUR(5000))
         ),
         Award(
             "Distinguished-Paper Award at the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA) 2011",
@@ -569,22 +573,20 @@ object CV {
             "Best-Dissertation Award of the School of Computer Science, University of Magdeburg, 2010",
             URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html"),
             new GregorianCalendar(2010, 11 - 1, 1).getTime,
-            Nil,
-            Some(EUR(1000))
+            Nil
         ),
         Award(
             "Research Award of the School of Computer Science, University of Magdeburg for the Best Paper, 2009",
             URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html"),
             new GregorianCalendar(2009, 12 - 1, 1).getTime,
-            Nil,
-            Some(EUR(1000))
+            Nil
         ),
         Award(
             "Software Engineering Award of the Denert Foundation for the Best Master's Thesis, 2007",
             URL("http://www.denert-stiftung.de/"),
             new GregorianCalendar(2007, 9 - 1, 1).getTime,
-            (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil,
-            Some(EUR(2000))
+            (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil
+//            Some(EUR(2000))
         ),
         Award(
             "Best-Graduate Award of the School of Computer Science, University of Magdeburg, 2007",
@@ -645,6 +647,8 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2020, 4), "Software Engineering for ML-Enabled Systems", "Code and Supply Meetup"),
+        InvitedTalk(time(2020, 3), "Teaching Software Engineering for AI-Enabled Systems", "Dagstuhl Seminar 20091: SE4ML - Software Engineering for AI-ML-based Systems"),
         InvitedTalk(time(2019, 9), "Performance Analysis for Highly-Configurable Systems", "Keynote for the 2019 System and Software Product Line Conference (SPLC)"),
         InvitedTalk(time(2019, 9), "Granularity in Software Product Lines: 12 Years Later", "Most Influential Paper Award Talk at the 2019 System and Software Product Line Conference (SPLC)"),
         InvitedTalk(time(2019, 9), "Efficiently Finding Higher-Order Mutants", "Saarland University"),
@@ -705,38 +709,55 @@ object CV {
         (Ferreira, Some("(PhD student since 2014)")),
         (Velez, Some("(PhD student since 2016)")),
         (Wong, Some("(PhD student since 2014)")),
-        (Zhou, Some("(PhD student since 2014)")),
-        (Meinicke, Some("(visiting scholar, 2014, 2016-2019)"))
+        (Zhou, Some("(PhD 2014-2020)")),
+        (Person("Chenyang", "Yang", "Peking University"), Some("(REU student, 2020)")),
+        (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
+        (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Jerry", "Lu", "University of Pennsylvania"), Some("(REU student, 2020)")),
+        (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
+        (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)")),
+        (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
+        (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(REU student, 2020)"))
+
     )
     val former = List(
+        (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
+        (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
+        (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
+        (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
+
         (Ahmad, Some("(graduated MSc, 2016)")),
         (Person("Kattiana","Constantino", "Federal University of Minas Gerais"), Some("(visiting scholar 2018-2019)")),
         (Figueiredo, Some("(visiting scholar, 2017-2018)")),
-        (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
-        (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
         (Person("Raman", "Goyal"), Some("(visiting scholar, 2015, now at Epic)")),
         (Person("Htut Khine", "Htay Win"), Some("(REU student, 2015)")),
         (Kawthekar, Some("(visiting scholar, 2016, now graduate student at Stanford)")),
         (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016, now PhD student at University of Weimar)")),
         (Person("Kyle", "McDonell", "Colby College"), Some("(REU student, 2016)")),
         (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
-        (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
         (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017, now at Configit)")),
         (Trockman, Some("(REU student, 2017, now PhD student at CMU)")),
         (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017, now PhD student at Northwestern)")),
         (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
         (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)")),
         (Soares, Some("(visiting scholar, 2017-2018)")),
+
         (Ren, Some("(REU student, 2018)")),
         (Chen, Some("(REU student, 2018, now PhD student at CMU)")),
-        (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018)")),
+        (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018, now PhD student at CMU)")),
         (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)")),
-        (Person("Courtney","Miller","New College of Florida"), Some("(REU student, 2018)")),
+        (Miller, Some("(REU student, 2018)")),
         (Person("Sophie", "Rosas-Smith","Wellesley College"), Some("(REU student, 2018)")),
+
         (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
-        (Person("Cassandra","Overney","Olin College of Engineering"), Some("(REU student, 2019)")),
-        (Person("Naveen","Raman","University of Maryland, College Park"), Some("(REU student, 2019)")),
+        (Overney, Some("(REU student, 2019)")),
+        (Raman, Some("(REU student, 2019)")),
         (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)"))
+
+
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),

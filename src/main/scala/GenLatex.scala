@@ -96,7 +96,7 @@ object GenLatex extends App {
         val l = teaching.filter(_.kind.isLecture).groupBy(c => (c.title, c.language)).toList.
             sortBy(c => c._2.map(_.term).max).reverse
         val r = l.map({
-            case ((t, l), c) => "\\item[%s] %s%s".format(c.map(_.term.year).sorted.mkString(", "), t, if (l!=English) " (in %s)".format(l) else "")
+            case ((t, l), c) => "\\item[%s] %s%s".format(c.sortBy(_.term).map(_.term.toShortString).mkString(", "), t, if (l!=English) " (in %s)".format(l) else "")
         })
         subsection("Courses", inCV(r.mkString("\n")))
     }
@@ -106,7 +106,7 @@ object GenLatex extends App {
         val l = teaching.filter(isRelevant).groupBy(c => (c.title, c.language)).toList.
             sortBy(c => c._2.map(_.term).max).reverse
         var r = l.map({
-            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.map(_.term.year).sorted.map(y => if (y>3000)"" else y).mkString(", "), t, l)
+            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.sortBy(_.term).map(_.term.toShortString).mkString(", "), t, l)
         })
         val projectYears = teachingProjects.map(_.term)
 //        r = r :+ "\\item[%d--%d] Supervised %d Student Software Projects".format(projectYears.min.year, projectYears.max.year, teachingProjects.size)
@@ -131,12 +131,18 @@ object GenLatex extends App {
     def printCommittee(venue: Venue, roles: Seq[CommitteeRole]): String =
         "\\item[%s %d] %s".format(venue.short.toTex, venue.year, venue.name.toTex) +
             (if (roles != Seq(PC)) " -- " + roles.map(_.title).mkString(", ") else "") + "\n"
+    def printEditor(editor: Editorship): String =
+        "\\item[%s] %s".format(editor.journal.short.toTex, editor.roletitle+", " + editor.journal.name.toTex +" ("+editor.yearRangeL+")\n")
 
     def organizationCommittees(): String = subsection("Organization Committees", inCV(
         committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
         map(committee=>printCommittee(committee.venue, committee.role.intersect(CommitteeRoles.organizationRoles.toSeq))).
         mkString +
-            "\\item[FOSD-Me.\\ 2009-19] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg, 2019~Weimar)\n"
+            "\\item[FOSD-Me.\\ 2009-21] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg, 2019~Weimar, 2021~Vienna)\n"
+    ))
+
+    def organizationEditorships(): String = subsection("Editorships", inCV(
+        editor.map(printEditor).mkString
     ))
 
     def programCommittees(): String =
@@ -167,7 +173,7 @@ object GenLatex extends App {
 
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{44}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{58}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
             VenueStructure.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
@@ -188,7 +194,7 @@ object GenLatex extends App {
     output += section("Teaching", courses() + seminars())
     output += section("Memberships", printMemberships())
 
-    output += section("Professional Service", organizationCommittees() + programCommittees() + reviewing())
+    output += section("Professional Service", organizationEditorships() + organizationCommittees() + programCommittees() + reviewing())
 //    output += section("Software", printSoftware())
 
     output += publications()

@@ -12,6 +12,12 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2020, 5-1, 9).getTime, "Talk on Software Engineering for AI-Enabled Systems",
+          <span>I recently gave a talk at <a href="https://www.codeandsupply.co/">Code &amp; Supply</a> motivating what software engineers can contribute to building software systems with machine-learned components, 
+            how a systems view is important for quality assurance, and how I believe we need better education and collaboration to 
+            build interdisciplinary teams with data scientists and software engineers. The talk was recorded and is now available (<a href="https://ckaestne.github.io/seai/F2019/slides/talks/code_supply2020/cs.html">slides</a>):<br />
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/9_xeTHaTcCQ" frameborder="0" allowfullscreen="true"></iframe>
+             </span>) ::
         NewsItem(new GregorianCalendar(2020, 3-1, 8).getTime, "Machine Learning is Requirements Engineering — On the Role of Bugs, Verification, and Validation in Machine Learning",
 		<span>I <a href="https://medium.com/@ckaestne/machine-learning-is-requirements-engineering-8957aee55ef4">wrote up</a> some insights from some discussions at Dagstuhl last week about bugs in machine-learned models and that we should rather talk about validation than verification of such models. Feedback welcome.</span>) ::
         NewsItem(new GregorianCalendar(2020, 1-1, 31).getTime, "Software Engineering for ML - An Annotated Bibliography",

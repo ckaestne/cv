@@ -213,7 +213,12 @@ object GenHtml extends App with RSSFeed {
         {printCopyrightNotice()}
     </div>)
 
-    def printCommittee(c: Committee, comma: Boolean) = <span><span class="committee"><a href={c.venue.url.getOrElse(".").toString()} title={c.venue.name}>{c.venue.short}&nbsp;{c.venue.year}</a>&nbsp;(<span title={c.role.map(_.title).mkString(", ")}>{c.role.map(_.abbreviation).mkString(", ")}</span>)</span>{if (comma) ","} </span>
+    def printCommittee(c: Committee) = <span class="committee">{withLink(Seq(Text(c.venue.short),EntityRef("nbsp"),Text(c.venue.year.toString)), c.venue.name,  c.venue.url)}&nbsp;(<span title={c.role.map(_.title).mkString(", ")}>{c.role.map(_.abbreviation).mkString(", ")}</span>)</span>
+    def printEditorPosition(e: Editorship) = <span class="committee">{withLink(Text(e.journal.short),e.journal.name,e.journal.url)}&nbsp;({e.roletitle}, {e.yearRange})</span>
+    def withLink(body: NodeSeq, title: String, url: Option[URL]): NodeSeq =
+        if (url.isEmpty) <span title={title}>{body}</span>
+        else <a href={url.get.toString()} title={title}>{body}</a>
+
 
     def printCommitteePicture(): NodeSeq = 
       <a href="http://program-transformation.org/GPCE13">
@@ -221,17 +226,24 @@ object GenHtml extends App with RSSFeed {
     </a>
 
     def printCommittees(committees: Seq[Committee]) = rowH2("Service", "service",
-            <div>{
-                for (c <- committees_conferences.dropRight(1))
-                    yield printCommittee(c, true)
-            }{printCommittee(committees_conferences.last, false)}</div> <div>&nbsp;</div>
-                <div>{
-                for (c <- committees_workshops.dropRight(1))
-                    yield printCommittee(c, true)
-            }{printCommittee(committees_workshops.last, false)}</div>/*,
+            <div>{mkList(editor.map(printEditorPosition), ", ")}</div> <div>&nbsp;</div>
+            <div>{mkList(committees_conferences.map(printCommittee), ", ")}</div> <div>&nbsp;</div>
+            <div>{mkList(committees_workshops.map(printCommittee), ", ")}</div>
+        /*,
         printCommitteePicture()*/
     )
 
+
+    def mkList(elements: Seq[NodeSeq], sep: String): NodeSeq = mkList(elements, Text(sep))
+    def mkList(elements: Seq[NodeSeq], sep: NodeSeq): NodeSeq = {
+        var result:NodeSeq = NodeSeq.Empty
+        for (e<-elements.dropRight(1)) {
+            result ++= e
+            result ++= sep
+        }
+        elements.lastOption.foreach(e=>result ++=e)
+        result
+    }
 
     def printPrivate(): NodeSeq = rowH2(
         "Private Interests", "private",
