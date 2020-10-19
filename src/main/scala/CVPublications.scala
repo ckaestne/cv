@@ -120,7 +120,7 @@ object Coauthors {
     val Kothari = Person("Suresh", "Kothari", URL("http://class.ece.iastate.edu/kothari/"), "Iowa State University")
     val deAlmeida = Person("Eduardo Santana", "de Almeida", "Universidade Federal da Bahia")
     val Soares = Person("Larissa Rocha", "Soares", "Universidade Federal da Bahia")
-    val Trockman = Person("Asher", "Trockman", "University of Evansville")
+    val Trockman = Person("Asher", "Trockman", "University of Evansville/Carnegie Mellon University")
     val Xiong = Person("Yingfei", "Xiong", URL("http://sei.pku.edu.cn/~xiongyf04/"), "Peking University")
     val Vasilescu = Person("Bogdan", "Vasilescu", URL("https://bvasiles.github.io"), "Carnegie Mellon University")
     val Figueiredo = Person("Eduardo", "Figueiredo", URL("http://homepages.dcc.ufmg.br/~figueiredo/"), "Federal University of Minas Gerais")
@@ -170,6 +170,12 @@ object Coauthors {
     val Tsvetkov = Person("Yulia", "Tsvetkov", "Carnegie Mellon University")
     val Renteria = Person("Juan David Hoyos", "Rentería", "Universidad Nacional de Colombia")
     var Diniz = Person("João P.", "Diniz", "Federal University of Minas Gerais")
+    val Lamba = Person("Hemank","Lamba", "Carnegie Mellon University")
+    val Armanios = Person("Daniel", "Armanios", "Carnegie Mellon University")
+    val HMiller = Person("Heather", "Miller", "Carnegie Mellon University")
+    val Braz = Person("Larissa", "Braz")
+    val Santos = Person("Kleber", "Santos")
+    val Machado = Person("Ivan", "Machado")
 }
 
 object Topics {
@@ -275,7 +281,9 @@ object Venues {
         "%num% International Conference on Mining Software Repositories")
     val SANER = ConferenceFactory("SANER", 1993,
         "%num% IEEE International Conference on Software Analysis, Evolution and Reengineering")
-       
+    val SBES = ConferenceFactory("SBES", 1987,
+        "%num% Brazilian Symposium on Software Engineering")
+
 
     val AI = JournalFactory("AI", "Acta Informatica")
     val SPE = JournalFactory("SPE", "Software: Practice and Experience")
@@ -4580,5 +4588,66 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         """
         Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
         """).topic(testing, vaanalysis)
+
+    val fse20_hom = InProceedings(
+        Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
+        "Efficiently Finding Higher-Order Mutants",
+        ESECFSE(2020).month(11).acceptanceRate(101, 360),
+        ToAppear(),
+        Map(PDF -> PDFFile("fse20hom.pdf")),
+        """
+        Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
+        """).topic(testing, vaanalysis).selected()
+
+    val fse20_diff = InProceedings(
+        Seq(Lamba, Trockman, Armanios, Kaestner, HMiller, Vasilescu),
+        "Heard it Through the Gitvine: An Empirical Study of Tool Diffusion Across the npm Ecosystem",
+        ESECFSE(2020).month(11).acceptanceRate(101, 360),
+        ToAppear(),
+        Map(PDF -> PDFFile("fse20diffusion.pdf")),
+        """
+        Automation tools have become essential in contemporary software development. Tools like continuous integration services, code coverage reporters, style checkers, dependency managers, etc. are all known to provide significant improvements in developer productivity and software quality. Some of these tools are widespread, others are not. How do these automation "best practices" spread? And how might we facilitate the diffusion process for those that have seen slower adoption? In this paper, we rely on a recent innovation in transparency on code hosting platforms like GitHub--the use of repository badges--to track how automation tools spread in open-source ecosystems through different social and technical mechanisms over time. Using a large longitudinal data set, multivariate network science techniques, and survival analysis, we study which socio-technical factors can best explain the observed diffusion process of a number of popular automation tools. Our results show that factors such as social exposure, competition, and observability affect the adoption of tools significantly, and they provide a roadmap for software engineers and researchers seeking to propagate best practices and tools.
+        """).topic(empirical, opensource)
+
+
+
+    val jase20 = Article(
+        Seq(Velez, Jamshidi, Sattler, Siegmund, Apel, Kaestner),
+        "ConfigCrusher: Towards White-Box Performance Analysis for Configurable Systems",
+        JASE(2020),
+        ToAppear(),
+        Map(PDF -> PDFFile("jase20.pdf")),
+        """
+        In configurable software systems, stakeholders are often interested in knowing how configuration options influence the performance of a system to facilitate, for example, the debugging and optimization processes of these systems.
+There are several black-box approaches to obtain this information, but they either sample the system end-to-end with a large number of configurations to make accurate predictions or miss important performance-influencing interactions when sampling few configurations.
+In addition, these approaches cannot pinpoint the parts of a program that are responsible for performance differences among configurations.
+This paper proposes ConfigCrusher, a white-box performance analysis that analyzes the implementation of a system to guide the performance analysis and exploits several insights about configurable systems in the process.
+ConfigCrusher employs a static data-flow analysis to identify how configuration options may influence control-flow decisions and instruments code regions corresponding to these decisions to dynamically analyze the influence of configuration options on the regions' performance.
+Our evaluation shows the feasibility of our white-box approach to more efficiently build performance models that are similar to or more accurate than current state-of-the-art approaches on 10 configurable systems.
+Overall, we showcase the benefits of white-box performance analyses and their potential to outperform black-box approaches and provide additional information for analyzing configurable systems.
+        """).topic(vaanalysis,nfp)
+
+
+    val SBES20config = InProceedings(
+        Seq(Medeiros, Ribeiro, Gheyi, Braz, Kaestner, Apel, Santos),
+        "An Empirical Study on Configuration-Related Code Weaknesses",
+        SBES(2020).month(10),
+        ToAppear(),
+        Map(),
+        """
+        """).topic(empirical, preprocessor)
+
+    val SBES20fi = InProceedings(
+        Seq(Soares, Machado, deAlmeida, Kaestner, Nadi),
+        "A Semi-Automated Iterative Process for Detecting Feature Interactions",
+        SBES(2020).month(10),
+        ToAppear(),
+        Map(),
+        """
+        """).topic(empirical, preprocessor)
+
+
+
+
 
 }
