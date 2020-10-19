@@ -506,6 +506,12 @@ object CV {
 
     val awards: Seq[AwardOrGrant] = Seq(
         Award(
+            "Distinguished Program Committee Member Award at the International Conference on Automated Software Engineering (ASE) 2020",
+            URL("https://conf.researchr.org/home/ase-2020"),
+            new GregorianCalendar(2020, 11 - 1, 1).getTime,
+            Nil
+        ),
+        Award(
             "Most Influential Paper Award at the International Conference on Software Product Lines (SPLC) 2019",
             URL("https://splc2019.net"),
             new GregorianCalendar(2019, 9 - 1, 12).getTime,
@@ -706,7 +712,7 @@ object CV {
         (Ferreira, Some("(PhD student since 2014)")),
         (Velez, Some("(PhD student since 2016)")),
         (Wong, Some("(PhD student since 2014)")),
-        (Zhou, Some("(PhD 2014-2020)")),
+        (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
         (Person("Chenyang", "Yang", "Peking University"), Some("(REU student, 2020)")),
         (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
         (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),

@@ -12,11 +12,27 @@ object News {
     }
 
     val news: List[NewsItem] =
+        NewsItem(new GregorianCalendar(2020, 10-1, 5).getTime, "Lecture Recordings: Software Engineering for AI-Enabled Systems",
+          <span>All summer, I recorded all lectures of my class <a href="https://ckaestne.github.io/seai/S2020/#course-content">Software Engineering for AI-Enabled Systems</a>. 
+            The students graciously consented in releasing those recordings, 
+            which can now all be found in a <a href="https://www.youtube.com/playlist?list=PLDS2JMJnJzdkQPdkhcuwcbJpjB84g9ffX">YouTube playlist</a> under a creative commons license (like the rest of the <a href="https://github.com/ckaestne/seai">course material</a>):<br />
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Wst5A6ZB7Bg" frameborder="0" allowfullscreen="true"></iframe><br />
+            Also my <a href="https://github.com/ckaestne/seaibib">annotated bibliography</a> on the topic has seen some updates recently and I've written again about <a href="https://medium.com/@ckaestne/the-world-and-the-machine-and-responsible-machine-learning-1ae72353c5ae">requirements engineering for production ML systems</a>.
+             </span>) ::
+        NewsItem(new GregorianCalendar(2020, 9-1, 18).getTime, "State of the Source Talk: Analyzing Tens of Terabytes of Public Trace Data & Open Source Sustainabilty",
+          <span>Bogdan and I gave a talk summarizing our empirical and data-driven research on open-source sustainability, covering donations, signaling 
+            and badges, transparency, diversity and social capital. We argue for more data-driven evidence in shaping tools and communities.<br />
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/y4cpIaN3tFc" frameborder="0" allowfullscreen="true"></iframe>
+             </span>) ::
+        NewsItem(new GregorianCalendar(2020, 9-1, 11).getTime, "What the Fork? Shurui Zhou on the Sustain Podcast",
+          <span>Shurui has given an interview on Episode 53 of the Sustain Podcast about our work on forks in open source.
+            Listen now: <a href="https://podcast.sustainoss.org/53">https://podcast.sustainoss.org/53</a>.
+             </span>) ::
         NewsItem(new GregorianCalendar(2020, 5-1, 9).getTime, "Talk on Software Engineering for AI-Enabled Systems",
           <span>I recently gave a talk at <a href="https://www.codeandsupply.co/">Code &amp; Supply</a> motivating what software engineers can contribute to building software systems with machine-learned components, 
             how a systems view is important for quality assurance, and how I believe we need better education and collaboration to 
             build interdisciplinary teams with data scientists and software engineers. The talk was recorded and is now available (<a href="https://ckaestne.github.io/seai/F2019/slides/talks/code_supply2020/cs.html">slides</a>):<br />
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/9_xeTHaTcCQ" frameborder="0" allowfullscreen="true"></iframe>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/9_xeTHaTcCQ" frameborder="0" allowfullscreen="true"></iframe>
              </span>) ::
         NewsItem(new GregorianCalendar(2020, 3-1, 8).getTime, "Machine Learning is Requirements Engineering — On the Role of Bugs, Verification, and Validation in Machine Learning",
 		<span>I <a href="https://medium.com/@ckaestne/machine-learning-is-requirements-engineering-8957aee55ef4">wrote up</a> some insights from some discussions at Dagstuhl last week about bugs in machine-learned models and that we should rather talk about validation than verification of such models. Feedback welcome.</span>) ::
