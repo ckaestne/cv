@@ -322,6 +322,7 @@ object CV {
     import Venues._
     val committees = Seq[Committee](
         Committee(ICSE(2022), ConfChair),
+        Committee(ASE(2021).url(URL("https://conf.researchr.org/home/ase-2021")), PC),
         Committee(VAMOS(2021), PC),
         Committee(ASE(2020).url(URL("https://conf.researchr.org/home/ase-2020")), PC),
         Committee(SPLC(2020).url(URL("http://www.splc.net")), PC),
