@@ -453,6 +453,18 @@ object ACMLink extends LinkKind {
     def print = "acm"
 }
 
+object Video extends LinkKind {
+    def print = "video"
+}
+object Teaser extends LinkKind {
+    def print = "teaser"
+}
+
+object YouTube {
+  def apply(videoKey: String) = HTTPLink("https://www.youtube.com/watch?v=" + videoKey)
+}
+
+
 case class Thesis(
                      author: Person,
                      kind: Publication,
@@ -698,7 +710,7 @@ object ERC extends CommitteeRole("External-Review-Committee Member", "ERC")
 object GeneralChair extends CommitteeRole("General Chair", "General Chair")
 object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 object PCCChair extends CommitteeRole("Program-Committee Co-Chair", "PC Co-Chair")
-object ConfChair extends CommitteeRole("Conference Chair", "Conf. Chair")
+object ConfChair extends CommitteeRole("Conference Chair", "Conference Chair")
 case class OtherChair(atitle: String, abbrev: String) extends CommitteeRole(atitle, abbrev)
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")

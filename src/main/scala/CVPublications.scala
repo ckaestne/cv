@@ -4504,8 +4504,11 @@ in successful software systems can be followed.
         "Teaching Software Engineering for AI-Enabled Systems",
 		Conference("ICSE-SEET", 2020, "Proc. International Conference on Software Engineering -- Software Engineering Education and Training Track").month(5).
 			location("Seoul").acceptanceRate(21 , 90).publisher(ACM),
-		ToAppear(),
-        Map(PDF -> PDFFile("seai19.pdf"), HTTP->URL("http://arxiv.org/abs/2001.06691")),
+		Pages(45,48),
+        Map(PDF -> PDFFile("seai19.pdf"), 
+        	HTTP->URL("http://arxiv.org/abs/2001.06691"),
+    		DOI->DOI("10.1145/3377814.3381714"),
+    		Video->YouTube("Nk0Sy6Sx3IY")),
         """
 Software engineers have significant expertise to offer when building
 intelligent systems, drawing on decades of experience and methods
@@ -4529,8 +4532,10 @@ from teaching the course for the first time.
         Seq(Zhou, Vasilescu, Kaestner),
         "How Has Forking Changed in the Last 20 Years? A Study of Hard Forks on GitHub",
         ICSE20,
-        ToAppear(),
-        Map(PDF->PDFFile("icse20-forks.pdf")),
+		Pages(445,456),
+        Map(PDF->PDFFile("icse20-forks.pdf"),
+    		DOI->DOI("10.1145/3377811.3380412"),
+    		Video->YouTube("3SdJRxH_388")),
         """
 The notion of forking has changed with the rise of distributed version control systems and social coding environments, like GitHub. Traditionally forking refers to splitting off an independent development branch (which we call hard forks); research on hard forks, conducted mostly in pre-GitHub days showed that hard forks were often seen critical as they may fragment a community. Today, in social forking environments, open-source developers are encouraged to fork a project in order to integrate contributions to the community (which we call social forks), which may have also influenced perceptions and practices around hard forks. To revisit hard forks, we identify, study and classify 15,306 hard forks on GitHub and interview 18 owners of hard forks or forked repositories. We find that, among others, hard forks often evolve out of social forks rather than being planned deliberately and that perception about hard forks have indeed changed dramatically, seeing them often as a positive non-competitive alternative to the original project.        """
     ).selected().topic(opensource, ecosystem, awareness)
@@ -4539,8 +4544,10 @@ The notion of forking has changed with the rise of distributed version control s
         Seq(Overney, Meinicke, Kaestner, Vasilescu),
         "How to Not Get Rich: An Empirical Study of Donations in Open Source",
         ICSE20,
-        ToAppear(),
-        Map(PDF->PDFFile("icse20-donations.pdf")),
+		Pages(1209,1221),
+        Map(PDF->PDFFile("icse20-donations.pdf"),
+    		DOI->DOI("10.1145/3377811.3380410"),
+    		Video->YouTube("E_UftrapTAM")),
         """
             Open source is ubiquitous and critical infrastructure, yet funding and sustaining it is challenging. While there are many different funding models for open-source donations and concerted efforts through foundations, donation platforms like Paypal, Patreon, or OpenCollective are popular and low-bar forms to raise funds for open-source development, for which GitHub recently even built explicit support. With a mixed-method study, we explore the emerging and largely unexplored phenomenon of donations in open source: We quantify how commonly open-source projects ask for donations, statistically model characteristics of projects that ask for and receive donations, analyze for what the requested funds are needed and used, and assess whether the received donations achieve the intended outcomes. We find 25,885 projects asking for donations on GitHub, often to support engineering activities; however, we also find no clear evidence that donations influence the activity level of a project. In fact, we find that donations are used in a multitude of ways, raising new research questions about effective funding.
             """
@@ -4550,8 +4557,10 @@ The notion of forking has changed with the rise of distributed version control s
         Seq(Meinicke, Wong, Vasilescu, Kaestner),
         "Exploring Differences and Commonalities between Feature Flags and Configuration Options",
         Conference("ICSE-SEIP", 2020, "Proc. International Conference on Software Engineering -- Software Engineering in Practice Track").month(5),
-        ToAppear(),
-        Map(PDF->PDFFile("icseseip20.pdf")),
+		Pages(233,242),
+        Map(PDF->PDFFile("icseseip20.pdf"),
+    		DOI->DOI("10.1145/3377813.3381366"),
+    		Video->YouTube("8DfsVfiAkFI")),
         """
         Feature flags for continuous deployment and configuration options for customizing software share many similarities, both conceptually and technically. However, neither academic nor practitioner publications seem to distinguish these two concepts. We argue that a distinction is valuable, as applications, goals, and challenges differ fundamentally between feature flags and configuration options. In this work, we explore the differences and commonalities of both concepts to help understand practices and challenges and to help transfer existing solutions (e.g., for testing). To better understand feature flags and how they relate to configuration options, we performed nine semi-structured interviews with feature-flag experts. We discovered a number of distinguishing characteristics but also opportunities for knowledge and technology transfer across both communities. Overall, we think that both communities can learn from each other.        
         """
@@ -4562,8 +4571,10 @@ The notion of forking has changed with the rise of distributed version control s
         Seq(Raman, Cao, Tsvetkov, Kaestner, Vasilescu),
         "Stress and Burnout in Open Source: Toward Finding, Understanding, and Mitigating Unhealthy Interactions",
         Conference("ICSE-NIER", 2020, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
-        ToAppear(),
-        Map(PDF->PDFFile("icsenier20.pdf")),
+		Pages(57,60),
+        Map(PDF->PDFFile("icsenier20.pdf"),
+    		DOI->DOI("10.1145/3377816.3381732"),
+    		Video->YouTube("7Cf7H4qrQRA")),
         """
             Developers from open-source communities have reported high stress levels from frequent demands for features and bug fixes and the sometimes aggressive tone of these demands. Toxic conversations may demotivate and burn out developers, creating challenges for sustaining open source. We outline a path toward finding, understanding, and possibly mitigating such unhealthy interactions. We take a first step toward finding them, by developing and demonstrating a measurement instrument (an SVM classifier tailored towards the software engineering domain) to detect toxic discussions in GitHub issues. We used our classifier to analyze trends over time and in different GitHub communities, finding that toxicity varies by community and that toxicity decreased from 2012-2018.
         """
@@ -4573,8 +4584,10 @@ The notion of forking has changed with the rise of distributed version control s
         Seq(Meinicke, Renteria, Kaestner, Vasilescu),
         "Capture the Feature Flag: Detecting Feature Flags in Open-Source",
         MSR(2020).month(5).location("Seoul").publisher(ACM).acceptanceRate(45, 171),
-        ToAppear(),
-        Map(PDF->PDFFile("msr20flags.pdf")),
+        Pages(169,173),
+        Map(PDF->PDFFile("msr20flags.pdf"),
+    		DOI->DOI("10.1145/3379597.3387463"),
+    		Video->YouTube("CVGibKyF1RU")),
         """
 Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidden behind a boolean option during development. Flags are used for many purposes, such as A/B testing and turning off a feature more easily in case of failures. While software engineering feature flags research is burgeoning, examples of software projects using flags rarely come from outside commercial and private projects, stifling academic progress. To address this gap, in this paper we present a novel mining software repositories approach to detect feature flagging open-source projects, based on analyzing the projects' commit messages. We apply our approach to all open-source GitHub projects, identifying 231,223 candidate feature flagging projects, and manually validating 100. We also report on an initial analysis of feature flags in the validated sample of 100 projects, investigating practices that correlate with shorter flag lifespans (typically desirable to reduce technical debt), such as using the issue tracker and having the flag owner (the developer introducing a flag) also be the one removing it."""
      ).topic(featureflags)
@@ -4593,8 +4606,11 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
         "Efficiently Finding Higher-Order Mutants",
         ESECFSE(2020).month(11).acceptanceRate(101, 360),
-        ToAppear(),
-        Map(PDF -> PDFFile("fse20hom.pdf")),
+        Pages(1165,1177),
+        Map(PDF -> PDFFile("fse20hom.pdf"),
+    		DOI->DOI("10.1145/3368089.3409713"),
+    		Video->YouTube("ziiG_AWQj_8"),
+    		Teaser->YouTube("Q6mPYesl4Qs")),
         """
         Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
         """).topic(testing, vaanalysis).selected()
@@ -4603,8 +4619,11 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         Seq(Lamba, Trockman, Armanios, Kaestner, HMiller, Vasilescu),
         "Heard it Through the Gitvine: An Empirical Study of Tool Diffusion Across the npm Ecosystem",
         ESECFSE(2020).month(11).acceptanceRate(101, 360),
-        ToAppear(),
-        Map(PDF -> PDFFile("fse20diffusion.pdf")),
+        Pages(505,517),
+        Map(PDF -> PDFFile("fse20diffusion.pdf"),
+    		DOI->DOI("10.1145/3368089.3409705"),
+    		Video->YouTube("67W8p85YCvI"),
+    		Teaser->YouTube("3bn_BzO09mQ")),
         """
         Automation tools have become essential in contemporary software development. Tools like continuous integration services, code coverage reporters, style checkers, dependency managers, etc. are all known to provide significant improvements in developer productivity and software quality. Some of these tools are widespread, others are not. How do these automation "best practices" spread? And how might we facilitate the diffusion process for those that have seen slower adoption? In this paper, we rely on a recent innovation in transparency on code hosting platforms like GitHub--the use of repository badges--to track how automation tools spread in open-source ecosystems through different social and technical mechanisms over time. Using a large longitudinal data set, multivariate network science techniques, and survival analysis, we study which socio-technical factors can best explain the observed diffusion process of a number of popular automation tools. Our results show that factors such as social exposure, competition, and observability affect the adoption of tools significantly, and they provide a roadmap for software engineers and researchers seeking to propagate best practices and tools.
         """).topic(empirical, opensource)
@@ -4614,9 +4633,10 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
     val jase20 = Article(
         Seq(Velez, Jamshidi, Sattler, Siegmund, Apel, Kaestner),
         "ConfigCrusher: Towards White-Box Performance Analysis for Configurable Systems",
-        JASE(2020),
-        ToAppear(),
-        Map(PDF -> PDFFile("jase20.pdf")),
+        JASE(2020).volume(27),
+        Pages(265,300),
+        Map(PDF -> PDFFile("jase20.pdf"),
+    		DOI->DOI("10.1007/s10515-020-00273-8")),
         """
         In configurable software systems, stakeholders are often interested in knowing how configuration options influence the performance of a system to facilitate, for example, the debugging and optimization processes of these systems.
 There are several black-box approaches to obtain this information, but they either sample the system end-to-end with a large number of configurations to make accurate predictions or miss important performance-influencing interactions when sampling few configurations.
@@ -4646,7 +4666,35 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         """
         """).topic(empirical, preprocessor)
 
+    val icst21 = InProceedings(
+        Seq(Diniz, Wong, Kaestner, Figueiredo),
+        "Dissecting Strongly Subsuming Second-Order Mutants",
+    	Conference("ICST", 2021, "International Conference on Software Testing, Verification and Validation").month(4).publisher(IEEE),
+        ToAppear(),
+        Map(),
+        """
+		Mutation testing is a fault-based technique commonly used to evaluate the quality of test suites in software systems. It consists of introducing syntactical changes, called mutations, into source code and checking whether the test cases distinguish them. Since there are dozens of distinct mutation types, one of the most challenging problems is the high computational effort required to test the whole test suite against each mutant. Since mutation testing is proposed, researchers have presented techniques aiming at effort reduction in the phases of its process. This study focuses on the potential reduction in the number of mutants provided by a special set of mutants generated by the introduction of two syntactical changes (strongly subsuming second-order mutants). In this work, we exhaustively searched for those second-order mutants Our results show that they (i) are frequently generated by the "expression removal" mutation, (ii) are likely to be killed by the same test cases that kill their constituent mutants, and (iii) have the potential to reduce the number of mutants to be executed by about 22%.
+		""").topic(testing, vaanalysis)
 
+    val icse21_malicious = InProceedings(
+        Seq(Ferreira, Jia, Sunshine, Kaestner),
+        "Containing Malicious Package Updates in npm with a Lightweight Permission System",
+        ICSE(2021).month(5).acceptanceRate(138, 602),
+        ToAppear(),
+        Map(),
+        """
+		The large amount of third-party packages available in fast-moving software ecosystems, such as the Node.js/npm, enables attackers to compromise applications by pushing malicious updates to their package dependencies. Studying the npm repository, we observed that many packages perform only simple computations and do not need access to filesystem or network APIs. This offers the opportunity to enforce least-privilege design per package, protecting them from malicious updates. We discuss the design space and propose a lightweight permission system that protects Node.js/npm applications by enforcing package permissions at runtime. Our system makes a large number of packages much harder to be exploited, almost for free.
+		""").topic(security, ecosystem).selected()
+
+    val icse21_perf = InProceedings(
+        Seq(Velez, Jamshidi, Siegmund, Apel, Kaestner),
+        "White-Box Analysis over Machine Learning: Modeling Performance of Configurable Systems",
+        ICSE(2021).month(5).acceptanceRate(138, 602),
+        ToAppear(),
+        Map(),
+        """
+		Performance-influence models can help stakeholders understand how and where configuration options and their interactions influence the performance of a system. With this understanding, stakeholders can debug performance and make deliberate configuration decisions. Current black-box techniques to build such models combine various sampling and learning strategies, resulting in trade offs between measurement effort, accuracy, and interpretability. We present Comprex, a white-box approach to build performance-influence models for configurable systems, combining insights of local measurements, dynamic taint analysis to track options in the implementation, compositionality, and compression of the configuration space, without using machine learning to extrapolate incomplete samples. Our evaluation on 4 widely-used open-source projects demonstrates that Comprex builds similarly accurate performance-influence models to the most accurate and expensive black-box approach, but at a reduced cost and with additional benefits from interpretable and local models.        
+		""").topic(vaanalysis,nfp).selected()
 
 
 

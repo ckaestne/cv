@@ -37,17 +37,16 @@ object CV {
                 <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
                 <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
                 <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
+                <div>&nbsp;</div>
+                <div>Office: TCS <a href="https://vignette.wikia.nocookie.net/juggle/images/e/e2/534_200.gif">345</a></div>
+                <div>Email: kaestner (at) cs.cmu.edu</div>
                 <div itemprop="address" itemscope=" " itemtype="http://data-vocabulary.org/Address">
-                    <span itemprop="street-address">5000 Forbes Avenue</span>,
+                    Mailing Address: C. Kaestner, ISR - TCS Hall 430,
+                    <span itemprop="street-address">4665 Forbes Avenue</span>,
                     <span itemprop="locality">Pittsburgh</span>,
                     <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>,
                     <span itemprop="country">USA</span>
                 </div>
-                <div>
-                    &nbsp;
-                </div>
-                <div>Office: Wean 5126</div>
-                <div>Email: kaestner (at) cs.cmu.edu</div>
             </p>
 
 
@@ -321,19 +320,18 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
-        Committee(ICSE(2022), ConfChair),
+        Committee(ICSE(2022).url(URL("https://conf.researchr.org/home/icse-2022")), ConfChair, PC),
         Committee(ASE(2021).url(URL("https://conf.researchr.org/home/ase-2021")), PC),
         Committee(VAMOS(2021), PC),
         Committee(ASE(2020).url(URL("https://conf.researchr.org/home/ase-2020")), PC),
         Committee(SPLC(2020).url(URL("http://www.splc.net")), PC),
         Committee(VAMOS(2020).url(URL("https://vamos2020.dbse.iti.cs.ovgu.de")), PC),
-        Committee(ICSE(2020).url(URL("https://conf.researchr.org/home/icse-2020")), PC),
-        Committee(ESECFSE(2019).url(URL("https://esec-fse19.ut.ee/")), PC),
+        Committee(ICSE(2020).url(URL("https://conf.researchr.org/home/icse-2020")), PC, OtherChair("Student Mentoring Program Co-Chair", "SMP Chair")),
+        Committee(ESECFSE(2019).url(URL("https://esec-fse19.ut.ee/")), PC, OtherChair("Journal First Co-Chair", "JF Chair")),
         Committee(ASE(2019).url(URL("https://2019.ase-conferences.org/")), PC),
         Committee(SPLC(2019).url(URL("http://www.splc.net")), PC),
         Committee(VAMOS(2019).url(URL("https://vamos2019.github.io/")), PC),
         Committee(OOPSLA(2019), ERC),
-        Committee(ESECFSE(2019), OtherChair("Journal First Co-Chair", "JF Chair")),
         Committee(ICSE(2019), OtherChair("Student Mentoring Program Co-Chair", "SMP Chair")),
         Committee(Conference("ICSE-NIER", 2019,
             "ICSE New Ideas and Emerging Results (NIER)",
