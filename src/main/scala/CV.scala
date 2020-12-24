@@ -1,7 +1,7 @@
 package de.stner.cv
 
-import java.util.{Date, GregorianCalendar}
 
+import java.time.LocalDate
 import scala.xml.NodeSeq
 
 
@@ -116,6 +116,11 @@ object CV {
             "",
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
+        ),
+        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+            "",
+            URL("https://ckaestne.github.io/seai/"),
+            English, SpringTerm(2021), new CourseKind with Lecture
         ),
         Course("17-445/645 Software Engineering for AI-Enabled Systems",
             "",
@@ -507,53 +512,53 @@ object CV {
         Award(
             "Distinguished Program Committee Member Award at the International Conference on Automated Software Engineering (ASE) 2020",
             URL("https://conf.researchr.org/home/ase-2020"),
-            new GregorianCalendar(2020, 11 - 1, 1).getTime,
+            LocalDate.of(2020, 11, 1),
             Nil
         ),
         Award(
             "Most Influential Paper Award at the International Conference on Software Product Lines (SPLC) 2019",
             URL("https://splc2019.net"),
-            new GregorianCalendar(2019, 9 - 1, 12).getTime,
+            LocalDate.of(2019, 9, 12),
             Nil
         ),
         Award(
             "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2017",
             URL("http://ase2017.org"),
-            new GregorianCalendar(2017, 11 - 1, 1).getTime,
+            LocalDate.of(2017, 11, 1),
             Nil
         ),
         Award(
             "Distinguished Reviewer Award at the International Conference on Software Engineering (ICSE) 2017",
             URL("http://icse2017.gatech.edu/"),
-            new GregorianCalendar(2017, 5 - 1, 20).getTime,
+            LocalDate.of(2017, 5, 20),
             Nil
         ),
         Award(
             "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2015",
             URL("http://ase2015.unl.edu/"),
-            new GregorianCalendar(2015, 11 - 1, 12).getTime,
+            LocalDate.of(2015, 11, 12),
             Nil
         ),
 //        Grant("Grant: Reverse Engineering Variability Implementations",
 //            URL("http://www.nsf.gov/awardsearch/showAward?AWD_ID=1318808"),
-//            new GregorianCalendar(2013, 6 - 1, 24).getTime,
-//            new GregorianCalendar(2013, 9 - 1, 1).getTime,
-//            new GregorianCalendar(2016, 8 - 1, 31).getTime,
+//            LocalDate.of(2013, 6, 24),
+//            LocalDate.of(2013, 9, 1),
+//            LocalDate.of(2016, 8, 31),
 //            "National Science Foundation",
 //            USD(400797)
 //        ),
 //        Grant("Grant: Pythia -- Techniques and Prediction Models for Sustainable Product-Line Engineering",
 //            URL("http://www.infosun.fim.uni-passau.de/spl/pythia/"),
-//            new GregorianCalendar(2012, 6 - 1, 1).getTime,
-//            new GregorianCalendar(2012, 10 - 1, 1).getTime,
-//            new GregorianCalendar(2015, 10 - 1, 1).getTime,
+//            LocalDate.of(2012, 6, 1),
+//            LocalDate.of(2012, 10, 1),
+//            LocalDate.of(2015, 10, 1),
 //            "German Research Foundation",
 //            EUR(250000)
 //        ),
         Award(
             "**GI-Dissertationspreis:** Best Dissertation Award of the German Computer Science Association, 2010",
             URL("http://www.gi.de/wir-ueber-uns/wettbewerbe/gi-dissertationspreis.html"),
-            new GregorianCalendar(2011, 10 - 1, 1).getTime,
+            LocalDate.of(2011, 10, 1),
             List(
                 (URL("http://www.gi.de/no_cache/aktuelles/meldungsdetails/meldung/beste-informatikdissertation-im-deutschsprachigen-raum-gi-dissertationspreis-fr-christian-kstner-387.html"), "Annoucement"),
                 (URL("http://www.flickr.com/photos/p0nk/6214434320/"), "Photo")
@@ -563,42 +568,42 @@ object CV {
         Award(
             "Distinguished-Paper Award at the International Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA) 2011",
             URL("http://splashcon.org/2011/program/273"),
-            new GregorianCalendar(2011, 10 - 1, 1).getTime,
+            LocalDate.of(2011, 10, 1),
             (URL("http://www.flickr.com/photos/p0nk/6317966864/in/photostream"), "Photo") :: Nil
         ),
         Award(
             "Best-Research-Paper Award at the International Software Product Line Conference 2011",
             URL("http://www.splc2011.net/program-1/best-paper-awards/index.html"),
-            new GregorianCalendar(2011, 8 - 1, 1).getTime
+            LocalDate.of(2011, 8, 1)
         ),
         Award(
             "Best-Dissertation Award of the School of Computer Science, University of Magdeburg, 2010",
             URL("http://www.cs.uni-magdeburg.de/Bester_Doktorand.html"),
-            new GregorianCalendar(2010, 11 - 1, 1).getTime,
+            LocalDate.of(2010, 11, 1),
             Nil
         ),
         Award(
             "Research Award of the School of Computer Science, University of Magdeburg for the Best Paper, 2009",
             URL("http://www.cs.uni-magdeburg.de/Die+FIN/Auszeichnungen/Forschungspreis+der+Fakultät-p-324.html"),
-            new GregorianCalendar(2009, 12 - 1, 1).getTime,
+            LocalDate.of(2009, 12, 1),
             Nil
         ),
         Award(
             "Software Engineering Award of the Denert Foundation for the Best Master's Thesis, 2007",
             URL("http://www.denert-stiftung.de/"),
-            new GregorianCalendar(2007, 9 - 1, 1).getTime,
+            LocalDate.of(2007, 9, 1),
             (URL("http://www.flickr.com/photos/p0nk/6318925958/in/photostream"), "Photo") :: Nil
 //            Some(EUR(2000))
         ),
         Award(
             "Best-Graduate Award of the School of Computer Science, University of Magdeburg, 2007",
             URL("http://www.cs.uni-magdeburg.de/Bester_Absolvent.html"),
-            new GregorianCalendar(2007, 10 - 1, 1).getTime,
+            LocalDate.of(2007, 10, 1),
             (URL("http://www.flickr.com/photos/p0nk/6318413771/in/photostream"), "Photo") :: Nil
         ),
         Award("Student Scholarship of the Germany Academic Exchange Service",
             URL("http://www.daad.de/"),
-            new GregorianCalendar(2006, 9 - 1, 1).getTime
+            LocalDate.of(2006, 9, 1)
         )
     )
 //    val projects: Seq[(URL, String, String, Option[String])] = Seq(
@@ -649,6 +654,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2020, 6), "Engineering AI-Enabled Systems with Interdisciplinary Teams", "Software Engineering for Machine Learning Applications (SEMLA) International Symposium"),
         InvitedTalk(time(2020, 4), "Software Engineering for ML-Enabled Systems", "Code and Supply Meetup"),
         InvitedTalk(time(2020, 3), "Teaching Software Engineering for AI-Enabled Systems", "Dagstuhl Seminar 20091: SE4ML - Software Engineering for AI-ML-based Systems"),
         InvitedTalk(time(2019, 9), "Performance Analysis for Highly-Configurable Systems", "Keynote for the 2019 System and Software Product Line Conference (SPLC)"),
@@ -690,7 +696,7 @@ object CV {
     )
 
     //1=January
-    def time(year: Int, month: Int): Date = new GregorianCalendar(year, month - 1, 1).getTime
+    def time(year: Int, month: Int): LocalDate = LocalDate.of(year, month, 1)
 
 
     /**
@@ -716,14 +722,8 @@ object CV {
         (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
         (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
         (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Jerry", "Lu", "University of Pennsylvania"), Some("(REU student, 2020)")),
-        (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
-        (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)")),
         (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
         (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(REU student, 2020)"))
-
     )
     val former = List(
         (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
@@ -757,9 +757,13 @@ object CV {
         (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
         (Overney, Some("(REU student, 2019)")),
         (Raman, Some("(REU student, 2019)")),
-        (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)"))
+        (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)")),
 
-
+        (Person("Jerry", "Lu", "University of Pennsylvania"), Some("(REU student, 2020)")),
+        (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
+        (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)"))
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),

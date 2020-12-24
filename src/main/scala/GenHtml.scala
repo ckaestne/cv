@@ -3,10 +3,10 @@ package de.stner.cv
 import java.io.File
 import java.net.URI
 import java.text.SimpleDateFormat
-
 import de.stner.cv.StructureTheses.AThesis
 import org.apache.commons.io.FileUtils
 
+import java.time.format.DateTimeFormatter
 import scala.xml._
 import scala.xml.dtd.{DocType, PublicID}
 
@@ -303,7 +303,7 @@ object GenHtml extends App with RSSFeed {
         <div class="grid_3 ">&nbsp;</div> :+
         	<div class="grid_9 header headline">
                 {if (spellingHint)
-        <div>{addLink(<h1 style="display: inline;" itemprop="name">Christian Kästner</h1>)} {printSpellingLink}</div>
+        <div>{addLink(<h1 style="display: inline;" itemprop="name">Christian Kästner</h1>)} {printSpellingLink()}</div>
             else addLink(<h1 itemprop="name">Christian Kästner</h1>)}
                 <div id="spellingbox" style="display:none">{printSpelling()}</div>
                 <p><span itemprop="role">Associate Professor</span> · <span itemprop="affiliation">Carnegie Mellon University</span> · Institute for Software Research</p>
@@ -331,7 +331,7 @@ object GenHtml extends App with RSSFeed {
         val news = if (full) News.news else News.news.take(3)
         for (newsItem <- news)
             yield row(
-                {<span class="newsdate">{new SimpleDateFormat("d MMM. yyyy") format newsItem.date}</span>}, {
+                {<span class="newsdate">{newsItem.date.format(DateTimeFormatter.ofPattern("d MMM. yyyy"))}</span>}, {
                     <div class="newsheadline"><a name={newsItem.getID()}  class="sectionanch"></a>{newsItem.title}</div> :+
             <div class="newsbody">{newsItem.body}</div>
                 }, "newsitem")
@@ -461,7 +461,7 @@ object GenHtml extends App with RSSFeed {
 
     def getJSHeaderPublications() = <script type="text/javascript" src="js/pubfilter.js"></script> :+ <script type="text/javascript">{ scala.xml.Unparsed(printGroupingHeaders(publications)) }</script>
 
-    def printArticles(articleDir: File, targetPath: File) {
+    def printArticles(articleDir: File, targetPath: File) = {
         val articles = for (articleSubdir <- articleDir.listFiles(); if articleSubdir.isDirectory) yield {
             val contentFile = new File(articleSubdir, "index.xml")
             assert(contentFile.exists(), "index.xml not found in " + articleSubdir)

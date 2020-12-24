@@ -3,9 +3,10 @@ package de.stner.cv
 import java.io.{File, FileNotFoundException}
 import java.text.SimpleDateFormat
 import java.util.{Date, Locale}
-
 import de.stner.cv.GenHtml.PlainHtmlFormater
 
+import java.time.{LocalDateTime, LocalTime, ZoneOffset}
+import java.time.format.DateTimeFormatter
 import scala.xml.{Node, NodeSeq, XML}
 
 /**
@@ -18,8 +19,7 @@ trait RSSFeed {
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
 
-    protected val RFC822 =
-        new SimpleDateFormat("EEE', 'dd' 'MMM' 'yyyy' 'HH:mm:ss' 'Z", Locale.US)
+    protected val RFC822 = DateTimeFormatter.RFC_1123_DATE_TIME
 
     def printNewsFeed(file: File) =
         printFeed(CV.name + " :: News Feed", newsRSSURL, CV.url, "News feed for " + CV.name, {
@@ -28,7 +28,7 @@ trait RSSFeed {
                     <title>{newsitem.title}</title>
                     <author>kaestner@cs.cmu.edu (Christian Kästner)</author>
                     <description>{newsitem.body.toString()}</description>
-                    <pubDate>{RFC822.format(newsitem.date)}</pubDate>
+                    <pubDate>{RFC822.format(LocalDateTime.of(newsitem.date, LocalTime.of(0,0)).atOffset(ZoneOffset.UTC))}</pubDate>
                     <guid>{CV.url + "#" + newsitem.getID()}</guid>
                     <link>{CV.url + "#" + newsitem.getID()}</link>
                 </item>
@@ -60,7 +60,7 @@ trait RSSFeed {
                 val isUpdated = !isNew && (oldEntry \ "description").text.replaceAll("[ \\n\\t]","") != pubDesc.replaceAll("[ \\n\\t]","")
                 val oldPubDate = (oldEntry \ "pubDate").text
                 val pubDate = if (isNew || isUpdated || oldPubDate.isEmpty)
-                    RFC822.format(new Date()) else oldPubDate
+                    RFC822.format(LocalDateTime.now()) else oldPubDate
                 val authors = pub.authors.map(_.abbrvname).mkString(", ")
 
 
@@ -79,7 +79,7 @@ trait RSSFeed {
     }
 
 
-    def printFeed(title: String, feedURL: String, webURL: String, desc: String, items: NodeSeq, file: File) {
+    def printFeed(title: String, feedURL: String, webURL: String, desc: String, items: NodeSeq, file: File): Unit = {
 
         val doc: Node =
             <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -88,7 +88,7 @@ trait RSSFeed {
                     <link>{webURL}</link>
                     <description>{desc}</description>
                     <language>en-us</language>
-                    <pubDate>{RFC822.format(new Date())}</pubDate>
+                    <pubDate>{RFC822.format(LocalDateTime.now().atOffset(ZoneOffset.UTC))}</pubDate>
                     <atom:link href={feedURL} rel="self" type="application/rss+xml" />
                     {items}
                 </channel>

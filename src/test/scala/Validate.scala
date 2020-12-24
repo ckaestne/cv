@@ -1,9 +1,10 @@
 package de.stner.cv
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
+
 import java.io.File
 
-class Validate extends FunSuite {
+class Validate extends AnyFunSuite {
 
     import CV._
     import CVTheses.advisedTheses
