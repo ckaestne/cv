@@ -330,7 +330,7 @@ class Publication(
                      val isSelected: Boolean = false,
                      val note: Option[String] = None,
                      val isHideAbstract: Boolean = false
-                     ) extends Citable {
+                     ) extends Citable with BibTexPrintable {
 
     protected def copy(authors: Seq[Person] = this.authors,
                        title: String = this.title,
@@ -372,7 +372,7 @@ class Publication(
      */
     def render[A](style: BibStyle, formater: Formater[A]): A = renderer.render(this, style, formater)
 
-    def toBibtex(): String = renderer.toBibtex(this)
+    def toBibtex: String = renderer.toBibtex(this)
 
     override def toString(): String =  render(DefaultBibStyle, GenPubList.TextFormater)
 
@@ -746,7 +746,12 @@ object PDFFile {
 }
 
 
-object StructureTheses {
+trait BibTexPrintable {
+    def genKey: String
+    def toBibtex: String
+}
+
+object StructureTheses{
     implicit def stringTexWrapper(string: String) = new StringTexHelper(string)
 
     sealed abstract class AThesis(
@@ -758,23 +763,23 @@ object StructureTheses {
                                      val pdf: URL,
                                      val note: String
 
-                                     ) {
+                                     ) extends BibTexPrintable  {
         def genKey = "thesis" + author.lastname.toId + kind.baMarker
 
         def toBibtex: String = {
-            var r = """
-                  @MastersThesis{%s,
-                    AUTHOR = {%s},
-                    TITLE = {%s},
-                    SCHOOL = {%s},
-                    TYPE = {%s},
-                    ADDRESS = {%s},
-                    MONTH = %d,
-                    YEAR = %d,""".format(genKey, author.fullname.toTex, title.toTex, where.name.toTex, kind.name, where.country.toTex, when._1, when._2)
+            var r =
+                """@%s{%s,
+                  |  AUTHOR = {%s},
+                  |  TITLE = {%s},
+                  |  SCHOOL = {%s},
+                  |  TYPE = {%s},
+                  |  ADDRESS = {%s},
+                  |  MONTH = %d,
+                  |  YEAR = %d,""".stripMargin.format(kind.bibtexKey, genKey, author.fullname.toTex, title.toTex, where.name.toTex, kind.name, where.country.toTex, when._1, when._2)
             if (pdf != null)
-                r += "PDF={%s},".format(pdf)
+                r += "\n  PDF={%s},".format(pdf)
             if (note != null && note.length > 0)
-                r += "NOTE={%s},".format(note.toTex)
+                r += "\n  NOTE={%s},".format(note.toTex)
             r + "\n}\n"
         }
 
@@ -786,6 +791,8 @@ object StructureTheses {
 
         def monthStr: String = TextHelper.renderMonth(month)
     }
+
+
 
     case class Thesis(
                          aauthor: Person,
@@ -825,12 +832,24 @@ object StructureTheses {
         def nameAlt: String
 
         def baMarker: String = ""
+
+        def bibtexKey: String
     }
 
     object MastersThesis extends ThesisKind {
         def name = "Master's Thesis"
 
         def nameAlt = "Master's thesis"
+
+        def bibtexKey: String = "mastersthesis"
+    }
+
+    object PhDThesis extends ThesisKind {
+        def name = "PhD Dissertation"
+
+        def nameAlt = "PhD Dissertation"
+
+        def bibtexKey: String = "phdthesis"
     }
 
     object BachelorsThesis extends ThesisKind {
@@ -839,6 +858,7 @@ object StructureTheses {
         def nameAlt = "Bachelor's thesis"
 
         override def baMarker: String = "BA"
+        def bibtexKey: String = "mastersthesis"
     }
 
     object Studienarbeit extends ThesisKind {
@@ -847,18 +867,26 @@ object StructureTheses {
         def nameAlt = "Bachelor's thesis"
 
         override def baMarker: String = "S"
+        def bibtexKey: String = "mastersthesis"
     }
 
     object Diplomarbeit extends ThesisKind {
         def name = "Master's Thesis (Diplomarbeit)"
 
         def nameAlt = "Diploma thesis"
+        def bibtexKey: String = "mastersthesis"
     }
 
     object MD extends School {
         def name = "University of Magdeburg"
 
         def country = "Germany"
+    }
+
+    object CMU extends School {
+        def name = "Carnegie Mellon University"
+
+        def country = "USA"
     }
 
     object MR extends School {

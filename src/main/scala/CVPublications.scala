@@ -1,6 +1,7 @@
 package de.stner.cv
 
 
+
 object Coauthors {
 
 
@@ -353,6 +354,7 @@ object CVPublications {
     import de.stner.cv.Topics._
     import de.stner.cv.VenueStructure._
     import de.stner.cv.Venues._
+    import de.stner.cv.CVMedia._
 
 
     val ramse06 = InProceedings(
@@ -1278,7 +1280,7 @@ object CVPublications {
                     feature-oriented Java-like language. We demonstrate that the type system ensures
                     that every valid program of a feature-oriented product line is well-typed and that
                     the type system is complete."""
-    ).hideabstract.
+    ).hideabstract().
         crosscite("superseded by \\cite{AKGL:JASE10}").topic(vaanalysis, fop)
 
 
@@ -4508,7 +4510,7 @@ in successful software systems can be followed.
         Map(PDF -> PDFFile("seai19.pdf"), 
         	HTTP->URL("http://arxiv.org/abs/2001.06691"),
     		DOI->DOI("10.1145/3377814.3381714"),
-    		Video->YouTube("Nk0Sy6Sx3IY")),
+    		Video->seetTalk20.link),
         """
 Software engineers have significant expertise to offer when building
 intelligent systems, drawing on decades of experience and methods
@@ -4535,7 +4537,7 @@ from teaching the course for the first time.
 		Pages(445,456),
         Map(PDF->PDFFile("icse20-forks.pdf"),
     		DOI->DOI("10.1145/3377811.3380412"),
-    		Video->YouTube("3SdJRxH_388")),
+    		Video->YoutubeLink("3SdJRxH_388")),
         """
 The notion of forking has changed with the rise of distributed version control systems and social coding environments, like GitHub. Traditionally forking refers to splitting off an independent development branch (which we call hard forks); research on hard forks, conducted mostly in pre-GitHub days showed that hard forks were often seen critical as they may fragment a community. Today, in social forking environments, open-source developers are encouraged to fork a project in order to integrate contributions to the community (which we call social forks), which may have also influenced perceptions and practices around hard forks. To revisit hard forks, we identify, study and classify 15,306 hard forks on GitHub and interview 18 owners of hard forks or forked repositories. We find that, among others, hard forks often evolve out of social forks rather than being planned deliberately and that perception about hard forks have indeed changed dramatically, seeing them often as a positive non-competitive alternative to the original project.        """
     ).selected().topic(opensource, ecosystem, awareness)
@@ -4547,7 +4549,7 @@ The notion of forking has changed with the rise of distributed version control s
 		Pages(1209,1221),
         Map(PDF->PDFFile("icse20-donations.pdf"),
     		DOI->DOI("10.1145/3377811.3380410"),
-    		Video->YouTube("E_UftrapTAM")),
+    		Video->YoutubeLink("E_UftrapTAM")),
         """
             Open source is ubiquitous and critical infrastructure, yet funding and sustaining it is challenging. While there are many different funding models for open-source donations and concerted efforts through foundations, donation platforms like Paypal, Patreon, or OpenCollective are popular and low-bar forms to raise funds for open-source development, for which GitHub recently even built explicit support. With a mixed-method study, we explore the emerging and largely unexplored phenomenon of donations in open source: We quantify how commonly open-source projects ask for donations, statistically model characteristics of projects that ask for and receive donations, analyze for what the requested funds are needed and used, and assess whether the received donations achieve the intended outcomes. We find 25,885 projects asking for donations on GitHub, often to support engineering activities; however, we also find no clear evidence that donations influence the activity level of a project. In fact, we find that donations are used in a multitude of ways, raising new research questions about effective funding.
             """
@@ -4560,7 +4562,7 @@ The notion of forking has changed with the rise of distributed version control s
 		Pages(233,242),
         Map(PDF->PDFFile("icseseip20.pdf"),
     		DOI->DOI("10.1145/3377813.3381366"),
-    		Video->YouTube("8DfsVfiAkFI")),
+    		Video->YoutubeLink("8DfsVfiAkFI")),
         """
         Feature flags for continuous deployment and configuration options for customizing software share many similarities, both conceptually and technically. However, neither academic nor practitioner publications seem to distinguish these two concepts. We argue that a distinction is valuable, as applications, goals, and challenges differ fundamentally between feature flags and configuration options. In this work, we explore the differences and commonalities of both concepts to help understand practices and challenges and to help transfer existing solutions (e.g., for testing). To better understand feature flags and how they relate to configuration options, we performed nine semi-structured interviews with feature-flag experts. We discovered a number of distinguishing characteristics but also opportunities for knowledge and technology transfer across both communities. Overall, we think that both communities can learn from each other.        
         """
@@ -4574,7 +4576,7 @@ The notion of forking has changed with the rise of distributed version control s
 		Pages(57,60),
         Map(PDF->PDFFile("icsenier20.pdf"),
     		DOI->DOI("10.1145/3377816.3381732"),
-    		Video->YouTube("7Cf7H4qrQRA")),
+    		Video->YoutubeLink("7Cf7H4qrQRA")),
         """
             Developers from open-source communities have reported high stress levels from frequent demands for features and bug fixes and the sometimes aggressive tone of these demands. Toxic conversations may demotivate and burn out developers, creating challenges for sustaining open source. We outline a path toward finding, understanding, and possibly mitigating such unhealthy interactions. We take a first step toward finding them, by developing and demonstrating a measurement instrument (an SVM classifier tailored towards the software engineering domain) to detect toxic discussions in GitHub issues. We used our classifier to analyze trends over time and in different GitHub communities, finding that toxicity varies by community and that toxicity decreased from 2012-2018.
         """
@@ -4587,7 +4589,7 @@ The notion of forking has changed with the rise of distributed version control s
         Pages(169,173),
         Map(PDF->PDFFile("msr20flags.pdf"),
     		DOI->DOI("10.1145/3379597.3387463"),
-    		Video->YouTube("CVGibKyF1RU")),
+    		Video->YoutubeLink("CVGibKyF1RU")),
         """
 Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidden behind a boolean option during development. Flags are used for many purposes, such as A/B testing and turning off a feature more easily in case of failures. While software engineering feature flags research is burgeoning, examples of software projects using flags rarely come from outside commercial and private projects, stifling academic progress. To address this gap, in this paper we present a novel mining software repositories approach to detect feature flagging open-source projects, based on analyzing the projects' commit messages. We apply our approach to all open-source GitHub projects, identifying 231,223 candidate feature flagging projects, and manually validating 100. We also report on an initial analysis of feature flags in the validated sample of 100 projects, investigating practices that correlate with shorter flag lifespans (typically desirable to reduce technical debt), such as using the issue tracker and having the flag owner (the developer introducing a flag) also be the one removing it."""
      ).topic(featureflags)
@@ -4609,8 +4611,8 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         Pages(1165,1177),
         Map(PDF -> PDFFile("fse20hom.pdf"),
     		DOI->DOI("10.1145/3368089.3409713"),
-    		Video->YouTube("ziiG_AWQj_8"),
-    		Teaser->YouTube("Q6mPYesl4Qs")),
+    		Video->YoutubeLink("ziiG_AWQj_8"),
+    		Teaser->YoutubeLink("Q6mPYesl4Qs")),
         """
         Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
         """).topic(testing, vaanalysis).selected()
@@ -4622,8 +4624,8 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         Pages(505,517),
         Map(PDF -> PDFFile("fse20diffusion.pdf"),
     		DOI->DOI("10.1145/3368089.3409705"),
-    		Video->YouTube("67W8p85YCvI"),
-    		Teaser->YouTube("3bn_BzO09mQ")),
+    		Video->YoutubeLink("67W8p85YCvI"),
+    		Teaser->YoutubeLink("3bn_BzO09mQ")),
         """
         Automation tools have become essential in contemporary software development. Tools like continuous integration services, code coverage reporters, style checkers, dependency managers, etc. are all known to provide significant improvements in developer productivity and software quality. Some of these tools are widespread, others are not. How do these automation "best practices" spread? And how might we facilitate the diffusion process for those that have seen slower adoption? In this paper, we rely on a recent innovation in transparency on code hosting platforms like GitHub--the use of repository badges--to track how automation tools spread in open-source ecosystems through different social and technical mechanisms over time. Using a large longitudinal data set, multivariate network science techniques, and survival analysis, we study which socio-technical factors can best explain the observed diffusion process of a number of popular automation tools. Our results show that factors such as social exposure, competition, and observability affect the adoption of tools significantly, and they provide a roadmap for software engineers and researchers seeking to propagate best practices and tools.
         """).topic(empirical, opensource)

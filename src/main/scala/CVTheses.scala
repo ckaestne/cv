@@ -4,11 +4,28 @@ package de.stner.cv
 object CVTheses {
 
     import StructureTheses._
+    import Coauthors._
 
     val advisedTheses: Seq[AThesis] = Seq(
 
+        //TODO: Chu-Pan
+        //TODO: Committees: Rinjiard, Mauricio, YoungSeok Yoon
+
         Thesis(
-            Person("Thomas", "Thüm"),
+            Zhou,
+            "Improving Collaboration Efficiency in Fork-based Development",
+            CMU, (5, 2020), PhDThesis,
+            PDFFile("diss20Zhou.pdf")
+        ),
+        Thesis(
+            Meinicke,
+            "Variational Debugging: Understanding Differences among Executions",
+            MD, (1, 2019), PhDThesis,
+            PDFFile("diss19Meinicke.pdf")
+        ),
+
+        Thesis(
+            Thuem,
             "Reasoning about Feature Model Edits",
             MD, (6, 2008), Studienarbeit,
             PDFFile("thesisthuem.pdf"),
@@ -82,7 +99,7 @@ object CVTheses {
         ),
 
         Thesis(
-            Person("Thomas", "Thüm"),
+            Thuem,
             "A Machine-Checked Proof for a Product-Line-Aware Type System",
             MD, (1, 2010), Diplomarbeit,
             PDFFile("thesisthuem.pdf"),

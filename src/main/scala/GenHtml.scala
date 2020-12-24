@@ -359,8 +359,9 @@ object GenHtml extends App with RSSFeed {
 
 
     def printFullBibtex(): NodeSeq =
-        for (p <- CV.publications)
-            yield <div><a name={p.genKey} class="sectionanch"></a><pre>{p.toBibtex()}</pre></div>
+        for (p: BibTexPrintable <- (CV.publications ++ CVTheses.advisedTheses))
+            yield <div><a name={p.genKey} class="sectionanch"></a><pre>{p.toBibtex}</pre></div>
+
 
     def printStudents(students: List[(String, List[(Person, Option[String])])]): NodeSeq =
         rowH2("Team", "team") ++ students.flatMap(printStudentSection)
@@ -434,7 +435,7 @@ object GenHtml extends App with RSSFeed {
 
     def navBarHeight = "6ex"
 
-    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot: URI = pageRoot) = {
+    def printDoc(body: NodeSeq, title: String, file: File, extraHeader: NodeSeq = null, pathToRoot: URI = pageRoot, skipNavigation: Boolean = false) = {
 
         val doct = DocType("html", PublicID("-//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"), Nil)
 
@@ -452,7 +453,7 @@ object GenHtml extends App with RSSFeed {
                 {extraHeader}
                 <title>{title}</title>
             </head>
-            <body>{navigationBar(pathToRoot)}<div class="container_12" style={"margin-top:" + navBarHeight}>{body}</div></body>
+            <body>{if (!skipNavigation) navigationBar(pathToRoot)}<div class="container_12" style={"margin-top:" + navBarHeight}>{body}</div></body>
         </html>
         scala.xml.XML.save(file.getAbsolutePath(), doc, "UTF-8", doctype = doct)
     }
@@ -532,7 +533,7 @@ object GenHtml extends App with RSSFeed {
     printDoc(newsPage, CV.name + " :: News :: CMU", new File(targetPath, "news.html"))
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name + " :: Spelling", new File(targetPath, "spelling.html"))
     printDoc(printTitle() ++ printPublications(publications) ++ printSupervisedTheses(advisedTheses), CV.name + " :: Publications :: CMU", new File(targetPath, "publications.html"), getJSHeaderPublications() ++ getPubsRSSHeader())
-    printDoc(printTitle() ++ row(null, printFullBibtex()), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"))
+    printDoc(printFullBibtex(), CV.name + " :: Bibtex", new File(targetPath, "bibtex.html"),skipNavigation = true)
     printNewsFeed(new File(targetPath, "news.rss"))
     printPubsFeed(new File(targetPath, "pub.rss"))
     printArticles(articleDir, targetPath)
