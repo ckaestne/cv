@@ -4,7 +4,6 @@ import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
-
 import com.mortennobel.imagescaling.{ResampleFilters, ResampleOp}
 import de.stner.cv.GenPubList.TextFormater
 import org.apache.commons.io.FileUtils
@@ -158,19 +157,21 @@ object Research {
 
     import de.stner.cv.CVPublications._
     import de.stner.cv.ResearchStructure._
+    import de.stner.cv.CVMedia._
 
-
-    def themes = List(qualityAssurance,
-        imperfectModularity,
+    def themes = List(seai,
+        opensource,
+        qualityAssurance,
         maintenanceAndImplOfVariability,
+        imperfectModularity,
         beyondVariability,
         otherTopics
     )
 
 
-    def cite(p: Any*): NodeSeq = <span>[{p.map(citeOne).reduce(_ ++ Text(", ") ++ _)}]</span>
+    def cite(p: Citable*): NodeSeq = <span>[{p.map(citeOne).reduce(_ ++ Text(", ") ++ _)}]</span>
 
-    def citeOne(p: Any): NodeSeq = p match {
+    def citeOne(p: Citable): NodeSeq = p match {
         case p: Publication =>
             <a href={"publications.html#" + p.genKey} title={p.render(SimpleBibStyle, TextFormater)}>{
                 val ven = p.venue.short
@@ -178,6 +179,8 @@ object Research {
                     p.venue.publisher.map(_.name).getOrElse("")
                 else ven
             } {p.venue.year}</a>
+        case m: Media =>
+            <a href={m.link.toString} title={m.title}>{m.citeKey}</a>
         case CiteExternal(authorYear, longForm, link) =>
             <a href={link.toString} title={longForm}>{authorYear}</a>
     }
@@ -188,8 +191,207 @@ object Research {
     def linkTool(sw: Software, linkText: Option[String] = None): NodeSeq =
         <a href={sw.url.toString} title={sw.title + ": " + sw.onelineDescription}>{linkText.getOrElse(sw.title)}</a>
 
-    case class CiteExternal(authorYear: String, longForm: String, link: URL)
 
+
+
+    def seai = Theme(
+        "Software Engineering for AI-Enabled Systems",
+        "We explore how different facets of software engineering change with the introduction " +
+            "of machine learning components in production systems, with an interest in interdisciplinary collaboration, quality assurance, " +
+            "system-level thinking, safety, and better data science tools:",
+        <p>
+          We investigate how the introduction of machine learning in software projects (AI-enabled systems) changes the
+            way that production systems are developed, tested, and maintained.
+            This is true both for traditional software systems where now a machine-learned component
+            is added (e.g., adding automated slide layout to PowerPoint) as well for systems
+            build around machine-learning innovations (e.g., an automated audio transcription service).
+            Machine learning models
+            form heuristics that often work, but without clear specifications that could be checked
+            as in traditional quality assurance work. Assuming that a model may make mistakes, the focus
+            must increasingly be on system-level thinking, whole system design, testing in production,
+            and requirements engineering. Our goal is to understand challenges and provide better
+            techniques for design, quality assurance, maintenance, and operation of software systems
+            with machine learning components. It is particularly interesting how to bring together
+            team-members with different backgrounds (data scientists, software engineers, operators, ...)
+            to build AI-enabled systems and transition them into production.
+            </p><p>
+             This is a recent and fast moving field, with many interesting research problems.
+        </p>,
+        List(capturingSEAI,
+            seaicollaboration,
+            notebooks,
+        )
+    )
+
+
+    def capturingSEAI = ResearchTopic(
+        "Capturing Software Engineering for AI-Enabled Systems",
+        <p>
+            Software engineering for AI-enabled systems is a new and emergent field, emphasizing
+            that one has to look beyond the machine-learning model at the larger system to
+            plan a successful software product with AI components in production.
+            We are particularly interested in this from an education perspective {cite(icseseet20)}
+            and from forming a community to understand the relevant topics in the field {cite(seaibib)},
+            captured also in multiple talks {cite(semlaTalk20,ccTalk20,seetTalk20)}.
+            This way, we tough on many topics, including quality assurance {cite(seaiMedium20MLisRE,seaiMedium20Testing)},
+            software development processes {cite(seaiMedium20Process)}, requirements engineering {cite(seaiMedium20MLisRE,seaiMedium20WorldMachine)},
+            safety, fairness, MLOps, and many others.
+        </p>,
+        Some("seaiprocess.png")
+    )
+
+    def seaicollaboration = ResearchTopic(
+        "Interdisciplinary Collaboration in Engineering AI-Enabled Systems",
+        <p>
+            Interdisciplinary collaboration becomes a central point, as software engineers and
+            data scientists each have distinct specialities, focus, goals, and experiences,
+            but need to work together in building these AI-enabled systems. For example, software
+            engineers need to work with data scientists to define quality expectations for machine-learned components
+            beyond just prediction accuracy, but also covering performance, fairness, safety, and explainability
+            requirements among many others. They also need to work together to understand how to design
+            the overall system to deal with mistakes the model makes, typically with mitigation and
+            system-design strategies outside the model {cite(semlaTalk20)}. This requires a fresh look at the development process
+            of AI-enabled systems {cite(seaiMedium20Process)}.
+        </p><p>
+            Much of our work focuses on understanding collaboration points, such as the handoff
+            of modeling code between data scientists and software engineers when transitioning
+            a research project into a production system. We believe that there is high potential for
+            deliberate collaboration, for capturing contracts at collaboration points, and for providing
+            tooling and automation to catch common problems and make teams more effective.
+        </p>,
+        Some("seaivenn.png")
+    )
+
+
+    def notebooks = ResearchTopic(
+        "Developer Tooling for Data Scientists",
+        <p>
+            Computational notebooks, such as Jupyter, are broadly adopted by data scientists,
+            but offer a far less rich developer environment than what software engineers are used
+            to. At the same time, data scientist's workflows and goals are different, so a direct
+            translation of software engineering tools and practices is not appropriate.
+            We investigate techniques to improve developer tooling for data scientistis, primarily
+            targeted at notebooks. For example, can we nudge data scientists to consider
+            various quality attributes beyond prediction accuracy, can we automatically derive documentation,
+            can we provide debugging support, can we automatically migrate notebook code toward
+            production-ready pipeline code and back? We develop analysis tools and notebook extensions
+            to help data scientists in their work and in their collaboration with software engineers
+            as part of a larger AI-enabled system.
+        </p>,
+        Some("seainotebook.png")
+    )
+
+
+
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //.
+    //////////////////////////////////////////// open source /////////////////////////////////////////////
+
+
+    def opensource = Theme(
+        "Sustainability and Fairness in Open Source",
+        "We study the dynamics of open source communities with a focus on unstanding and fostering fair and sustainable environments. " +
+            "Primarily with empirical research methods, we explore topics, such as open source culture, coordination, stress and disengagement, " +
+            "funding, and security:",
+        <p>
+            Open-source software is ubiquitous and plays such critical roles in today’s software infrastructure and
+            economy that threats to its sustainability must be taken seriously. Unsustainable open-source infrastructure
+            poses serious risks and undermines innovation for the economy as a whole.
+            However, over the last 8-10 years open source has significantly changed—nowadays, open source is
+            increasingly characterized by professionalization and commercial involvement, by high pressure through
+            transparency, and by high demands and expectations from users, just to name a few.
+            Participants in open source communities, many of which volunteer their time, are often exposed to high levels of stress
+            and some even report burnout. We are interested in questions of individual fairness and how to shape
+            open source culture to be sustainable. This involves many important research topics, such as the common collaboration
+            and coordination mechanisms used, the role of money in open source, stress and burnout and toxic interactions,
+            mechanisms to shape culture and encourage the adoption of sustainable practices, and many more.
+            Our research aims to supplement discussions that are currently typically shaped by opinions and
+            anecdotes with empirical evidence as well as to provide evidence-supported and validated interventions.
+        </p>,
+        List(sustainopensource,osscollaboration,ossadoption)
+    )
+
+
+    def sustainopensource = ResearchTopic(
+        "Sustainability and Fairness in Open Source",
+        <p>
+            With the increasing commercialization and professionalization of open source new stressors around
+            interactions between paid contributors and voluteers, high transparency, entitled users and many
+            others emerge. We are interested in understanding current practices and suggesting interventions
+            (e.g., tools and best practices) for more sustainable and equitable communities {cite(stateOfTheSource20Talk)}.
+            This involves studying the reasons for disengagement and stress {cite(icsenier20, oss19)},
+            studying community culture {cite(fse16)}, studying funding mechanisms such as donations {cite(icse20donations, infographicDonations)},
+            and designing security mechanisms {cite(icsenier19,icse21_malicious)}.
+          </p>,
+        Some("donations.png")
+    )
+
+
+    def osscollaboration = ResearchTopic(
+        "Collaboration and Coordination in Open Source",
+        <p>
+            Open source strives from the collaboration within and across multiple projects. Work is largely
+            decentralized and loosely coordinated, providing new opportunities but also new challenges.
+            Supporting better and more equitable collaboration in open source will help to sustain the
+            communities of developers and maintainers.
+            A key point of tension is the definition and change of interfaces between different dependent
+            open source projects that become apparent around breaking changes;
+            we found that different ecosystems and corresponding communities have adopted very different
+            coordination and communication strategies around handling breaking changes and absorbing
+            the corresponding costs {cite(fse16,breakingChangesWeb,jsconf17Talk)}.
+            We found that repository badges are an effective way to signal qualities and encourage practices
+            without explicit enforcement mechanisms {cite(icse18badges)}.
+            We also studied how developers collaborate across forks of a repository {cite(icse20forks,fse19forks,saner19,icse18forks)}, finding among
+            others several inefficiencies that can be addressed with different development practices {cite(fse19forks)}
+            and opportunites to mitigate some inefficiences such as redundant development with suitable tooling  {cite(saner19,icse20forks)}.
+         </p>,
+        Some("breakingapis.png")
+    )
+
+    def ossadoption = ResearchTopic(
+        "Adoption of Practices and Tooling",
+        <p>
+            There are many positive practices and useful forms of tooling that are often benefitial to
+            open source projects and their sustainability. Understanding the costs and benefits is crutial,
+            but so are strategies to encourage adoption of good practices and tools by the broader community.
+            We studied the diffusion of practices {cite(fse20_diff)}, which can help design more effective
+            communication strategies. Repository badges seem effective at nudging developers to adopt
+            specific practices, such as submitting more pull requests with tests if the importance of
+            test coverage is signaled through a badge {cite(icse18badges, infographicBadges)}.
+            With the example of continuous integration, we also dug deeper to understand
+            problems around tooling and how adoption (or abandonment) of tooling can be understood or
+            influenced {cite(fse19ci,msr18travis)}.
+        </p>,
+        Some("badges.png")
+    )
 
     //.
     //.
@@ -222,6 +424,7 @@ object Research {
     //.
     //.
     //////////////////////////////////////////// quality assurance /////////////////////////////////////////////
+
 
     def qualityAssurance = Theme(
         "Quality Assurance for Highly-Configurable Software Systems",
@@ -283,7 +486,7 @@ object Research {
           huge configuration spaces as in the Linux kernel with thousands of compile-time options.
         </p><p>
           We have investigated variational analyses and built tools for parsing {cite(oopsla11_typechef)}, type checking {cite(ase08, tosem12, oopsla12)},
-          linker checks (compositionality) {cite(oopsla12)}, control-flow and data-flow analysis {cite(fse13)}, and testing {cite(icse14_varex, fosd12_varex)}.
+          linker checks (compositionality) {cite(oopsla12)}, control-flow and data-flow analysis {cite(fse13)}, and testing {cite(icse14_varex, fosd12_varex, ase16, gpce18, oopsla18)}.
           Furthermore, we have investigated general principles, patterns, and data structures for variational
           analyses {cite(fse13, onward14)} and performed a survey of the field {cite(csur14)}.
         </p> ,
@@ -312,7 +515,7 @@ object Research {
             faster: it finds exactly the same bugs and does not reject code that could be parsed after preprocessing.
         </p><p>
             On top of the TypeChef parser, we have built a variational type system and
-            variational linker checks {cite(oopsla12)}, a variational data-flow analysis framework {cite(fse13)},
+            variational linker checks {cite(oopsla12)}, a variational data-flow analysis framework {cite(fse13, tosem18)},
             facilities for variational pointer analysis and variational call graphs.
             Others have used lightweight variations {cite(flavioRef)} or have used TypeChef as the basis
             for imports {cite(mbeddr)} and refactoring engines {cite(joergRefactoringICSE)} that could handle the C
@@ -368,7 +571,7 @@ object Research {
         </p><p>
             Furthermore, we have built a variational static analysis framework on top of
             TypeChef that can perform typical data-flow analyses as constant propagation
-            and taint tracking over all compile-time configurations {cite(fse13)}. In addition to the
+            and taint tracking over all compile-time configurations {cite(fse13,tosem18)}. In addition to the
             possibility of finding bugs, these analyses provide a foundation for sound
             variational refactorings of unpreprocessed C code {cite(joergRefactoringICSE)}.
         </p>,
@@ -395,12 +598,13 @@ object Research {
             similarities across configurations, which allows us to scale over brute-force
             approaches.
             We have experimented with different implementations, primarily by lifting
-            interpreters. We created experimental variational interpreters for PHP {cite(icse14_varex)} and Java {cite(jensThesis,ase16)}.
+            interpreters. We created experimental variational interpreters for PHP {cite(icse14_varex)} and Java {cite(jensThesis,ase16,oopsla18)}.
         </p><p>
-            Our primary goal is testing highly configurable systems, but we expect that we
-            will use the infrastructure for many applications of dynamic analyses to large
+            Our primary goal is testing highly configurable systems, but we experimented with many other
+            applications of dynamic analyses to large
             but finite configuration spaces beyond the traditional product line field,
-            such as dynamic information-flow analysis and policy enforcement {cite(austinPoplRef, austinWSRef)}.
+            including higher-order mutation testing {cite(fse20_hom)} and program repair {cite(fsenier18)}.
+            Others have used these techniques also for dynamic information-flow analysis and policy enforcement {cite(austinPoplRef, austinWSRef)}.
         </p>,
         Some("varexwp.png"), //[technical picture from a presention?]
         tools = List(varex, varexj)
@@ -466,7 +670,7 @@ object Research {
             that includes diverging behavior, alternative values of a variable depending
             on multiple options, structural interactions as nested #ifdefs, as well as
             {linkTopic(performance, Some("performance interactions"))}.
-            I am mostly interested in interactions at the code level {cite(ase16)}, but with broad
+            I am mostly interested in interactions at the code level {cite(ase16,gpce18,emse19,vamos18,varvis)}, but with broad
             ranges of domains, such as infrastructure software, plugin systems, software
             ecosystems, home automation, or medical devices.
         </p>,
@@ -524,12 +728,13 @@ object Research {
         </p><p>
             We have learned that we can build relatively accurate models even with few
             measurements and that there are various heuristics for learning about
-            interactions, rooted in common observations in real-world systems {cite(splc11_nfp,icse12,fse15_influence)}. So far, we
+            interactions, rooted in common observations in real-world systems {cite(splc11_nfp,icse12,fse15_influence)}.
+            Initially, we
             focused mainly on a black-box approach, where we just measure performance
-            while executing the system, but there are many opportunities for static and
-            dynamic analyses to inform the sampling strategy and reduce the number of
-            measurements. In addition, we explore the use of transfer learning
-            to reuse measurements for more accurate learning {cite(seams17)}.
+            while executing the system, but more recently, we explored how program analysis
+            techniques of the implementation can inform the sampling strategy and reduce the number of
+            measurements {cite(jase20,icse21_perf)}. In addition, we explored the use of transfer learning
+            to reuse measurements for more accurate learning {cite(seams17,fse18,ase17pf)}.
         </p>,
         Some("greenconfig.png")
         //        Insight: Performance-influence models can describe which options or interactions affect the performance of a highly-configurable system. With moderate effort, we can build relatively accurate models for real-world software systems that are useful for debugging, understanding, prediction, and optimization.
@@ -553,10 +758,11 @@ object Research {
             others we explore variational information-flow analyses to understand how
             flows differ in different configurations, we investigate whether configuration
             complexity statistically associates with vulnerabilities in the
-            implementation, and we investigate how current certification approaches along
+            implementation {cite(splc16)}, we investigate how current certification approaches along
             the lines of <em>Common Criteria</em> can be improved toward supporting easier
             recertification and certification of systems composed from parts (ecosystems,
-            plugin systems, configurable systems).
+            plugin systems, configurable systems) {cite(certtr)},
+            and we build techniques to contain malicious package updates {cite(icsenier19,icse21_malicious)}.
         </p>,
         Some("heartbleed.png"), scaleImg = 0.8f
         //        Insight: Performance-influence models can describe which options or interactions affect the performance of a highly-configurable system. With moderate effort, we can build relatively accurate models for real-world software systems that are useful for debugging, understanding, prediction, and optimization.
@@ -728,7 +934,7 @@ object Research {
             addition to analyzing tradeoffs of existing approaches and developing new implementation approaches,
             we research tooling, reverse engineering, and migration support for the various implementation techniques.
         </p>,
-        List(reverseeng, fop, configcomplexity, understandingifdef, lotrack, buildsys, modularityfi))
+        List(reverseeng, featureflags, fop, configcomplexity, understandingifdef, lotrack, buildsys, modularityfi))
 
 
     def reverseeng = ResearchTopic("Reverse Engineering Variability Implementations",
@@ -744,21 +950,54 @@ object Research {
             We have explored reverse engineering for conditional compilation, command-line
             options, branches, and build systems. We have built an infrastructure to parse
             unpreprocessed C code and we explored mechanisms to enforce more disciplined
-            usage of the preprocessor {cite(oopsla11_typechef,tse17)} and to refactor conditional compilation into other
+            usage of the preprocessor {cite(oopsla11_typechef,tse17)},
+            to extract constraints in the configuration space from such implementation {cite(icse14_mining)},
+            and to refactor conditional compilation into other
             variability mechanisms {cite(gpce09)}. For load-time parameters like command-line options
             and configuration files, we use a variation of taint tracking to identify
             which (often scattered) statements in Java and Android programs are controlled
             by these options {cite(ase14)}. For branches and clone-and-own development we look
             into merging and feature location techniques to enable an integration of the
-            various changes in the branches into disciplined variability mechanisms {cite(fse11)}.
+            various changes in the branches into disciplined variability mechanisms {cite(fse11,icse18forks)}.
             Finally, we also investigate mechanisms to extract configuration knowledge
-            from build systems {cite(releng15,releng16)}.
+            from build systems {cite(releng15,releng16,gpce17)}.
         </p> ,
         Some("splpromise.png")
-        //    [plots from proposal]
-        //        Todo: reverse engineering feature models
     )
 
+
+    def featureflags = ResearchTopic("Feature Flags",
+        <p>
+            Feature flags (or feature toggles) emerged recently as a design pattern of how to (often temporarily)
+            provide variability in software systems for experimentation, for deployment, and
+            for trunk-based development. Feature flags are broadly used in practice and
+            share many similarities with traditional configuration options, but they also
+            have distinct characteristics, for example, with regard to lifetime expectations,
+            documentation, and testing.
+            We have explored the phenomenon of feature flags and contrasted it with
+            traditional configuration options in order to bring researchers in both communities closer
+            and to learn from each other {cite(icseseip20, msr20, featureFlagsBlog19)}.
+        </p> ,
+        Some("featureflags.png")
+    )
+
+
+    def forks = ResearchTopic("Fork-Based Development",
+        <p>
+            Rather than planning variability in a single implementation, development of different
+            variants in separate branches is a common practices, often called clone-and-own.
+            We specifically looked into this phenomenon in open source, where it occurs
+            frequently as forks on GitHub and other code sharing platforms. While forks are
+            used for many different purposes, one often finds different functionality
+            in different forks that may or may not be integrated or maintained separately.
+            Among others, we have looked into how to detect features within forks {cite(icse18forks)}
+            and looked at the history and perception of forking, especially with regard to
+            social and hard forks and possible useful tooling {cite(icse20forks)}, as well as
+            mechanisms to detect duplicate work {cite(saner19)} (see also our {linkTopic(osscollaboration,Some("Open Source"))}  research).
+        </p>,
+        Some("forkshistory.png")
+        //    [fop collaboration diagram]
+    )
 
     def fop = ResearchTopic("Feature-Oriented Programming",
         <p>
@@ -793,8 +1032,8 @@ object Research {
             space: What distinguishes manageable from not manageable implementations? We
             have attempted to assess configuration complexity in systems with various
             metrics {cite(icse10,esem11,emse15)}, have analyzed how configurability relates to proneness for bugs
-            and vulnerabilities, and how we can support developers to handle the
-            complexity with tools and visualizations {cite(emse12,icse11demo_vi,iet12,icse14_emergo)}.
+            and vulnerabilities {cite(splc16)}, and how we can support developers to handle the
+            complexity with tools and visualizations {cite(emse12,icse11demo_vi,iet12,icse14_emergo,varvis)}.
         </p>,
         Some("vulndist.png")
         //    [distribution plots from gabriels paper]
@@ -836,7 +1075,7 @@ object Research {
             options are used for control-flow decisions in the program. We create a
             configuration map that indicates for each line of code under which
             configurations it can be executed, similar to traceability one might expect
-            from using conditional compilation directives around those code fragments {cite(ase14)}.
+            from using conditional compilation directives around those code fragments {cite(ase14,tse17_lotrack)}.
             Exploiting the fact that configuration options are used differently from other
             state in the program, we achieve a highly accurate tracking in most programs.
         </p>,
@@ -853,7 +1092,7 @@ object Research {
             compiled or which extra parameters are passed in which configurations. The problem of extracting
             configuration knowledge is limiting many quality assurance and reverse engineering approaches in
             their accuracy. So far, we have pursued a static extraction approach based on symbolic execution
-            of make files {cite(releng15)} but are planning to investigate other build systems and other analysis strategies.
+            of make files {cite(releng15)} and investigate other build systems and other analysis strategies {cite(releng16,gpce17)}.
         </p>,
         Some("make.png") //    [some picture from Shurui’s paper]
     )
@@ -934,7 +1173,7 @@ object Research {
             same {linkTopic(unpreprocessedC, Some("variational parsers"))} from TypeChef to build variational representations of
             the HTML DOM and JavaScript programs, and we can subsequently build
             variational call graphs on top to enable various forms of tool support from
-            navigation, to bug detection, to refactoring, and to slicing {cite(fse14,fse15_webslice,icse15demo)}. This is a
+            navigation, to bug detection, to test quality assessment, to refactoring, and to slicing {cite(fse14,fse15_webslice,icse15demo,jase18)}. This is a
             perfect example, where techniques originally developed for product lines can
             help to solve problems entirely outside the product line domain, in this case
             the analysis of staged programs.
@@ -952,7 +1191,7 @@ object Research {
             long as we can evaluate the impact of these changes in an interpreter. For
             example, we can model which changes to parameters or variable types in a
             robotics or high-performance computing have a significant impact on
-            performance or accuracy. There is a broad field of potential application areas
+            performance or accuracy {cite(seams19,ieeesw19,wsr16)}. There is a broad field of potential application areas
             that potentially share similar characteristics about the nature of
             interactions of changes, where both black-box and white-box sensitivity-
             analysis techniques for highly-configurable systems can be reused.
@@ -960,15 +1199,15 @@ object Research {
         Some("hpc.png") //    [cobot picture?]
     )
 
-    def vtests = ResearchTopic("Tests and Patches",
+    def vtests = ResearchTopic("Mutation Testing and Program Repair",
         <p>
             We explore variational-analysis techniques for exploring the effect and the
             interactions of multiple potential changes to a software system. By encoding
             each potential change as a configuration decision, we can use techniques such
             as variational execution to see which change or which combination of changes
-            break a test. We hope that these techniques will allow efficient exploration
+            break a test. We found that these techniques allow efficient exploration
             of large search spaces, as used for mutation-based testing or automatic
-            program repair.
+            program repair {cite(fse20_hom,fsenier18)}.
         </p>,
         Some("genprog.png") //        [genprog picture?]
     )
@@ -1013,8 +1252,9 @@ object Research {
         <p>
             We are generally open to research and collaborations in a broad spectrum of software engineering questions.
             We have worked on dynamic software updates {cite(spe13)}, embedded and extensible domain specific languages {cite(oopsla11_sugarj, gpce11)},
-            software merging {cite(fse11)}, and exploring various empirical methods, including assessing
-            program comprehension as a confounding factor {cite(emse14)} and using fMRI scanners {cite(icse14_fmri)}.
+            software merging {cite(fse11,ase17merge,jase17)}, and exploring various empirical methods, including assessing
+            program comprehension as a confounding factor {cite(emse14)}, self-adaptation in robots {cite(seams19,ieeesw19)},
+            and using fMRI scanners {cite(icse14_fmri,fse17,tse18_fmri)}.
         </p>,
         List(fmri)
     )
@@ -1028,7 +1268,7 @@ object Research {
               confirmed many expected activations regarding short-term memory and language comprehension), this line
               of research can potentially help us in the long run to understand what makes programs complex and what
               form of complexity developers can handle well and what forms they struggle with. It may have further
-              implications about how to teach programming or design programming languages {cite(icse14_fmri)}.
+              implications about how to teach programming or design programming languages {cite(icse14_fmri,fse17,tse18_fmri)}.
           </p>,
         Some("fmri.png")
     )
