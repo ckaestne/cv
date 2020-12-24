@@ -2,11 +2,8 @@ package de.stner.cv
 
 import de.stner.cv.VenueStructure._
 
-import scala.None
-import de.stner.cv.CVPublications._
 import java.io.File
-import java.util.Date
-import xml._
+import java.time.LocalDate
 
 object Config {
     val pdfWebPath = "pdf/"
@@ -230,7 +227,7 @@ abstract class PublicationRenderer {
         formater.concat(
             renderAuthors(p, formater),
             formater.dot, formater.space, formater.newBlock,
-            formater.title(p.title), formater.text(p.title.endDot),
+            formater.title(p.title), formater.text(p.title.endDot()),
             formater.space, formater.newBlock,
             renderRest(p, style, formater),
             (if (style.withAcceptanceRate) renderAcceptanceRate(p, formater) else formater.none),
@@ -589,67 +586,37 @@ object German extends Language {
     override def toString = "German"
 }
 
-sealed abstract class Term(val year: Int) extends Ordered[Term] {
+sealed abstract class Term(val year: Int, private val priority: Int) extends Ordered[Term] {
     def toShortString: String
+    def compare(that: Term): Int = {
+        if (this.priority== -1) 1
+        else if (that.priority== -1) -1
+        else if (year.compareTo(that.year)==0) this.priority.compareTo(that.priority)
+        else  year.compareTo(that.year)
+    }
 }
 
-case class SummerTerm(ayear: Int) extends Term(ayear) {
-    def compare(that: Term) = that match {
-        case SummerTerm(thatYear) => year.compareTo(thatYear)
-        case SpringTerm(thatYear) => year.compareTo(thatYear)
-        case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
-        case FallTerm(thatYear) => year.compareTo(thatYear)
-        case Continuous(_) => -1
-    }
-
+case class SummerTerm(ayear: Int) extends Term(ayear,2) {
     override def toString = "Summer " + year
     def toShortString: String = "S"+year.toString().takeRight(2)
 }
 
-case class SpringTerm(ayear: Int) extends Term(ayear) {
-    def compare(that: Term) = that match {
-        case SummerTerm(thatYear) => year.compareTo(thatYear)
-        case SpringTerm(thatYear) => year.compareTo(thatYear)
-        case WinterTerm(thatYear) => if (year == thatYear) -1 else year.compareTo(thatYear)
-        case FallTerm(thatYear) => year.compareTo(thatYear)
-        case Continuous(_) => -1
-    }
-
+case class SpringTerm(ayear: Int) extends Term(ayear,1) {
     override def toString = "Spring " + year
     def toShortString: String = "S"+year.toString().takeRight(2)
 }
 
-case class WinterTerm(ayear: Int) extends Term(ayear) {
-    def compare(that: Term) = that match {
-        case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
-        case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
-        case WinterTerm(thatYear) => year.compareTo(thatYear)
-        case FallTerm(thatYear) => year.compareTo(thatYear)
-        case Continuous(_) => -1
-    }
-
+case class WinterTerm(ayear: Int) extends Term(ayear,4) {
     override def toString = "Winter " + year + "/" + (year + 1 - 2000)
     def toShortString: String = "F"+year.toString().takeRight(2)
 }
 
-case class FallTerm(ayear: Int) extends Term(ayear) {
-    def compare(that: Term) = that match {
-        case SummerTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
-        case SpringTerm(thatYear) => if (year == thatYear) 1 else year.compareTo(thatYear)
-        case WinterTerm(thatYear) => year.compareTo(thatYear)
-        case FallTerm(thatYear) => year.compareTo(thatYear)
-        case Continuous(_) => -1
-    }
-
+case class FallTerm(ayear: Int) extends Term(ayear,3) {
     override def toString = "Fall " + year
     def toShortString: String = "F"+year.toString().takeRight(2)
   }
 
-case class Continuous(label: String) extends Term(5000) {
-    def compare(that: Term) = that match {
-        case Continuous(l) => label.compareTo(l)
-        case _ => 1
-      }
+case class Continuous(label: String) extends Term(5000, -1) {
     override def toString=label
     def toShortString: String = label
 }
@@ -908,11 +875,11 @@ object StructureTheses {
 }
 
 /** award name supports markdown */
-sealed abstract class AwardOrGrant(val name: String, val url: URL, val date: Date)
+sealed abstract class AwardOrGrant(val name: String, val url: URL, val date: LocalDate)
 
-case class Award(aname: String, aurl: URL, dateAnnounced: Date, extraLinks: List[(URL, String)] = Nil, budget: Option[Budget] = None) extends AwardOrGrant(aname, aurl, dateAnnounced)
+case class Award(aname: String, aurl: URL, dateAnnounced: LocalDate, extraLinks: List[(URL, String)] = Nil, budget: Option[Budget] = None) extends AwardOrGrant(aname, aurl, dateAnnounced)
 
-case class Grant(aname: String, aurl: URL, dateAnnounced: Date, dateBegin: Date, dateEnd: Date, foundingAg: String, budget: Budget) extends AwardOrGrant(aname, aurl, dateAnnounced)
+case class Grant(aname: String, aurl: URL, dateAnnounced: LocalDate, dateBegin: LocalDate, dateEnd: LocalDate, foundingAg: String, budget: Budget) extends AwardOrGrant(aname, aurl, dateAnnounced)
 
 sealed abstract class Budget(val value: Int)
 
@@ -921,4 +888,4 @@ case class EUR(v: Int) extends Budget(v)
 case class USD(v: Int) extends Budget(v)
 
 
-case class InvitedTalk(when: Date, title: String, where: String)
+case class InvitedTalk(when: LocalDate, title: String, where: String)
