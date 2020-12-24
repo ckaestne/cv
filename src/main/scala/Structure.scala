@@ -1,5 +1,6 @@
 package de.stner.cv
 
+import de.stner.cv.Coauthors.Kaestner
 import de.stner.cv.VenueStructure._
 
 import java.io.File
@@ -329,7 +330,7 @@ class Publication(
                      val isSelected: Boolean = false,
                      val note: Option[String] = None,
                      val isHideAbstract: Boolean = false
-                     ) {
+                     ) extends Citable {
 
     protected def copy(authors: Seq[Person] = this.authors,
                        title: String = this.title,
@@ -457,7 +458,7 @@ object Teaser extends LinkKind {
     def print = "teaser"
 }
 
-object YouTube {
+object YoutubeLink {
   def apply(videoKey: String) = HTTPLink("https://www.youtube.com/watch?v=" + videoKey)
 }
 
@@ -889,3 +890,31 @@ case class USD(v: Int) extends Budget(v)
 
 
 case class InvitedTalk(when: LocalDate, title: String, where: String)
+
+
+sealed trait Citable
+
+trait Media extends Citable {
+    def author: List[Person]
+    def title: String
+    def link: URL
+    def date: LocalDate
+    def icon: String
+    def citeKey = icon//+" "+date.getYear
+    def selected: Boolean
+}
+
+case class Youtube(title: String, videoId: String, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media {
+    def icon: String = "🎞"
+    def link: URL = URL("https://www.youtube.com/watch?v="+videoId)
+}
+
+case class MediumBlog(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media{
+    def icon: String = "🖺"
+}
+
+case class Website(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media{
+    def icon: String = "🖺"
+}
+
+case class CiteExternal(authorYear: String, longForm: String, link: URL) extends Citable
