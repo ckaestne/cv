@@ -4089,8 +4089,8 @@ tasks than users of the standard Eclipse debugger. We further show that variatio
     val tse18_fmri = Article(
         Seq(Peitek, JSiegmund, Apel, Kaestner, Parnin, Bethmann, Leich, Saake, Brechmann),
         "A Look into Programmers’ Heads",
-        TSE(2018),
-        ToAppear(),
+        TSE(2018).number(4).volume(46).month(4),
+        Pages(442, 462),
         Map(PDF -> PDFFile("tse18_fmri.pdf"), DOI->DOI("10.1109/TSE.2018.2863303")),
         """
               Program comprehension is an important, but hard to measure cognitive process. This makes it difficult to provide suitable
@@ -4652,18 +4652,20 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         Seq(Medeiros, Ribeiro, Gheyi, Braz, Kaestner, Apel, Santos),
         "An Empirical Study on Configuration-Related Code Weaknesses",
         SBES(2020).month(10),
-        ToAppear(),
-        Map(),
+        Pages(193,202),
+        Map(DOI->DOI("10.1145/3422392.3422409")),
         """
+           Developers often use the C preprocessor to handle variability and portability. However, many researchers and practitioners criticize the use of preprocessor directives because of their negative effect on code understanding, maintainability, and error proneness. This negative effect may lead to configuration-related code weaknesses, which appear only when we enable or disable certain configuration options. A weakness is a type of mistake in software that, in proper conditions, could contribute to the introduction of vulnerabilities within that software. Configuration-related code weaknesses may be harder to detect and fix than weaknesses that appear in all configurations, because variability increases complexity. To address this problem, we propose a sampling-based white-box technique to detect configuration-related weaknesses in configurable systems. To evaluate our technique, we performed an empirical study with 24 popular highly configurable systems that make heavy use of the C preprocessor, such as Apache Httpd and Libssh. Using our technique, we detected 57 configuration-related weaknesses in 16 systems. In total, we found occurrences of the following five kinds of weaknesses: 30 memory leaks, 10 uninitialized variables, 9 null pointer dereferences, 6 resource leaks, and 2 buffer overflows. The corpus of these weaknesses is a valuable source to better support further research on configuration-related code weaknesses.
         """).topic(empirical, preprocessor)
 
     val SBES20fi = InProceedings(
         Seq(Soares, Machado, deAlmeida, Kaestner, Nadi),
         "A Semi-Automated Iterative Process for Detecting Feature Interactions",
         SBES(2020).month(10),
-        ToAppear(),
-        Map(),
+        Pages(778,787),
+        Map(DOI->DOI("10.1145/3422392.3422418")),
         """
+           For configurable systems, features developed and tested separately may present a different behavior when combined in a system. Since software products might be composed of thousands of features, developers should guarantee that all valid combinations work properly. However, features can interact in undesired ways, resulting in failures. A feature interaction is an unpredictable behavior that cannot be easily deduced from the individual features involved. We proposed VarXplorer to inspect feature interactions as they are detected and incrementally classify them as benign or problematic. Our approach provides an iterative analysis of feature interactions allowing developers to focus on suspicious cases. In this paper, we present an experimental study to evaluate our iterative process of tests execution. We aim to understand how VarXplorer could be used for a faster and more objective feature interaction analysis. Our results show that VarXplorer may reduce up to 50% the amount of interactions a developer needs to check during the testing process.
         """).topic(empirical, preprocessor)
 
     val icst21 = InProceedings(

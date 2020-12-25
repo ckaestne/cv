@@ -532,6 +532,9 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     def number(u: Int): Venue = copy(number = Some(u.toString))
 
+    /** issue = number */
+    def issue(u: Int): Venue = copy(number = Some(u.toString))
+
     def volume(u: String): Venue = copy(volume = Some(u))
 
     def volume(u: Int): Venue = copy(volume = Some(u.toString))

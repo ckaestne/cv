@@ -1,4 +1,4 @@
-sbt test
+#sbt test
 sbt "runMain de.stner.cv.GenLatex"
 cd target/pdf
 pdflatex -interaction=nonstopmode cv.tex

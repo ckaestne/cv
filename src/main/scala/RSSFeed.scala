@@ -60,7 +60,7 @@ trait RSSFeed {
                 val isUpdated = !isNew && (oldEntry \ "description").text.replaceAll("[ \\n\\t]","") != pubDesc.replaceAll("[ \\n\\t]","")
                 val oldPubDate = (oldEntry \ "pubDate").text
                 val pubDate = if (isNew || isUpdated || oldPubDate.isEmpty)
-                    RFC822.format(LocalDateTime.now()) else oldPubDate
+                    RFC822.format(LocalDateTime.now().atOffset(ZoneOffset.UTC)) else oldPubDate
                 val authors = pub.authors.map(_.abbrvname).mkString(", ")
 
 
