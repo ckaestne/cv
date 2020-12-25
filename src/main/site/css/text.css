@@ -218,3 +218,7 @@ margin: 8px
 .sideimg {
     max-width: 220px;
 }
+
+.selectmedia {
+    font-weight:bold;
+}

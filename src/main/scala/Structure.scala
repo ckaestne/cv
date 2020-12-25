@@ -922,27 +922,32 @@ case class InvitedTalk(when: LocalDate, title: String, where: String)
 
 sealed trait Citable
 
-trait Media extends Citable {
+trait Media extends Citable with Ordered[Media] {
     def author: List[Person]
     def title: String
     def link: URL
     def date: LocalDate
     def icon: String
+    def kindDescr: String
     def citeKey = icon//+" "+date.getYear
     def selected: Boolean
+    override def compare(that: Media): Int = this.date.compareTo(that.date)
 }
 
-case class Youtube(title: String, videoId: String, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media {
+case class Youtube(title: String, videoId: String, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Talk") extends Media {
     def icon: String = "🎞"
     def link: URL = URL("https://www.youtube.com/watch?v="+videoId)
+    def kindDescr: String = kind
 }
 
-case class MediumBlog(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media{
+case class MediumBlog(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Blog post") extends Media{
     def icon: String = "🖺"
+    def kindDescr: String = kind
 }
 
-case class Website(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false) extends Media{
+case class Website(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Website") extends Media{
     def icon: String = "🖺"
+    def kindDescr: String = kind
 }
 
 case class CiteExternal(authorYear: String, longForm: String, link: URL) extends Citable

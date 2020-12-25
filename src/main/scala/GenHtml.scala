@@ -1,11 +1,14 @@
 package de.stner.cv
 
+import de.stner.cv.Coauthors.Kaestner
+
 import java.io.File
 import java.net.URI
 import java.text.SimpleDateFormat
 import de.stner.cv.StructureTheses.AThesis
 import org.apache.commons.io.FileUtils
 
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import scala.xml._
 import scala.xml.dtd.{DocType, PublicID}
@@ -190,6 +193,29 @@ object GenHtml extends App with RSSFeed {
               these works may not be reposted without the explicit permission of the
               copyright holder.</p>
 
+
+    def printMediaSummary(mediaList: Seq[Media]): NodeSeq =
+        rowH2("Blog posts, video, and other media", "media") ++
+            printMediaList(mediaList.reverse)
+
+
+
+    def printMediaList(mediaList: Seq[Media]): NodeSeq =
+        (for (m <- mediaList)
+               yield row(<span>{m.kindDescr+", "+ mmmyyyyFormat.format(m.date)}</span>, printMediaEntry(m), "tool")).flatten
+
+    def printMediaEntry(m: Media): NodeSeq =
+        <span><a href={m.link.toString} class={if (m.selected) "selectmedia" else ""}>{m.title}</a>{printCollab(m)}</span>
+
+    val mmmyyyyFormat = DateTimeFormatter.ofPattern("MMM. yyyy")
+
+    def printCollab(m: Media): String = {
+        if (m.author.isEmpty || m.author==List(Kaestner)) ""
+        else if (m.author contains Kaestner) " (w/ " + m.author.filterNot(_==Kaestner).map(_.abbrvname).mkString(", ")+")"
+        else " (by "+m.author.map(_.abbrvname).mkString(", ")+")"
+    }
+
+
     // or this <a href={URL("http://www.informatik.uni-marburg.de/~kaestner/publist.pdf").toString}>.pdf</a>
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
         rowH2_(<span>Selected Publications {rssLogo("pub.rss", "Full publication feed")}</span>, "publications",
@@ -341,7 +367,7 @@ object GenHtml extends App with RSSFeed {
 
     def printTeachingSummary(teaching: Seq[Course]) =
         rowH2("Teaching", "teaching") ++
-            printTeaching(teaching.filter(_.term >= WinterTerm(2014))) ++
+            printTeaching(teaching.filter(_.term.year >= LocalDate.now().getYear - 3)) ++
             row(null,
                 <div>See also the full <a href="teaching.html">teaching history</a>.</div>
                 )
@@ -380,8 +406,7 @@ object GenHtml extends App with RSSFeed {
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
-            //            printAwards(awards) ++
-            //            printProjects(projects) ++
+            printMediaSummary(media) ++
             printKeyPublications(publications) ++
             printCoolWall() ++
             printPrivate()
@@ -400,13 +425,13 @@ object GenHtml extends App with RSSFeed {
                 Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
         Nav("Publications", "index.html#publications", List(
             Nav("Selected Publications", "index.html#publications"),
+            Nav("Blog posts, videos, ...", "index.html#media"),
             Nav("All Publications", "publications.html"))),
         Nav("Teaching", "index.html#teaching", List(
             Nav("Current Teaching", "index.html#teaching"),
             Nav("Teaching History", "teaching.html"))),
         Nav("Team", "index.html#team"),
         Nav("Misc", "index.html#coolwall", List(
-            Nav("Articles", "articles.html"),
             Nav("Service", "index.html#service"),
             Nav("FOSD Cool Wall", "index.html#coolwall"),
             Nav("Juggling", "juggling.xhtml"),
@@ -528,7 +553,7 @@ object GenHtml extends App with RSSFeed {
     FileUtils.copyDirectory(articleDir, targetPath)
 
     println("generating html.")
-    printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"), getNewsRSSHeader() ++ getPubsRSSHeader())
+    printDoc(mainPage, CV.name + " :: CMU", new File(targetPath, "index.html"), getNewsRSSHeader() ++ getPubsRSSHeader(), pathToRoot = new URI("."))
     printDoc(teachingPage, CV.name + " :: Teaching :: CMU", new File(targetPath, "teaching.html"))
     printDoc(newsPage, CV.name + " :: News :: CMU", new File(targetPath, "news.html"))
     printDoc(printTitle() ++ row(null, printSpelling()), CV.name + " :: Spelling", new File(targetPath, "spelling.html"))

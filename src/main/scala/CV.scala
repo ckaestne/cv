@@ -649,6 +649,14 @@ object CV {
             filter(m=>m.isMethod && m.asMethod.isAccessor).
             map(m=>im.reflectMethod(m.asMethod).apply().asInstanceOf[Publication]).toList.reverse
     }
+    lazy val media: List[Media] = {
+        //get members via reflection
+        import reflect.runtime.universe._
+        val im = reflect.runtime.currentMirror reflect CVMedia
+        typeOf[CVMedia.type].members.
+            filter(m=>m.isMethod && m.asMethod.isAccessor).
+            map(m=>im.reflectMethod(m.asMethod).apply().asInstanceOf[Media]).toList.sorted
+    }
 
 
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
