@@ -15,20 +15,20 @@ object CVTheses {
             Zhou,
             "Improving Collaboration Efficiency in Fork-based Development",
             CMU, (5, 2020), PhDThesis,
-            PDFFile("diss20Zhou.pdf")
+            Some(PDFFile("diss20Zhou.pdf"))
         ),
         Thesis(
             Meinicke,
             "Variational Debugging: Understanding Differences among Executions",
             MD, (1, 2019), PhDThesis,
-            PDFFile("diss19Meinicke.pdf")
+            Some(PDFFile("diss19Meinicke.pdf"))
         ),
 
         Thesis(
             Thuem,
             "Reasoning about Feature Model Edits",
             MD, (6, 2008), Studienarbeit,
-            PDFFile("thesisthuem.pdf"),
+            Some(PDFFile("thesisthuem.pdf")),
             "Results published as conference paper at the International Conference on Software Engineering (ICSE), 2009."
         ),
 
@@ -50,14 +50,14 @@ object CVTheses {
             Person("Janet", "Feigenspan"),
             "Requirements and design for a language-independent IDE framework to support feature-oriented programming",
             MD, (2, 2009), Studienarbeit,
-            PDFFile("thesisfeigenspan.pdf")
+            Some(PDFFile("thesisfeigenspan.pdf"))
         ),
 
         Thesis(
             Person("Stefan", "Kegel"),
             "Streamed verification of a data stream management benchmark",
             MD, (4, 2009), Studienarbeit,
-            PDFFile("thesiskegel.pdf")
+            Some(PDFFile("thesiskegel.pdf"))
         ),
 
         GermanThesis(
@@ -65,7 +65,7 @@ object CVTheses {
             "Evaluation feature-basierter service-orientierter Architekturen am Beispiel eines Domotic-Szenarios",
             "Feature-Based Service-Orientented Architectures for Domotic Scenarios",
             MD, (6, 2009), Diplomarbeit,
-            PDFFile("thesisleminh.pdf")
+            Some(PDFFile("thesisleminh.pdf"))
         ),
 
         GermanThesis(
@@ -73,13 +73,13 @@ object CVTheses {
             "Alternative Features in Colored Featherweight Java",
             "Alternative Features in Colored Featherweight Java",
             PA, (7, 2009), Diplomarbeit,
-            PDFFile("thesisrosenthal.pdf")
+            Some(PDFFile("thesisrosenthal.pdf"))
         ),
         Thesis(
             Person("Janet", "Feigenspan"),
             "Empirical Comparison of FOSD Approaches Regarding Program Comprehension -- A Feasibility Study",
             MD, (8, 2009), Diplomarbeit,
-            PDFFile("thesisfeigenspan_diplom.pdf"),
+            Some(PDFFile("thesisfeigenspan_diplom.pdf")),
             "**Best-thesis award by Metop Research Center and Research Award by IHK Magdeburg.** The results were published as part of a journal paper in Empirical Software Engineering, 2012."
         ),
 
@@ -95,14 +95,14 @@ object CVTheses {
             "Systematische Analyse von Feature-Interaktionen in Softwareproduktlinien",
             "Analysis of Feature Interactions in Software Product Lines",
             MD, (11, 2009), Diplomarbeit,
-            PDFFile("thesisschulze.pdf")
+            Some(PDFFile("thesisschulze.pdf"))
         ),
 
         Thesis(
             Thuem,
             "A Machine-Checked Proof for a Product-Line-Aware Type System",
             MD, (1, 2010), Diplomarbeit,
-            PDFFile("thesisthuem.pdf"),
+            Some(PDFFile("thesisthuem.pdf")),
             "**Best-thesis award of the Denert Foundation for Software Engineering.** Results published as part of a journal paper in ACM Transactions on Software Engineering and Methodology (TOSEM), 2011"
         ),
         GermanThesis(
@@ -110,14 +110,14 @@ object CVTheses {
             "Entwicklung eines nativen Compilers für Feature-orientierte Programmierung",
             "Development of a Native Feature-Oriented Compiler",
             MD, (6, 2010), MastersThesis,
-            PDFFile("thesisbecker.pdf")
+            Some(PDFFile("thesisbecker.pdf"))
         ),
         GermanThesis(
             Person("Alexander", "Dreiling"),
             "Feature Mining: Semiautomatische Transition von (Alt-)Systemen zu Software-Produktlinien",
             "Feature Mining: Semiautomatic Transition from Legacy Systems to Software Product Lines",
             MD, (7, 2010), Diplomarbeit,
-            PDFFile("thesisdreiling.pdf"),
+            Some(PDFFile("thesisdreiling.pdf")),
             "A journal paper about the results is currently under review"
         ),
         GermanThesis(
@@ -125,7 +125,7 @@ object CVTheses {
             "Statische Referenzanalyse in C-Präprozessor-konfigurierten Anwendungen",
             "Static Reference Analysis of Implementations with C-Preprocessor Variability",
             MD, (8, 2010), Diplomarbeit,
-            PDFFile("thesiskenner.pdf"),
+            Some(PDFFile("thesiskenner.pdf")),
             "Results published as a workshop paper at FOSD 2010"
         ),
         GermanThesis(
@@ -143,7 +143,7 @@ object CVTheses {
             Person("Steffen", "Haase"),
             "A Program Slicing Approach to Feature Identification in Legacy C Code",
             MD, (2, 2012), Diplomarbeit,
-            PDFFile("thesishaase.pdf")
+            Some(PDFFile("thesishaase.pdf"))
         ),
 
         GermanThesis(
@@ -157,7 +157,7 @@ object CVTheses {
             Person("Jonas", "Pusch"),
             "Variability-Aware Interpretation",
             MR, (11, 2012), BachelorsThesis,
-            PDFFile("thesispusch.pdf")
+            Some(PDFFile("thesispusch.pdf"))
         ),
         Thesis(
             Person("Jens", "Meinicke"),

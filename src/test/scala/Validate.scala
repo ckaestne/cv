@@ -11,7 +11,7 @@ class Validate extends AnyFunSuite {
 
     def checkURL(url: URL, c: Any = null) {
         if (!(url == null || url.check))
-        System.err.println("URL cannot be resolved " + url + " from " + c)
+        System.err.println("URL cannot be resolved: " + url + " from " + c)
     }
 
 
@@ -24,7 +24,7 @@ class Validate extends AnyFunSuite {
 
 
     test("check urls: teaching") {
-        teaching.map(c => checkURL(c.url, c))
+        teaching.foreach(c => checkURL(c.url, c))
         teachingProjects.map(c => checkURL(c.url, c))
     }
 
@@ -33,11 +33,11 @@ class Validate extends AnyFunSuite {
     }
 
     test("check urls: advised theses") {
-        advisedTheses.map(c => checkURL(c.pdf, c))
+        advisedTheses.map(c => c.pdf.map(p => checkURL(p, c)))
     }
 
     test("check urls: authors") {
-        val allAuthors=publications.map(_.authors).flatten.toSet
+        val allAuthors=publications.flatMap(_.authors).toSet
         allAuthors.map(c => c.url.map(checkURL(_, c)))
     }
 
@@ -46,18 +46,28 @@ class Validate extends AnyFunSuite {
         for (p <- publications) {
             p.links.get(PDF) map {
                 case PDFLink(file) => 
-                  //great
-                  val pdfFile = new File("src/main/pdf/"+file)
-                  assert(pdfFile.exists(), "pdf file "+file+"not found")
+                    checkPdf(file)
                 case HTTPLink(url, _) =>
                     System.err.println("Warning: publication %s has remote pdf link %s, consider a local one".format(p.genKey, url))
             }
         }
+        for (t<-advisedTheses; if t.pdf!=null) {
+            t.pdf match {
+                case Some(PDFLink(file)) =>
+                    checkPdf(file)
+                case _ =>
+            }
+        }
+    }
+
+    def checkPdf(file: String): Unit = {
+        val pdfFile = new File("src/main/pdf/"+file)
+        assert(pdfFile.exists(), "pdf file "+file+" not found")
     }
 
     test("all publications should have pdfs (Warning level)") {
         for (p <- publications)
-            if (!p.links.isEmpty && !p.links.contains(PDF))
+            if (p.links.nonEmpty && !p.links.contains(PDF))
                 if (p.pages == ToAppear())
                     System.err.println("Info: publication %s still marked as `to appear'".format(p.genKey))
                 else
@@ -73,7 +83,7 @@ class Validate extends AnyFunSuite {
                     case _ => false
                 })
             def hasFileT(p: StructureTheses.AThesis): Boolean = p.pdf match {
-                case PDFLink(file) => new File(Config.pdfPath, file) == f
+                case Some(PDFLink(file)) => new File(Config.pdfPath, file) == f
                 case _ => false
             }
 

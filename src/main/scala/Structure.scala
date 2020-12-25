@@ -760,9 +760,8 @@ object StructureTheses{
                                      val where: School,
                                      val when: (Int, Int), //month, year
                                      val kind: ThesisKind,
-                                     val pdf: URL,
+                                     val pdf: Option[URL],
                                      val note: String
-
                                      ) extends BibTexPrintable  {
         def genKey = "thesis" + author.lastname.toId + kind.baMarker
 
@@ -800,7 +799,7 @@ object StructureTheses{
                          awhere: School,
                          awhen: (Int, Int), //month, year
                          akind: ThesisKind,
-                         apdf: URL = null,
+                         apdf: Option[URL] = None,
                          anote: String = ""
                          ) extends AThesis(aauthor, atitle, awhere, awhen, akind, apdf, anote) {
         def shortText(inQuotes: String => String): String = kind.nameAlt + " " + inQuotes(title)
@@ -814,7 +813,7 @@ object StructureTheses{
                                awhere: School,
                                awhen: (Int, Int), //month, year
                                akind: ThesisKind,
-                               apdf: URL = null,
+                               apdf: Option[URL] = None,
                                anote: String = ""
                                ) extends AThesis(aauthor, atitle, awhere, awhen, akind, apdf, anote) {
         def shortText(inQuotes: String => String): String = kind.nameAlt + " on " + translation + " (in German)"
