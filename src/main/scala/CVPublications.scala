@@ -301,7 +301,7 @@ object Venues {
     val JOT = JournalFactory("JOT", "Journal of Object Technology")
     val ISSE = JournalFactory("ISSE", "Innovations in Systems and Software Engineering -- A NASA Journal")
     val EMSE = JournalFactory("EMSE", "Empirical Software Engineering", Springer)
-    val JASE = JournalFactory("ASE", "Automated Software Engineering -- An International Journal", Springer)
+    val JASE = JournalFactory("AUSE", "Automated Software Engineering -- An International Journal", Springer)
     val JSEP = JournalFactory("JSEP", "Journal of Software: Evolution and Process")
     val HOSC = JournalFactory("HOSC", "Higher-Order and Symbolic Computation")
     val CSUR = JournalFactory("CSUR", "ACM Computing Surveys", ACM)
@@ -632,7 +632,7 @@ object CVPublications {
           that allows features to implement coarse-grained and fine-grained
           extensions in a concise way. In two case studies, we show how CIDE
           simplifies SPL development compared to traditional approaches."""
-    ).selected().acceptanceRate(56, 371).topic(vsoc, fop, aop)
+    ).selected().note("**Most Influencial Paper Award at SPLC'19**").acceptanceRate(56, 371).topic(vsoc, fop, aop)
 
     val sdsoa08 = InProceedings(
         Seq(Apel, Kaestner, Lengauer),
@@ -741,8 +741,7 @@ object CVPublications {
                         as well. We show how results from this formalization reflect
                         and help implementing our own language-independent SPL tool
                         CIDE."""
-    ).selected().
-        acceptanceRate(30, 280).
+    ).acceptanceRate(30, 280).
         crosscite("extended by \\cite{KATS:TOSEM11}").topic(vaanalysis, vsoc)
 
 
@@ -946,7 +945,7 @@ object CVPublications {
                   demonstrate the practicality and scalability of our approach
                   and reveal insights into the properties a language must have
                   in order to be ready for superimposition."""
-    ).selected().topic(fop)
+    ).topic(fop)
 
 
     val icse09_fm = InProceedings(
@@ -1365,7 +1364,7 @@ object CVPublications {
                     and language independence. Although we do not have a definitive answer on how to
                     implement variability, we want highlight opportunities to improve preprocessors and
                     encourage research toward novel preprocessor-based approaches."""
-    ).note("Refereed Column").selected().topic(vsoc, overview)
+    ).note("Refereed Column").topic(vsoc, overview)
 
     val fosd09_am = InProceedings(
         Seq(Apel, Liebig, Kaestner, Kuhlemann, Leich),
@@ -1542,8 +1541,7 @@ object CVPublications {
             guaranties type safety for feature-oriented product lines. That is, it ensures that every valid
             program of a well-typed product line is well-typed. Our formal model including type system
             is sound and complete.  """
-    ).selected().
-        crosscite("extended version of \\cite{AKL:GPCE08}").topic(vaanalysis, fop)
+    ).crosscite("extended version of \\cite{AKL:GPCE08}").topic(vaanalysis, fop)
 
     val scp10 = Article(
         Seq(Apel, Lengauer, Moeller, Kaestner),
@@ -1598,7 +1596,7 @@ object CVPublications {
             We argue that with these improvements over contemporary preprocessors, virtual separation of concerns can compete with modularized implementation mechanisms.
             Despite our focus on annotation-based approaches, we do intend not give a definite answer on how to implement software product lines. Modular implementations and annotation-based implementations both have their advantages; we even present an integration and migration path between them.
             Our goal is to rehabilitate preprocessors and show that they are not a lost cause as many researchers think. On the contrary, we argue that -- with the presented improvements -- annotation-based approaches are a serious alternative for product-line implementation."""
-    ).selected().note("Logos Verlag Berlin, isbn 978-3-8325-2527-9")
+    ).note("Logos Verlag Berlin, isbn 978-3-8325-2527-9")
 
 
     val gpce10 = InProceedings(

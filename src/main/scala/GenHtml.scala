@@ -110,22 +110,23 @@ object GenHtml extends App with RSSFeed {
     }
 
 
-    def printPublication(p: Publication): NodeSeq = {
+    def printPublication(p: Publication, withAcceptanceRate: Boolean = true): NodeSeq = {
         val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                   <a name={p.genKey} class="sectionanch"></a>
-                  {p.render(DefaultBibStyle, FancyPersonHtmlFormater)}
-               [&nbsp;{
+                  {
+                   p.render(if (withAcceptanceRate) DefaultBibStyle else SimpleBibStyle, FancyPersonHtmlFormater)
+                   }&nbsp;[&nbsp;{
                    for ((key, url) <- links.dropRight(1))
                        yield <a href={url.toString}>{key.print}</a> :+ ", "
-               } <a href={links.last._2.toString}>{links.last._1.print}</a> ]
+               } <a href={links.last._2.toString}>{links.last._1.print}</a>&nbsp;]
                    {if (!p.isHideAbstract && p.abstr != "")   <blockquote><p>{p.abstr.markdownToHtml}</p></blockquote> }
                </div></dd>
     }
 
-    def printPublicationRow(p: Publication): NodeSeq = row(
+    def printPublicationRow(p: Publication, withAcceptanceRate: Boolean): NodeSeq = row(
     <span class="pubshort">{p.venue.short} {p.venue.year}</span>,
-    <div class="bib"><dl>{printPublication(p)}</dl></div>
+    <div class="bib"><dl>{printPublication(p, withAcceptanceRate)}</dl></div>
     )
 
     private def sep =  <span class="sep">|</span>
@@ -220,7 +221,7 @@ object GenHtml extends App with RSSFeed {
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
         rowH2_(<span>Selected Publications {rssLogo("pub.rss", "Full publication feed")}</span>, "publications",
         <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
-            for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p)
+            for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p, false)
         }.flatten ++
             row(null,
                 <p><a href="publications.html">more...</a></p> ++

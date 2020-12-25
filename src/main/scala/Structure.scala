@@ -950,4 +950,8 @@ case class Website(title: String, link: URL, date: LocalDate, author: List[Perso
     def kindDescr: String = kind
 }
 
+case class Podcast(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Podcast") extends Media {
+    def icon: String = "🔊"
+    def kindDescr: String = kind
+}
 case class CiteExternal(authorYear: String, longForm: String, link: URL) extends Citable

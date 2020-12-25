@@ -24,7 +24,7 @@ object CV {
             in software systems, typically systems with a high amount of variability. Among others, I have developed approaches to parse and
             type check all compile-time configurations of the <strong>Linux kernel</strong> in the
             <strong>TypeChef</strong> project. I am also interested in <strong>open-source sustainability</strong>
-            and teaching <strong>software engineering for AI-enabled systems</strong>.</p>
+            and <strong>software engineering for AI-enabled systems</strong>.</p>
             <p>I currently serve as the director of the <a href="https://se-phd.isri.cmu.edu">CMU Software Engineering Ph.D. Program</a>.</p> :+
             <p>Profiles:
                 <a href="cv.pdf">Curriculum vitae</a>,
@@ -34,9 +34,9 @@ object CV {
                 <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
             </span>.</p> :+
             <p>
-                <div>Institute for Software Research (<a href="http://www.isri.cmu.edu/">Link</a>)</div>
-                <div>School of Computer Science (<a href="http://www.cs.cmu.edu/">Link</a>)</div>
-                <div>Carnegie Mellon University (<a href="http://www.cmu.edu/">Link</a>)</div>
+                <div><a href="http://www.isri.cmu.edu/">Institute for Software Research</a></div>
+                <div><a href="http://www.cs.cmu.edu/">School of Computer Science</a></div>
+                <div><a href="http://www.cmu.edu/">Carnegie Mellon University</a></div>
                 <div>&nbsp;</div>
                 <div>Office: TCS <a href="https://vignette.wikia.nocookie.net/juggle/images/e/e2/534_200.gif">345</a></div>
                 <div>Email: kaestner (at) cs.cmu.edu</div>
@@ -54,19 +54,25 @@ object CV {
         """\begin{CV}
           |\item[Affiliation]
           |    Associate Professor \\
-          |    Carnegie Mellon University \\
-          |    School of Computer Science\\
-          |    Institute for Software Research \\
-          |    5000 Forbes Avenue, Pittsburgh, PA 15213, USA
+          |    School of Computer Science, Institute for Software Research\\
+          |    Carnegie Mellon University
           |\item[Contact]
           |    +1 412 268 5254 (Office)\\
           |    \href{mailto:kaestner@cs.cmu.edu}{kaestner@cs.cmu.edu}
-          |%\item[]Born 1982 in Schwedt/Oder, Germany; German citizenship
+          |\item[Mailing Address]
+          |    Christian Kaestner\\
+          |     ISR - TCS Hall 430\\
+          |     4665 Forbes Avenue\\
+          |     Pittsburgh, PA 15213, USA
           |\end{CV}
           |
           |\section{Profile}
           |\begin{CV}
-          |\item[] Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems, as well as open-source sustainability and software engineering for AI-enabled systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way, to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
+          |\item[]
+          |     Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems,
+          |     as well as open-source sustainability and software engineering for AI-enabled systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way,
+          |     to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
+          |     Also interested in \emph{open-source sustainability} and \emph{software engineering for AI-enabled systems}.
           |\end{CV}
           |
           |\section{Education}
@@ -462,15 +468,15 @@ object CV {
 
     val reviews: Seq[Review] = Seq(
         Review(TSE(2020)),
-        Review(ESEM(2020)),
-        Review(ESEM(2020)),
+        Review(JASE(2020)),
+        Review(EMSE(2020)),
         Review(TOSEM(2019)),
         Review(TSE(2019)),
         Review(TOSEM(2018)),
         Review(IST(2018)),
         Review(JASE(2018)),
         Review(TSE(2018)),
-        Review(ESEM(2017)),
+        Review(EMSE(2017)),
         Review(TSE(2017)),
         Review(TSE(2016)),
         Review(SOSYM(2016)),
@@ -481,7 +487,7 @@ object CV {
         Review(JOSER(2014)), //Science of Computer Programming
         Review(TSE(2014)), //IEEE Transactions on Software Engineering
         Review(TOPLAS(2012)),
-        Review(ESEM(2012)),
+        Review(EMSE(2012)),
         Review(JSEP(2012)), //Journal of Software: Evolution and Process
         Review(HOSC(2012)), //Higher-Order and Symbolic Computation
         Review(AI(2012)), //Acta Informatica

@@ -1,10 +1,11 @@
 package de.stner.cv
 
 import java.io._
-import java.text.{DecimalFormat, SimpleDateFormat}
-
+import java.text.DecimalFormat
 import de.stner.cv.VenueStructure._
 import org.apache.commons.io.FileUtils
+
+import java.time.format.DateTimeFormatter
 
 
 object GenLatex extends App {
@@ -54,7 +55,7 @@ object GenLatex extends App {
         case USD(v) => "{\\$\\,{%s}}".format(new DecimalFormat("###,###").format(v).replace(",", "\\,"))
     }
 
-    val monthyear = new SimpleDateFormat("MMM. yyyy")
+    val monthyear = DateTimeFormatter.ofPattern("MMM. yyyy")
 
     def printGrants(): String = {
         val r = awards.map({
@@ -106,7 +107,7 @@ object GenLatex extends App {
         val l = teaching.filter(isRelevant).groupBy(c => (c.title, c.language)).toList.
             sortBy(c => c._2.map(_.term).max).reverse
         var r = l.map({
-            case ((t, l), c) => "\\item[%s] %s (in %s)".format(c.sortBy(_.term).map(_.term.toShortString).mkString(", "), t, l)
+            case ((t, l), c) => "\\item[%s] %s%s".format(c.sortBy(_.term).map(_.term.toShortString).mkString(", "), t, if (l!=English) s" (in $l)" else "")
         })
         val projectYears = teachingProjects.map(_.term)
 //        r = r :+ "\\item[%d--%d] Supervised %d Student Software Projects".format(projectYears.min.year, projectYears.max.year, teachingProjects.size)
@@ -173,7 +174,7 @@ object GenLatex extends App {
 
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{58}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{61}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
             VenueStructure.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"

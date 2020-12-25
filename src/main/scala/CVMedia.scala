@@ -1,5 +1,5 @@
 package de.stner.cv
-import de.stner.cv.Coauthors.{Bogart, Kaestner, Overbey, Trockman, Vasilescu}
+import de.stner.cv.Coauthors.{Bogart, Kaestner, Overbey, Trockman, Vasilescu, Zhou}
 import de.stner.cv.Citable
 
 import java.time.LocalDate
@@ -32,6 +32,8 @@ object CVMedia {
     val seaiMedium20Process = MediumBlog("On the process for building software with ML components", URL("https://ckaestne.medium.com/on-the-process-for-building-software-with-ml-components-c54bdb86db24"), LocalDate.of(2020,11,1))
 
     val stateOfTheSource20Talk = Youtube("State of the Source 2020: Analyzing Tens of Terabytes of Public Trace Data & Open Source Sustainabilty", "y4cpIaN3tFc", LocalDate.of(2020,9,18), List(Vasilescu, Kaestner))
+
+    val podcast20SustainFork = Podcast("What the Fork? Shurui Zhou on Forking in Open Source | Sustain Podcast", URL("https://podcast.sustainoss.org/53"), LocalDate.of(2020,9,11), List(Zhou))
 
     val seaibib = Website("Software Engineering for AI/ML -- An Annotated Bibliography", URL("https://github.com/ckaestne/seaibib"),
         LocalDate.of(2020, 1, 31), selected=true)
