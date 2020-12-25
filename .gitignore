@@ -3,3 +3,11 @@
 target
 out.*
 *~
+todo
+tenure/
+reappointment/
+reappointment2/
+/*.txt
+.bsp/
+cv.ipr
+cv.iws
