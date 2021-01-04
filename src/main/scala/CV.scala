@@ -333,6 +333,7 @@ object CV {
     val committees = Seq[Committee](
         Committee(ICSE(2022).url(URL("https://conf.researchr.org/home/icse-2022")), ConfChair, PC),
         Committee(ASE(2021).url(URL("https://conf.researchr.org/home/ase-2021")), PC),
+        Committee(ESECFSE(2021).url(URL("https://2021.esec-fse.org/")), PC),
         Committee(VAMOS(2021), PC),
         Committee(ASE(2020).url(URL("https://conf.researchr.org/home/ase-2020")), PC),
         Committee(SPLC(2020).url(URL("http://www.splc.net")), PC),
@@ -731,7 +732,6 @@ object CV {
         (Ferreira, Some("(PhD student since 2014)")),
         (Velez, Some("(PhD student since 2016)")),
         (Wong, Some("(PhD student since 2014)")),
-        (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
         (Person("Chenyang", "Yang", "Peking University"), Some("(REU student, 2020)")),
         (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
         (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
@@ -740,6 +740,7 @@ object CV {
         (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(REU student, 2020)"))
     )
     val former = List(
+        (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
         (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
         (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
         (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),

@@ -941,6 +941,13 @@ case class Youtube(title: String, videoId: String, date: LocalDate, author: List
     def link: URL = URL("https://www.youtube.com/watch?v="+videoId)
     def kindDescr: String = kind
 }
+case class YoutubePlaylist(title: String, playlistId: String, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Talk") extends Media {
+    def icon: String = "🎞"
+    def link: URL = URL("https://www.youtube.com/playlist?list="+playlistId)
+    def kindDescr: String = kind
+}
+
+
 
 case class MediumBlog(title: String, link: URL, date: LocalDate, author: List[Person]= List(Kaestner), selected: Boolean = false, kind: String = "Blog post") extends Media{
     def icon: String = "🖺"
