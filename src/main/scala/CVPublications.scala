@@ -4693,11 +4693,34 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         "White-Box Analysis over Machine Learning: Modeling Performance of Configurable Systems",
         ICSE(2021).month(5).acceptanceRate(138, 602),
         ToAppear(),
-        Map(),
+        Map(HTTP -> URL("http://arxiv.org/abs/2101.05362")),
         """
 		Performance-influence models can help stakeholders understand how and where configuration options and their interactions influence the performance of a system. With this understanding, stakeholders can debug performance and make deliberate configuration decisions. Current black-box techniques to build such models combine various sampling and learning strategies, resulting in trade offs between measurement effort, accuracy, and interpretability. We present Comprex, a white-box approach to build performance-influence models for configurable systems, combining insights of local measurements, dynamic taint analysis to track options in the implementation, compositionality, and compression of the configuration space, without using machine learning to extrapolate incomplete samples. Our evaluation on 4 widely-used open-source projects demonstrates that Comprex builds similarly accurate performance-influence models to the most accurate and expensive black-box approach, but at a reduced cost and with additional benefits from interpretable and local models.        
 		""").topic(vaanalysis,nfp).selected()
 
 
+
+    val tosem21 = Article(
+        Seq(Bogart, Kaestner, Herbsleb, Thung),
+        "When and how to make breaking changes: Policies and practices in 18 open source software ecosystems",
+        TOSEM(2021),
+        ToAppear(),
+        Map(HTTP -> URL("http://breakingapis.org")),
+        """
+            Open source software projects often rely on package management systems that help projects discover,
+incorporate, and maintain dependencies on other packages, maintained by other people. Such systems save a
+great deal of effort over adhoc ways of advertising, packaging, and transmitting useful libraries, but coordination
+among project teams is still needed when one package makes a breaking change affecting other packages.
+Ecosystems differ in their approaches to breaking changes, and there is no general theory to explain the
+relationships between features, behavioral norms, ecosystem outcomes, and motivating values. We address this
+through two empirical studies. In an interview case study we contrast Eclipse, NPM, and CRAN, demonstrating
+that these different norms for coordination of breaking changes shift the costs of using and maintaining the
+software among stakeholders, appropriate to each ecosystem’s mission. In a second study, we combine a
+survey, repository mining, and document analysis to broaden and systematize these observations across 18
+ecosystems. We find that all ecosystems share values such as stability and compatibility, but differ in other
+values. Ecosystems’ practices often support their espoused values, but in surprisingly diverse ways. The data
+provides counterevidence against easy generalizations about why ecosystem communities do what they do."""
+    ).topic(empirical, ecosystem).selected().
+        crosscite("extended version of \\cite{fse16}")
 
 }
