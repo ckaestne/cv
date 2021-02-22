@@ -1,5 +1,7 @@
 package de.stner.cv
 
+import de.stner.cv.Coauthors.Kaestner
+
 import java.io._
 import java.text.DecimalFormat
 import de.stner.cv.VenueStructure._
@@ -172,6 +174,19 @@ object GenLatex extends App {
         (for (p <- CV.publications.reverse.filter(_.venue.kind==kind)) yield printPublication(p)).mkString +
         "\\end{thebibliography}\n"
 
+    def media(): String = subsection("Blog posts, video, and other media", inCV(
+        CV.media.reverse.map(printMedia).mkString("\n")
+        ))
+
+    def printMedia(m: Media): String =
+        s"\\item[${ monthyear.format(m.date)}] ${m.title.toTex}, ${m.kindDescr}${printCollab(m).toTex}, \\url{${m.link}}"
+
+    def printCollab(m: Media): String = {
+        if (m.author.isEmpty || m.author==List(Kaestner)) ""
+        else if (m.author contains Kaestner) " with " + m.author.filterNot(_==Kaestner).map(_.abbrvname).mkString(", ")
+        else " by "+m.author.map(_.abbrvname).mkString(", ")
+    }
+
 
     def publications(): String =
         "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{61}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
@@ -197,6 +212,8 @@ object GenLatex extends App {
 
     output += section("Professional Service", organizationEditorships() + organizationCommittees() + programCommittees() + reviewing())
 //    output += section("Software", printSoftware())
+
+    output += media()
 
     output += publications()
 

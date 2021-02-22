@@ -669,6 +669,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2020, 9), "Analyzing Tens of Terabytes of Public Trace Data & Open Source Sustainabilty", "State of the Source"),
         InvitedTalk(time(2020, 6), "Engineering AI-Enabled Systems with Interdisciplinary Teams", "Software Engineering for Machine Learning Applications (SEMLA) International Symposium"),
         InvitedTalk(time(2020, 4), "Software Engineering for ML-Enabled Systems", "Code and Supply Meetup"),
         InvitedTalk(time(2020, 3), "Teaching Software Engineering for AI-Enabled Systems", "Dagstuhl Seminar 20091: SE4ML - Software Engineering for AI-ML-based Systems"),
