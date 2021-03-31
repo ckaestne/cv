@@ -177,6 +177,7 @@ object Coauthors {
     val Braz = Person("Larissa", "Braz")
     val Santos = Person("Kleber", "Santos")
     val Machado = Person("Ivan", "Machado")
+    val Nahar = Person("Nadia", "Nahar", "Carnegie Mellon University")
 }
 
 object Topics {
@@ -4683,7 +4684,7 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         "Containing Malicious Package Updates in npm with a Lightweight Permission System",
         ICSE(2021).month(5).acceptanceRate(138, 602),
         ToAppear(),
-        Map(),
+        Map(PDF->PDFFile("icse21_malicious.pdf")),
         """
 		The large amount of third-party packages available in fast-moving software ecosystems, such as the Node.js/npm, enables attackers to compromise applications by pushing malicious updates to their package dependencies. Studying the npm repository, we observed that many packages perform only simple computations and do not need access to filesystem or network APIs. This offers the opportunity to enforce least-privilege design per package, protecting them from malicious updates. We discuss the design space and propose a lightweight permission system that protects Node.js/npm applications by enforcing package permissions at runtime. Our system makes a large number of packages much harder to be exploited, almost for free.
 		""").topic(security, ecosystem).selected()
@@ -4706,7 +4707,8 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         "When and how to make breaking changes: Policies and practices in 18 open source software ecosystems",
         TOSEM(2021),
         ToAppear(),
-        Map(HTTP -> URL("http://breakingapis.org")),
+        Map(HTTP -> URL("http://breakingapis.org"),
+            PDF->PDFFile("tosem21.pdf")),
         """
             Open source software projects often rely on package management systems that help projects discover,
 incorporate, and maintain dependencies on other packages, maintained by other people. Such systems save a

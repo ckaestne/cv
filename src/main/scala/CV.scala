@@ -669,6 +669,7 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2021, 3), "Toward a System-Wide and Interdisciplinary Perspective on ML System Performance", "Keynote at FastPath'21 Workshop"),
         InvitedTalk(time(2020, 9), "Analyzing Tens of Terabytes of Public Trace Data & Open Source Sustainabilty", "State of the Source"),
         InvitedTalk(time(2020, 6), "Engineering AI-Enabled Systems with Interdisciplinary Teams", "Software Engineering for Machine Learning Applications (SEMLA) International Symposium"),
         InvitedTalk(time(2020, 4), "Software Engineering for ML-Enabled Systems", "Code and Supply Meetup"),
@@ -730,9 +731,9 @@ object CV {
 
     val current = List(
         //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
+        (Nahar, Some("(PhD student since 2020)")),
         (Ferreira, Some("(PhD student since 2014)")),
         (Velez, Some("(PhD student since 2016)")),
-        (Wong, Some("(PhD student since 2014)")),
         (Person("Chenyang", "Yang", "Peking University"), Some("(REU student, 2020)")),
         (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
         (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
@@ -741,6 +742,7 @@ object CV {
         (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(REU student, 2020)"))
     )
     val former = List(
+        (Wong, Some("(PhD 2014-2021, now at Facebook)")),
         (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
         (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
         (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
