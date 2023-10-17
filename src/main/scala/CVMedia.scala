@@ -26,6 +26,7 @@ object CVMedia {
     val semlaTalk20 = Youtube("Engineering AI-Enabled Systems with Interdisciplinary Teams | SEMLA'20", "CHMJBlJyfZk", LocalDate.of(2020,6,18))
     val seetTalk20 = Youtube("Teaching Software Engineering for AI-Enabled Systems | ICSE SEET'20", "Nk0Sy6Sx3IY", LocalDate.of(2020,6,5))
     val fastpathTalk21 = Youtube("Toward a System-Wide and Interdisciplinary Perspective on ML System Performance | FastPath'21 Workshop Keynote", "SGJogMiRkWU", LocalDate.of(2021,3,28))
+    val msrKeynote22 = Youtube("From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning | MSR'22 Keynote", "_m-m90S_4Gg", LocalDate.of(2022,5,19))
 
     val seaiLectureS20 = YoutubePlaylist("Complete Lecture Recordings: Software Engineering for AI-Enabled Systems", "PLDS2JMJnJzdkQPdkhcuwcbJpjB84g9ffX", LocalDate.of(2020,8,6), selected = true, kind = "Lecture")
 
@@ -42,5 +43,6 @@ object CVMedia {
 
     val seaibib = Website("Software Engineering for AI/ML -- An Annotated Bibliography", URL("https://github.com/ckaestne/seaibib"),
         LocalDate.of(2020, 1, 31), selected=true)
+    val s3c2Web = Website("Secure Software Supply Chain Center", URL("https://s3c2.org/"), LocalDate.of(2023, 8, 15))
 
 }

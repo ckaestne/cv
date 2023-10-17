@@ -146,7 +146,7 @@ object Coauthors {
     val Huchard = Person("Marianne","Huchard", "University of Montpellier")
     val Jaervi = Person("Jaakko","Järvi","Texas A&M University")
     val Gokhale = Person("Aniruddha S.","Gokhale","Vanderbilt University")
-    val Miller = Person("Courtney","Miller","New College of Florida, USA")
+    val Miller = Person("Courtney","Miller", URL("https://courtney-e-miller.github.io/"), "Carnegie Mellon University")
     val Garrett = Person("Kalil","Garrett","Georgia State University")
     val Garlan = Person("David", "Garlan", "Carnegie Mellon University")
     val LeGoues = Person("Claire", "Le Goues", "Carnegie Mellon University")
@@ -177,7 +177,39 @@ object Coauthors {
     val Braz = Person("Larissa", "Braz")
     val Santos = Person("Kleber", "Santos")
     val Machado = Person("Ivan", "Machado")
-    val Nahar = Person("Nadia", "Nahar", "Carnegie Mellon University")
+    val Nahar = Person("Nadia", "Nahar", URL("https://sites.google.com/view/nadianahar"), "Carnegie Mellon University")
+    val BoShen = Person("Bo", "Shen", "Peking University")
+    val WZhang = Person("Wei", "Zhang", "Peking University")
+    val HZhao = Person("Haiyan", "Zhao", "Peking University")
+    val ZWei = Person("Zhao", "Wei")
+    val GLiang = Person("Guangtai", "Liang")
+    val ZJin = Person("Zhi", "Jin", "Peking University")
+    val Santiesteban = Person("Priscila", "Santiesteban", "Coe College")
+    val JGuo = Person("Jin L.C.", "Guo", URL("https://www.cs.mcgill.ca/~jguo/"), "McGill University")
+    val Yang = Person("Chenyang", "Yang", URL("https://www.cs.cmu.edu/~cyang3/"), "Carnegie Mellon University")
+    val Cohen = Person("Sophie", "Cohen", "Wesleyan University")
+    val Dong = Person("Helen", "Dong", "Carnegie Mellon University")
+    val Klug = Person("Daniel", "Klug", "Carnegie Mellon University")
+    val Lewis = Person("Grace", "Lewis", "Carnegie Mellon Software Engineering Institute")
+    val Qiu = Person("Huilian Sophie", "Qiu", "Carnegie Mellon University")
+    val Egelman = Person("Carolyn", "Egelman", "Google")
+    val Jaspan = Person("Ciera", "Jaspan", "Google")
+    val MurphyHill = Person("Emerson", "Murphy-Hill", "Google")
+    val Truong = Person("Kimberly", "Truong", "Oregon State University")
+    val Gray = Person("Philip", "Gray", "New College of Florida")
+    val Jiang = Person("Yuan", "Jiang", "Carnegie Mellon University")
+    val BrowerSinning = Person("Rachel A", "Brower-Sinning", "Carnegie Mellon Software Engineering Institute")
+    val Bhat = Person("Avinash", "Bhat", "McGill")
+    val Coursey = Person("Austin", "Coursey", "Vanderbilt University")
+    val Hu = Person("Grace", "Hu", "McGill University")
+    val Li = Person("Sixian", "Li", "McGill University")
+    val Wu = Person("Tongshuang", "Wu", "Carnegie Mellon University")
+    val Maffey = Person("Katherine R.", "Maffey", "AI Integration Center, U.S. Army")
+    val Dotterrer = Person("Kyle", "Dotterrer", "AI Integration Center, U.S. Army")
+    val Niemann = Person("Jennifer", "Niemann", "AI Integration Center, U.S. Army")
+    val Cruickshank = Person("Iain", "Cruickshank", "Army Cyber Institute, United States Military Academy")
+    val HZhang = Person("Haoran", "Zhang", "Carnegie Mellon University")
+    val Rustogi = Person("Rishabh", "Rustogi", "Carnegie Mellon University")
 }
 
 object Topics {
@@ -213,8 +245,10 @@ object Topics {
     val opensource = Topic("Open source")
     val buildsys = Topic("Build systems")
     val sensitivity = Topic("Sensitivity analysis")
-    val seai = Topic("SE4AI")
+    val seai = Topic("Software enginering for machine learning")
+    val notebooks = Topic("Computational notebooks")
     val featureflags = Topic("Feature flags")
+    val survey = Topic("Literature survey")
 
 }
 
@@ -267,6 +301,8 @@ object Venues {
         "%num% International Software Product Line Conference, second volume (Demonstration)")
     val ICSE = ConferenceFactory("ICSE", 1979,
         "%num% International Conference on Software Engineering")
+    val ICSESEET = ConferenceFactory("ICSE-SEET", 1979,
+        "ICSE Software Engineering Education and Training Track")
     val EASE = ConferenceFactory("EASE", 1997,
         "%num% International Conference on Evaluation and Assessment in Software Engineering")
     val ESEM = ConferenceFactory("ESEM", 2007,
@@ -285,6 +321,8 @@ object Venues {
         "%num% IEEE International Conference on Software Analysis, Evolution and Reengineering")
     val SBES = ConferenceFactory("SBES", 1987,
         "%num% Brazilian Symposium on Software Engineering")
+    val CAIN = ConferenceFactory("CAIN", 2022,
+        "%num% International Conference on AI Engineering - Software Engineering for AI")
 
 
     val AI = JournalFactory("AI", "Acta Informatica")
@@ -2064,7 +2102,7 @@ object CVPublications {
             by embedding XML Schema, a metalanguage to define
             XML languages.                                """
     ).
-        note("**Distinguished Paper Award**").topic(dsl, parsing)
+        note("**Distinguished Paper Award and Most Influencial Paper Award in 2021**").topic(dsl, parsing)
 
 
     val oopsla11demo_sugarj = InProceedings(
@@ -2304,7 +2342,7 @@ object CVPublications {
             experience. With our analysis, we initiate a path toward measuring
             programming experience with a valid and reliable tool,
             so that we can control its influence on program comprehension.  """
-    ).topic(experiment, programcomprehension)
+    ).topic(experiment, programcomprehension).note("**Most Influencial Paper Award at ICPC'22**")
 
 
     val iet12 = Article(
@@ -2386,7 +2424,7 @@ object CVPublications {
     analysis and, to this end, make it more systematic and efficient. A long-term goal is to empower
     developers to choose the right analysis technique for their needs out of a pool of techniques with
     different strengths and weaknesses."""
-    ).topic(vaanalysis, overview)
+    ).topic(vaanalysis, overview, survey)
 
     val tr12_modulesys = TechReport(
         Seq(Kaestner, Ostermann, Erdweg),
@@ -2942,7 +2980,7 @@ object CVPublications {
     their similarities and differences. We propose a classification of product-line analyses to enable systematic
     research and application. Based on our insights with classifying and comparing a corpus of 76 articles, we
     infer a research agenda to guide future research on product-line analyses."""
-    ).topic(vaanalysis, spl, overview).selected()
+    ).topic(vaanalysis, spl, overview, survey).selected()
 
     val tr14 = TechReport(
         Seq(Coker, Hasan, Overbey, Hafiz, Kaestner),
@@ -4447,7 +4485,7 @@ provide additional information for analyzing configurable systems.
         not find evidence, and the implications of these cases on future CI
         research, CI tool builders, and CI users.
         """
-      ).topic(ecosystem,empirical,opensource)
+      ).topic(ecosystem,empirical,opensource,survey)
 
 
 
@@ -4673,8 +4711,8 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         Seq(Diniz, Wong, Kaestner, Figueiredo),
         "Dissecting Strongly Subsuming Second-Order Mutants",
     	Conference("ICST", 2021, "International Conference on Software Testing, Verification and Validation").month(4).publisher(IEEE),
-        ToAppear(),
-        Map(),
+        Pages(171,181),
+        Map(DOI->DOI("10.1109/ICST49551.2021.00028")),
         """
 		Mutation testing is a fault-based technique commonly used to evaluate the quality of test suites in software systems. It consists of introducing syntactical changes, called mutations, into source code and checking whether the test cases distinguish them. Since there are dozens of distinct mutation types, one of the most challenging problems is the high computational effort required to test the whole test suite against each mutant. Since mutation testing is proposed, researchers have presented techniques aiming at effort reduction in the phases of its process. This study focuses on the potential reduction in the number of mutants provided by a special set of mutants generated by the introduction of two syntactical changes (strongly subsuming second-order mutants). In this work, we exhaustively searched for those second-order mutants Our results show that they (i) are frequently generated by the "expression removal" mutation, (ii) are likely to be killed by the same test cases that kill their constituent mutants, and (iii) have the potential to reduce the number of mutants to be executed by about 22%.
 		""").topic(testing, vaanalysis)
@@ -4682,9 +4720,10 @@ Overall, we showcase the benefits of white-box performance analyses and their po
     val icse21_malicious = InProceedings(
         Seq(Ferreira, Jia, Sunshine, Kaestner),
         "Containing Malicious Package Updates in npm with a Lightweight Permission System",
-        ICSE(2021).month(5).acceptanceRate(138, 602),
-        ToAppear(),
-        Map(PDF->PDFFile("icse21_malicious.pdf")),
+        ICSE(2021).month(5).acceptanceRate(138, 602).publisher(IEEE),
+        Pages(1334,1346),
+        Map(PDF->PDFFile("icse21_malicious.pdf"),
+            DOI->DOI("10.1109/ICSE43902.2021.00121")),
         """
 		The large amount of third-party packages available in fast-moving software ecosystems, such as the Node.js/npm, enables attackers to compromise applications by pushing malicious updates to their package dependencies. Studying the npm repository, we observed that many packages perform only simple computations and do not need access to filesystem or network APIs. This offers the opportunity to enforce least-privilege design per package, protecting them from malicious updates. We discuss the design space and propose a lightweight permission system that protects Node.js/npm applications by enforcing package permissions at runtime. Our system makes a large number of packages much harder to be exploited, almost for free.
 		""").topic(security, ecosystem).selected()
@@ -4692,10 +4731,11 @@ Overall, we showcase the benefits of white-box performance analyses and their po
     val icse21_perf = InProceedings(
         Seq(Velez, Jamshidi, Siegmund, Apel, Kaestner),
         "White-Box Analysis over Machine Learning: Modeling Performance of Configurable Systems",
-        ICSE(2021).month(5).acceptanceRate(138, 602),
-        ToAppear(),
+        ICSE(2021).month(5).acceptanceRate(138, 602).publisher(IEEE),
+        Pages(1072,1084),
         Map(HTTP -> URL("http://arxiv.org/abs/2101.05362"),
-            PDF -> PDFFile("icse21_comprex.pdf")),
+            PDF -> PDFFile("icse21_comprex.pdf"),
+            DOI->DOI("10.1109/ICSE43902.2021.00100")),
         """
 		Performance-influence models can help stakeholders understand how and where configuration options and their interactions influence the performance of a system. With this understanding, stakeholders can debug performance and make deliberate configuration decisions. Current black-box techniques to build such models combine various sampling and learning strategies, resulting in trade offs between measurement effort, accuracy, and interpretability. We present Comprex, a white-box approach to build performance-influence models for configurable systems, combining insights of local measurements, dynamic taint analysis to track options in the implementation, compositionality, and compression of the configuration space, without using machine learning to extrapolate incomplete samples. Our evaluation on 4 widely-used open-source projects demonstrates that Comprex builds similarly accurate performance-influence models to the most accurate and expensive black-box approach, but at a reduced cost and with additional benefits from interpretable and local models.        
 		""").topic(vaanalysis,nfp).selected()
@@ -4705,8 +4745,8 @@ Overall, we showcase the benefits of white-box performance analyses and their po
     val tosem21 = Article(
         Seq(Bogart, Kaestner, Herbsleb, Thung),
         "When and how to make breaking changes: Policies and practices in 18 open source software ecosystems",
-        TOSEM(2021),
-        ToAppear(),
+        TOSEM(2021).volume(30).issue(4).month(10),
+        PagesStr("Article No.: 42, pp 1--56"),
         Map(HTTP -> URL("http://breakingapis.org"),
             PDF->PDFFile("tosem21.pdf")),
         """
@@ -4725,5 +4765,420 @@ values. Ecosystems’ practices often support their espoused values, but in surp
 provides counterevidence against easy generalizations about why ecosystem communities do what they do."""
     ).topic(empirical, ecosystem).selected().
         crosscite("extended version of \\cite{fse16}")
+
+    val arxiv21fi = TechReport(
+        Seq(Kaestner, Kang, Apel),
+        "Feature Interactions on Steroids: On the Composition of ML Models",
+        2021, 5, ARXIV, "2105.06449",
+        Map(PDF -> PDFFile("arxiv21fi.pdf"),
+            HTTP -> URL("https://arxiv.org/abs/2105.06449")),
+        """
+        The lack of specifications is a key difference between traditional software engineering and machine learning. We discuss how it drastically impacts how we think about divide-and-conquer approaches to system design, and how it impacts reuse, testing and debugging activities. Traditionally, specifications provide a cornerstone for compositional reasoning and for the divide-and-conquer strategy of how we build large and complex systems from components, but those are hard to come by for machine-learned components. While the lack of specification seems like a fundamental new problem at first sight, in fact software engineers routinely deal with iffy specifications in practice: we face weak specifications, wrong specifications, and unanticipated interactions among components and their specifications. Machine learning may push us further, but the problems are not fundamentally new. Rethinking machine-learning model composition from the perspective of the feature interaction problem, we may even teach us a thing or two on how to move forward, including the importance of integration testing, of requirements engineering, and of design.
+        """).topic(seai)
+
+
+
+    val fse21_smartcommit = InProceedings(
+        Seq(BoShen, WZhang, Kaestner, HZhao, ZWei, GLiang, ZJin),
+        "SmartCommit: A Graph-based Interactive Assistant for Activity-Oriented Commits",
+        ESECFSE(2021).month(8).acceptanceRate(97, 396).publisher(ACM),
+        Pages(379,390),
+        Map(PDF -> PDFFile("fse21_sc.pdf"), DOI->DOI("10.1145/3468264.3468551")),
+        """
+        In collaborative software development, it is considered to be a best practice to submit code changes as a sequence of cohesive commits, each of which records the work result of a specific development activity, such as adding a new feature, bug fixing, and refactoring. However, rather than following this best practice, developers often submit a set of loosely-related changes serving for different development activities as a composite commit, due to the tedious manual work and lack of effective tool support to decompose such a tangled changeset. Composite commits often obfuscate the change history of software artifacts and bring challenges to efficient collaboration among developers. To encourage activity-oriented commits, we propose SmartCommit, a graph-partitioning-based interactive approach to tangled changeset decomposition that leverages not only the efficiency of algorithms but also the knowledge of developers. To evaluate the effectiveness of our approach, we (1) deployed SmartCommit in an international IT company, and analyzed usage data collected from a field study with 83 engineers over 9 months; and (2) conducted a controlled experiment on 3,000 synthetic composite commits from 10 diverse open-source projects. Results show that SmartCommit achieves a median accuracy between 71%--83% when decomposing composite commits without developer involvement, and significantly helps developers follow the best practice of submitting activity-oriented commits with acceptable interaction effort and time cost in real collaborative software development.
+        """)
+
+
+    val fse21_varfix = InProceedings(
+        Seq(Wong, Santiesteban, Kaestner, LeGoues),
+        "VarFix: Balancing Edit Expressiveness and Search Effectiveness in Automated Program Repair",
+        ESECFSE(2021).month(8).acceptanceRate(97, 396).publisher(ACM),
+        Pages(354,366),
+        Map(PDF -> PDFFile("fse21_varfix.pdf"),
+            DOI->DOI("10.1145/3468264.3468600")),
+        """
+        Automatically repairing a bugging program is essentially a search problem, searching for code transformations that pass a set of tests. Various search strategies have been explored, but they either navigate the search space in an ad hoc way using heuristics, or systemically but at the cost of limited edit expressiveness in the kinds of supported program edits. In this work, we explore the possibility of systematically navigating the search space without sacrificing edit expressiveness. The key enabler of this exploration is variational execution, a dynamic analysis technique that has been shown to be effective at exploring many similar executions in large search spaces. We evaluate our approach on IntroClassJava and Defects4J, showing that a systematic search is effective at leveraging and combining fixing ingredients to find patches, including many high-quality patches and multi-edit patches.
+        """).topic(vaanalysis).selected()
+
+
+
+    val ase21 = InProceedings(
+        Seq(Yang, Zhou, JGuo, Kaestner),
+        "Subtle Bugs Everywhere: Generating Documentation for Data Wrangling Code",
+        ASE(2021).month(11).acceptanceRate(120,440).publisher(IEEE),
+        Pages(304,316),
+        Map(PDF -> PDFFile("ase21.pdf"),
+            DOI -> DOI("10.1109/ASE51524.2021.9678520")),
+        """
+        Data scientists reportedly spend a significant amountof  their  time  in  their  daily  routines  on  data  wrangling,  
+        i.e., cleaning  data  and  extracting  features.  However,  data  wrangling code  is  often  repetitive  and  error-prone 
+        to  write.  Moreover,  itis  easy  to  introduce  subtle  bugs  when  reusing  and  adopting existing  code,  which  result 
+        not  in  crashes  but  reduce  model quality.   To   support   data   scientists   with   data   wrangling,   we present  
+        a  technique  to  generate  interactive  documentation  for data  wrangling  code.  We  use  (1)  program  synthesis 
+        techniques to  automatically  summarize  data  transformations  and  (2)  test case  selection  techniques  
+        to  purposefully  select  representative examples from the data based on execution information collected with tailored 
+        dynamic program analysis. We demonstrate that a JupyterLab extension with our technique can provide documentation 
+        for  many  cells  in  popular  notebooks  and  find  in  a  user study that users with our plugin are faster 
+        and more effective at finding  realistic  bugs  in  data  wrangling  code.
+        """).topic(seai,experiment,programcomprehension,empirical,notebooks).selected()
+
+    val esecsrc21_helen = InProceedings(
+        Seq(Dong),
+        "A Qualitative Study of Cleaning in Jupyter Notebooks",
+        Venue("ESEC/FSE-SRC", 2021, "European Software Engineering Conference and ACM SIGSOFT Symposium on the Foundations of Software Engineering", KWorkshopDemoTool).publisher(ACM),
+        Pages(1663,1665),
+        Map(PDF -> PDFFile("srcfse21_notebook.pdf"),
+            HTTP-> URL("https://dl.acm.org/doi/abs/10.1145/3468264.3473490"),
+            DOI->DOI("10.1145/3468264.3473490")),
+        """
+        Data scientists commonly use computational notebooks because they provide a good environment for testing multiple models. However, once the scientist completes the code and finds the ideal model, the data scientist will have to dedicate time to clean up the code in order for others to understand it. In this paper, we perform a qualitative study on how scientists clean their code in hopes of being able to suggest a tool to automate this process. Our end goal is for tool builders to address
+possible gaps and provide additional aid to data scientists, who can then focus more on their actual work rather than the routine and tedious
+cleaning duties.
+        """
+    ).topic(notebooks, seai,notebooks).note("ESEC/FSE Student Research Competition")
+
+    val esecsrc21_sophie = InProceedings(
+        Seq(Cohen),
+        "Contextualizing Toxicity in Open Source: A Qualitative Study",
+        Venue("ESEC/FSE-SRC", 2021, "European Software Engineering Conference and ACM SIGSOFT Symposium on the Foundations of Software Engineering", KWorkshopDemoTool).publisher(ACM),
+        Pages(1669,1671),
+        Map(PDF -> PDFFile("srcfse21_toxicity.pdf"),
+            HTTP-> URL("https://dl.acm.org/doi/abs/10.1145/3468264.3473492"),
+            DOI->DOI("10.1145/3468264.3473492")),
+        """
+        In this paper, we study toxic online interactions in issue discussions of open-source communities. Our goal is to qualitatively understand how toxicity impacts an open-source community like GitHub. We are driven by users complaining about toxicity, which leads to burnout and disengagement from the site. We collect a substantial sample of toxic interactions and qualitatively analyze their characteristics to ground future discussions and intervention design.
+        """
+    ).topic(ecosystem,empirical,opensource).note("ESEC/FSE Student Research Competition")
+
+
+    val raise21 = InProceedings(
+        Seq(Dong, Zhou, JGuo, Kaestner),
+        "Splitting, Renaming, Removing: A Study of Common Cleaning Activities in Jupyter Notebooks",
+        Workshop("RAISE", 2021, "9tn International Workshop on Realizing Artificial Intelligence Synergies in Software Engineering").month(11).publisher(IEEE),
+        Pages(114,119),
+        Map(PDF -> PDFFile("raise21.pdf"),DOI->DOI("10.1109/ASEW52652.2021.00032")),
+        """
+        Data scientists commonly use computational notebooks
+because they provide a good environment for testing multiple
+models. However, once the scientist completes the code and
+finds the ideal model, he or she will have to dedicate time to
+clean up the code in order for others to easily understand
+it. In this paper, we perform a qualitative study on how
+scientists clean their code in hopes of being able to suggest
+a tool to automate this process. Our end goal is for tool
+builders to address possible gaps and provide additional aid
+to data scientists, who then can focus more on their actual
+work rather than the routine and tedious cleaning work.
+By sampling notebooks from GitHub and analyzing changes
+between subsequent commits, we identified common cleaning
+activities, such as changes to markdown (e.g., adding headers
+sections or descriptions) or comments (both deleting dead code
+and adding descriptions) as well as reordering cells. We also
+find that common cleaning activities differ depending on the
+intended purpose of the notebook. Our results provide a valuable 
+foundation for tool builders and notebook users, as many
+identified cleaning activities could benefit from codification
+of best practices and dedicated tool support, possibly tailored
+depending on intended use.
+        """).topic(ecosystem,empirical,opensource,notebooks)
+
+
+    val icse22_perf = InProceedings(
+        Seq(Velez, Jamshidi, Siegmund, Apel, Kaestner),
+        "On Debugging the Performance of Configurable Software Systems: Developer Needs and Tailored Tool Support",
+        ICSE(2022).month(5).acceptanceRate(197, 751).publisher(ACM),
+        Pages(1571,1583),
+        Map(PDF -> PDFFile("icse22_config.pdf"),
+            HTTP->URL("https://arxiv.org/abs/2203.10356"),
+            DOI->DOI("10.1145/3510003.3510043"),
+            Video->YoutubeLink("VoegPhYnh84")),
+        """
+        Determining whether a configurable software system has a performance bug or the system was misconfigured is often challenging. While there are numerous debugging techniques that can support developers in this task, there is limited empirical evidence of how useful the techniques are to address the actual needs that developers have when debugging the performance of configurable systems; most techniques are often evaluated in terms of technical accuracy instead of their usability. In this paper, we take a human-centered approach to identify, design, implement, and evaluate a solution to support developers in the process of debugging the performance of configurable software systems. We first conduct an exploratory study with 19 developers to identify the information needs that developers have during this process. Subsequently, we design and implement a tailored tool, building on relevant information provided by Global and Local performance-influence models, CPU profiling, and program slicing, to support those needs. Two user studies, with a total of 20 developers, validate and confirm that the information that we provide help developers debug the performance of configurable software systems.
+        """).topic(vaanalysis,nfp,empirical,experiment).selected()
+
+
+    val icse22_toxic = InProceedings(
+        Seq(Miller, Cohen, Klug, Vasilescu, Kaestner),
+        "\"Did You Miss My Comment or What?\" Understanding Toxicity in Open Source Discussions",
+        ICSE(2022).month(5).acceptanceRate(197, 751).publisher(ACM),
+        Pages(710,722),
+        Map(PDF -> PDFFile("icse22_toxicity.pdf"),
+            DOI->DOI("10.1145/3510003.3510111"),
+            Video->YoutubeLink("wI7L9ApnvkQ")),
+        """
+        Online toxicity is ubiquitous across the internet and its negative impact on the people and online communities it effects has been well documented.
+However, toxicity manifests differently on various platforms and toxicity in open source communities, while frequently discussed, is not well understood.
+We take a first stride at understanding the characteristics of open source toxicity to better inform future work designing effective intervention and detection methods. To this end, we curate a sample of 100 toxic GitHub issue discussions combining multiple search and sampling strategies. We then qualitatively analyze the sample to gain an understanding of the characteristics of open-source toxicity.
+We find that the prevalent forms of toxicity in open source differ from those observed on other platforms like Reddit or Wikipedia. We find some of the most prevalent forms of toxicity in open source are entitled, demanding, and arrogant comments from project users and insults arising from technical disagreements. In addition, not all toxicity was written by people external to the projects, project members were also common authors of toxicity.
+We also provide in-depth discussions about the implications of our findings including patterns that may be useful for detection work and subsequent questions for future work.
+        """).topic(opensource,empirical).selected().note("**Distinguished Paper Award**")
+
+
+    val icse22_seai = InProceedings(
+        Seq(Nahar, Zhou, Lewis, Kaestner),
+        "Collaboration Challenges in Building ML-Enabled Systems: Communication, Documentation, Engineering, and Process",
+        ICSE(2022).month(5).acceptanceRate(197, 751).publisher(ACM),
+        Pages(413,425),
+        Map(PDF -> PDFFile("icse22_seai.pdf"),
+            HTTP -> URL("https://arxiv.org/abs/2110.10234"),
+            DOI->DOI("10.1145/3510003.3510209"),
+            Video->YoutubeLink("EwJ1Hx4F6DY")),
+        """
+        The introduction of machine learning (ML) components in software
+projects has created the need for software engineers to collaborate with data scientists and other specialists. While collaboration
+can always be challenging, ML introduces additional challenges
+with its exploratory model development process, additional skills
+and knowledge needed, difficulties testing ML systems, need for
+continuous evolution and monitoring, and non-traditional quality
+requirements such as fairness and explainability. Through interviews with 45 practitioners from 28 organizations, we identified
+key collaboration challenges that teams face when building and
+deploying ML systems into production. We report on common collaboration points in the development of production ML systems
+for requirements, data, and integration, as well as corresponding
+team patterns and challenges. We find that most of these challenges
+center around communication, documentation, engineering, and
+process and collect recommendations to address these challenges
+        """).topic(seai).selected().note("**Distinguished Paper Award**")
+
+
+    val seis22 = InProceedings(
+        Seq(Qiu, Vasilescu, Kaestner, Egelman, Jaspan, MurphyHill),
+        "Detecting Interpersonal Conflict in Issues and Code Review: Cross Pollinating Open- and Closed-Source Approaches",
+        Conference("ICSE-SEIS", 2022, "Proc. International Conference on Software Engineering -- Software Engineering in Society Track").month(5).acceptanceRate(17, 39).publisher(ACM),
+        Pages(41,55),
+        Map(PDF->PDFFile("seis22.pdf"),
+            DOI->DOI("10.1145/3510458.3513019"),
+            Video->YoutubeLink("hKIW3j-Le1o")),
+        """
+        Interpersonal conflict in code review, such as toxic language or an unnecessary pushback, is associated with negative outcomes such as stress and turnover. Automatic detection is one approach to prevent and mitigate interpersonal conflict. Two recent automatic detection approaches were developed in different settings: a toxicity detector using text analytics for open source issue discussions and a pushback detector using logs-based metrics for corporate code reviews. This paper tests how the toxicity detector and the pushback detector can be generalized beyond their respective contexts and discussion types, and how the combination of the two can help improve interpersonal conflict detection. The results reveal connections between the two concepts.
+        """).topic(opensource,empirical)
+
+
+    val icsesrc22_video= InProceedings(
+        Seq(Truong),
+        "Let’s Talk Open-Source — An Analysis of Conference Talks and Community Dynamics",
+        Venue("ICSE-SRC", 2022, "International Conference on Software Engineering (Companion)", KWorkshopDemoTool).publisher(ACM),
+        Pages(322, 324),
+        Map(PDF->PDFFile("icsesrc22-talks.pdf"), 
+            DOI->DOI("10.1145/3510454.3522683")),
+        """
+        Open-source software has integrated itself into our daily lives,
+impacting 78% of US companies in 2015. Past studies of open-source 
+community dynamics have found motivations behind contributions 
+and the significance of community engagement, but there are 
+still many aspects not well understood.
+There’s a direct correlation between the success of an open-source
+project and the social interactions within its community.
+Most projects depend on a small group. A study by Avelino et al.
+on the 133 most popular GitHub projects found that 86% will fail
+if one or two of its core contributors leave. To sustain open-source,
+we need to better understand how contributors interact, what infor-
+mation is shared, and what concerns practitioners have. We study
+common topics, how these have changed over time (2011 - 2021),
+and what social issues have appeared within open-source commu-
+nities. Our research is guided by the following questions: (1) How is
+open-source changing/evolving? (2) What changes do practitioners
+believe are necessary for open-source to be sustainable? ...
+        """
+    ).topic(empirical, opensource).note("ICSE student research competition, first place")
+
+
+    val icsesrc22_disengage= InProceedings(
+        Seq(Gray),
+        "To Disengage or Not to Disengage: A Look at Contributor Disengagement in Open Source Software",
+        Venue("ICSE-SRC", 2022, "International Conference on Software Engineering (Companion)", KWorkshopDemoTool).publisher(ACM),
+        Pages(328,330),
+        Map(PDF->PDFFile("icsesrc22-disengagement.pdf"),
+            DOI->DOI("10.1145/3510454.3522685")),
+        """
+        Contributors are vital to the sustainability of open source ecosys-
+tems, and disengagement threatens that sustainability. We seek to
+protect and strengthen open source communities through a better
+and more robust way of defining and identifying contributor dis-
+engagement in open source communities. To do this we, collected
+a large amount of gray literature on contributor disengagement,
+and performed a qualitative analysis to better our understanding
+of why contributors disengage.
+        """
+    ).topic(empirical, opensource,survey).note("ICSE student research competition")
+
+    
+        
+
+
+    val msr22_data = InProceedings(
+        Seq(Truong, Miller, Vasilescu, Kaestner),
+        "The Unsolvable Problem or the Unheard Answer? A Dataset of 24,669 Open-Source Software Conference Talks",
+        MSR(2022).month(5).location("Pittsburgh, PA").publisher(ACM),
+        ToAppear(),
+        Map(PDF -> PDFFile("msr22.pdf")),
+        """
+        Talks at practitioner-focused 
+        open-source software conferences are a valuable source of information
+        for software engineering researchers. They provide a pulse
+        of the community and are valuable
+        source material for grey literature
+        analysis. We curated a dataset of 24,669 talks from 87 open-source conferences between 2010 and 2021. We stored all relevant metadata from these conferences and provide scripts to collect the transcripts. We believe this data is useful for answering many kinds of questions, such as: What are the important/highly discussed topics within practitioner communities? How do practitioners interact? And how do they present themselves to the public? We demonstrate the usefulness of this data by reporting our findings from two small studies: a topic model analysis providing an overview of open-source community dynamics since 2011 and a qualitative analysis of a smaller community-oriented sample within our dataset to gain a better understanding of why contributors leave open-source software."""
+     ).topic(empirical, opensource, ecosystem)
+
+    val ieeesw22 = Article(
+        Seq(Kaestner, Kang, Apel),
+        "Feature Interactions on Steroids: On the Composition of ML Models",
+        Journal("IEEE-Sw", 2022, "IEEE Software").volume(39).number(3).month(5).publisher(IEEE),
+        Pages(120,124),
+        Map(PDF -> PDFFile("ieeesw22.pdf"),
+            DOI -> DOI("10.1109/MS.2021.3134386")),
+        """
+        One of the key differences between traditional software engineering and machine learning (ML) is the lack of specifications for ML models. Traditionally, specifications provide a cornerstone for compositional reasoning and for the divide-and-conquer strategy of how we build large and complex systems from components, but these are hard to come by for machine learned components. While the lack of specification seems like a fundamental new problem at first sight, in fact, software engineers routinely deal with iffy specifications in practice. We face weak specifications, wrong specifications, and unanticipated interactions among specifications. ML may push us further, but the problems are not fundamentally new. Rethinking ML model composition from the perspective of the feature-interaction problem highlights the importance of software design.
+        """).topic(seai).selected().crosscite("magazine version of arxiv21fi")
+
+
+    val icsme22 = InProceedings(
+        Seq(Jiang, Kaestner, Zhou),
+        "Elevating Jupyter Notebook Maintenance Tooling by Identifying and Extracting Notebook Structures",
+        Conference("ICSME", 2022, "38th International Conference on Software Maintenance and Evolution").
+            month(10).location("Limassol, Cyprus").acceptanceRate(17,39),
+        Pages(399,403),
+        Map(DOI->DOI("10.1109/ICSME55016.2022.00047"),
+            PDF->PDFFile("icsme22.pdf")),
+        """
+        Data analysis is an exploratory, interactive, and often collaborative process. Computational notebooks have become a popular tool to support this process, among others because of their ability to interleave code, narrative text, and results. However, notebooks in practice are often criticized as hard to maintain and being of low code quality, including problems such as unused or duplicated code and out-of-order code execution. Data scientists can benefit from better tool support when maintaining and evolving notebooks. We argue that central to such tool support is identifying the structure of notebooks. We present a lightweight and accurate approach to extract notebook structure and outline several ways such structure can be used to improve maintenance tooling for notebooks, including navigation and finding alternatives.
+
+        """
+      ).topic(seai,notebooks)
+
+    val ase22 = InProceedings(
+        Seq(Yang, BrowerSinning, Lewis, Kaestner),
+        "Data Leakage in Notebooks: Static Detection and Better Processes",
+        ASE(2022).month(10).acceptanceRate(78+38,527).publisher(ACM).location("Ann Arbor, MI"),
+        PagesStr("Article No.: 30"),
+        Map(PDF->PDFFile("ase22.pdf"),
+            DOI->DOI("10.1145/3551349.3556918"),
+            HTTP->URL("https://arxiv.org/abs/2209.03345")),
+        """
+        Data science pipelines to train and evaluate models with machine learning may contain bugs just like any other code. Leakage between training and test data can lead to overestimating the model's accuracy during offline evaluations, possibly leading to deployment of low-quality models in production. Such leakage can happen easily by mistake or by following poor practices but may be tedious and challenging to detect manually. We develop a static analysis approach to detect common forms of data leakage in data science code. Our evaluation shows that our analysis accurately detects data leakage and that such leakage is pervasive among over 100,000 analyzed public notebooks. We discuss how our static analysis approach can help both practitioners and educators, and how leakage prevention can be designed into the development process.
+        """).topic(seai,notebooks).selected()
+
+    val icsenier23 = InProceedings(
+        Seq(Maffey, Dotterrer, Niemann, Cruickshank, Lewis, Kaestner),
+        "MLTEing Models: Negotiating, Evaluating, and Documenting Model and System Qualities",
+        Conference("ICSE-NIER", 2023, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
+        ToAppear(),
+        Map(PDF -> PDFFile("icsenier23.pdf")),
+        """
+       Many organizations seek to ensure that machine
+learning (ML) and artificial intelligence (AI) systems work as
+intended in production but currently do not have a cohesive
+methodology in place to do so. To fill this gap, we propose
+MLTE (Machine Learning Test and Evaluation, colloquially
+referred to as “melt”), a framework and implementation to
+evaluate ML models and systems. The framework compiles 
+state-of-the-art evaluation techniques into an organizational process
+for interdisciplinary teams, including model developers, software
+engineers, system owners, and other stakeholders. The MLTE
+tooling supports this process by providing a domain-specific
+language that teams can use to express model requirements,
+an infrastructure to define, generate, and collect ML evaluation
+metrics, and the means to communicate results."""
+    ).topic(seai,testing)
+
+
+    val safeml23 = InProceedings(
+        Seq(Yang, BrowerSinning, Lewis, Kaestner, Wu),
+        "Capabilities for Better ML Engineering",
+        Workshop("SafeAI", 2023, "AAAI-23 Workshop on Artificial Intelligence Safety").month(2).location("Washington, DC"),
+        Pages(1,8),
+        Map(PDF -> PDFFile("safeai23.pdf"),
+            HTTP->URL("https://ceur-ws.org/Vol-3381/41.pdf")),
+        """
+        In spite of machine learning’s rapid growth, its engineering support is scattered in many forms, and tends to favor certain
+engineering stages, stakeholders, and evaluation preferences. We envision a capability-based framework, which uses fine-grained 
+specifications for ML model behaviors to unite existing efforts towards better ML engineering. We use concrete
+scenarios (model design, debugging, and maintenance) to articulate capabilities’ broad applications across various different
+dimensions, and their impact on building safer, more generalizable and more trustworthy models that reflect human needs.
+Through preliminary experiments, we show the potential of capabilities for reflecting model generalizability, which can
+provide guidance for the ML engineering process. We discuss challenges and opportunities for the integration of capabilities
+into ML engineering."""
+    ).topic(seai,testing)
+
+
+    val chi23_modelcards = InProceedings(
+        Seq(Bhat, Coursey, Hu, Li, Nahar, Zhou, Kaestner, JGuo),
+        "Aspirations and Practice of ML Model Documentation: Moving the Needle with Nudging and Traceability",
+       Conference("CHI", 2023, "ACM CHI Conference on Human Factors in Computing Systems").
+            month(4).location("Hamburg, Germany"),
+        PagesStr("Article No.: 749"),
+        Map(PDF -> PDFFile("chi23.pdf"),
+            DOI->DOI("10.1145/3544548.3581518"),
+            HTTP -> URL("https://arxiv.org/abs/2204.06425")),
+        """
+The documentation practice for machine-learned (ML) models often
+falls short of established practices for traditional software, which
+impedes model accountability and inadvertently abets inappropriate 
+or misuse of models. Recently, model cards, a proposal for model
+documentation, have attracted notable attention, but their impact
+on the actual practice is unclear. In this work, we systematically
+study the model documentation in the field and investigate how
+to encourage more responsible and accountable documentation
+practice. Our analysis of publicly available model cards reveals a
+substantial gap between the proposal and the practice. We then
+designed a tool named DocML aiming to (1) nudge the data scientists 
+to comply with the model cards proposal during the model
+development, especially the sections related to ethics, and (2) assess
+and manage the documentation quality. A lab study reveals the
+benefit of our tool towards long-term documentation quality and
+accountability.        """).topic(seai,modularity,empirical).selected()
+
+
+    val cain23 = InProceedings(
+        Seq(Nahar, HZhang, Lewis, Zhou, Kaestner),
+        "A Meta-Summary of Challenges in Building Products with ML Components – Collecting Experiences from 4758+ Practitioners",
+       Conference("CAIN", 2023, "International Conference on AI Engineering - Software Engineering for AI").
+            month(5).location("Melbourne"),
+        ToAppear(),
+        Map(HTTP->URL("https://arxiv.org/abs/2304.00078"),
+            PDF->PDFFile("cain23.pdf")),
+        """
+Incorporating machine learning (ML) components into software products raises new software-engineering challenges and elevates already existing challenges. Many researchers have invested significant effort into understanding the challenges of industry practitioners working on building products with ML components through interviews and surveys with practitioners. With the intention to aggregate and present their collective findings, we conduct a meta-summary study: We collect 50 relevant papers that together interacted with over 4758 practitioners using guidelines for systematic literature reviews and subsequently group and organize the over 500 mentions of challenges within those papers. We highlight the most commonly reported challenges and how this meta-summary will be a useful resource for the research community to prioritize research and education in this field.
+        """
+        ).topic(seai,survey,overview).selected()
+
+    
+
+    val fse23 = InProceedings(
+        Seq(Miller, Kaestner, Vasilescu),
+        "\"We Feel Like We're Winging It:\" A Study on Navigating Open-Source Dependency Abandonment",
+        ESECFSE(2023).month(12).location("San Francisco, CA"),
+        ToAppear(),
+        Map(PDF->PDFFile("fse23.pdf")),
+        """
+While lots of research has explored how to prevent maintainers from abandoning the open-source projects that serve as our digital infrastructure, there are very few insights on addressing abandonment when it occurs. We argue open-source sustainability research must expand its focus beyond trying to keep particular projects alive, to also cover the sustainable use of open source by supporting users when they face potential or actual abandonment.
+We perform an interview study with 33 developers who have experienced open-source dependency abandonment and analyze the data using iterative thematic analysis. Often, multiple strategies were used to cope with abandonment, for example, first reaching out to the community to find potential alternatives, then switching to a community-accepted alternative if one exists. We found many developers felt they had little to no support or guidance when facing abandonment, leaving them to figure out what to do through a trial-and-error process on their own.
+Abandonment introduces cost for otherwise seemingly free dependencies, but users can decide whether and how to prepare for abandonment through a number of different strategies, such as dependency monitoring, building abstraction layers, and community involvement. In many cases, community members can invest in resources that help others facing the same abandoned dependency, but often do not because of the many other competing demands on their time -- in a form of the volunteer's dilemma. We discuss cost reduction strategies and ideas to overcome this volunteers dilemma. Our findings can be used directly by open-source users seeking resources on dealing with dependency abandonment, or by researchers to motivate future work supporting the sustainable use of open source.      
+        """).topic(opensource,empirical).selected()
+
+
+    val arxiv23_mlopensource = TechReport(
+        Seq(Nahar, HZhang, Lewis, Zhou, Kaestner),
+        "A Dataset and Analysis of Open-Source Machine Learning Products",
+        2023, 8, ARXIV, "2308.04328",
+        Map(HTTP -> URL("https://arxiv.org/abs/2308.04328")),
+        """
+        Machine learning (ML) components are increasingly incorporated into software products, yet developers face challenges in transitioning from ML prototypes to products. Academic researchers struggle to propose solutions to these challenges and evaluate interventions because they often do not have access to close-sourced ML products from industry. In this study, we define and identify open-source ML products, curating a dataset of 262 repositories from GitHub, to facilitate further research and education. As a start, we explore six broad research questions related to different development activities and report 21 findings from a sample of 30 ML products from the dataset. Our findings reveal a variety of development practices and architectural decisions surrounding different types and uses of ML models that offer ample opportunities for future research innovations. We also find very little evidence of industry best practices such as model testing and pipeline automation within the open-source ML products, which leaves room for further investigation to understand its potential impact on the development and eventual end-user experience for the products.
+        """).topic(seai)
+
+    val emnlp23 = InProceedings(
+        Seq(Yang, Rustogi, BrowerSinning, Lewis, Kaestner, Wu),
+        "Beyond Testers’ Biases: Guiding Model Testing with Knowledge Bases using LLMs",
+       Conference("EMNLP", 2023, "Conference on Empirical Methods in Natural Language Processing -- Findings").
+            month(12).location("Singapore"),
+        ToAppear(),
+        Map(),
+        """
+        Current model testing work has mostly focused on creating test cases. Identifying what to test is a step that is largely ignored and poorly supported. We propose Weaver, an interactive tool that supports requirements elicitation for guiding model testing. Weaver uses large language models to generate knowledge bases and recommends concepts from them interactively, allowing testers to elicit requirements for further testing. Weaver provides rich external knowledge to testers and encourages testers to systematically explore diverse concepts beyond their own biases. In a user study, we show that both NLP experts and non-experts identified more, as well as more diverse concepts worth testing when using Weaver. Collectively, they found more than 200 failing test cases for stance detection with zero-shot ChatGPT. Our case studies further show that Weaver can help practitioners test models in real-world settings, where developers define more nuanced application scenarios (e.g., code understanding and transcript summarization) using LLMs.
+        """
+        ).topic(seai, testing).selected()
+
+
+    
 
 }

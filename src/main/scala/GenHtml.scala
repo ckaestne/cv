@@ -111,7 +111,8 @@ object GenHtml extends App with RSSFeed {
 
 
     def printPublication(p: Publication, withAcceptanceRate: Boolean = true): NodeSeq = {
-        val links = p.links + (BIB -> URL("./bibtex.html#" + p.genKey))
+        val links: Seq[(LinkKind, URL)] = p.links.toSeq.sortBy(_._1.print) :+ (BIB, URL("./bibtex.html#" + p.genKey))
+
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
                   <a name={p.genKey} class="sectionanch"></a>
                   {
@@ -282,9 +283,9 @@ object GenHtml extends App with RSSFeed {
 
     def printSpelling() =
         <p class="spelling">
-        My last name Kästner is pronounced <a href="http://en.wikipedia.org/wiki/Wikipedia:IPA_for_German">[ˈkɛstnɐ]</a>.
+        My last name Kästner is pronounced <a href="http://en.wikipedia.org/wiki/Wikipedia:IPA_for_German">[ˈkɛstnɐ]</a>, <a href="https://embed.howtopronounce.com/classic/en/kaestner/3926991">audio</a>.
         It is a quite common German last name, well known for the author and poet <a href="http://en.wikipedia.org/wiki/Erich_Kästner">Erich Kästner</a>.
-        The umlaut <strong style="font-size:+2">ä</strong> is signficiant for the pronunciation.
+        The umlaut <strong style="font-size:+2">ä</strong> is relevant for the pronunciation.
         The valid ASCII spelling is <span class="code">Kaestner</span>, not <span class="code">Kastner</span>.
         To correctly typeset the name in LaTeX use <span class="code">K{{\"a}}stner</span>.
         To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>

@@ -16,6 +16,17 @@ object News {
 
 
     val news: List[NewsItem] =
+    //    NewsItem(LocalDate.of(2022, 10, 26), "Two postdoc positions available",
+//          <span>I'm looking for two postdocs, one each for (a) a project on performance analysis of configurable systems and (b) a project on software supply chain security. 
+ //           See our ICSE'22 paper "On debugging..." and our ICSE'21 paper "Containing malicious package updates..." as examples of the work in these two areas.
+   //         Some research experience in either empirical software engineering or the specific field is useful. Email me if interested for more details.</span>) ::
+        NewsItem(LocalDate.of(2022, 10, 12), "Keynote: From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning",
+          <span>I was invited to give a keynote at MSR 2022 and used this to argue that we should invest in teaching software engineering to data scientists. 
+            This talk provides a good overview of how I think about teaching in this area and why I think that "software engineering for ML" is more of an
+            education problem that a research problem. The remote version of the talk was recorded and is here on youtube:
+            <br />
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/_m-m90S_4Gg" frameborder="0" allowfullscreen="true"></iframe>
+             </span>) ::
         NewsItem(LocalDate.of(2020, 10, 5), "Lecture Recordings: Software Engineering for AI-Enabled Systems",
           <span>All summer, I recorded all lectures of my class <a href="https://ckaestne.github.io/seai/S2020/#course-content">Software Engineering for AI-Enabled Systems</a>.
             The students graciously consented in releasing those recordings,

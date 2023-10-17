@@ -15,16 +15,17 @@ object CV {
     val url = "http://www.cs.cmu.edu/~ckaestne/"
 
     def printSummary(): NodeSeq =
-        <p>I am an associate professor in the School of Computer Science at Carnegie Mellon University, interested in <strong>limits of modularity</strong>
-            and <strong>complexity</strong> caused by <strong>variability</strong> in software systems. I develop mechanisms,
-            languages, and tools to <strong>implement variability in a disciplined way</strong> despite
-            imperfect modularity,
-            to understand <strong>feature interactions</strong> and <strong>interoperability</strong> issues,
-            to <strong>detect errors</strong>, to help with <strong>nonmodular changes</strong>, and to <strong>improve program comprehension</strong>
-            in software systems, typically systems with a high amount of variability. Among others, I have developed approaches to parse and
-            type check all compile-time configurations of the <strong>Linux kernel</strong> in the
-            <strong>TypeChef</strong> project. I am also interested in <strong>open-source sustainability</strong>
-            and <strong>software engineering for AI-enabled systems</strong>.</p>
+        <p>I am an associate professor in the School of Computer Science at Carnegie Mellon University.
+            My current interests are in 
+            <strong>software engineering for software systems with ML components</strong> (or teaching software engineering
+                to data scientists, "machine learning in production"),
+            <strong>open-source sustainability</strong>,
+            and <strong>software-supply-chain security</strong>.
+            I am generally interested in understanding the`
+            <strong>limits of modularity</strong>
+            and <strong>complexity</strong> caused by <strong>variability</strong> in software systems,
+            which naturally brings me to questions of <strong>quality assurance</strong>, <strong>interoperability</strong>, and <strong>feature interactions</strong>.
+            My research combines rigorous empirical research with program analysis and tool building.</p>
             <p>I currently serve as the director of the <a href="https://se-phd.isri.cmu.edu">CMU Software Engineering Ph.D. Program</a>.</p> :+
             <p>Profiles:
                 <a href="cv.pdf">Curriculum vitae</a>,
@@ -34,14 +35,14 @@ object CV {
                 <a href="https://plus.google.com/113955799521066229715" rel="publisher">Google+</a>
             </span>.</p> :+
             <p>
-                <div><a href="http://www.isri.cmu.edu/">Institute for Software Research</a></div>
+                <div><a href="https://s3d.cmu.edu/">Software and Societal Systems Department (S3D)</a></div>
                 <div><a href="http://www.cs.cmu.edu/">School of Computer Science</a></div>
                 <div><a href="http://www.cmu.edu/">Carnegie Mellon University</a></div>
                 <div>&nbsp;</div>
                 <div>Office: TCS <a href="https://vignette.wikia.nocookie.net/juggle/images/e/e2/534_200.gif">345</a></div>
                 <div>Email: kaestner (at) cs.cmu.edu</div>
                 <div itemprop="address" itemscope=" " itemtype="http://data-vocabulary.org/Address">
-                    Mailing Address: C. Kaestner, ISR - TCS Hall 430,
+                    Mailing Address: C. Kaestner, S3D - TCS Hall 430,
                     <span itemprop="street-address">4665 Forbes Avenue</span>,
                     <span itemprop="locality">Pittsburgh</span>,
                     <span itemprop="region">PA</span> <span itemprop="postal-code">15213</span>,
@@ -54,14 +55,14 @@ object CV {
         """\begin{CV}
           |\item[Affiliation]
           |    Associate Professor \\
-          |    School of Computer Science, Institute for Software Research\\
+          |    School of Computer Science, Software and Societal Systems Department\\
           |    Carnegie Mellon University
           |\item[Contact]
           |    +1 412 268 5254 (Office)\\
           |    \href{mailto:kaestner@cs.cmu.edu}{kaestner@cs.cmu.edu}
           |\item[Mailing Address]
           |    Christian Kaestner\\
-          |     ISR - TCS Hall 430\\
+          |     S3D - TCS Hall 430\\
           |     4665 Forbes Avenue\\
           |     Pittsburgh, PA 15213, USA
           |\end{CV}
@@ -69,7 +70,7 @@ object CV {
           |\section{Profile}
           |\begin{CV}
           |\item[]
-          |     Associate professor in the Institute of Software Research at the Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems,
+          |     Associate professor in the Software and Societal Systems Department at the School of Computer Science at Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems,
           |     as well as open-source sustainability and software engineering for AI-enabled systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way,
           |     to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
           |     Also interested in \emph{open-source sustainability} and \emph{software engineering for AI-enabled systems}.
@@ -118,10 +119,35 @@ object CV {
 
 
     val teaching = Seq(
+        Course("17-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("https://cmu-17-214.github.io/f2023/"),
+            English, FallTerm(2023), new CourseKind with Lecture
+        ),
         Course("Paper Reading Group",
             "",
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
+        ),
+        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+            "",
+            URL("https://mlip-cmu.github.io/s2023/"),
+            English, SpringTerm(2023), new CourseKind with Lecture
+        ),
+        Course("17-445/645 Machine Learning in Production",
+            "",
+            URL("https://ckaestne.github.io/seai/F2022"),
+            English, FallTerm(2022), new CourseKind with Lecture
+        ),
+        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+            "",
+            URL("https://ckaestne.github.io/seai/S2022"),
+            English, SpringTerm(2022), new CourseKind with Lecture
+        ),
+        Course("17-214 Principles of Software Construction: Objects, Design, and Concurrency",
+            "",
+            URL("https://cmu-17-214.github.io/f2021/"),
+            English, FallTerm(2021), new CourseKind with Lecture
         ),
         Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
             "",
@@ -331,6 +357,12 @@ object CV {
 
     import Venues._
     val committees = Seq[Committee](
+        Committee(ICSESEET(2027), PCCChair),
+        Committee(CAIN(2024), PC),
+        Committee(FSE(2024), PC),
+        Committee(ICSE(2024), PC),
+        Committee(CAIN(2023), PC),
+        Committee(VAMOS(2023), PC),
         Committee(ICSE(2022).url(URL("https://conf.researchr.org/home/icse-2022")), ConfChair, PC),
         Committee(ASE(2021).url(URL("https://conf.researchr.org/home/ase-2021")), PC),
         Committee(ESECFSE(2021).url(URL("https://2021.esec-fse.org/")), PC),
@@ -464,10 +496,17 @@ object CV {
     val committees_workshops = committees.filter(_.venue.kind == KWorkshopDemoTool)
 
     val editor: Seq[Editorship] = Seq(
-        Editorship("Associate Editor", TOSEM(2020), 2019, None)
+        Editorship("Associate Editor", TOSEM(2020), 2019, Some(2022))
     )
 
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2023)),
+        Review(JSS(2023)),
+        Review(ESEM(2023)),
+        Review(ESEM(2022)),
+        Review(TSE(2021)),
+        Review(TOSEM(2021)),
+        Review(SCP(2021)),
         Review(TSE(2020)),
         Review(JASE(2020)),
         Review(EMSE(2020)),
@@ -517,13 +556,37 @@ object CV {
 
     val awards: Seq[AwardOrGrant] = Seq(
         Award(
+            "Two Distinguished-Paper Awards at the International Conference on Software Engineering (ICSE) 2022",
+            URL("https://conf.researchr.org/home/icse-2022"),
+            LocalDate.of(2022, 5, 1),
+            Nil
+        ),
+        Award(
+            "10-year Most Influential Paper of ICPC'12 for Measuring Programming Experience",
+            URL("https://conf.researchr.org/home/icpc-2022"),
+            LocalDate.of(2021, 10, 4),
+            Nil
+        ),
+        Award(
+            "Distinguished Reviewer Award at the International Conference on Automated Software Engineering (ASE) 2021",
+            URL("https://conf.researchr.org/home/ase-2021"),
+            LocalDate.of(2021, 10, 11),
+            Nil
+        ),
+        Award(
+            "10-year Most Influential Paper of OOPSLA'11 for SugarJ: Library Based Syntactic Language Extensibility",
+            URL("https://2021.splashcon.org/track/splash-2021-awards?"),
+            LocalDate.of(2021, 10, 4),
+            Nil
+        ),
+        Award(
             "Distinguished Program Committee Member Award at the International Conference on Automated Software Engineering (ASE) 2020",
             URL("https://conf.researchr.org/home/ase-2020"),
             LocalDate.of(2020, 11, 1),
             Nil
         ),
         Award(
-            "Most Influential Paper Award at the International Conference on Software Product Lines (SPLC) 2019",
+            "10-year Most Influential Paper Award at the International Conference on Software Product Lines (SPLC) 2019",
             URL("https://splc2019.net"),
             LocalDate.of(2019, 9, 12),
             Nil
@@ -669,6 +732,9 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2022, 5), "From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning", "Yale University"),
+        InvitedTalk(time(2022, 7), "From Models to Systems: Teaching Software Engineering to Data Scientists", "SEI SE Workshop for Educators 2022"),
+        InvitedTalk(time(2022, 5), "From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning", "Keynote at 2022 Int'l Conf. Mining Software Repositories"),
         InvitedTalk(time(2021, 3), "Toward a System-Wide and Interdisciplinary Perspective on ML System Performance", "Keynote at FastPath'21 Workshop"),
         InvitedTalk(time(2020, 9), "Analyzing Tens of Terabytes of Public Trace Data & Open Source Sustainabilty", "State of the Source"),
         InvitedTalk(time(2020, 6), "Engineering AI-Enabled Systems with Interdisciplinary Teams", "Software Engineering for Machine Learning Applications (SEMLA) International Symposium"),
@@ -730,20 +796,16 @@ object CV {
     import Coauthors._
 
     val current = List(
-        //(Ahmad, Some("(coadvised with Jonathan Aldrich)")),
+        (Miller, Some("(PhD student since 2021, coadvised with Bogdan Vasilescu)")),
+        (Yang, Some("(PhD student since 2021)")),
         (Nahar, Some("(PhD student since 2020)")),
         (Ferreira, Some("(PhD student since 2014)")),
-        (Velez, Some("(PhD student since 2016)")),
-        (Person("Chenyang", "Yang", "Peking University"), Some("(REU student, 2020)")),
-        (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
-        (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
-        (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(REU student, 2020)"))
+        (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(M.S. student, 2021)"))
     )
     val former = List(
         (Wong, Some("(PhD 2014-2021, now at Facebook)")),
         (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
+        (Velez, Some("(PhD 2016-2021, now at Google")),
         (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
         (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
         (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
@@ -769,7 +831,6 @@ object CV {
         (Chen, Some("(REU student, 2018, now PhD student at CMU)")),
         (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018, now PhD student at CMU)")),
         (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)")),
-        (Miller, Some("(REU student, 2018)")),
         (Person("Sophie", "Rosas-Smith","Wellesley College"), Some("(REU student, 2018)")),
 
         (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
@@ -781,7 +842,24 @@ object CV {
         (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
         (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
         (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)"))
+        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)")),
+        (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
+        (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
+
+        (Person("Austin", "Coursey", "Murray State University"), Some("(REU student, 2021)")),
+        (Person("Philip", "Gray", "New College of Florida"), Some("(REU student, 2021)")),
+        (Person("Theresa", "Lim", "Princeton University"), Some("(REU student, 2021)")),
+        (Person("Paul", "Smith", "St. Mary's University, San Antonio, TX"), Some("(REU student, 2021)")),
+        (Person("Kimberly", "Truong", "Oregon State University"), Some("(REU student, 2021)")),
+        (Person("Justin", "Ventura", "Salisbury State University"), Some("(REU student, 2021)")),
+
+        (Person("Jack", "Arteaga", "Brookdale Community College"), Some("(REU student, 2022)")),
+        (Person("Brandon", "Halliburton", "University of Maryland"), Some("(REU student, 2022)")),
+        (Person("Kavan", "Mehrizi", "Diablo Valley College"), Some("(REU student, 2022)")),
+        (Person("Emily", "Nguyen", "UCLA"), Some("(REU student, 2022)")),
+        (Person("Janhvi", "Somaiya", "Rice University"), Some("(REU student, 2022)"))
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),
