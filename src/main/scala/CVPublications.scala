@@ -210,6 +210,18 @@ object Coauthors {
     val Cruickshank = Person("Iain", "Cruickshank", "Army Cyber Institute, United States Military Academy")
     val HZhang = Person("Haoran", "Zhang", "Carnegie Mellon University")
     val Rustogi = Person("Rishabh", "Rustogi", "Carnegie Mellon University")
+    val Boughton = Person("Lina", "Boughton", "The College of Wooster")
+    val Ma = Person("Wanqin", "Ma", "The Hong Kong University of Science and Technology")
+    val Acar = Person("Yasemin", "Acar", "University of Paderborn")
+    val Wermke = Person("Dominik", "Wermke", "North Carolina State University")
+    val ENguyen = Person("Emily", "Nguyen", "University of California at Los Angeles")
+    val Wilson = Person("Katrina", "Wilson", "Bucknell University")
+    val Rowlett = Person("Jenny", "Rowlett", "Oberlin College")
+    val Bray = Person("Matthew", "Bray", "Yale University")
+    val Omar = Person("Zahra Abba", "Omar", "Yale University")
+    val Papademetris = Person("Xenophon", "Papademetris", "Yale University")
+    val Menon = Person("Xenophon", "Alka", "Yale University")
+
 }
 
 object Topics {
@@ -249,6 +261,8 @@ object Topics {
     val notebooks = Topic("Computational notebooks")
     val featureflags = Topic("Feature flags")
     val survey = Topic("Literature survey")
+    val policy = Topic("Policy design")
+    val reu = Topic("REU-student involvement")
 
 }
 
@@ -3943,7 +3957,7 @@ executing real software containing variability.""").topic(vaanalysis)
         """
     	In fast-paced, reuse-heavy software development, the transparency provided by social coding platforms like GitHub is essential to decision making. Developers infer the quality of projects using visible cues, known as signals, collected from personal profile and repository pages. We report on a large-scale, mixed-methods empirical study of npm packages that explores the emerging phenomenon of repository badges, with which maintainers signal underlying qualities about the project to contributors and users. We investigate which qualities maintainers intend to signal and how well badges correlate with those qualities. After surveying developers, mining 294,941 repositories, and applying statistical modeling and time series analysis techniques, we find that non-trivial badges, which display the build status, test coverage, and up-to-dateness of dependencies, are mostly reliable signals, correlating with more tests, better pull requests, and fresher dependencies. Displaying such badges correlates with best practices, but the effects do not always persist.
         """
-    ).selected().topic(ecosystem, empirical,awareness,opensource)
+    ).selected().topic(ecosystem, empirical,awareness,opensource, reu)
 
 
     val tr17_extint = TechReport(
@@ -4083,7 +4097,7 @@ We were able to identify several patterns across subject systems, such as domina
         Map(PDF -> PDFFile("icse18poster.pdf"),
             DOI->DOI("10.1145/3183440.3195085")),
         ""
-    ).note("Poster").topic(awareness, merge)
+    ).note("Poster").topic(awareness, merge, reu)
 
 
 
@@ -4199,7 +4213,7 @@ effective are new languages and tools for program comprehension?
             state-of-the-art, with a speedup of 2 to 46 times, and high efficiency in
             sharing computations. 
         """
-    ).selected().topic(vaanalysis, testing)
+    ).selected().topic(vaanalysis, testing, reu)
 
 
     val tosem18 = Article(
@@ -4277,7 +4291,7 @@ explore covered and uncovered parts of the output.
         """
         Variational execution offers an avenue of efficiently analyzing configurable systems, but data structures like lists require special consideration. We implement automatic substitution of a more efficient list representation in a variational execution framework and evaluate its performance in micro-benchmarks. The results suggest that the substitution may offer substantial performance improvements to programs involving highly variational lists.
         """
-    ).topic(vaanalysis).note("SPLASH Student research competition, first place")
+    ).topic(vaanalysis, reu).note("SPLASH Student research competition, first place")
 
 
     val icsesrc18= InProceedings(
@@ -4291,7 +4305,7 @@ explore covered and uncovered parts of the output.
         """
         Contemporary software development is characterized by increased reuse and speed. Open source software forges such as GitHub host millions of repositories of libraries and tools, which developers reuse liberally, creating complex and often fragile networks of interdependencies. Hence, developers must make more decisions at a higher speed, finding which libraries to depend on and which projects to contribute to. This decision making process is supported by the transparency provided by social coding platforms like GitHub, where user profile pages display information on a one's contributions, and repository pages provide information on a project's social standing (e.g., through stars and watchers).
         """
-    ).topic(ecosystem, opensource).note("ICSE Student research competition, first place")
+    ).topic(ecosystem, opensource, reu).note("ICSE Student research competition, first place")
 
 
 
@@ -4304,7 +4318,7 @@ explore covered and uncovered parts of the output.
         """
         Mutation testing is an effective but time consuming method for gauging the quality of a test suite. It functions by repeatedly making changes, called mutants, to the source code and checking whether the test suite fails (i.e., whether the mutant is killed). Recent work has shown cases in which applying multiple changes, called a higher order mutation, is more difficult to kill than a single change, called a first order mutation. Specifically, a special kind of higher order mutation, called a strongly subsuming higher order mutation (SSHOM), can enable equivalent accuracy in assessing the quality of the test suite with fewer executions of tests. Little is known about these SSHOMs, as they are difficult to find. Our goal in this research is to identify a faster, more reliable method for finding SSHOMs in order to characterize them in the future. We propose an approach based on variational execution to find SSHOMs. Preliminary results indicate that variational execution performs better than the existing genetic algorithm in terms of speed and completeness of results. Out of a set of 33 first order mutations, our variational execution approach finds all 38 SSHOMs in 4.5 seconds, whereas the genetic algorithm only finds 36 of the 38 SSHOMs in 50 seconds.
         """
-    ).topic(vaanalysis,testing).note("SPLASH Student research competition")
+    ).topic(vaanalysis,testing, reu).note("SPLASH Student research competition")
 
     val emse18 = Article(
         Seq(Medeiros, Lima, Amaral, Apel, Kaestner, Ribeiro, Gheyi),
@@ -4347,7 +4361,7 @@ explore covered and uncovered parts of the output.
         Map(PDF->PDFFile("saner19.pdf"),
             DOI->DOI("10.1109/SANER.2019.8668023")),
         """Fork-based development is popular and easy to use, but makes it difficult to maintain an overview of the whole community when the number of forks increases, which leads to redundant development where multiple developers are solving the same problem in parallel without being aware of each other. Redundant development wastes effort for both maintainers and developers. In this paper, we designed an approach to identify redundant code changes in forks as early as possible by extracting clues indicating similarities between code changes, and building a machine learning model to predict redundancies. We evaluated the effectiveness from both the maintainer's and the developer's perspectives. The result shows that we achieve 57%-83% precision for detecting duplicate code changes from maintainer's perspective, and we could save developers' effort of 1.9-3.0 commits on average. Also, we show that our approach significantly outperforms existing state-of-art."""
-    ).topic(awareness, ecosystem, opensource)
+    ).topic(awareness, ecosystem, opensource, reu)
 
     val oss19 = InProceedings(
         Seq(Miller, Widder, Kaestner, Vasilescu),
@@ -4360,7 +4374,7 @@ explore covered and uncovered parts of the output.
         Established contributors are the backbone of many free/libre open source software (FLOSS) projects.  Previous research has shown that it is critically important to retain contributors and has also revealed motives behind why contributors choose to participate 
         in FLOSS in the first place.  However, there has been limited research done on the reasons why established contributors disengage, and factors (on an individual and project level) that predict their disengagement.  In this paper, we conduct a mixed-methods empirical study, combining surveys and survival modeling, in order to identify reasons and predictive factors behind established contributor disengagement. We find that different groups of contributors tend to disengage for different reasons, however, overall contributors most commonly cite some kind of transition (e.g., switching jobs or leaving academia).  We also find that factors such as the popularity of the projects a contributor works on, whether they have experienced a transition, when they work, and how much they work are all factors that can be used to predict their disengagement from open source. 
         """
-    ).topic(ecosystem, opensource, empirical)
+    ).topic(ecosystem, opensource, empirical, reu)
 
     val icsenier19 = InProceedings(
         Seq(Garrett, Ferreira, Kaestner, Sunshine, Jia),
@@ -4371,7 +4385,7 @@ explore covered and uncovered parts of the output.
         """
             With an increased level of automation provided bypackage managers, which sometimes allow updates to be installedautomatically, malicious package updates are becoming a realthreat in software ecosystems. To address this issue, we proposean approach based on anomaly detection, to identify suspiciousupdates based on security-relevant features that attackers coulduse in an attack. We evaluate our approach in the contextof Node.js/npm ecosystem, to show its feasibility in terms ofreduced review effort and the correct identification of a confirmedmalicious update attack. Although we do not expect it to bea complete solution in isolation, we believe it is an importantsecurity building block for software ecosystems.
         """
-    ).topic(security, ecosystem)
+    ).topic(security, ecosystem, reu)
 
     val icgse19 = InProceedings(
         Seq(Viggiato, Oliveira, Figueiredo, Jamshidi, Kaestner),
@@ -4590,7 +4604,7 @@ The notion of forking has changed with the rise of distributed version control s
         """
             Open source is ubiquitous and critical infrastructure, yet funding and sustaining it is challenging. While there are many different funding models for open-source donations and concerted efforts through foundations, donation platforms like Paypal, Patreon, or OpenCollective are popular and low-bar forms to raise funds for open-source development, for which GitHub recently even built explicit support. With a mixed-method study, we explore the emerging and largely unexplored phenomenon of donations in open source: We quantify how commonly open-source projects ask for donations, statistically model characteristics of projects that ask for and receive donations, analyze for what the requested funds are needed and used, and assess whether the received donations achieve the intended outcomes. We find 25,885 projects asking for donations on GitHub, often to support engineering activities; however, we also find no clear evidence that donations influence the activity level of a project. In fact, we find that donations are used in a multitude of ways, raising new research questions about effective funding.
             """
-    ).selected().topic(opensource, ecosystem, awareness)
+    ).selected().topic(opensource, ecosystem, awareness, reu)
 
     val icseseip20 = InProceedings(
         Seq(Meinicke, Wong, Vasilescu, Kaestner),
@@ -4617,7 +4631,7 @@ The notion of forking has changed with the rise of distributed version control s
         """
             Developers from open-source communities have reported high stress levels from frequent demands for features and bug fixes and the sometimes aggressive tone of these demands. Toxic conversations may demotivate and burn out developers, creating challenges for sustaining open source. We outline a path toward finding, understanding, and possibly mitigating such unhealthy interactions. We take a first step toward finding them, by developing and demonstrating a measurement instrument (an SVM classifier tailored towards the software engineering domain) to detect toxic discussions in GitHub issues. We used our classifier to analyze trends over time and in different GitHub communities, finding that toxicity varies by community and that toxicity decreased from 2012-2018.
         """
-    ).topic(ecosystem,empirical,opensource)
+    ).topic(ecosystem,empirical,opensource, reu)
 
     val msr20 = InProceedings(
         Seq(Meinicke, Renteria, Kaestner, Vasilescu),
@@ -4639,7 +4653,7 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
             HTTP->URL("https://arxiv.org/abs/2004.02000")),
         """
         Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
-        """).topic(testing, vaanalysis)
+        """).topic(testing, vaanalysis, reu)
 
     val fse20_hom = InProceedings(
         Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
@@ -4798,7 +4812,7 @@ provides counterevidence against easy generalizations about why ecosystem commun
             DOI->DOI("10.1145/3468264.3468600")),
         """
         Automatically repairing a bugging program is essentially a search problem, searching for code transformations that pass a set of tests. Various search strategies have been explored, but they either navigate the search space in an ad hoc way using heuristics, or systemically but at the cost of limited edit expressiveness in the kinds of supported program edits. In this work, we explore the possibility of systematically navigating the search space without sacrificing edit expressiveness. The key enabler of this exploration is variational execution, a dynamic analysis technique that has been shown to be effective at exploring many similar executions in large search spaces. We evaluate our approach on IntroClassJava and Defects4J, showing that a systematic search is effective at leveraging and combining fixing ingredients to find patches, including many high-quality patches and multi-edit patches.
-        """).topic(vaanalysis).selected()
+        """).topic(vaanalysis, reu).selected()
 
 
 
@@ -4835,7 +4849,7 @@ provides counterevidence against easy generalizations about why ecosystem commun
 possible gaps and provide additional aid to data scientists, who can then focus more on their actual work rather than the routine and tedious
 cleaning duties.
         """
-    ).topic(notebooks, seai,notebooks).note("ESEC/FSE Student Research Competition")
+    ).topic(notebooks, seai,notebooks, reu).note("ESEC/FSE Student Research Competition")
 
     val esecsrc21_sophie = InProceedings(
         Seq(Cohen),
@@ -4848,7 +4862,7 @@ cleaning duties.
         """
         In this paper, we study toxic online interactions in issue discussions of open-source communities. Our goal is to qualitatively understand how toxicity impacts an open-source community like GitHub. We are driven by users complaining about toxicity, which leads to burnout and disengagement from the site. We collect a substantial sample of toxic interactions and qualitatively analyze their characteristics to ground future discussions and intervention design.
         """
-    ).topic(ecosystem,empirical,opensource).note("ESEC/FSE Student Research Competition")
+    ).topic(ecosystem,empirical,opensource, reu).note("ESEC/FSE Student Research Competition")
 
 
     val raise21 = InProceedings(
@@ -4880,7 +4894,7 @@ foundation for tool builders and notebook users, as many
 identified cleaning activities could benefit from codification
 of best practices and dedicated tool support, possibly tailored
 depending on intended use.
-        """).topic(ecosystem,empirical,opensource,notebooks)
+        """).topic(ecosystem,empirical,opensource,notebooks, reu)
 
 
     val icse22_perf = InProceedings(
@@ -4911,7 +4925,7 @@ However, toxicity manifests differently on various platforms and toxicity in ope
 We take a first stride at understanding the characteristics of open source toxicity to better inform future work designing effective intervention and detection methods. To this end, we curate a sample of 100 toxic GitHub issue discussions combining multiple search and sampling strategies. We then qualitatively analyze the sample to gain an understanding of the characteristics of open-source toxicity.
 We find that the prevalent forms of toxicity in open source differ from those observed on other platforms like Reddit or Wikipedia. We find some of the most prevalent forms of toxicity in open source are entitled, demanding, and arrogant comments from project users and insults arising from technical disagreements. In addition, not all toxicity was written by people external to the projects, project members were also common authors of toxicity.
 We also provide in-depth discussions about the implications of our findings including patterns that may be useful for detection work and subsequent questions for future work.
-        """).topic(opensource,empirical).selected().note("**Distinguished Paper Award**")
+        """).topic(opensource,empirical, reu).selected().note("**Distinguished Paper Award**")
 
 
     val icse22_seai = InProceedings(
@@ -4979,7 +4993,7 @@ nities. Our research is guided by the following questions: (1) How is
 open-source changing/evolving? (2) What changes do practitioners
 believe are necessary for open-source to be sustainable? ...
         """
-    ).topic(empirical, opensource).note("ICSE student research competition, first place")
+    ).topic(empirical, opensource, reu).note("ICSE student research competition, first place")
 
 
     val icsesrc22_disengage= InProceedings(
@@ -4999,7 +5013,7 @@ a large amount of gray literature on contributor disengagement,
 and performed a qualitative analysis to better our understanding
 of why contributors disengage.
         """
-    ).topic(empirical, opensource,survey).note("ICSE student research competition")
+    ).topic(empirical, opensource,survey, reu).note("ICSE student research competition")
 
     
         
@@ -5018,7 +5032,7 @@ of why contributors disengage.
         of the community and are valuable
         source material for grey literature
         analysis. We curated a dataset of 24,669 talks from 87 open-source conferences between 2010 and 2021. We stored all relevant metadata from these conferences and provide scripts to collect the transcripts. We believe this data is useful for answering many kinds of questions, such as: What are the important/highly discussed topics within practitioner communities? How do practitioners interact? And how do they present themselves to the public? We demonstrate the usefulness of this data by reporting our findings from two small studies: a topic model analysis providing an overview of open-source community dynamics since 2011 and a qualitative analysis of a smaller community-oriented sample within our dataset to gain a better understanding of why contributors leave open-source software."""
-     ).topic(empirical, opensource, ecosystem)
+     ).topic(empirical, opensource, ecosystem, reu)
 
     val ieeesw22 = Article(
         Seq(Kaestner, Kang, Apel),
@@ -5126,7 +5140,7 @@ to comply with the model cards proposal during the model
 development, especially the sections related to ethics, and (2) assess
 and manage the documentation quality. A lab study reveals the
 benefit of our tool towards long-term documentation quality and
-accountability.        """).topic(seai,modularity,empirical).selected()
+accountability.        """).topic(seai,modularity,empirical, reu).selected()
 
 
     val cain23 = InProceedings(
@@ -5172,13 +5186,74 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
        Conference("EMNLP", 2023, "Conference on Empirical Methods in Natural Language Processing -- Findings").
             month(12).location("Singapore"),
         ToAppear(),
-        Map(),
+        Map(HTTP->URL("http://arxiv.org/abs/2310.09668"),
+            PDF->PDFFile("emnlp23.pdf")),
         """
         Current model testing work has mostly focused on creating test cases. Identifying what to test is a step that is largely ignored and poorly supported. We propose Weaver, an interactive tool that supports requirements elicitation for guiding model testing. Weaver uses large language models to generate knowledge bases and recommends concepts from them interactively, allowing testers to elicit requirements for further testing. Weaver provides rich external knowledge to testers and encourages testers to systematically explore diverse concepts beyond their own biases. In a user study, we show that both NLP experts and non-experts identified more, as well as more diverse concepts worth testing when using Weaver. Collectively, they found more than 200 failing test cases for stance detection with zero-shot ChatGPT. Our case studies further show that Weaver can help practitioners test models in real-world settings, where developers define more nuanced application scenarios (e.g., code understanding and transcript summarization) using LLMs.
         """
         ).topic(seai, testing).selected()
 
 
+    val icsenier24 = InProceedings(
+        Seq(Boughton, Miller, Acar, Wermke, Kaestner),
+        "Decomposing and Measuring Trust in Open-Source Software Supply Chains",
+        Conference("ICSE-NIER", 2024, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4),
+        ToAppear(),
+        Map(PDF -> PDFFile("icsenier24.pdf")),
+        """
+       Trust is integral for the successful and secure functioning of software supply chains, making it important to measure the state and evolution of trust in open source communities. However, existing security and supply chain research often studies the concept of trust without a clear definition and relies on obvious and easily available signals like GitHub stars without deeper grounding. In this paper, we explore how to measure trust in open source supply chains with the goal of developing robust measures for trust based on the behaviors of developers in the community. To this end, we contribute a process for decomposing trust in a complex large-scale system into key trust relationships, systematically identifying behavior-based indicators for the components of trust for a given relationship, and in turn operationalizing data-driven metrics for those indicators, allowing for the wide-scale measurement of trust in practice."""
+    ).topic(security,opensource, reu)
+
     
+    val cain24 = InProceedings(
+        Seq(Ma, Yang, Kaestner),
+        "(Why) Is My Prompt Getting Worse? Rethinking Regression Testing for Evolving LLM APIs",
+       Conference("CAIN", 2024, "International Conference on AI Engineering - Software Engineering for AI").
+            month(4).location("Lisbon"),
+        ToAppear(),
+        Map(PDF -> PDFFile("cain24.pdf")),
+        """
+       Large Language Models (LLMs) are increasingly integrated into software applications. Downstream application developers often access LLMs through APIs provided as a service. However, LLM APIs are often updated silently and scheduled to be deprecated, forcing users to continuously adapt to evolving models. This can cause performance regression and affect prompt design choices, as evidenced by our case study on toxicity detection. Based on our case study, we emphasize the need for and re-examine the concept of regression testing for evolving LLM APIs. We argue that regression testing LLMs requires fundamental changes to traditional testing approaches, due to different correctness notions, prompting brittleness, and non-determinism in LLM APIs."""
+    ).topic(seai, testing, reu)
+
+
+
+    val oopslasrc23= InProceedings(
+        Seq(Wilson),
+        "Clearing the Trail: Motivations for Maintenance Work in Open Source",
+        Venue("SPLASH-SRC", 2023, "International Conference on Systems, Programming, Languages, and Applications: Software for Humanity (Companion)", KWorkshopDemoTool).publisher(ACM),
+        Pages(34,36),
+        Map(DOI->DOI("10.1145/3618305.3623598")),
+        """
+        Introducing new maintainers to established projects is critical to the long-term sustainability of open-source projects. Yet, we have little understanding of what motivates developers to join and maintain already established projects. Previous research on volunteering motivations emphasizes that individuals are motivated by a unique set of factors to volunteer in a specific area, suggesting that the motivations behind open-source contributions also depend on the nature of the work. We aim to determine correlations between types of open-source contributions and their specific motivators through surveys of open-source contributors.
+        """
+    ).topic(empirical, opensource, reu).note("SPLASH student research competition")
+
+    
+    val fsesrc23= InProceedings(
+        Seq(ENguyen),
+        "Do All Software Projects Die When Not Maintained? Analyzing Developer Maintenance to Predict OSS Usage",
+        Venue("FSE-SRC", 2023, "Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering", KWorkshopDemoTool).publisher(ACM),
+        Pages(2195,2197),
+        Map(DOI->DOI("10.1145/3611643.3617849")),
+        """
+        Past research suggests software should be continuously maintained in order to remain useful in our digital society. To determine whether these studies on software evolution are supported in modern-day software libraries, we conduct a natural experiment on 26,050 GitHub repositories, statistically modeling library usage based on their package-level downloads against different factors related to project maintenance.
+        """
+    ).topic(empirical, opensource, reu).note("SPLASH student research competition")
+
+    
+
+    val facct24 = InProceedings(
+        Seq(Nahar, Rowlett, Bray, Omar, Papademetris, Menon, Kaestner),
+        "Regulating Explainability in Machine Learning Applications -- Observations from a Policy Design Experiment",
+       Conference("FAccT", 2024, "Conference on Fairness, Accountability, and Transparency").
+            month(6).location("Rio de Janeiro"),
+        ToAppear(),
+        Map(),
+        """With the rise of artificial intelligence (AI), concerns about AI applications causing unforeseen harms to safety, privacy, security, and fairness are intensifying. While attempts to create regulations are underway, with initiatives such as the EU AI Act and the 2023 White House executive order, skepticism abounds as to the efficacy of such regulations. This paper explores an interdisciplinary approach to designing policy for the explainability of AI-based products, as the widely discussed "right to explanation" in the EU General Data Protection Regulation is ambiguous. To develop practical guidance for explainability, we conducted an experimental study that involved continuous collaboration among a team of researchers with AI and policy backgrounds over the course of ten weeks. The objective was to determine whether, through interdisciplinary effort, we can reach consensus on a policy for explainability in AI—one that is clearer, and more actionable and enforceable than current provisions. We share nine observations, derived from an iterative policy design process, which included drafting the policy, attempting to comply with it (or circumvent it), and collectively evaluating its effectiveness on a weekly basis. The observations include: iterative and continuous feedback was useful to improve policy drafts over time, discussing what evidence would satisfy policy was necessary during policy design, and human-subject studies were found to be necessary evidence to ensure effectiveness. We conclude with a note of optimism, arguing that meaningful policies can be achieved within a moderate time frame and with limited experience in policy design, as demonstrated by our student researchers on the team. This holds promising implications for policymakers, signaling that practical and effective regulation for AI applications is attainable."""
+    ).topic(seai, policy, reu).selected()
+
+
+         
 
 }
