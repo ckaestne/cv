@@ -16,6 +16,12 @@ object News {
 
 
     val news: List[NewsItem] =
+        NewsItem(LocalDate.of(2024, 01, 15), "Machine Learning in Production Book finished and submitted to publisher",
+          <span>Over the last two years, I was writing and refining a book on software engineering for building products with machine learning components,
+            based on our course Machine Learning in Production. I have released as chapters incrementally on <a href="https://ckaestne.medium.com/machine-learning-in-production-book-overview-63be62393581">Medium</a>.
+            I have finally declared the project as complete and handed over the manuscript to the publisher MIT Press and expect a formal release in about one year.
+            The book remains under a creative commons license and the public (not yet finally copyedited) version of the book is now live at <a href="https://mlip-cmu.github.io/book/">https://mlip-cmu.github.io/book/</a>.
+             </span>) ::
     //    NewsItem(LocalDate.of(2022, 10, 26), "Two postdoc positions available",
 //          <span>I'm looking for two postdocs, one each for (a) a project on performance analysis of configurable systems and (b) a project on software supply chain security. 
  //           See our ICSE'22 paper "On debugging..." and our ICSE'21 paper "Containing malicious package updates..." as examples of the work in these two areas.

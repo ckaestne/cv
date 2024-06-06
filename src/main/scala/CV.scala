@@ -119,6 +119,16 @@ object CV {
 
 
     val teaching = Seq(
+        Course("17-445/645 Machine Learning in Production",
+            "",
+            URL("https://mlip-cmu.github.io/f2024/"),
+            English, FallTerm(2024), new CourseKind with Lecture
+        ),      
+        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+            "",
+            URL("https://mlip-cmu.github.io/s2024/"),
+            English, SpringTerm(2024), new CourseKind with Lecture
+        ),
         Course("17-214 Principles of Software Construction: Objects, Design, and Concurrency",
             "",
             URL("https://cmu-17-214.github.io/f2023/"),
@@ -358,6 +368,7 @@ object CV {
     import Venues._
     val committees = Seq[Committee](
         Committee(ICSESEET(2027), PCCChair),
+        Committee(FSE(2025), PC),
         Committee(CAIN(2024), PC),
         Committee(FSE(2024), PC),
         Committee(ICSE(2024), PC),
@@ -796,8 +807,10 @@ object CV {
     import Coauthors._
 
     val current = List(
+        (He, Some("(PhD student since 2023, coadvised with Bogdan Vasilescu)")),
+        (Yuan, Some("(PhD student since 2023, coadvised with Rohan Padhye)")),
         (Miller, Some("(PhD student since 2021, coadvised with Bogdan Vasilescu)")),
-        (Yang, Some("(PhD student since 2021)")),
+        (Yang, Some("(PhD student since 2021, coadvised with Sherry Tongshuang Wu)")),
         (Nahar, Some("(PhD student since 2020)")),
         (Ferreira, Some("(PhD student since 2014)")),
         (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(M.S. student, 2021)"))

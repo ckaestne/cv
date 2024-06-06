@@ -220,7 +220,9 @@ object Coauthors {
     val Bray = Person("Matthew", "Bray", "Yale University")
     val Omar = Person("Zahra Abba", "Omar", "Yale University")
     val Papademetris = Person("Xenophon", "Papademetris", "Yale University")
-    val Menon = Person("Xenophon", "Alka", "Yale University")
+    val Menon = Person("Menon", "Alka", "Yale University")
+    val Yuan = Person("Yuan", "Lirong", "Carnegie Mellon University")
+    val He = Person("He", "Hao", URL("https://hehao98.github.io"), "Carnegie Mellon University")
 
 }
 
@@ -5023,8 +5025,9 @@ of why contributors disengage.
         Seq(Truong, Miller, Vasilescu, Kaestner),
         "The Unsolvable Problem or the Unheard Answer? A Dataset of 24,669 Open-Source Software Conference Talks",
         MSR(2022).month(5).location("Pittsburgh, PA").publisher(ACM),
-        ToAppear(),
-        Map(PDF -> PDFFile("msr22.pdf")),
+        Pages(348,352),
+        Map(PDF -> PDFFile("msr22.pdf"),
+            DOI->DOI("10.1145/3524842.3528488")),
         """
         Talks at practitioner-focused 
         open-source software conferences are a valuable source of information
@@ -5076,8 +5079,9 @@ of why contributors disengage.
         Seq(Maffey, Dotterrer, Niemann, Cruickshank, Lewis, Kaestner),
         "MLTEing Models: Negotiating, Evaluating, and Documenting Model and System Qualities",
         Conference("ICSE-NIER", 2023, "Proc. International Conference on Software Engineering -- New Ideas Track").month(5),
-        ToAppear(),
-        Map(PDF -> PDFFile("icsenier23.pdf")),
+        Pages(31,36),
+        Map(PDF -> PDFFile("icsenier23.pdf"),
+            DOI->DOI("10.1109/ICSE-NIER58687.2023.00012")),
         """
        Many organizations seek to ensure that machine
 learning (ML) and artificial intelligence (AI) systems work as
@@ -5148,9 +5152,10 @@ accountability.        """).topic(seai,modularity,empirical, reu).selected()
         "A Meta-Summary of Challenges in Building Products with ML Components – Collecting Experiences from 4758+ Practitioners",
        Conference("CAIN", 2023, "International Conference on AI Engineering - Software Engineering for AI").
             month(5).location("Melbourne"),
-        ToAppear(),
+        Pages(171,183),
         Map(HTTP->URL("https://arxiv.org/abs/2304.00078"),
-            PDF->PDFFile("cain23.pdf")),
+            PDF->PDFFile("cain23.pdf"),
+            DOI->DOI("10.1109/CAIN58948.2023.00034")),
         """
 Incorporating machine learning (ML) components into software products raises new software-engineering challenges and elevates already existing challenges. Many researchers have invested significant effort into understanding the challenges of industry practitioners working on building products with ML components through interviews and surveys with practitioners. With the intention to aggregate and present their collective findings, we conduct a meta-summary study: We collect 50 relevant papers that together interacted with over 4758 practitioners using guidelines for systematic literature reviews and subsequently group and organize the over 500 mentions of challenges within those papers. We highlight the most commonly reported challenges and how this meta-summary will be a useful resource for the research community to prioritize research and education in this field.
         """
@@ -5162,8 +5167,9 @@ Incorporating machine learning (ML) components into software products raises new
         Seq(Miller, Kaestner, Vasilescu),
         "\"We Feel Like We're Winging It:\" A Study on Navigating Open-Source Dependency Abandonment",
         ESECFSE(2023).month(12).location("San Francisco, CA"),
-        ToAppear(),
-        Map(PDF->PDFFile("fse23.pdf")),
+        Pages(1281,1293),
+        Map(PDF->PDFFile("fse23.pdf"),
+            DOI->DOI("10.1145/3611643.3616293")),
         """
 While lots of research has explored how to prevent maintainers from abandoning the open-source projects that serve as our digital infrastructure, there are very few insights on addressing abandonment when it occurs. We argue open-source sustainability research must expand its focus beyond trying to keep particular projects alive, to also cover the sustainable use of open source by supporting users when they face potential or actual abandonment.
 We perform an interview study with 33 developers who have experienced open-source dependency abandonment and analyze the data using iterative thematic analysis. Often, multiple strategies were used to cope with abandonment, for example, first reaching out to the community to find potential alternatives, then switching to a community-accepted alternative if one exists. We found many developers felt they had little to no support or guidance when facing abandonment, leaving them to figure out what to do through a trial-and-error process on their own.
@@ -5185,9 +5191,10 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "Beyond Testers’ Biases: Guiding Model Testing with Knowledge Bases using LLMs",
        Conference("EMNLP", 2023, "Conference on Empirical Methods in Natural Language Processing -- Findings").
             month(12).location("Singapore"),
-        ToAppear(),
+        Pages(13504,13519),
         Map(HTTP->URL("http://arxiv.org/abs/2310.09668"),
-            PDF->PDFFile("emnlp23.pdf")),
+            PDF->PDFFile("emnlp23.pdf"),
+            DOI->DOI("10.18653/v1/2023.findings-emnlp.901")),
         """
         Current model testing work has mostly focused on creating test cases. Identifying what to test is a step that is largely ignored and poorly supported. We propose Weaver, an interactive tool that supports requirements elicitation for guiding model testing. Weaver uses large language models to generate knowledge bases and recommends concepts from them interactively, allowing testers to elicit requirements for further testing. Weaver provides rich external knowledge to testers and encourages testers to systematically explore diverse concepts beyond their own biases. In a user study, we show that both NLP experts and non-experts identified more, as well as more diverse concepts worth testing when using Weaver. Collectively, they found more than 200 failing test cases for stance detection with zero-shot ChatGPT. Our case studies further show that Weaver can help practitioners test models in real-world settings, where developers define more nuanced application scenarios (e.g., code understanding and transcript summarization) using LLMs.
         """
@@ -5199,7 +5206,8 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "Decomposing and Measuring Trust in Open-Source Software Supply Chains",
         Conference("ICSE-NIER", 2024, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4),
         ToAppear(),
-        Map(PDF -> PDFFile("icsenier24.pdf")),
+        Map(PDF -> PDFFile("icsenier24.pdf"),
+            DOI -> DOI("10.1145/3639476.3639775")),
         """
        Trust is integral for the successful and secure functioning of software supply chains, making it important to measure the state and evolution of trust in open source communities. However, existing security and supply chain research often studies the concept of trust without a clear definition and relies on obvious and easily available signals like GitHub stars without deeper grounding. In this paper, we explore how to measure trust in open source supply chains with the goal of developing robust measures for trust based on the behaviors of developers in the community. To this end, we contribute a process for decomposing trust in a complex large-scale system into key trust relationships, systematically identifying behavior-based indicators for the components of trust for a given relationship, and in turn operationalizing data-driven metrics for those indicators, allowing for the wide-scale measurement of trust in practice."""
     ).topic(security,opensource, reu)
@@ -5248,12 +5256,21 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "Regulating Explainability in Machine Learning Applications -- Observations from a Policy Design Experiment",
        Conference("FAccT", 2024, "Conference on Fairness, Accountability, and Transparency").
             month(6).location("Rio de Janeiro"),
-        ToAppear(),
-        Map(),
+        Pages(2101,2112),
+        Map(PDF -> PDFFile("facct24.pdf"),
+    		DOI->DOI("10.1145/3630106.3659028")),
         """With the rise of artificial intelligence (AI), concerns about AI applications causing unforeseen harms to safety, privacy, security, and fairness are intensifying. While attempts to create regulations are underway, with initiatives such as the EU AI Act and the 2023 White House executive order, skepticism abounds as to the efficacy of such regulations. This paper explores an interdisciplinary approach to designing policy for the explainability of AI-based products, as the widely discussed "right to explanation" in the EU General Data Protection Regulation is ambiguous. To develop practical guidance for explainability, we conducted an experimental study that involved continuous collaboration among a team of researchers with AI and policy backgrounds over the course of ten weeks. The objective was to determine whether, through interdisciplinary effort, we can reach consensus on a policy for explainability in AI—one that is clearer, and more actionable and enforceable than current provisions. We share nine observations, derived from an iterative policy design process, which included drafting the policy, attempting to comply with it (or circumvent it), and collectively evaluating its effectiveness on a weekly basis. The observations include: iterative and continuous feedback was useful to improve policy drafts over time, discussing what evidence would satisfy policy was necessary during policy design, and human-subject studies were found to be necessary evidence to ensure effectiveness. We conclude with a note of optimism, arguing that meaningful policies can be achieved within a moderate time frame and with limited experience in policy design, as demonstrated by our student researchers on the team. This holds promising implications for policymakers, signaling that practical and effective regulation for AI applications is attainable."""
     ).topic(seai, policy, reu).selected()
 
 
+
+    val mlipbook = Book(
+        Seq(Kaestner),
+        "Machine Learning in Production: From Models to Products",
+        Venue("", 2022, "", KBook),
+        Map(HTTP -> URL("https://mlip-cmu.github.io/book/")),
+        """What does it take to build software products with machine learning, not just models and demos? We assume that you can train a model or build prompts to make predictions, but what does it take to turn the model into a product and actually deploy it, have confidence in its quality, and successfully operate and maintain it at scale? This book explores designing, building, testing, deploying, and operating software products with machine-learned models. It covers the entire lifecycle from a prototype ML model to an entire system deployed in production. Covers also responsible AI (safety, security, fairness, explainability) and MLOps.""").
+        note("(a final copy will be published late 2024 or 2025 by MIT Press)").topic(seai).selected()
          
 
 }
