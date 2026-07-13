@@ -27,7 +27,7 @@ case class Person(
                      affiliation: Option[String] = None) {
     def fullname: String = firstname + " " + lastname
 
-    def abbrvname = firstname.charAt(0) + ". " + lastname
+    def abbrvname = s"${firstname.charAt(0)}. $lastname"
 }
 
 object InProceedings {
@@ -720,8 +720,8 @@ case class Review(
                      )
 
 case class Editorship(roletitle: String, journal: Venue, startYear: Int, endYear: Option[Int]) {
-    def yearRange: String = if (endYear.isDefined) (startYear+"-"+endYear.get) else ("since "+startYear)
-    def yearRangeL: String = if (endYear.isDefined) (startYear+"--"+endYear.get) else ("since "+startYear)
+    def yearRange: String = if (endYear.isDefined) s"$startYear-${endYear.get}" else s"since $startYear"
+    def yearRangeL: String = if (endYear.isDefined) s"$startYear--${endYear.get}" else s"since $startYear"
 }
 
 class URLException(link: String, e: Exception) extends Exception {

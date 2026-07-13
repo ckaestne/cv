@@ -74,7 +74,7 @@ object ResearchGenHtml extends App {
             scaleImage(new File(sourcePath, p), new File(new File(targetPath, imgDir), smallImgFilename), width)
             (imgDir + "/" + p, imgDir + "/" + smallImgFilename)
         })
-        row(picturePath.map(p => <a href={p._1}><img class="topicimg" src={p._2} alt={topic.title} width={width + "px"} /></a>).getOrElse(null),
+        row(picturePath.map(p => <a href={p._1}><img class="topicimg" src={p._2} alt={topic.title} width={s"${width}px"} /></a>).getOrElse(null),
             <div class="researchtopic">
                 <h3><a name={topic.key}  class="sectionanch"></a>{topic.title}</h3>
                 {topic.description}

@@ -133,10 +133,10 @@ object GenHtml extends App with RSSFeed {
 
     //get all topics, sorted by number of publications
     def getTopics(pubs: Seq[Publication]): Seq[(Topic, Int)] =
-        pubs.flatMap(p => p.topics.map((_, p))).groupBy(_._1).mapValues(_.size).toSeq.sortBy(_._2).reverse
+        pubs.flatMap(p => p.topics.map((_, p))).groupBy(_._1).view.mapValues(_.size).toSeq.sortBy(_._2).reverse
 
     def getKinds(pubs: Seq[Publication]): Seq[(PublicationKind, Int)] =
-        pubs.groupBy(_.venue.kind).mapValues(_.size).toSeq.sortBy(_._1)
+        pubs.groupBy(_.venue.kind).view.mapValues(_.size).toSeq.sortBy(_._1)
 
     def printFilterHeader(p: Seq[Publication]) = <div id="pubfilter" style="display:none">
         <form action="javascript:updatepub()" method="post" >

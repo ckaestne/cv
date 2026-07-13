@@ -5378,9 +5378,10 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
     val sbft25 = InProceedings(
         Seq(Baik, Yang, Vikram, Jamshidi, Padhye, Kaestner),
         "Differential Performance Fuzzing of Configuration Options",
-        Workshop("SBFT", 2025, "International Workshop on Search-Based and Fuzz Testing").month(4).location("Ottawa"),
-        ToAppear(),
-        Map(PDF->PDFFile("sbft25.pdf")),
+        Workshop("SBFT", 2025, "International Workshop on Search-Based and Fuzz Testing").month(4).location("Ottawa").publisher(IEEE),
+        Pages(31, 34),
+        Map(PDF->PDFFile("sbft25.pdf"),
+            DOI->DOI("10.1109/SBFT66712.2025.00014")),
         """
         Highly-configurable software often includes performance-sensitive configuration options. There are performance expectations across different configurations, but these expectations may not hold, due to inaccurate mental models, corner cases, or unanticipated interactions with other options. We propose differential performance fuzzing of configuration options, a fuzzing technique that uses differential performance feedback to automatically identify inputs that violate these expectations for specific configuration changes. By guiding fuzzing toward scenarios where a supposedly faster configuration performs worse, differential performance fuzzing reveals unexpected performance behavior effectively. In our preliminary evaluation, our method identified unexpected performance gains in configurations presumed slower for 4 configuration options in Closure, demonstrating the potential for detecting performance issues in real-world applications.
         """
@@ -5480,9 +5481,11 @@ study provides guidance for practitioners and tool designers to manage their sup
     val icsenier26 = InProceedings(
         Seq(Doshi, Hong, Xu, Kang, Kapravelos, Kaestner),
         "Towards Verifiably Safe Tool Use for LLM Agents",
-        Conference("ICSE-NIER", 2026, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4),
-        ToAppear(),
-        Map(),
+        Conference("ICSE-NIER", 2026, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4).publisher(ACM),
+        Pages(201, 205),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2601.08012"),
+            ACMLink -> URL("https://dl.acm.org/doi/10.1145/3786582.3786839"),
+            DOI -> DOI("10.1145/3786582.3786839")),
         """
         Large language model (LLM)-based AI agents extend LLM capabilities by enabling access to tools such as data sources, APIs, search engines, code sandboxes, and even other agents. While this empowers agents, unintended tool interactions may also introduce risks, such as leaking sensitive data or overwriting critical records, which are unacceptable in enterprise contexts. Current approaches, such as model-based safeguards, enhance reliability but cannot guarantee system safety. Methods like information flow control (IFC) and temporal constraints aim to provide guarantees but often require extensive human annotation. We propose a process that starts with applying System-Theoretic Process Analysis (STPA) to identify hazards in agent workflows, derive safety requirements, and formalize them as enforceable specifications on data flows and tool sequences. To enable this, we introduce a capability-enhanced Model Context Protocol (MCP) framework that requires structured labels on capabilities, confidentiality, and trust level. Together, these contributions aim to shift safety from ad hoc reliability fixes to proactive guardrails with guarantees, while reducing dependence on user confirmation and making autonomy a deliberate design choice.
         """
@@ -5493,9 +5496,11 @@ study provides guidance for practitioners and tool designers to manage their sup
         Seq(Nahar, Yang, YChen, Deng, Holstein, Eslami, Kaestner),
         "\"I Don't Think RAI Applies to My Model\" -- Engaging Non-champions with Sticky Stories for Responsible AI Work",
        Conference("CHI", 2026, "ACM CHI Conference on Human Factors in Computing Systems").
-            month(4).location("Barcelona, Spain"),
-        ToAppear(),
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.22858")),
+            month(4).location("Barcelona, Spain").publisher(ACM),
+        PagesStr("Article No. 1373, pp. 1--23"),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.22858"),
+            ACMLink -> URL("https://dl.acm.org/doi/10.1145/3772318.3791285"),
+            DOI -> DOI("10.1145/3772318.3791285")),
         """
 Responsible AI (RAI) tools—checklists, templates, and governance processes—often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories—narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
 """).topic(seai, requirements, reu).selected().note("**Best Paper Award**")
@@ -5518,8 +5523,10 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         "What Prompts Don't Say: Understanding and Managing Underspecification in LLM Prompts",
        Conference("ACL", 2026, "Annual Meeting of the Association for Computational Linguistics -- Findings").
             month(7),
-        ToAppear(),
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2505.13360")),
+        Pages(9072, 9101),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2505.13360"),
+            PDF -> PDFFile("acl26.pdf"),
+            HTTP -> URL("https://aclanthology.org/2026.findings-acl.441/")),
         """
         Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
         """
