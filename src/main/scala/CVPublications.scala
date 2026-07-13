@@ -4006,17 +4006,6 @@ executing real software containing variability.""").topic(vaanalysis)
     ).selected().topic(ecosystem, empirical,awareness,opensource, reu)
 
 
-    val tr17_extint = TechReport(
-        Seq(Kolesnikov, Siegmund, Kaestner, Apel),
-        "On the Relation of External and Internal Feature Interactions: A Case Study",
-        2017, 12, ARXIV, "1712.07440",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/1712.07440"),
-            PDF->PDFFile("arxiv18.pdf")),
-        """
-        Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance prediction techniques rely on supervised machine learning for detecting feature interactions, which, in turn, relies on time consuming performance measurements to obtain training data. By providing information about potentially interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time efficient. We expect that the information about potentially interacting features can be obtained by statically analyzing the source code of a highly-configurable system, which is computationally cheaper than performing multiple performance measurements. To this end, we conducted a qualitative case study in which we explored the relation between control-flow feature interactions (detected through static program analysis) and performance feature interactions (detected by performance prediction techniques using performance measurements). We found that a relation exists, which can potentially be exploited to predict performance interactions.
-        """).topic(vaanalysis,interactions,nfp,sensitivity)
-
-
     val sosym18 = Article(
         Seq(Kolesnikov, Siegmund, Kaestner, Grebhahn, Apel),
         "Tradeoffs in Modeling Performance of Highly-Configurable Software Systems",
@@ -4468,6 +4457,7 @@ explore covered and uncovered parts of the output.
         EMSE(2019).number(24),
         Pages(2410,2437),
         Map(PDF -> PDFFile("emse19.pdf"),
+            ARXIVLink->URL("https://arxiv.org/abs/1712.07440"),
             DOI->DOI("10.1007/s10664-019-09705-w"),
             HTTP->URL("https://link.springer.com/article/10.1007/s10664-019-09705-w")),
         """Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance
@@ -4483,32 +4473,6 @@ feature interactions, detected by performance-prediction techniques using perfor
 be exploited to predict performance interactions."""
     ).topic(empirical, nfp)//.superseeds(tr17_extint)
 
-
-
-    val configcr = TechReport(
-        Seq(Velez, Jamshidi, Sattler, Siegmund, Apel, Kaestner),
-        "ConfigCrusher: White-Box Performance Analysis for Configurable Systems",
-        2019, 5, ARXIV, "1905.02066",
-        Map(PDF -> PDFFile("configcr19.pdf"),
-            ARXIVLink -> URL("https://arxiv.org/abs/1905.02066")),
-        """
-        In configurable software systems, stakeholders are often interested
-in knowing how configuration options influence the performance of
-a system to facilitate, for example, the debugging and optimization
-processes of these systems. There are several black-box approaches
-to obtain this information, but they usually require a large number
-of samples to make accurate predictions, whereas the few existing
-white-box approaches impose limitations on the systems that they
-can analyze. This paper proposes ConfigCrusher, a white-box performance analysis that exploits several insights of configurable systems. ConfigCrusher employs a static data-flow analysis to identify
-how configuration options may influence control-flow decisions
-and instruments code regions corresponding to these decisions
-to dynamically analyze the influence of configuration options on
-the regions’ performance. Our evaluation using 10 real-world configurable systems shows that ConfigCrusher is more efficient at
-building performance models that are similar to or more accurate
-than current state-of-the-art black-box and white-box approaches.
-Overall, this paper showcases the benefits and potential of whitebox performance analyses to outperform black-box approaches and
-provide additional information for analyzing configurable systems.
-        """).topic(vaanalysis,nfp)
 
 
     val certtr = TechReport(
@@ -4691,22 +4655,13 @@ The notion of forking has changed with the rise of distributed version control s
 Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidden behind a boolean option during development. Flags are used for many purposes, such as A/B testing and turning off a feature more easily in case of failures. While software engineering feature flags research is burgeoning, examples of software projects using flags rarely come from outside commercial and private projects, stifling academic progress. To address this gap, in this paper we present a novel mining software repositories approach to detect feature flagging open-source projects, based on analyzing the projects' commit messages. We apply our approach to all open-source GitHub projects, identifying 231,223 candidate feature flagging projects, and manually validating 100. We also report on an initial analysis of feature flags in the validated sample of 100 projects, investigating practices that correlate with shorter flag lifespans (typically desirable to reduce technical debt), such as using the issue tracker and having the flag owner (the developer introducing a flag) also be the one removing it."""
      ).topic(featureflags)
 
-    val homtr = TechReport(
-        Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
-        "Efficiently Finding Higher-Order Mutants",
-        2020, 4, ARXIV, "2004.02000",
-        Map(PDF -> PDFFile("arxiv20hom.pdf"),
-            ARXIVLink->URL("https://arxiv.org/abs/2004.02000")),
-        """
-        Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
-        """).topic(testing, vaanalysis, reu)
-
     val fse20_hom = InProceedings(
         Seq(Wong, Meinicke, Chen, Diniz, Kaestner, Figueiredo),
         "Efficiently Finding Higher-Order Mutants",
         ESECFSE(2020).month(11).acceptanceRate(101, 360),
         Pages(1165,1177),
         Map(PDF -> PDFFile("fse20hom.pdf"),
+    		ARXIVLink->URL("https://arxiv.org/abs/2004.02000"),
     		DOI->DOI("10.1145/3368089.3409713"),
     		Video->YoutubeLink("ziiG_AWQj_8"),
     		Teaser->YoutubeLink("Q6mPYesl4Qs")),
@@ -4735,6 +4690,7 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         JASE(2020).volume(27),
         Pages(265,300),
         Map(PDF -> PDFFile("jase20.pdf"),
+    		ARXIVLink->URL("https://arxiv.org/abs/1905.02066"),
     		DOI->DOI("10.1007/s10515-020-00273-8")),
         """
         In configurable software systems, stakeholders are often interested in knowing how configuration options influence the performance of a system to facilitate, for example, the debugging and optimization processes of these systems.
@@ -5221,15 +5177,6 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         """).topic(opensource,empirical).selected()
 
 
-    val arxiv23_mlopensource = TechReport(
-        Seq(Nahar, HZhang, Lewis, Zhou, Kaestner),
-        "A Dataset and Analysis of Open-Source Machine Learning Products",
-        2023, 8, ARXIV, "2308.04328",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2308.04328")),
-        """
-        Machine learning (ML) components are increasingly incorporated into software products, yet developers face challenges in transitioning from ML prototypes to products. Academic researchers struggle to propose solutions to these challenges and evaluate interventions because they often do not have access to close-sourced ML products from industry. In this study, we define and identify open-source ML products, curating a dataset of 262 repositories from GitHub, to facilitate further research and education. As a start, we explore six broad research questions related to different development activities and report 21 findings from a sample of 30 ML products from the dataset. Our findings reveal a variety of development practices and architectural decisions surrounding different types and uses of ML models that offer ample opportunities for future research innovations. We also find very little evidence of industry best practices such as model testing and pipeline automation within the open-source ML products, which leaves room for further investigation to understand its potential impact on the development and eventual end-user experience for the products.
-        """).topic(seai)
-
     val emnlp23 = InProceedings(
         Seq(Yang, Rustogi, BrowerSinning, Lewis, Kaestner, Wu),
         "Beyond Testers’ Biases: Guiding Model Testing with Knowledge Bases using LLMs",
@@ -5328,6 +5275,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         ICSE(2025).location("Ottawa").month(4),
         Pages(1540, 1552),
         Map(PDF->PDFFile("icse25_mlopensource.pdf"),
+            ARXIVLink->URL("https://arxiv.org/abs/2308.04328"),
             HTTP->URL("https://www.computer.org/csdl/proceedings-article/icse/2025/056900a063/215aWuf2vss"),
             DOI->DOI("10.1109/ICSE55347.2025.00006")
         ),
@@ -5362,17 +5310,6 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         """
         Machine learning models make mistakes, yet sometimes it is difficult to identify the systematic problems behind the mistakes. Practitioners engage in various activities, including error analysis, testing, auditing, and red-teaming, to form hypotheses of what can go (or has gone) wrong with their models. To validate these hypotheses, practitioners employ data slicing to identify examples relevant to their hypotheses. However, traditional data slicing is limited by available features and programmatic slicing functions. In this work, we propose SemSlicer, a framework that supports semantic data slicing, which identifies a semantically coherent slice, without the need for existing features. SemSlicer uses Large Language Models (LLMs) to annotate datasets and generate slices from any user-defined slicing criteria. We show that SemSlicer generates accurate slices with low cost, allows flexible trade-offs between different design dimensions, reliably identifies under-performing data slices, and helps practitioners identify useful data slices that reflect systematic problems.
         """).topic(seai,reu).selected()
-
-
-    val arxiv24_llm_at_microsoft = TechReport(
-        Seq(Nahar, Kaestner, Butler, Parnin, Zimmermann, Bird),
-        "Beyond the Comfort Zone: Emerging Solutions to Overcome Challenges in Integrating LLMs into Software Products",
-        2024, 10, ARXIV, "2410.12071",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2410.12071")),
-        """
-        Large Language Models (LLMs) are increasingly embedded into software products across diverse industries, enhancing user experiences, but at the same time introducing numerous challenges for developers. Unique characteristics of LLMs force developers, who are accustomed to traditional software development and evaluation, out of their comfort zones as the LLM components shatter standard assumptions about software systems. This study explores the emerging solutions that software developers are adopting to navigate the encountered challenges. Leveraging a mixed-method research, including 26 interviews and a survey with 332 responses, the study identifies 19 emerging solutions regarding quality assurance that practitioners across several product teams at Microsoft are exploring. The findings provide valuable insights that can guide the development and evaluation of LLM-based products more broadly in the face of these challenges.        
-        """).topic(seai)
-
 
 
     val icse25_reproduciblebuilds = InProceedings(
@@ -5464,17 +5401,6 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         ).topic(seai)
 
 
-    val arxiv24_fakestars = TechReport(
-        Seq(He, HYang, Burckhardt, Kapravelos, Vasilescu, Kaestner),
-        "4.5 Million (Suspected) Fake Stars in GitHub: A Growing Spiral of Popularity Contests, Scams, and Malware",
-        2024, 12, ARXIV, "2412.13459",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2412.13459")),
-        """
-        GitHub, the de-facto platform for open-source software development, provides a set of social-media-like features to signal high-quality repositories. Among them, the star count is the most widely used popularity signal, but it is also at risk of being artificially inflated (i.e., faked), decreasing its value as a decision-making signal and posing a security risk to all GitHub users. In this paper, we present a systematic, global, and longitudinal measurement study of fake stars in GitHub. To this end, we build StarScout, a scalable tool able to detect anomalous starring behaviors (i.e., low activity and lockstep) across the entire GitHub metadata. Analyzing the data collected using StarScout, we find that: (1) fake-star-related activities have rapidly surged since 2024; (2) the user profile characteristics of fake stargazers are not distinct from average GitHub users, but many of them have highly abnormal activity patterns; (3) the majority of fake stars are used to promote short-lived malware repositories masquerading as pirating software, game cheats, or cryptocurrency bots; (4) some repositories may have acquired fake stars for growth hacking, but fake stars only have a promotion effect in the short term (i.e., less than two months) and become a burden in the long term. Our study has implications for platform moderators, open-source practitioners, and supply chain security researchers.
-        """
-    ).topic(security,opensource,empirical,reu)
-
-
     val fse25 = Article(
         Seq(He, Vasilescu, Kaestner),
         "Pinning Is Futile: You Need More Than Local Dependency Versioning to Defend Against Supply Chain Attacks",
@@ -5513,11 +5439,11 @@ study provides guidance for practitioners and tool designers to manage their sup
     
     val arxiv25_explainability = TechReport(
         Seq(Omar, Nahar, Tjaden, Gilles, Mekonnen, Hsieh, Kaestner, Menon),
-        "Beyond Accuracy, SHAP, and Anchors -- On the difficulty of designing effective end-user explanations",
+        "Policy alone is probably not the solution: A large-scale experiment on how developers struggle to design meaningful end-user explanations",
         2025, 1, ARXIV, "2503.15512",
         Map(ARXIVLink -> URL("https://arxiv.org/abs/2503.15512")),
         """
-        Modern machine learning produces models that are impossible for users or developers to fully understand -- raising concerns about trust, oversight and human dignity. Transparency and explainability methods aim to provide some help in understanding models, but it remains challenging for developers to design explanations that are understandable to target users and effective for their purpose. Emerging guidelines and regulations set goals but may not provide effective actionable guidance to developers. In a controlled experiment with 124 participants, we investigate whether and how specific forms of policy guidance help developers design explanations for an ML-powered screening tool for diabetic retinopathy. Contrary to our expectations, we found that participants across the board struggled to produce quality explanations, comply with the provided policy requirements for explainability, and provide evidence of compliance. We posit that participant noncompliance is in part due to a failure to imagine and anticipate the needs of their audience, particularly non-technical stakeholders. Drawing on cognitive process theory and the sociological imagination to contextualize participants' failure, we recommend educational interventions.
+        Developers play a central role in determining how machine learning systems are explained in practice, yet they are rarely trained to design explanations for non-technical audiences. Despite this, transparency and explainability requirements are increasingly codified in regulation and organizational policy. It remains unclear how such policies influence developer behavior or the quality of the explanations they produce. We report results from two controlled experiments with 194 participants, typical developers without specialized training in human-centered explainable AI, who designed explanations for an ML-powered diabetic retinopathy screening tool. In the first experiment, differences in policy purpose and level of detail had little effect: policy guidance was often ignored and explanation quality remained low. In the second experiment, stronger enforcement increased formal compliance, but explanations largely remained poorly suited to medical professionals and patients. We further observed that across both experiments, developers repeatedly produced explanations that were technically flawed or difficult to interpret, framed for developers rather than end users, reliant on medical jargon, or insufficiently grounded in the clinical decision context and workflow, with developer-centric framing being the most prevalent. These findings suggest that policy and policy enforcement alone are insufficient to produce meaningful end-user explanations and that responsible AI frameworks may overestimate developers' ability to translate high-level requirements into human-centered designs without additional training, tools, or implementation support.
         """).topic(seai, policy, reu, experiment)
 
 
@@ -5551,28 +5477,6 @@ study provides guidance for practitioners and tool designers to manage their sup
         """
     ).topic(spl, nfp)
     
-    val arxiv25_underspec = TechReport(
-        Seq(Yang, Shi, QMa, Liu, Kaestner, Wu),
-        "What Prompts Don't Say: Understanding and Managing Underspecification in LLM Prompts",
-        2025, 05, ARXIV, "2505.13360",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2505.13360")),
-        """
-        Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
-        """
-    ).topic(seai, testing, requirements)
-    
-    val arxiv25_sticky = TechReport(
-        Seq(Nahar, Yang, YChen, Deng, Holstein, Eslami, Kaestner),
-        "\"I Don't Think RAI Applies to My Model\" -- Engaging Non-champions with Sticky Stories for Responsible AI Work",
-        2025, 9, ARXIV, "2509.22858",
-        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.22858")),
-        """
-        Responsible AI (RAI) tools -- checklists, templates, and governance processes -- often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories -- narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
-        """
-    ).topic(seai, requirements)
-
-
-
     val icsenier26 = InProceedings(
         Seq(Doshi, Hong, Xu, Kang, Kapravelos, Kaestner),
         "Towards Verifiably Safe Tool Use for LLM Agents",
@@ -5591,7 +5495,7 @@ study provides guidance for practitioners and tool designers to manage their sup
        Conference("CHI", 2026, "ACM CHI Conference on Human Factors in Computing Systems").
             month(4).location("Barcelona, Spain"),
         ToAppear(),
-        Map(),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.22858")),
         """
 Responsible AI (RAI) tools—checklists, templates, and governance processes—often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories—narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
 """).topic(seai, requirements, reu).selected().note("**Best Paper Award**")
@@ -5615,7 +5519,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
        Conference("ACL", 2026, "Annual Meeting of the Association for Computational Linguistics -- Findings").
             month(7),
         ToAppear(),
-        Map(),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2505.13360")),
         """
         Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
         """
@@ -5640,13 +5544,13 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         2026, 7, ARXIV, "2607.08938",
         Map(ARXIVLink -> URL("https://arxiv.org/abs/2607.08938")),
         """
-        Smaller language models can match the performance of frontier LLMs on routine business tasks at a fraction of the cost when paired with an optimized harness. We develop a framework that maps agent failure modes to harness adaptation strategies and build an automated harness optimizer around it. Evaluating across seven business tasks, we find that adapted harnesses improve performance on most task--SLM combinations, with the best configuration recovering 89.7% of LLM performance at 4% of the cost. These results suggest that harness adaptation can substantially expand the practical deployment of smaller models in repetitive business workflows.
+        Frontier LLM agents are automating many business tasks, but their high inference cost makes large-scale deployment unsustainable. Small language models (SLMs) offer a cheaper alternative, yet they typically fall short when swapped into a harness designed for a frontier LLM. We show that for many routine business tasks, SLM agents can match LLM performance at 90% lower cost, when paired with an adapted harness that can be automatically discovered by a meta agent. The key insight is that much of the task difficulty is shared across instances and can be lifted from the model into the harness via tailored instructions, tools, and orchestration loops. To study this systematically, we create a framework that maps agent failure modes to harness adaptation strategies, and build a harness optimizer that automatically discovers effective adaptations from failure trajectories. Across seven business-oriented agentic tasks and three SLM families, we found optimized harnesses significantly improve performance on 16 of 21 task-SLM pairs, with seven pairs closing the SLM-LLM performance gap and the best SLM agent recovering 89.7% of LLM performance at 4% of the cost. Our analysis further shows that adaptation works best for tasks with more repetitive workflows and for SLMs with sufficient base capabilities. Together, these results suggest that harness adaptation can expand the practical deployment range of SLM agents in routine business tasks.
         """
     ).topic(seai)
 
     val arxiv26_codereview = TechReport(
         Seq(SAgarwal, Miller, Kaestner, Vasilescu),
-        "Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse",
+        "3100 Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse",
         2026, 7, ARXIV, "2607.07980",
         Map(ARXIVLink -> URL("https://arxiv.org/abs/2607.07980")),
         """
