@@ -443,6 +443,11 @@ object DOI extends LinkKind {
     def apply(doi: String) = HTTPLink("http://dx.doi.org/" + doi)
 }
 
+case class Other(label: String) extends LinkKind {
+    def print = label
+    override def bibtexKey = label.replace(" ","").toLowerCase()
+}
+
 object EPUB extends LinkKind {
     def print = "epub"
 }
@@ -500,14 +505,14 @@ case class MonthStr(str: String) extends Month {
 }
 
 
-case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None, specialIssue: Option[String] = None) {
+case class Venue(short: String, year: Int, name: String, kind: PublicationKind, url: Option[URL] = None, publisher: Option[Publisher] = None, acceptanceRate: Option[(Int, Int)] = None, location: Option[String] = None, month: Option[Month] = None, number: Option[String] = None, volume: Option[String] = None, series: Option[String] = None, specialIssue: Option[String] = None, isbn: Option[String] = None) {
 
-    def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series, specialIssue: Option[String] = this.specialIssue) =
-        Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series, specialIssue)
+    def copy(short: String = this.short, year: Int = this.year, name: String = this.name, kind: PublicationKind = this.kind, url: Option[URL] = this.url, publisher: Option[Publisher] = this.publisher, acceptanceRate: Option[(Int, Int)] = this.acceptanceRate, location: Option[String] = this.location, month: Option[Month] = this.month, number: Option[String] = this.number, volume: Option[String] = this.volume, series: Option[String] = this.series, specialIssue: Option[String] = this.specialIssue, isbn: Option[String] = this.isbn) =
+        Venue(short, year, name, kind, url, publisher, acceptanceRate, location, month, number, volume, series, specialIssue, isbn)
 
     def issn(s: String) = this
 
-    def isbn(s: String): Venue = this
+    def isbn(s: String): Venue = copy(isbn = Some(s))
 
     def editor(s: String): Venue = this
 
@@ -534,6 +539,7 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
 
     /** issue = number */
     def issue(u: Int): Venue = copy(number = Some(u.toString))
+    def issue(u: String): Venue = copy(number = Some(u))
 
     def volume(u: String): Venue = copy(volume = Some(u))
 
@@ -554,7 +560,9 @@ case class Venue(short: String, year: Int, name: String, kind: PublicationKind, 
     def renderPublisher[A](formater: Formater[A]): A = formater.text(publisher.map(_.render + ", ").getOrElse(""))
 
     def renderVolSeries[A](formater: Formater[A]): A =
-        if (volume.isDefined && series.isDefined)
+        if (isbn.isDefined)
+            formater.concat(formater.text("ISBN %s, ".format(isbn.get)))
+        else if (volume.isDefined && series.isDefined)
             formater.concat(formater.text("volume %s of ".format(volume.get)), formater.journal(series.get), formater.text(", "))
         else if (volume.isDefined && !series.isDefined)
             formater.text("volume %s, ".format(volume.get))
@@ -683,6 +691,8 @@ object PCChair extends CommitteeRole("Program-Committee Chair", "PC Chair")
 object PCCChair extends CommitteeRole("Program-Committee Co-Chair", "PC Co-Chair")
 object ConfChair extends CommitteeRole("Conference Chair", "Conference Chair")
 case class OtherChair(atitle: String, abbrev: String) extends CommitteeRole(atitle, abbrev)
+object AreaChair extends CommitteeRole("Program-Committee Area Chair", "Area Chair")
+object ShadowPCChair extends CommitteeRole("Shadow Program-Committee Chair", "Shadow PC Chair")
 
 object OC extends CommitteeRole("Organization-Committee Member", "OC")
 
@@ -691,8 +701,8 @@ object DS extends CommitteeRole("Doctorial Symposium Committee Member", "DS")
 object DSCChair extends CommitteeRole("Doctoral Symposium Co-Chair", "DS Chair")
 
 object CommitteeRoles {
-    val organizationRoles = Set[CommitteeRole](GeneralChair, PCChair, PCCChair, ConfChair, OC, SC, DSCChair)
-    val pcRoles = Set(PC, ERC)
+    val organizationRoles = Set[CommitteeRole](GeneralChair, PCChair, PCCChair, ConfChair, OC, SC, DSCChair, ShadowPCChair)
+    val pcRoles = Set(PC, ERC, AreaChair)
     val pcAndDsRoles = pcRoles+DS
 }
 

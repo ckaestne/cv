@@ -1,7 +1,6 @@
 package de.stner.cv
 
 import java.io._
-import java.text._
 
 import de.stner.cv.CV._
 import de.stner.cv.VenueStructure._
@@ -41,10 +40,11 @@ object GenPubList extends App {
     var counter = 0
 
     def printPublication(p: Publication) = {
-        counter += 1
-        counter + ".  " + p.render(new BibStyle {
+        // counter += 1
+        // counter + ".  " + 
+        p.render(new BibStyle {
             override def withAcceptanceRate: Boolean = false
-        }, TextFormater).markdownToPlainText + "\n\n"
+        }, TextFormater).markdownToPlainText + "\n"
     }
 
     def printPublications(title: String, pubs: Seq[Publication]) =
@@ -73,12 +73,12 @@ object GenPubList extends App {
             printPublications("TECHNICAL REPORTS", techreps) ++
             printPublications("OTHER PUBLICATIONS", other)
     }
-    val monthyear = new SimpleDateFormat("MMM. yyyy")
+    val monthyear = java.time.format.DateTimeFormatter.ofPattern("MMM. yyyy", java.util.Locale.ENGLISH)
 
     def invitedTalks(): String =
         (for (it <- CV.invitedTalks)
         yield "%s\t%s, %s".format(
-                monthyear format it.when,
+                it.when format monthyear,
                 it.title.markdownToPlainText,
                 it.where)
             ).reduce(_ + "\n" + _)
@@ -94,6 +94,7 @@ object GenPubList extends App {
         section("Organization Committees",
             committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
                 map(printCommittee).mkString +
+                "Beyond the Model Meeting (2025, 2026)\n" +
                 "Annual Meeting on Feature-Oriented Software Development (2009 Passau, 2010 Magdeburg, 2011 Dresden, 2012 Braunschweig, 2013 and 2014 Dagstuhl, 2015 Traunkirchen)\n"
         ) + section("Program Committees (Conferences)",
                 committees_conferences.filter(_.role.toSet.intersect(CommitteeRoles.pcRoles).nonEmpty).map(printCommittee).mkString

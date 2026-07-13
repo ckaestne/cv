@@ -1,6 +1,5 @@
 package de.stner.cv
 
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import xml.NodeSeq
@@ -16,6 +15,17 @@ object News {
 
 
     val news: List[NewsItem] =
+        NewsItem(LocalDate.of(2025, 4, 8), "Book release",
+          <span>The Machine Learning in Production book is finally out in print (and ebook) format. <a href="https://mitpress.mit.edu/9780262049726/machine-learning-in-production/">MIT Press</a> has all the details: 
+            <br />
+            <a href="https://mitpress.mit.edu/9780262049726/machine-learning-in-production/"><img src="https://mit-press-new-us.imgix.net/covers/9780262049726.jpg?auto=format&amp;w=298&amp;dpr=1&amp;q=80" /></a>
+             </span>) ::
+        NewsItem(LocalDate.of(2025, 1, 07), "Talk: From Models to Products: On the Role of Software Engineering for Machine Learning",
+          <span>I substantially updated my talk pitching better software engineering for building ML products with a focus on quality assurance both at the model and the system level.
+            I originally gave this as a CAIN keynote in 2024 and several times since. Here is a recording of the talk at the University of Paderborn:
+            <br />
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G-N1iBYYXVo" frameborder="0" allowfullscreen="true"></iframe>
+             </span>) ::
         NewsItem(LocalDate.of(2024, 01, 15), "Machine Learning in Production Book finished and submitted to publisher",
           <span>Over the last two years, I was writing and refining a book on software engineering for building products with machine learning components,
             based on our course Machine Learning in Production. I have released as chapters incrementally on <a href="https://ckaestne.medium.com/machine-learning-in-production-book-overview-63be62393581">Medium</a>.

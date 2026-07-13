@@ -45,4 +45,6 @@ object CVMedia {
         LocalDate.of(2020, 1, 31), selected=true)
     val s3c2Web = Website("Secure Software Supply Chain Center", URL("https://s3c2.org/"), LocalDate.of(2023, 8, 15))
 
+    val cainKeynote24 = Youtube("From Models to Products: On the Role of Software Engineering for Machine Learning | CAIN'24 Keynote", "G-N1iBYYXVo", LocalDate.of(2025,1,15))
+
 }

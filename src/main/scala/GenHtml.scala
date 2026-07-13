@@ -4,7 +4,6 @@ import de.stner.cv.Coauthors.Kaestner
 
 import java.io.File
 import java.net.URI
-import java.text.SimpleDateFormat
 import de.stner.cv.StructureTheses.AThesis
 import org.apache.commons.io.FileUtils
 
@@ -279,7 +278,7 @@ object GenHtml extends App with RSSFeed {
         <a href={URL("http://www.flickr.com/photos/p0nk/sets/72157611890103649/").toString}>Cooking</a>,
         <a href={URL("http://boardgamegeek.com/collection/user/chk49").toString}>Board games</a>,
         <a href={URL("concerts.xhtml").toString}>Concerts</a>
-        </p> ++ printTwitterWidget())
+        </p> /*++ printTwitterWidget()*/)
 
     def printSpelling() =
         <p class="spelling">
@@ -294,9 +293,9 @@ object GenHtml extends App with RSSFeed {
     def printSpellingLink() = <span style={"position:absolute;top:" + navBarHeight}><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
 
 
-    val monthyear = new SimpleDateFormat("MMM. yyyy")
+    val monthyear = java.time.format.DateTimeFormatter.ofPattern("MMM. yyyy", java.util.Locale.ENGLISH)
 
-    def printAward(award: AwardOrGrant) = row(<span class="date">{monthyear format award.date}</span>,
+    def printAward(award: AwardOrGrant) = row(<span class="date">{award.date format monthyear}</span>,
         <a href={award.url.toString}>{award.name.markdownToHtml}</a> :+ {
             award match {
                 case Award(_, _, _, extraLinks, _) if !extraLinks.isEmpty =>
@@ -305,7 +304,7 @@ object GenHtml extends App with RSSFeed {
                         yield <span><a href={extraLinks.head._1.toString}>{extraLinks.head._2}</a>, </span>
                     }{<span><a href={extraLinks.last._1.toString}>{extraLinks.last._2}</a></span>})</span>
                 case Grant(_, _, _, from, to, ag, budget) =>
-                    <span>{" " + ag + ". " + (monthyear format from) + " – " + (monthyear format to) /*+", "+(new DecimalFormat("###,###").format(budget.value).replace(",", " "))+(
+                    <span>{" " + ag + ". " + (from format monthyear) + " – " + (to format monthyear) /*+", "+(new DecimalFormat("###,###").format(budget.value).replace(",", " "))+(
                         budget match { case EUR(_) => " EUR"; case USD(_) => " USD"}
                         )*/}</span>
                 case _ => <span></span>
@@ -508,8 +507,8 @@ object GenHtml extends App with RSSFeed {
                 row(nbsp, <a href="..">back to main page</a>)
             printDoc(body, title.toString(), new File(targetDir, "index.html"), pathToRoot = pageRoot)
 
-            val parserSDF=new SimpleDateFormat("d MMM yyyy")
-            val date = parserSDF.parse(dateNode.text)
+            val dateParser = DateTimeFormatter.ofPattern("d MMMM yyyy", java.util.Locale.ENGLISH)
+            val date = LocalDate.parse(dateNode.text, dateParser)
 
             (title, articleSubdir.getName, dateNode.text, date)
         }

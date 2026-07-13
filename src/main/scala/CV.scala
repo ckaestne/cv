@@ -58,7 +58,6 @@ object CV {
           |    School of Computer Science, Software and Societal Systems Department\\
           |    Carnegie Mellon University
           |\item[Contact]
-          |    +1 412 268 5254 (Office)\\
           |    \href{mailto:kaestner@cs.cmu.edu}{kaestner@cs.cmu.edu}
           |\item[Mailing Address]
           |    Christian Kaestner\\
@@ -118,13 +117,26 @@ object CV {
           | """.stripMargin
 
 
+    val mlip = "17-445/645/745 Machine Learning in Production"
+    val mlipaieng = "17-445/645/745 Machine Learning in Production / 11-695 AI Engineering"
+
     val teaching = Seq(
-        Course("17-445/645 Machine Learning in Production",
+        Course(mlipaieng,
+            "",
+            URL("https://mlip-cmu.github.io/s2026/"),
+            English, SpringTerm(2026), new CourseKind with Lecture
+        ),
+        Course(mlipaieng,
+            "",
+            URL("https://mlip-cmu.github.io/f2025/"),
+            English, FallTerm(2025), new CourseKind with Lecture
+        ),      
+        Course(mlipaieng,
             "",
             URL("https://mlip-cmu.github.io/f2024/"),
             English, FallTerm(2024), new CourseKind with Lecture
         ),      
-        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+        Course(mlipaieng,
             "",
             URL("https://mlip-cmu.github.io/s2024/"),
             English, SpringTerm(2024), new CourseKind with Lecture
@@ -139,17 +151,17 @@ object CV {
             URL("https://github.com/cmuvariability/PaperReadingGroup/wiki"),
             English, Continuous("PRG"), Seminar
         ),
-        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+        Course(mlipaieng,
             "",
             URL("https://mlip-cmu.github.io/s2023/"),
             English, SpringTerm(2023), new CourseKind with Lecture
         ),
-        Course("17-445/645 Machine Learning in Production",
+        Course(mlipaieng,
             "",
             URL("https://ckaestne.github.io/seai/F2022"),
             English, FallTerm(2022), new CourseKind with Lecture
         ),
-        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+        Course(mlipaieng,
             "",
             URL("https://ckaestne.github.io/seai/S2022"),
             English, SpringTerm(2022), new CourseKind with Lecture
@@ -159,7 +171,7 @@ object CV {
             URL("https://cmu-17-214.github.io/f2021/"),
             English, FallTerm(2021), new CourseKind with Lecture
         ),
-        Course("17-445/645 Machine Learning in Production / 11-695 AI Engineering",
+        Course(mlipaieng,
             "",
             URL("https://ckaestne.github.io/seai/"),
             English, SpringTerm(2021), new CourseKind with Lecture
@@ -355,20 +367,29 @@ object CV {
         TeachingProject("Stundenplanprogramm fuer Univis", WinterTerm(2007), "IT-Projekt", URL("http://www.uni-magdeburg.de/mytt/"))
     )
 
-    val memberships = Seq(
-        "IFIP Working Group 2.11 (Program Generation)",
-        "Association for Computing Machinery (ACM)",
-        //"Gesellschaft für Informatik (GI)",
-        "Deutscher Hochschulverband"
-    )
+    // val memberships = Seq(
+    //     // "IFIP Working Group 2.11 (Program Generation)",
+    //     "Association for Computing Machinery (ACM)",
+    //     //"Gesellschaft für Informatik (GI)",
+    //     // "Deutscher Hochschulverband"
+    // )
 
     val advisedTheses = CVTheses.advisedTheses
 
 
     import Venues._
     val committees = Seq[Committee](
-        Committee(ICSESEET(2027), PCCChair),
+        Committee(ICSE(2027), ShadowPCChair),
+        Committee(ICSE(2027), PC),
+        Committee(CAIN(2027), PCCChair),
+        Committee(ICSE(2026), ShadowPCChair),
+        Committee(ICSE(2026), AreaChair),
+        Committee(CAIN(2025), PC),
+        Committee(OOPSLA(2025), PC),
         Committee(FSE(2025), PC),
+        Committee(Workshop("SQA4AI", 2025, "Workshop on Software Quality Assurance for Artificial Intelligence",
+            URL("https://sqa4ai2025.github.io/SQA4AI2025/")), PC),
+        Committee(ICSE(2024), PC),
         Committee(CAIN(2024), PC),
         Committee(FSE(2024), PC),
         Committee(ICSE(2024), PC),
@@ -511,6 +532,8 @@ object CV {
     )
 
     val reviews: Seq[Review] = Seq(
+        Review(TSE(2024)),
+        Review(JournalFactory("IEEE S&P","IEEE Security & Privacy", IEEE)(2024)),
         Review(TSE(2023)),
         Review(JSS(2023)),
         Review(ESEM(2023)),
@@ -566,6 +589,30 @@ object CV {
 
 
     val awards: Seq[AwardOrGrant] = Seq(
+        Award(
+            "Best Paper Award at the ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026",
+            URL("https://programs.sigchi.org/chi/2026/awards/best-papers"),
+            LocalDate.of(2026, 4, 13),
+            Nil
+        ),
+        Award(
+            "Distinguished-Paper Award at the International Conference on Mining Software Repositories (MSR) 2026",
+            URL("https://2026.msrconf.org"),
+            LocalDate.of(2026, 4, 13),
+            Nil
+        ),
+        Award(
+            "Distinguished-Paper Award at the International Conference on the Foundations of Software Engineering (FSE) 2025",
+            URL("https://conf.researchr.org/home/fse-2025"),
+            LocalDate.of(2025, 6, 23),
+            Nil
+        ),
+        Award(
+            "Distinguished-Paper Award at the International Conference on Software Engineering (ICSE) 2025",
+            URL("https://conf.researchr.org/home/icse-2025"),
+            LocalDate.of(2025, 5, 1),
+            Nil
+        ),
         Award(
             "Two Distinguished-Paper Awards at the International Conference on Software Engineering (ICSE) 2022",
             URL("https://conf.researchr.org/home/icse-2022"),
@@ -743,6 +790,12 @@ object CV {
     val parsingandtypecheckingLinux = "Parsing and Type Checking all 2^10000 Configurations of the Linux Kernel"
     val vsoc = "Virtual Separation of Concerns: Toward Preprocessors 2.0"
     val invitedTalks: Seq[InvitedTalk] = Seq(
+        InvitedTalk(time(2025, 11), "A failed experiment on end-user explanations for ML-powered medical devices", "SMASH 2025: Symposium on Model Accountability, Sustainability and Healthcare, Montreal"),
+        InvitedTalk(time(2025, 9), "Testing AI-Powered Systems, Not Just Models", "Future Advanced Testing Technology Workshop"),
+        InvitedTalk(time(2025, 2), "From Models to Products: On the Role of Software Engineering for Machine Learning", "SEI, National AI Engineering Study Speaker Series"),
+        InvitedTalk(time(2025, 1), "From Models to Products: On the Role of Software Engineering for Machine Learning", "York University, AI+SE Seminar Series"),
+        InvitedTalk(time(2025, 1), "From Models to Products: On the Role of Software Engineering for Machine Learning", "University of Paderborn, Distinguished Lecture"),
+        InvitedTalk(time(2024, 4), "From Models to Products: On the Role of Software Engineering for Machine Learning", "CAIN 2024 Keynote"),
         InvitedTalk(time(2022, 5), "From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning", "Yale University"),
         InvitedTalk(time(2022, 7), "From Models to Systems: Teaching Software Engineering to Data Scientists", "SEI SE Workshop for Educators 2022"),
         InvitedTalk(time(2022, 5), "From Models to Systems: Rethinking the Role of Software Engineering for Machine Learning", "Keynote at 2022 Int'l Conf. Mining Software Repositories"),
@@ -800,79 +853,113 @@ object CV {
      */
     def students: List[(String, List[(Person, Option[String])])] = List(
         ("Current", current),
-        ("Former", former)
+        ("Graduated", graduatedPhD),
+        ("Former students and visitors", othersAndVisitors),
+        ("REU Students", reus)
 //        ("Close external collaborations / coadvising", collaboratingStudents),
     )
 
     import Coauthors._
 
     val current = List(
+        (Hong, Some("(PhD student since 2024)")),
         (He, Some("(PhD student since 2023, coadvised with Bogdan Vasilescu)")),
-        (Yuan, Some("(PhD student since 2023, coadvised with Rohan Padhye)")),
-        (Miller, Some("(PhD student since 2021, coadvised with Bogdan Vasilescu)")),
         (Yang, Some("(PhD student since 2021, coadvised with Sherry Tongshuang Wu)")),
-        (Nahar, Some("(PhD student since 2020)")),
-        (Ferreira, Some("(PhD student since 2014)")),
-        (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(M.S. student, 2021)"))
+        (Person("Niruthiha", "Selvanayagam", "École de technologie supérieure"), Some("(visiting scholar 2026)")),
     )
-    val former = List(
-        (Wong, Some("(PhD 2014-2021, now at Facebook)")),
+    val graduatedPhD = List(
+        (Miller, Some("(PhD 2021-2026, coadvised with Bogdan Vasilescu, now Assistant Professor at George Washington University)")),
+        (Nahar, Some("(PhD 2020-2026, now Senior Research Scientist at Microsoft)")),
+        (Wong, Some("(PhD 2014-2021, now at Meta)")),
         (Zhou, Some("(PhD 2014-2020, now Assistant Professor at University of Toronto)")),
-        (Velez, Some("(PhD 2016-2021, now at Google")),
+        (Velez, Some("(PhD 2016-2021, now at Google)")),
         (Meinicke, Some("(visiting scholar, 2014, 2016-2020, now at Google)")),
-        (Jamshidi, Some("(postdoc 2016-2018, now Assistant Professor at University of South Carolina)")),
-        (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
-        (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
-
+        (Jamshidi, Some("(postdoc 2016-2018, now Associate Professor at University of South Carolina)")),
+    )
+    val othersAndVisitors = List(
+        (Ferreira, Some("(PhD student 2014-2020)")),
+        (Yuan, Some("(PhD student 2023-2026, coadvised with Rohan Padhye)")),
         (Ahmad, Some("(graduated MSc, 2016)")),
+
+        (Person("Yanxin (Cindy)", "Chen", "Carnegie Mellon University"), Some("(undergraduate student, 2023-24)")),
+        (Person("Weigen", "Chen", "Carnegie Mellon University"), Some("(M.S. student, 2023)")),
+        (Person("Yuan (Cindy)", "Jiang", "Carnegie Mellon University"), Some("(M.S. student, 2021)")),
+        // 
+
         (Person("Kattiana","Constantino", "Federal University of Minas Gerais"), Some("(visiting scholar 2018-2019)")),
         (Figueiredo, Some("(visiting scholar, 2017-2018)")),
-        (Person("Raman", "Goyal"), Some("(visiting scholar, 2015, now at Epic)")),
-        (Person("Htut Khine", "Htay Win"), Some("(REU student, 2015)")),
-        (Kawthekar, Some("(visiting scholar, 2016, now graduate student at Stanford)")),
-        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016, now PhD student at University of Weimar)")),
-        (Person("Kyle", "McDonell", "Colby College"), Some("(REU student, 2016)")),
-        (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
-        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017, now at Configit)")),
-        (Trockman, Some("(REU student, 2017, now PhD student at CMU)")),
-        (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017, now PhD student at Northwestern)")),
-        (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
-        (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)")),
         (Soares, Some("(visiting scholar, 2017-2018)")),
+        (Stanciulescu, Some("(visiting scholar, 2016-2017, now researcher at ABB)")),
+        (Person("Jean", "Melo", URL("http://itu.dk/people/jeam/"), "IT University Copenhagen"), Some("(visiting scholar, 2016-2017, now at Configit)")),
+        (Person("Stefan", "Mühlbauer", "Technical University Braunschweig"), Some("(visiting scholar, 2016, now PhD student at University of Weimar)")),
+        (Kawthekar, Some("(visiting scholar, 2016, now graduate student at Stanford)")),
+        (Person("Raman", "Goyal"), Some("(visiting scholar, 2015, now at Epic)")),
+        (Medeiros, Some("(visiting scholar, 2014, now faculty at Federal Institute of Alagoas)")),
+    )
+    val reus = List(
+        (Person("Erica", "Okeh", "Howard University"), Some("(REU student, 2025)")),
+        (Person("Jason Huang","Alexander ", "UMass Amherst"), Some("(REU student, 2025)")),
+        (Person("Aarya", "Doshi", "Georgia Tech"), Some("(REU student, 2025)")),
+        (Person("Abhishek", "Satpathy", "University of Virginia"), Some("(REU student, 2025)")),
 
-        (Ren, Some("(REU student, 2018)")),
-        (Chen, Some("(REU student, 2018, now PhD student at CMU)")),
-        (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018, now PhD student at CMU)")),
-        (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)")),
-        (Person("Sophie", "Rosas-Smith","Wellesley College"), Some("(REU student, 2018)")),
+        (Person("Haoqin", "Yang", "Carnegie Mellon University"), Some("(REU student, 2024)")),
+        (Person("Jacob", "Tjaden", "Colby College"), Some("(REU student, 2024)")),
+        (Person("Maria Belen B.", "Saavedra Rios", "Berea College"), Some("(REU student, 2024)")),
+        (Person("Noah", "Elazar", "Oberlin Colleg"), Some("(REU student, 2024)")),
+        (Person("Aiden Edward", "Amaya", "Emory University"), Some("(REU student, 2024)")),
+        (Person("Joshua", "Delrosa", "Grinnell College"), Some("(REU student, 2024)")),
 
-        (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
-        (Overney, Some("(REU student, 2019)")),
-        (Raman, Some("(REU student, 2019)")),
-        (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)")),
+        (Person("Katrina", "Wilson", "Bucknell University"), Some("(REU student, 2023)")),
+        (Person("Rachel", "Suarez", "Wellesley College"), Some("(REU student, 2023)")),
+        (Person("Oreofeoluwapo (Oreofe)", "Solarin", "College of Wooster "), Some("(REU student, 2023)")),
+        (Person("Jinmei (Jenny)", "Rowlett", "Oberlin College"), Some("(REU student, 2023)")),
+        (Ma, Some("(REU student, 2023)")),
+        (Hong, Some("(REU student, 2023, now PhD student at CMU)")),
+        (Person("Nicholas", "Gomez", "Rio Hondo College"), Some("(REU student, 2023)")),
+        (Person("Audrey (Lina)", "Boughton", "College of Wooster "), Some("(REU student, 2023)")),
+        (Person("Haesue", "Baik", "University of Michigan, Ann Arbor"), Some("(REU student, 2023)")),
 
-        (Person("Jerry", "Lu", "University of Pennsylvania"), Some("(REU student, 2020)")),
-        (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
-        (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020)")),
-        (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
-        (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
-        (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
-
-        (Person("Austin", "Coursey", "Murray State University"), Some("(REU student, 2021)")),
-        (Person("Philip", "Gray", "New College of Florida"), Some("(REU student, 2021)")),
-        (Person("Theresa", "Lim", "Princeton University"), Some("(REU student, 2021)")),
-        (Person("Paul", "Smith", "St. Mary's University, San Antonio, TX"), Some("(REU student, 2021)")),
-        (Person("Kimberly", "Truong", "Oregon State University"), Some("(REU student, 2021)")),
-        (Person("Justin", "Ventura", "Salisbury State University"), Some("(REU student, 2021)")),
-
-        (Person("Jack", "Arteaga", "Brookdale Community College"), Some("(REU student, 2022)")),
-        (Person("Brandon", "Halliburton", "University of Maryland"), Some("(REU student, 2022)")),
-        (Person("Kavan", "Mehrizi", "Diablo Valley College"), Some("(REU student, 2022)")),
+        (Person("Janhvi", "Somaiya", "Rice University"), Some("(REU student, 2022)")),
         (Person("Emily", "Nguyen", "UCLA"), Some("(REU student, 2022)")),
-        (Person("Janhvi", "Somaiya", "Rice University"), Some("(REU student, 2022)"))
+        (Person("Kavan", "Mehrizi", "Diablo Valley College"), Some("(REU student, 2022)")),
+        (Person("Brandon", "Halliburton", "University of Maryland"), Some("(REU student, 2022)")),
+        (Person("Jack", "Arteaga", "Brookdale Community College"), Some("(REU student, 2022)")),
+
+        (Person("Justin", "Ventura", "Salisbury State University"), Some("(REU student, 2021)")),
+        (Person("Kimberly", "Truong", "Oregon State University"), Some("(REU student, 2021; now PhD student at CMU)")),
+        (Person("Paul", "Smith", "St. Mary's University, San Antonio, TX"), Some("(REU student, 2021)")),
+        (Person("Theresa", "Lim", "Princeton University"), Some("(REU student, 2021)")),
+        (Person("Philip", "Gray", "New College of Florida"), Some("(REU student, 2021)")),
+        (Person("Austin", "Coursey", "Murray State University"), Some("(REU student, 2021; now PhD student at Vanderbilt University)")),
+
+        (Person("Sophia", "Cohen", "Wesleyan University"), Some("(REU student, 2020)")),
+        (Person("Isabel", "Gan", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Helen", "Dong", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Hannah", "Hartnett", "Colby College"), Some("(REU student, 2020)")),
+        (Person("Priscila", "Santiesteban", "Coe College"), Some("(REU student, 2020; now PhD student at UMich)")),
+        (Person("Mehal ", "Kashyap", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Mark", "Chen", "Carnegie Mellon University"), Some("(REU student, 2020)")),
+        (Person("Madison", "Janes", "Fairmont State University"), Some("(REU student, 2020)")),
+        (Person("Jerry", "Lu", "University of Pennsylvania"), Some("(REU student, 2020)")),
+
+        (Person("Sydney","Covitz","Swarthmore College"), Some("(REU student, 2019)")),
+        (Raman, Some("(REU student, 2019)")),
+        (Overney, Some("(REU student, 2019, now PhD student at MIT)")),
+        (Person("Annika","Esau","University of Idaho"), Some("(REU student, 2019)")),
+
+        (Person("Sophie", "Rosas-Smith","Wellesley College"), Some("(REU student, 2018)")),
+        (Person("Nga","Huynh","Bunker Hill Community College"), Some("(REU student, 2018)")),
+        (Person("Kalil","Garrett", "Georgia State University"), Some("(REU student, 2018)")),
+        (Chen, Some("(REU student, 2018, now PhD student at CMU)")),
+        (Ren, Some("(REU student, 2018)")),
+
+        (Person("Hannah", "Reiling", "University of Pittsburgh"), Some("(REU student, 2017)")),
+        (Person("Changming", "Xu", "Washington University in St. Louis"), Some("(REU student, 2017)")),
+        (Person("Lukas", "Lazarek", "UMass Lowell"), Some("(REU student, 2017, now PhD student at Northwestern)")),
+        (Trockman, Some("(REU student, 2017, now PhD student at CMU)")),
+        (Person("Xia", "Xiao", "Dickinson College"), Some("(REU student, 2016)")),
+        (Person("Kyle", "McDonell", "Colby College"), Some("(REU student, 2016)")),
+        (Person("Htut Khine", "Htay Win"), Some("(REU student, 2015)")),
     )
     val collaboratingStudents = List(
         (HNguyen, Some("(Iowa State, graduated 2017, now at Google)")),

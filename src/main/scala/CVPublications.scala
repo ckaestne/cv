@@ -69,7 +69,7 @@ object Coauthors {
     val Mitschke = Person("Ralf", "Mitschke", "Technical University of Darmstadt")
     val Garvin = Person("Brady", "Garvin", URL("http://cse.unl.edu/~bgarvin/"), "University of Nebraska–Lincoln")
     val Bethmann = Person("Anja", "Bethmann", "University of Magdeburg")
-    val Parnin = Person("Chris", "Parnin", URL("http://www.chrisparnin.me/"), "North Carolina State University")
+    val Parnin = Person("Chris", "Parnin", URL("http://www.chrisparnin.me/"), "Microsoft Research")
     val Ribeiro = Person("Márcio", "Ribeiro", URL("http://www.ic.ufal.br/marcio"), "Federal University of Alagoas")
     val Borba = Person("Paulo", "Borba", URL("http://www.cin.ufpe.br/~phmb/"), "Federal University of Pernambuco")
     val HNguyen = Person("Hung Viet", "Nguyen", URL("http://home.engineering.iastate.edu/~hungnv/"), "Iowa State University")
@@ -204,6 +204,7 @@ object Coauthors {
     val Hu = Person("Grace", "Hu", "McGill University")
     val Li = Person("Sixian", "Li", "McGill University")
     val Wu = Person("Tongshuang", "Wu", "Carnegie Mellon University")
+    val XZhao = Person("Xinran", "Zhao", "Carnegie Mellon University")
     val Maffey = Person("Katherine R.", "Maffey", "AI Integration Center, U.S. Army")
     val Dotterrer = Person("Kyle", "Dotterrer", "AI Integration Center, U.S. Army")
     val Niemann = Person("Jennifer", "Niemann", "AI Integration Center, U.S. Army")
@@ -222,9 +223,50 @@ object Coauthors {
     val Papademetris = Person("Xenophon", "Papademetris", "Yale University")
     val Menon = Person("Menon", "Alka", "Yale University")
     val Yuan = Person("Yuan", "Lirong", "Carnegie Mellon University")
-    val He = Person("He", "Hao", URL("https://hehao98.github.io"), "Carnegie Mellon University")
-
+    val He = Person("Hao", "He", URL("https://hehao98.github.io"), "Carnegie Mellon University")
+    val Mockus = Person("Audris", "Mockus", "University of Tennesee")
+    val Jahanshahi = Person("Mahmoud", "Jahanshahi", "University of Tennesee")
+    val Fiellin = Person("Lynn", "Fiellin", "Dartmouth College")
+    val Hong = Person("Yining", "Hong", "Carnegie Mellon University")
+    val Butler = Person("Jenna", "Butler", "Microsoft Research")
+    val Zimmermann = Person("Thomas", "Zimmermann", "Microsoft Research")
+    val Bird = Person("Christian", "Bird", "Microsoft Research")
+    val She = Person("Yining", "She", "Carnegie Mellon University")
+    val SBiswas = Person("Sumon", "Biswas", "Case Western Reserve University")
+    val Benedetti = Person("Giacomo","Benedetti", "University of Genoa")
+    val Verderame = Person("Luca","Verderame", "University of Genoa")
+    val Merlo = Person("Alessio","Merlo","CASD - School of Advanced Defense Studies")
+    val Solarin = Person("Oreofe","Solarin", "Case Western Reserve University")
+    val Tystahl = Person("Greg", "Tystahl", "North Carolina State University")
+    val Enck = Person("William", "Enck", "North Carolina State University")
+    val Kapravelos = Person("Alexandros", "Kapravelos", "North Carolina State University")
+    val Xiao = Person("Tesi", "Xiao", "Amazon")
+    val Shavlovsky = Person("Michael", "Shavlovsky", "Amazon")
+    val Padhye = Person("Rohan", "Padhye", URL("https://rohan.padhye.org"), "Carnegie Mellon University")
+    val Vikram = Person("Vasudev", "Vikram", URL("https://vasumv.github.io"), "Carnegie Mellon University")
+    val Baik = Person("Haesue", "Baik", "University of Michigan")
+    val Tjaden = Person("Jacob", "Tjaden", "Colby College")
+    val Gilles = Person("Inès M.", "Gilles", "Yale University")
+    val Mekonnen = Person("Fikir", "Mekonnen", "Yale University")
+    val Hsieh = Person("Jane", "Hsieh", "Carnegie Mellon University")
+    val HYang = Person("Haoqin", "Yang", "Carnegie Mellon University")
+    val Burckhardt = Person("Philipp", "Burckhardt", "Socket Inc.")
+    val WChen = Person("Weigen", "Chen", "Carnegie Mellon University")
+    val Lin = Person("Elizabeth", "Lin", "North Carolina State University")
+    val Gheibi = Person("Omid", "Gheibi", "")
+    val Shi = Person("Yike", "Shi", "Carnegie Mellon University")
+    val QMa = Person("Qianou", "Ma", "Carnegie Mellon University")
+    val Liu = Person("Michael Xieyang", "Liu", "Google Deepmind")
+    val YChen = Person("Yanxin", "Chen", "Carnegie Mellon University")
+    val Deng = Person("Wesley Hanwen", "Deng", "Carnegie Mellon University")
+    val Holstein = Person("Ken", "Holstein", "Carnegie Mellon University")
+    val Eslami = Person("Motahhare", "Eslami", "Carnegie Mellon University")
+    val Doshi = Person("Aarya", "Doshi", "Georgia Institute of Technology")
+    val Xu = Person("Congying", "Xu", "The Hong Kong University of Science and Technology")
+    val SAgarwal = Person("Shyam", "Agarwal", "Carnegie Mellon University")
 }
+
+
 
 object Topics {
 
@@ -265,6 +307,8 @@ object Topics {
     val survey = Topic("Literature survey")
     val policy = Topic("Policy design")
     val reu = Topic("REU-student involvement")
+    val requirements = Topic("Requirements engineering")
+    val aicoding = Topic("Agentic Coding")
 
 }
 
@@ -2118,7 +2162,7 @@ object CVPublications {
             by embedding XML Schema, a metalanguage to define
             XML languages.                                """
     ).
-        note("**Distinguished Paper Award and Most Influencial Paper Award in 2021**").topic(dsl, parsing)
+        note("**Distinguished Paper Award in 2011 and Most Influencial Paper Award in 2021**").topic(dsl, parsing)
 
 
     val oopsla11demo_sugarj = InProceedings(
@@ -2793,7 +2837,7 @@ object CVPublications {
     val fosplbook = Book(
         Seq(Apel, Batory, Kaestner, Saake),
         "Feature-Oriented Software Product Lines: Concepts and Implementation",
-        Venue("", 2013, "", KBook).publisher(Springer),
+        Venue("", 2013, "", KBook).publisher(Springer).isbn("978-3-642-37520-0"),
         Map(HTTP -> URL("http://www.springer.com/computer/swe/book/978-3-642-37520-0")),
         """
           |While standardization has empowered the software industry to substantially scale software development and to provide affordable software to a broad market, it often does not address smaller market segments, nor the needs and wishes of individual customers.  Software product lines reconcile mass production and standardization with mass customization in software engineering. Ideally, based on a set of reusable parts, a software manufacturer can generate a software product based on the requirements of its customer. The concept of features is central to achieving this level of automation, because features bridge the gap between the requirements the customer has and the functionality a product provides. Thus features are a central concept in all phases of product-line development.
@@ -4953,7 +4997,7 @@ for requirements, data, and integration, as well as corresponding
 team patterns and challenges. We find that most of these challenges
 center around communication, documentation, engineering, and
 process and collect recommendations to address these challenges
-        """).topic(seai).selected().note("**Distinguished Paper Award**")
+        """).topic(seai,requirements).selected().note("**Distinguished Paper Award**")
 
 
     val seis22 = InProceedings(
@@ -5198,14 +5242,14 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         """
         Current model testing work has mostly focused on creating test cases. Identifying what to test is a step that is largely ignored and poorly supported. We propose Weaver, an interactive tool that supports requirements elicitation for guiding model testing. Weaver uses large language models to generate knowledge bases and recommends concepts from them interactively, allowing testers to elicit requirements for further testing. Weaver provides rich external knowledge to testers and encourages testers to systematically explore diverse concepts beyond their own biases. In a user study, we show that both NLP experts and non-experts identified more, as well as more diverse concepts worth testing when using Weaver. Collectively, they found more than 200 failing test cases for stance detection with zero-shot ChatGPT. Our case studies further show that Weaver can help practitioners test models in real-world settings, where developers define more nuanced application scenarios (e.g., code understanding and transcript summarization) using LLMs.
         """
-        ).topic(seai, testing).selected()
+        ).topic(seai, testing, requirements).selected()
 
 
     val icsenier24 = InProceedings(
         Seq(Boughton, Miller, Acar, Wermke, Kaestner),
         "Decomposing and Measuring Trust in Open-Source Software Supply Chains",
         Conference("ICSE-NIER", 2024, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4),
-        ToAppear(),
+        Pages(57,61),
         Map(PDF -> PDFFile("icsenier24.pdf"),
             DOI -> DOI("10.1145/3639476.3639775")),
         """
@@ -5218,8 +5262,9 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "(Why) Is My Prompt Getting Worse? Rethinking Regression Testing for Evolving LLM APIs",
        Conference("CAIN", 2024, "International Conference on AI Engineering - Software Engineering for AI").
             month(4).location("Lisbon"),
-        ToAppear(),
-        Map(PDF -> PDFFile("cain24.pdf")),
+        Pages(166,171),
+        Map(PDF -> PDFFile("cain24.pdf"),
+            DOI->DOI("3644815.3644950")),
         """
        Large Language Models (LLMs) are increasingly integrated into software applications. Downstream application developers often access LLMs through APIs provided as a service. However, LLM APIs are often updated silently and scheduled to be deprecated, forcing users to continuously adapt to evolving models. This can cause performance regression and affect prompt design choices, as evidenced by our case study on toxicity detection. Based on our case study, we emphasize the need for and re-examine the concept of regression testing for evolving LLM APIs. We argue that regression testing LLMs requires fundamental changes to traditional testing approaches, due to different correctness notions, prompting brittleness, and non-determinism in LLM APIs."""
     ).topic(seai, testing, reu)
@@ -5247,7 +5292,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         """
         Past research suggests software should be continuously maintained in order to remain useful in our digital society. To determine whether these studies on software evolution are supported in modern-day software libraries, we conduct a natural experiment on 26,050 GitHub repositories, statistically modeling library usage based on their package-level downloads against different factors related to project maintenance.
         """
-    ).topic(empirical, opensource, reu).note("SPLASH student research competition")
+    ).topic(empirical, opensource, reu).note("FSE student research competition")
 
     
 
@@ -5260,17 +5305,369 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         Map(PDF -> PDFFile("facct24.pdf"),
     		DOI->DOI("10.1145/3630106.3659028")),
         """With the rise of artificial intelligence (AI), concerns about AI applications causing unforeseen harms to safety, privacy, security, and fairness are intensifying. While attempts to create regulations are underway, with initiatives such as the EU AI Act and the 2023 White House executive order, skepticism abounds as to the efficacy of such regulations. This paper explores an interdisciplinary approach to designing policy for the explainability of AI-based products, as the widely discussed "right to explanation" in the EU General Data Protection Regulation is ambiguous. To develop practical guidance for explainability, we conducted an experimental study that involved continuous collaboration among a team of researchers with AI and policy backgrounds over the course of ten weeks. The objective was to determine whether, through interdisciplinary effort, we can reach consensus on a policy for explainability in AI—one that is clearer, and more actionable and enforceable than current provisions. We share nine observations, derived from an iterative policy design process, which included drafting the policy, attempting to comply with it (or circumvent it), and collectively evaluating its effectiveness on a weekly basis. The observations include: iterative and continuous feedback was useful to improve policy drafts over time, discussing what evidence would satisfy policy was necessary during policy design, and human-subject studies were found to be necessary evidence to ensure effectiveness. We conclude with a note of optimism, arguing that meaningful policies can be achieved within a moderate time frame and with limited experience in policy design, as demonstrated by our student researchers on the team. This holds promising implications for policymakers, signaling that practical and effective regulation for AI applications is attainable."""
-    ).topic(seai, policy, reu).selected()
+    ).topic(seai, policy, reu, requirements).selected()
 
 
+
+
+    val icse25_abandonment = InProceedings(
+        Seq(Miller, Jahanshahi, Mockus, Vasilescu, Kaestner),
+        "Understanding the Response to Open-Source Dependency Abandonment in the npm Ecosystem",
+        ICSE(2025).location("Ottawa").month(4),
+        Pages(2355, 2367),
+        Map(PDF->PDFFile("icse25_abandonment.pdf"),
+            DOI->DOI("10.1109/ICSE55347.2025.00004"),
+            HTTP->URL("https://www.computer.org/csdl/proceedings-article/icse/2025/056900a038/215aWo66OTS")),
+        """Many developers relying on open-source digital infrastructure expect continuous maintenance, but even the most critical packages can become unmaintained. Despite this, there is little understanding of the prevalence of abandonment of widely-used packages, of subsequent exposure, and of reactions to abandonment in practice, or the factors that influence them. We perform a large-scale quantitative analysis of all widely-used npm packages and find that abandonment is common among them, that abandonment exposes many projects which often do not respond, that responses correlate with other dependency management practices, and that removal is significantly faster when a projects end-of-life status is explicitly stated. We end with recommendations to both researchers and practitioners who are facing dependency abandonment or are sunsetting projects, such as opportunities for low-effort transparency mechanisms to help exposed projects make better, more informed decisions."""
+    ).topic(opensource,empirical).selected().note("**Distinguished Paper Award**")
+
+
+    val icse25_mlopensource = InProceedings(
+        Seq(Nahar, HZhang, Lewis, Zhou, Kaestner),
+        "The Product Beyond the Model -- An Empirical Study of Repositories of Open-Source ML Products",
+        ICSE(2025).location("Ottawa").month(4),
+        Pages(1540, 1552),
+        Map(PDF->PDFFile("icse25_mlopensource.pdf"),
+            HTTP->URL("https://www.computer.org/csdl/proceedings-article/icse/2025/056900a063/215aWuf2vss"),
+            DOI->DOI("10.1109/ICSE55347.2025.00006")
+        ),
+        """
+        Machine learning (ML) components are increasingly incorporated into software products for end-users, but developers face challenges in transitioning from ML prototypes to products. Academics have limited access to the source of commercial ML products, challenging research progress. In this study, first, we contribute a novel process to identify 262 open-source ML products among more than half a million ML-related projects on GitHub. Then, we qualitatively and quantitatively analyze 30 open-source ML products to answer six broad research questions about development practices and system architecture. We find that the majority of the ML products in our sample represent startup-style development reported in past interview studies. We report 21 findings, including limited involvement of data scientists in many ML products, unusually low modularity between ML and non-ML code, diverse architectural choices on incorporating models into products, and limited prevalence of industry best practices such as model testing, pipeline automation, and monitoring. Additionally, we discuss 7 implications of this study on research, development, and education, including the need for tools to assist teams without data scientists, education opportunities, and open-source-specific research for privacy-preserving telemetry.
+        """).topic(seai,opensource,empirical).selected()
+
+
+    val aies24 = InProceedings(
+        Seq(Menon, Omar, Nahar, Papademetris, Fiellin, Kaestner),
+        "Lessons from Clinical Communications for AI Systems",
+       Conference("AIES", 2024, "AAAI Conference on AI, Ethics, and Society").
+            month(10).location("San Jose, CA"),
+        Pages(958,970),
+        Map(PDF -> PDFFile("aies24.pdf"),
+            HTTP->URL("https://ojs.aaai.org/index.php/AIES/article/view/31695"),
+            DOI->DOI("10.1609/aies.v7i1.31695")
+        ),
+        """One of the major challenges in the use of opaque, complex AI models is the need or desire to provide an explanation to the end-user (and other stakeholders) as to how the system arrived at the answer it did. While there is significant research in the development of explainability techniques for AI, the question remains as to who needs an explanation, what an explanation consists of, and how to communicate this to a lay user who lacks direct expertise in the area. In this position paper, an interdisciplinary team of researchers argue that the example of clinical communications offers lessons to those interested in improving the transparency and interpretability of AI systems. We identify five lessons from clinical communications: (1) offering explanations for AI systems and disclosure of their use recognizes the dignity of those using and impacted by it; (2) AI explanations can be productively targeted rather than totally comprehensive; (3) AI explanations can be enforced through codified rules but also norms, guided by core values; (4) what constitutes a “good” AI explanation will require repeated updating due to changes in technology and social expectations; 5) AI explanations will have impacts beyond defining any one AI system, shaping and being shaped by broader perceptions of AI. We review the history, debates and consequences surrounding the institutionalization of one type of clinical communication, informed consent, in order to illustrate the challenges and opportunities that may await attempts to offer explanations of opaque AI models. We highlight takeaways and implications for computer scientists and policymakers in the context of growing concerns and moves toward AI governance."""
+    ).topic(seai, policy)
+
+
+    val ase24 = InProceedings(
+        Seq(Yang, Hong, Lewis, Wu, Kaestner),
+        "What Is Wrong with My Model? Identifying Systematic Problems with Semantic Data Slicing",
+        ASE(2024).month(11).acceptanceRate(118+37,587).location("Sacramento, CA"),
+        Pages(306,318),
+        Map(PDF->PDFFile("ase24.pdf"),
+            HTTP->URL("https://dl.acm.org/doi/abs/10.1145/3691620.3695033"),
+            DOI->DOI("10.1145/3691620.3695033")
+        ),
+        """
+        Machine learning models make mistakes, yet sometimes it is difficult to identify the systematic problems behind the mistakes. Practitioners engage in various activities, including error analysis, testing, auditing, and red-teaming, to form hypotheses of what can go (or has gone) wrong with their models. To validate these hypotheses, practitioners employ data slicing to identify examples relevant to their hypotheses. However, traditional data slicing is limited by available features and programmatic slicing functions. In this work, we propose SemSlicer, a framework that supports semantic data slicing, which identifies a semantically coherent slice, without the need for existing features. SemSlicer uses Large Language Models (LLMs) to annotate datasets and generate slices from any user-defined slicing criteria. We show that SemSlicer generates accurate slices with low cost, allows flexible trade-offs between different design dimensions, reliably identifies under-performing data slices, and helps practitioners identify useful data slices that reflect systematic problems.
+        """).topic(seai,reu).selected()
+
+
+    val arxiv24_llm_at_microsoft = TechReport(
+        Seq(Nahar, Kaestner, Butler, Parnin, Zimmermann, Bird),
+        "Beyond the Comfort Zone: Emerging Solutions to Overcome Challenges in Integrating LLMs into Software Products",
+        2024, 10, ARXIV, "2410.12071",
+        Map(HTTP -> URL("https://arxiv.org/abs/2410.12071")),
+        """
+        Large Language Models (LLMs) are increasingly embedded into software products across diverse industries, enhancing user experiences, but at the same time introducing numerous challenges for developers. Unique characteristics of LLMs force developers, who are accustomed to traditional software development and evaluation, out of their comfort zones as the LLM components shatter standard assumptions about software systems. This study explores the emerging solutions that software developers are adopting to navigate the encountered challenges. Leveraging a mixed-method research, including 26 interviews and a survey with 332 responses, the study identifies 19 emerging solutions regarding quality assurance that practitioners across several product teams at Microsoft are exploring. The findings provide valuable insights that can guide the development and evaluation of LLM-based products more broadly in the face of these challenges.        
+        """).topic(seai)
+
+
+
+    val icse25_reproduciblebuilds = InProceedings(
+        Seq(Benedetti, Solarin, Miller, Tystahl, Enck, Kaestner, Kapravelos, Merlo, Verderame),
+        "An Empirical Study on Reproducible Packaging in Open-Source Ecosystems",
+        ICSE(2025).location("Ottawa").month(4),
+        Pages(1052,1063),
+        Map(PDF->PDFFile("icse25_rb.pdf"),
+            HTTP->URL("https://ieeexplore.ieee.org/abstract/document/11029905"),
+            DOI->DOI("10.1109/ICSE55347.2025.00136")
+        ),
+        """
+        The integrity of software builds is fundamental to the security of the software supply chain. While Thompson first raised the potential for attacks on build infrastructure in 1984, limited attention has been given to build integrity in the past 40 years, enabling recent attacks on SolarWinds, event-stream, and xz. The best-known defense against build system attacks is creating reproducible builds; however, achieving them can be complex for both technical and social reasons and thus is often viewed as impractical to obtain. In this paper, we analyze reproducibility of builds in a novel context: reusable components distributed as packages in six popular software ecosystems (npm, Maven, PyPI, Go, RubyGems, and Cargo). Our quantitative study on a representative sample of 4000 packages in each ecosystem raises concerns: Rates of reproducible builds vary widely between ecosystems, with some ecosystems having all packages reproducible whereas others have \issues in nearly every package. However, upon deeper investigation, we identified that with relatively straightforward infrastructure configuration and patching of build tools, we can achieve very high rates of reproducible builds in all studied ecosystems. We conclude that if the ecosystems adopt our suggestions, the build process of published packages can be independently confirmed for nearly all packages without individual developer actions, and doing so will prevent significant future software supply chain attacks.
+
+        """).topic(security,opensource,empirical, reu)
+
+
+
+    val icse25_longtermfairness = InProceedings(
+        Seq(She, SBiswas, Kaestner, Kang),
+        "FairSense: Long-Term Fairness Analysis of ML-Enabled Systems",
+        ICSE(2025).location("Ottawa").month(4),
+        Pages(782,794),
+        Map(HTTP->URL("https://arxiv.org/abs/2501.01665"),
+            PDF->PDFFile("icse25_ltfairness.pdf"),
+            DOI -> DOI("10.1109/ICSE55347.2025.00159"),
+        ),
+        """
+        Algorithmic fairness of machine learning (ML) models has raised significant concern in the recent years. Many testing, verification, and bias mitigation techniques have been proposed to identify and reduce fairness issues in ML models. The existing methods are model-centric and designed to detect fairness issues under static settings. However, many ML-enabled systems operate in a dynamic environment where the predictive decisions made by the system impact the environment, which in turn affects future decision-making. Such a self-reinforcing feedback loop can cause fairness violations in the long term, even if the immediate outcomes are fair. In this paper, we propose a simulation-based framework called FairSense to detect and analyze long-term unfairness in ML-enabled systems. In particular, the framework targets systems with an ML model that is trained over tabular data using supervised learning. Given a fairness requirement, FairSense performs Monte-Carlo simulation to enumerate evolution traces for each system configuration. Then, FairSense performs sensitivity analysis on the space of system parameters to understand the impact of configuration decisions on long-term fairness of the system. We demonstrate FairSense's potential utility through three real-world case studies: Loan lending, opioids risk scoring, and predictive policing.
+        """).topic(seai, requirements)
+
+
+    val icseseip25 = InProceedings(
+        Seq(Nahar, Kaestner, Butler, Parnin, Zimmermann, Bird),
+        "Beyond the Comfort Zone: Emerging Solutions to Overcome Challenges in Integrating LLMs into Software Products",
+        Conference("ICSE-SEIP", 2025, "Proc. International Conference on Software Engineering -- Software Engineering in Practice Track").month(4),        
+        Pages(516,527),
+        Map(HTTP -> URL("https://arxiv.org/abs/2410.12071"),
+            DOI->DOI("10.1109/ICSE-SEIP66354.2025.00051")
+            ),
+        """
+        Large Language Models (LLMs) are increasingly embedded into software products across diverse industries, enhancing user experiences, but at the same time introducing numerous challenges for developers. Unique characteristics of LLMs force developers, who are accustomed to traditional software development and evaluation, out of their comfort zones as the LLM components shatter standard assumptions about software systems. This study explores the emerging solutions that software developers are adopting to navigate the encountered challenges. Leveraging a mixed-method research, including 26 interviews and a survey with 332 responses, the study identifies 19 emerging solutions regarding quality assurance that practitioners across several product teams at Microsoft are exploring. The findings provide valuable insights that can guide the development and evaluation of LLM-based products more broadly in the face of these challenges.
+        """).topic(seai).selected()
+
+
+
+    val iui25 = InProceedings(
+        Seq(Yang, Xiao, Shavlovsky, Kaestner, Wu),
+        "Orbit: A Framework for Designing and Evaluating Multi-objective Rankers",
+        Conference("IUI", 2025, "Proc. International Conference on Intelligent User Interfaces").month(3),        
+        Pages(1093, 1106),
+        Map(HTTP -> URL("https://dl.acm.org/doi/full/10.1145/3708359.3712092"),
+            DOI->DOI("10.1145/3708359.3712092")),
+        """
+        Machine learning in production needs to balance multiple objectives:
+        This is particularly evident in ranking or recommendation models, where conflicting objectives such as user engagement, satisfaction, diversity, and novelty must be considered at the same time. 
+        However, designing multi-objective rankers is inherently a dynamic wicked problem -- there is no single optimal solution, and the needs evolve over time. 
+        Effective design requires collaboration between cross-functional teams and careful analysis of a wide range of information.
+        In this work, we introduce Orbit, a conceptual framework for Objective-centric Ranker Building and Iteration.
+        The framework places objectives at the center of the design process, to serve as boundary objects for communication and guide practitioners for design and evaluation.
+        We implement Orbit as an interactive system, which enables stakeholders to interact with objective spaces directly and supports real-time exploration and evaluation of design trade-offs. 
+        We evaluate Orbit through a user study involving twelve industry practitioners, showing that it supports efficient design space exploration, leads to more informed decision-making, and enhances awareness of the inherent trade-offs of multiple objectives. 
+        Orbit (1) opens up new opportunities of an objective-centric design process for any multi-objective ML models, as well as (2) sheds light on future designs that push practitioners to go beyond a narrow metric-centric or example-centric mindset.        
+        """).topic(seai)
+
+    val sbft25 = InProceedings(
+        Seq(Baik, Yang, Vikram, Jamshidi, Padhye, Kaestner),
+        "Differential Performance Fuzzing of Configuration Options",
+        Workshop("SBFT", 2025, "International Workshop on Search-Based and Fuzz Testing").month(4).location("Ottawa"),
+        ToAppear(),
+        Map(PDF->PDFFile("sbft25.pdf")),
+        """
+        Highly-configurable software often includes performance-sensitive configuration options. There are performance expectations across different configurations, but these expectations may not hold, due to inaccurate mental models, corner cases, or unanticipated interactions with other options. We propose differential performance fuzzing of configuration options, a fuzzing technique that uses differential performance feedback to automatically identify inputs that violate these expectations for specific configuration changes. By guiding fuzzing toward scenarios where a supposedly faster configuration performs worse, differential performance fuzzing reveals unexpected performance behavior effectively. In our preliminary evaluation, our method identified unexpected performance gains in configurations presumed slower for 4 configuration options in Closure, demonstrating the potential for detecting performance issues in real-world applications.
+        """
+    ).topic(seai,testing,reu)
+
+
+    val cain25 = InProceedings(
+        Seq(Hong, Timperley, Kaestner),
+        "From Hazard Identification to Control Design: Proactive and AI-Supported Safety Engineering for ML-powered Systems",
+       Conference("CAIN", 2025, "International Conference on AI Engineering - Software Engineering for AI").
+            month(4),
+        Pages(113,118),
+        Map(PDF->PDFFile("cain25.pdf"),
+            DOI->DOI("10.1109/CAIN66642.2025.00021")),
+        """
+        Machine learning (ML) components are increasingly integrated into software products, yet their complexity and inherent uncertainty often lead to unintended and potentially hazardous consequences, both for individuals and society at large. Despite these risks, practitioners rarely adopt proactive approaches to anticipate and mitigate potential hazards before they occur. Traditional safety engineering approaches, such as Failure Mode and Effects Analysis (FMEA) and System Theoretic Process Analysis (STPA), offer promising frameworks for systematic early risk identification but are rarely adopted. In this position paper, we argue that hazard analysis should be an integral part of developing any ML-powered software product and that greater support is needed to make this process manageable for developers. By using large language models (LLMs) to partially automate a modified STPA process with human oversight at critical steps, we expect to address two key challenges: the heavy dependency on highly experienced safety engineering experts, and the time-consuming, labor-intensive nature of traditional hazard analysis, which often impedes its integration into real-world development workflows. We illustrate our approach with a running example, demonstrating that many seemingly unanticipated issues can, in fact, be anticipated. We conclude with a call to action for the software engineering community to adopt proactive safety engineering practices for ML-powered systems.  
+        """
+        ).topic(seai)
+
+
+    val arxiv24_fakestars = TechReport(
+        Seq(He, HYang, Burckhardt, Kapravelos, Vasilescu, Kaestner),
+        "4.5 Million (Suspected) Fake Stars in GitHub: A Growing Spiral of Popularity Contests, Scams, and Malware",
+        2024, 12, ARXIV, "2412.13459",
+        Map(HTTP -> URL("https://arxiv.org/abs/2412.13459")),
+        """
+        GitHub, the de-facto platform for open-source software development, provides a set of social-media-like features to signal high-quality repositories. Among them, the star count is the most widely used popularity signal, but it is also at risk of being artificially inflated (i.e., faked), decreasing its value as a decision-making signal and posing a security risk to all GitHub users. In this paper, we present a systematic, global, and longitudinal measurement study of fake stars in GitHub. To this end, we build StarScout, a scalable tool able to detect anomalous starring behaviors (i.e., low activity and lockstep) across the entire GitHub metadata. Analyzing the data collected using StarScout, we find that: (1) fake-star-related activities have rapidly surged since 2024; (2) the user profile characteristics of fake stargazers are not distinct from average GitHub users, but many of them have highly abnormal activity patterns; (3) the majority of fake stars are used to promote short-lived malware repositories masquerading as pirating software, game cheats, or cryptocurrency bots; (4) some repositories may have acquired fake stars for growth hacking, but fake stars only have a promotion effect in the short term (i.e., less than two months) and become a burden in the long term. Our study has implications for platform moderators, open-source practitioners, and supply chain security researchers.
+        """
+    ).topic(security,opensource,empirical,reu)
+
+
+    val fse25 = Article(
+        Seq(He, Vasilescu, Kaestner),
+        "Pinning Is Futile: You Need More Than Local Dependency Versioning to Defend Against Supply Chain Attacks",
+        Journal("FSE", 2025, "Proceedings of the ACM on Software Engineering").volume(2).issue("FSE").month(6).location("Trondheim"),
+        Pages(266, 289),
+        Map(PDF->PDFFile("fse25.pdf"),
+            DOI->DOI("10.1145/3715728"),
+            HTTP->URL("https://dl.acm.org/doi/10.1145/3715728")),
+        """
+Recent high-profile incidents in open-source software have greatly raised practitioner attention on software
+supply chain attacks. To guard against potential malicious package updates, security practitioners advocate
+pinning dependency to specific versions rather than floating in version ranges. However, it remains controversial whether pinning carries a meaningful security benefit that outweighs the cost of maintaining
+outdated and possibly vulnerable dependencies. In this paper, we quantify, through counterfactual analysis and
+simulations, the security and maintenance impact of version constraints in the npm ecosystem. By simulating
+dependency resolutions over historical time points, we find that pinning direct dependencies not only (as
+expected) increases the cost of maintaining vulnerable and outdated dependencies, but also (surprisingly) even
+increases the risk of exposure to malicious package updates in larger dependency graphs due to the specifics
+of npm’s dependency resolution mechanism. Finally, we explore collective pinning strategies to secure the
+ecosystem against supply chain attacks, suggesting specific changes to npm to enable such interventions. Our
+study provides guidance for practitioners and tool designers to manage their supply chains more securely.
+        """).topic(opensource,empirical).selected().note("**Distinguished Paper Award**")
+
+
+
+    val icse25_src= InProceedings(
+        Seq(Tjaden),
+        "The Balancing Act of Policies in Developing Machine Learning Explanations",
+        Venue("ICSE-SRC", 2025, "International Conference on Software Engineering (Companion)", KWorkshopDemoTool).publisher(ACM),
+        Pages(237,238),
+        Map(DOI->DOI("10.1109/ICSE-Companion66252.2025.00076")),
+        """
+        Machine learning models are often criticized as opaque from a lack of transparency in their decision-making process. This study examines how policy design impacts the quality of explanations in ML models. We conducted a classroom experiment with 124 participants and analyzed the effects of policy length and purpose on developer compliance with policy requirements. Our results indicate that while policy length affects engagement with some requirements, policy purpose has no effect, and explanation quality is generally poor. These findings highlight the challenge of effective policy development and the importance of addressing diverse stakeholder perspectives within explanations.
+        """
+    ).topic(seai, policy, reu, experiment).note("ICSE student research competition, first place")
+
+    
+    val arxiv25_explainability = TechReport(
+        Seq(Omar, Nahar, Tjaden, Gilles, Mekonnen, Hsieh, Kaestner, Menon),
+        "Beyond Accuracy, SHAP, and Anchors -- On the difficulty of designing effective end-user explanations",
+        2025, 1, ARXIV, "2503.15512",
+        Map(HTTP -> URL("https://arxiv.org/abs/2503.15512")),
+        """
+        Modern machine learning produces models that are impossible for users or developers to fully understand -- raising concerns about trust, oversight and human dignity. Transparency and explainability methods aim to provide some help in understanding models, but it remains challenging for developers to design explanations that are understandable to target users and effective for their purpose. Emerging guidelines and regulations set goals but may not provide effective actionable guidance to developers. In a controlled experiment with 124 participants, we investigate whether and how specific forms of policy guidance help developers design explanations for an ML-powered screening tool for diabetic retinopathy. Contrary to our expectations, we found that participants across the board struggled to produce quality explanations, comply with the provided policy requirements for explainability, and provide evidence of compliance. We posit that participant noncompliance is in part due to a failure to imagine and anticipate the needs of their audience, particularly non-technical stakeholders. Drawing on cognitive process theory and the sociological imagination to contextualize participants' failure, we recommend educational interventions.
+        """).topic(seai, policy, reu, experiment)
+
+
+    val icse26_abandonment = InProceedings(
+        Seq(Miller, He, WChen, Lin, Yang, Vasilescu, Kaestner),
+        "Designing Abandabot: When Does Open Source Dependency Abandonment Matter?",
+        ICSE(2026).location("Rio de Janeiro").month(4),
+        ToAppear(),
+        Map(PDF->PDFFile("icse26_abandabot.pdf")),
+        """Despite the inevitable risk that depending on abandoned open source dependencies poses, many developers feel a lack of resources and guidance on how to deal with this. Automated detection of abandonment is feasible, but not all abandoned dependencies impact a downstream project equally.In this paper, we perform a need-finding interview study with 22 open source maintainers to explore what makes the abandonment of certain dependencies impactful to their project, as well as their information needs and design requirements for such an automated notification tool. We find four main factors, the depth of integration, the availability of alternatives, the importance of the functionality, and external environmental pressures. Using this emerging theory, we then build an LLM-based classifier to predict the impact of a dependency's abandonment in a given context, and evaluate it with an independent user study with 124 open source maintainers. Our results show that the classifier is effective at predicting whether a dependency's abandonment would be impactful to a project, and that theory-based explanations given by the LLM are useful to developers when making judgments about the potential impactfulness of a given dependency's abandonment."""
+    ).topic(opensource,empirical).selected()
+
+
+    val icse26_fakestars = InProceedings(
+        Seq(He, HYang, Burckhardt, Kapravelos, Vasilescu, Kaestner),
+        "Six Million (Suspected) Fake Stars on GitHub: A Growing Spiral of Popularity Contests, Spams, and Malware",
+        ICSE(2026).location("Rio de Janeiro").month(4),
+        ToAppear(),
+        Map(HTTP -> URL("https://arxiv.org/abs/2412.13459")),
+        """GitHub, the de-facto platform for open-source software development, provides a set of social-media-like features to signal high-quality repositories. Among them, the star count is the most widely used popularity signal, but it is also at risk of being artificially inflated (i.e., faked), decreasing its value as a decision-making signal and posing a security risk to all GitHub users. In this paper, we present a systematic, global, and longitudinal measurement study of fake stars in GitHub. To this end, we build StarScout, a scalable tool able to detect anomalous starring behaviors across the entire GitHub metadata in the last five years. Analyzing the data collected using StarScout, we find that: (1) fake-star-related activities have rapidly surged since 2024; 2) the accounts and repositories in fake star campaigns have highly trivial activity patterns; (3) the majority of fake stars are used to promote short-lived phishing malware repositories; the remaining ones are mostly used to promote AI/LLM, blockchain, tool/application, and tutorial/demo repositories; (4) while repositories may have acquired fake stars for growth hacking, fake stars only have a promotion effect in the short term (i.e., less than two months) and become a liability in the long term. Our study has implications for platform moderators, open-source practitioners, and supply chain security researchers."""
+    ).topic(security,opensource,empirical,reu).selected()
+
+
+    val arxiv25_performancemodeling = TechReport(
+        Seq(Gheibi, Kaestner, Jamshidi),
+        "Hardness, Structural Knowledge, and Opportunity: An Analytical Framework for Modular Performance Modeling",
+        2025, 9, ARXIV, "2509.11000",
+        Map(HTTP -> URL("https://arxiv.org/abs/2509.11000")),
+        """
+        Performance-influence models are beneficial for understanding how configurations affect system performance, but their creation is challenging due to the exponential growth of configuration spaces. While gray-box approaches leverage selective "structural knowledge" (like the module execution graph of the system) to improve modeling, the relationship between this knowledge, a system's characteristics (we call them "structural aspects"), and potential model improvements is not well understood. This paper addresses this gap by formally investigating how variations in structural aspects (e.g., the number of modules and options per module) and the level of structural knowledge impact the creation of "opportunities" for improved "modular performance modeling". We introduce and quantify the concept of modeling "hardness", defined as the inherent difficulty of performance modeling. Through controlled experiments with synthetic system models, we establish an "analytical matrix" to measure these concepts. Our findings show that modeling hardness is primarily driven by the number of modules and configuration options per module. More importantly, we demonstrate that both higher levels of structural knowledge and increased modeling hardness significantly enhance the opportunity for improvement. The impact of these factors varies by performance metric; for ranking accuracy (e.g., in debugging task), structural knowledge is more dominant, while for prediction accuracy (e.g., in resource management task), hardness plays a stronger role. These results provide actionable insights for system designers, guiding them to strategically allocate time and select appropriate modeling approaches based on a system's characteristics and a given task's objectives.
+        """
+    ).topic(spl, nfp)
+    
+    val arxiv25_underspec = TechReport(
+        Seq(Yang, Shi, QMa, Liu, Kaestner, Wu),
+        "What Prompts Don't Say: Understanding and Managing Underspecification in LLM Prompts",
+        2025, 05, ARXIV, "2505.13360",
+        Map(HTTP -> URL("https://arxiv.org/abs/2505.13360")),
+        """
+        Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
+        """
+    ).topic(seai, testing, requirements)
+    
+    val arxiv25_sticky = TechReport(
+        Seq(Nahar, Yang, YChen, Deng, Holstein, Eslami, Kaestner),
+        "\"I Don't Think RAI Applies to My Model\" -- Engaging Non-champions with Sticky Stories for Responsible AI Work",
+        2025, 9, ARXIV, "2509.22858",
+        Map(HTTP -> URL("https://arxiv.org/abs/2509.22858")),
+        """
+        Responsible AI (RAI) tools -- checklists, templates, and governance processes -- often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories -- narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
+        """
+    ).topic(seai, requirements)
+
+
+
+    val icsenier26 = InProceedings(
+        Seq(Doshi, Hong, Xu, Kang, Kapravelos, Kaestner),
+        "Towards Verifiably Safe Tool Use for LLM Agents",
+        Conference("ICSE-NIER", 2026, "Proc. International Conference on Software Engineering -- New Ideas Track").month(4),
+        ToAppear(),
+        Map(),
+        """
+        Large language model (LLM)-based AI agents extend LLM capabilities by enabling access to tools such as data sources, APIs, search engines, code sandboxes, and even other agents. While this empowers agents, unintended tool interactions may also introduce risks, such as leaking sensitive data or overwriting critical records, which are unacceptable in enterprise contexts. Current approaches, such as model-based safeguards, enhance reliability but cannot guarantee system safety. Methods like information flow control (IFC) and temporal constraints aim to provide guarantees but often require extensive human annotation. We propose a process that starts with applying System-Theoretic Process Analysis (STPA) to identify hazards in agent workflows, derive safety requirements, and formalize them as enforceable specifications on data flows and tool sequences. To enable this, we introduce a capability-enhanced Model Context Protocol (MCP) framework that requires structured labels on capabilities, confidentiality, and trust level. Together, these contributions aim to shift safety from ad hoc reliability fixes to proactive guardrails with guarantees, while reducing dependence on user confirmation and making autonomy a deliberate design choice.
+        """
+    ).topic(security,seai,reu)
+
+
+    val chi26 = InProceedings(
+        Seq(Nahar, Yang, YChen, Deng, Holstein, Eslami, Kaestner),
+        "\"I Don't Think RAI Applies to My Model\" -- Engaging Non-champions with Sticky Stories for Responsible AI Work",
+       Conference("CHI", 2026, "ACM CHI Conference on Human Factors in Computing Systems").
+            month(4).location("Barcelona, Spain"),
+        ToAppear(),
+        Map(),
+        """
+Responsible AI (RAI) tools—checklists, templates, and governance processes—often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories—narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
+""").topic(seai, requirements, reu).selected().note("**Best Paper Award**")
+
+    val msr26 = InProceedings(
+        Seq(He, Miller, SAgarwal, Kaestner, Vasilescu),
+        "Speed at the Cost of Quality: How Cursor AI Increases Short-Term Velocity and Long-Term Complexity in Open-Source Projects",
+        MSR(2026).month(4).location("Rio de Janeiro").publisher(ACM),
+        ToAppear(),
+        Map(PDF -> PDFFile("msr26.pdf"),
+            HTTP -> URL("http://arxiv.org/abs/2511.04427"),
+            DOI -> DOI("10.1145/3793302.3793349")),
+        """
+        Large language models (LLMs) have demonstrated the promise to revolutionize the field of software engineering. Among other things, LLM agents are rapidly gaining momentum in software development, with practitioners reporting a multifold increase in productivity after adoption. Yet, empirical evidence is lacking around these claims. In this paper, we estimate the causal effect of adopting a widely popular LLM agent assistant, namely Cursor, on development velocity and software quality. The estimation is enabled by a state-of-the-art difference-in-differences design comparing Cursor-adopting GitHub projects with a matched control group of similar GitHub projects that do not use Cursor. We find that the adoption of Cursor leads to a statistically significant, large, but transient increase in project-level development velocity, along with a substantial and persistent increase in static analysis warnings and code complexity. Further panel generalized-method-of-moments estimation reveals that increases in static analysis warnings and code complexity are major factors driving long-term velocity slowdown. Our study identifies quality assurance as a major bottleneck for early Cursor adopters and calls for it to be a first-class citizen in the design of agentic AI coding tools and AI-driven workflows.
+        """
+    ).topic(empirical,aicoding).selected()
+
+    val acl26 = InProceedings(
+        Seq(Yang, Shi, QMa, Liu, Kaestner, Wu),
+        "What Prompts Don't Say: Understanding and Managing Underspecification in LLM Prompts",
+       Conference("ACL", 2026, "Annual Meeting of the Association for Computational Linguistics -- Findings").
+            month(7),
+        ToAppear(),
+        Map(),
+        """
+        Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
+        """
+    ).topic(seai, requirements)
+    
+
+    val arxiv26_guardrails = TechReport(
+        Seq(Hong, She, Kang, Timperley, Kaestner),
+        "Don't Make Models Guess Security and Safety: Symbolic Guardrails for Domain-Specific AI Agents",
+        2026, 4, ARXIV, "2604.15579",
+        Map(HTTP -> URL("https://arxiv.org/abs/2604.15579")),
+        """
+        There is increasing interest in integrating AI agents that invoke tools into domain-specific commercial software, where unintended tool calls can cause serious security and safety incidents. This has drawn growing research attention, and many agent security and safety benchmarks have emerged. They implicitly shape how the community approaches security and safety. Yet existing work exhibits a blind spot: it emphasizes training-based methods and neural guardrails, which reduce the likelihood of insecure or unsafe actions but cannot guarantee their prevention. It generally overlooks opportunities for deductive, symbolic guardrails grounded in standard software engineering practices, which can provide guarantees for some security and safety requirements. Our study has three parts: (1) a systematic review of 80 agent security and safety benchmarks finding that that 85% of benchmarks do not state verifiable requirements (61% provide none, and 24% give only high-level goals); (2) an applicability analysis of which security and safety requirements symbolic guardrails can and cannot enforce on τ2-Bench, CAR-bench, and MedAgentBench, finding that 74% of requirements are symbolically enforceable and 95% of these need only simple, low-cost checks; and (3) an empirical evaluation of symbolic guardrails on the same three benchmarks, finding that symbolic guardrails improve security and safety without sacrificing utility, and often improve it. Our work draws attention to the potential for symbolic guardrails for AI agents, suggesting them as an overlooked but practical path toward deploying domain-specific AI agents in risk-averse commercial software.
+        """
+    ).topic(security, seai)
+
+
+
+    val arxiv26_harness = TechReport(
+        Seq(Yang, XZhao, Wu, Kaestner),
+        "Better Harnesses, Smaller Models: Building 90% Cheaper Agents via Automated Harness Adaptation",
+        2026, 7, ARXIV, "2607.08938",
+        Map(HTTP -> URL("https://arxiv.org/abs/2607.08938")),
+        """
+        Smaller language models can match the performance of frontier LLMs on routine business tasks at a fraction of the cost when paired with an optimized harness. We develop a framework that maps agent failure modes to harness adaptation strategies and build an automated harness optimizer around it. Evaluating across seven business tasks, we find that adapted harnesses improve performance on most task--SLM combinations, with the best configuration recovering 89.7% of LLM performance at 4% of the cost. These results suggest that harness adaptation can substantially expand the practical deployment of smaller models in repetitive business workflows.
+        """
+    ).topic(seai)
+
+    val arxiv26_codereview = TechReport(
+        Seq(SAgarwal, Miller, Kaestner, Vasilescu),
+        "Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse",
+        2026, 7, ARXIV, "2607.07980",
+        Map(HTTP -> URL("https://arxiv.org/abs/2607.07980")),
+        """
+        Coding agents now author entire pull requests, and practitioners sharply disagree about what this does to code review: whether it becomes the bottleneck, whether human review is still necessary, and whether it quietly erodes the understanding that it once built. Repository-mining studies measure surface trends but seldom explain the mechanisms beneath them, and the trends themselves prove unstable. A motivating observational analysis of public GitHub activity finds that agent-authored pull requests are reviewed less often, merged several times faster, and discussed less than human-authored ones, yet the direction of these trends flips under different but equally defensible analysis choices, so the traces establish what is changing without explaining why. To recover the mechanisms, we synthesize practitioner discourse at scale into an explanatory theory: we collect 38,709 grey-literature documents (engineering blogs and Reddit threads), filter to those substantively about code review, and code a stratified random sample of 3,100 with an LLM-assisted pipeline, from which we build a causal model of 26 constructs and 67 relationships (64 directed, 3 contested). Its organizing claim is that review is the control point through which a coding agent's effect on software is decided, and that AI does not fix the sign of that effect: the team sets it, through the expertise its humans bring and how it structures the review process. The theory makes the competing positions explicit and turns "AI is changing code review" into falsifiable propositions with named constructs and moderators. As a secondary contribution, we offer the underlying LLM-assisted, grey-literature theory-building method as a scalable template for software-engineering research, with a public implementation.
+        """
+    ).topic(empirical, aicoding)
 
     val mlipbook = Book(
         Seq(Kaestner),
         "Machine Learning in Production: From Models to Products",
-        Venue("", 2022, "", KBook),
-        Map(HTTP -> URL("https://mlip-cmu.github.io/book/")),
-        """What does it take to build software products with machine learning, not just models and demos? We assume that you can train a model or build prompts to make predictions, but what does it take to turn the model into a product and actually deploy it, have confidence in its quality, and successfully operate and maintain it at scale? This book explores designing, building, testing, deploying, and operating software products with machine-learned models. It covers the entire lifecycle from a prototype ML model to an entire system deployed in production. Covers also responsible AI (safety, security, fairness, explainability) and MLOps.""").
-        note("(a final copy will be published late 2024 or 2025 by MIT Press)").topic(seai).selected()
+        Venue("", 2025, "", KBook).publisher(Publisher("The MIT Press","Cambridge, MA")).isbn("9780262049726").month(4),
+        Map(Other("open access") -> URL("https://mlip-cmu.github.io/book/"),
+            Other("publisher") -> URL("https://mitpress.mit.edu/9780262049726/machine-learning-in-production/")),
+        """A practical and innovative textbook detailing how to build real-world software products with machine learning components, not just models.
+
+Traditional machine learning texts focus on how to train and evaluate the machine learning model, while MLOps books focus on how to streamline model development and deployment. But neither focus on how to build actual products that deliver value to users. This practical textbook, by contrast, details how to responsibly build products with machine learning components, covering the entire development lifecycle from requirements and design to quality assurance and operations. Machine Learning in Production brings an engineering mindset to the challenge of building systems that are usable, reliable, scalable, and safe within the context of real-world conditions of uncertainty, incomplete information, and resource constraints. Based on the author's popular class at Carnegie Mellon, this pioneering book integrates foundational knowledge in software engineering and machine learning to provide the holistic view needed to create not only prototype models but production-ready systems.
+• Integrates coverage of cutting-edge research, existing tools, and real-world applications
+• Provides students and professionals with an engineering view for production-ready machine learning systems
+• Proven in the classroom
+• Offers supplemental resources including slides, videos, exams, and further readings""").
+        topic(seai).selected()
          
 
 }

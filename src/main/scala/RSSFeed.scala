@@ -1,8 +1,6 @@
 package de.stner.cv
 
 import java.io.{File, FileNotFoundException}
-import java.text.SimpleDateFormat
-import java.util.{Date, Locale}
 import de.stner.cv.GenHtml.PlainHtmlFormater
 
 import java.time.{LocalDateTime, LocalTime, ZoneOffset}

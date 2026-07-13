@@ -81,11 +81,11 @@ object GenLatex extends App {
         inCV(r.mkString("\n"))
     }
 
-    def printMemberships(): String =
-    {
-        val r = memberships.map(m => "\\item %s".format(m.markdownToTex(true)))
-        inCV(r.mkString("\n"))
-    }
+    // def printMemberships(): String =
+    // {
+    //     val r = memberships.map(m => "\\item %s".format(m.markdownToTex(true)))
+    //     inCV(r.mkString("\n"))
+    // }
 
 //    def printSoftware(): String = {
 //        val r = software.map(s =>
@@ -141,6 +141,7 @@ object GenLatex extends App {
         committees.filter(_.role.toSet.intersect(CommitteeRoles.organizationRoles).nonEmpty).
         map(committee=>printCommittee(committee.venue, committee.role.intersect(CommitteeRoles.organizationRoles.toSeq))).
         mkString +
+            "\\item[BTMM\\ 2025-26] Beyond the Model Meeting (2025~Toronto, 2026~Montreal)\n" + 
             "\\item[FOSD-Me.\\ 2009-21] Annual Meeting on Feature-Oriented Software Development (2009~Passau, 2010~Magdeburg, 2011~Dresden, 2012~Braunschweig, 2013 and~2014 Dagstuhl, 2015~Traunkirchen, 2016~Copenhagen, 2017~Darmstadt, 2018~Gothenburg, 2019~Weimar, 2021~Vienna)\n"
     ))
 
@@ -189,7 +190,7 @@ object GenLatex extends App {
 
 
     def publications(): String =
-        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{61}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
+        "\\section{Publications \\hfill \\small \\normalfont total: " + CV.publications.size + "; h-index: \\href{http://scholar.google.com/citations?user=PR-ZnJUAAAAJ}{78}}%\"C Kaester\" or \"C Kastner\" or \"C K?stner\"\n    \\begin{CV}\n    \\item[] Key publications are highlighted with \\selectedsymbol. PDF versions available online:\\\\\\url{http://www.cs.cmu.edu/~ckaestne/}.\n    \\end{CV}\n    \\sloppy" +
             VenueStructure.publicationKinds.map(printPublicationType(_)).mkString("\n\n\n")
 
     val header = "\\documentclass[a4paper,10pt]{letter}\n\\usepackage{mycv}\n\\usepackage{eurosym}\n\\addtolength{\\textheight}{10mm}\n\\usepackage{pifont}\n\\newcommand\\selectedsymbol{\\ding{77}}\n\\newcommand\\selected{\\hspace{0pt}\\setlength{\\marginparsep}{-5.9cm}\\reversemarginpar\\marginpar{\\selectedsymbol}}\n\\frenchspacing\n\\begin{document}"
@@ -208,7 +209,7 @@ object GenLatex extends App {
 
 //    output += section("Teaching and Advising", courses() + seminars() + theses())
     output += section("Teaching", courses() + seminars())
-    output += section("Memberships", printMemberships())
+    // output += section("Memberships", printMemberships())
 
     output += section("Professional Service", organizationEditorships() + organizationCommittees() + programCommittees() + reviewing())
 //    output += section("Software", printSoftware())
