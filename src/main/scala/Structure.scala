@@ -433,6 +433,12 @@ object HTTP extends LinkKind {
     override def bibtexKey = "url"
 }
 
+object ARXIVLink extends LinkKind {
+    def print = "arXiv"
+
+    override def bibtexKey = "url"
+}
+
 object BIB extends LinkKind {
     def print = "bib"
 }

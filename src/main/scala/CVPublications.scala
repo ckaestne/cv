@@ -1359,7 +1359,7 @@ object CVPublications {
         "Type-Safe Feature-Oriented Product Lines",
         2009, 6, PATR, "MIP-0909",
         Map(PDF -> PDFFile("mip-0909.pdf"),
-            HTTP -> URL("http://arxiv.org/abs/1001.3604")),
+            ARXIVLink -> URL("http://arxiv.org/abs/1001.3604")),
         """
                     A feature-oriented product line is a family of programs that share a
                     common set of features. A feature implements a stakeholder's requirement, represents
@@ -3790,7 +3790,7 @@ executing real software containing variability.""").topic(vaanalysis)
         "Differential Testing for Variational Analyses: Experience from Developing KConfigReader",
         2017, 6, ARXIV, "1706.09357",
         Map(PDF -> PDFFile("difftesting17.pdf"),
-            HTTP -> URL("https://arxiv.org/abs/1706.09357")),
+            ARXIVLink -> URL("https://arxiv.org/abs/1706.09357")),
         """
         Differential testing to solve the oracle problem has been applied in many scenarios where multiple supposedly equivalent implementations exist, such as multiple implementations of a C compiler. If the multiple systems disagree on the output for a given test input, we have likely discovered a bug without every having to specify what the expected output is. Research on variational analyses (or variability-aware or family-based analyses) can benefit from similar ideas. The goal of most variational analyses is to perform an analysis, such as type checking or model checking, over a large number of configurations much faster than an existing traditional analysis could by analyzing each configuration separately. Variational analyses are very suitable for differential testing, since the existence nonvariational analysis can provide the oracle for test cases that would otherwise be tedious or difficult to write. In this experience paper, I report how differential testing has helped in developing KConfigReader, a tool for translating the Linux kernel's kconfig model into a propositional formula. Differential testing allows us to quickly build a large test base and incorporate external tests that avoided many regressions during development and made KConfigReader likely the most precise kconfig extraction tool available.
         """).topic(vaanalysis,typechef)
@@ -3860,7 +3860,7 @@ executing real software containing variability.""").topic(vaanalysis)
         Pages(497, 508),
         Map(PDF -> PDFFile("ase17_transfer.pdf"),
             DOI->DOI("10.1109/ASE.2017.8115661"),
-            HTTP->URL("https://arxiv.org/abs/1709.02280")),
+            ARXIVLink->URL("https://arxiv.org/abs/1709.02280")),
         """
         Modern software systems provide many configuration 
         options which not only influence their functionality but also
@@ -4010,7 +4010,7 @@ executing real software containing variability.""").topic(vaanalysis)
         Seq(Kolesnikov, Siegmund, Kaestner, Apel),
         "On the Relation of External and Internal Feature Interactions: A Case Study",
         2017, 12, ARXIV, "1712.07440",
-        Map(HTTP -> URL("https://arxiv.org/abs/1712.07440"),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/1712.07440"),
             PDF->PDFFile("arxiv18.pdf")),
         """
         Detecting feature interactions is imperative for accurately predicting performance of highly-configurable systems. State-of-the-art performance prediction techniques rely on supervised machine learning for detecting feature interactions, which, in turn, relies on time consuming performance measurements to obtain training data. By providing information about potentially interacting features, we can reduce the number of required performance measurements and make the overall performance prediction process more time efficient. We expect that the information about potentially interacting features can be obtained by statically analyzing the source code of a highly-configurable system, which is computationally cheaper than performing multiple performance measurements. To this end, we conducted a qualitative case study in which we explored the relation between control-flow feature interactions (detected through static program analysis) and performance feature interactions (detected by performance prediction techniques using performance measurements). We found that a relation exists, which can potentially be exploited to predict performance interactions.
@@ -4171,7 +4171,7 @@ With both synthetic benchmarks and several real systems, we demonstrate that *L2
         "Understanding Differences among Executions with Variational Traces",
         2018, 7, ARXIV, "1807.03837",
         Map(PDF -> PDFFile("varviz18.pdf"),
-            HTTP -> URL("https://arxiv.org/pdf/1807.03837.pdf")),
+            ARXIVLink -> URL("https://arxiv.org/pdf/1807.03837.pdf")),
         """
         One of the main challenges of debugging is to understand why the program fails for certain inputs but succeeds for others. This
 becomes especially difficult if the fault is caused by an interaction of multiple inputs. To debug such interaction faults, it is necessary to understand
@@ -4360,7 +4360,7 @@ explore covered and uncovered parts of the output.
         "Finding Higher Order Mutants Using Variational Execution",
         2018, 9, ARXIV, "1809.04563",
         Map(PDF->PDFFile("srcsplash18.pdf"),
-            HTTP->URL("https://arxiv.org/abs/1809.04563")),
+            ARXIVLink->URL("https://arxiv.org/abs/1809.04563")),
         """
         Mutation testing is an effective but time consuming method for gauging the quality of a test suite. It functions by repeatedly making changes, called mutants, to the source code and checking whether the test suite fails (i.e., whether the mutant is killed). Recent work has shown cases in which applying multiple changes, called a higher order mutation, is more difficult to kill than a single change, called a first order mutation. Specifically, a special kind of higher order mutation, called a strongly subsuming higher order mutation (SSHOM), can enable equivalent accuracy in assessing the quality of the test suite with fewer executions of tests. Little is known about these SSHOMs, as they are difficult to find. Our goal in this research is to identify a faster, more reliable method for finding SSHOMs in order to characterize them in the future. We propose an approach based on variational execution to find SSHOMs. Preliminary results indicate that variational execution performs better than the existing genetic algorithm in terms of speed and completeness of results. Out of a set of 33 first order mutations, our variational execution approach finds all 38 SSHOMs in 4.5 seconds, whereas the genetic algorithm only finds 36 of the 38 SSHOMs in 50 seconds.
         """
@@ -4490,7 +4490,7 @@ be exploited to predict performance interactions."""
         "ConfigCrusher: White-Box Performance Analysis for Configurable Systems",
         2019, 5, ARXIV, "1905.02066",
         Map(PDF -> PDFFile("configcr19.pdf"),
-            HTTP -> URL("https://arxiv.org/abs/1905.02066")),
+            ARXIVLink -> URL("https://arxiv.org/abs/1905.02066")),
         """
         In configurable software systems, stakeholders are often interested
 in knowing how configuration options influence the performance of
@@ -4516,7 +4516,7 @@ provide additional information for analyzing configurable systems.
         "Design Dimensions for Software Certification: A Grounded Analysis",
         2019, 5, ARXIV, "1905.09760",
         Map(PDF -> PDFFile("trcert19.pdf"),
-            HTTP -> URL("https://arxiv.org/pdf/1905.09760.pdf")),
+            ARXIVLink -> URL("https://arxiv.org/pdf/1905.09760.pdf")),
         """
         In many domains, software systems cannot be deployed until authorities judge them fit for use in an intended operating environment. Certification standards and processes have been devised and deployed to regulate operations of software systems and prevent their failures. However, practitioners are often unsatisfied with the efficiency and value proposition of certification efforts. In this study, we compare two certification standards, Common Criteria and DO-178C, and collect insights from literature and from interviews with subject-matter experts to identify design options relevant to the design of standards. The results of the comparison of certification efforts---leading to the identification of design dimensions that affect their quality---serve as a framework to guide the comparison, creation, and revision of certification standards and processes. This paper puts software engineering research in context and discusses key issues around process and quality assurance and includes observations from industry about relevant topics such as recertification, timely evaluations, but also technical discussions around model-driven approaches and formal methods. Our initial characterization of the design space of certification efforts can be used to inform technical discussions and to influence the directions of new or existing certification efforts. Practitioners, technical commissions, and government can directly benefit from our analytical framework.
         """).topic(empirical,security)
@@ -4605,7 +4605,7 @@ in successful software systems can be followed.
 			location("Seoul").acceptanceRate(21 , 90).publisher(ACM),
 		Pages(45,48),
         Map(PDF -> PDFFile("seai19.pdf"), 
-        	HTTP->URL("http://arxiv.org/abs/2001.06691"),
+        	ARXIVLink->URL("http://arxiv.org/abs/2001.06691"),
     		DOI->DOI("10.1145/3377814.3381714"),
     		Video->seetTalk20.link),
         """
@@ -4696,7 +4696,7 @@ Feature flags (a.k.a feature toggles) are a mechanism to keep new features hidde
         "Efficiently Finding Higher-Order Mutants",
         2020, 4, ARXIV, "2004.02000",
         Map(PDF -> PDFFile("arxiv20hom.pdf"),
-            HTTP->URL("https://arxiv.org/abs/2004.02000")),
+            ARXIVLink->URL("https://arxiv.org/abs/2004.02000")),
         """
         Higher-order mutation has the potential for improving major drawbacks of traditional first-order mutation, such as by simulating more realistic faults or improving test optimization techniques. Despite interest in studying promising higher-order mutants, such mutants are difficult to find due to the exponential search space of mutation combinations. State-of-the-art approaches rely on genetic search, which is often incomplete and expensive due to its stochastic nature. First, we propose a novel way of finding a complete set of higher-order mutants by using variational execution, a technique that can, in many cases, explore large search spaces completely and often efficiently. Second, we use the identified complete set of higher-order mutants to study their characteristics. Finally, we use the identified characteristics to design and evaluate a new search strategy, independent of variational execution, that is highly effective at finding higher-order mutants even in large code bases.
         """).topic(testing, vaanalysis, reu)
@@ -4793,7 +4793,7 @@ Overall, we showcase the benefits of white-box performance analyses and their po
         "White-Box Analysis over Machine Learning: Modeling Performance of Configurable Systems",
         ICSE(2021).month(5).acceptanceRate(138, 602).publisher(IEEE),
         Pages(1072,1084),
-        Map(HTTP -> URL("http://arxiv.org/abs/2101.05362"),
+        Map(ARXIVLink -> URL("http://arxiv.org/abs/2101.05362"),
             PDF -> PDFFile("icse21_comprex.pdf"),
             DOI->DOI("10.1109/ICSE43902.2021.00100")),
         """
@@ -4831,7 +4831,7 @@ provides counterevidence against easy generalizations about why ecosystem commun
         "Feature Interactions on Steroids: On the Composition of ML Models",
         2021, 5, ARXIV, "2105.06449",
         Map(PDF -> PDFFile("arxiv21fi.pdf"),
-            HTTP -> URL("https://arxiv.org/abs/2105.06449")),
+            ARXIVLink -> URL("https://arxiv.org/abs/2105.06449")),
         """
         The lack of specifications is a key difference between traditional software engineering and machine learning. We discuss how it drastically impacts how we think about divide-and-conquer approaches to system design, and how it impacts reuse, testing and debugging activities. Traditionally, specifications provide a cornerstone for compositional reasoning and for the divide-and-conquer strategy of how we build large and complex systems from components, but those are hard to come by for machine-learned components. While the lack of specification seems like a fundamental new problem at first sight, in fact software engineers routinely deal with iffy specifications in practice: we face weak specifications, wrong specifications, and unanticipated interactions among components and their specifications. Machine learning may push us further, but the problems are not fundamentally new. Rethinking machine-learning model composition from the perspective of the feature interaction problem, we may even teach us a thing or two on how to move forward, including the importance of integration testing, of requirements engineering, and of design.
         """).topic(seai)
@@ -4949,7 +4949,7 @@ depending on intended use.
         ICSE(2022).month(5).acceptanceRate(197, 751).publisher(ACM),
         Pages(1571,1583),
         Map(PDF -> PDFFile("icse22_config.pdf"),
-            HTTP->URL("https://arxiv.org/abs/2203.10356"),
+            ARXIVLink->URL("https://arxiv.org/abs/2203.10356"),
             DOI->DOI("10.1145/3510003.3510043"),
             Video->YoutubeLink("VoegPhYnh84")),
         """
@@ -4980,7 +4980,7 @@ We also provide in-depth discussions about the implications of our findings incl
         ICSE(2022).month(5).acceptanceRate(197, 751).publisher(ACM),
         Pages(413,425),
         Map(PDF -> PDFFile("icse22_seai.pdf"),
-            HTTP -> URL("https://arxiv.org/abs/2110.10234"),
+            ARXIVLink -> URL("https://arxiv.org/abs/2110.10234"),
             DOI->DOI("10.1145/3510003.3510209"),
             Video->YoutubeLink("EwJ1Hx4F6DY")),
         """
@@ -5114,7 +5114,7 @@ of why contributors disengage.
         PagesStr("Article No.: 30"),
         Map(PDF->PDFFile("ase22.pdf"),
             DOI->DOI("10.1145/3551349.3556918"),
-            HTTP->URL("https://arxiv.org/abs/2209.03345")),
+            ARXIVLink->URL("https://arxiv.org/abs/2209.03345")),
         """
         Data science pipelines to train and evaluate models with machine learning may contain bugs just like any other code. Leakage between training and test data can lead to overestimating the model's accuracy during offline evaluations, possibly leading to deployment of low-quality models in production. Such leakage can happen easily by mistake or by following poor practices but may be tedious and challenging to detect manually. We develop a static analysis approach to detect common forms of data leakage in data science code. Our evaluation shows that our analysis accurately detects data leakage and that such leakage is pervasive among over 100,000 analyzed public notebooks. We discuss how our static analysis approach can help both practitioners and educators, and how leakage prevention can be designed into the development process.
         """).topic(seai,notebooks).selected()
@@ -5171,7 +5171,7 @@ into ML engineering."""
         PagesStr("Article No.: 749"),
         Map(PDF -> PDFFile("chi23.pdf"),
             DOI->DOI("10.1145/3544548.3581518"),
-            HTTP -> URL("https://arxiv.org/abs/2204.06425")),
+            ARXIVLink -> URL("https://arxiv.org/abs/2204.06425")),
         """
 The documentation practice for machine-learned (ML) models often
 falls short of established practices for traditional software, which
@@ -5197,7 +5197,7 @@ accountability.        """).topic(seai,modularity,empirical, reu).selected()
        Conference("CAIN", 2023, "International Conference on AI Engineering - Software Engineering for AI").
             month(5).location("Melbourne"),
         Pages(171,183),
-        Map(HTTP->URL("https://arxiv.org/abs/2304.00078"),
+        Map(ARXIVLink->URL("https://arxiv.org/abs/2304.00078"),
             PDF->PDFFile("cain23.pdf"),
             DOI->DOI("10.1109/CAIN58948.2023.00034")),
         """
@@ -5225,7 +5225,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         Seq(Nahar, HZhang, Lewis, Zhou, Kaestner),
         "A Dataset and Analysis of Open-Source Machine Learning Products",
         2023, 8, ARXIV, "2308.04328",
-        Map(HTTP -> URL("https://arxiv.org/abs/2308.04328")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2308.04328")),
         """
         Machine learning (ML) components are increasingly incorporated into software products, yet developers face challenges in transitioning from ML prototypes to products. Academic researchers struggle to propose solutions to these challenges and evaluate interventions because they often do not have access to close-sourced ML products from industry. In this study, we define and identify open-source ML products, curating a dataset of 262 repositories from GitHub, to facilitate further research and education. As a start, we explore six broad research questions related to different development activities and report 21 findings from a sample of 30 ML products from the dataset. Our findings reveal a variety of development practices and architectural decisions surrounding different types and uses of ML models that offer ample opportunities for future research innovations. We also find very little evidence of industry best practices such as model testing and pipeline automation within the open-source ML products, which leaves room for further investigation to understand its potential impact on the development and eventual end-user experience for the products.
         """).topic(seai)
@@ -5236,7 +5236,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
        Conference("EMNLP", 2023, "Conference on Empirical Methods in Natural Language Processing -- Findings").
             month(12).location("Singapore"),
         Pages(13504,13519),
-        Map(HTTP->URL("http://arxiv.org/abs/2310.09668"),
+        Map(ARXIVLink->URL("http://arxiv.org/abs/2310.09668"),
             PDF->PDFFile("emnlp23.pdf"),
             DOI->DOI("10.18653/v1/2023.findings-emnlp.901")),
         """
@@ -5368,7 +5368,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         Seq(Nahar, Kaestner, Butler, Parnin, Zimmermann, Bird),
         "Beyond the Comfort Zone: Emerging Solutions to Overcome Challenges in Integrating LLMs into Software Products",
         2024, 10, ARXIV, "2410.12071",
-        Map(HTTP -> URL("https://arxiv.org/abs/2410.12071")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2410.12071")),
         """
         Large Language Models (LLMs) are increasingly embedded into software products across diverse industries, enhancing user experiences, but at the same time introducing numerous challenges for developers. Unique characteristics of LLMs force developers, who are accustomed to traditional software development and evaluation, out of their comfort zones as the LLM components shatter standard assumptions about software systems. This study explores the emerging solutions that software developers are adopting to navigate the encountered challenges. Leveraging a mixed-method research, including 26 interviews and a survey with 332 responses, the study identifies 19 emerging solutions regarding quality assurance that practitioners across several product teams at Microsoft are exploring. The findings provide valuable insights that can guide the development and evaluation of LLM-based products more broadly in the face of these challenges.        
         """).topic(seai)
@@ -5396,7 +5396,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "FairSense: Long-Term Fairness Analysis of ML-Enabled Systems",
         ICSE(2025).location("Ottawa").month(4),
         Pages(782,794),
-        Map(HTTP->URL("https://arxiv.org/abs/2501.01665"),
+        Map(ARXIVLink->URL("https://arxiv.org/abs/2501.01665"),
             PDF->PDFFile("icse25_ltfairness.pdf"),
             DOI -> DOI("10.1109/ICSE55347.2025.00159"),
         ),
@@ -5410,7 +5410,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         "Beyond the Comfort Zone: Emerging Solutions to Overcome Challenges in Integrating LLMs into Software Products",
         Conference("ICSE-SEIP", 2025, "Proc. International Conference on Software Engineering -- Software Engineering in Practice Track").month(4),        
         Pages(516,527),
-        Map(HTTP -> URL("https://arxiv.org/abs/2410.12071"),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2410.12071"),
             DOI->DOI("10.1109/ICSE-SEIP66354.2025.00051")
             ),
         """
@@ -5468,7 +5468,7 @@ Abandonment introduces cost for otherwise seemingly free dependencies, but users
         Seq(He, HYang, Burckhardt, Kapravelos, Vasilescu, Kaestner),
         "4.5 Million (Suspected) Fake Stars in GitHub: A Growing Spiral of Popularity Contests, Scams, and Malware",
         2024, 12, ARXIV, "2412.13459",
-        Map(HTTP -> URL("https://arxiv.org/abs/2412.13459")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2412.13459")),
         """
         GitHub, the de-facto platform for open-source software development, provides a set of social-media-like features to signal high-quality repositories. Among them, the star count is the most widely used popularity signal, but it is also at risk of being artificially inflated (i.e., faked), decreasing its value as a decision-making signal and posing a security risk to all GitHub users. In this paper, we present a systematic, global, and longitudinal measurement study of fake stars in GitHub. To this end, we build StarScout, a scalable tool able to detect anomalous starring behaviors (i.e., low activity and lockstep) across the entire GitHub metadata. Analyzing the data collected using StarScout, we find that: (1) fake-star-related activities have rapidly surged since 2024; (2) the user profile characteristics of fake stargazers are not distinct from average GitHub users, but many of them have highly abnormal activity patterns; (3) the majority of fake stars are used to promote short-lived malware repositories masquerading as pirating software, game cheats, or cryptocurrency bots; (4) some repositories may have acquired fake stars for growth hacking, but fake stars only have a promotion effect in the short term (i.e., less than two months) and become a burden in the long term. Our study has implications for platform moderators, open-source practitioners, and supply chain security researchers.
         """
@@ -5515,7 +5515,7 @@ study provides guidance for practitioners and tool designers to manage their sup
         Seq(Omar, Nahar, Tjaden, Gilles, Mekonnen, Hsieh, Kaestner, Menon),
         "Beyond Accuracy, SHAP, and Anchors -- On the difficulty of designing effective end-user explanations",
         2025, 1, ARXIV, "2503.15512",
-        Map(HTTP -> URL("https://arxiv.org/abs/2503.15512")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2503.15512")),
         """
         Modern machine learning produces models that are impossible for users or developers to fully understand -- raising concerns about trust, oversight and human dignity. Transparency and explainability methods aim to provide some help in understanding models, but it remains challenging for developers to design explanations that are understandable to target users and effective for their purpose. Emerging guidelines and regulations set goals but may not provide effective actionable guidance to developers. In a controlled experiment with 124 participants, we investigate whether and how specific forms of policy guidance help developers design explanations for an ML-powered screening tool for diabetic retinopathy. Contrary to our expectations, we found that participants across the board struggled to produce quality explanations, comply with the provided policy requirements for explainability, and provide evidence of compliance. We posit that participant noncompliance is in part due to a failure to imagine and anticipate the needs of their audience, particularly non-technical stakeholders. Drawing on cognitive process theory and the sociological imagination to contextualize participants' failure, we recommend educational interventions.
         """).topic(seai, policy, reu, experiment)
@@ -5536,7 +5536,7 @@ study provides guidance for practitioners and tool designers to manage their sup
         "Six Million (Suspected) Fake Stars on GitHub: A Growing Spiral of Popularity Contests, Spams, and Malware",
         ICSE(2026).location("Rio de Janeiro").month(4),
         ToAppear(),
-        Map(HTTP -> URL("https://arxiv.org/abs/2412.13459")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2412.13459")),
         """GitHub, the de-facto platform for open-source software development, provides a set of social-media-like features to signal high-quality repositories. Among them, the star count is the most widely used popularity signal, but it is also at risk of being artificially inflated (i.e., faked), decreasing its value as a decision-making signal and posing a security risk to all GitHub users. In this paper, we present a systematic, global, and longitudinal measurement study of fake stars in GitHub. To this end, we build StarScout, a scalable tool able to detect anomalous starring behaviors across the entire GitHub metadata in the last five years. Analyzing the data collected using StarScout, we find that: (1) fake-star-related activities have rapidly surged since 2024; 2) the accounts and repositories in fake star campaigns have highly trivial activity patterns; (3) the majority of fake stars are used to promote short-lived phishing malware repositories; the remaining ones are mostly used to promote AI/LLM, blockchain, tool/application, and tutorial/demo repositories; (4) while repositories may have acquired fake stars for growth hacking, fake stars only have a promotion effect in the short term (i.e., less than two months) and become a liability in the long term. Our study has implications for platform moderators, open-source practitioners, and supply chain security researchers."""
     ).topic(security,opensource,empirical,reu).selected()
 
@@ -5545,7 +5545,7 @@ study provides guidance for practitioners and tool designers to manage their sup
         Seq(Gheibi, Kaestner, Jamshidi),
         "Hardness, Structural Knowledge, and Opportunity: An Analytical Framework for Modular Performance Modeling",
         2025, 9, ARXIV, "2509.11000",
-        Map(HTTP -> URL("https://arxiv.org/abs/2509.11000")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.11000")),
         """
         Performance-influence models are beneficial for understanding how configurations affect system performance, but their creation is challenging due to the exponential growth of configuration spaces. While gray-box approaches leverage selective "structural knowledge" (like the module execution graph of the system) to improve modeling, the relationship between this knowledge, a system's characteristics (we call them "structural aspects"), and potential model improvements is not well understood. This paper addresses this gap by formally investigating how variations in structural aspects (e.g., the number of modules and options per module) and the level of structural knowledge impact the creation of "opportunities" for improved "modular performance modeling". We introduce and quantify the concept of modeling "hardness", defined as the inherent difficulty of performance modeling. Through controlled experiments with synthetic system models, we establish an "analytical matrix" to measure these concepts. Our findings show that modeling hardness is primarily driven by the number of modules and configuration options per module. More importantly, we demonstrate that both higher levels of structural knowledge and increased modeling hardness significantly enhance the opportunity for improvement. The impact of these factors varies by performance metric; for ranking accuracy (e.g., in debugging task), structural knowledge is more dominant, while for prediction accuracy (e.g., in resource management task), hardness plays a stronger role. These results provide actionable insights for system designers, guiding them to strategically allocate time and select appropriate modeling approaches based on a system's characteristics and a given task's objectives.
         """
@@ -5555,7 +5555,7 @@ study provides guidance for practitioners and tool designers to manage their sup
         Seq(Yang, Shi, QMa, Liu, Kaestner, Wu),
         "What Prompts Don't Say: Understanding and Managing Underspecification in LLM Prompts",
         2025, 05, ARXIV, "2505.13360",
-        Map(HTTP -> URL("https://arxiv.org/abs/2505.13360")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2505.13360")),
         """
         Prompt underspecification is a common challenge when interacting with LLMs. In this paper, we present an in-depth analysis of this problem, showing that while LLMs can often infer unspecified requirements by default (41.1%), such behavior is fragile: Under-specified prompts are 2x as likely to regress across model or prompt changes, sometimes with accuracy drops exceeding 20%. This instability makes it difficult to reliably build LLM applications. Moreover, simply specifying all requirements does not consistently help, as models have limited instruction-following ability and requirements can conflict. Standard prompt optimizers likewise provide little benefit. To address these issues, we propose requirements-aware prompt optimization mechanisms that improve performance by 4.8% on average over baselines. We further advocate for a systematic process of proactive requirements discovery, evaluation, and monitoring to better manage prompt underspecification in practice.
         """
@@ -5565,7 +5565,7 @@ study provides guidance for practitioners and tool designers to manage their sup
         Seq(Nahar, Yang, YChen, Deng, Holstein, Eslami, Kaestner),
         "\"I Don't Think RAI Applies to My Model\" -- Engaging Non-champions with Sticky Stories for Responsible AI Work",
         2025, 9, ARXIV, "2509.22858",
-        Map(HTTP -> URL("https://arxiv.org/abs/2509.22858")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2509.22858")),
         """
         Responsible AI (RAI) tools -- checklists, templates, and governance processes -- often engage RAI champions, individuals intrinsically motivated to advocate ethical practices, but fail to reach non-champions, who frequently dismiss them as bureaucratic tasks. To explore this gap, we shadowed meetings and interviewed data scientists at an organization, finding that practitioners perceived RAI as irrelevant to their work. Building on these insights and theoretical foundations, we derived design principles for engaging non-champions, and introduced sticky stories -- narratives of unexpected ML harms designed to be concrete, severe, surprising, diverse, and relevant, unlike widely circulated media to which practitioners are desensitized. Using a compound AI system, we generated and evaluated sticky stories through human and LLM assessments at scale, confirming they embodied the intended qualities. In a study with 29 practitioners, we found that, compared to regular stories, sticky stories significantly increased time spent on harm identification, broadened the range of harms recognized, and fostered deeper reflection.
         """
@@ -5602,7 +5602,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         MSR(2026).month(4).location("Rio de Janeiro").publisher(ACM),
         ToAppear(),
         Map(PDF -> PDFFile("msr26.pdf"),
-            HTTP -> URL("http://arxiv.org/abs/2511.04427"),
+            ARXIVLink -> URL("http://arxiv.org/abs/2511.04427"),
             DOI -> DOI("10.1145/3793302.3793349")),
         """
         Large language models (LLMs) have demonstrated the promise to revolutionize the field of software engineering. Among other things, LLM agents are rapidly gaining momentum in software development, with practitioners reporting a multifold increase in productivity after adoption. Yet, empirical evidence is lacking around these claims. In this paper, we estimate the causal effect of adopting a widely popular LLM agent assistant, namely Cursor, on development velocity and software quality. The estimation is enabled by a state-of-the-art difference-in-differences design comparing Cursor-adopting GitHub projects with a matched control group of similar GitHub projects that do not use Cursor. We find that the adoption of Cursor leads to a statistically significant, large, but transient increase in project-level development velocity, along with a substantial and persistent increase in static analysis warnings and code complexity. Further panel generalized-method-of-moments estimation reveals that increases in static analysis warnings and code complexity are major factors driving long-term velocity slowdown. Our study identifies quality assurance as a major bottleneck for early Cursor adopters and calls for it to be a first-class citizen in the design of agentic AI coding tools and AI-driven workflows.
@@ -5626,7 +5626,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         Seq(Hong, She, Kang, Timperley, Kaestner),
         "Don't Make Models Guess Security and Safety: Symbolic Guardrails for Domain-Specific AI Agents",
         2026, 4, ARXIV, "2604.15579",
-        Map(HTTP -> URL("https://arxiv.org/abs/2604.15579")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2604.15579")),
         """
         There is increasing interest in integrating AI agents that invoke tools into domain-specific commercial software, where unintended tool calls can cause serious security and safety incidents. This has drawn growing research attention, and many agent security and safety benchmarks have emerged. They implicitly shape how the community approaches security and safety. Yet existing work exhibits a blind spot: it emphasizes training-based methods and neural guardrails, which reduce the likelihood of insecure or unsafe actions but cannot guarantee their prevention. It generally overlooks opportunities for deductive, symbolic guardrails grounded in standard software engineering practices, which can provide guarantees for some security and safety requirements. Our study has three parts: (1) a systematic review of 80 agent security and safety benchmarks finding that that 85% of benchmarks do not state verifiable requirements (61% provide none, and 24% give only high-level goals); (2) an applicability analysis of which security and safety requirements symbolic guardrails can and cannot enforce on τ2-Bench, CAR-bench, and MedAgentBench, finding that 74% of requirements are symbolically enforceable and 95% of these need only simple, low-cost checks; and (3) an empirical evaluation of symbolic guardrails on the same three benchmarks, finding that symbolic guardrails improve security and safety without sacrificing utility, and often improve it. Our work draws attention to the potential for symbolic guardrails for AI agents, suggesting them as an overlooked but practical path toward deploying domain-specific AI agents in risk-averse commercial software.
         """
@@ -5638,7 +5638,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         Seq(Yang, XZhao, Wu, Kaestner),
         "Better Harnesses, Smaller Models: Building 90% Cheaper Agents via Automated Harness Adaptation",
         2026, 7, ARXIV, "2607.08938",
-        Map(HTTP -> URL("https://arxiv.org/abs/2607.08938")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2607.08938")),
         """
         Smaller language models can match the performance of frontier LLMs on routine business tasks at a fraction of the cost when paired with an optimized harness. We develop a framework that maps agent failure modes to harness adaptation strategies and build an automated harness optimizer around it. Evaluating across seven business tasks, we find that adapted harnesses improve performance on most task--SLM combinations, with the best configuration recovering 89.7% of LLM performance at 4% of the cost. These results suggest that harness adaptation can substantially expand the practical deployment of smaller models in repetitive business workflows.
         """
@@ -5648,7 +5648,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         Seq(SAgarwal, Miller, Kaestner, Vasilescu),
         "Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse",
         2026, 7, ARXIV, "2607.07980",
-        Map(HTTP -> URL("https://arxiv.org/abs/2607.07980")),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2607.07980")),
         """
         Coding agents now author entire pull requests, and practitioners sharply disagree about what this does to code review: whether it becomes the bottleneck, whether human review is still necessary, and whether it quietly erodes the understanding that it once built. Repository-mining studies measure surface trends but seldom explain the mechanisms beneath them, and the trends themselves prove unstable. A motivating observational analysis of public GitHub activity finds that agent-authored pull requests are reviewed less often, merged several times faster, and discussed less than human-authored ones, yet the direction of these trends flips under different but equally defensible analysis choices, so the traces establish what is changing without explaining why. To recover the mechanisms, we synthesize practitioner discourse at scale into an explanatory theory: we collect 38,709 grey-literature documents (engineering blogs and Reddit threads), filter to those substantively about code review, and code a stratified random sample of 3,100 with an LLM-assisted pipeline, from which we build a causal model of 26 constructs and 67 relationships (64 directed, 3 contested). Its organizing claim is that review is the control point through which a coding agent's effect on software is decided, and that AI does not fix the sign of that effect: the team sets it, through the expertise its humans bring and how it structures the review process. The theory makes the competing positions explicit and turns "AI is changing code review" into falsifiable propositions with named constructs and moderators. As a secondary contribution, we offer the underlying LLM-assisted, grey-literature theory-building method as a scalable template for software-engineering research, with a public implementation.
         """
