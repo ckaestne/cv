@@ -163,6 +163,33 @@ margin: 8px
 
 .researchthemesummary { margin-bottom:10px}
 
+/* research areas (front page + research.html) */
+.researchtheme {
+    background:#f3f0e9;
+    padding:12px 16px;
+    margin-bottom:26px;
+    border-left:4px solid #990000;
+}
+.researchtheme em { color:#990000; font-style:italic; }
+.researcharea { margin-bottom:22px; }
+.researcharea h3 { color:#990000; font-size:122%; margin-bottom:2px; }
+.researcharea.foundational h3 { color:#8a5a44; }
+.researcharea .eyebrow {
+    font-family:"Roboto", Verdana, sans-serif;
+    font-size:66%;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#9a9284;
+    margin-bottom:6px;
+}
+.researcharea .keyrefs {
+    font-family:"Roboto", Verdana, sans-serif;
+    font-size:79%;
+    color:#666;
+    margin-top:6px;
+}
+.researcharea .keyrefs a { font-weight:bold; }
+
 .navbar {
     background:#990000;
     color:white;

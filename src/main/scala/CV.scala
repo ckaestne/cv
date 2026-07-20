@@ -16,15 +16,15 @@ object CV {
 
     def printSummary(): NodeSeq =
         <p>I am an associate professor in the School of Computer Science at Carnegie Mellon University.
-            My current interests are in 
-            <strong>software engineering for software systems with ML components</strong> (or teaching software engineering
-                to data scientists, "machine learning in production"),
-            <strong>open-source sustainability</strong>,
-            and <strong>software-supply-chain security</strong>.
-            I am generally interested in understanding the`
-            <strong>limits of modularity</strong>
-            and <strong>complexity</strong> caused by <strong>variability</strong> in software systems,
-            which naturally brings me to questions of <strong>quality assurance</strong>, <strong>interoperability</strong>, and <strong>feature interactions</strong>.
+            My current work focuses on <strong>AI engineering</strong> (engineering AI-powered software systems): How to
+            responsibly build, test, and operate production software when AI components are unreliable and lack
+            clear specifications. A second focus is on
+            <strong>software supply-chain security</strong> and the sustainability of the open-source ecosystems
+            that nearly all modern software depends on. Previously I worked a lot on reuse and variability at scale.
+            A common thread through my work is <strong>imperfect modularity</strong>: I study where modularity
+            breaks down and how tooling, evidence, and process can help developers cope, which naturally brings me
+            to questions of quality assurance, requirements, and
+            feature interactions.
             My research combines rigorous empirical research with program analysis and tool building.</p>
             <p>I currently serve as the director of the <a href="https://se-phd.isri.cmu.edu">CMU Software Engineering Ph.D. Program</a>.</p> :+
             <p>Profiles:
@@ -69,10 +69,12 @@ object CV {
           |\section{Profile}
           |\begin{CV}
           |\item[]
-          |     Associate professor in the Software and Societal Systems Department at the School of Computer Science at Carnegie Mellon University interested in \emph{limits of modularity} and \emph{variability} in software systems,
-          |     as well as open-source sustainability and software engineering for AI-enabled systems. Developing mechanisms, languages, and tools to implement variability in a disciplined way,
-          |     to detect errors, to help with nonmodular changes, and to improve program comprehension in software systems, often focused on systems with a high amount of variability.
-          |     Also interested in \emph{open-source sustainability} and \emph{software engineering for AI-enabled systems}.
+          |     Associate professor in the Software and Societal Systems Department at the School of Computer Science at Carnegie Mellon University.
+          |     Current work focuses on \emph{AI engineering} (engineering AI-powered software systems): how to responsibly build, test, and operate production software when AI components are unreliable and lack clear specifications.
+          |     A second focus is on \emph{software supply-chain security} and the sustainability of the open-source ecosystems that nearly all modern software depends on.
+          |     Previously worked a lot on reuse and variability at scale.
+          |     A common thread is \emph{imperfect modularity}: studying where modularity breaks down and how tooling, evidence, and process can help developers cope, which naturally leads to questions of quality assurance, requirements, and feature interactions.
+          |     Research combines rigorous empirical research with program analysis and tool building.
           |\end{CV}
           |
           |\section{Education}

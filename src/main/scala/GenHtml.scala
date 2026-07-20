@@ -109,7 +109,7 @@ object GenHtml extends App with RSSFeed {
     }
 
 
-    def printPublication(p: Publication, withAcceptanceRate: Boolean = true): NodeSeq = {
+    def printPublication(p: Publication, withAcceptanceRate: Boolean = true, withAbstract: Boolean = true): NodeSeq = {
         val links: Seq[(LinkKind, URL)] = p.links.toSeq.sortBy(_._1.print) :+ (BIB, URL("./bibtex.html#" + p.genKey))
 
                <dd class={getPublicationClassTags(p)} id={p.genId}><div>
@@ -120,13 +120,13 @@ object GenHtml extends App with RSSFeed {
                    for ((key, url) <- links.dropRight(1))
                        yield <a href={url.toString}>{key.print}</a> :+ ", "
                } <a href={links.last._2.toString}>{links.last._1.print}</a>&nbsp;]
-                   {if (!p.isHideAbstract && p.abstr != "")   <blockquote><p>{p.abstr.markdownToHtml}</p></blockquote> }
+                   {if (withAbstract && !p.isHideAbstract && p.abstr != "")   <blockquote><p>{p.abstr.markdownToHtml}</p></blockquote> }
                </div></dd>
     }
 
-    def printPublicationRow(p: Publication, withAcceptanceRate: Boolean): NodeSeq = row(
+    def printPublicationRow(p: Publication, withAcceptanceRate: Boolean, withAbstract: Boolean = true): NodeSeq = row(
     <span class="pubshort">{p.venue.short} {p.venue.year}</span>,
-    <div class="bib"><dl>{printPublication(p, withAcceptanceRate)}</dl></div>
+    <div class="bib"><dl>{printPublication(p, withAcceptanceRate, withAbstract)}</dl></div>
     )
 
     private def sep =  <span class="sep">|</span>
@@ -221,7 +221,7 @@ object GenHtml extends App with RSSFeed {
     def printKeyPublications(pubs: Seq[Publication]): NodeSeq =
         rowH2_(<span>Selected Publications {rssLogo("pub.rss", "Full publication feed")}</span>, "publications",
         <p>For a complete list of publications, see the <a href="publications.html">publication page</a>.</p>) ++ {
-            for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p, false)
+            for (p <- pubs.filter(_.isSelected).reverse) yield printPublicationRow(p, false, withAbstract = false)
         }.flatten ++
             row(null,
                 <p><a href="publications.html">more...</a></p> ++
@@ -403,7 +403,7 @@ object GenHtml extends App with RSSFeed {
         printTitle(true) ++
             row(printPicture(), printSummary())}</div> ++
             printNews() ++
-            ResearchGenHtml.printResearchOverview(Research.themes) ++
+            ResearchGenHtml.printResearchBlock() ++
             printTeachingSummary(teaching) ++
             printStudents(students) ++
             printCommittees(committees) ++
@@ -421,9 +421,9 @@ object GenHtml extends App with RSSFeed {
 
     def navigationLinks = List(
         Nav("News", "index.html#news"),
-        Nav("Research", "index.html#researchoverview",
-            Nav("Overview", "index.html#researchoverview") ::
-                Research.themes.map(t => Nav(t.title, "research.html#" + t.key))),
+        Nav("Research", "index.html#research",
+            Nav("Overview", "index.html#research") ::
+                Research.areas.map(t => Nav(t.title, "index.html#" + t.key))),
         Nav("Publications", "index.html#publications", List(
             Nav("Selected Publications", "index.html#publications"),
             Nav("Blog posts, videos, ...", "index.html#media"),
@@ -563,7 +563,7 @@ object GenHtml extends App with RSSFeed {
     printNewsFeed(new File(targetPath, "news.rss"))
     printPubsFeed(new File(targetPath, "pub.rss"))
     printArticles(articleDir, targetPath)
-    printDoc(ResearchGenHtml.researchPage, "Research Overview :: " + CV.name + " :: CMU", new File(targetPath, "research.html"))
+    printDoc(ResearchGenHtml.researchPage, "Research :: " + CV.name + " :: CMU", new File(targetPath, "research.html"))
     println("done.")
 
 }

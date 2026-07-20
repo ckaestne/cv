@@ -5568,7 +5568,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
     val mlipbook = Book(
         Seq(Kaestner),
         "Machine Learning in Production: From Models to Products",
-        Venue("", 2025, "", KBook).publisher(Publisher("The MIT Press","Cambridge, MA")).isbn("9780262049726").month(4),
+        Venue("", 2025, "", KBook).publisher(Publisher("MIT Press","Cambridge, MA")).isbn("9780262049726").month(4),
         Map(Other("open access") -> URL("https://mlip-cmu.github.io/book/"),
             Other("publisher") -> URL("https://mitpress.mit.edu/9780262049726/machine-learning-in-production/")),
         """A practical and innovative textbook detailing how to build real-world software products with machine learning components, not just models.
