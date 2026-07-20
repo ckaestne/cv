@@ -128,6 +128,18 @@ object GenLatex extends App {
         subsection("Advising", inCV(r.mkString))
     }
 
+    def students(): String =
+        CV.students.map({
+            case (title, people) => subsection(title, inCV(
+                people.map({
+                    case (person, note) => "\\item[] %s%s\n".format(
+                        person.fullname.toTex,
+                        note.map(n => " " + n.toTex).getOrElse("")
+                    )
+                }).mkString
+            ))
+        }).mkString
+
     //    def printCommittee()
 
     def printCommittee(c:Committee): String = printCommittee(c.venue, c.role)
@@ -209,6 +221,7 @@ object GenLatex extends App {
 
 //    output += section("Teaching and Advising", courses() + seminars() + theses())
     output += section("Teaching", courses() + seminars())
+    output += section("Advising and Mentoring", students())
     // output += section("Memberships", printMemberships())
 
     output += section("Professional Service", organizationEditorships() + organizationCommittees() + programCommittees() + reviewing())
