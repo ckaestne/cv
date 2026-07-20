@@ -249,3 +249,81 @@ margin: 8px
 .selectmedia {
     font-weight:bold;
 }
+
+
+/* ------------------------------------------------------------------ */
+/* Responsive layout                                                  */
+/* Replaces the old fixed-width 960.gs grid. The generated markup     */
+/* still emits a flat sequence of .grid_3 (label) + .grid_9 (content) */
+/* + .clear siblings inside .container_12; here they float side by    */
+/* side on wide screens and stack into a single column on narrow      */
+/* ones.                                                              */
+/* ------------------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.container_12 {
+    width: auto;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 16px;
+}
+
+.grid_3 {
+    float: left;
+    width: 23%;
+    padding-right: 20px;
+}
+
+.grid_9 {
+    float: left;
+    width: 77%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.clear {
+    clear: both;
+}
+
+/* keep media, images and code from forcing horizontal scroll */
+img { max-width: 100%; height: auto; }
+iframe { max-width: 100%; }
+#coolwall { width: auto; max-width: 100%; }
+pre { overflow-x: auto; }
+
+/* the fixed navbar also uses the grid; let it wrap on wide screens */
+.navbar .container_12 { padding-top: 0; padding-bottom: 0; }
+
+/* on wide screens the spelling link is tucked up under the navbar next
+   to the name (the inline `top` supplies the offset) */
+.spellinglinkwrap { position: absolute; }
+
+@media (max-width: 720px) {
+    /* stack the two columns */
+    .grid_3, .grid_9 {
+        float: none;
+        width: 100%;
+        padding-right: 0;
+    }
+    /* labels are right-aligned in the desktop side column; that looks
+       odd once they span the full width, so align them left again */
+    .grid_3.right { text-align: left; }
+
+    /* the desktop layout offsets content below a fixed navbar; on
+       small screens let the navbar scroll with the page instead so it
+       does not overlap content or eat vertical space */
+    .navbar { position: static; }
+    body > .container_12 { margin-top: 0 !important; }
+
+    /* the hover dropdowns do not work on touch; show the nav links
+       inline and let them wrap */
+    .navbar .dropdown-content { display: none; }
+
+    .headline h1 { font-size: 240%; }
+
+    /* let the spelling link flow inline instead of overflowing the
+       right edge from its desktop absolute position */
+    .spellinglinkwrap { position: static; top: auto; }
+}

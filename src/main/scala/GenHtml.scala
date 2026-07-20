@@ -290,7 +290,7 @@ object GenHtml extends App with RSSFeed {
         To create the &auml; in Windows enter 0228 while pressing the ALT key or simply copy it from this page. <a href="javascript:toggleSpelling()" style="font-size:small;">[close]</a>
         </p>
 
-    def printSpellingLink() = <span style={"position:absolute;top:" + navBarHeight}><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
+    def printSpellingLink() = <span class="spellinglinkwrap" style={"top:" + navBarHeight}><a href="spelling.html" id="spellinglink">[pronunciation and spelling]</a></span>
 
 
     val monthyear = java.time.format.DateTimeFormatter.ofPattern("MMM. yyyy", java.util.Locale.ENGLISH)
@@ -469,10 +469,9 @@ object GenHtml extends App with RSSFeed {
         <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/reset.css").toASCIIString} />
                 <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/text.css").toASCIIString} />
-                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/960.css").toASCIIString} />
-                <link rel="stylesheet" type="text/css" media="all" href={(pathToRoot resolve "css/jquery.tweet.css").toASCIIString} />
                 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,400italic|Roboto+Slab:400,700' rel='stylesheet' type='text/css' />
                 <script type="text/javascript" src={(pathToRoot resolve "js/jquery-1.7.2.min.js").toASCIIString}></script>
                 <script type="text/javascript" src={(pathToRoot resolve "js/script.js").toASCIIString}></script>
