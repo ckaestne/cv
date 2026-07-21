@@ -243,7 +243,10 @@ margin: 8px
 }
 
 .sideimg {
-    max-width: 220px;
+    /* cap at 220px but never exceed the side column, so the image
+       stays inside its gutter instead of running up to the text */
+    max-width: min(300px, 100%);
+    height: auto;
 }
 
 .selectmedia {
@@ -272,13 +275,13 @@ margin: 8px
 
 .grid_3 {
     float: left;
-    width: 23%;
+    width: 33%;
     padding-right: 20px;
 }
 
 .grid_9 {
     float: left;
-    width: 77%;
+    width: 67%;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
