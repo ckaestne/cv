@@ -5508,10 +5508,11 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
     val msr26 = InProceedings(
         Seq(He, Miller, SAgarwal, Kaestner, Vasilescu),
         "Speed at the Cost of Quality: How Cursor AI Increases Short-Term Velocity and Long-Term Complexity in Open-Source Projects",
-        MSR(2026).month(4).location("Rio de Janeiro").publisher(ACM),
-        ToAppear(),
+        MSR(2026).month(4).location("Rio de Janeiro, Brazil").publisher(ACM),
+        Pages(181, 193),
         Map(PDF -> PDFFile("msr26.pdf"),
-            ARXIVLink -> URL("http://arxiv.org/abs/2511.04427"),
+            ARXIVLink -> URL("https://arxiv.org/abs/2511.04427"),
+            ACMLink -> URL("https://dl.acm.org/doi/10.1145/3793302.3793349"),
             DOI -> DOI("10.1145/3793302.3793349")),
         """
         Large language models (LLMs) have demonstrated the promise to revolutionize the field of software engineering. Among other things, LLM agents are rapidly gaining momentum in software development, with practitioners reporting a multifold increase in productivity after adoption. Yet, empirical evidence is lacking around these claims. In this paper, we estimate the causal effect of adopting a widely popular LLM agent assistant, namely Cursor, on development velocity and software quality. The estimation is enabled by a state-of-the-art difference-in-differences design comparing Cursor-adopting GitHub projects with a matched control group of similar GitHub projects that do not use Cursor. We find that the adoption of Cursor leads to a statistically significant, large, but transient increase in project-level development velocity, along with a substantial and persistent increase in static analysis warnings and code complexity. Further panel generalized-method-of-moments estimation reveals that increases in static analysis warnings and code complexity are major factors driving long-term velocity slowdown. Our study identifies quality assurance as a major bottleneck for early Cursor adopters and calls for it to be a first-class citizen in the design of agentic AI coding tools and AI-driven workflows.
