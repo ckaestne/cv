@@ -5509,7 +5509,7 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         Seq(He, Miller, SAgarwal, Kaestner, Vasilescu),
         "Speed at the Cost of Quality: How Cursor AI Increases Short-Term Velocity and Long-Term Complexity in Open-Source Projects",
         MSR(2026).month(4).location("Rio de Janeiro, Brazil").publisher(ACM),
-        PagesStr("19 pages"),
+        Pages(181, 193),
         Map(PDF -> PDFFile("msr26.pdf"),
             ARXIVLink -> URL("https://arxiv.org/abs/2511.04427"),
             ACMLink -> URL("https://dl.acm.org/doi/10.1145/3793302.3793349"),
