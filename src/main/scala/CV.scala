@@ -592,6 +592,12 @@ object CV {
 
     val awards: Seq[AwardOrGrant] = Seq(
         Award(
+            "10-year Most Influential Paper Award at the International Conference on Software and Systems Reuse, Product Lines, and Configuration (Variability) 2026",
+            URL("https://conf.researchr.org/track/variability-2026/variability-2026-mip-award"),
+            LocalDate.of(2026, 8, 24),
+            Nil
+        ),
+        Award(
             "Best Paper Award at the ACM CHI Conference on Human Factors in Computing Systems (CHI) 2026",
             URL("https://programs.sigchi.org/chi/2026/awards/best-papers"),
             LocalDate.of(2026, 4, 13),

@@ -264,6 +264,11 @@ object Coauthors {
     val Doshi = Person("Aarya", "Doshi", "Georgia Institute of Technology")
     val Xu = Person("Congying", "Xu", "The Hong Kong University of Science and Technology")
     val SAgarwal = Person("Shyam", "Agarwal", "Carnegie Mellon University")
+    val Bell = Person("Jonathan", "Bell", URL("https://jonbell.net/"), "Northeastern University")
+    val GomesNeto = Person("Francisco", "Gomes de Oliveira Neto", "Chalmers | University of Gothenburg")
+    val Paramitha = Person("Ranindya", "Paramitha", "North Carolina State University")
+    val Paidipalli = Person("Siri", "Paidipalli", "North Carolina State University")
+    val LWilliams = Person("Laurie", "Williams", "North Carolina State University")
 }
 
 
@@ -5564,6 +5569,38 @@ Responsible AI (RAI) tools—checklists, templates, and governance processes—o
         Coding agents now author entire pull requests, and practitioners sharply disagree about what this does to code review: whether it becomes the bottleneck, whether human review is still necessary, and whether it quietly erodes the understanding that it once built. Repository-mining studies measure surface trends but seldom explain the mechanisms beneath them, and the trends themselves prove unstable. A motivating observational analysis of public GitHub activity finds that agent-authored pull requests are reviewed less often, merged several times faster, and discussed less than human-authored ones, yet the direction of these trends flips under different but equally defensible analysis choices, so the traces establish what is changing without explaining why. To recover the mechanisms, we synthesize practitioner discourse at scale into an explanatory theory: we collect 38,709 grey-literature documents (engineering blogs and Reddit threads), filter to those substantively about code review, and code a stratified random sample of 3,100 with an LLM-assisted pipeline, from which we build a causal model of 26 constructs and 67 relationships (64 directed, 3 contested). Its organizing claim is that review is the control point through which a coding agent's effect on software is decided, and that AI does not fix the sign of that effect: the team sets it, through the expertise its humans bring and how it structures the review process. The theory makes the competing positions explicit and turns "AI is changing code review" into falsifiable propositions with named constructs and moderators. As a secondary contribution, we offer the underlying LLM-assisted, grey-literature theory-building method as a scalable template for software-engineering research, with a public implementation.
         """
     ).topic(empirical, aicoding)
+
+    val arxiv26_shadowpc = TechReport(
+        Seq(Kaestner, Hilton, Bell, GomesNeto),
+        "The ICSE 2026 Shadow PC: Training the Next Generation of Reviewers Through Deliberate Practice",
+        2026, 7, ARXIV, "2607.20396",
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2607.20396")),
+        """
+        Peer review is essential to software engineering research, yet reviewer training remains largely implicit. We describe the ICSE 2026 Shadow PC, a redesigned program emphasizing deliberate practice at scale. Key innovations include multi-phase structure with calibration and peer feedback, strict separation from the main PC, and a pathway toward leadership development. With 102 participants completing the program and reviewing 117 papers, 97% recommending the experience, and positive reception from authors (67% finding reviews helpful), the program demonstrates that rigorous reviewer training is achievable at scale. We share lessons learned and propose shadow PC area chairs as a mechanism for sustainable scaling and leadership development.
+        """
+    )
+
+    val arxiv26_trust = TechReport(
+        Seq(Paramitha, Paidipalli, LWilliams, Kaestner),
+        "The Rising Cost of Trust: Practitioners' Trust Signals, Controls, and Responses in the Software Supply Chain",
+        2026, 8, ARXIV, "2608.20675",
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2608.20675")),
+        """
+        The software supply chain is becoming more complex, and AI is reshaping its threat landscape, e.g., raising concerns about the quality of AI-generated dependencies. Seen through the lens of trust, the stakes of eroding trust in the software supply chain are high, yet we lack an empirical baseline on practitioners' trust. The goal of this study is to aid software practitioners in taking informed actions as trust in the software supply chain evolves, through an interview study with 38 practitioners. We conducted semi-structured interviews with industry and open-source practitioners, focusing on their revealed preferences (the controls they adopted) rather than their stated attitudes, and analyzed the data using thematic analysis grounded in established trust concepts from the social sciences. We find that trust is eroding, which is becoming costly: aware practitioners are accumulating controls. To cope with the rising cost of trust, practitioners automate verification, delegate trust decisions to guardians, or consider exiting the software supply chain entirely. Understanding software supply chain dynamics through the lens of trust provides the vocabulary and concepts (e.g., guardians of trust, system trust, signals) to shape future interventions for a well-functioning supply chain with appropriate levels of trust.
+        """
+    ).topic(security, opensource, empirical)
+
+    val scored26 = InProceedings(
+        Seq(Paramitha, Kaestner, LWilliams),
+        "The Software Supply Chain as a Market for Lemons: A Multivocal Review of Trust Signal Collapse",
+        Conference("SCORED", 2026, "Conference on Software Supply Chain Offensive Research and Ecosystem Defenses").
+            month(10).location("Prague, Czechia"),
+        ToAppear(),
+        Map(ARXIVLink -> URL("https://arxiv.org/abs/2608.20678")),
+        """
+        Practitioners evaluating open-source dependencies rely on inexpensive trust indicators—such as stars, download counts, and contributor activity—rather than conducting thorough code reviews, assuming these metrics indicate genuine trustworthiness. While prior research has examined individual metric manipulation, the broader ecosystem of signal degradation and corresponding organizational responses remain largely unstudied. This investigation examined 252 Google Search results and 870 Reddit discussions to understand how practitioners assess dependency reliability. The analysis revealed that trust signals weaken due to three concurrent factors: deliberate tampering, deceptive practices that mimic legitimate activity, and unintentional AI-driven inflation. The documented ecosystem responses emphasize recommendations over concrete implementation: just over half of Google results offer guidance without evidence of implementation. Proposed solutions typically involve substituting different signals or combining multiple ones—approaches now equally vulnerable to manipulation. The emergence of legitimate AI tools causing signal degradation shows minimal documented behavioral adjustment. This gap between recognized solutions and actual implementation resembles a market characterized by information asymmetry, where counterfeiting costs less than earning credibility. The authors argue that relying on individual verification is impractical and recommend mandatory cryptographic verification methods to establish universal security standards.
+        """
+    ).topic(security, opensource, empirical, survey)
 
     val mlipbook = Book(
         Seq(Kaestner),
